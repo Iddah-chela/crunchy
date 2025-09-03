@@ -1,0 +1,527 @@
+
+<!doctype html>
+
+<html>          
+<head>          
+    <meta charset="UTF-8">          
+    <title>Random verse</title>          
+    <meta name="viewport" content="width=device-width, initial-scale=1">          
+    <meta name="author" content="Supherhero">          
+    <meta name="keywords" content="programming hero,learn programming">          
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">          
+  <!--custom css-->          
+<link rel="stylesheet" href="css/style.css">   
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>   
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+</head>   
+  
+<body>        
+
+  <div class="animated-overlay"></div>
+  
+  
+<div id="app">          
+
+<div id="topbar-container"></div>
+
+    <div style="position: relative; width: 90%; margin: 1rem auto;">
+  <input 
+    type="text" 
+    id="questionSearch" 
+    placeholder="Search questions..." 
+    oninput="filterQuestions()" 
+    style="padding: 10px 40px 10px 15px; background: none; color: var(--text-color); width: 90%; border-radius: 10px; border: 1px solid #ccc;"
+  />
+  <span 
+    style="position: absolute; right: 5%; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #999;"
+  >🔍</span>
+  <button 
+    onclick="clearSearch()" 
+    id="clearBtn"
+    style="position: absolute; right: 10%; top: 50%; transform: translateY(-50%); font-size: 1rem; background: none; border: none; cursor: pointer; color: #999; display: none;"
+  >❌</button>
+</div>
+<button class="question-btn innerbtn" id="q9" onclick="randgen('q9')">Verse of the day</button> 
+
+  <h2 style="display:block; align-items:center;">Select a category</h2>
+  <p id="noMatchMessage" styled="noMatchMessage" style="display: none; color: red; font-weight: bold;">No matches found 😢</p>
+  <div id="categoryList">
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-general')">
+  <img src="backgrounds/creator (1).jpeg" alt="" />
+  <span>General</span></button>
+  <div class="question-group" id="category-general">
+        
+    <h3>General Questions</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn general-btn" id="q3" onclick="randgen('q3')">What's my purpose on Earth?</button> 
+    <button class="question-btn general-btn" id="q28" onclick="randgen('q28')">What is God's plan for my life?</button>  
+    <button class="question-btn general-btn" id="q29" onclick="randgen('q29')">How can I make a difference?</button>  
+    <button class="question-btn general-btn" id="q8" onclick="randgen('q8')">How do I know God is real?</button> 
+    <button class="question-btn general-btn" id="q178" onclick="randgen('q178')">Is it wrong to listen to secular music as a Christian?</button>
+    <button class="question-btn general-btn" id="q179" onclick="randgen('q179')">Does eveything I enjoy have to be explicitly Christian?</button>
+    <button class="question-btn general-btn" id="q187" onclick="randgen('q187')">Why does it seem like those who hurt me live happily while I still suffer? Where's God's justice?</button>
+    <button class="question-btn general-btn" id="q124" onclick="randgen('q124')">What if I'm tired of trying to be good?</button>
+    <button class="question-btn general-btn" id="q190" onclick="randgen('q190')">What happens after death-will there be a judgement day?</button>
+</div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-god')"> 
+  <img src="backgrounds/creator.jpeg" alt="" /></vl>
+  <span>About God</span></button>
+  <div class="question-group" id="category-god">
+    <h3>Questions about God</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn god-btn" id="q1" onclick="randgen('q1')">Who is God?</button>          
+    <button class="question-btn god-btn" id="q2" onclick="randgen('q2')">How do we know Him?</button>  
+    <button class="question-btn god-btn" id="q5" onclick="randgen('q5')">What does God do?</button> 
+    <button class="question-btn god-btn" id="q15" onclick="randgen('q15')">What does God want from me?</button> 
+    <button class="question-btn god-btn" id="q54" onclick="randgen('q54')">What is God's will?</button> 
+    <button class="question-btn god-btn" id="q18" onclick="randgen('q18')">How does God guide us?</button>
+    <button class="question-btn god-btn" id="q44" onclick="randgen('q44')">How does God show His love?</button>  
+    <button class="question-btn god-btn" id="q45" onclick="randgen('q45')">Can I really know God personally?</button>  
+    <button class="question-btn god-btn" id="q19" onclick="randgen('q19')">Is God still working today?</button>  
+</div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-heaven')">
+   <img src="backgrounds/rise.jpeg" alt="" /> About Heaven</button>
+  <div class="question-group" id="category-heaven">
+    <h3>Questions about heaven</h3>  
+    <small style="display:block; align-items:center;">Click to get an answer</small>  
+    <button class="question-btn heaven-btn" id="q192" onclick="randgen('q192')">Where is heaven?</button>
+    <button class="question-btn heaven-btn" id="q58" onclick="randgen('q58')">Who will make it to heaven?</button>
+</div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-jesus')">
+   <img src="backgrounds/rise.jpeg" alt="" /> About Jesus</button>
+  <div class="question-group" id="category-jesus">
+    <h3>Questions about Jesus</h3>  
+    <small style="display:block; align-items:center;">Click to get an answer</small>   
+    <button class="question-btn jesus-btn" id="q4" onclick="randgen('q4')">Who is Jesus?</button> 
+    <button class="question-btn jesus-btn" id="q42" onclick="randgen('q42')">Why did Jesus die?</button>  
+    <button class="question-btn jesus-btn" id="q43" onclick="randgen('q43')">What does it mean to be saved?</button>     
+    <button class="question-btn jesus-btn" id="q23" onclick="randgen('q23')">Did Jesus really rise again?</button>  
+    <button class="question-btn jesus-btn" id="q24" onclick="randgen('q24')">What did Jesus teach?</button> 
+    <button class="question-btn jesus-btn" id="q25" onclick="randgen('q25')">Why is Jesus called the Lamb?</button>  
+    <button class="question-btn jesus-btn" id="q26" onclick="randgen('q26')">Does Jesus understand me?</button>  
+    <button class="question-btn jesus-btn" id="q27" onclick="randgen('q27')">How can I follow Jesus?</button>   
+</div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-sin')">
+   <img src="backgrounds/hope.jpeg" alt="" /></vl>
+  <span>About Sin</span></button>
+  <div class="question-group" id="category-sin">
+    <h3>Questions about sin</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn sin-btn" id="q6" onclick="randgen('q6')">What is sin?</button> 
+    <button class="question-btn sin-btn" id="q30" onclick="randgen('q30')">What happens when I sin?</button>  
+    <button class="question-btn sin-btn" id="q180" onclick="randgen('q180')">If something isn't a big sin, does it still matter to God?</button>
+    <button class="question-btn sin-btn" id="q7" onclick="randgen('q7')">Why do I still sin even though I love God?</button>  
+    <button class="question-btn sin-btn" id="q31" onclick="randgen('q31')">What if I mess up too much?</button>  
+    <button class="question-btn sin-btn" id="q185" onclick="randgen('q185')">What is idolatry?</button>
+    <button class="question-btn sin-btn" id="q181" onclick="randgen('q181')">Can something harmless (like music or fun) actually pull me away from God?</button>
+    <button class="question-btn sin-btn" id="q184" onclick="randgen('q184')">Can a hobby I love be an idol?</button>
+    <button class="question-btn sin-btn" id="q182" onclick="randgen('q182')">How do I know if what I'm enjoying is sinful or not?</button>
+    <button class="question-btn sin-btn" id="q183" onclick="randgen('q183')">How do I know which hobbies or pastimes lead me closer to God or away from him?</button>
+    <button class="question-btn sin-btn" id="q32" onclick="randgen('q32')">Why do people sin?</button>  
+    <button class="question-btn sin-btn" id="q33" onclick="randgen('q33')">Can God forgive any sin?</button>  
+</div>
+</div>
+
+<!-- New category: Hell -->
+      <div class="category-block">
+        <button class="category-btn" onclick="toggleCategory('category-hell')">
+         <img src="backgrounds/seek (1).jpeg" alt="" /></vl>
+        <span>About Hell</span></button>
+        <div class="question-group" id="category-hell">
+          <h3>cant see ya</h3>
+          <small style="display:block; align-items:center;">Click to get an answer</small>
+          <button class="question-btn hell-btn" id="q173" onclick="randgen('q173')">Is hell real-and what does the Bible actually say about it?</button>
+          <button class="question-btn hell-btn" id="q193" onclick="randgen('q193')">Where is hell?</button>
+          <button class="question-btn hell-btn" id="q174" onclick="randgen('q174')">Who lives in hell?</button>
+          <button class="question-btn hell-btn" id="q175" onclick="randgen('q175')">Why would God send some people to hell if he loves them?</button>
+          <button class="question-btn hell-btn" id="q176" onclick="randgen('q176')">How do we avoid going to hell?</button>
+          <button class="question-btn hell-btn" id="q177" onclick="randgen('q177')">Why was hell created in the first place?</button>
+        </div>
+      </div>
+
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-bible')">
+   <img src="backgrounds/book.jpeg" alt="" /></vl>
+  <span>About the bible</span></button>
+  <div class="question-group" id="category-bible">
+    <h3>Questions about the Bible</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    
+    <button class="question-btn bible-btn" id="q34" onclick="randgen('q34')">Is the Bible true?</button> 
+    <button class="question-btn bible-btn" id="q35" onclick="randgen('q35')">Why should I read the Bible?</button> 
+    <button class="question-btn bible-btn" id="q36" onclick="randgen('q36')">How do I read the Bible?</button> 
+    <button class="question-btn bible-btn" id="q37" onclick="randgen('q37')">What is the Bible really about?</button> 
+    <button class="question-btn bible-btn" id="q141" onclick="randgen('q141')">How can I trust the Bible if people wrote it?</button> 
+    <button class="question-btn bible-btn" id="q142" onclick="randgen('q142')">Why are there so many versions of the Bible?</button> 
+    <button class="question-btn bible-btn" id="q143" onclick="randgen('q143')">Why are there so many denominations if we all use the Bible?</button> 
+  </div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-life')">
+   <img src="backgrounds/present (1).jpeg" alt="" /></vl>
+  <span>Life and choices</span></button>
+  <div class="question-group" id="category-life">
+    <h3>Questions about life</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn life-btn" id="q125" onclick="randgen('q125')">What kind of life is God planning for me?</button> 
+    <button class="question-btn life-btn" id="q39" onclick="randgen('q39')">Does God care about my career or studies?</button> 
+    <button class="question-btn life-btn" id="q117" onclick="randgen('q117')">What does the Bible say about procrastination, laziness, or lack of motivation?</button>
+    <button class="question-btn life-btn" id="q40" onclick="randgen('q40')">How do I know what to do next?</button> 
+    <button class="question-btn life-btn" id="q189" onclick="randgen('q189')">Why should i keep trying to do good when revenge feels good, skills feel useless and life feels unfair?</button>
+    <button class="question-btn life-btn" id="q126" onclick="randgen('q126')">What are the characters and values that should guide a Christian's choices?</button> 
+    <button class="question-btn life-btn" id="q55" onclick="randgen('q55')">What if I make the wrong choice?</button> 
+    <button class="question-btn life-btn" id="q118" onclick="randgen('q118')">As a Christian, how should I view success?</button> 
+    <button class="question-btn life-btn" id="q170" onclick="randgen('q170')">Is it okay to want more than what I have-or is ambition actually good in God's eyes?</button>
+    <button class="question-btn life-btn" id="q171" onclick="randgen('q171')">Is wealth evil-and does God want me to be poor?</button>
+    <button class="question-btn life-btn" id="q119" onclick="randgen('q119')">How does God use my pain or mistakes for His good purposes?</button> 
+  </div>
+</div>
+
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-prayer')">
+   <img src="backgrounds/pray.jpeg" alt="" /></vl>
+  <span>Prayer</span></button>
+  <div class="question-group" id="category-prayer">
+    <h3>Questions about prayer</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    
+    <button class="question-btn prayer-btn" id="q46" onclick="randgen('q46')">How do I pray?</button>  
+    <button class="question-btn prayer-btn" id="q47" onclick="randgen('q47')">Does God hear my prayers?</button>  
+    <button class="question-btn prayer-btn" id="q21" onclick="randgen('q21')">Can I talk to God like a friend?</button>  
+    <button class="question-btn prayer-btn" id="q48" onclick="randgen('q48')">What if I don't know what to say?</button>  
+    <button class="question-btn prayer-btn" id="q120" onclick="randgen('q120')">What should I do when God seems to withhold or delay an answer to my prayer?</button>  
+    <button class="question-btn prayer-btn" id="q121" onclick="randgen('q121')">Can I pray for things I want or just God's will?</button>  
+    <button class="question-btn prayer-btn" id="q122" onclick="randgen('q122')">How do I stay focused when I pray?</button>  
+  </div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-relationships')"> 
+   <img src="backgrounds/friend (1).jpeg" alt="" /></vl>
+  <span>Relationships</span></button>
+  <div class="question-group" id="category-relationships">
+    <h3>Questions about relationships</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    
+    <button class="question-btn relationships-btn" id="q49" onclick="randgen('q49')">What does God say about love?</button>  
+    <button class="question-btn relationships-btn" id="q51" onclick="randgen('q51')">How does God guide on who I date or marry?</button>  
+    <button class="question-btn relationships-btn" id="q123" onclick="randgen('q123')">Can I be close to someone who doesn’t believe in God?</button>  
+    <button class="question-btn relationships-btn" id="q95" onclick="randgen('q95')">How does a Godly relationship or marriage look like?</button>
+    <button class="question-btn relationships-btn" id="q10" onclick="randgen('q10')">How do I forgive others?</button> 
+    <button class="question-btn relationships-btn" id="q186" onclick="randgen('q186')">Why should I forgive those who wrong me?</button>
+    <button class="question-btn relationships-btn" id="q50" onclick="randgen('q50')">How do I deal with difficult people?</button>  
+  </div>
+</div>
+
+<!-- New category: Desire & Discipline -->
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-desire')">
+    <img src="backgrounds/book (1).jpeg" alt="" />
+    <span>Desire & Discipline</span>
+  </button>
+  <div class="question-group" id="category-desire">
+    <h3>Desire & Discipline</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn desire-btn" id="q80" onclick="randgen('q80')">What does the Bible teach about sexuality and identity?</button>
+    <button class="question-btn desire-btn" id="q144" onclick="randgen('q144')">What does healthy desire even look like?</button>
+    <button class="question-btn desire-btn" id="q145" onclick="randgen('q145')">Is it wrong to be horny if I’m not married?</button>
+    <button class="question-btn desire-btn" id="q146" onclick="randgen('q146')">Why do I feel guilty for wanting love and touch?</button>
+    <button class="question-btn desire-btn" id="q147" onclick="randgen('q147')">Why does the church act like desire is only a man’s problem?</button>
+    <button class="question-btn desire-btn" id="q148" onclick="randgen('q148')">If David and Solomon were sexually wild, why did God still use them?</button>
+    <button class="question-btn desire-btn" id="q149" onclick="randgen('q149')">Why are women judged more harshly than men when they mess up?</button>
+    <button class="question-btn desire-btn" id="q150" onclick="randgen('q150')">If desire is normal, why does it feel so dangerous?</button>
+    <button class="question-btn desire-btn" id="q151" onclick="randgen('q151')">Is flirting a sin or am I just curious and human?</button>
+    <button class="question-btn desire-btn" id="q152" onclick="randgen('q152')">What if I’m scared that obeying God means I’ll be lonely forever?</button>
+    <button class="question-btn desire-btn" id="q153" onclick="randgen('q153')">Can God still accept me when I struggle with lust?</button>
+    <button class="question-btn desire-btn" id="q154" onclick="randgen('q154')">Is wanting sex the same as being unholy?</button>
+    <button class="question-btn desire-btn" id="q155" onclick="randgen('q155')">Does God even care about how I feel? Or just what I do?</button>
+    <button class="question-btn desire-btn" id="q156" onclick="randgen('q156')">Can I be sexually pure and still express desire?</button>
+
+  </div>
+</div>
+
+<!-- New category: Hope & Discovery -->
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-hope')">
+    <img src="backgrounds/hope (1).jpeg" alt="" />
+    <span>Joy & Discovery</span>
+  </button>
+  <div class="question-group" id="category-hope">
+    <h3>Hope & Discovery</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn hope-btn" id="q130" onclick="randgen('q130')">What’s something amazing about God I can learn today?</button>
+    <button class="question-btn hope-btn" id="q131" onclick="randgen('q131')">What promise from God can I hold onto right now?</button>
+    <button class="question-btn hope-btn" id="q132" onclick="randgen('q132')">How can I grow in thankfulness today?</button>
+    <button class="question-btn hope-btn" id="q133" onclick="randgen('q133')">What does it look like to live joyfully with God?</button>
+    <button class="question-btn hope-btn" id="q134" onclick="randgen('q134')">What is a truth from the Bible that will fill me with joy or wonder?</button>
+    <button class="question-btn hope-btn" id="q135" onclick="randgen('q135')">What’s a surprising thing the Bible says?</button>
+    <button class="question-btn hope-btn" id="q136" onclick="randgen('q136')">What would I tell my younger self about God now?</button>
+    <button class="question-btn hope-btn" id="q137" onclick="randgen('q137')">How is God showing up in my everyday life?</button>
+  </div>
+</div>
+
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-struggles')">
+   <img src="backgrounds/submission.jpeg" alt="" /></vl>
+  <span>Fears and doubts</span></button>
+  <div class="question-group" id="category-struggles">
+    <h3>Questions about struggles</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn struggles-btn" id="q14" onclick="randgen('q14')">What should I do when I'm afraid?</button>  
+    <button class="question-btn struggles-btn" id="q11" onclick="randgen('q11')">How do I deal with doubt?</button>  
+    <button class="question-btn struggles-btn" id="q22" onclick="randgen('q22')">Why do I feel far from God?</button> 
+    <button class="question-btn struggles-btn" id="q188" onclick="randgen('q188')">Why should I keep following God if it only leads to suffering-and what if heaven isn't even real?</button> 
+    <button class="question-btn struggles-btn" id="q52" onclick="randgen('q52')">What if I feel broken inside?</button>  
+    <button class="question-btn struggles-btn" id="q53" onclick="randgen('q53')">Why doesn't God fix things faster?</button>  
+    <button class="question-btn struggles-btn" id="q16" onclick="randgen('q16')">Why does God allow pain?</button>  
+  </div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-wisdom')">
+   <img src="backgrounds/wisdom.jpeg" alt="" /></vl>
+  <span>Wisdom & decisions</span></button>
+  <div class="question-group" id="category-wisdom">
+    <h3>Questions about wisdom</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn wisdom-btn" id="q110" onclick="randgen('q110')">What kind of wisdom does God want me to have?</button>
+    <button class="question-btn wisdom-btn" id="q38" onclick="randgen('q38')">How do I make wise decisions?</button>  
+    <button class="question-btn wisdom-btn" id="q114" onclick="randgen('q114')">How can I tell if a decision is from God or just my own desire?</button>
+    <button class="question-btn wisdom-btn" id="q111" onclick="randgen('q111')">What does the Bible say about overthinking or being indecisive?</button>
+    <button class="question-btn wisdom-btn" id="q112" onclick="randgen('q112')">What if my plans keep failing—is that God saying “no”?</button>
+    <button class="question-btn wisdom-btn" id="q113" onclick="randgen('q113')">What should I do while waiting for God’s timing?</button>
+  </div>
+</div>
+
+<div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-growth')">
+   <img src="backgrounds/good.jpeg" alt="" /></vl>
+  <span>Growth & Christian Living</span></button>
+  <div class="question-group" id="category-growth">
+    <h3>Growing as a Christian</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+    <button class="question-btn growth-btn" id="q12" onclick="randgen('q12')">How do I live like a Christian?</button>  
+    <button class="question-btn growth-btn" id="q13" onclick="randgen('q13')">How do I resist temptations?</button>  
+    <button class="question-btn growth-btn" id="q20" onclick="randgen('q20')">How do I trust God?</button>  
+    <button class="question-btn growth-btn" id="q56" onclick="randgen('q56')">What if I don’t feel like growing?</button>  
+    <button class="question-btn growth-btn" id="q57" onclick="randgen('q57')">How do I stay close to God?</button>  
+    <button class="question-btn growth-btn" id="q17" onclick="randgen('q17')">What makes God happy?</button>
+    <button class="question-btn growth-btn" id="q167" onclick="randgen('q167')">What does God really think about my body or appearance-is it wrong to care how I look?</button>
+    <button class="question-btn growth-btn" id="q109" onclick="randgen('q109')">What kind of person does God want me to become?</button>
+      
+  </div>
+</div>
+
+ <div class="category-block">
+        <button class="category-btn" onclick="toggleCategory('category-emotion')">
+         <img src="backgrounds/creator.jpg" alt="" /></vl>
+        <span>Real-Life Struggles & Emotions</span></button>
+        <div class="question-group" id="category-emotion">
+          <h3>Real-Life Struggles & Emotions</h3>
+          <small style="display:block; align-items:center;">Click to get an answer</small>
+          <button class="question-btn emotion-btn" id="q59" onclick="randgen('q59')">What if I feel like giving up?</button>
+          <button class="question-btn emotion-btn" id="q60" onclick="randgen('q60')">How should I, as a Christian deal with depression and anxiety?</button>
+          <button class="question-btn emotion-btn" id="q61" onclick="randgen('q61')">Why does God allow bad things to happen to good people?</button>
+          <button class="question-btn emotion-btn" id="q62" onclick="randgen('q62')">What if I’ve been hurt by the church?</button>
+          <button class="question-btn emotion-btn" id="q63" onclick="randgen('q63')">How do I move on after failure?</button>
+          <button class="question-btn emotion-btn" id="q41" onclick="randgen('q41')">What if I feel stuck in life?</button>
+          <button class="question-btn emotion-btn" id="q90" onclick="randgen('q90')">What if I don’t feel special?</button>
+          <button class="question-btn emotion-btn" id="q67" onclick="randgen('q67')">What if I feel like I don’t belong?</button>
+          <button class="question-btn emotion-btn" id="q64" onclick="randgen('q64')">What does the Bible say about mental health?</button>
+          <button class="question-btn emotion-btn" id="q85" onclick="randgen('q85')">What if I feel like I don’t matter?</button>
+          <button class="question-btn emotion-btn" id="q86" onclick="randgen('q86')">What should I do when my emotions don't make sense?</button>
+          <button class="question-btn emotion-btn" id="q87" onclick="randgen('q87')">What should I do when healing takes so long?</button>
+          <button class="question-btn emotion-btn" id="q97" onclick="randgen('q97')">How do I deal with loneliness?</button>
+          <button class="question-btn emotion-btn" id="q88" onclick="randgen('q88')">What should I do when it feels like God is silent?</button>
+        </div>
+      </div>
+
+      <!-- New category: Purpose, Identity & Calling -->
+      <div class="category-block">
+        <button class="category-btn" onclick="toggleCategory('category-purpose')">
+         <img src="backgrounds/just (1).jpeg" alt="" /></vl>
+        <span>Purpose, Identity & Calling</span></button>
+        <div class="question-group" id="category-purpose">
+          <h3>Purpose, Identity & Calling</h3>
+          <small style="display:block; align-items:center;">Click to get an answer</small>
+          <button class="question-btn purpose-btn" id="q65" onclick="randgen('q65')">Who am I in God’s eyes?</button>
+          <button class="question-btn purpose-btn" id="q66" onclick="randgen('q66')">How do I discover my spiritual gifts?</button>
+          <button class="question-btn purpose-btn" id="q138" onclick="randgen('q138')">What kind of adventure might God be inviting me into?</button>
+          <button class="question-btn purpose-btn" id="q139" onclick="randgen('q139')">How can I grow bold in my faith?</button>
+          <button class="question-btn purpose-btn" id="q140" onclick="randgen('q140')">What passions has God given me to bless others?</button>
+          <button class="question-btn purpose-btn" id="q115" onclick="randgen('q115')">How do I hear God's voice more clearly?</button>
+          <button class="question-btn purpose-btn" id="q116" onclick="randgen('q116')">What’s one way I can get to know Jesus better this week?</button>
+          <button class="question-btn purpose-btn" id="q68" onclick="randgen('q68')">How do I find the purpose God has for me?</button>
+          <button class="question-btn purpose-btn" id="q166" onclick="randgen('q166')">What does the Bible say about creativity and art?</button>
+          <button class="question-btn purpose-btn" id="q168" onclick="randgen('q168')">If I have a disability or illness, can God still use me—and why would He allow it in the first place?</button>
+          <button class="question-btn purpose-btn" id="q69" onclick="randgen('q69')">What does it mean to live a meaningful life?</button>
+          <button class="question-btn purpose-btn" id="q89" onclick="randgen('q89')">How do I stop comparing myself to others?</button>
+          <button class="question-btn purpose-btn" id="q91" onclick="randgen('q91')">How can God use someone like me?</button>
+          <button class="question-btn purpose-btn" id="q92" onclick="randgen('q92')">How do I know if I’m on the right path?</button>
+          <button class="question-btn purpose-btn" id="q93" onclick="randgen('q93')">What if I don’t have a big dream?</button>
+        </div>
+      </div>
+
+      <!-- New category: Difficult Relationships -->
+      <div class="category-block">
+        <button class="category-btn" onclick="toggleCategory('category-boundaries')">
+         <img src="backgrounds/spiritualgrowth.jpg" alt="" /></vl>
+        <span>Difficult Relationships</span></button>
+        <div class="question-group" id="category-boundaries">
+          <h3>Difficult Relationships</h3>
+          <small style="display:block; align-items:center;">Click to get an answer</small>
+          <button class="question-btn boundaries-btn" id="q70" onclick="randgen('q70')">How do I forgive myself?</button>
+          <button class="question-btn boundaries-btn" id="q71" onclick="randgen('q71')">How do I set boundaries and still be loving?</button>
+          <button class="question-btn boundaries-btn" id="q72" onclick="randgen('q72')">What does God say about toxic relationships?</button>
+          <button class="question-btn boundaries-btn" id="q73" onclick="randgen('q73')">Is it okay to walk away from someone?</button>
+          <button class="question-btn boundaries-btn" id="q74" onclick="randgen('q74')">How do I honor my parents if we don’t get along?</button>
+          <button class="question-btn boundaries-btn" id="q94" onclick="randgen('q94')">How should I deal with betrayal?</button>
+          <button class="question-btn boundaries-btn" id="q96" onclick="randgen('q96')">Where is God when I feel abandoned or rejected?</button>
+          <button class="question-btn boundaries-btn" id="q98" onclick="randgen('q98')">What if I'm scared to open up again?</button>
+        </div>
+      </div>
+
+      <!-- New category: Faith in Action -->
+      <div class="category-block">
+        <button class="category-btn" onclick="toggleCategory('category-faith')">
+         <img src="backgrounds/seek (1).jpeg" alt="" /></vl>
+        <span>Faith in Action</span></button>
+        <div class="question-group" id="category-faith">
+          <h3>Faith in Action</h3>
+          <small style="display:block; align-items:center;">Click to get an answer</small>
+          <button class="question-btn faith-btn" id="q75" onclick="randgen('q75')">What does it look like to live by faith daily?</button>
+          <button class="question-btn faith-btn" id="q76" onclick="randgen('q76')">How do I talk to others about Jesus?</button>
+          <button class="question-btn faith-btn" id="q77" onclick="randgen('q77')">What if I’m scared to share my faith?</button>
+          <button class="question-btn faith-btn" id="q78" onclick="randgen('q78')">How do I live as a Christian in today’s world?</button>
+          <button class="question-btn faith-btn" id="q79" onclick="randgen('q79')">How should I stand firm in my beliefs if others don't share them?</button>
+          <button class="question-btn faith-btn" id="q99" onclick="randgen('q99')">What if people make fun of my faith?</button>
+          <button class="question-btn faith-btn" id="q100" onclick="randgen('q100')">How can I live out my faith at school or work?</button>
+          <button class="question-btn faith-btn" id="q101" onclick="randgen('q101')">What if I feel like a hypocrite?</button>
+          <button class="question-btn faith-btn" id="q102" onclick="randgen('q102')">How do I balance grace and truth?</button>
+          <button class="question-btn faith-btn" id="q103" onclick="randgen('q103')">How can I be a good example to others?</button>
+        </div>
+      </div>
+
+      <!-- New category: Tough Topics -->
+      <div class="category-block">
+       <button class="category-btn" onclick="toggleCategory('category-tough')">
+         <img src="backgrounds/landscape.jpeg" alt="" /></vl>
+        <span>Tough or Controversial Topics</span></button>
+        <div class="question-group" id="category-tough">
+          <h3>Tough or Controversial Topics</h3>
+          <small style="display:block; align-items:center;">Click to get an answer</small>
+          <button class="question-btn tough-btn" id="q157" onclick="randgen('q157')">Can I follow Jesus and still identify as LGBTQ+?</button>
+          <button class="question-btn tough-btn" id="q81" onclick="randgen('q81')">How does God help those struggling with addiction?</button>
+          <button class="question-btn tough-btn" id="q165" onclick="randgen('q165')">Is alcoholism or smoking a sin?</button>
+          <button class="question-btn tough-btn" id="q82" onclick="randgen('q82')">How do I deal with lust?</button>
+          <button class="question-btn tough-btn" id="q83" onclick="randgen('q83')">How does God respond when I'm angry at him?</button>
+          <button class="question-btn tough-btn" id="q84" onclick="randgen('q84')">What does the Bible say about racism and justice?</button>
+          <button class="question-btn tough-btn" id="q191" onclick="randgen('q191')">What does the Bible say about war and violence?</button>
+          <button class="question-btn tough-btn" id="q104" onclick="randgen('q104')">What if I messed up sexually?</button>
+          <button class="question-btn tough-btn" id="q105" onclick="randgen('q105')">What does the Bible say about abortion?</button>
+          <button class="question-btn tough-btn" id="q106" onclick="randgen('q106')">What roles has God given to women and to men?</button>
+          <button class="question-btn tough-btn" id="q107" onclick="randgen('q107')">What does God say about suicide?</button>
+          <button class="question-btn tough-btn" id="q108" onclick="randgen('q108')">What does God say about Christians who act like they’re better than others?</button>
+          <button class="question-btn tough-btn" id="q169" onclick="randgen('q169')">What if I secretly don't like God's plan for me or I don't want to surrender my own dreams?</button>
+          <button class="question-btn tough-btn" id="q172" onclick="randgen('q172')">Is it wrong to want to be seen or admired?</button>
+        </div>
+      </div>
+      
+      <div class="category-block">
+  <button class="category-btn" onclick="toggleCategory('category-battle')">
+    <img src="backgrounds/enemy.png" alt="" /></vl>
+    <span>Spiritual Battle</span>
+  </button>
+  <div class="question-group" id="category-battle">
+    </br>      
+    <h3>Spiritual Battle</h3>
+    <small style="display:block; align-items:center;">Click to get an answer</small>
+
+    <button class="question-btn battle-btn" id="q127" onclick="randgen('q127')">What does the Bible say about the devil and how to resist him?</button> 
+    <button class="question-btn battle-btn" id="q128" onclick="randgen('q128')">
+      How can I tell if I’m under spiritual attack?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q129" onclick="randgen('q129')">
+      Why does God let the devil have any power at all?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q158" onclick="randgen('q158')">
+      Can a Christian be influenced by demons?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q159" onclick="randgen('q159')">
+      What lies does the enemy try to tell me?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q160" onclick="randgen('q160')">
+      What does victory over darkness actually look like in everyday life?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q161" onclick="randgen('q161')">
+      What weapons has God given me to fight spiritual darkness?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q162" onclick="randgen('q162')">
+      What’s the difference between conviction and accusation?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q163" onclick="randgen('q163')">
+      How do I recognize the devil’s voice vs God’s voice?
+    </button>  
+
+    <button class="question-btn battle-btn" id="q164" onclick="randgen('q164')">
+      As a believer, should I be afraid of hell and demons?
+    </button>
+
+  </div>
+</div>
+
+
+  <button class="category-btn" onclick="toggleCategory('category-next')">New questions soon!...</button>
+
+    <!-- 👶 Baby AI Floating Button -->
+  <div class="baby-ai-bubble innerbtn">
+  <img src="backgrounds/purple (1).png" alt="" />
+  </div>
+
+  <a href="favorites.html" class="link-btn innerbtn" id="nav-favorites"><i class="fas fa-heart"></i><span data-i18n="nav.favorites">Favorites</span></a>
+  
+    <div id="overlay"></div>
+    <div id="versedisplay"></div>  
+     
+     
+
+</div>         
+  
+
+ <!--main js-->       
+<script src="js/topbar-loader.js"></script>
+<script src="js/filter.js"></script>
+<script src="js/topbar.js" defer></script>
+<script src="js/main.js"></script>  
+        
+</body>          
+</html>

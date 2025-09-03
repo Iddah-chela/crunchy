@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>prayer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Supherhero">
+    <meta name="keywords" content="programming hero,learn programming">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+    
+
+    <!--custom css-->
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ <div class="animated-overlay"></div>
+<div id="app">
+<div id="topbar-container"></div>
+  <h2>Prayer Page</h2>
+  
+<input type="text" id="prayerSearch" placeholder="Search a prayer topic..." oninput="searchPrayerTopic()" />
+<div id="searchResults" class="search-results"></div>
+
+  <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+     <div id="categoryList">
+    <!-- Left: Generate a prayer -->
+     <div class="category-block">
+    
+      <button class="category-btn" onclick="showSlideshow()">How to Pray</button>
+      
+      </div>
+      <div class="category-block">
+      <button class="category-btn" onclick="toggleCategory('category-pray')">Generate Prayer</button>
+      <!-- Make sure this div has the right ID and is hidden by default -->
+<div class="question-group" id="category-pray">
+  <small style="display:block; align-items:center;">Click to get a prayer</small>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('serenity')">Serenity prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('Lord')">The Lord's prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('love')">Prayer about love</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('peace')">Prayer about peace</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('strength')">Prayer about strength</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('gratitude')">Prayer about gratitude</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('guidance')">Prayer for guidance</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('forgiveness')">Prayer about forgiveness</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('healing')">Prayer about healing</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('courage')">Prayer about courage</button>   
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('desire')">Prayer about desire</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('hope')">Prayer for hope</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('emotion')">Prayer about emotions</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('purpose')">Prayer about my purpose</button>
+  </div>
+</div>
+
+      
+      <div id="overlay"></div>
+      <div id="prayerdisplay" class="hidden"></div>
+    </div>
+
+    <!-- Right: Write your own -->
+     <div class="category-block">
+    <div class="prayer-section">
+      <button class="category-btn" onclick="showSpace()">Write Your Prayer</button>
+      <textarea id="customPrayer" rows="6" placeholder="Dear God..." class="prayer-textarea"></textarea>
+      <button id="savePrayer" class="innerbtn" onclick="saveCustomPrayer()">Save Prayer</button>
+     
+     </div>
+     </div>
+    </div>
+    <ul id="savedPrayers" class="prayer-list"></ul>
+  </div>
+</div>
+
+    <div id="slideshow" class="hidden slideshow">
+    <div class="slide" id="slideContent" style="background-size: cover; background-position: center;">Loading...</div>
+  <div class="slide-controls">
+    <button id="backBtn" class="innerbtn" onclick="prevSlide()">Back</button>
+    <button id="nextBtn" class="innerbtn" onclick="nextSlide()">Next</button>
+  </div>
+</div>
+
+<!--main js-->
+<script src="js/style.js"></script>
+<script src="js/topbar.js" defer></script>
+<script src="js/topbar-loader.js"></script>
+<script src="js/prayer.js"></script>
+</body>
+</html>
+

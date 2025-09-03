@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Write notes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Supherhero">
+    <meta name="keywords" content="programming hero,learn programming">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+    
+
+    <!--custom css-->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+ <div class="animated-overlay"></div>
+<section id="noteForm">
+    <textarea id="noteInput" placeholder="Write your note here..."></textarea>
+    <button id="saveNote" class="innerbtn" onclick="savenote()">Save Note</button>
+  </section>
+
+
+<!--main js-->
+<script>
+function savenote() {
+  const note = document.getElementById("noteInput").value;
+  if (!note) return;
+
+  let storage;
+  try {
+    localStorage.setItem("test", "test");
+    localStorage.removeItem("test");
+    storage = localStorage;
+  } catch (err) {
+    storage = sessionStorage;
+  }
+
+  let noteslist = JSON.parse(storage.getItem("notes")) || [];
+  noteslist.push(note);
+  storage.setItem("notes", JSON.stringify(noteslist));
+
+  window.location.href = "notes.html"; // Done!
+}
+</script>
+</body>
+</html>
+
+

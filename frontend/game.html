@@ -1,0 +1,54 @@
+
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>backend</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Supherhero">
+    <meta name="keywords" content="programming hero,learn programming">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">
+    
+
+    <!--custom css-->
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!-- games.html -->
+<div class="animated-overlay"></div>
+  
+  
+<div id="app">          
+
+<div id="topbar-container"></div>
+  <h2>🎮 Bible Games</h2>
+
+  <div id="gameList" class="game-grid">
+    <div class="game-card">
+      <h3>🛡 Armor of God</h3>
+      <p>Learn each piece of God's armor and how it protects us daily.</p>
+      <a href="armor.html" class="innerbtn" onclick="playGame('armor')">Play</a>
+    </div>
+
+    <div class="game-card">
+      <h3>🍎 Fruits of the Spirit</h3>
+      <p>Match the fruit with its meaning. Love, joy, peace — all in one game!</p>
+      <button class="innerbtn">Play</button>
+    </div>
+
+    <div class="game-card">
+      <h3>🧠 Parable Matching</h3>
+      <p>Match Jesus’ parables with the lessons they teach.</p>
+      <button class="innerbtn" onclick="playGame('parable')">Play</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!--main js-->
+<script src="js/topbar.js" defer></script>
+<script src="js/topbar-loader.js"></script>
+</body>
+</html>

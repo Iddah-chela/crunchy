@@ -1,0 +1,107 @@
+
+/* Add all your styles here */
+ * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: sans-serif; background-image: url('/backgrounds/star.jpeg'); color: white; }
+    #game {
+      width: 100vw;
+      height: 70vh;
+      border: 2px solid white;
+      position: relative;
+      background: linear-gradient(to right, #333, #555);
+      overflow: hidden;
+    }
+    #player, .enemy, #goal, #npc, #book, #armor, #prayerZone {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: white;
+      border-radius: 5px;
+    }
+    #player { background: lightblue; bottom: 10px; left: 10px; }
+    .enemy { background: crimson; }
+    #goal { background: gold; right: 10px; bottom: 10px; }
+    #npc { background: green; }
+  #book {
+  background: purple;
+  right: 10px;
+  top: 50px;
+  animation: glow 1s infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 5px purple; }
+  to   { box-shadow: 0 0 20px violet; }
+}
+    #armor { background: steelblue; }
+    #prayerZone { background: darkcyan; width: 60px; height: 60px; }
+
+    #stats, #infoText, #timer {
+      margin-top: 10px;
+      padding: 5px;
+    }
+    #lifeBar, #faithBar, #trustBar, #peaceBar  {
+      height: 20px;
+      width: 100%;
+      background: darkred;
+      margin-bottom: 5px;
+    }
+    .bar-fill {
+      height: 100%;
+      background: lime;
+      width: 100%;
+    }
+#controls {
+  margin-top: 15px;
+  text-align: center;
+}
+#controls button {
+  padding: 10px 20px;
+  font-size: 20px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+  background-color: #444;
+  color: white;
+}
+.npc {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #ffeaa7;
+  border: 2px solid #2d3436;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  flex-direction: column;
+  overflow: visible;
+}
+
+.bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 1px solid #444;
+  outline: 1px dashed red;
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  max-width: 150px;
+  text-align: center;
+  display: none;
+  z-index: 10;
+}
+
+.bubble::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: white transparent transparent transparent;
+}

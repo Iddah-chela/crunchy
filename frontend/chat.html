@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vale</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+<div id="chat">
+  <div class="chat-wrapper">
+    <div class="chat-header">
+      <h1>Talk to <span id="ai-name">Your Guide</span></h1>
+      <p class="tagline">Ask anything.</p>
+    </div>
+
+    <div class="chat-window" id="chat-window">
+      <!-- Messages will appear here -->
+    </div>
+
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" placeholder="Ask a question..." />
+      <button id="send-btn">Send</button>
+    </div>
+  </div>
+</div>
+
+  <script src="js/ai-memory.js"></script>
+  <script src="js/chat.js"></script>
+</body>
+</html>

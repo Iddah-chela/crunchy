@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Armor of God - Level 1</title>
+  <link rel="stylesheet" href="css/armor.css">
+  
+</head>
+<body>
+<a style="text-decoration: none; background-color:blue; padding:15px; border-radius: 10px; margin: 10px;"href="game.html">Back</a>
+  <div id="game">
+    <div id="player"></div>
+   <div id="npc-faith" class="npc" style="left: 300px; top: 200px;">
+  🙏
+  <div id="faithBubble" class="bubble">“Don't give up. You're doing well.”</div>
+</div>
+    <div class="enemy" id="enemy1">doubt</div>
+    <div id="goal">Goal</div>
+    <div id="npc" class="npc" title="Encourager">NPC</div>
+    <div id="book" title="Verse: ‘Faith comes by hearing…’">Book</div>
+    <div id="armor" title="Shield of Faith">Shield of faith</div>
+    <div id="prayerZone" title="Prayer Zone">Prayer zone</div>
+  </div>
+
+  <div id="stats">
+    <div>Life</div>
+    <div id="lifeBar"><div class="bar-fill" id="lifeFill"></div></div>
+    <div>Faith</div>
+    <div id="faithBar"><div class="bar-fill" id="faithFill"></div></div>
+    <div>Trust</div>
+    <div id="trustBar"><div class="bar-fill" id="trustFill"></div></div>
+    <div>Peace</div>
+    <div id="peaceBar"><div class="bar-fill" id="peaceFill"></div></div>
+  </div>
+
+  <div id="infoText">Hover over armor or items to learn more</div>
+  <div id="timer">Time Left: 300s</div>
+ <div id="controls">
+ <button id="btn-up">⬆️</button><br>
+<button id="btn-left">⬅️</button>
+<button id="btn-down">⬇️</button>
+<button id="btn-right">➡️</button>
+</div>
+
+  <script src="js/armor.js"></script>
+
+</body>
+</html>

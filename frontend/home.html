@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+    
+    <!-- 👋 Welcome -->
+    <section class="hero">
+      <h2 id="welcomeText">👋 Welcome back!</h2>
+      <p>Verse of the day:</p><p id="dailyVerse">Verse of the day loading...</p>
+    </section>
+
+    <!-- 🟣 Main Navigation Cards -->
+    <section class="main-cards">
+      <div class="card game-card" data-link="index.html">
+        <h3>QnA</h3>
+        <p id="qnaInfo">Loading...</p>
+      </div>
+      <div class="card" data-link="prayer.html">
+        <h3>Prayer</h3>
+        <p id="prayerInfo">Loading...</p>
+      </div>
+      <div class="card" data-link="game.html">
+        <h3>Games</h3>
+        <p id="gamesInfo">Loading...</p>
+      </div>
+      <div class="card" data-link="community.html">
+        <h3>Community</h3>
+        <p id="communityInfo">Loading...</p>
+      </div>
+    </section>
+
+    <!-- 🌟 Highlights -->
+    <section class="highlights">
+      <h3>Highlights</h3>
+      <div id="highlightFeed" class="highlight-strip"></div>
+    </section>
+
+    <!-- 👶 Baby AI bubble -->
+    <div class="baby-ai-bubble innerbtn">
+      <img src="/backgrounds/purple (1).png" alt="AI"/>
+    </div>
+
+  </div>
+
+  <script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Chats</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="animated-overlay"></div>
+ 
+<div id="app">
+<div id="topbar-container"></div> 
+<a href="community.html"><h3 style="display: inline-block; text-align: center;">Public</h3></a>
+<a href="private.html"><h3 style="display: inline-block; text-align: center;">Private</h3></a>
+  <main id="private-container">
+    <!-- CARD LIST VIEW -->
+    <section id="chat-list-view">
+      <h2>Private Threads</h2>
+      <div id="chat-list">
+        <!-- Example card -->
+        <div class="chat-card" data-thread="1">
+          <div class="chat-user">John Doe</div>
+          <div class="chat-snippet">Last message preview...</div>
+          <div class="chat-time">2h ago</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAT VIEW (hidden by default) -->
+    <section id="chat-view" style="display: none;">
+      <header class="chat-header">
+        <button id="backBtn">← Back</button>
+        <h3 id="chat-username">Chat with John Doe</h3>
+      </header>
+
+      <div id="chat-messages">
+        <!-- Example bubbles -->
+        <div class="bubble you">Hey John 👋</div>
+        <div class="bubble them">Hi! How are you?</div>
+      </div>
+
+      <form id="chat-input-area">
+        <input type="text" id="chatInput" placeholder="Type a message..." required>
+        <button type="submit">Send</button>
+      </form>
+    </section>
+    </div>
+  </main>
+<script src="js/topbar.js" defer></script>
+<script src="js/topbar-loader.js"></script>
+  <script src="js/private.js"></script>
+</body>
+</html>

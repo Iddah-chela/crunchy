@@ -1,0 +1,20803 @@
+// Who is God?
+let q1ans = {
+  "God is Love": {
+    "1 John 4:8": {
+      text: "For whoever does not know love does not know God, for God is love.",
+      theme: "love",
+      tags: ["love", "nature of God", "relationship"]
+    },
+    "John 3:16": {
+      text: "For God so loved the world, that he gave his only begotten son, that whoever believes in him, shall not perish, but have everlasting life.",
+      theme: "love",
+      tags: ["sacrifice", "salvation", "love"]
+    },
+    "Romans 5:8": {
+      text: "But God showed his love for us in that, while we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["grace", "love", "forgiveness"]
+    },
+    "Lamentations 3:22-23": {
+      text: "The steadfast love of the Lord never ceases, his mercies never coming to an end, they are new every morning, great is your faithfulness.",
+      theme: "love",
+      tags: ["mercy", "faithful", "love"]
+    },
+    "Psalms 86:5": {
+      text: "For you, O Lord, are good and forgiving, abounding in steadfast love to all who call upon you.",
+      theme: "love",
+      tags: ["mercy", "forgiveness", "love"]
+    },
+    "Psalms 136:1": {
+      text: "Give thanks to the Lord for he is good, his love endures forever.",
+      theme: "love",
+      tags: ["gratitude", "faithful", "love"]
+    }
+  },
+  "God is the Creator": {
+    "Genesis 1:1": {
+      text: "In the beginning, God created the heavens and the Earth.",
+      theme: "creation",
+      tags: ["beginning", "power", "creator"]
+    },
+    "John 1:3": {
+      text: "All things were made through him, and without him, nothing was made.",
+      theme: "creation",
+      tags: ["creation", "Jesus", "power"]
+    },
+    "Colossians 1:16-17": {
+      text: "For by him, all things were created, in heaven and on earth, visible and invisible... all things were created through him and for him. And he is before all things, and in him all things hold together.",
+      theme: "creation",
+      tags: ["Jesus", "power", "sustainer"]
+    },
+    "Hebrews 1:3": {
+      text: "He is the radiance of the glory of God... and he upholds the universe by the word of his power.",
+      theme: "creation",
+      tags: ["Jesus", "power", "glory"]
+    },
+    "Proverbs 3:19": {
+      text: "The Lord, by wisdom founded the Earth, by understanding established the heavens.",
+      theme: "creation",
+      tags: ["wisdom", "creation", "understanding"]
+    }
+  },
+  "God is Faithful": {
+    "Deuteronomy 7:9": {
+      text: "Know therefore that the Lord your God is good, the faithful God who keeps covenant and steadfast love with those who love him and keep his commandments, to a thousand generations.",
+      theme: "faithful",
+      tags: ["covenant", "faithful", "obedience"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just to forgive us our sins and cleanse us from all our unrighteousness.",
+      theme: "faithful",
+      tags: ["forgiveness", "grace", "justice"]
+    }
+  },
+  "God is Merciful": {
+    "Exodus 34:6-7": {
+      text: "The Lord, a God merciful and gracious, slow to anger, and abounding in steadfast love and faithfulness, keeping steadfast love for thousands, forgiving iniquity and transgressions and sin.",
+      theme: "mercy",
+      tags: ["grace", "love", "forgiveness"]
+    }
+  },
+  "God is Just": {
+    "Jeremiah 9:24": {
+      text: "'But let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises kindness, justice and righteousness on Earth, for in these I delight' says the Lord.",
+      theme: "justice",
+      tags: ["righteousness", "wisdom", "truth"]
+    }
+  },
+  "God is Present": {
+    "Isaiah 41:10": {
+      text: "Fear not, for I am with you, do not be dismayed, for I am your God, I will strengthen you, I will help you, I will uphold you with my righteous right hand.",
+      theme: "presence",
+      tags: ["strength", "help", "presence"]
+    },
+    "Deuteronomy 31:8": {
+      text: "It is the Lord who goes before you. He will be with you, he will not leave you nor forsake you. Do not fear or be dismayed.",
+      theme: "presence",
+      tags: ["guidance", "fear", "faith"]
+    },
+    "John 14:16-17": {
+      text: "And I will ask the Father, and he will give you another helper, to be with you forever, even the Spirit of truth... You know him, for he dwells with you and will be in you.",
+      theme: "presence",
+      tags: ["Spirit", "guidance", "truth"]
+    },
+    "Psalms 46:1": {
+      text: "God is our refuge and strength, a very present help in trouble.",
+      theme: "presence",
+      tags: ["refuge", "help", "strength"]
+    },
+    "Job 5:10-11": {
+      text: "He gives rain for the Earth and water for the fields. He gives prosperity to the poor and protects those who suffer.",
+      theme: "presence",
+      tags: ["provision", "justice", "blessing"]
+    },
+    "Job 32:8": {
+      text: "But there is a spirit within people, the breath of the Almighty within them, that makes them intelligent.",
+      theme: "presence",
+      tags: ["spirit", "wisdom", "understanding"]
+    }
+  },
+  "God gives Hope": {
+    "Romans 15:13": {
+      text: "May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit, you may abound in hope.",
+      theme: "hope",
+      tags: ["joy", "peace", "spirit"]
+    }
+  },
+  "God is Everlasting": {
+    "Romans 11:33-36": {
+      text: "Oh, the depth of the riches and wisdom and knowledge of God! ...For from him and through him and to him are all things. To him be glory forever. Amen.",
+      theme: "eternal",
+      tags: ["wisdom", "glory", "eternal"]
+    },
+    "Isaiah 40:28-29": {
+      text: "Have you not known? Have you not heard? The Lord is the everlasting God... He gives power to the faint, and to those who have no might, he increases strength.",
+      theme: "eternal",
+      tags: ["everlasting", "strength", "creation"]
+    },
+    "John 1:1": {
+      text: "In the beginning was the Word and the Word was with God and the Word was God.",
+      theme: "eternal",
+      tags: ["Jesus", "word", "eternal"]
+    },
+    "Malachi 3:6": {
+      text: "For I the Lord, do not change.",
+      theme: "eternal",
+      tags: ["unchanging", "faithful", "eternal"]
+    },
+    "Revelation 1:8": {
+      text: "'I am the Alpha and the Omega', says the Lord God 'who is and who was and who is to come, the Almighty.'",
+      theme: "eternal",
+      tags: ["sovereign", "glory", "eternal"]
+    }
+  },
+  "God is our Savior": {
+    "Isaiah 43:10-11": {
+      text: "'You are my witnesses', says the Lord... 'I am the Lord, and besides me, there is no savior.'",
+      theme: "savior",
+      tags: ["witness", "truth", "salvation"]
+    },
+    "Titus 3:4-6": {
+      text: "But when the goodness and loving kindness of God our Savior appeared... he saved us... according to his own mercy.",
+      theme: "savior",
+      tags: ["mercy", "salvation", "grace"]
+    }
+  },
+  "God is Good": {
+    "Psalm 118:1": {
+      text: "Rejoice in the Lord for he is good; his love endures forever.",
+      theme: "goodness",
+      tags: ["rejoice", "enduring love", "gratitude"]
+    },
+    "1 John 1:5": {
+      text: "This is the message that we have heard from him and proclaim to you, that God is light, and in him is no darkness at all.",
+      theme: "light",
+      tags: ["truth", "goodness", "purity"]
+    }
+  },
+  "God is Powerful": {
+    "Job 5:9": {
+      text: "He does great things, too marvelous to understand. He performs countless miracles.",
+      theme: "power",
+      tags: ["miracles", "wonder", "power"]
+    }
+  },
+  "God is Holy": {
+    "Isaiah 6:3": {
+      text: "Holy, holy, holy is the Lord of hosts; the whole earth is full of his glory!",
+      theme: "holy",
+      tags: ["glory", "worship", "purity"]
+    },
+    "1 Peter 1:16": {
+      text: "'Be holy, because I am holy.'",
+      theme: "holy",
+      tags: ["obedience", "command", "purity"]
+    },
+    "Revelation 4:8": {
+      text: "Holy, holy, holy is the Lord God Almighty, who was and is and is to come!",
+      theme: "holy",
+      tags: ["eternal", "worship", "glory"]
+    }
+  },
+  "God is a Friend": {
+    "John 15:15": {
+      text: "I no longer call you servants... instead, I have called you friends.",
+      theme: "friend",
+      tags: ["relationship", "closeness", "love"]
+    },
+    "Proverbs 18:24": {
+      text: "There is a friend who sticks closer than a brother.",
+      theme: "friend",
+      tags: ["faithful", "love", "relationship"]
+    },
+    "James 2:23": {
+      text: "Abraham believed God... and he was called God's friend.",
+      theme: "friend",
+      tags: ["faith", "relationship", "trust"]
+    }
+  }
+}; 
+
+
+
+// How do we know him?
+let q2ans = {
+  "Through Jesus": {
+    "John 14:6": {
+      text: "For I am the way, the truth and the life. No one comes to the father except through me.",
+      theme: "jesus",
+      tags: ["truth", "salvation", "exclusive", "guidance"]
+    },
+    "Romans 10:17": {
+      text: "So faith comes from hearing, and hearing through the word of Christ.",
+      theme: "jesus",
+      tags: ["faith", "word", "truth", "spirit"]
+    },
+    "Philippians 3:10": {
+      text: "I want to know Christ, yes, to know the power of his resurrection and participation in his sufferings, becoming like him in his death.",
+      theme: "resurrection",
+      tags: ["resurrection", "relationship", "devotion", "transformation"]
+    },
+    "Romans 6:4": {
+      text: "We were buried with him through baptism into death, so that just as Christ was raised, we too may live a new life",
+      theme: "resurrection",
+      tags: ["baptism", "resurrection", "new life", "transformation"]
+    }
+  },
+  "Through wisdom": {
+    "Proverbs 9:10": {
+      text: "The fear of the Lord is the beginning of wisdom.",
+      theme: "wisdom",
+      tags: ["fear", "wisdom", "foundation", "understanding"]
+    },
+    "2 Peter 3:18": {
+      text: "But grow in the grace and knowledge of our Lord and savior Jesus Christ. To him be the glory both now and forever! Amen.",
+      theme: "growth",
+      tags: ["grace", "growth", "devotion", "knowledge"]
+    },
+    "Jeremiah 9:23-24": {
+      text: "'Let not the wise boast in their wisdom... but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises kindness, justice and righteousness on earth, for in these I delight,' declares the Lord.",
+      theme: "understanding",
+      tags: ["justice", "wisdom", "righteousness", "truth"]
+    },
+    "Job 28:28": {
+      text: "And this is what he says to all humanity: 'The fear of the Lord is true wisdom, to forsake evil is real understanding.'",
+      theme: "fear",
+      tags: ["wisdom", "fear", "obedience", "understanding"]
+    }
+  },
+  "Through Submission": {
+    "James 4:7": {
+      text: "Submit yourselves then to God, resist the devil and he will flee from you.",
+      theme: "submission",
+      tags: ["obedience", "resistance", "submission", "spiritual battle"]
+    },
+    "1 John 3:6": {
+      text: "No one who abides in him keeps sinning. No one who continues to sin has either seen him or known him.",
+      theme: "seek",
+      tags: ["obedience", "holiness", "transformation", "relationship"]
+    }
+  },
+  "Seek Him": {
+    "Proverbs 8:17": {
+      text: "I love those who love me and those who seek me shall find me.",
+      theme: "seek",
+      tags: ["relationship", "seeking", "love", "promise"]
+    },
+    "Matthew 7:7": {
+      text: "Seek and you will find, knock and it shall be opened to you.",
+      theme: "seek",
+      tags: ["seeking", "faith", "persistence", "access"]
+    },
+    "John 17:3": {
+      text: "And this is eternal life, that they know you are the only true God.",
+      theme: "eternal",
+      tags: ["eternal life", "relationship", "truth", "salvation"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "mind", "will of God", "transformation"]
+    }
+  },
+  "Through the Holy Spirit": {
+    "1 Corinthians 2:10-12": {
+      text: "These are the things God has revealed to us by his Spirit. The Spirit searches all things, even the deep things of God. For who knows a person's thoughts except their own spirit within them? In the same way no one knows the thoughts of God except the spirit of God. What we have received is not the spirit of the world, but the Spirit who is from God, so that we may understand what God has freely given us.",
+      theme: "jesus",
+      tags: ["spirit", "wisdom", "understanding", "revelation"]
+    }
+  }
+};
+
+// What's my purpose on Earth?
+let q3ans = {
+  "Love others": {
+    "1 John 4:7": {
+      text: "Dear friends, let us love one another, for love comes from God. Everyone who loves has been born of God and knows God.",
+      theme: "love",
+      tags: ["love", "born again", "relationship", "command"]
+    },
+    "Micah 6:8": {
+      text: "What does the Lord require of you? To act justly, love mercy, and walk humbly with your God.",
+      theme: "humble",
+      tags: ["justice", "mercy", "humility", "obedience"]
+    },
+    "Ephesians 4:32": {
+      text: "Be kind and compassionate to one another, forgiving each other, just as in Christ, God forgave you.",
+      theme: "friend",
+      tags: ["forgiveness", "kindness", "compassion", "love"]
+    },
+    "Romans 13:10": {
+      text: "Love does no harm to a neighbor. Therefore love is the fulfillment of the law.",
+      theme: "love",
+      tags: ["law", "love", "righteousness", "obedience"]
+    }
+  },
+  "Follow His Word": {
+    "Psalms 1:1-2": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night.",
+      theme: "seek",
+      tags: ["word", "obedience", "righteousness", "devotion"]
+    },
+    "Hebrews 4:12": {
+      text: "For the word of God is alive and active. Sharper than any double-edged sword, it penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes of the heart.",
+      theme: "seek",
+      tags: ["truth", "word", "judgment", "power"]
+    },
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "seek",
+      tags: ["obedience", "word", "truth", "discipleship"]
+    }
+  },
+  "Spiritual Growth": {
+    "2 Peter 1:5-8": {
+      text: "Make every effort to add to your faith goodness; and to goodness, knowledge; and to knowledge, self-control; and to self-control, perseverance; and to perseverance, godliness; and to godliness, mutual affection; and to mutual affection, love.",
+      theme: "growth",
+      tags: ["growth", "discipline", "love", "character"]
+    },
+    "Ephesians 4:15": {
+      text: "Speaking the truth in love, we will grow to become in every respect the mature body of him who is the head, that is, Christ.",
+      theme: "growth",
+      tags: ["maturity", "truth", "love", "Christ"]
+    },
+    "Colossians 2:6-7": {
+      text: "So then, just as you received Christ Jesus as Lord, continue to live your lives in him, rooted and built up in him, strengthened in the faith as you were taught, and overflowing with thankfulness.",
+      theme: "growth",
+      tags: ["faith", "growth", "thankfulness", "rooted"]
+    }
+  },
+  "Do good with your gifts": {
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "walk",
+      tags: ["purpose", "works", "calling", "service"]
+    },
+    "1 Peter 4:10": {
+      text: "Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace in its various forms.",
+      theme: "walk",
+      tags: ["gifts", "service", "stewardship", "grace"]
+    },
+    "Matthew 5:16": {
+      text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["light", "witness", "glory", "example"]
+    }
+  },
+  "Glorify God": {
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["glory", "purpose", "worship", "daily life"]
+    },
+    "Matthew 28:19": {
+      text: "Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.",
+      theme: "walk",
+      tags: ["mission", "discipleship", "baptism", "evangelism"]
+    },
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "glory",
+      tags: ["gratitude", "Jesus", "glory", "obedience"]
+    }
+  }
+};
+
+// Who is Jesus?
+let q4ans = {
+  "Jesus is Divine": {
+    "John 1:14": {
+      text: "And the Word became flesh and dwelt among us, and we have seen his glory, glory as of the only Son from the Father, full of grace and truth.",
+      theme: "glory",
+      tags: ["incarnation", "truth", "glory"]
+    },
+    "Colossians 2:9": {
+      text: "For in him, the whole fullness of deity dwells bodily.",
+      theme: "jesus",
+      tags: ["divine nature", "deity", "incarnation"]
+    },
+    "Philippians 2:2-7": {
+      text: "…Christ Jesus, who, being in very nature God, did not consider equality with God something to be used to his own advantage; rather, he made himself nothing by taking the very nature of a servant…",
+      theme: "submission",
+      tags: ["humility", "submission", "servanthood"]
+    },
+    "Hebrews 1:3": {
+      text: "He is the radiance of the glory of God and the exact imprint of His nature, and he upholds the universe by the word of his power.",
+      theme: "power",
+      tags: ["divinity", "power", "sustainer"]
+    },
+    "John 8:58": {
+      text: "Jesus said to them, 'Truly, truly I say to you, before Abraham was, I am'",
+      theme: "eternal",
+      tags: ["eternal", "divine identity", "I Am"]
+    },
+    "John 10:30": {
+      text: "I and the Father are one.",
+      theme: "eternal",
+      tags: ["unity", "deity", "truth"]
+    },
+    "Colossians 2:9-10": {
+      text: "For in him the whole fullness of deity dwells bodily, and you have been filled in him, who is the head of all rule and authority.",
+      theme: "power",
+      tags: ["deity", "authority", "completeness"]
+    },
+    "1 Timothy 3:16": {
+      text: "Great indeed, we confess, is the mystery of godliness: He was manifested in the flesh, justified by the spirit, seen by angels, proclaimed across nations, believed on in the world, taken up in glory.",
+      theme: "power",
+      tags: ["gospel", "truth", "mystery"]
+    },
+    "Titus 2:13": {
+      text: "Waiting for our blessed hope, the appearing of the glory of our great God and Savior, Jesus Christ.",
+      theme: "hope",
+      tags: ["hope", "return", "glory"]
+    }
+  },
+  "Jesus is our Savior": {
+    "Luke 2:11": {
+      text: "For unto you is born this day in the City of David, a Savior, who is Christ the Lord.",
+      theme: "salvation",
+      tags: ["Messiah", "birth", "hope"]
+    },
+    "1 Timothy 1:15": {
+      text: "Jesus Christ came into this world to save sinners.",
+      theme: "salvation",
+      tags: ["grace", "salvation", "purpose"]
+    },
+    "John 10:11": {
+      text: "'I am the good Shepherd, the good Shepherd lays down his life for the sheep'",
+      theme: "salvation",
+      tags: ["sacrifice", "love", "shepherd"]
+    },
+    "Isaiah 53:5": {
+      text: "But he was pierced for our transgressions, and by his wounds we are healed.",
+      theme: "salvation",
+      tags: ["atonement", "healing", "cross"]
+    },
+    "Romans 5:8": {
+      text: "But God shows his love for us in that, while we are still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["grace", "love", "redemption"]
+    },
+    "Hebrews 9:28": {
+      text: "Christ was offered once to bear the sins of many.",
+      theme: "salvation",
+      tags: ["sacrifice", "salvation", "once for all"]
+    },
+    "John 1:29": {
+      text: "Behold, the Lamb of God, who takes away the sins of the world!",
+      theme: "salvation",
+      tags: ["lamb", "atonement", "salvation"]
+    }
+  },
+  "Jesus is a King": {
+    "Philippians 2:9-11": {
+      text: "God has highly exalted him... that at the name of Jesus every knee should bow.",
+      theme: "authority",
+      tags: ["lordship", "exaltation", "worship"]
+    },
+    "Matthew 28:18": {
+      text: "All authority in heaven and on Earth has been given to me",
+      theme: "authority",
+      tags: ["power", "leadership", "kingship"]
+    },
+    "Revelation 19:16": {
+      text: "On his robe and on his thigh he has a name written, King of kings and Lord of lords.",
+      theme: "authority",
+      tags: ["kingship", "lordship", "glory"]
+    }
+  },
+  "Jesus is the way": {
+    "John 14:6": {
+      text: "I am the way, the truth and the life. No one goes to the Father except through me.",
+      theme: "truth",
+      tags: ["exclusive", "path", "eternal life"]
+    }
+  },
+  "Son of God": {
+    "John 1:14": {
+      text: "And the Word became flesh and dwelt among us, and we have seen his glory, glory as of the only son from the Father, full of grace and truth.",
+      theme: "truth",
+      tags: ["divine", "glory", "truth"]
+    },
+    "Hebrews 1:3": {
+      text: "The Son is the radiance of God's glory and the exact representation of His being.",
+      theme: "jesus",
+      tags: ["divine", "representation", "glory"]
+    }
+  },
+  "Without sin": {
+    "Hebrews 4:15": {
+      text: "For we do not have a high priest who is unable to sympathize with our weakness, but one who in every respect has been tempted as we are, yet without sin.",
+      theme: "holy",
+      tags: ["purity", "temptation", "holiness"]
+    }
+  },
+  "Jesus is wise": {
+    "Luke 2:52": {
+      text: "And Jesus increased in wisdom and in stature and in favor with God and man.",
+      theme: "wisdom",
+      tags: ["growth", "maturity", "favor"]
+    }
+  },
+  "Jesus is coming again": {
+    "Acts 1:11": {
+      text: "This same Jesus, who has been taken from you into heaven, will come back in the same way you have seen him go into heaven.",
+      theme: "hope",
+      tags: ["return", "second coming", "promise"]
+    },
+    "Revelation 22:12": {
+      text: "Look, I am coming soon! My reward is with me, and I will give to each person according to what they have done.",
+      theme: "resurrection",
+      tags: ["return", "judgment", "reward"]
+    }
+  }
+};
+
+// What does God do?
+let q5ans = {
+  "God Protects": {
+    "Psalms 91:4": {
+      text: "He will cover you with his feathers, and under his wings you will find refuge.",
+      theme: "presence",
+      tags: ["refuge", "safety", "love", "protection"]
+    },
+    "Psalms 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "protect",
+      tags: ["healing", "compassion", "comfort"]
+    },
+    "Exodus 14:14": {
+      text: "The Lord will fight for you; you need only to be still.",
+      theme: "presence",
+      tags: ["battle", "peace", "trust", "protection"]
+    },
+    "Psalms 31:19-20": {
+      text: "How abundant are the good things that you have stored up for those who fear you... In the shelter of your presence you hide them from all human intrigues.",
+      theme: "presence",
+      tags: ["shelter", "reward", "fear", "presence"]
+    },
+    "Matthew 6:26": {
+      text: "Look at the birds of the air; they do not sow or reap or store away in barns, and yet your heavenly Father feeds them. Are you not much more valuable than they?",
+      theme: "protect",
+      tags: ["value", "provision", "trust", "creation"]
+    },
+    "Deuteronomy 10:18": {
+      text: "He defends the cause of the fatherless and the widows, and loves the foreigner residing among you, giving them food and clothing.",
+      theme: "justice",
+      tags: ["justice", "provision", "compassion", "care"]
+    },
+    "2 Thessalonians 3:3": {
+      text: "The Lord is faithful, and he will strengthen you and protect you from the evil one.",
+      theme: "faithful",
+      tags: ["spiritual warfare", "faithful", "protection", "strength"]
+    },
+    "Proverbs 18:10": {
+      text: "The name of the Lord is a fortified tower; the righteous run to it and are safe.",
+      theme: "protect",
+      tags: ["safety", "strength", "trust"]
+    },
+    
+    "Psalms 121:7-8": {
+      text: "The Lord will keep you from all harm—He will watch over your life; the Lord will watch over your coming and going both now and forevermore.",
+      theme: "protect",
+      tags: ["watchful", "forever", "presence", "safety"]
+    }
+  },
+
+  "God Gives Peace": {
+    "Isaiah 26:3": {
+      text: "You keep in perfect peace those whose mind is stayed on you, because they trust in you.",
+      theme: "peace",
+      tags: ["trust", "peace", "focus", "faith"]
+    },
+    "2 Corinthians 1:3-4": {
+      text: "The God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
+      theme: "peace",
+      tags: ["comfort", "empathy", "compassion", "healing"]
+    },
+    "Psalms 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "presence",
+      tags: ["comfort", "presence", "healing", "brokenhearted"]
+    },
+    "Psalms 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "light",
+      tags: ["guidance", "truth", "direction", "word"]
+    },
+    "Philippians 4:7": {
+      text: "The peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["peace", "guard", "heart", "mind", "Christ"]
+    },
+    "John 14:27": {
+      text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.",
+      theme: "peace",
+      tags: ["peace", "fear", "Jesus", "comfort"]
+    },
+    "Psalms 23:2": {
+      text: "He makes me lie down in green pastures, he leads me beside quiet waters, he refreshes my soul.",
+      theme: "peace",
+      tags: ["rest", "refreshing", "guidance", "peace"]
+    }
+  },
+
+  "God Forgives": {
+    "Isaiah 1:18": {
+      text: "'Come now, let us settle the matter,' says the Lord. 'Though your sins are like scarlet, they shall be as white as snow...'",
+      theme: "forgiveness",
+      tags: ["grace", "cleansing", "repentance", "mercy"]
+    },
+    "Psalms 103:12": {
+      text: "As far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "forgiveness",
+      tags: ["cleansing", "forgiveness", "freedom"]
+    },
+    "Micah 7:18-19": {
+      text: "You do not stay angry forever but delight to show mercy. You will again have compassion on us; you will tread our sins underfoot...",
+      theme: "mercy",
+      tags: ["mercy", "forgiveness", "compassion"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "faithful",
+      tags: ["confession", "forgiveness", "purity", "grace"]
+    }
+  },
+
+  "God is Always Working": {
+    "John 5:17": {
+      text: "My Father is always at his work to this very day, and I too am working.",
+      theme: "eternal",
+      tags: ["work", "Father", "Jesus", "faithful"]
+    },
+    "Philippians 1:6": {
+      text: "He who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "faithful",
+      tags: ["growth", "faithful", "future", "process"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "goodness",
+      tags: ["goodness", "purpose", "calling", "hope"]
+    },
+    "Isaiah 55:11": {
+      text: "So is my word that goes out from my mouth: It will not return to me empty, but will accomplish what I desire...",
+      theme: "power",
+      tags: ["word", "promise", "power", "purpose"]
+    }
+  }
+};
+
+// What is sin?
+let q6ans = {
+  "Sin is breaking God's law": {
+    "1 John 3:4": {
+      text: "Everyone who sins breaks the law. In fact, sin is lawlessness.",
+      theme: "justice",
+      tags: ["law", "disobedience", "justice"]
+    },
+    "Amos 5:12": {
+      text: "For I know how many are your offenses and how great your sins. There are those who oppress the innocent and take bribes and deprive the poor of justice in the courts",
+      theme: "justice",
+      tags: ["oppression", "injustice", "sin", "justice"]
+    },
+    "James 4:17": {
+      text: "If anyone, then, knows the good they ought to do and doesn't do it, it is sin for them.",
+      theme: "seek",
+      tags: ["conscience", "neglect", "responsibility", "obedience"]
+    }
+  },
+  "Sin separates us from God": {
+    "Isaiah 59:2": {
+      text: "But your iniquities have separated you from your God. Your sins have hidden his face so that he will not hear.",
+      theme: "fallenness",
+      tags: ["separation", "distance", "broken relationship"]
+    },
+    "Galatians 5:19-21": {
+      text: "Now the works of the flesh are evident: sexual immorality, impurity... those who do such things will not inherit the kingdom of God.",
+      theme: "temptation",
+      tags: ["flesh", "immorality", "kingdom", "temptation"]
+    },
+    "Ephesians 4:18": {
+      text: "They are darkened in their understanding and separated from the life of God because of the ignorance that is in them...",
+      theme: "fallenness",
+      tags: ["ignorance", "darkness", "separation", "understanding"]
+    }
+  },
+  "Sin is being without faith": {
+    "Romans 14:23": {
+      text: "For whatever does not proceed from faith is sin.",
+      theme: "faithful",
+      tags: ["faith", "motives", "trust", "obedience"]
+    },
+    "Genesis 4:7": {
+      text: "Sin is crouching at your door; it desires to have you, but you must rule over it.",
+      theme: "temptation",
+      tags: ["temptation", "battle", "desire", "self-control"]
+    },
+    "Hebrews 11:6": {
+      text: "And without faith it is impossible to please God...",
+      theme: "faithful",
+      tags: ["faith", "pleasing God", "trust"]
+    }
+  },
+  "Sin leads to death": {
+    "Proverbs 14:12": {
+      text: "There is a way that appears to be right, but in the end it leads to death.",
+      theme: "slavery ",
+      tags: ["deception", "death", "false path"]
+    },
+    "Romans 6:23": {
+      text: "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.",
+      theme: "slavery",
+      tags: ["death", "eternal life", "gift", "sin"]
+    },
+    "James 1:15": {
+      text: "Then after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
+      theme: "slavery",
+      tags: ["desire", "sin", "consequences", "death"]
+    }
+  },
+  "Sin can enslave you": {
+    "John 8:34": {
+      text: "Truly, truly I say to you, everyone who practices sin is a slave to sin.",
+      theme: "slavery",
+      tags: ["slavery", "habit", "bondage", "sin"]
+    },
+    "Romans 6:16": {
+      text: "You are slaves of the one you obey—whether of sin, which leads to death, or of obedience, which leads to righteousness.",
+      theme: "slavery",
+      tags: ["obedience", "righteousness", "bondage", "slavery"]
+    },
+    "2 Peter 2:19": {
+      text: "People are slaves to whatever has mastered them.",
+      theme: "slavery",
+      tags: ["slavery", "mastery", "control", "bondage"]
+    }
+  },
+  "Sin is universal": {
+    "Romans 3:23": {
+      text: "For all have sinned and fallen short of the glory of God.",
+      theme: "fallenness",
+      tags: ["universal", "fallenness", "glory", "need for grace"]
+    },
+    "Psalms 51:5": {
+      text: "Surely I was sinful at birth, sinful from the time my mother conceived me.",
+      theme: "fallenness",
+      tags: ["inherited sin", "original sin", "fallenness"]
+    },
+    "Ecclesiastes 7:20": {
+      text: "Indeed, there is no one on earth who is righteous, no one who does what is right and never sins.",
+      theme: "fallenness",
+      tags: ["universal", "imperfection", "sin", "truth"]
+    }
+  }
+};
+
+// Why do I still sin even though I love God?
+let q7ans = {
+  "When we love God we are still being transformed, not instantly made perfect": {
+    "Romans 7:19-25": {
+      text: "I do not do the good I want to do, but the evil I do not want to do—this I keep on doing... Who will rescue me from this body that is subject to death? Thanks be to God, who delivers me through Jesus Christ our Lord.",
+      theme: "transformation",
+      tags: ["struggle", "weakness", "grace", "sin", "deliverance"]
+    },
+    "Philippians 2:12-13": {
+      text: "Work out your salvation with fear and trembling, for it is God who works in you.",
+      theme: "transformation",
+      tags: ["obedience", "growth", "process", "spirit"]
+    },
+    "2 Corinthians 3:18": {
+      text: "And we all, with unveiled face, beholding the kingdom of God, are being transformed into the same image from one degree of glory to another.",
+      theme: "transformation",
+      tags: ["growth", "image of Christ", "process", "glory"]
+    },
+    "Romans 12:2": {
+      text: "Do not be conformed to this world, but be transformed by the renewing of your mind.",
+      theme: "transformation",
+      tags: ["mind", "renewal", "obedience", "change"]
+    },
+    "Philippians 1:6": {
+      text: "He who began a good work in you will carry it on to completion.",
+      theme: "transformation",
+      tags: ["faithful", "growth", "process", "hope"]
+    },
+    "Ezekiel 36:26": {
+      text: "I will give you a new heart and put a new spirit in you.",
+      theme: "transformation",
+      tags: ["new life", "spirit", "change", "heart"]
+    },
+    "1 John 1:8-9": {
+      text: "If we say we have no sin, we deceive ourselves... but if we confess our sins, he is faithful and just to forgive us.",
+      theme: "forgiveness",
+      tags: ["confession", "forgiveness", "grace", "justice"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new creation", "identity", "freedom"]
+    },
+    "Titus 2:11-12": {
+      text: "For the grace of God has appeared that offers salvation... teaching us to say 'No' to ungodliness and worldly passions...",
+      theme: "transformation",
+      tags: ["teaching", "grace", "self-control", "salvation"]
+    },
+    "1 Peter 1:14-16": {
+      text: "As obedient children, do not conform to the evil desires you had when you lived in ignorance... Be holy, because I am holy.",
+      theme: "transformation",
+      tags: ["obedience", "holiness", "growth", "desire"]
+    }
+  },
+
+  "The flesh is weak, but the spirit still dwells in you and guides you": {
+    "Galatians 5:17": {
+      text: "The flesh desires what is contrary to the Spirit... they are in conflict with each other, so you are not to do whatever you want.",
+      theme: "battle",
+      tags: ["flesh", "spirit", "conflict", "self-control"]
+    },
+    "Colossians 3:5": {
+      text: "Put to death therefore, what is earthly in you.",
+      theme: "battle",
+      tags: ["flesh", "discipline", "repentance", "temptation"]
+    },
+    "James 1:14-15": {
+      text: "Each person is tempted when they are dragged away... then desire when it has conceived, gives birth to sin.",
+      theme: "battle",
+      tags: ["temptation", "desire", "sin", "consequences"]
+    },
+    "Hebrews 4:15-16": {
+      text: "For we do not have a high priest who is unable to empathize with your weakness... let us then approach God's throne of grace with confidence.",
+      theme: "mercy",
+      tags: ["weakness", "grace", "mercy", "confidence"]
+    },
+    "Romans 8:5-9": {
+      text: "Those who live according to the flesh set their minds on the flesh, but those who live according to the Spirit set their minds on the Spirit.",
+      theme: "temptation",
+      tags: ["mind", "spirit", "life", "obedience"]
+    },
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you except what is common. God is faithful, and He will not let you be tempted beyond what you can bear.",
+      theme: "faithful",
+      tags: ["temptation", "faithful", "help", "escape"]
+    },
+    "Ephesians 6:12-13": {
+      text: "Our struggle is not against flesh and blood... put on the full armor of God.",
+      theme: "battle",
+      tags: ["struggle", "spiritual warfare", "armor", "strength"]
+    },
+    "Romans 6:6-7": {
+      text: "For we know that our old self was crucified with him so that the body ruled by sin might be done away with...",
+      theme: "transformation",
+      tags: ["old self", "freedom", "sin", "identity"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
+      theme: "transformation",
+      tags: ["identity", "Christ in me", "death to self"]
+    },
+    "1 Peter 5:8-9": {
+      text: "Be alert and of sober mind. Your enemy the devil prowls around like a roaring lion... Resist him, standing firm in the faith.",
+      theme: "battle",
+      tags: ["enemy", "resist", "faith", "alertness"]
+    }
+  },
+
+  "God's grace still covers our weaknesses": {
+    "2 Timothy 2:13": {
+      text: "If we are faithless, he remains faithful, for he cannot deny himself.",
+      theme: "grace",
+      tags: ["faithful", "grace", "unchanging", "assurance"]
+    },
+    "Isaiah 43:25": {
+      text: "I, I am he who blots out your transgressions for my own sake.",
+      theme: "grace",
+      tags: ["forgiveness", "mercy", "grace", "cleansing"]
+    },
+    "Romans 5:20": {
+      text: "Where sin increased, grace increased all the more.",
+      theme: "grace",
+      tags: ["abundance", "grace", "forgiveness", "hope"]
+    },
+    "Psalms 103:10-12": {
+      text: "He does not treat us as our sins deserve... as far as the east is from the west, so far has he removed our transgressions.",
+      theme: "forgiveness",
+      tags: ["mercy", "distance", "cleansing", "grace"]
+    },
+    "Psalm 86:5": {
+      text: "You, Lord, are forgiving and good, abounding in love to all who call to you.",
+      theme: "forgiveness",
+      tags: ["love", "mercy", "grace", "forgiveness"]
+    },
+    "Hebrews 8:12": {
+      text: "'For I will forgive their wickedness and will remember their sins no more.'",
+      theme: "forgiveness",
+      tags: ["forgetfulness", "mercy", "grace", "cleansing"]
+    },
+    "2 Corinthians 12:9": {
+      text: "'My grace is sufficient for you, for my power is made perfect in weakness.'",
+      theme: "grace",
+      tags: ["power", "weakness", "grace", "strength"]
+    }
+  }
+};
+
+// How do I know God is real?
+let q8ans = {
+  "Creation shows His reality and power": {
+    "Romans 1:20": {
+      text: "Since the creation of the world, God’s invisible qualities… have been clearly seen, being understood from what has been made.",
+      theme: "power",
+      tags: ["creation", "evidence", "nature", "truth", "invisible"]
+    },
+    "Psalm 19:1": {
+      text: "The heavens declare the glory of God; the skies proclaim the work of His hands.",
+      theme: "power",
+      tags: ["glory", "creation", "testimony", "worship"]
+    },
+    "Genesis 1:1": {
+      text: "In the beginning, God created the heavens and the Earth.",
+      theme: "power",
+      tags: ["beginning", "creation", "truth", "eternal"]
+    },
+    "Isaiah 41:26": {
+      text: "Lift up your eyes and look to the heavens: Who created all these? He who brings out the starry host one by one, not one of them is missing.",
+      theme: "power",
+      tags: ["creation", "stars", "glory", "faithful"]
+    },
+    "Acts 14:17": {
+      text: "He has not left himself without testimony, He shows kindness by giving you rain and crops in their seasons...",
+      theme: "faithful",
+      tags: ["provision", "testimony", "seasons", "kindness", "nature"]
+    },
+    "Job 12:7-10": {
+      text: "Ask the animals, and they will teach you… in His hand is the life of every creature and the breath of all mankind.",
+      theme: "power",
+      tags: ["life", "creation", "animals", "evidence", "breath"]
+    }
+  },
+
+  "God makes Himself known personally": {
+    "Jeremiah 29:13": {
+      text: "You will seek me and find me when you seek me with all your heart.",
+      theme: "presence",
+      tags: ["seek", "relationship", "heart", "truth"]
+    },
+    "John 14:21": {
+      text: "Whoever loves me… I too will love them and show myself to them.",
+      theme: "presence",
+      tags: ["love", "obedience", "truth", "personal"]
+    },
+    "James 4:8": {
+      text: "Draw near to God and he will draw near to you.",
+      theme: "presence",
+      tags: ["closeness", "relationship", "devotion", "seek"]
+    },
+    "Hosea 6:3": {
+      text: "Let us press on to know God, as surely as the sun rises, He will appear.",
+      theme: "presence",
+      tags: ["persistence", "know God", "guidance", "hope"]
+    },
+    "Revelation 3:20": {
+      text: "Here I am! I stand at the door and knock. If anyone hears my voice and opens the door, I will come in...",
+      theme: "presence",
+      tags: ["invitation", "relationship", "choice", "presence"]
+    }
+  },
+
+  "Jesus is the visible image of the invisible God": {
+    "John 1:18": {
+      text: "No one has ever seen God, but the one and only Son… has made Him known.",
+      theme: "truth",
+      tags: ["Jesus", "reveal", "invisible", "truth"]
+    },
+    "Hebrews 1:3": {
+      text: "The Son is the radiance of God's glory and the exact representation of his being.",
+      theme: "truth",
+      tags: ["glory", "Jesus", "truth", "divine nature"]
+    },
+    "Colossians 1:15": {
+      text: "The Son is the image of the invisible God, the firstborn over all creation.",
+      theme: "truth",
+      tags: ["image", "Jesus", "creation", "truth"]
+    },
+    "John 14:9": {
+      text: "Anyone who has seen me has seen the Father.",
+      theme: "truth",
+      tags: ["Jesus", "Father", "oneness", "revelation"]
+    }
+  },
+
+  "Faith is how we trust in what we cannot see": {
+    "Hebrews 11:1": {
+      text: "Faith is confidence in what we hope for and assurance about what we do not see.",
+      theme: "faithful",
+      tags: ["faith", "hope", "assurance", "belief"]
+    },
+    "2 Corinthians 5:7": {
+      text: "We live by faith, not by sight.",
+      theme: "faithful",
+      tags: ["trust", "faith", "vision", "walk"]
+    },
+    "Romans 10:17": {
+      text: "Faith comes through hearing, and hearing through the word of Christ.",
+      theme: "word",
+      tags: ["hearing", "scripture", "growth", "faith"]
+    },
+    "1 Peter 1:8-9": {
+      text: "Though you have not seen Him, you love him... you are receiving the end result of your faith: the salvation of your souls.",
+      theme: "faithful",
+      tags: ["salvation", "faith", "love", "hope"]
+    },
+    "John 20:29": {
+      text: "Blessed are those who have not seen and yet have believed.",
+      theme: "faithful",
+      tags: ["belief", "blessing", "faith", "trust"]
+    }
+  },
+
+  "God confirms his truth through fulfilled prophecies": {
+    "Isaiah 46:9-10": {
+      text: "…I am God, there is none like me. I make known the end from the beginning, from ancient times, what is still to come...",
+      theme: "truth",
+      tags: ["prophecy", "sovereignty", "eternal", "truth"]
+    },
+    "Luke 24:44": {
+      text: "Everything must be fulfilled that is written about me in the Law of Moses, the Prophets, and the Psalms.",
+      theme: "truth",
+      tags: ["fulfillment", "scripture", "Jesus", "prophecy"]
+    },
+    "Micah 5:2": {
+      text: "But you, Bethlehem… out of you will come one who will be ruler over Israel.",
+      theme: "truth",
+      tags: ["birthplace", "Messiah", "prophecy", "truth"]
+    }
+  }
+};
+
+// Verse of the Day
+let q9ans = {
+  "For Strength or Courage": {
+    "Isaiah 41:10": {
+      text: "Fear not, for I am with you; be not dismayed, for I am your God. I will strengthen you, I will help you, I will uphold you with my righteous right hand.",
+      theme: "presence",
+      tags: ["strength", "comfort", "presence"]
+    },
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go.",
+      theme: "presence",
+      tags: ["courage", "fear", "presence"]
+    },
+    "Isaiah 40:31": {
+      text: "But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.",
+      theme: "hope",
+      tags: ["renewal", "hope", "strength"]
+    },
+    "2 Timothy 1:7": {
+      text: "For God gave us a spirit not of fear but of power and love and self-control.",
+      theme: "power",
+      tags: ["spirit", "power", "identity"]
+    },
+    "Philippians 4:13": {
+      text: "I can do all things through Christ who strengthens me.",
+      theme: "power",
+      tags: ["strength", "faith", "endurance"]
+    },
+    "Psalm 46:1": {
+      text: "God is our refuge and strength, a very present help in trouble.",
+      theme: "presence",
+      tags: ["help", "refuge", "presence"]
+    }
+  },
+
+  "For Comfort and Peace": {
+    "Matthew 11:28": {
+      text: "Come to me, all who labor and are heavy laden, and I will give you rest.",
+      theme: "peace",
+      tags: ["rest", "comfort", "peace"]
+    },
+    "1 Peter 5:7": {
+      text: "Casting all your anxieties on him, because he cares for you.",
+      theme: "peace",
+      tags: ["anxiety", "peace", "comfort"]
+    },
+    "Psalm 34:18": {
+      text: "The Lord is near to the brokenhearted and saves the crushed in spirit.",
+      theme: "peace",
+      tags: ["brokenness", "healing", "peace"]
+    },
+    "John 14:27": {
+      text: "Peace I leave with you; my peace I give to you. Not as the world gives do I give to you. Let not your hearts be troubled, neither let them be afraid.",
+      theme: "peace",
+      tags: ["peace", "fear", "spirit"]
+    },
+    "Romans 15:13": {
+      text: "May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.",
+      theme: "hope",
+      tags: ["hope", "joy", "spirit"]
+    },
+    "Lamentations 3:22-23": {
+      text: "The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.",
+      theme: "faithful",
+      tags: ["mercy", "faithful", "love"]
+    }
+  },
+
+  "For Direction and Wisdom": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make your paths straight.",
+      theme: "word",
+      tags: ["guidance", "trust", "direction"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, let him ask God, who gives generously to all without reproach, and it will be given him.",
+      theme: "word",
+      tags: ["wisdom", "prayer", "guidance"]
+    },
+    "Proverbs 16:3": {
+      text: "Commit your work to the Lord, and your plans will be established.",
+      theme: "word",
+      tags: ["work", "planning", "obedience"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp to my feet and a light to my path.",
+      theme: "word",
+      tags: ["guidance", "light", "wisdom"]
+    },
+    "Romans 12:2": {
+      text: "Do not be conformed to this world, but be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect.",
+      theme: "word",
+      tags: ["transformation", "discernment", "renewal"]
+    },
+    "Colossians 3:23": {
+      text: "Whatever you do, do with all your heart, as for the Lord and not for human masters.",
+      theme: "truth",
+      tags: ["diligence", "obedience", "service"]
+    }
+  },
+
+  "When You Need Hope or Reassurance": {
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you, declares the Lord, plans for good and not for evil, to give you a future and a hope.",
+      theme: "hope",
+      tags: ["future", "hope", "promise"]
+    },
+    "Romans 8:28": {
+      text: "And we know that for those who love God all things work together for good, for those who are called according to his purpose.",
+      theme: "hope",
+      tags: ["purpose", "hope", "goodness"]
+    },
+    "1 John 4:4": {
+      text: "Little children, you are from God and have overcome them, for he who is in you is greater than he who is in the world.",
+      theme: "power",
+      tags: ["overcoming", "strength", "faith"]
+    },
+    "Psalm 23:1": {
+      text: "The Lord is my shepherd; I shall not want.",
+      theme: "presence",
+      tags: ["shepherd", "provision", "comfort"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come.",
+      theme: "truth",
+      tags: ["identity", "renewal", "transformation"]
+    }
+  },
+
+  "To Inspire Daily Living": {
+    "Micah 6:8": {
+      text: "He has told you, Oh man, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?",
+      theme: "truth",
+      tags: ["justice", "humble", "kindness"]
+    },
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.",
+      theme: "truth",
+      tags: ["spirit", "fruit", "character"]
+    },
+    "Ephesians 4:32": {
+      text: "Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you.",
+      theme: "truth",
+      tags: ["forgiveness", "kindness", "compassion"]
+    },
+    "Matthew 6:33": {
+      text: "But seek first the kingdom of God and his righteousness, and all these things will be added to you.",
+      theme: "word",
+      tags: ["seek", "righteousness", "priority"]
+    },
+    "Philippians 4:6": {
+      text: "Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God.",
+      theme: "peace",
+      tags: ["prayer", "peace", "thanksgiving"]
+    },
+    "Hebrews 11:1": {
+      text: "Now faith is the assurance of things hoped for, the conviction of things not seen.",
+      theme: "faithful",
+      tags: ["faith", "hope", "assurance"]
+    },
+    "John 3:16": {
+      text: "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have everlasting life.",
+      theme: "love",
+      tags: ["salvation", "love", "eternal life"]
+    }
+  }
+};
+
+// How do I forgive others?
+let q10ans = {
+  "God forgave you first": {
+    "Ephesians 4:32": {
+      text: "Be kind and compassionate to one another, forgiving each other, just as in Christ, God forgave you.",
+      theme: "grace",
+      tags: ["grace", "forgiveness", "kindness"]
+    },
+    "Colossians 3:13": {
+      text: "Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you.",
+      theme: "grace",
+      tags: ["grace", "patience", "forgiveness"]
+    },
+    "Psalm 86:5": {
+      text: "You, Lord, are forgiving and good, abounding in love to all who call to you.",
+      theme: "mercy",
+      tags: ["mercy", "love", "forgiveness"]
+    },
+    "Micah 7:18": {
+      text: "Who is a God like you, who pardons sin and forgives the transgression of the remnant of his inheritance?",
+      theme: "mercy",
+      tags: ["mercy", "grace", "forgiveness"]
+    }
+  },
+  "Forgive and be forgiven": {
+    "Matthew 6:14-15": {
+      text: "For if you forgive other people when they sin against you, your heavenly Father will also forgive you. But if you do not forgive others their sins, your Father will not forgive your sins.",
+      theme: "justice",
+      tags: ["justice", "forgiveness", "command"]
+    },
+    "Mark 11:25": {
+      text: "And when you stand praying, if you hold anything against anyone, forgive them, so that your Father in heaven may forgive you your sins.",
+      theme: "justice",
+      tags: ["justice", "obedience", "prayer"]
+    },
+    "Luke 17:3-4": {
+      text: "If your brother or sister sins against you, rebuke them; and if they repent, forgive them. Even if they sin against you seven times in a day and seven times come back to you saying 'I repent,' you must forgive them.",
+      theme: "justice",
+      tags: ["justice", "repentance", "obedience"]
+    }
+  },
+  "Let go of revenge": {
+    "Romans 12:19": {
+      text: "Do not take revenge, my dear friends, but leave room for God's wrath, for it is written: 'It is mine to avenge; I will repay,' says the Lord.",
+      theme: "humble",
+      tags: ["humble", "justice", "trust"]
+    },
+    "Proverbs 20:22": {
+      text: "Do not say, 'I'll pay you back for this wrong!' Wait for the Lord, and he will avenge you.",
+      theme: "humble",
+      tags: ["humble", "patience", "justice"]
+    },
+    "Leviticus 19:18": {
+      text: "Do not seek revenge or bear a grudge against anyone among your people, but love your neighbor as yourself. I am the Lord.",
+      theme: "love",
+      tags: ["love", "humble", "obedience"]
+    }
+  },
+  "Forgive again and again": {
+    "Matthew 18:21-22": {
+      text: "Then Peter came to Jesus and asked, 'Lord, how many times shall I forgive my brother or sister who sins against me? Up to seven times?' Jesus answered, 'I tell you, not seven times, but seventy-seven times.'",
+      theme: "transformation",
+      tags: ["transformation", "patience", "grace"]
+    },
+    "Luke 17:4": {
+      text: "Even if they sin against you seven times in a day and seven times come back to you saying ‘I repent,’ you must forgive them.",
+      theme: "transformation",
+      tags: ["transformation", "forgiveness", "mercy"]
+    }
+  },
+  "Forgiveness brings freedom": {
+    "Luke 6:37": {
+      text: "Do not judge, and you will not be judged. Do not condemn, and you will not be condemned. Forgive, and you will be forgiven.",
+      theme: "forgiveness",
+      tags: ["forgiveness", "freedom", "mercy"]
+    },
+    "Proverbs 17:9": {
+      text: "Love prospers when a fault is forgiven, but dwelling on it separates close friends.",
+      theme: "love",
+      tags: ["love", "forgiveness", "friendship"]
+    },
+    "James 2:13": {
+      text: "Because judgment without mercy will be shown to anyone who has not been merciful. Mercy triumphs over judgment.",
+      theme: "mercy",
+      tags: ["mercy", "justice", "forgiveness"]
+    },
+    "2 Corinthians 3:17": {
+      text: "Where the Spirit of the Lord is, there is freedom.",
+      theme: "hope",
+      tags: ["hope", "freedom", "spirit"]
+    }
+  },
+  "God erases our sins": {
+    "Psalm 103:10-12": {
+      text: "He does not treat us as our sins deserve or repay us according to our iniquities... As far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "grace",
+      tags: ["grace", "forgiveness", "mercy"]
+    },
+    "Isaiah 43:25": {
+      text: "I, even I, am he who blots out your transgressions, for my own sake, and remembers your sins no more.",
+      theme: "mercy",
+      tags: ["mercy", "grace", "forgiveness"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "grace",
+      tags: ["grace", "faithful", "cleansing"]
+    },
+    "Hebrews 8:12": {
+      text: "For I will forgive their wickedness and will remember their sins no more.",
+      theme: "mercy",
+      tags: ["mercy", "forgiveness", "new life"]
+    }
+  },
+  "Restore the broken": {
+    "2 Corinthians 2:7": {
+      text: "Now instead, you ought to forgive and comfort him, so that he will not be overwhelmed by excessive sorrow.",
+      theme: "friend",
+      tags: ["friend", "forgiveness", "healing"]
+    },
+    "Galatians 6:1": {
+      text: "Brothers and sisters, if someone is caught in a sin, you who live by the Spirit should restore that person gently. But watch yourselves, or you also may be tempted.",
+      theme: "friend",
+      tags: ["friend", "restoration", "spirit"]
+    },
+    "Isaiah 57:18": {
+      text: "I have seen their ways, but I will heal them; I will guide them and restore comfort to Israel’s mourners.",
+      theme: "friend",
+      tags: ["friend", "healing", "comfort"]
+    }
+  },
+  "Cover offenses with love": {
+    "1 Peter 4:8": {
+      text: "Above all, love each other deeply, because love covers over a multitude of sins.",
+      theme: "love",
+      tags: ["love", "forgiveness", "unity"]
+    },
+    "Proverbs 10:12": {
+      text: "Hatred stirs up conflict, but love covers over all wrongs.",
+      theme: "love",
+      tags: ["love", "peace", "forgiveness"]
+    },
+    "John 13:34": {
+      text: "A new command I give you: Love one another. As I have loved you, so you must love one another.",
+      theme: "love",
+      tags: ["love", "obedience", "grace"]
+    }
+  }
+};
+
+// How do I deal with doubt?
+let q11ans = {
+  "Let your life reflect Christ": {
+    "Colossians 3:12": {
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience.",
+      theme: "transformation",
+      tags: ["identity", "character", "transformation"]
+    },
+    "Galatians 2:20": {
+      text: "It is no longer I who live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God...",
+      theme: "transformation",
+      tags: ["faith", "Christ in me", "transformation"]
+    },
+    "1 John 2:6": {
+      text: "Whoever claims to live in him must live as Jesus did.",
+      theme: "transformation",
+      tags: ["example", "obedience", "Christlikeness"]
+    },
+    "Ephesians 5:1-2": {
+      text: "Follow God’s example, therefore, as dearly loved children and walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      theme: "love",
+      tags: ["love", "sacrifice", "walk"]
+    },
+    "Romans 13:14": {
+      text: "Rather, clothe yourselves with the Lord Jesus Christ, and do not think about how to gratify the desires of the flesh.",
+      theme: "transformation",
+      tags: ["self-control", "transformation", "Christlikeness"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new life", "transformation", "identity"]
+    }
+  },
+  "Stay rooted in the Word": {
+    "Psalms 1:2-3": {
+      text: "They delight in the law of the Lord... They are like trees planted along the riverbank, bearing fruit each season.",
+      theme: "word",
+      tags: ["word", "rooted", "fruitful"]
+    },
+    "2 Timothy 3:16-17": {
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness...",
+      theme: "word",
+      tags: ["scripture", "teaching", "righteousness"]
+    },
+    "Joshua 1:8": {
+      text: "Keep this Book of the Law always on your lips; meditate on it day and night, so that you may be careful to do everything written in it. Then you will be prosperous and successful.",
+      theme: "word",
+      tags: ["obedience", "meditation", "success"]
+    },
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "word",
+      tags: ["obedience", "action", "truth"]
+    },
+    "Psalm 119:11": {
+      text: "I have hidden your word in my heart that I might not sin against you.",
+      theme: "word",
+      tags: ["purity", "word", "memory"]
+    },
+    "Matthew 4:4": {
+      text: "Man shall not live on bread alone, but on every word that comes from the mouth of God.",
+      theme: "word",
+      tags: ["dependence", "word", "truth"]
+    }
+  },
+  "Live by the Spirit": {
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "spirit",
+      tags: ["spirit", "self-control", "obedience"]
+    },
+    "Romans 8:14": {
+      text: "For those who are led by the Spirit of God are the children of God.",
+      theme: "spirit",
+      tags: ["identity", "guidance", "spirit"]
+    },
+    "Galatians 5:22-23": {
+      text: "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self-control.",
+      theme: "spirit",
+      tags: ["fruit", "character", "spirit"]
+    },
+    "Ezekiel 36:27": {
+      text: "And I will put my Spirit in you and move you to follow my decrees and be careful to keep my laws.",
+      theme: "spirit",
+      tags: ["obedience", "spirit", "guidance"]
+    },
+    "Galatians 5:25": {
+      text: "Since we live by the Spirit, let us keep in step with the Spirit.",
+      theme: "spirit",
+      tags: ["discipline", "walk", "spirit"]
+    },
+    "John 14:26": {
+      text: "But the Advocate, the Holy Spirit, whom the Father will send in my name, will teach you all things and will remind you of everything I have said to you.",
+      theme: "spirit",
+      tags: ["spirit", "teaching", "reminder"]
+    },
+    "Romans 8:26": {
+      text: "In the same way, the Spirit helps us in our weakness. We do not know what we ought to pray for, but the Spirit himself intercedes for us through wordless groans.",
+      theme: "spirit",
+      tags: ["prayer", "spirit", "help"]
+    }
+  },
+  "Be transformed, not conformed": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["renewal", "mind", "transformation"]
+    },
+    "Ephesians 4:22-24": {
+      text: "Put off your old self... be made new in the attitude of your minds; and put on the new self, created to be like God...",
+      theme: "transformation",
+      tags: ["new self", "identity", "transformation"]
+    },
+    "Titus 2:11-12": {
+      text: "For the grace of God has appeared that offers salvation to all people. It teaches us to say ‘No’ to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "transformation",
+      tags: ["grace", "discipline", "transformation"]
+    },
+    "2 Corinthians 3:18": {
+      text: "And we all... are being transformed into his image with ever-increasing glory, which comes from the Lord, who is the Spirit.",
+      theme: "transformation",
+      tags: ["image", "glory", "spirit"]
+    },
+    "Philippians 1:6": {
+      text: "He who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "transformation",
+      tags: ["process", "growth", "hope"]
+    }
+  },
+  "Obey God with love, not just rules": {
+    "John 14:15": {
+      text: "If you love me, keep my commands.",
+      theme: "love",
+      tags: ["love", "obedience", "relationship"]
+    },
+    "1 John 5:3": {
+      text: "Loving God means keeping his commandments, and his commandments are not burdensome.",
+      theme: "love",
+      tags: ["love", "obedience", "freedom"]
+    },
+    "Deuteronomy 10:12": {
+      text: "And now, Israel, what does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul,",
+      theme: "submission",
+      tags: ["obedience", "fear", "love"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "submission",
+      tags: ["justice", "humble", "obedience"]
+    },
+    "Romans 13:10": {
+      text: "Love does no harm to a neighbor. Therefore love is the fulfillment of the law.",
+      theme: "love",
+      tags: ["law", "love", "relationship"]
+    }
+  },
+  "Let your light shine": {
+    "Matthew 5:16": {
+      text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["light", "witness", "glory"]
+    },
+    "Philippians 2:15": {
+      text: "Live clean, innocent lives as children of God, shining like bright lights in a world full of crooked and perverse people.",
+      theme: "light",
+      tags: ["light", "purity", "witness"]
+    },
+    "1 Thessalonians 5:5": {
+      text: "You are all children of the light and children of the day. We do not belong to the night or to the darkness.",
+      theme: "light",
+      tags: ["identity", "light", "truth"]
+    },
+    "Ephesians 5:8-9": {
+      text: "For you were once darkness, but now you are light in the Lord. Live as children of light (for the fruit of the light consists in all goodness, righteousness and truth).",
+      theme: "light",
+      tags: ["light", "goodness", "righteousness"]
+    },
+    "Daniel 12:3": {
+      text: "Those who are wise will shine like the brightness of the heavens, and those who lead many to righteousness, like the stars forever and ever.",
+      theme: "light",
+      tags: ["wisdom", "witness", "righteousness"]
+    }
+  }
+};
+
+// How do I live like a Christian?
+let q12ans = {
+  "Let your life reflect Christ": {
+    "Colossians 3:12": {
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience.",
+      theme: "transformation",
+      tags: ["character", "love", "patience", "humility", "kindness"]
+    },
+    "Galatians 2:20": {
+      text: "It is no longer I who live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God...",
+      theme: "transformation",
+      tags: ["identity", "faith", "Christ in me"]
+    },
+    "1 John 2:6": {
+      text: "Whoever claims to live in him must live as Jesus did.",
+      theme: "transformation",
+      tags: ["example", "obedience", "Jesus"]
+    },
+    "Ephesians 5:1-2": {
+      text: "Follow God’s example, therefore, as dearly loved children and walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      theme: "love",
+      tags: ["sacrifice", "love", "example", "obedience"]
+    },
+    "Romans 13:14": {
+      text: "Clothe yourselves with the Lord Jesus Christ, and do not think about how to gratify the desires of the flesh.",
+      theme: "transformation",
+      tags: ["discipline", "Christlikeness", "self-control"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new life", "identity", "change"]
+    }
+  },
+  "Stay rooted in the Word": {
+    "Psalms 1:2-3": {
+      text: "They delight in the law of the Lord... They are like trees planted along the riverbank, bearing fruit each season.",
+      theme: "word",
+      tags: ["stability", "fruitfulness", "scripture"]
+    },
+    "2 Timothy 3:16-17": {
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness...",
+      theme: "word",
+      tags: ["scripture", "teaching", "righteousness"]
+    },
+    "Joshua 1:8": {
+      text: "Keep this Book of the Law always on your lips; meditate on it day and night, so that you may be careful to do everything written in it. Then you will be prosperous and successful.",
+      theme: "word",
+      tags: ["obedience", "scripture", "success"]
+    },
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "word",
+      tags: ["action", "obedience", "truth"]
+    },
+    "Psalm 119:11": {
+      text: "I have hidden your word in my heart that I might not sin against you.",
+      theme: "word",
+      tags: ["purity", "memory", "scripture"]
+    },
+    "Matthew 4:4": {
+      text: "Man shall not live on bread alone, but on every word that comes from the mouth of God.",
+      theme: "word",
+      tags: ["dependence", "life", "scripture"]
+    }
+  },
+  "Live by the Spirit": {
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "spirit",
+      tags: ["Spirit", "discipline", "guidance"]
+    },
+    "Romans 8:14": {
+      text: "For those who are led by the Spirit of God are the children of God.",
+      theme: "spirit",
+      tags: ["identity", "Spirit", "guidance"]
+    },
+    "Galatians 5:22-23": {
+      text: "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, and self-control.",
+      theme: "spirit",
+      tags: ["character", "fruit", "Spirit"]
+    },
+    "Ezekiel 36:27": {
+      text: "And I will put my Spirit in you and move you to follow my decrees and be careful to keep my laws.",
+      theme: "spirit",
+      tags: ["obedience", "Spirit", "new heart"]
+    },
+    "Galatians 5:25": {
+      text: "Since we live by the Spirit, let us keep in step with the Spirit.",
+      theme: "spirit",
+      tags: ["discipline", "Spirit", "obedience"]
+    },
+    "Romans 8:5": {
+      text: "Those who live according to the flesh have their minds set on what the flesh desires; but those who live in accordance with the Spirit have their minds set on what the Spirit desires.",
+      theme: "spirit",
+      tags: ["mindset", "Spirit", "desire"]
+    },
+    "2 Corinthians 3:17": {
+      text: "Now the Lord is the Spirit, and where the Spirit of the Lord is, there is freedom.",
+      theme: "spirit",
+      tags: ["freedom", "Spirit", "presence"]
+    }
+  },
+  "Be transformed, not conformed": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["renewal", "mind", "change"]
+    },
+    "Ephesians 4:22-24": {
+      text: "Put off your old self... be made new in the attitude of your minds; and put on the new self, created to be like God...",
+      theme: "transformation",
+      tags: ["new life", "mind", "change"]
+    },
+    "Titus 2:11-12": {
+      text: "For the grace of God has appeared that offers salvation to all people. It teaches us to say ‘No’ to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "transformation",
+      tags: ["discipline", "grace", "self-control"]
+    },
+    "Colossians 3:10": {
+      text: "Put on the new self, which is being renewed in knowledge in the image of its Creator.",
+      theme: "transformation",
+      tags: ["renewal", "identity", "knowledge"]
+    },
+    "2 Corinthians 4:16": {
+      text: "Though outwardly we are wasting away, yet inwardly we are being renewed day by day.",
+      theme: "transformation",
+      tags: ["renewal", "hope", "inner life"]
+    }
+  },
+  "Obey God with love, not just rules": {
+    "John 14:15": {
+      text: "If you love me, keep my commands.",
+      theme: "love",
+      tags: ["obedience", "love", "command"]
+    },
+    "1 John 5:3": {
+      text: "Loving God means keeping his commandments, and his commandments are not burdensome.",
+      theme: "love",
+      tags: ["obedience", "joy", "love"]
+    },
+    "Deuteronomy 10:12": {
+      text: "And now, Israel, what does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul,",
+      theme: "love",
+      tags: ["obedience", "service", "devotion"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "humble",
+      tags: ["justice", "mercy", "humility"]
+    },
+    "Matthew 22:37-40": {
+      text: "‘Love the Lord your God with all your heart...’ This is the first and greatest commandment. And the second is like it: ‘Love your neighbor as yourself.’ All the Law and the Prophets hang on these two commandments.",
+      theme: "love",
+      tags: ["great command", "love", "relationship"]
+    }
+  },
+  "Let your light shine": {
+    "Matthew 5:16": {
+      text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["testimony", "light", "witness"]
+    },
+    "Philippians 2:15": {
+      text: "Live clean, innocent lives as children of God, shining like bright lights in a world full of crooked and perverse people.",
+      theme: "light",
+      tags: ["light", "purity", "witness"]
+    },
+    "1 Thessalonians 5:5": {
+      text: "You are all children of the light and children of the day. We do not belong to the night or to the darkness.",
+      theme: "light",
+      tags: ["identity", "light", "truth"]
+    },
+    "Ephesians 5:8-9": {
+      text: "For you were once darkness, but now you are light in the Lord. Live as children of light (for the fruit of the light consists in all goodness, righteousness and truth).",
+      theme: "light",
+      tags: ["goodness", "righteousness", "light"]
+    },
+    "Isaiah 60:1": {
+      text: "Arise, shine, for your light has come, and the glory of the Lord rises upon you.",
+      theme: "glory",
+      tags: ["glory", "light", "calling"]
+    }
+  }
+};
+
+// How do I resist temptations?
+let q13ans = {
+  "Trust that God will help you": {
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+      theme: "faithful",
+      tags: ["temptation", "endurance", "faithful", "help"]
+    },
+    "2 Peter 2:9": {
+      text: "The Lord knows how to rescue the godly from trials and to hold the unrighteous for punishment on the day of judgment.",
+      theme: "protect",
+      tags: ["rescue", "judgment", "deliverance"]
+    },
+    "Hebrews 2:18": {
+      text: "Because he himself suffered when he was tempted, he is able to help those who are being tempted.",
+      theme: "jesus",
+      tags: ["temptation", "help", "Jesus"]
+    },
+    "Psalm 46:1": {
+      text: "God is our refuge and strength, an ever-present help in trouble.",
+      theme: "presence",
+      tags: ["refuge", "strength", "help"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you... I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "fear",
+      tags: ["fear", "strength", "presence"]
+    }
+  },
+  "Stay alert and spiritually awake": {
+    "Matthew 26:41": {
+      text: "Watch and pray so that you will not fall into temptation. The spirit is willing, but the flesh is weak.",
+      theme: "battle",
+      tags: ["watchfulness", "prayer", "weakness"]
+    },
+    "1 Peter 5:8": {
+      text: "Be alert and of sober mind. Your enemy the devil prowls around like a roaring lion looking for someone to devour.",
+      theme: "battle",
+      tags: ["alertness", "enemy", "spiritual warfare"]
+    },
+    "Ephesians 6:11": {
+      text: "Put on the full armor of God, so that you can take your stand against the devil’s schemes.",
+      theme: "battle",
+      tags: ["armor", "defense", "resistance"]
+    },
+    "1 Thessalonians 5:6": {
+      text: "So then, let us not be like others, who are asleep, but let us be awake and sober.",
+      theme: "light",
+      tags: ["wakefulness", "alertness", "self-control"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "wisdom",
+      tags: ["heart", "wisdom", "intentions"]
+    }
+  },
+  "Resist and flee": {
+    "James 4:7": {
+      text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you.",
+      theme: "battle",
+      tags: ["submission", "resistance", "spiritual warfare"]
+    },
+    "1 Corinthians 6:18": {
+      text: "Flee from sexual immorality. All other sins a person commits are outside the body...",
+      theme: "temptation",
+      tags: ["flee", "sexual sin", "purity"]
+    },
+    "2 Timothy 2:22": {
+      text: "Flee the evil desires of youth and pursue righteousness, faith, love and peace, along with those who call on the Lord out of a pure heart.",
+      theme: "seek",
+      tags: ["flee", "pursue", "righteousness", "purity"]
+    },
+    "Romans 6:12": {
+      text: "Therefore do not let sin reign in your mortal body so that you obey its evil desires.",
+      theme: "slavery",
+      tags: ["desire", "obedience", "discipline"]
+    },
+    "Proverbs 1:10": {
+      text: "My son, if sinful men entice you, do not give in to them.",
+      theme: "wisdom",
+      tags: ["temptation", "peer pressure", "wisdom"]
+    }
+  },
+  "Renew your mind and desires": {
+    "Romans 13:14": {
+      text: "Clothe yourselves with the Lord Jesus Christ, and do not think about how to gratify the desires of the flesh.",
+      theme: "transformation",
+      tags: ["renewal", "discipline", "Christlikeness"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["renewal", "mind", "transformation"]
+    },
+    "Galatians 5:24": {
+      text: "Those who belong to Christ Jesus have crucified the flesh with its passions and desires.",
+      theme: "spirit",
+      tags: ["crucify", "desire", "discipline"]
+    },
+    "Colossians 3:2": {
+      text: "Set your minds on things above, not on earthly things.",
+      theme: "understanding",
+      tags: ["focus", "mindset", "heavenly"]
+    }
+  },
+  "Use Scripture like Jesus did": {
+    "Matthew 4:1": {
+      text: "Then Jesus was led by the Spirit into the wilderness to be tempted by the devil.",
+      theme: "jesus",
+      tags: ["temptation", "wilderness", "Spirit"]
+    },
+    "Matthew 4:4": {
+      text: "Jesus answered, 'It is written: Man shall not live on bread alone, but on every word that comes from the mouth of God.'",
+      theme: "word",
+      tags: ["scripture", "truth", "resistance"]
+    },
+    "Matthew 4:7": {
+      text: "Jesus answered him, 'It is also written: Do not put the Lord your God to the test.'",
+      theme: "word",
+      tags: ["scripture", "obedience", "truth"]
+    },
+    "Matthew 4:10": {
+      text: "Jesus said to him, 'Away from me, Satan! For it is written: Worship the Lord your God, and serve him only.'",
+      theme: "word",
+      tags: ["worship", "scripture", "resistance"]
+    },
+    "Psalm 119:11": {
+      text: "I have hidden your word in my heart that I might not sin against you.",
+      theme: "word",
+      tags: ["scripture", "memory", "purity"]
+    }
+  }
+};
+
+//What should I do when I'm afraid?
+let q14ans = {
+  "Trust that God is with you": {
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "presence",
+      tags: ["presence", "strength", "comfort"]
+    },
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+      theme: "fear",
+      tags: ["courage", "God with us", "commands"]
+    },
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "fear",
+      tags: ["strength", "faithfulness", "security"]
+    }
+  },
+  "Call out to God for peace": {
+    "Psalms 34:4": {
+      text: "I sought the Lord, and he answered me; he delivered me from all my fears.",
+      theme: "peace",
+      tags: ["deliverance", "answered prayer", "relief"]
+    },
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["prayer", "peace", "thanksgiving", "anxiety"]
+    },
+    "Psalms 56:3": {
+      text: "When I am afraid, I put my trust in you.",
+      theme: "peace",
+      tags: ["faith", "trust", "simple truth"]
+    }
+  },
+  "Remember God's power and protection": {
+    "Psalms 27:1": {
+      text: "The Lord is my light and my salvation—whom shall I fear? The Lord is the stronghold of my life—of whom shall I be afraid?",
+      theme: "power",
+      tags: ["confidence", "light", "salvation", "strength"]
+    },
+    "2 Timothy 1:7": {
+      text: "For God has not given us a spirit of fear, but of power and of love and of a sound mind.",
+      theme: "power",
+      tags: ["boldness", "identity", "self-discipline"]
+    },
+    "Proverbs 18:10": {
+      text: "The name of the Lord is a fortified tower; the righteous run to it and are safe.",
+      theme: "power",
+      tags: ["safety", "stronghold", "refuge"]
+    }
+  },
+  "Rest in God's presence and love": {
+    "Psalms 23:4": {
+      text: "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me...",
+      theme: "presence",
+      tags: ["comfort", "guidance", "protection"]
+    },
+    "1 John 4:18": {
+      text: "There is no fear in love. But perfect love drives out fear, because fear has to do with punishment...",
+      theme: "presence",
+      tags: ["God’s love", "security", "freedom from fear"]
+    },
+    "Psalms 91:4-5": {
+      text: "He will cover you with his feathers, and under his wings you will find refuge... You will not fear the terror of night, nor the arrow that flies by day.",
+      theme: "presence",
+      tags: ["refuge", "peace", "spiritual shelter"]
+    }
+  }
+};
+
+// What does God want from me?
+let q15ans = {
+  "God wants a heart that seeks Him": {
+    "Jeremiah 29:13": {
+      text: "You will seek me and find me when you seek me with all your heart.",
+      theme: "seek",
+      tags: ["seek", "heart", "desire", "pursuit"]
+    },
+    "2 Chronicles 16:9": {
+      text: "For the eyes of the Lord range throughout the earth to strengthen those whose hearts are fully committed to him.",
+      theme: "seek",
+      tags: ["heart", "strength", "commitment"]
+    },
+    "Psalm 119:2": {
+      text: "Blessed are those who keep his statutes and seek him with all their heart.",
+      theme: "seek",
+      tags: ["obedience", "heart", "blessing"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, Oh mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "walk",
+      tags: ["justice", "mercy", "humility"]
+    }
+  },
+
+  "God desires obedience more than performance": {
+    "1 Samuel 15:22": {
+      text: "But Samuel replied: 'Does the Lord delight in burnt offerings and sacrifices as much as in obeying the Lord? To obey is better than sacrifice, and to heed is better than the fat of rams.'",
+      theme: "obedience",
+      tags: ["obedience", "sacrifice", "priority"]
+    },
+    "John 14:15": {
+      text: "If you love me, keep my commands.",
+      theme: "obedience",
+      tags: ["love", "obedience", "commands"]
+    },
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "obedience",
+      tags: ["obedience", "action", "word"]
+    },
+    "Luke 11:28": {
+      text: "He replied, 'Blessed rather are those who hear the word of God and obey it.'",
+      theme: "obedience",
+      tags: ["blessing", "obedience", "word"]
+    }
+  },
+
+  "God calls us to love Him and others": {
+    "Matthew 22:37-39": {
+      text: "Jesus replied: 'Love the Lord your God with all your heart and with all your soul and with all your mind. This is the first and greatest commandment. And the second is like it: Love your neighbor as yourself.'",
+      theme: "love",
+      tags: ["love", "commandment", "relationship"]
+    },
+    "Deuteronomy 10:12": {
+      text: "And now, Israel, what does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul.",
+      theme: "devotion",
+      tags: ["devotion", "obedience", "love"]
+    },
+    "1 John 4:21": {
+      text: "And he has given us this command: Anyone who loves God must also love their brother and sister.",
+      theme: "love",
+      tags: ["love", "community", "command"]
+    },
+    "Romans 13:10": {
+      text: "Love does no harm to a neighbor. Therefore love is the fulfillment of the law.",
+      theme: "love",
+      tags: ["love", "law", "neighbor"]
+    }
+  },
+
+  "God wants us to walk in truth and humility": {
+    "Psalm 51:17": {
+      text: "My sacrifice, O God, is a broken spirit; a broken and contrite heart you, God, will not despise.",
+      theme: "humble",
+      tags: ["repentance", "humility", "heart"]
+    },
+    "3 John 1:4": {
+      text: "I have no greater joy than to hear that my children are walking in the truth.",
+      theme: "truth",
+      tags: ["truth", "joy", "obedience"]
+    },
+    "James 4:6": {
+      text: "But he gives us more grace. That is why Scripture says: 'God opposes the proud but shows favor to the humble.'",
+      theme: "humble",
+      tags: ["humility", "grace", "pride"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "truth",
+      tags: ["trust", "guidance", "submission"]
+    }
+  },
+
+  "God wants relationship, not just religion": {
+    "Hosea 6:6": {
+      text: "For I desire mercy, not sacrifice, and acknowledgment of God rather than burnt offerings.",
+      theme: "mercy",
+      tags: ["relationship", "mercy", "worship"]
+    },
+    "Isaiah 1:17": {
+      text: "Learn to do right; seek justice. Defend the oppressed. Take up the cause of the fatherless; plead the case of the widow.",
+      theme: "justice",
+      tags: ["justice", "defend", "compassion"]
+    },
+    "Matthew 9:13": {
+      text: "But go and learn what this means: 'I desire mercy, not sacrifice.' For I have not come to call the righteous, but sinners.",
+      theme: "mercy",
+      tags: ["mercy", "compassion", "calling"]
+    },
+    "Amos 5:24": {
+      text: "But let justice roll on like a river, righteousness like a never-failing stream!",
+      theme: "justice",
+      tags: ["justice", "righteousness", "action"]
+    }
+  }
+};
+
+//Why does God allow pain?
+let q16ans = {
+  "Pain can shape our character and draw us closer to God": {
+    "Romans 5:3-5": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope. And hope does not put us to shame, because God’s love has been poured out into our hearts through the Holy Spirit, who has been given to us.",
+      theme: "growth",
+      tags: ["suffering", "perseverance", "hope", "Holy Spirit"]
+    },
+    "James 1:2-4": {
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+      theme: "transformation",
+      tags: ["testing", "perseverance", "maturity"]
+    },
+    "2 Corinthians 4:17": {
+      text: "For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all.",
+      theme: "glory",
+      tags: ["eternal", "glory", "light troubles"]
+    },
+    "Hebrews 12:10-11": {
+      text: "They disciplined us for a little while as they thought best; but God disciplines us for our good, in order that we may share in His holiness. No discipline seems pleasant at the time, but painful. Later on, however, it produces a harvest of righteousness and peace for those who have been trained by it.",
+      theme: "holy",
+      tags: ["discipline", "righteousness", "training", "peace"]
+    },
+    "Psalm 119:67": {
+      text: "Before I was afflicted I went astray, but now I obey your word.",
+      theme: "obedience",
+      tags: ["affliction", "obedience", "correction"]
+    }
+  },
+  "Pain reminds us we need God and leads us to trust Him": {
+    "2 Corinthians 1:8-9": {
+      text: "We were under great pressure, far beyond our ability to endure, so that we despaired of life itself... But this happened that we might not rely on ourselves but on God, who raises the dead.",
+      theme: "trust",
+      tags: ["dependence", "pressure", "resurrection"]
+    },
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "presence",
+      tags: ["brokenhearted", "comfort", "salvation"]
+    },
+    "Psalm 119:71": {
+      text: "It was good for me to be afflicted so that I might learn your decrees.",
+      theme: "word",
+      tags: ["affliction", "learning", "decrees"]
+    },
+    "Isaiah 26:3-4": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you. Trust in the Lord forever, for the Lord, the Lord himself, is the Rock eternal.",
+      theme: "peace",
+      tags: ["trust", "peace", "steadfastness"]
+    },
+    "Lamentations 3:31-33": {
+      text: "For no one is cast off by the Lord forever. Though he brings grief, he will show compassion, so great is his unfailing love. For he does not willingly bring affliction or grief to anyone.",
+      theme: "mercy",
+      tags: ["compassion", "grief", "unfailing love"]
+    }
+  },
+  "Jesus also suffered — He understands our pain": {
+    "Hebrews 4:15": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin.",
+      theme: "jesus",
+      tags: ["temptation", "weakness", "sinless"]
+    },
+    "Isaiah 53:3-4": {
+      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain. Like one from whom people hide their faces he was despised, and we held him in low esteem. Surely he took up our pain and bore our suffering...",
+      theme: "savior",
+      tags: ["suffering", "rejection", "pain", "atonement"]
+    },
+    "Philippians 3:10": {
+      text: "I want to know Christ—yes, to know the power of his resurrection and participation in his sufferings, becoming like him in his death.",
+      theme: "resurrection",
+      tags: ["suffering", "resurrection", "union with Christ"]
+    },
+    "1 Peter 2:21": {
+      text: "To this you were called, because Christ suffered for you, leaving you an example, that you should follow in his steps.",
+      theme: "submission",
+      tags: ["suffering", "example", "obedience"]
+    }
+  },
+  "God uses pain to fulfill His purpose and bring good": {
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "goodness",
+      tags: ["purpose", "saving lives", "sovereignty"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "goodness",
+      tags: ["purpose", "calling", "trust"]
+    },
+    "John 9:2-3": {
+      text: "'Rabbi, who sinned, this man or his parents, that he was born blind?' 'Neither this man nor his parents sinned,' said Jesus, 'but this happened so that the works of God might be displayed in him.'",
+      theme: "glory",
+      tags: ["healing", "blindness", "God’s works"]
+    },
+    "Acts 14:22": {
+      text: "We must go through many hardships to enter the kingdom of God.",
+      theme: "submission",
+      tags: ["hardship", "endurance", "kingdom"]
+    }
+  },
+  "God promises to be with us in pain and restore us": {
+    "Isaiah 43:2": {
+      text: "When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you... the flames will not set you ablaze.",
+      theme: "protect",
+      tags: ["presence", "fire", "trouble", "rescue"]
+    },
+    "1 Peter 5:10": {
+      text: "And the God of all grace, who called you to his eternal glory in Christ, after you have suffered a little while, will himself restore you and make you strong, firm and steadfast.",
+      theme: "grace",
+      tags: ["restoration", "strength", "suffering", "glory"]
+    },
+    "Revelation 21:4": {
+      text: "‘He will wipe every tear from their eyes. There will be no more death’ or mourning or crying or pain, for the old order of things has passed away.",
+      theme: "eternal",
+      tags: ["eternal life", "comfort", "no more pain"]
+    },
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "protect",
+      tags: ["healing", "brokenhearted", "restoration"]
+    }
+  }
+};
+
+
+// What makes God happy?
+let q17ans = {
+  "Faith and trust in Him": {
+    "Hebrews 11:6": {
+      text: "And without faith it is impossible to please God, because anyone who comes to him must believe that he exists and that he rewards those who earnestly seek him.",
+      theme: "faithful",
+      tags: ["faith", "belief", "seeking", "reward"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "submission",
+      tags: ["trust", "submission", "guidance", "surrender"]
+    },
+    "Psalm 147:11": {
+      text: "The Lord delights in those who fear him, who put their hope in his unfailing love.",
+      theme: "hope",
+      tags: ["fear of God", "hope", "delight", "love"]
+    }
+  },
+  "Loving Him and others": {
+    "Matthew 22:37-39": {
+      text: "'Love the Lord your God with all your heart and with all your soul and with all your mind.' This is the first and greatest commandment. And the second is like it: 'Love your neighbor as yourself.'",
+      theme: "love",
+      tags: ["love", "devotion", "neighbor", "commandment"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "humble",
+      tags: ["justice", "mercy", "humility", "walking with God"]
+    },
+    "1 Corinthians 13:13": {
+      text: "And now these three remain: faith, hope and love. But the greatest of these is love.",
+      theme: "love",
+      tags: ["faith", "hope", "love", "lasting values"]
+    }
+  },
+  "Obeying Him sincerely": {
+    "1 Samuel 15:22": {
+      text: "To obey is better than sacrifice, and to heed is better than the fat of rams.",
+      theme: "obedience",
+      tags: ["obedience", "listening", "sacrifice", "priority"]
+    },
+    "John 14:15": {
+      text: "If you love me, keep my commands.",
+      theme: "obedience",
+      tags: ["love", "commands", "obedience", "devotion"]
+    },
+    "Deuteronomy 10:12-13": {
+      text: "What does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul... for your own good?",
+      theme: "obedience",
+      tags: ["fear of God", "walk", "service", "wholeheartedness"]
+    }
+  },
+  "Worship and reverence": {
+    "Psalm 149:4": {
+      text: "For the Lord takes delight in his people; he crowns the humble with victory.",
+      theme: "humble",
+      tags: ["humility", "delight", "victory", "favor"]
+    },
+    "John 4:23": {
+      text: "Yet a time is coming and has now come when the true worshipers will worship the Father in the Spirit and in truth, for they are the kind of worshipers the Father seeks.",
+      theme: "spirit",
+      tags: ["worship", "spirit", "truth", "genuine"]
+    },
+    "Psalm 100:2": {
+      text: "Worship the Lord with gladness; come before him with joyful songs.",
+      theme: "glory",
+      tags: ["worship", "joy", "gladness", "praise"]
+    }
+  },
+  "Doing good and seeking justice": {
+    "Isaiah 1:17": {
+      text: "Learn to do right; seek justice. Defend the oppressed. Take up the cause of the fatherless; plead the case of the widow.",
+      theme: "justice",
+      tags: ["justice", "defend", "oppressed", "advocacy"]
+    },
+    "Hebrews 13:16": {
+      text: "And do not forget to do good and to share with others, for with such sacrifices God is pleased.",
+      theme: "goodness",
+      tags: ["generosity", "doing good", "sharing", "pleasing God"]
+    },
+    "Matthew 5:16": {
+      text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["good deeds", "example", "glory to God", "influence"]
+    }
+  },
+  "Repentance and humility": {
+    "Luke 15:7": {
+      text: "I tell you that in the same way there will be more rejoicing in heaven over one sinner who repents than over ninety-nine righteous persons who do not need to repent.",
+      theme: "mercy",
+      tags: ["repentance", "heavenly joy", "sinners", "rejoicing"]
+    },
+    "Psalm 51:17": {
+      text: "My sacrifice, O God, is a broken spirit; a broken and contrite heart you, God, will not despise.",
+      theme: "humble",
+      tags: ["brokenness", "contrite heart", "sacrifice", "acceptance"]
+    },
+    "Isaiah 66:2": {
+      text: "These are the ones I look on with favor: those who are humble and contrite in spirit, and who tremble at my word.",
+      theme: "humble",
+      tags: ["humility", "contrition", "reverence", "favor"]
+    }
+  }
+};
+
+// How does God guide us?
+let q18ans = {
+  "Through His Word": {
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "word",
+      tags: ["guidance", "light", "direction", "Scripture"]
+    },
+    "2 Timothy 3:16": {
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.",
+      theme: "word",
+      tags: ["teaching", "rebuke", "correction", "training"]
+    },
+    "Psalm 19:8": {
+      text: "The precepts of the Lord are right, giving joy to the heart. The commands of the Lord are radiant, giving light to the eyes.",
+      theme: "word",
+      tags: ["joy", "commands", "clarity", "truth"]
+    },
+    "Joshua 1:8": {
+      text: "Keep this Book of the Law always on your lips; meditate on it day and night... then you will be prosperous and successful.",
+      theme: "word",
+      tags: ["meditation", "success", "law", "consistency"]
+    },
+    "John 8:31-32": {
+      text: "If you hold to my teaching, you are really my disciples. Then you will know the truth, and the truth will set you free.",
+      theme: "truth",
+      tags: ["teaching", "discipleship", "freedom", "truth"]
+    }
+  },
+
+  "By the Holy Spirit": {
+    "John 16:13": {
+      text: "But when he, the Spirit of truth, comes, he will guide you into all the truth.",
+      theme: "spirit",
+      tags: ["guidance", "truth", "Spirit", "discernment"]
+    },
+    "Romans 8:14": {
+      text: "For those who are led by the Spirit of God are the children of God.",
+      theme: "spirit",
+      tags: ["identity", "Spirit-led", "belonging", "children of God"]
+    },
+    "Galatians 5:25": {
+      text: "Since we live by the Spirit, let us keep in step with the Spirit.",
+      theme: "spirit",
+      tags: ["obedience", "alignment", "daily walk", "Spirit"]
+    },
+    "Ezekiel 36:27": {
+      text: "I will put my Spirit in you and move you to follow my decrees and be careful to keep my laws.",
+      theme: "spirit",
+      tags: ["inner prompting", "obedience", "decrees", "Spirit-filled"]
+    },
+    "1 Corinthians 2:12": {
+      text: "What we have received is not the spirit of the world, but the Spirit who is from God, so that we may understand what God has freely given us.",
+      theme: "spirit",
+      tags: ["understanding", "revelation", "Spirit of God", "discernment"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "walk",
+      tags: ["direction", "voice", "obedience", "clarity"]
+    }
+  },
+
+  "Through prayer and seeking Him": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God... and it will be given to you.",
+      theme: "wisdom",
+      tags: ["asking", "wisdom", "prayer", "generosity of God"]
+    },
+    "Jeremiah 33:3": {
+      text: "Call to me and I will answer you and tell you great and unsearchable things you do not know.",
+      theme: "seek",
+      tags: ["calling", "answers", "mystery", "communication"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart... and he will make your paths straight.",
+      theme: "seek",
+      tags: ["trust", "straight path", "submission", "direction"]
+    },
+    "Matthew 7:7": {
+      text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
+      theme: "seek",
+      tags: ["persistence", "seeking", "access", "faith"]
+    },
+    "Psalm 25:5": {
+      text: "Guide me in your truth and teach me, for you are God my Savior, and my hope is in you all day long.",
+      theme: "seek",
+      tags: ["guidance", "truth", "teaching", "hope"]
+    }
+  },
+
+  "By His presence and protection": {
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "presence",
+      tags: ["instruction", "counsel", "love", "watchfulness"]
+    },
+    "Exodus 13:21": {
+      text: "By day the Lord went ahead of them in a pillar of cloud... by night in a pillar of fire to give them light.",
+      theme: "presence",
+      tags: ["leading", "cloud", "fire", "protection"]
+    },
+    "Isaiah 58:11": {
+      text: "The Lord will guide you always... you will be like a well-watered garden.",
+      theme: "presence",
+      tags: ["provision", "guidance", "refreshment", "fruitfulness"]
+    },
+    "Psalm 23:3": {
+      text: "He guides me along the right paths for his name’s sake.",
+      theme: "presence",
+      tags: ["guidance", "righteousness", "honor", "path"]
+    },
+    "Deuteronomy 31:8": {
+      text: "The Lord himself goes before you and will be with you... he will never leave you nor forsake you.",
+      theme: "protect",
+      tags: ["presence", "faithfulness", "companionship", "assurance"]
+    }
+  },
+
+  "Using wise counsel and instruction": {
+    "Proverbs 11:14": {
+      text: "For lack of guidance a nation falls, but victory is won through many advisers.",
+      theme: "wisdom",
+      tags: ["guidance", "advisers", "victory", "counsel"]
+    },
+    "Proverbs 19:20-21": {
+      text: "Listen to advice and accept discipline... but it is the Lord’s purpose that prevails.",
+      theme: "wisdom",
+      tags: ["advice", "discipline", "listening", "purpose"]
+    },
+    "Psalm 73:24": {
+      text: "You guide me with your counsel, and afterward you will take me into glory.",
+      theme: "wisdom",
+      tags: ["guidance", "counsel", "glory", "eternal promise"]
+    },
+    "Proverbs 4:11": {
+      text: "I instruct you in the way of wisdom and lead you along straight paths.",
+      theme: "wisdom",
+      tags: ["instruction", "wisdom", "straight path", "leadership"]
+    }
+  }
+};
+
+// Is God still working today?
+let q19ans = {
+  "God never changes": {
+    "Hebrews 13:8": {
+      text: "Jesus Christ is the same yesterday and today and forever.",
+      theme: "eternal",
+      tags: ["unchanging", "Jesus", "consistency", "forever"]
+    },
+    "Malachi 3:6": {
+      text: "I the Lord do not change. So you, the descendants of Jacob, are not destroyed.",
+      theme: "faithful",
+      tags: ["unchanging", "mercy", "faithfulness", "protection"]
+    },
+    "Psalm 102:27": {
+      text: "But you remain the same, and your years will never end.",
+      theme: "eternal",
+      tags: ["eternity", "unchanging", "existence", "stability"]
+    },
+    "James 1:17": {
+      text: "Every good and perfect gift is from above... who does not change like shifting shadows.",
+      theme: "goodness",
+      tags: ["gift", "unchanging", "goodness", "heavenly source"]
+    }
+  },
+
+  "God is actively working in us": {
+    "Philippians 1:6": {
+      text: "He who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "growth",
+      tags: ["ongoing work", "completion", "faith journey", "confidence"]
+    },
+    "Hebrews 13:21": {
+      text: "May He equip you with everything good for doing His will, and may He work in us what is pleasing to Him.",
+      theme: "transformation",
+      tags: ["equipping", "God’s will", "pleasing God", "inner work"]
+    },
+    "2 Corinthians 3:18": {
+      text: "We are being transformed into his image with ever-increasing glory, which comes from the Lord, who is the Spirit.",
+      theme: "transformation",
+      tags: ["transformation", "image of Christ", "glory", "Spirit work"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "purpose",
+      tags: ["handiwork", "created for purpose", "good works", "destiny"]
+    }
+  },
+
+  "God works through His Spirit": {
+    "John 5:17": {
+      text: "My Father is always at his work to this very day, and I too am working.",
+      theme: "spirit",
+      tags: ["ongoing work", "divine activity", "Jesus working", "Father’s will"]
+    },
+    "Acts 1:8": {
+      text: "You will receive power when the Holy Spirit comes on you; and you will be my witnesses...",
+      theme: "spirit",
+      tags: ["Holy Spirit", "power", "witnessing", "mission"]
+    },
+    "1 Corinthians 12:6": {
+      text: "There are different kinds of working, but in all of them and in everyone it is the same God at work.",
+      theme: "spirit",
+      tags: ["diverse gifts", "unity", "God at work", "function"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him...",
+      theme: "goodness",
+      tags: ["purpose", "God’s plan", "trust", "good outcomes"]
+    }
+  },
+
+  "God is present in the world today": {
+    "Psalm 121:4": {
+      text: "Indeed, he who watches over Israel will neither slumber nor sleep.",
+      theme: "presence",
+      tags: ["watchfulness", "alertness", "constant care", "guardian"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you... I will uphold you with my righteous right hand.",
+      theme: "presence",
+      tags: ["fear not", "upholding", "strength", "companionship"]
+    },
+    "Matthew 28:20": {
+      text: "Surely I am with you always, to the very end of the age.",
+      theme: "presence",
+      tags: ["presence", "always with us", "enduring", "Jesus' promise"]
+    },
+    "Psalm 46:1": {
+      text: "God is our refuge and strength, an ever-present help in trouble.",
+      theme: "presence",
+      tags: ["refuge", "help", "strength", "trouble"]
+    }
+  },
+
+  "God moves through answered prayer and miracles": {
+    "John 14:13-14": {
+      text: "And I will do whatever you ask in my name, so that the Father may be glorified in the Son.",
+      theme: "power",
+      tags: ["prayer", "authority of Jesus", "glory", "asking in His name"]
+    },
+    "Ephesians 3:20": {
+      text: "Now to him who is able to do immeasurably more than all we ask or imagine, according to his power that is at work within us.",
+      theme: "power",
+      tags: ["impossible", "abundance", "power within", "expectation"]
+    },
+    "James 5:16": {
+      text: "The prayer of a righteous person is powerful and effective.",
+      theme: "power",
+      tags: ["righteousness", "prayer", "effectiveness", "powerful results"]
+    },
+    "Mark 16:20": {
+      text: "The disciples went out and preached everywhere, and the Lord worked with them and confirmed his word by the signs that accompanied it.",
+      theme: "spirit",
+      tags: ["miracles", "partnership", "signs", "confirmation"]
+    }
+  }
+};
+
+// How do I trust God?
+let q20ans = {
+  "Remember God is faithful and trustworthy": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "faithful",
+      tags: ["trust", "submission", "guidance", "dependence"]
+    },
+    "Psalm 9:10": {
+      text: "Those who know your name trust in you, for you, Lord, have never forsaken those who seek you.",
+      theme: "faithful",
+      tags: ["trust", "seek", "faithfulness", "reliability"]
+    },
+    "Deuteronomy 7:9": {
+      text: "Know therefore that the Lord your God is God; he is the faithful God, keeping his covenant of love to a thousand generations of those who love him and keep his commandments.",
+      theme: "faithful",
+      tags: ["faithfulness", "covenant", "commandments", "generations"]
+    },
+    "1 Corinthians 1:9": {
+      text: "God is faithful, who has called you into fellowship with his Son, Jesus Christ our Lord.",
+      theme: "faithful",
+      tags: ["faithful", "fellowship", "calling", "Jesus"]
+    }
+  },
+
+  "Remember His promises": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "goodness",
+      tags: ["purpose", "trust", "good", "calling"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["strength", "help", "presence", "fear not"]
+    },
+    "Hebrews 10:23": {
+      text: "Let us hold unswervingly to the hope we profess, for he who promised is faithful.",
+      theme: "faithful",
+      tags: ["promise", "hope", "faithful", "confidence"]
+    },
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you...",
+      theme: "grace",
+      tags: ["promise", "patience", "timing", "faith"]
+    }
+  },
+
+  "Know that God is our refuge and strength": {
+    "Psalm 46:1-2": {
+      text: "God is our refuge and strength, an ever-present help in trouble. Therefore we will not fear, though the earth give way...",
+      theme: "protect",
+      tags: ["refuge", "help", "strength", "fearless"]
+    },
+    "Nahum 1:7": {
+      text: "The Lord is good, a refuge in times of trouble. He cares for those who trust in him.",
+      theme: "goodness",
+      tags: ["refuge", "care", "trust", "trouble"]
+    },
+    "Isaiah 26:3-4": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you. Trust in the Lord forever, for the Lord, the Lord himself, is the Rock eternal.",
+      theme: "peace",
+      tags: ["peace", "steadfastness", "eternal", "trust"]
+    },
+    "Psalm 56:3-4": {
+      text: "When I am afraid, I put my trust in you. In God, whose word I praise—in God I trust and am not afraid. What can mere mortals do to me?",
+      theme: "protect",
+      tags: ["fear", "trust", "security", "confidence"]
+    }
+  },
+
+  "Walk by faith, not sight": {
+    "2 Corinthians 5:7": {
+      text: "For we live by faith, not by sight.",
+      theme: "walk",
+      tags: ["faith", "vision", "trust", "unseen"]
+    },
+    "Psalm 37:5": {
+      text: "Commit your way to the Lord; trust in him and he will do this:",
+      theme: "walk",
+      tags: ["commitment", "trust", "path", "action"]
+    },
+    "Hebrews 11:1": {
+      text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
+      theme: "faithful",
+      tags: ["faith", "hope", "assurance", "invisible"]
+    },
+    "Romans 1:17": {
+      text: "The righteous will live by faith.",
+      theme: "walk",
+      tags: ["righteousness", "faith", "lifestyle", "trust"]
+    }
+  },
+
+  "Call on God in uncertainty": {
+    "Jeremiah 17:7": {
+      text: "But blessed is the one who trusts in the Lord, whose confidence is in him.",
+      theme: "hope",
+      tags: ["trust", "confidence", "blessing", "dependence"]
+    },
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "presence",
+      tags: ["trust", "refuge", "honesty", "prayer"]
+    },
+    "James 1:5-6": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. But when you ask, you must believe and not doubt...",
+      theme: "wisdom",
+      tags: ["wisdom", "prayer", "belief", "doubt"]
+    },
+    "Isaiah 12:2": {
+      text: "Surely God is my salvation; I will trust and not be afraid. The Lord, the Lord himself, is my strength and my defense; he has become my salvation.",
+      theme: "salvation",
+      tags: ["trust", "fear not", "salvation", "strength"]
+    }
+  }
+};
+
+// Can I talk to God like a friend?
+let q21ans = {
+  "God welcomes intimacy": {
+    "Exodus 33:11": {
+      text: "The Lord would speak to Moses face to face, as one speaks to a friend.",
+      theme: "presence",
+      tags: ["face to face", "friendship", "conversation", "intimacy"]
+    },
+    "John 15:15": {
+      text: "I no longer call you servants... Instead, I have called you friends, for everything that I learned from my Father I have made known to you.",
+      theme: "friend",
+      tags: ["friendship", "Jesus", "revealed", "relationship"]
+    },
+    "James 2:23": {
+      text: "Abraham believed God... and he was called God's friend.",
+      theme: "faithful",
+      tags: ["belief", "friendship", "trust", "relationship"]
+    },
+    "Revelation 3:20": {
+      text: "Here I am! I stand at the door and knock. If anyone hears my voice and opens the door, I will come in and eat with that person, and they with me.",
+      theme: "presence",
+      tags: ["invitation", "open door", "fellowship", "closeness"]
+    }
+  },
+  "Pour out your heart": {
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "presence",  
+      tags: ["pour out", "refuge", "honesty", "vulnerability"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "mercy",
+      tags: ["anxiety", "care", "casting burdens", "trust"]
+    },
+    "Philippians 4:6": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      theme: "peace",
+      tags: ["prayer", "thanksgiving", "requests", "anxiety"]
+    },
+    "Lamentations 2:19": {
+      text: "Pour out your heart like water in the presence of the Lord. Lift up your hands to him for the lives of your children...",
+      theme: "presence",
+      tags: ["cry out", "presence", "heart", "intercession"]
+    }
+  },
+  "God already knows your heart": {
+    "Psalm 139:1-2": {
+      text: "You have searched me, Lord, and you know me. You know when I sit and when I rise; you perceive my thoughts from afar.",
+      theme: "presence",
+      tags: ["knows me", "thoughts", "searched", "understanding"]
+    },
+    "Matthew 6:8": {
+      text: "Your Father knows what you need before you ask him.",
+      theme: "understanding",
+      tags: ["knows your need", "before asking", "God’s knowledge"]
+    },
+    "Romans 8:26": {
+      text: "The Spirit himself intercedes for us through wordless groans.",
+      theme: "spirit",
+      tags: ["intercession", "groans", "Spirit", "prayer"]
+    },
+    "1 Chronicles 28:9": {
+      text: "The Lord searches every heart and understands every desire and every thought.",
+      theme: "understanding",
+      tags: ["searches heart", "desires", "thoughts", "understanding"]
+    }
+  },
+  "Jesus opened the way": {
+    "Hebrews 4:16": {
+      text: "Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["approach", "confidence", "grace", "help"]
+    },
+    "Ephesians 2:18": {
+      text: "For through him we both have access to the Father by one Spirit.",
+      theme: "savior",
+      tags: ["access", "through Jesus", "Spirit", "unity"]
+    },
+    "John 14:6": {
+      text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'",
+      theme: "jesus",
+      tags: ["way", "truth", "life", "exclusive access"]
+    },
+    "Romans 5:2": {
+      text: "Through him we have gained access by faith into this grace in which we now stand.",
+      theme: "salvation",
+      tags: ["access", "faith", "grace", "standing firm"]
+    }
+  }
+};
+
+// Why do I feel far from God?
+let q22ans = {
+  "Sin separates us": {
+    "Isaiah 59:2": {
+      text: "But your iniquities have separated you from your God; your sins have hidden his face from you, so that he will not hear.",
+      theme: "fallenness",
+      tags: ["separation", "sin", "hidden face", "distance"]
+    },
+    "Psalm 66:18": {
+      text: "If I had cherished sin in my heart, the Lord would not have listened.",
+      theme: "fallenness",
+      tags: ["sin", "heart", "blocked prayer", "listening"]
+    },
+    "Romans 3:23": {
+      text: "For all have sinned and fall short of the glory of God.",
+      theme: "fallenness",
+      tags: ["sin", "fall short", "glory", "unworthiness"]
+    }
+  },
+  "God never leaves": {
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "presence",
+      tags: ["never leave", "courage", "with you", "comfort"]
+    },
+    "Hebrews 13:5": {
+      text: "God has said, 'Never will I leave you; never will I forsake you.'",
+      theme: "faithful",
+      tags: ["faithful", "never forsake", "trust", "reassurance"]
+    },
+    "Psalm 139:7-10": {
+      text: "Where can I go from your Spirit? Where can I flee from your presence?... even there your hand will guide me, your right hand will hold me fast.",
+      theme: "presence",
+      tags: ["omnipresence", "guidance", "Spirit", "secure"]
+    }
+  },
+  "Seek Him sincerely": {
+    "Jeremiah 29:13": {
+      text: "You will seek me and find me when you seek me with all your heart.",
+      theme: "seek",
+      tags: ["seek", "find", "heart", "pursuit"]
+    },
+    "James 4:8": {
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      theme: "transformation",
+      tags: ["draw near", "purify", "repentance", "cleansing"]
+    },
+    "Psalm 63:1": {
+      text: "You, God, are my God, earnestly I seek you; I thirst for you... in a dry and parched land where there is no water.",
+      theme: "devotion",
+      tags: ["thirst", "seek", "desire", "wilderness"]
+    }
+  },
+  "God uses silence to grow us": {
+    "Job 23:8-10": {
+      text: "But if I go to the east, he is not there... But he knows the way that I take; when he has tested me, I will come forth as gold.",
+      theme: "growth",
+      tags: ["testing", "gold", "hidden", "faith journey"]
+    },
+    "Lamentations 3:25-26": {
+      text: "The Lord is good to those whose hope is in him... It is good to wait quietly for the salvation of the Lord.",
+      theme: "hope",
+      tags: ["waiting", "hope", "quiet", "trust"]
+    },
+    "Isaiah 30:20-21": {
+      text: "Though the Lord gives you the bread of adversity and the water of affliction, your teachers will be hidden no more... your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["adversity", "voice", "walk", "hidden teachers"]
+    }
+  }
+};
+
+// Did Jesus really rise again?
+let q23ans = {
+  "The resurrection is witnessed": {
+    "1 Corinthians 15:3-6": {
+      text: "Christ died for our sins... he was buried, that he was raised on the third day... and that he appeared to Cephas, and then to the Twelve. After that, he appeared to more than five hundred of the brothers and sisters at the same time.",
+      theme: "resurrection",
+      tags: ["resurrection", "witnesses", "testimony", "gospel"]
+    },
+    "Luke 24:6-7": {
+      text: "He is not here; he has risen! Remember how he told you... ‘The Son of Man must be delivered over to the hands of sinners, be crucified and on the third day be raised again.’",
+      theme: "resurrection",
+      tags: ["risen", "third day", "promise kept", "crucifixion"]
+    },
+    "John 20:27-29": {
+      text: "Then he said to Thomas, 'Put your finger here; see my hands... Stop doubting and believe.' Thomas said to him, 'My Lord and my God!'",
+      theme: "truth",
+      tags: ["doubt", "belief", "wounds", "confession"]
+    }
+  },
+  "The resurrection proves Jesus is Lord": {
+    "Romans 1:4": {
+      text: "Through the Spirit of holiness was appointed the Son of God in power by his resurrection from the dead: Jesus Christ our Lord.",
+      theme: "authority",
+      tags: ["resurrection", "power", "Son of God", "lordship"]
+    },
+    "Philippians 2:8-11": {
+      text: "He humbled himself by becoming obedient to death—even death on a cross! Therefore God exalted him... that at the name of Jesus every knee should bow...",
+      theme: "glory",
+      tags: ["humility", "obedience", "exaltation", "worship"]
+    },
+    "Acts 2:32-36": {
+      text: "God has raised this Jesus to life, and we are all witnesses of it... Therefore let all Israel be assured of this: God has made this Jesus, whom you crucified, both Lord and Messiah.",
+      theme: "jesus",
+      tags: ["witness", "Messiah", "crucifixion", "lordship"]
+    }
+  },
+  "We are raised with Him": {
+    "Romans 6:4-5": {
+      text: "We were therefore buried with him through baptism into death... just as Christ was raised from the dead... we too may live a new life.",
+      theme: "transformation",
+      tags: ["baptism", "new life", "burial", "raised"]
+    },
+    "Colossians 3:1": {
+      text: "Since, then, you have been raised with Christ, set your hearts on things above, where Christ is, seated at the right hand of God.",
+      theme: "resurrection",
+      tags: ["raised with Christ", "heavenly focus", "right hand", "new mindset"]
+    },
+    "Ephesians 2:4-6": {
+      text: "But because of his great love for us... God raised us up with Christ and seated us with him in the heavenly realms in Christ Jesus.",
+      theme: "salvation",
+      tags: ["raised", "seated with Christ", "heaven", "love"]
+    }
+  },
+  "It gives us hope beyond death": {
+    "1 Peter 1:3": {
+      text: "In his great mercy he has given us new birth into a living hope through the resurrection of Jesus Christ from the dead.",
+      theme: "hope",
+      tags: ["mercy", "new birth", "living hope", "resurrection"]
+    },
+    "John 11:25": {
+      text: "Jesus said to her, 'I am the resurrection and the life. The one who believes in me will live, even though they die;'",
+      theme: "eternal",
+      tags: ["resurrection", "life", "belief", "eternal"]
+    },
+    "1 Thessalonians 4:14": {
+      text: "We believe that Jesus died and rose again, and so we believe that God will bring with Jesus those who have fallen asleep in him.",
+      theme: "resurrection",
+      tags: ["hope", "falling asleep", "rise again", "with Jesus"]
+    }
+  }
+};
+
+// What did Jesus teach?
+let q24ans = {
+  "Love God and others": {
+    "Matthew 22:37-40": {
+      text: "‘Love the Lord your God with all your heart and with all your soul and with all your mind.’ This is the first and greatest commandment. And the second is like it: ‘Love your neighbor as yourself.’",
+      theme: "love",
+      tags: ["greatest-command", "heart", "relationship", "others"]
+    },
+    "John 13:34-35": {
+      text: "A new command I give you: Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples...",
+      theme: "love",
+      tags: ["discipleship", "community", "love-in-action", "others"]
+    },
+    "Luke 6:27-28": {
+      text: "Love your enemies, do good to those who hate you, bless those who curse you, pray for those who mistreat you.",
+      theme: "mercy",
+      tags: ["enemies", "mercy", "forgiveness", "kindness"]
+    },
+    "Matthew 5:43-44": {
+      text: "You have heard that it was said, ‘Love your neighbor and hate your enemy.’ But I tell you, love your enemies and pray for those who persecute you.",
+      theme: "mercy",
+      tags: ["enemies", "love", "prayer", "hard-teaching"]
+    }
+  },
+
+  "The kingdom of God is near": {
+    "Mark 1:15": {
+      text: "‘The time has come,’ he said. ‘The kingdom of God has come near. Repent and believe the good news!’",
+      theme: "salvation",
+      tags: ["repentance", "kingdom", "good-news", "gospel"]
+    },
+    "Luke 17:20-21": {
+      text: "‘The kingdom of God is not something that can be observed... because the kingdom of God is in your midst.’",
+      theme: "truth",
+      tags: ["kingdom", "presence", "mystery", "inner-life"]
+    },
+    "Matthew 5:3": {
+      text: "Blessed are the poor in spirit, for theirs is the kingdom of heaven.",
+      theme: "humble",
+      tags: ["beatitudes", "humility", "blessing", "kingdom"]
+    },
+    "Matthew 13:31-32": {
+      text: "The kingdom of heaven is like a mustard seed... though it is the smallest of all seeds, yet when it grows, it is the largest of garden plants...",
+      theme: "growth",
+      tags: ["kingdom", "parable", "growth", "faith"]
+    }
+  },
+
+  "Forgive and be merciful": {
+    "Matthew 6:14": {
+      text: "If you forgive other people when they sin against you, your heavenly Father will also forgive you.",
+      theme: "forgiveness",
+      tags: ["mercy", "prayer", "relationships", "healing"]
+    },
+    "Luke 6:36": {
+      text: "Be merciful, just as your Father is merciful.",
+      theme: "mercy",
+      tags: ["imitate-God", "compassion", "character", "love"]
+    },
+    "Matthew 18:21-22": {
+      text: "‘Lord, how many times shall I forgive my brother or sister who sins against me? Up to seven times?’ Jesus answered, ‘I tell you, not seven times, but seventy-seven times.’",
+      theme: "forgiveness",
+      tags: ["patience", "mercy", "relationships", "grace"]
+    },
+    "Luke 23:34": {
+      text: "Jesus said, 'Father, forgive them, for they do not know what they are doing.'",
+      theme: "mercy",
+      tags: ["cross", "example", "grace", "love"]
+    }
+  },
+
+  "Seek God's righteousness first": {
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["priorities", "trust", "kingdom", "faith"]
+    },
+    "John 6:27": {
+      text: "Do not work for food that spoils, but for food that endures to eternal life, which the Son of Man will give you.",
+      theme: "eternal",
+      tags: ["focus", "eternity", "provision", "Jesus"]
+    },
+    "Matthew 5:6": {
+      text: "Blessed are those who hunger and thirst for righteousness, for they will be filled.",
+      theme: "walk",
+      tags: ["desire", "righteousness", "beatitudes", "blessing"]
+    },
+    "Luke 12:31-32": {
+      text: "But seek his kingdom, and these things will be given to you as well. Do not be afraid, little flock, for your Father has been pleased to give you the kingdom.",
+      theme: "trust",
+      tags: ["kingdom", "provision", "fear-not", "inheritance"]
+    }
+  },
+
+  "Obey with sincerity and love": {
+    "John 14:15": {
+      text: "If you love me, keep my commands.",
+      theme: "obedience",
+      tags: ["love", "obedience", "relationship", "Jesus"]
+    },
+    "Matthew 7:24": {
+      text: "Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.",
+      theme: "wisdom",
+      tags: ["practice", "foundation", "storms", "obedience"]
+    },
+    "Luke 11:28": {
+      text: "Blessed rather are those who hear the word of God and obey it.",
+      theme: "word",
+      tags: ["hearing", "obedience", "blessing", "action"]
+    },
+    "Matthew 23:11-12": {
+      text: "The greatest among you will be your servant. For those who exalt themselves will be humbled, and those who humble themselves will be exalted.",
+      theme: "humble",
+      tags: ["servanthood", "greatness", "humility", "attitude"]
+    }
+  },
+
+  "Live by faith, not fear": {
+    "Matthew 10:28-31": {
+      text: "Do not be afraid of those who kill the body but cannot kill the soul... Even the very hairs of your head are all numbered. So don’t be afraid; you are worth more than many sparrows.",
+      theme: "trust",
+      tags: ["fear", "value", "identity", "security"]
+    },
+    "John 14:1": {
+      text: "Do not let your hearts be troubled. You believe in God; believe also in me.",
+      theme: "trust",
+      tags: ["peace", "Jesus", "faith", "comfort"]
+    },
+    "Luke 8:50": {
+      text: "'Don’t be afraid; just believe, and she will be healed.'",
+      theme: "faithful",
+      tags: ["healing", "faith", "boldness", "miracle"]
+    }
+  },
+
+  "Be ready for His return": {
+    "Matthew 24:42-44": {
+      text: "Therefore keep watch, because you do not know on what day your Lord will come... the Son of Man will come at an hour when you do not expect him.",
+      theme: "eternal",
+      tags: ["return", "watchful", "preparedness", "judgment"]
+    },
+    "Matthew 25:13": {
+      text: "Therefore keep watch, because you do not know the day or the hour.",
+      theme: "obedience",
+      tags: ["return", "alert", "kingdom", "readiness"]
+    }
+  }
+};
+
+// Why is Jesus called the Lamb?
+let q25ans = {
+  "He was sacrificed for our sins": {
+    "John 1:29": {
+      text: "Look, the Lamb of God, who takes away the sin of the world!",
+      theme: "savior",
+      tags: ["lamb", "sacrifice", "atonement", "sin"]
+    },
+    "Isaiah 53:7": {
+      text: "He was oppressed and afflicted, yet he did not open his mouth; he was led like a lamb to the slaughter...",
+      theme: "submission",
+      tags: ["lamb", "obedience", "suffering", "messiah"]
+    },
+    "1 Peter 1:18-19": {
+      text: "You were redeemed... with the precious blood of Christ, a lamb without blemish or defect.",
+      theme: "salvation",
+      tags: ["redeemed", "blood", "lamb", "pure"]
+    }
+  },
+
+  "He fulfilled the Passover symbol": {
+    "Exodus 12:5-7": {
+      text: "The animals you choose must be year-old males without defect... Take some of the blood and put it on the sides and tops of the doorframes...",
+      theme: "grace",
+      tags: ["passover", "blood", "protection", "foreshadowing"]
+    },
+    "1 Corinthians 5:7": {
+      text: "For Christ, our Passover lamb, has been sacrificed.",
+      theme: "jesus",
+      tags: ["passover", "jesus", "sacrifice", "fulfilled"]
+    }
+  },
+
+  "He takes our place in judgment": {
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["substitute", "grace", "sin", "cross"]
+    },
+    "Isaiah 53:5": {
+      text: "But he was pierced for our transgressions, he was crushed for our iniquities; the punishment that brought us peace was on him...",
+      theme: "peace",
+      tags: ["punishment", "healing", "substitute", "peace"]
+    },
+    "Hebrews 9:28": {
+      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time... to bring salvation to those who are waiting for him.",
+      theme: "salvation",
+      tags: ["judgment", "return", "sacrifice", "forgiveness"]
+    }
+  },
+
+  "He is worthy of all honor": {
+    "Revelation 5:12": {
+      text: "Worthy is the Lamb, who was slain, to receive power and wealth and wisdom and strength and honor and glory and praise!",
+      theme: "glory",
+      tags: ["worship", "honor", "praise", "lamb"]
+    },
+    "Revelation 7:17": {
+      text: "For the Lamb at the center of the throne will be their shepherd; he will lead them to springs of living water...",
+      theme: "friend",
+      tags: ["lamb", "shepherd", "guidance", "eternal"]
+    }
+  }
+};
+
+// Does Jesus understand me?
+let q26ans = {
+  "He experienced human weakness": {
+    "Hebrews 4:15": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin.",
+      theme: "temptation",
+      tags: ["empathy", "temptation", "humanity", "sinless"]
+    },
+    "Isaiah 53:3": {
+      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain.",
+      theme: "fallenness",
+      tags: ["rejection", "pain", "suffering", "human-experience"]
+    },
+    "Matthew 26:38": {
+      text: "Then he said to them, 'My soul is overwhelmed with sorrow to the point of death. Stay here and keep watch with me.'",
+      theme: "friend",
+      tags: ["sorrow", "companionship", "grief", "vulnerability"]
+    }
+  },
+
+  "He suffered to save us": {
+    "Hebrews 2:17-18": {
+      text: "For this reason he had to be made like them, fully human in every way... Because he himself suffered when he was tempted, he is able to help those who are being tempted.",
+      theme: "help",
+      tags: ["help", "humanity", "temptation", "suffering"]
+    },
+    "Philippians 2:6-8": {
+      text: "Though he was God... he humbled himself in obedience to God and died a criminal’s death on a cross.",
+      theme: "humble",
+      tags: ["humility", "obedience", "sacrifice", "cross"]
+    },
+    "1 Peter 2:24": {
+      text: "He himself bore our sins in his body on the cross, so that we might die to sins and live for righteousness...",
+      theme: "salvation",
+      tags: ["sacrifice", "cross", "healing", "righteousness"]
+    }
+  },
+
+  "He calls you his friend": {
+    "John 15:15": {
+      text: "I no longer call you servants... Instead, I have called you friends, for everything that I learned from my Father I have made known to you.",
+      theme: "friend",
+      tags: ["friendship", "relationship", "intimacy", "trust"]
+    },
+    "John 11:35": {
+      text: "Jesus wept.",
+      theme: "love",
+      tags: ["compassion", "grief", "love", "emotion"]
+    },
+    "Romans 8:34": {
+      text: "Christ Jesus who died... is also interceding for us.",
+      theme: "savior",
+      tags: ["intercession", "advocate", "prayer", "ongoing-love"]
+    }
+  },
+
+  "He knows your heart": {
+    "Psalm 139:1-2": {
+      text: "You have searched me, Lord, and you know me. You know when I sit and when I rise; you perceive my thoughts from afar.",
+      theme: "presence",
+      tags: ["knowing", "searching", "understanding", "intimacy"]
+    },
+    "Revelation 2:23": {
+      text: "I am he who searches hearts and minds, and I will repay each of you according to your deeds.",
+      theme: "truth",
+      tags: ["heart", "judgment", "omniscience", "accountability"]
+    }
+  }
+};
+
+// How can I follow Jesus?
+let q27ans = {
+  "Deny yourself and take up your cross": {
+    "Luke 9:23": {
+      text: "Then he said to them all: 'Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.'",
+      theme: "submission",
+      tags: ["deny-self", "daily-discipline", "discipleship", "follow-jesus"]
+    },
+    "Matthew 10:38": {
+      text: "Whoever does not take up their cross and follow me is not worthy of me.",
+      theme: "obedience",
+      tags: ["sacrifice", "obedience", "worthiness", "cross"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
+      theme: "transformation",
+      tags: ["identity", "submission", "new-life", "crucified-with-christ"]
+    }
+  },
+
+  "Obey His teachings": {
+    "John 14:23": {
+      text: "Anyone who loves me will obey my teaching. My Father will love them, and we will come to them and make our home with them.",
+      theme: "obedience",
+      tags: ["obedience", "love", "abide", "relationship"]
+    },
+    "1 John 2:3-4": {
+      text: "We know that we have come to know him if we keep his commands. Whoever says, 'I know him,' but does not do what he commands is a liar...",
+      theme: "truth",
+      tags: ["truth", "obedience", "integrity", "knowing-god"]
+    },
+    "Luke 6:46": {
+      text: "Why do you call me, ‘Lord, Lord,’ and do not do what I say?",
+      theme: "obedience",
+      tags: ["obedience", "lordship", "action", "faithfulness"]
+    }
+  },
+
+  "Walk as Jesus walked": {
+    "1 John 2:6": {
+      text: "Whoever claims to live in him must live as Jesus did.",
+      theme: "walk",
+      tags: ["example", "walk", "discipleship", "imitate-christ"]
+    },
+    "Ephesians 5:1-2": {
+      text: "Follow God’s example, therefore, as dearly loved children and walk in the way of love, just as Christ loved us and gave himself up for us...",
+      theme: "love",
+      tags: ["love", "walk", "sacrifice", "imitate-god"]
+    },
+    "John 13:15": {
+      text: "I have set you an example that you should do as I have done for you.",
+      theme: "walk",
+      tags: ["example", "humility", "service", "walk-like-jesus"]
+    }
+  },
+
+  "Stay connected to Him": {
+    "John 15:5": {
+      text: "I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.",
+      theme: "growth",
+      tags: ["abide", "fruitfulness", "dependence", "relationship"]
+    },
+    "Colossians 2:6-7": {
+      text: "So then, just as you received Christ Jesus as Lord, continue to live your lives in him, rooted and built up in him...",
+      theme: "walk",
+      tags: ["rooted", "growth", "walk", "maturity"]
+    },
+    "Psalm 1:2-3": {
+      text: "But whose delight is in the law of the Lord... That person is like a tree planted by streams of water, which yields its fruit in season...",
+      theme: "growth",
+      tags: ["growth", "meditation", "fruit", "stability"]
+    }
+  },
+
+  "Be led by the Spirit": {
+    "Romans 8:14": {
+      text: "For those who are led by the Spirit of God are the children of God.",
+      theme: "spirit",
+      tags: ["identity", "guidance", "spirit-led", "child-of-god"]
+    },
+    "Galatians 5:25": {
+      text: "Since we live by the Spirit, let us keep in step with the Spirit.",
+      theme: "spirit",
+      tags: ["spirit", "walk", "obedience", "alignment"]
+    },
+    "John 16:13": {
+      text: "But when he, the Spirit of truth, comes, he will guide you into all the truth...",
+      theme: "spirit",
+      tags: ["truth", "guidance", "spirit", "direction"]
+    }
+  }
+};
+
+// What is God's plan for my life?
+let q28ans = {
+  "God has a purpose for you": {
+    "Jeremiah 29:11": {
+      text: "'For I know the plans I have for you,' declares the Lord, 'plans to prosper you and not to harm you, plans to give you hope and a future.'",
+      theme: "hope",
+      tags: ["future", "purpose", "plans", "good-intentions"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "obedience",
+      tags: ["purpose", "created", "calling", "good-works"]
+    },
+    "Proverbs 19:21": {
+      text: "Many are the plans in a person’s heart, but it is the Lord’s purpose that prevails.",
+      theme: "authority",
+      tags: ["plans", "purpose", "sovereignty", "God's-will"]
+    },
+    "Isaiah 46:10": {
+      text: "I make known the end from the beginning... My purpose will stand, and I will do all that I please.",
+      theme: "authority",
+      tags: ["control", "sovereignty", "God's-will", "purpose"]
+    }
+  },
+
+  "He calls you to love and obey Him": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["justice", "mercy", "humility", "calling"]
+    },
+    "Deuteronomy 10:12": {
+      text: "What does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul...",
+      theme: "obedience",
+      tags: ["service", "fear", "love", "loyalty"]
+    },
+    "John 14:23": {
+      text: "Anyone who loves me will obey my teaching. My Father will love them, and we will come to them and make our home with them.",
+      theme: "obedience",
+      tags: ["obedience", "love", "relationship", "Jesus"]
+    }
+  },
+
+  "Trust and walk with Him daily": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "submission",
+      tags: ["trust", "guidance", "path", "understanding"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "help",
+      tags: ["guidance", "counsel", "instruction", "care"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, ‘This is the way; walk in it.’",
+      theme: "walk",
+      tags: ["direction", "voice", "guidance", "obedience"]
+    },
+    "Psalm 37:23": {
+      text: "The Lord makes firm the steps of the one who delights in him;",
+      theme: "walk",
+      tags: ["steps", "delight", "stability", "journey"]
+    }
+  },
+
+  "God shapes you through trials": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "transformation",
+      tags: ["purpose", "good", "trust", "calling"]
+    },
+    "James 1:2-4": {
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance.",
+      theme: "growth",
+      tags: ["testing", "joy", "faith", "perseverance"]
+    },
+    "1 Peter 1:6-7": {
+      text: "You may have had to suffer grief... These have come so that the proven genuineness of your faith... may result in praise, glory and honor when Jesus Christ is revealed.",
+      theme: "glory",
+      tags: ["suffering", "faith", "praise", "proven"]
+    },
+    "2 Corinthians 4:17": {
+      text: "For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all.",
+      theme: "eternal",
+      tags: ["glory", "perspective", "trouble", "reward"]
+    }
+  }
+};
+
+let q29ans = {
+  "God uses the willing": {
+    "1 Corinthians 1:27": {
+      text: "But God chose the foolish things of the world to shame the wise; God chose the weak things of the world to shame the strong.",
+      theme: "humble",
+      tags: ["weakness", "calling", "courage"]
+    },
+    "Isaiah 6:8": {
+      text: "Then I heard the voice of the Lord saying, 'Whom shall I send? And who will go for us?' And I said, 'Here am I. Send me!'",
+      theme: "submission",
+      tags: ["willingness", "calling", "purpose"]
+    },
+    "Exodus 4:11-12": {
+      text: "The Lord said to him, 'Who gave human beings their mouths?... Now go; I will help you speak and will teach you what to say.'",
+      theme: "help",
+      tags: ["equipped", "purpose", "calling"]
+    },
+    "Jeremiah 1:6-7": {
+      text: "'Alas, Sovereign Lord,' I said, 'I do not know how to speak; I am too young.' But the Lord said to me, 'Do not say, 'I am too young.' You must go to everyone I send you to and say whatever I command you.'",
+      theme: "submission",
+      tags: ["calling", "purpose", "youth", "willingness"]
+    }
+  },
+
+  "Let your light shine": {
+    "Matthew 5:14-16": {
+      text: "You are the light of the world... let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["influence", "testimony", "witness", "glory"]
+    },
+    "Philippians 2:15": {
+      text: "Then you will shine among them like stars in the sky as you hold firmly to the word of life.",
+      theme: "light",
+      tags: ["purity", "example", "word", "influence"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "obedience",
+      tags: ["purpose", "created", "works", "calling"]
+    },
+    "1 Peter 2:9": {
+      text: "But you are a chosen people... that you may declare the praises of him who called you out of darkness into his wonderful light.",
+      theme: "light",
+      tags: ["identity", "witness", "praise", "calling"]
+    }
+  },
+
+  "Strength comes from God": {
+    "2 Corinthians 12:9": {
+      text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["power", "dependence", "weakness"]
+    },
+    "Philippians 4:13": {
+      text: "I can do all this through him who gives me strength.",
+      theme: "power",
+      tags: ["strength", "confidence", "faith"]
+    },
+    "Zechariah 4:6": {
+      text: "'Not by might nor by power, but by my Spirit,' says the Lord Almighty.",
+      theme: "spirit",
+      tags: ["dependence", "faith", "power"]
+    },
+    "Isaiah 40:29": {
+      text: "He gives strength to the weary and increases the power of the weak.",
+      theme: "help",
+      tags: ["strength", "encouragement", "power", "grace"]
+    }
+  },
+
+  "Faithfulness matters": {
+    "Luke 16:10": {
+      text: "Whoever can be trusted with very little can also be trusted with much...",
+      theme: "faithful",
+      tags: ["stewardship", "consistency", "trust"]
+    },
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "growth",
+      tags: ["perseverance", "reward", "faithfulness"]
+    },
+    "Matthew 25:21": {
+      text: "'Well done, good and faithful servant! You have been faithful with a few things... Come and share your master’s happiness!'",
+      theme: "faithful",
+      tags: ["reward", "obedience", "trust"]
+    },
+    "1 Corinthians 15:58": {
+      text: "Always give yourselves fully to the work of the Lord, because you know that your labor in the Lord is not in vain.",
+      theme: "obedience",
+      tags: ["service", "hope", "encouragement"]
+    }
+  }
+};
+
+let q30ans = {
+  "Sin separates us from God": {
+    "Isaiah 59:2": {
+      text: "But your iniquities have separated you from your God; your sins have hidden his face from you, so that he does not hear.",
+      theme: "fallenness",
+      tags: ["distance", "barrier", "relationship"]
+    },
+    "Romans 6:23": {
+      text: "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.",
+      theme: "death",
+      tags: ["consequence", "eternal", "gift"]
+    },
+    "Genesis 3:23-24": {
+      text: "So the Lord God banished him from the Garden of Eden... to guard the way to the tree of life.",
+      theme: "fallenness",
+      tags: ["banishment", "separation", "justice"]
+    },
+    "Micah 3:4": {
+      text: "Then they will cry out to the Lord, but he will not answer them... because of the evil they have done.",
+      theme: "justice",
+      tags: ["judgment", "rebellion", "accountability"]
+    },
+    "Psalm 5:4": {
+      text: "For you are not a God who is pleased with wickedness; with you, evil people are not welcome.",
+      theme: "holy",
+      tags: ["purity", "justice", "rejection"]
+    }
+  },
+
+  "Sin enslaves us": {
+    "John 8:34": {
+      text: "Jesus replied, 'Very truly I tell you, everyone who sins is a slave to sin.'",
+      theme: "slavery",
+      tags: ["bondage", "powerlessness", "sin_nature"]
+    },
+    "Romans 7:18-19": {
+      text: "For I know that good itself does not dwell in me... the evil I do not want to do—this I keep on doing.",
+      theme: "slavery",
+      tags: ["struggle", "weakness", "flesh"]
+    },
+    "Romans 6:16": {
+      text: "You are slaves of the one you obey... to sin, which leads to death, or to obedience, which leads to righteousness?",
+      theme: "obedience",
+      tags: ["choice", "mastery", "bondage"]
+    },
+    "Titus 3:3": {
+      text: "We too were foolish, disobedient, deceived and enslaved by all kinds of passions and pleasures...",
+      theme: "fallenness",
+      tags: ["flesh", "past_life", "redemption"]
+    },
+    "2 Peter 2:19": {
+      text: "People are slaves to whatever has mastered them.",
+      theme: "slavery",
+      tags: ["addiction", "mastery", "bondage"]
+    }
+  },
+
+  "God disciplines us": {
+    "Hebrews 12:6": {
+      text: "Because the Lord disciplines the one he loves, and he chastens everyone he accepts as his son.",
+      theme: "growth",
+      tags: ["correction", "fatherhood", "love"]
+    },
+    "Proverbs 3:11-12": {
+      text: "Do not despise the Lord’s discipline... because the Lord disciplines those he loves...",
+      theme: "love",
+      tags: ["training", "instruction", "comfort"]
+    },
+    "Revelation 3:19": {
+      text: "Those whom I love I rebuke and discipline. So be earnest and repent.",
+      theme: "transformation",
+      tags: ["change", "repentance", "renewal"]
+    },
+    "Job 5:17": {
+      text: "Blessed is the one whom God corrects; so do not despise the discipline of the Almighty.",
+      theme: "wisdom",
+      tags: ["blessing", "humility", "teachability"]
+    },
+    "Psalm 94:12": {
+      text: "Blessed is the one you discipline, Lord, the one you teach from your law;",
+      theme: "wisdom",
+      tags: ["blessing", "training", "scripture"]
+    }
+  },
+
+  "God offers forgiveness and restoration": {
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["confession", "cleansing", "justice"]
+    },
+    "Isaiah 1:18": {
+      text: "'Though your sins are like scarlet... they shall be as white as snow... like wool.'",
+      theme: "grace",
+      tags: ["cleansing", "mercy", "hope"]
+    },
+    "Psalm 32:5": {
+      text: "Then I acknowledged my sin... and you forgave the guilt of my sin.",
+      theme: "mercy",
+      tags: ["release", "honesty", "freedom"]
+    },
+    "Micah 7:19": {
+      text: "You will tread our sins underfoot and hurl all our iniquities into the depths of the sea.",
+      theme: "mercy",
+      tags: ["forgetting", "restoration", "forgiveness"]
+    },
+    "Psalm 103:12": {
+      text: "As far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "forgiveness",
+      tags: ["cleansing", "freedom", "grace"]
+    },
+    "Acts 3:19": {
+      text: "Repent, then, and turn to God, so that your sins may be wiped out, that times of refreshing may come from the Lord.",
+      theme: "transformation",
+      tags: ["repentance", "refreshing", "new_start"]
+    }
+  }
+};
+
+//What if I mess up too much?
+let q31ans = {
+  "God’s love is greater than your failure": {
+    "Romans 8:38-39": {
+      text: "For I am convinced that neither death nor life... nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["God's love", "security", "assurance", "unshakable"]
+    },
+    "Psalm 103:10-12": {
+      text: "He does not treat us as our sins deserve... As far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "mercy",
+      tags: ["forgiveness", "mercy", "freedom", "grace"]
+    },
+    "Isaiah 43:25": {
+      text: "I, even I, am he who blots out your transgressions, for my own sake, and remembers your sins no more.",
+      theme: "forgiveness",
+      tags: ["cleansing", "new start", "forgiveness"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
+      theme: "love",
+      tags: ["joy", "God delights", "restoration", "presence"]
+    }
+  },
+
+  "Jesus came for the broken": {
+    "Luke 5:32": {
+      text: "I have not come to call the righteous, but sinners to repentance.",
+      theme: "savior",
+      tags: ["repentance", "invitation", "mercy"]
+    },
+    "Mark 2:17": {
+      text: "It is not the healthy who need a doctor, but the sick. I have not come to call the righteous, but sinners.",
+      theme: "savior",
+      tags: ["healing", "compassion", "hope"]
+    },
+    "1 Timothy 1:15": {
+      text: "Christ Jesus came into the world to save sinners—of whom I am the worst.",
+      theme: "grace",
+      tags: ["undeserved", "rescue", "salvation"]
+    },
+    "Psalm 51:17": {
+      text: "My sacrifice, O God, is a broken spirit; a broken and contrite heart you, God, will not despise.",
+      theme: "humble",
+      tags: ["repentance", "worship", "honesty"]
+    },
+    "Isaiah 61:1": {
+      text: "The Spirit of the Sovereign Lord is on me... to bind up the brokenhearted, to proclaim freedom for the captives and release from darkness for the prisoners.",
+      theme: "freedom",
+      tags: ["healing", "freedom", "restoration"]
+    }
+  },
+
+  "God can still restore you": {
+    "Joel 2:25": {
+      text: "I will repay you for the years the locusts have eaten...",
+      theme: "restoration",
+      tags: ["recovery", "healing", "hope"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new life", "change", "freedom"]
+    },
+    "Micah 7:8": {
+      text: "Though I have fallen, I will rise. Though I sit in darkness, the Lord will be my light.",
+      theme: "light",
+      tags: ["hope", "grace", "restoration"]
+    },
+    "Lamentations 3:22-23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning...",
+      theme: "faithful",
+      tags: ["new beginnings", "mercy", "God's love"]
+    },
+    "Hosea 14:4": {
+      text: "I will heal their waywardness and love them freely, for my anger has turned away from them.",
+      theme: "mercy",
+      tags: ["healing", "forgiveness", "love"]
+    }
+  },
+
+  "Keep coming back to Him": {
+    "Hebrews 4:16": {
+      text: "Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["boldness", "prayer", "restoration"]
+    },
+    "James 4:8": {
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      theme: "submission",
+      tags: ["repentance", "closeness", "devotion"]
+    },
+    "1 John 2:1": {
+      text: "But if anybody does sin, we have an advocate with the Father—Jesus Christ, the Righteous One.",
+      theme: "savior",
+      tags: ["intercession", "grace", "forgiveness"]
+    },
+    "Jeremiah 3:22": {
+      text: "'Return, faithless people; I will cure you of backsliding.' 'Yes, we will come to you, for you are the Lord our God.'",
+      theme: "faithful",
+      tags: ["return", "forgiveness", "healing"]
+    },
+    "Isaiah 55:7": {
+      text: "Let the wicked forsake their ways and the unrighteous their thoughts. Let them turn to the Lord... for he will freely pardon.",
+      theme: "grace",
+      tags: ["repentance", "mercy", "forgiveness"]
+    }
+  }
+};
+
+// Why do people sin?
+let q32ans = {
+  "We are born with a sinful nature": {
+    "Romans 5:12": {
+      text: "Therefore, just as sin entered the world through one man, and death through sin, and in this way death came to all people, because all sinned—",
+      theme: "fallenness",
+      tags: ["adam", "original sin", "death", "human nature", "inheritance"]
+    },
+    "Psalm 51:5": {
+      text: "Surely I was sinful at birth, sinful from the time my mother conceived me.",
+      theme: "fallenness",
+      tags: ["born sinful", "inward condition", "nature", "human weakness"]
+    },
+    "Ephesians 2:3": {
+      text: "All of us also lived among them at one time, gratifying the cravings of our flesh and following its desires and thoughts...",
+      theme: "slavery",
+      tags: ["flesh", "desires", "sinful nature", "wrath", "enslaved"]
+    },
+    // New
+    "Genesis 8:21": {
+      text: "The Lord said in his heart: 'Never again will I curse the ground... even though every inclination of the human heart is evil from childhood.'",
+      theme: "fallenness",
+      tags: ["evil heart", "childhood", "sinful inclination", "human nature"]
+    }
+  },
+
+  "Sin is rebellion against God": {
+    "1 John 3:4": {
+      text: "Everyone who sins breaks the law; in fact, sin is lawlessness.",
+      theme: "obedience",
+      tags: ["lawlessness", "rebellion", "command", "disobedience"]
+    },
+    "Isaiah 53:6": {
+      text: "We all, like sheep, have gone astray, each of us has turned to our own way...",
+      theme: "fallenness",
+      tags: ["wandering", "disobedience", "straying", "stubbornness"]
+    },
+    "Romans 8:7": {
+      text: "The mind governed by the flesh is hostile to God; it does not submit to God’s law, nor can it do so.",
+      theme: "submission",
+      tags: ["hostility", "flesh vs spirit", "rebellion", "pride"]
+    },
+    // New
+    "Jeremiah 17:9": {
+      text: "The heart is deceitful above all things and beyond cure. Who can understand it?",
+      theme: "truth",
+      tags: ["deceitful heart", "corruption", "inner rebellion", "honesty"]
+    }
+  },
+
+  "Sin comes from our desires": {
+    "James 1:14-15": {
+      text: "But each person is tempted when they are dragged away by their own evil desire and enticed...",
+      theme: "temptation",
+      tags: ["desire", "temptation", "enticed", "sin process", "heart"]
+    },
+    "Galatians 5:17": {
+      text: "For the flesh desires what is contrary to the Spirit, and the Spirit what is contrary to the flesh...",
+      theme: "battle",
+      tags: ["flesh vs spirit", "inner conflict", "battle", "desires"]
+    },
+    "Mark 7:21-23": {
+      text: "For it is from within, out of a person’s heart, that evil thoughts come... All these evils come from inside and defile a person.",
+      theme: "heart",
+      tags: ["evil within", "defilement", "heart condition", "thoughts", "sins"]
+    },
+    // New
+    "Romans 7:23": {
+      text: "But I see another law at work in me, waging war against the law of my mind and making me a prisoner of the law of sin...",
+      theme: "slavery",
+      tags: ["war within", "mind vs flesh", "law of sin", "inner conflict"]
+    }
+  },
+
+  "The world influences us to sin": {
+    "1 John 2:16": {
+      text: "For everything in the world—the lust of the flesh, the lust of the eyes, and the pride of life—comes not from the Father but from the world.",
+      theme: "temptation",
+      tags: ["worldly desires", "lust", "pride", "corruption", "external influence"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["worldly influence", "nonconformity", "mind renewal", "resistance"]
+    },
+    "Proverbs 1:10": {
+      text: "My son, if sinful men entice you, do not give in to them.",
+      theme: "wisdom",
+      tags: ["peer pressure", "entice", "sinful friends", "resist"]
+    },
+    // New
+    "James 4:4": {
+      text: "You adulterous people, don’t you know that friendship with the world means enmity against God?",
+      theme: "obedience",
+      tags: ["friendship with world", "enmity", "loyalty", "divided heart"]
+    }
+  }
+};
+
+// Can God forgive any sin?
+let q33ans = {
+  "God's forgiveness is greater than our sin": {
+    "Isaiah 1:18": {
+      text: "'Come now, let us settle the matter,' says the Lord. 'Though your sins are like scarlet, they shall be as white as snow...'",
+      theme: "forgiveness",
+      tags: ["scarlet", "cleansing", "mercy", "repentance", "new start"]
+    },
+    "Psalm 103:11-12": {
+      text: "For as high as the heavens are above the earth, so great is his love for those who fear him... as far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "mercy",
+      tags: ["distance", "sin removed", "faithful love", "compassion", "grace"]
+    },
+    "Micah 7:18-19": {
+      text: "You do not stay angry forever but delight to show mercy. You will again have compassion on us; you will tread our sins underfoot...",
+      theme: "mercy",
+      tags: ["anger", "compassion", "forgiveness", "cast away sin", "loving God"]
+    },
+    // New verse
+    "Nehemiah 9:17": {
+      text: "But you are a forgiving God, gracious and compassionate, slow to anger and abounding in love. Therefore you did not desert them.",
+      theme: "mercy",
+      tags: ["slow to anger", "compassion", "faithful", "mercy", "forgiving nature"]
+    }
+  },
+
+  "Jesus paid for all sins": {
+    "1 John 1:7": {
+      text: "The blood of Jesus, his Son, purifies us from all sin.",
+      theme: "savior",
+      tags: ["blood", "cleansing", "forgiveness", "purified", "jesus sacrifice"]
+    },
+    "Hebrews 10:14": {
+      text: "For by one sacrifice he has made perfect forever those who are being made holy.",
+      theme: "holy",
+      tags: ["once for all", "perfected", "sanctification", "jesus offering"]
+    },
+    "Colossians 2:13-14": {
+      text: "He forgave us all our sins, having canceled the charge of our legal indebtedness... he has taken it away, nailing it to the cross.",
+      theme: "salvation",
+      tags: ["debt cancelled", "cross", "legal record", "full forgiveness"]
+    },
+    // New verse
+    "Romans 8:1": {
+      text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
+      theme: "salvation",
+      tags: ["no guilt", "freedom", "grace", "in Christ", "eternal life"]
+    }
+  },
+
+  "Anyone who turns to God is forgiven": {
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["confess", "faithful", "purify", "righteous", "repent"]
+    },
+    "Acts 3:19": {
+      text: "Repent, then, and turn to God, so that your sins may be wiped out, that times of refreshing may come from the Lord.",
+      theme: "transformation",
+      tags: ["repentance", "refreshing", "new start", "cleansing"]
+    },
+    "Isaiah 55:7": {
+      text: "Let the wicked forsake their ways and the unrighteous their thoughts. Let them turn to the Lord... and he will freely pardon.",
+      theme: "grace",
+      tags: ["turn to God", "free pardon", "forsake", "grace", "mercy"]
+    },
+    // New verse
+    "Luke 15:20": {
+      text: "But while he was still a long way off, his father saw him and was filled with compassion for him... he ran to his son, threw his arms around him and kissed him.",
+      theme: "love",
+      tags: ["prodigal son", "return", "welcome", "compassion", "forgiveness"]
+    }
+  },
+
+  "No sin is too big for God": {
+    "Luke 23:34": {
+      text: "Jesus said, 'Father, forgive them, for they do not know what they are doing.' And they divided up his clothes by casting lots.",
+      theme: "mercy",
+      tags: ["forgiveness at the cross", "ignorance", "mercy", "jesus heart"]
+    },
+    "1 Timothy 1:15-16": {
+      text: "Christ Jesus came into the world to save sinners—of whom I am the worst. But for that very reason I was shown mercy...",
+      theme: "grace",
+      tags: ["paul", "worst sinner", "testimony", "grace", "god’s patience"]
+    },
+    "Romans 5:20": {
+      text: "But where sin increased, grace increased all the more.",
+      theme: "grace",
+      tags: ["overflowing grace", "abundant mercy", "unlimited forgiveness"]
+    }
+  }
+};
+
+// Is the Bible true?
+let q34ans = {
+  "Scripture is inspired by God": {
+    "2 Timothy 3:16": {
+      text: "All Scripture is God‑breathed and is useful for teaching, rebuking, correcting and training in righteousness.",
+      theme: "word",
+      tags: ["inspired", "God‑breathed", "authority", "useful", "righteousness"]
+    },
+    "2 Peter 1:20-21": {
+      text: "Above all, you must understand that no prophecy of Scripture came about by the prophet’s own interpretation... men spoke from God as they were carried along by the Holy Spirit.",
+      theme: "spirit",
+      tags: ["prophecy", "Holy Spirit", "divine origin", "truth", "revelation"]
+    },
+    "Psalm 119:160": {
+      text: "All your words are true; all your righteous laws are eternal.",
+      theme: "truth",
+      tags: ["true word", "eternal", "law", "reliable", "God's promises"]
+    }
+  },
+
+  "The Bible reliably guides our lives": {
+    "Psalm 19:7-8": {
+      text: "The law of the Lord is perfect, refreshing the soul... the statutes of the Lord are trustworthy, making wise the simple.",
+      theme: "wisdom",
+      tags: ["law", "perfect", "trustworthy", "wisdom", "soul"]
+    },
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "word",
+      tags: ["doer", "obedience", "practical", "application", "truth"]
+    }
+  },
+
+  "Jesus affirmed Scripture’s authority": {
+    "Matthew 5:17-18": {
+      text: "Do not think that I have come to abolish the Law or the Prophets... until heaven and earth disappear, not the smallest letter... will by any means disappear from the Law until everything is accomplished.",
+      theme: "jesus",
+      tags: ["law", "fulfillment", "authority", "eternal", "Christ"]
+    },
+    "John 10:35": {
+      text: "Scripture cannot be broken.",
+      theme: "word",
+      tags: ["inerrant", "uncorrupted", "reliable", "eternal"]
+    }
+  },
+
+  "Believers find life in God’s Word": {
+    "John 17:17": {
+      text: "Sanctify them by the truth; your word is truth.",
+      theme: "truth",
+      tags: ["sanctification", "truth", "word", "holy", "cleansing"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "word",
+      tags: ["guidance", "lamp", "path", "light", "direction"]
+    },
+    "Romans 15:4": {
+      text: "For everything that was written in the past was written to teach us, so that through the endurance taught in the Scriptures and the encouragement they provide we might have hope.",
+      theme: "hope",
+      tags: ["encouragement", "teaching", "endurance", "hope", "history"]
+    }
+  }
+};
+
+// Why should I read the Bible?
+let q35ans = {
+  "It helps us know God": {
+    "Jeremiah 9:23-24": {
+      text: "'Let not the wise boast of their wisdom... but let the one who boasts boast about this: that they have the understanding to know me...'",
+      theme: "understanding",
+      tags: ["know God", "wisdom", "understanding", "truth", "boast in the Lord"]
+    },
+    "John 5:39": {
+      text: "You study the Scriptures diligently because you think that in them you have eternal life. These are the very Scriptures that testify about me.",
+      theme: "jesus",
+      tags: ["scripture", "testify", "Christ", "eternal life", "seek"]
+    }
+  },
+
+  "It teaches us how to live": {
+    "2 Timothy 3:16-17": {
+      text: "All Scripture is God‑breathed and is useful for teaching, rebuking, correcting and training in righteousness, so that the servant of God may be thoroughly equipped for every good work.",
+      theme: "word",
+      tags: ["teaching", "training", "righteousness", "equipped", "God-breathed"]
+    },
+    "Psalm 119:9": {
+      text: "How can a young person stay on the path of purity? By living according to your word.",
+      theme: "obedience",
+      tags: ["purity", "word", "youth", "obedience", "lifestyle"]
+    }
+  },
+
+  "It strengthens our faith": {
+    "Romans 10:17": {
+      text: "Consequently, faith comes from hearing the message, and the message is heard through the word about Christ.",
+      theme: "faithful",
+      tags: ["faith", "hearing", "Christ", "message", "growth"]
+    },
+    "Colossians 3:16": {
+      text: "Let the message of Christ dwell among you richly... teaching and admonishing one another with all wisdom through psalms, hymns, and songs from the Spirit...",
+      theme: "growth",
+      tags: ["message", "wisdom", "Christ", "songs", "Spirit"]
+    }
+  },
+
+  "It renews our mind and transforms us": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["mind", "renewal", "transformation", "world", "discernment"]
+    },
+    "Psalm 1:2-3": {
+      text: "But whose delight is in the law of the Lord... That person is like a tree planted by streams of water... whatever they do prospers.",
+      theme: "growth",
+      tags: ["delight", "law", "fruitful", "planted", "stability"]
+    }
+  },
+
+  "It brings hope and encouragement": {
+    "Romans 15:4": {
+      text: "For everything that was written in the past was written to teach us, so that... we might have hope.",
+      theme: "hope",
+      tags: ["written", "teach", "encouragement", "hope", "Scripture"]
+    },
+    "Joshua 1:8": {
+      text: "Keep this Book of the Law always on your lips... Then you will be prosperous and successful.",
+      theme: "obedience",
+      tags: ["success", "meditate", "law", "courage", "prosperity"]
+    }
+  }
+};
+
+//How do I read the Bible?
+let q36ans = {
+  "Ask God for understanding": {
+    "Psalm 119:18": {
+      text: "Open my eyes that I may see wonderful things in your law.",
+      theme: "understanding",
+      tags: ["prayer", "illumination", "scripture"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["ask", "learning", "growth"]
+    },
+    "John 14:26": {
+      text: "But the Advocate, the Holy Spirit... will teach you all things and will remind you of everything I have said to you.",
+      theme: "spirit",
+      tags: ["teaching", "reminder", "guide"]
+    }
+  },
+
+  "Read with intention and humility": {
+    "2 Timothy 2:15": {
+      text: "Do your best to present yourself to God as one approved... who correctly handles the word of truth.",
+      theme: "obedience",
+      tags: ["study", "truth", "approval"]
+    },
+    "Isaiah 66:2": {
+      text: "'These are the ones I look on with favor: those who are humble and contrite in spirit, and who tremble at my word.'",
+      theme: "submission",
+      tags: ["humility", "reverence", "attitude"]
+    },
+    "Psalm 1:2": {
+      text: "But whose delight is in the law of the Lord, and who meditates on his law day and night.",
+      theme: "devotion",
+      tags: ["meditation", "delight", "daily"]
+    }
+  },
+
+  "Let the Bible change you": {
+    "Hebrews 4:12": {
+      text: "For the word of God is alive and active. Sharper than any double-edged sword... it judges the thoughts and attitudes of the heart.",
+      theme: "transformation",
+      tags: ["active", "heart", "conviction"]
+    },
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "obedience",
+      tags: ["action", "doers", "response"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["renewal", "mind", "growth"]
+    }
+  },
+
+  "Keep going even when it's hard": {
+    "2 Timothy 3:16-17": {
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness...",
+      theme: "word",
+      tags: ["correction", "training", "scripture"]
+    },
+    "Joshua 1:8": {
+      text: "Keep this Book of the Law always on your lips; meditate on it day and night... Then you will be prosperous and successful.",
+      theme: "guidance",
+      tags: ["consistency", "success", "discipline"]
+    },
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "growth",
+      tags: ["perseverance", "faithfulness", "reward"]
+    }
+  }
+};
+
+
+// What is the Bible really about?
+let q37ans = {
+  "The Bible reveals God’s plan of salvation": {
+    "John 3:16": {
+      text: "For God so loved the world that he gave his one and only Son... that whoever believes in him shall not perish but have eternal life.",
+      theme: "eternal",
+      tags: ["gospel", "God’s love", "Jesus", "eternal life", "belief"]
+    },
+    "1 Corinthians 15:3-5": {
+      text: "Christ died for our sins… he was raised on the third day according to the Scriptures.",
+      theme: "resurrection",
+      tags: ["death", "resurrection", "gospel", "historical"]
+    },
+    "Romans 10:9": {
+      text: "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved.",
+      theme: "salvation",
+      tags: ["confession", "faith", "salvation", "resurrection"]
+    },
+    "Ephesians 2:8-9": {
+      text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God...",
+      theme: "grace",
+      tags: ["grace", "faith", "gift", "salvation", "not works"]
+    }
+  },
+
+  "It tells one unified story: creation, fall, redemption": {
+    "Genesis 1:27": {
+      text: "So God created mankind in his own image...",
+      theme: "creation",
+      tags: ["creation", "image of God", "humanity", "beginning"]
+    },
+    "Romans 5:12": {
+      text: "So death came to all people, because all sinned.",
+      theme: "fallenness",
+      tags: ["sin", "death", "inheritance", "fall"]
+    },
+    "Matthew 5:17-18": {
+      text: "Do not think that I have come to abolish the Law… I have not come to abolish them but to fulfill them.",
+      theme: "jesus",
+      tags: ["law", "fulfillment", "messiah", "continuity"]
+    },
+    "Isaiah 53:5": {
+      text: "But he was pierced for our transgressions... and by his wounds we are healed.",
+      theme: "savior",
+      tags: ["atonement", "healing", "suffering", "substitution"]
+    }
+  },
+
+  "The Bible guides us how to live": {
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["light", "path", "guidance", "daily life"]
+    },
+    "James 1:22": {
+      text: "Do not merely listen to the word… Do what it says.",
+      theme: "obedience",
+      tags: ["action", "obedience", "doer", "application"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you... what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "justice",
+      tags: ["justice", "mercy", "humility", "lifestyle"]
+    },
+    "Colossians 3:12-14": {
+      text: "Clothe yourselves with compassion, kindness, humility, gentleness and patience. And over all these virtues put on love...",
+      theme: "love",
+      tags: ["compassion", "virtues", "community", "love"]
+    }
+  },
+
+  "It shapes our character and hope": {
+    "Romans 12:2": {
+      text: "Do not conform… be transformed by the renewing of your mind.",
+      theme: "transformation",
+      tags: ["renewal", "mind", "transformation", "discernment"]
+    },
+    "Romans 15:4": {
+      text: "Everything written… so that through endurance and encouragement we might have hope.",
+      theme: "hope",
+      tags: ["endurance", "encouragement", "hope", "Scripture"]
+    },
+    "Philippians 4:8": {
+      text: "Whatever is true, whatever is noble... think about such things.",
+      theme: "understanding",
+      tags: ["thoughts", "focus", "virtue", "mindset"]
+    },
+    "James 3:13": {
+      text: "Who is wise and understanding among you? Let them show it by their good life by deeds done in humility...",
+      theme: "wisdom",
+      tags: ["wisdom", "deeds", "humility", "character"]
+    }
+  }
+};
+
+// How do I make wise decisions?
+let q38ans = {
+  "Trust God, not your own understanding": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["trust", "submit", "guidance", "straight_paths"]
+    },
+    "Proverbs 3:7-8": {
+      text: "Do not be wise in your own eyes; fear the Lord and shun evil. This will bring health to your body and nourishment to your bones.",
+      theme: "wisdom",
+      tags: ["humility", "fear the Lord", "health", "avoid evil"]
+    }
+  },
+
+  "Seek wisdom and understanding actively": {
+    "Proverbs 2:1-5": {
+      text: "My son, if you receive my words and treasure up my commandments... if you call out for insight... then you will understand the fear of the Lord and find the knowledge of God.",
+      theme: "wisdom",
+      tags: ["seek_insight", "treasure", "understanding", "fear of Lord"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God... and it will be given to you.",
+      theme: "wisdom",
+      tags: ["ask", "wisdom", "God gives"]
+    }
+  },
+
+  "Use wise counsel": {
+    "Proverbs 11:14": {
+      text: "Where there is no guidance, a people falls, but in an abundance of counselors there is safety.",
+      theme: "wisdom",
+      tags: ["counsel", "guidance", "safety", "advisers"]
+    },
+    "Proverbs 13:20": {
+      text: "Whoever walks with the wise becomes wise, but a companion of fools suffers harm.",
+      theme: "wisdom",
+      tags: ["companions", "wise", "avoid fools"]
+    }
+  },
+
+  "Acknowledge God's role in planning": {
+    "Proverbs 16:9": {
+      text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+      theme: "guidance",
+      tags: ["plans", "God directs", "steps"]
+    },
+    "Proverbs 16:1": {
+      text: "The plans of the heart belong to humans, but the answer of the tongue is from the Lord.",
+      theme: "guidance",
+      tags: ["plans", "God answers", "speech"]
+    }
+  },
+
+  "Stay spiritually alert and prayerful": {
+    "Philippians 4:6-7": {
+      text: "Do not be anxious... but in every situation, by prayer... present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["pray", "anxiety", "peace", "guarded hearts"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["instruct", "teach", "counsel", "watchful"]
+    }
+  },
+
+  "Build on wise foundations": {
+    "Matthew 7:24": {
+      text: "Everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.",
+      theme: "wisdom",
+      tags: ["hear", "do", "wise_builder", "foundation"]
+    },
+    "Proverbs 12:1": {
+      text: "Whoever loves discipline loves knowledge, but whoever hates correction is stupid.",
+      theme: "wisdom",
+      tags: ["discipline", "knowledge", "accept correction"]
+    }
+  },
+  
+  "Quiet your anger so you can think": {
+    "Proverbs 29:11": {
+      text: ""
+    }
+  }
+};
+
+//Does God care about my career or studies?
+let q39ans = {
+  "God cares about your work": {
+    "Colossians 3:23": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.",
+      theme: "faithful",
+      tags: ["work", "purpose", "faithful"]
+    },
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "guidance",
+      tags: ["work", "plans", "guidance"]
+    },
+    "Psalm 90:17": {
+      text: "May the favor of the Lord our God rest on us; establish the work of our hands for us—yes, establish the work of our hands.",
+      theme: "faithful",
+      tags: ["work", "favor", "establish"]
+    },
+    "1 Corinthians 15:58": {
+      text: "Always give yourselves fully to the work of the Lord, because you know that your labor in the Lord is not in vain.",
+      theme: "obedience",
+      tags: ["work", "service", "encouragement"]
+    }
+  },
+
+  "Seek God's will in your choices": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["wisdom", "prayer", "guidance"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["trust", "guidance", "submission"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "wisdom", "will of God"]
+    }
+  },
+
+  "Your identity is bigger than your job": {
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "jesus",
+      tags: ["calling", "purpose", "identity"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["glory", "obedience", "everyday life"]
+    },
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "obedience",
+      tags: ["thankfulness", "name of Jesus", "purpose"]
+    }
+  },
+
+  "God is with you in your studies": {
+    "Daniel 1:17": {
+      text: "To these four young men God gave knowledge and understanding of all kinds of literature and learning.",
+      theme: "wisdom",
+      tags: ["learning", "wisdom", "gift"]
+    },
+    "Isaiah 54:13": {
+      text: "All your children will be taught by the Lord, and great will be their peace.",
+      theme: "peace",
+      tags: ["teaching", "peace", "growth"]
+    },
+    "Proverbs 2:6": {
+      text: "For the Lord gives wisdom; from his mouth come knowledge and understanding.",
+      theme: "growth",
+      tags: ["wisdom", "knowledge", "understanding"]
+    }
+  }
+};
+
+//How do I know what to do next?
+let q40ans = {
+  "Ask God for direction": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["ask", "wisdom", "guidance", "trust"]
+    },
+    "Psalm 25:4-5": {
+      text: "Show me your ways, Lord, teach me your paths. Guide me in your truth and teach me, for you are God my Savior, and my hope is in you all day long.",
+      theme: "guidance",
+      tags: ["teach", "paths", "truth", "hope"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "submission",
+      tags: ["trust", "submission", "direction", "paths"]
+    },
+    "Psalm 143:8": {
+      text: "Let the morning bring me word of your unfailing love, for I have put my trust in you. Show me the way I should go, for to you I entrust my life.",
+      theme: "trust",
+      tags: ["direction", "trust", "love", "life"]
+    }
+  },
+
+  "God will guide those who follow Him": {
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, ‘This is the way; walk in it.’",
+      theme: "walk",
+      tags: ["guidance", "walk", "voice", "direction"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["teach", "counsel", "watch", "path"]
+    },
+    "John 10:27": {
+      text: "My sheep listen to my voice; I know them, and they follow me.",
+      theme: "obedience",
+      tags: ["listen", "follow", "voice", "know"]
+    },
+    "Exodus 13:21": {
+      text: "By day the Lord went ahead of them in a pillar of cloud to guide them on their way and by night in a pillar of fire to give them light...",
+      theme: "presence",
+      tags: ["light", "guide", "cloud", "fire"]
+    }
+  },
+
+  "Take steps in faith": {
+    "Hebrews 11:8": {
+      text: "By faith Abraham, when called to go to a place he would later receive as his inheritance, obeyed and went, even though he did not know where he was going.",
+      theme: "faithful",
+      tags: ["faith", "obedience", "trust", "journey"]
+    },
+    "2 Corinthians 5:7": {
+      text: "For we live by faith, not by sight.",
+      theme: "faithful",
+      tags: ["faith", "vision", "trust", "steps"]
+    },
+    "Psalm 37:23-24": {
+      text: "The Lord makes firm the steps of the one who delights in him; though he may stumble, he will not fall, for the Lord upholds him with his hand.",
+      theme: "walk",
+      tags: ["steps", "delight", "firm", "uphold"]
+    },
+    "Isaiah 42:16": {
+      text: "I will lead the blind by ways they have not known, along unfamiliar paths I will guide them...",
+      theme: "guidance",
+      tags: ["lead", "paths", "unknown", "trust"]
+    }
+  },
+
+  "Be still and wait on Him": {
+    "Psalm 46:10": {
+      text: "Be still, and know that I am God...",
+      theme: "trust",
+      tags: ["stillness", "know", "trust", "peace"]
+    },
+    "Lamentations 3:25-26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "trust",
+      tags: ["wait", "hope", "quiet", "seek"]
+    },
+    "Isaiah 40:31": {
+      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles...",
+      theme: "hope",
+      tags: ["wait", "hope", "renew", "strength"]
+    }
+  }
+};
+
+//What if I feel stuck in life?
+let q41ans = {
+  "God has a plan even when we feel lost": {
+    "Jeremiah 29:11": {
+      text: "'For I know the plans I have for you,' declares the Lord, 'plans to prosper you and not to harm you, plans to give you hope and a future.'",
+      theme: "guidance",
+      tags: ["future", "hope", "purpose", "direction"]
+    },
+    "Proverbs 16:9": {
+      text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+      theme: "guidance",
+      tags: ["direction", "planning", "trust", "guidance"]
+    },
+    "Isaiah 43:19": {
+      text: "See, I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness and streams in the wasteland.",
+      theme: "hope",
+      tags: ["wilderness", "newness", "restoration", "hope"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["instruction", "guidance", "help", "direction"]
+    }
+  },
+
+  "He is with you even in uncertainty": {
+    "Psalm 23:4": {
+      text: "Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me.",
+      theme: "presence",
+      tags: ["valley", "fear", "comfort", "presence"]
+    },
+    "Deuteronomy 31:8": {
+      text: "The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.",
+      theme: "trust",
+      tags: ["never alone", "fear", "faith", "presence"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "protect",
+      tags: ["fear", "strength", "help", "presence"]
+    },
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+      theme: "presence",
+      tags: ["courage", "presence", "strength", "fearless"]
+    }
+  },
+
+  "Wait patiently—God is still working": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "love",
+      tags: ["good", "working", "purpose", "love"]
+    },
+    "Lamentations 3:25": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him;",
+      theme: "hope",
+      tags: ["waiting", "goodness", "hope", "seeking"]
+    },
+    "Psalm 27:14": {
+      text: "Wait for the Lord; be strong and take heart and wait for the Lord.",
+      theme: "transformation",
+      tags: ["waiting", "strength", "courage", "patience"]
+    },
+    "Ecclesiastes 3:1": {
+      text: "There is a time for everything, and a season for every activity under the heavens:",
+      theme: "wisdom",
+      tags: ["timing", "seasons", "wisdom", "trust"]
+    }
+  },
+
+  "Ask God to show the next step": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["ask", "wisdom", "help", "direction"]
+    },
+    "Psalm 25:4-5": {
+      text: "Show me your ways, Lord, teach me your paths. Guide me in your truth and teach me, for you are God my Savior, and my hope is in you all day long.",
+      theme: "guidance",
+      tags: ["guidance", "paths", "truth", "hope"]
+    },
+    "Psalm 143:8": {
+      text: "Let the morning bring me word of your unfailing love, for I have put my trust in you. Show me the way I should go, for to you I entrust my life.",
+      theme: "trust",
+      tags: ["morning", "trust", "way", "guidance"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "submission",
+      tags: ["trust", "submit", "direction", "faith"]
+    }
+  },
+
+  "God is working even when we can't see it": {
+    "John 13:7": {
+      text: "Jesus replied, 'You do not realize now what I am doing, but later you will understand.'",
+      theme: "wisdom",
+      tags: ["mystery", "later", "understanding", "patience"]
+    },
+    "Habakkuk 1:5": {
+      text: "'Look at the nations and watch—and be utterly amazed. For I am going to do something in your days that you would not believe, even if you were told.'",
+      theme: "glory",
+      tags: ["surprise", "wonder", "faith", "waiting"]
+    },
+    "2 Corinthians 4:17-18": {
+      text: "For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all... So we fix our eyes not on what is seen, but on what is unseen.",
+      theme: "eternal",
+      tags: ["unseen", "eternal", "hope", "faith"]
+    },
+    "Job 23:8-10": {
+      text: "But if I go to the east, he is not there... But he knows the way that I take; when he has tested me, I will come forth as gold.",
+      theme: "devotion",
+      tags: ["testing", "unknown", "gold", "process"]
+    }
+  }
+};
+
+//Why did Jesus die?
+let q42ans = {
+  "To save us from sin": {
+    "Matthew 1:21": {
+      text: "She will give birth to a son, and you are to give him the name Jesus, because he will save his people from their sins.",
+      theme: "savior",
+      tags: ["salvation", "forgiveness", "sin", "Jesus", "purpose"]
+    },
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["forgiveness", "grace", "sacrifice", "Jesus", "mercy"]
+    },
+    "1 Peter 2:24": {
+      text: "He himself bore our sins in his body on the cross, so that we might die to sins and live for righteousness; by his wounds you have been healed.",
+      theme: "savior",
+      tags: ["sacrifice", "healing", "righteousness", "cross", "sin"]
+    },
+    "Titus 2:14": {
+      text: "Who gave himself for us to redeem us from all wickedness and to purify for himself a people that are his very own, eager to do what is good.",
+      theme: "salvation",
+      tags: ["redemption", "purity", "sacrifice", "Jesus", "grace"]
+    }
+  },
+
+  "To fulfill God’s plan": {
+    "Isaiah 53:5": {
+      text: "But he was pierced for our transgressions, he was crushed for our iniquities; the punishment that brought us peace was on him, and by his wounds we are healed.",
+      theme: "salvation",
+      tags: ["prophecy", "peace", "healing", "cross", "forgiveness"]
+    },
+    "Acts 2:23": {
+      text: "This man was handed over to you by God's deliberate plan and foreknowledge; and you, with the help of wicked men, put him to death by nailing him to the cross.",
+      theme: "authority",
+      tags: ["plan", "God’s will", "Jesus", "cross", "salvation"]
+    },
+    "John 3:16": {
+      text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+      theme: "love",
+      tags: ["eternal", "gift", "salvation", "grace", "Jesus"]
+    },
+    "Luke 24:26": {
+      text: "Did not the Messiah have to suffer these things and then enter his glory?",
+      theme: "glory",
+      tags: ["Messiah", "plan", "suffering", "resurrection", "God’s will"]
+    }
+  },
+
+  "To bring peace and reconciliation": {
+    "Colossians 1:19-20": {
+      text: "For God was pleased to have all his fullness dwell in him, and through him to reconcile to himself all things... by making peace through his blood, shed on the cross.",
+      theme: "peace",
+      tags: ["reconciliation", "blood", "peace", "cross", "restoration"]
+    },
+    "Romans 5:10": {
+      text: "For if, while we were God’s enemies, we were reconciled to him through the death of his Son, how much more, having been reconciled, shall we be saved through his life!",
+      theme: "grace",
+      tags: ["reconciliation", "peace", "life", "salvation", "Jesus"]
+    },
+    "Ephesians 2:13": {
+      text: "But now in Christ Jesus you who once were far away have been brought near by the blood of Christ.",
+      theme: "grace",
+      tags: ["nearness", "reconciliation", "blood", "belonging", "peace"]
+    },
+    "2 Corinthians 5:18": {
+      text: "All this is from God, who reconciled us to himself through Christ and gave us the ministry of reconciliation:",
+      theme: "peace",
+      tags: ["reconciliation", "ministry", "gospel", "Christ", "salvation"]
+    }
+  },
+
+  "Because He loves us": {
+    "Galatians 2:20": {
+      text: "The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+      theme: "love",
+      tags: ["faith", "sacrifice", "personal", "Jesus", "gift"]
+    },
+    "John 15:13": {
+      text: "Greater love has no one than this: to lay down one’s life for one’s friends.",
+      theme: "love",
+      tags: ["sacrifice", "friends", "Jesus", "cross", "example"]
+    },
+    "Ephesians 5:2": {
+      text: "Walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      theme: "love",
+      tags: ["sacrifice", "example", "love", "obedience", "Christ"]
+    },
+    "Revelation 1:5": {
+      text: "To him who loves us and has freed us from our sins by his blood—",
+      theme: "salvation",
+      tags: ["freedom", "love", "blood", "Jesus", "rescue"]
+    }
+  }
+};
+
+//What does it mean to be saved?
+let q43ans = {
+  "Salvation means being made right with God": {
+    "Romans 3:23-24": {
+      text: "For all have sinned and fall short of the glory of God, and all are justified freely by his grace through the redemption that came by Christ Jesus.",
+      theme: "salvation",
+      tags: ["grace", "sin", "justified"]
+    },
+    "2 Corinthians 5:21": {
+      text: "God made him who had no sin to be sin for us, so that in him we might become the righteousness of God.",
+      theme: "salvation",
+      tags: ["righteousness", "grace", "exchange"]
+    },
+    "Titus 3:5": {
+      text: "He saved us, not because of righteous things we had done, but because of his mercy.",
+      theme: "mercy",
+      tags: ["saved", "not by works", "grace"]
+    }
+  },
+
+  "It is a gift through faith in Jesus": {
+    "Ephesians 2:8-9": {
+      text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast.",
+      theme: "grace",
+      tags: ["faith", "gift", "saved", "not by works"]
+    },
+    "John 3:16-17": {
+      text: "For God so loved the world that he gave his one and only Son... For God did not send his Son into the world to condemn the world, but to save the world through him.",
+      theme: "savior",
+      tags: ["love", "saved", "gift", "mercy"]
+    },
+    "Acts 16:31": {
+      text: "They replied, 'Believe in the Lord Jesus, and you will be saved—you and your household.'",
+      theme: "faithful",
+      tags: ["faith", "believe", "saved"]
+    }
+  },
+
+  "Jesus paid the price for our sins": {
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["sacrifice", "mercy", "savior"]
+    },
+    "1 Peter 2:24": {
+      text: "He himself bore our sins in his body on the cross, so that we might die to sins and live for righteousness; 'by his wounds you have been healed.'",
+      theme: "savior",
+      tags: ["cross", "healing", "righteousness"]
+    },
+    "Hebrews 9:28": {
+      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time... to bring salvation to those who are waiting for him.",
+      theme: "salvation",
+      tags: ["sacrifice", "waiting", "return"]
+    }
+  },
+
+  "We are made new in Him": {
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new life", "rebirth", "freedom"]
+    },
+    "John 1:12": {
+      text: "Yet to all who did receive him, to those who believed in his name, he gave the right to become children of God.",
+      theme: "faithful",
+      tags: ["child of God", "believe", "receive"]
+    },
+    "Romans 10:9": {
+      text: "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved.",
+      theme: "faithful",
+      tags: ["confess", "believe", "resurrection"]
+    }
+  }
+};
+
+//How does God show his love?
+let q44ans = {
+  "God shows His love through Jesus": {
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["sacrifice", "grace", "mercy"]
+    },
+    "John 3:16": {
+      text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+      theme: "savior",
+      tags: ["gift", "eternal", "believe"]
+    },
+    "1 John 4:9-10": {
+      text: "This is how God showed his love among us: He sent his one and only Son into the world that we might live through him... not that we loved God, but that he loved us and sent his Son as an atoning sacrifice for our sins.",
+      theme: "love",
+      tags: ["sacrifice", "atonement", "life"]
+    }
+  },
+
+  "God's love is constant and faithful": {
+    "Lamentations 3:22-23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "faithful",
+      tags: ["compassion", "new beginnings", "love"]
+    },
+    "Psalm 136:1": {
+      text: "Give thanks to the Lord, for he is good. His love endures forever.",
+      theme: "goodness",
+      tags: ["enduring", "praise", "faithful"]
+    },
+    "Deuteronomy 7:9": {
+      text: "Know therefore that the Lord your God is God; he is the faithful God, keeping his covenant of love to a thousand generations of those who love him and keep his commandments.",
+      theme: "faithful",
+      tags: ["covenant", "generations", "obedience"]
+    }
+  },
+
+  "God loves us like a perfect Father": {
+    "Psalm 103:13": {
+      text: "As a father has compassion on his children, so the Lord has compassion on those who fear him;",
+      theme: "mercy",
+      tags: ["father", "mercy", "kindness"]
+    },
+    "Matthew 7:11": {
+      text: "If you then, though you are evil, know how to give good gifts to your children, how much more will your Father in heaven give good gifts to those who ask him!",
+      theme: "goodness",
+      tags: ["giver", "father", "generosity"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
+      theme: "love",
+      tags: ["delight", "presence", "love"]
+    }
+  },
+
+  "God's love leads to action and care": {
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "protect",
+      tags: ["presence", "strength", "support"]
+    },
+    "Psalm 23:1-3": {
+      text: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures... he refreshes my soul. He guides me along the right paths for his name’s sake.",
+      theme: "guidance",
+      tags: ["care", "rest", "guidance"]
+    }
+  }
+};
+
+// Can I really know God personally?
+let q45ans = {
+  "God wants a personal relationship with us": {
+    "Jeremiah 9:23-24": {
+      text: "'Let not the wise boast of their wisdom or the strong boast of their strength... but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord...'",
+      theme: "understanding",
+      tags: ["relationship", "understanding", "boast in God"]
+    },
+    "John 17:3": {
+      text: "Now this is eternal life: that they know you, the only true God, and Jesus Christ, whom you have sent.",
+      theme: "eternal",
+      tags: ["know God", "life", "Jesus"]
+    },
+    "Hosea 6:6": {
+      text: "For I desire mercy, not sacrifice, and acknowledgment of God rather than burnt offerings.",
+      theme: "devotion",
+      tags: ["relationship", "heart", "knowing God"]
+    }
+  },
+
+  "We draw close to God through Jesus": {
+    "John 14:6-7": {
+      text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me. If you really know me, you will know my Father as well.'",
+      theme: "truth",
+      tags: ["Jesus", "relationship", "access"]
+    },
+    "Hebrews 10:22": {
+      text: "Let us draw near to God with a sincere heart and with the full assurance that faith brings...",
+      theme: "faithful",
+      tags: ["draw near", "confidence", "heart"]
+    },
+    "1 John 1:3": {
+      text: "We proclaim to you what we have seen and heard, so that you also may have fellowship with us. And our fellowship is with the Father and with his Son, Jesus Christ.",
+      theme: "friend",
+      tags: ["fellowship", "intimacy", "relationship"]
+    }
+  },
+
+  "God speaks and listens personally": {
+    "James 4:8": {
+      text: "Come near to God and he will come near to you...",
+      theme: "submission",
+      tags: ["closeness", "presence", "relationship"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["voice", "guidance", "walk"]
+    },
+    "John 10:27": {
+      text: "My sheep listen to my voice; I know them, and they follow me.",
+      theme: "walk",
+      tags: ["listen", "follow", "voice"]
+    }
+  },
+
+  "We can know Him more each day": {
+    "Philippians 3:10": {
+      text: "I want to know Christ—yes, to know the power of his resurrection and participation in his sufferings...",
+      theme: "growth",
+      tags: ["know", "power", "deep relationship"]
+    },
+    "Colossians 1:10": {
+      text: "…growing in the knowledge of God, being strengthened with all power according to his glorious might...",
+      theme: "understanding",
+      tags: ["growth", "knowledge", "strength"]
+    },
+    "2 Peter 3:18": {
+      text: "But grow in the grace and knowledge of our Lord and Savior Jesus Christ...",
+      theme: "grace",
+      tags: ["growth", "knowledge", "Jesus"]
+    }
+  }
+};
+
+//How do I pray?
+let q46ans = {
+  "Talk to God with honesty": {
+    "Matthew 6:6": {
+      text: "But when you pray, go into your room, close the door and pray to your Father, who is unseen. Then your Father, who sees what is done in secret, will reward you.",
+      theme: "seek",
+      tags: ["privacy", "relationship", "honesty"]
+    },
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "trust",
+      tags: ["honesty", "refuge", "heart"]
+    },
+    "Philippians 4:6": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      theme: "peace",
+      tags: ["thanksgiving", "petition", "requests"]
+    }
+  },
+
+  "Pray in faith and alignment with God’s will": {
+    "1 John 5:14": {
+      text: "This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us.",
+      theme: "faithful",
+      tags: ["confidence", "alignment", "will of God"]
+    },
+    "James 1:6": {
+      text: "But when you ask, you must believe and not doubt, because the one who doubts is like a wave of the sea, blown and tossed by the wind.",
+      theme: "faithful",
+      tags: ["belief", "steadfast", "confidence"]
+    },
+    "Mark 11:24": {
+      text: "Therefore I tell you, whatever you ask for in prayer, believe that you have received it, and it will be yours.",
+      theme: "faithful",
+      tags: ["ask", "believe", "receive"]
+    }
+  },
+
+  "Prayer can include worship and thanksgiving": {
+    "Psalm 100:4": {
+      text: "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name.",
+      theme: "seek",
+      tags: ["thanksgiving", "worship", "gratitude"]
+    },
+    "1 Thessalonians 5:16-18": {
+      text: "Rejoice always, pray continually, give thanks in all circumstances; for this is God’s will for you in Christ Jesus.",
+      theme: "devotion",
+      tags: ["gratitude", "continual", "joy"]
+    },
+    "Hebrews 13:15": {
+      text: "Through Jesus, therefore, let us continually offer to God a sacrifice of praise—the fruit of lips that openly profess his name.",
+      theme: "jesus",
+      tags: ["sacrifice", "praise", "confession"]
+    }
+  },
+
+  "Jesus gave us a model of prayer": {
+    "Matthew 6:9-13": {
+      text: "'This, then, is how you should pray: Our Father in heaven, hallowed be your name...'",
+      theme: "guidance",
+      tags: ["model", "structure", "humility"]
+    },
+    "Luke 11:1": {
+      text: "One day Jesus was praying in a certain place. When he finished, one of his disciples said to him, 'Lord, teach us to pray...'",
+      theme: "growth",
+      tags: ["teach", "desire", "discipleship"]
+    }
+  }
+};
+
+//Does God hear my prayers?
+let q47ans = {
+  "God listens to the prayers of the righteous": {
+    "1 Peter 3:12": {
+      text: "For the eyes of the Lord are on the righteous and his ears are attentive to their prayer...",
+      theme: "faithful",
+      tags: ["righteous", "attentive", "listen"]
+    },
+    "Proverbs 15:29": {
+      text: "The Lord is far from the wicked, but he hears the prayer of the righteous.",
+      theme: "justice",
+      tags: ["righteousness", "hearing", "distance"]
+    },
+    "James 5:16": {
+      text: "The prayer of a righteous person is powerful and effective.",
+      theme: "power",
+      tags: ["power", "effectiveness", "righteous"]
+    }
+  },
+
+  "God hears those who seek Him": {
+    "Jeremiah 29:12-13": {
+      text: "'Then you will call on me and come and pray to me, and I will listen to you. You will seek me and find me when you seek me with all your heart.'",
+      theme: "seek",
+      tags: ["seek", "heart", "call"]
+    },
+    "Psalm 34:15": {
+      text: "The eyes of the Lord are on the righteous, and his ears are attentive to their cry;",
+      theme: "presence",
+      tags: ["attentive", "cry", "watchful"]
+    },
+    "Isaiah 65:24": {
+      text: "Before they call I will answer; while they are still speaking I will hear.",
+      theme: "grace",
+      tags: ["hear", "quick response", "anticipation"]
+    }
+  },
+
+  "Sin can hinder our prayers": {
+    "Isaiah 59:2": {
+      text: "But your iniquities have separated you from your God; your sins have hidden his face from you, so that he does not hear.",
+      theme: "fallenness",
+      tags: ["separation", "sin", "hindered"]
+    },
+    "Psalm 66:18": {
+      text: "If I had cherished sin in my heart, the Lord would not have listened;",
+      theme: "obedience",
+      tags: ["repentance", "heart", "barrier"]
+    },
+    "Micah 3:4": {
+      text: "Then they will cry out to the Lord, but he will not answer them... because of the evil they have done.",
+      theme: "justice",
+      tags: ["disobedience", "silence", "judgment"]
+    }
+  },
+
+  "God responds in His time and way": {
+    "Ecclesiastes 3:11": {
+      text: "He has made everything beautiful in its time...",
+      theme: "wisdom",
+      tags: ["timing", "patience", "beauty"]
+    },
+    "Luke 18:7": {
+      text: "And will not God bring about justice for his chosen ones, who cry out to him day and night? Will he keep putting them off?",
+      theme: "justice",
+      tags: ["cry", "justice", "delay"]
+    },
+    "Romans 8:26": {
+      text: "We do not know what we ought to pray for, but the Spirit himself intercedes for us through wordless groans.",
+      theme: "spirit",
+      tags: ["intercession", "weakness", "help"]
+    }
+  }
+};
+
+//What if I don't know what to say?
+let q48ans = {
+  "The Holy Spirit helps us pray": {
+    "Romans 8:26": {
+      text: "In the same way, the Spirit helps us in our weakness. We do not know what we ought to pray for, but the Spirit himself intercedes for us through wordless groans.",
+      theme: "spirit",
+      tags: ["weakness", "intercede", "help"]
+    },
+    "John 14:26": {
+      text: "But the Advocate, the Holy Spirit, whom the Father will send in my name, will teach you all things and will remind you of everything I have said to you.",
+      theme: "guidance",
+      tags: ["advocate", "remind", "teach"]
+    },
+    "Jude 1:20": {
+      text: "But you, dear friends, by building yourselves up in your most holy faith and praying in the Holy Spirit...",
+      theme: "faithful",
+      tags: ["faith", "build", "spirit-led"]
+    }
+  },
+
+  "God understands our hearts": {
+    "Psalm 139:4": {
+      text: "Before a word is on my tongue you, Lord, know it completely.",
+      theme: "understanding",
+      tags: ["knows", "heart", "wordless"]
+    },
+    "Matthew 6:8": {
+      text: "Your Father knows what you need before you ask him.",
+      theme: "presence",
+      tags: ["needs", "before", "intimacy"]
+    },
+    "1 Samuel 16:7": {
+      text: "The Lord does not look at the things people look at... the Lord looks at the heart.",
+      theme: "truth",
+      tags: ["heart", "inside", "truth"]
+    }
+  },
+
+  "Just be honest with God": {
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "trust",
+      tags: ["honesty", "pour out", "safe"]
+    },
+    "Hebrews 4:16": {
+      text: "Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["confidence", "need", "help"]
+    },
+    "Philippians 4:6": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      theme: "peace",
+      tags: ["requests", "thanksgiving", "prayer"]
+    }
+  }
+};
+
+//What does God say about love?
+let q49ans = {
+  "Love is God's nature": {
+    "1 John 4:8": {
+      text: "Whoever does not love does not know God, because God is love.",
+      theme: "love",
+      tags: ["nature", "identity", "relationship"]
+    },
+    "1 John 4:16": {
+      text: "And so we know and rely on the love God has for us. God is love. Whoever lives in love lives in God, and God in them.",
+      theme: "presence",
+      tags: ["union", "abide", "trust"]
+    },
+    "Exodus 34:6": {
+      text: "The Lord, the Lord, the compassionate and gracious God, slow to anger, abounding in love and faithfulness...",
+      theme: "faithful",
+      tags: ["compassion", "grace", "abundant"]
+    }
+  },
+
+  "Love is the greatest commandment": {
+    "Matthew 22:37-39": {
+      text: "'Love the Lord your God with all your heart and with all your soul and with all your mind.' This is the first and greatest commandment. And the second is like it: 'Love your neighbor as yourself.'",
+      theme: "obedience",
+      tags: ["command", "priority", "neighbor"]
+    },
+    "Romans 13:10": {
+      text: "Love does no harm to a neighbor. Therefore love is the fulfillment of the law.",
+      theme: "justice",
+      tags: ["harmless", "fulfill", "law"]
+    },
+    "Galatians 5:14": {
+      text: "For the entire law is fulfilled in keeping this one command: 'Love your neighbor as yourself.'",
+      theme: "obedience",
+      tags: ["summary", "action", "commandment"]
+    }
+  },
+
+  "Love is how we treat others": {
+    "1 Corinthians 13:4-7": {
+      text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud... It always protects, always trusts, always hopes, always perseveres.",
+      theme: "love",
+      tags: ["kindness", "humility", "endurance"]
+    },
+    "John 13:34-35": {
+      text: "A new command I give you: Love one another. As I have loved you, so you must love one another... By this everyone will know that you are my disciples.",
+      theme: "walk",
+      tags: ["example", "witness", "discipleship"]
+    },
+    "Colossians 3:14": {
+      text: "And over all these virtues put on love, which binds them all together in perfect unity.",
+      theme: "love",
+      tags: ["virtue", "bond", "completion"]
+    }
+  },
+
+  "God's love changes us": {
+    "Ephesians 3:17-19": {
+      text: "And I pray that you... may have power... to grasp how wide and long and high and deep is the love of Christ... that you may be filled to the measure of all the fullness of God.",
+      theme: "transformation",
+      tags: ["depth", "filling", "knowledge"]
+    },
+    "2 Corinthians 5:14-15": {
+      text: "For Christ’s love compels us... that those who live should no longer live for themselves but for him who died for them and was raised again.",
+      theme: "devotion",
+      tags: ["motivation", "live for Christ", "compel"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you... He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+      theme: "love",
+      tags: ["delight", "affection", "song"]
+    }
+  }
+};
+
+//How do I deal with difficult people?
+let q50ans = {
+  "Respond with love and patience": {
+    "Romans 12:17-18": {
+      text: "Do not repay anyone evil for evil... If it is possible, as far as it depends on you, live at peace with everyone.",
+      theme: "peace",
+      tags: ["forgiveness", "restraint", "peacemaking"]
+    },
+    "1 Corinthians 13:5": {
+      text: "Love is not easily angered, it keeps no record of wrongs.",
+      theme: "love",
+      tags: ["patience", "mercy", "grace"]
+    },
+    "Colossians 3:13": {
+      text: "Bear with each other and forgive one another if any of you has a grievance... Forgive as the Lord forgave you.",
+      theme: "forgiveness",
+      tags: ["endure", "grace", "kindness"]
+    }
+  },
+
+  "Let God handle justice": {
+    "Romans 12:19": {
+      text: "Do not take revenge, my dear friends, but leave room for God’s wrath, for it is written: 'It is mine to avenge; I will repay,' says the Lord.",
+      theme: "justice",
+      tags: ["restraint", "trust", "vengeance"]
+    },
+    "Proverbs 20:22": {
+      text: "Do not say, 'I’ll pay you back for this wrong!' Wait for the Lord, and he will avenge you.",
+      theme: "trust",
+      tags: ["patience", "reliance", "justice"]
+    },
+    "1 Peter 3:9": {
+      text: "Do not repay evil with evil or insult with insult. On the contrary, repay evil with blessing...",
+      theme: "goodness",
+      tags: ["blessing", "grace", "strength"]
+    }
+  },
+
+  "Pray for them and stay rooted in God": {
+    "Matthew 5:44": {
+      text: "But I tell you, love your enemies and pray for those who persecute you,",
+      theme: "obedience",
+      tags: ["prayer", "mercy", "enemy-love"]
+    },
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control...",
+      theme: "spirit",
+      tags: ["fruit", "character", "response"]
+    },
+    "James 1:19-20": {
+      text: "Everyone should be quick to listen, slow to speak and slow to become angry, because human anger does not produce the righteousness that God desires.",
+      theme: "wisdom",
+      tags: ["listen", "peace", "self-control"]
+    }
+  }
+};
+
+// How does God guide on who I date or marry?
+let q51ans = {
+  "God guides your heart and choices": {
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "wisdom",
+      tags: ["discernment", "heart", "choices"]
+    },
+    "2 Corinthians 6:14": {
+      text: "Do not be yoked together with unbelievers. For what do righteousness and wickedness have in common?",
+      theme: "obedience",
+      tags: ["partnership", "belief", "boundaries"]
+    },
+    "Proverbs 19:14": {
+      text: "Houses and wealth are inherited from parents, but a prudent wife is from the Lord.",
+      theme: "guidance",
+      tags: ["blessing", "spouse", "wisdom"]
+    },
+    "1 Corinthians 15:33": {
+      text: "Do not be misled: 'Bad company corrupts good character.'",
+      theme: "wisdom",
+      tags: ["influence", "discernment", "values"]
+    },
+    "Amos 3:3": {
+      text: "Do two walk together unless they have agreed to do so?",
+      theme: "walk",
+      tags: ["agreement", "shared values", "direction"]
+    }
+  },
+
+  "Marriage reflects God's love and design": {
+    "Ephesians 5:21-25": {
+      text: "Submit to one another out of reverence for Christ. Wives, submit yourselves to your own husbands as you do to the Lord... Husbands, love your wives, just as Christ loved the church and gave himself up for her.",
+      theme: "love",
+      tags: ["marriage", "mutual respect", "sacrifice", "commitment"]
+    },
+    "Genesis 2:18": {
+      text: "The Lord God said, 'It is not good for the man to be alone. I will make a helper suitable for him.'",
+      theme: "relationship",
+      tags: ["partnership", "design", "relationship"]
+    },
+    "Ecclesiastes 4:9-10": {
+      text: "Two are better than one, because they have a good return for their labor: If either of them falls down, one can help the other up.",
+      theme: "relationship",
+      tags: ["teamwork", "companionship", "encouragement"]
+    },
+    "Malachi 2:14-15": {
+      text: "The Lord is the witness between you and the wife of your youth... Has not the one God made you? You belong to him in body and spirit. And what does the one God seek? Godly offspring.",
+      theme: "faithful",
+      tags: ["marriage covenant", "loyalty", "purpose"]
+    }
+  },
+
+  "Seek God's guidance in relationships": {
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "trust",
+      tags: ["delight", "trust", "guidance"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["prayer", "decisions", "guidance"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["direction", "submission", "faith"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["direction", "hearing God", "obedience"]
+    }
+  }
+};
+
+// What if I feel broken inside?
+let q52ans = {
+  "God is close to the brokenhearted": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "mercy",
+      tags: ["comfort", "presence", "rescue"]
+    },
+    "Isaiah 57:15": {
+      text: "I live in a high and holy place, but also with the one who is contrite and lowly in spirit...",
+      theme: "presence",
+      tags: ["humility", "comfort", "restoration"]
+    }
+  },
+
+  "God heals the broken": {
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "hope",
+      tags: ["restoration", "care", "hope"]
+    },
+    "Jeremiah 30:17": {
+      text: "But I will restore you to health and heal your wounds,’ declares the Lord.",
+      theme: "hope",
+      tags: ["healing", "hope", "promise"]
+    }
+  },
+
+  "Jesus welcomes our weakness": {
+    "Matthew 11:28-29": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest...",
+      theme: "peace",
+      tags: ["peace", "invitation", "gentleness"]
+    },
+    "Hebrews 4:15-16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses... Let us then approach God’s throne of grace with confidence...",
+      theme: "grace",
+      tags: ["empathy", "strength", "access"]
+    }
+  },
+
+  "God can bring beauty from brokenness": {
+    "Isaiah 61:1-3": {
+      text: "He has sent me to bind up the brokenhearted… to comfort all who mourn… to give them beauty for ashes.",
+      theme: "transformation",
+      tags: ["beauty", "hope", "joy"]
+    },
+    "2 Corinthians 4:7-9": {
+      text: "But we have this treasure in jars of clay to show that this all-surpassing power is from God... struck down, but not destroyed.",
+      theme: "strength",
+      tags: ["vulnerability", "endurance", "hope"]
+    }
+  }
+};
+
+// Why doesn't God fix things faster?
+let q53ans = {
+  "God’s timing is not ours": {
+    "2 Peter 3:8-9": {
+      text: "With the Lord a day is like a thousand years... The Lord is not slow in keeping his promise... but is patient with you...",
+      theme: "patience",
+      tags: ["timing", "promise", "mercy"]
+    },
+    "Ecclesiastes 3:11": {
+      text: "He has made everything beautiful in its time. He has also set eternity in the human heart...",
+      theme: "transformation",
+      tags: ["timing", "purpose", "beauty"]
+    }
+  },
+
+  "God is working in the waiting": {
+    "Isaiah 64:4": {
+      text: "Since ancient times no one has heard... any God besides you, who acts on behalf of those who wait for him.",
+      theme: "faithful",
+      tags: ["waiting", "trust", "active"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "guidance",
+      tags: ["purpose", "goodness", "working"]
+    }
+  },
+
+  "Waiting builds us": {
+    "James 1:2-4": {
+      text: "Consider it pure joy... when you face trials... so that you may be mature and complete, not lacking anything.",
+      theme: "growth",
+      tags: ["endurance", "maturity", "strength"]
+    },
+    "Psalm 27:14": {
+      text: "Wait for the Lord; be strong and take heart and wait for the Lord.",
+      theme: "strength",
+      tags: ["patience", "hope", "courage"]
+    }
+  },
+
+  "Jesus delays with purpose": {
+    "John 11:6": {
+      text: "So when he heard that Lazarus was sick, he stayed where he was two more days.",
+      theme: "purpose",
+      tags: ["trust", "timing", "miracle"]
+    }
+  }
+};
+
+// What is God's will?
+let q54ans = {
+  "God’s will is for us to know Him and follow Him": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "walk",
+      tags: ["humility", "justice", "mercy"]
+    },
+    "John 6:40": {
+      text: "For my Father’s will is that everyone who looks to the Son and believes in him shall have eternal life, and I will raise them up at the last day.",
+      theme: "eternal",
+      tags: ["believe", "salvation", "resurrection"]
+    },
+    "1 Thessalonians 5:16-18": {
+      text: "Rejoice always, pray continually, give thanks in all circumstances; for this is God’s will for you in Christ Jesus.",
+      theme: "devotion",
+      tags: ["rejoice", "prayer", "gratitude"]
+    }
+  },
+
+  "God’s will is for our transformation": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "discernment", "growth"]
+    },
+    "1 Thessalonians 4:3": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality...",
+      theme: "holy",
+      tags: ["purity", "sanctification", "obedience"]
+    },
+    "Ephesians 5:17-18": {
+      text: "Therefore do not be foolish, but understand what the Lord’s will is... be filled with the Spirit.",
+      theme: "spirit",
+      tags: ["wisdom", "discernment", "obedience"]
+    }
+  },
+
+  "God will guide us in His will": {
+    "Psalm 25:4-5": {
+      text: "Show me your ways, Lord, teach me your paths. Guide me in your truth and teach me, for you are God my Savior...",
+      theme: "guidance",
+      tags: ["truth", "teach", "paths"]
+    },
+    "Proverbs 16:9": {
+      text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+      theme: "guidance",
+      tags: ["plans", "direction", "sovereignty"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["voice", "obedience", "direction"]
+    }
+  }
+};
+
+// What if I make the wrong choice?
+let q55ans = {
+  "God can redeem our mistakes": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "guidance",
+      tags: ["redeem", "purpose", "goodness"]
+    },
+    "Joel 2:25": {
+      text: "'I will repay you for the years the locusts have eaten...' declares the Lord.",
+      theme: "restoration",
+      tags: ["restore", "healing", "hope"]
+    },
+    "Genesis 50:20": {
+      text: "'You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.'",
+      theme: "guidance",
+      tags: ["sovereignty", "good", "redemption"]
+    }
+  },
+
+  "Seek God in your decisions": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["guidance", "direction", "faith"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["ask", "wisdom", "faith"]
+    },
+    "Psalm 32:8": {
+      text: "'I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.'",
+      theme: "guidance",
+      tags: ["counsel", "direction", "love"]
+    }
+  },
+
+  "God’s mercy covers us even when we mess up": {
+    "Lamentations 3:22-23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "faithful",
+      tags: ["mercy", "compassion", "new beginnings"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["mercy", "cleansing", "grace"]
+    },
+    "Psalm 37:23-24": {
+      text: "The Lord makes firm the steps of the one who delights in him; though he may stumble, he will not fall, for the Lord upholds him with his hand.",
+      theme: "guidance",
+      tags: ["support", "stumble", "grace"]
+    }
+  }
+};
+
+//What if I don't feel like growing?
+let q56ans = {
+  "God still accepts you in weakness": {
+    "Isaiah 42:3": {
+      text: "A bruised reed he will not break, and a smoldering wick he will not snuff out. In faithfulness he will bring forth justice.",
+      theme: "mercy",
+      tags: ["gentleness", "faithful", "compassion"]
+    },
+    "Romans 8:26": {
+      text: "In the same way, the Spirit helps us in our weakness. We do not know what we ought to pray for, but the Spirit himself intercedes for us through wordless groans.",
+      theme: "spirit",
+      tags: ["weakness", "intercession", "grace"]
+    },
+    "2 Corinthians 12:9": {
+      text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["weakness", "power", "dependence"]
+    }
+  },
+
+  "God is patient with your process": {
+    "Philippians 1:6": {
+      text: "Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "growth",
+      tags: ["patience", "process", "confidence"]
+    },
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "growth",
+      tags: ["perseverance", "reward", "faithful"]
+    },
+    "Hebrews 10:36": {
+      text: "You need to persevere so that when you have done the will of God, you will receive what he has promised.",
+      theme: "obedience",
+      tags: ["perseverance", "promise", "will"]
+    }
+  },
+
+  "God can reignite your desire": {
+    "Psalm 51:10-12": {
+      text: "Create in me a pure heart, O God, and renew a steadfast spirit within me... Restore to me the joy of your salvation and grant me a willing spirit, to sustain me.",
+      theme: "transformation",
+      tags: ["renewal", "desire", "joy"]
+    },
+    "Philippians 2:13": {
+      text: "For it is God who works in you to will and to act in order to fulfill his good purpose.",
+      theme: "guidance",
+      tags: ["desire", "action", "purpose"]
+    },
+    "Isaiah 40:31": {
+      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary...",
+      theme: "strength",
+      tags: ["hope", "renewal", "endurance"]
+    }
+  },
+
+  "Faith isn’t about feelings": {
+    "2 Corinthians 5:7": {
+      text: "For we live by faith, not by sight.",
+      theme: "faithful",
+      tags: ["faith", "trust", "not_feelings"]
+    },
+    "Hebrews 11:1": {
+      text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
+      theme: "faithful",
+      tags: ["assurance", "hope", "faith"]
+    },
+    "John 20:29": {
+      text: "Then Jesus told him, 'Because you have seen me, you have believed; blessed are those who have not seen and yet have believed.'",
+      theme: "faithful",
+      tags: ["believe", "blessing", "faith"]
+    }
+  }
+};
+
+//How do I stay close to God?
+let q57ans = {
+  "Stay connected through prayer and listening": {
+    "James 4:8": {
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      theme: "submission",
+      tags: ["draw_near", "repentance", "relationship"]
+    },
+    "Psalm 5:3": {
+      text: "In the morning, Lord, you hear my voice; in the morning I lay my requests before you and wait expectantly.",
+      theme: "walk",
+      tags: ["prayer", "devotion", "expectation"]
+    },
+    "John 10:27": {
+      text: "My sheep listen to my voice; I know them, and they follow me.",
+      theme: "guidance",
+      tags: ["listening", "follow", "relationship"]
+    }
+  },
+
+  "Stay close by staying in His Word": {
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "word",
+      tags: ["direction", "truth", "guidance"]
+    },
+    "Joshua 1:8": {
+      text: "Keep this Book of the Law always on your lips; meditate on it day and night... Then you will be prosperous and successful.",
+      theme: "obedience",
+      tags: ["meditation", "discipline", "prosperity"]
+    },
+    "Colossians 3:16": {
+      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom...",
+      theme: "wisdom",
+      tags: ["scripture", "community", "growth"]
+    }
+  },
+
+  "Stay close through trust and obedience": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding... and he will make your paths straight.",
+      theme: "trust",
+      tags: ["direction", "dependence", "trust"]
+    },
+    "John 15:10": {
+      text: "If you keep my commands, you will remain in my love, just as I have kept my Father’s commands and remain in his love.",
+      theme: "obedience",
+      tags: ["love", "remain", "follow"]
+    },
+    "Deuteronomy 10:12": {
+      text: "And now, Israel, what does the Lord your God ask of you but to fear the Lord... to walk in obedience to him, to love him, to serve... with all your heart and soul.",
+      theme: "walk",
+      tags: ["serve", "devotion", "wholehearted"]
+    }
+  },
+
+  "Stay close by remembering He stays close too": {
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "presence",
+      tags: ["never_alone", "courage", "faithfulness"]
+    },
+    "Matthew 28:20": {
+      text: "And surely I am with you always, to the very end of the age.",
+      theme: "presence",
+      tags: ["always", "comfort", "promise"]
+    },
+    "Romans 8:38-39": {
+      text: "For I am convinced that neither death nor life... nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["inseparable", "confidence", "security"]
+    }
+  }
+};
+
+// Who will make it to heaven?
+let q58ans = {
+  "Those who believe in Jesus": {
+    "John 14:6": {
+      text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'",
+      theme: "jesus",
+      tags: ["way", "truth", "life", "exclusive"]
+    },
+    "John 3:16": {
+      text: "For God so loved the world that he gave his one and only Son... that whoever believes in him shall not perish but have eternal life.",
+      theme: "savior",
+      tags: ["believe", "eternal", "gift"]
+    },
+    "Romans 10:9": {
+      text: "If you declare with your mouth, 'Jesus is Lord', and believe in your heart that God raised him from the dead, you will be saved.",
+      theme: "salvation",
+      tags: ["confess", "heart", "saved"]
+    }
+  },
+
+  "Those who live by faith and obedience": {
+    "Ephesians 2:8-9": {
+      text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God— not by works, so that no one can boast.",
+      theme: "grace",
+      tags: ["faith", "gift", "grace"]
+    },
+    "James 2:17": {
+      text: "Faith by itself, if it is not accompanied by action, is dead.",
+      theme: "faithful",
+      tags: ["faith", "works", "living faith"]
+    },
+    "Matthew 7:21": {
+      text: "Not everyone who says to me, 'Lord, Lord,' will enter the kingdom of heaven, but only the one who does the will of my Father who is in heaven.",
+      theme: "obedience",
+      tags: ["will", "obedience", "entry"]
+    }
+  },
+
+  "Those whose names are written in the Lamb’s book": {
+    "Revelation 21:27": {
+      text: "Nothing impure will ever enter it [heaven], nor will anyone who does what is shameful or deceitful, but only those whose names are written in the Lamb’s book of life.",
+      theme: "eternal",
+      tags: ["book_of_life", "purity", "Lamb"]
+    },
+    "Revelation 20:15": {
+      text: "Anyone whose name was not found written in the book of life was thrown into the lake of fire.",
+      theme: "judgment",
+      tags: ["judgment", "book_of_life", "lake_of_fire"]
+    }
+  },
+
+  "Those who receive eternal life": {
+    "1 John 5:11-13": {
+      text: "And this is the testimony: that God has given us eternal life, and this life is in his Son. Whoever has the Son has life; whoever does not have the Son of God does not have life.",
+      theme: "eternal",
+      tags: ["eternal_life", "possession", "testimony"]
+    },
+    "John 5:24": {
+      text: "Very truly I tell you, whoever hears my word and believes him who sent me has eternal life and will not be judged but has crossed over from death to life.",
+      theme: "salvation",
+      tags: ["believe", "cross_over", "no_judgment"]
+    }
+  }
+};
+
+// q59 - Does my life still have meaning if I feel like giving up?
+let q59ans = {
+  "God still has a purpose for you": {
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.",
+      theme: "hope",
+      tags: ["purpose", "future", "hope", "God's plan"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "purpose",
+      tags: ["purpose", "good", "called", "love"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "creation",
+      tags: ["purpose", "handiwork", "good works", "identity"]
+    }
+  },
+  "God is close, even in pain": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "presence",
+      tags: ["brokenhearted", "comfort", "closeness", "healing"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["strength", "fear", "presence", "help"]
+    },
+    "2 Corinthians 1:3-4": {
+      text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles...",
+      theme: "mercy",
+      tags: ["comfort", "trouble", "compassion", "healing"]
+    }
+  },
+  "You are not forgotten": {
+    "Isaiah 49:15-16": {
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands...",
+      theme: "love",
+      tags: ["memory", "compassion", "engraved", "identity"]
+    },
+    "Luke 12:6-7": {
+      text: "Are not five sparrows sold for two pennies? Yet not one of them is forgotten by God... you are worth more than many sparrows.",
+      theme: "value",
+      tags: ["worth", "identity", "care", "remembered"]
+    },
+    "Psalm 139:1-4": {
+      text: "You have searched me, Lord, and you know me... Before a word is on my tongue you, Lord, know it completely.",
+      theme: "presence",
+      tags: ["known", "understood", "value", "personal"]
+    }
+  },
+  "God can lift you up again": {
+    "Psalm 40:1-3": {
+      text: "I waited patiently for the Lord; he turned to me and heard my cry. He lifted me out of the slimy pit, out of the mud and mire...",
+      theme: "rescue",
+      tags: ["deliverance", "hope", "lifted", "new song"]
+    },
+    "Lamentations 3:22-23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning...",
+      theme: "love",
+      tags: ["compassion", "new start", "hope", "faithful"]
+    },
+    "Isaiah 61:3": {
+      text: "…to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair.",
+      theme: "transformation",
+      tags: ["beauty", "joy", "mourning", "healing"]
+    }
+  }
+}
+
+// How should I, as a Christian, deal with anxiety and depression?
+let q60ans = {
+  "Start by remembering: God is close to you in this": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "presence",
+      tags: ["brokenhearted", "presence", "comfort", "close"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["presence", "fear", "strength", "uphold"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+      theme: "love",
+      tags: ["presence", "rejoice", "comfort", "delight"]
+    }
+  },
+
+  "Your emotions don’t disqualify your faith": {
+    "2 Corinthians 12:9": {
+      text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["weakness", "grace", "power", "faith"]
+    },
+    "Psalm 42:11": {
+      text: "Why, my soul, are you downcast? Why so disturbed within me? Put your hope in God, for I will yet praise him, my Savior and my God.",
+      theme: "hope",
+      tags: ["downcast", "hope", "faith", "praise"]
+    }
+  },
+
+  "Talk to God honestly — He welcomes your pain": {
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "help",
+      tags: ["anxiety", "honesty", "prayer", "support"]
+    },
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "trust",
+      tags: ["prayer", "trust", "honesty", "refuge"]
+    },
+    "Hebrews 4:15-16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses... Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "mercy",
+      tags: ["honesty", "weakness", "grace", "help"]
+    },
+    "Psalm 55:22": {
+      text: "Cast your cares on the Lord and he will sustain you; he will never let the righteous be shaken.",
+      theme: "help",
+      tags: ["sustain", "cares", "cast", "trust"]
+    },
+    "Job 30:27": {
+      text: "The churning inside me never stops; days of suffering confront me.",
+      theme: "honesty",
+      tags: ["Job", "inner turmoil", "suffering", "confession"]
+    }
+  },
+
+  "Let God’s peace hold you when everything else can’t": {
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["peace", "prayer", "anxiety", "thanksgiving"]
+    },
+    "Isaiah 26:3": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+      theme: "peace",
+      tags: ["peace", "trust", "mind", "steadfast"]
+    },
+    "John 14:27": {
+      text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.",
+      theme: "peace",
+      tags: ["peace", "comfort", "Jesus", "fear"]
+    },
+    "Matthew 6:34": {
+      text: "Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.",
+      theme: "trust",
+      tags: ["worry", "today", "peace", "trouble"]
+    }
+  },
+
+  "God often walks you through the darkness, not around it": {
+    "Psalm 23:4": {
+      text: "Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me.",
+      theme: "guidance",
+      tags: ["darkness", "fear", "comfort", "walk"]
+    },
+    "Romans 5:3-5": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance... and hope does not put us to shame.",
+      theme: "growth",
+      tags: ["suffering", "perseverance", "growth", "hope"]
+    },
+    "Isaiah 43:2": {
+      text: "When you pass through the waters, I will be with you... When you walk through the fire, you will not be burned.",
+      theme: "protect",
+      tags: ["fire", "trial", "presence", "walk"]
+    }
+  },
+
+  "You’re not alone — even God’s people struggled deeply": {
+    "1 Kings 19:4": {
+      text: "Elijah... came to a broom bush, sat down under it and prayed that he might die. 'I have had enough, Lord,' he said. 'Take my life; I am no better than my ancestors.'",
+      theme: "fallenness",
+      tags: ["Elijah", "depression", "overwhelm", "honesty"]
+    },
+    "2 Corinthians 1:8": {
+      text: "We were under great pressure, far beyond our ability to endure, so that we despaired of life itself.",
+      theme: "battle",
+      tags: ["Paul", "despair", "pressure", "overwhelm"]
+    },
+    "Matthew 26:38": {
+      text: "Then he said to them, 'My soul is overwhelmed with sorrow to the point of death. Stay here and keep watch with me.'",
+      theme: "jesus",
+      tags: ["Jesus", "sorrow", "pain", "watch"]
+    }
+  },
+
+  "There’s a bigger plan even when you don’t feel it": {
+    "Jeremiah 29:11": {
+      text: "'For I know the plans I have for you,' declares the Lord, 'plans to prosper you and not to harm you, plans to give you hope and a future.'",
+      theme: "hope",
+      tags: ["plans", "hope", "future", "trust"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "guidance",
+      tags: ["plan", "good", "trust", "love"]
+    }
+  }
+};
+
+// Why does God allow bad things to happen to good people? 
+let q61ans = { "You’re not alone — the faithful suffered too": { "Job 1:1-22": { text: "Job was blameless and upright, one who feared God and turned away from evil. Yet he lost his property, his children, and his health, but did not sin or charge God with wrong.", theme: "faithful", tags: ["Job", "suffering", "test", "faith", "loss"] }, "1 Peter 4:12-13": { text: "Beloved, do not be surprised at the fiery trial when it comes upon you to test you, as though something strange were happening to you. But rejoice insofar as you share Christ’s sufferings, that you may also rejoice and be glad when his glory is revealed.", theme: "devotion", tags: ["suffering", "Christ", "trials", "rejoice", "faith"] }, "Job 19:25": { text: "For I know that my Redeemer lives, and at the last he will stand upon the earth. And after my skin has been thus destroyed, yet in my flesh I shall see God.", theme: "hope", tags: ["redeemer", "hope", "suffering", "faithful", "Job"] } },
+
+"God sees what we don’t yet understand": { "Isaiah 55:8-9": { text: "For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord. For as the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.", theme: "understanding", tags: ["God's ways", "thoughts", "mystery", "justice", "perspective"] }, "Job 38:1-4": { text: "Then the Lord answered Job out of the whirlwind and said: 'Who is this that darkens counsel by words without knowledge? Where were you when I laid the foundation of the earth? Tell me, if you have understanding.'", theme: "glory", tags: ["Job", "God’s wisdom", "power", "creation", "perspective"] } },
+
+"God uses suffering to shape and refine": { "Romans 8:28": { text: "And we know that for those who love God all things work together for good, for those who are called according to his purpose.", theme: "purpose", tags: ["Romans", "suffering", "good", "purpose", "God works"] }, "James 1:2-4": { text: "Count it all joy, my brothers, when you meet trials of various kinds, for you know that the testing of your faith produces steadfastness. And let steadfastness have its full effect, that you may be perfect and complete, lacking in nothing.", theme: "growth", tags: ["trials", "perseverance", "faith", "mature", "character"] }, "2 Corinthians 1:3-4": { text: "Blessed be the God and Father of our Lord Jesus Christ, the Father of mercies and God of all comfort, who comforts us in all our affliction, so that we may be able to comfort those who are in any affliction.", theme: "mercy", tags: ["comfort", "suffering", "ministry", "empathy", "mercy"] } },
+
+"Even Jesus, the righteous, suffered pain": { "Isaiah 53:3-5": { text: "He was despised and rejected by men; a man of sorrows, and acquainted with grief... He was pierced for our transgressions; he was crushed for our iniquities; upon him was the chastisement that brought us peace, and with his wounds we are healed.", theme: "savior", tags: ["Jesus", "suffering", "redemption", "grief", "healing"] }, "1 Peter 2:21-23": { text: "For to this you have been called, because Christ also suffered for you, leaving you an example, so that you might follow in his steps. He committed no sin, neither was deceit found in his mouth. When he was reviled, he did not revile in return... but continued entrusting himself to him who judges justly.", theme: "jesus", tags: ["suffering", "Christ", "example", "justice", "entrust"] } },
+
+"God’s kindness isn’t canceled by hardship": { "Matthew 5:45": { text: "For he makes his sun rise on the evil and on the good, and sends rain on the just and on the unjust.", theme: "goodness", tags: ["Jesus", "goodness", "sin", "common grace", "suffering"] }, "Revelation 21:4": { text: "He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.", theme: "eternal", tags: ["future", "healing", "rest", "gain", "eternity"] } },
+
+"Trust God even when everything hurts": { "Romans 8:18": { text: "For I consider that the sufferings of this present time are not worth comparing with the glory that is to be revealed to us.", theme: "glory", tags: ["suffering", "glory", "future", "hope", "Romans"] }, "1 Corinthians 10:13": { text: "No temptation has overtaken you that is not common to man. God is faithful, and he will not let you be tempted beyond your ability, but with the temptation he will also provide the way of escape, that you may be able to endure it.", theme: "faithful", tags: ["temptation", "faithful", "endure", "help", "strength"] } },
+
+"Your story can become part of God’s greater redemptive plan": { "Genesis 50:20": { text: "As for you, you meant evil against me, but God meant it for good, to bring it about that many people should be kept alive, as they are today.", theme: "purpose", tags: ["Joseph", "suffering", "purpose", "plan", "redemption"] } } };
+
+// What if I’ve been hurt by the church?
+let q62ans = {
+  "People may fail you, but God won’t": {
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "faithful",
+      tags: ["never leave", "God stays", "faithful", "forsake"]
+    },
+    "2 Timothy 2:13": {
+      text: "If we are faithless, he remains faithful, for he cannot disown himself.",
+      theme: "faithful",
+      tags: ["faithless", "God remains", "faithful", "constant"]
+    },
+    "Psalm 118:8": {
+      text: "It is better to take refuge in the Lord than to trust in humans.",
+      theme: "trust",
+      tags: ["refuge", "God vs man", "trust", "betrayal"]
+    },
+    "Isaiah 49:15-16": {
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands; your walls are ever before me.",
+      theme: "love",
+      tags: ["never forget", "engraved", "deep love", "God remembers"]
+    }
+  },
+
+  "Talk to God honestly — He welcomes your pain": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "presence",
+      tags: ["brokenhearted", "close", "comfort", "God hears"]
+    },
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "healing",
+      tags: ["healing", "wounds", "comfort", "care"]
+    },
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "trust",
+      tags: ["pour out", "refuge", "trust", "safe"]
+    },
+    "Lamentations 2:19": {
+      text: "Arise, cry out in the night, as the watches of the night begin; pour out your heart like water in the presence of the Lord.",
+      theme: "devotion",
+      tags: ["pour out", "weep", "presence", "raw prayer"]
+    }
+  },
+
+  "Let trusted people walk with you in time": {
+    "Galatians 6:2": {
+      text: "Carry each other’s burdens, and in this way you will fulfill the law of Christ.",
+      theme: "help",
+      tags: ["carry burdens", "trustworthy", "Christ", "gentle support"]
+    },
+    "Romans 12:15": {
+      text: "Rejoice with those who rejoice; mourn with those who mourn.",
+      theme: "compassion",
+      tags: ["mourn", "rejoice", "safe space", "empathy"]
+    },
+    "Ecclesiastes 4:9-10": {
+      text: "Two are better than one, because they have a good return for their labor: If either of them falls down, one can help the other up. But pity anyone who falls and has no one to help them up.",
+      theme: "friend",
+      tags: ["help each other", "companionship", "fall and rise", "gentle healing"]
+    }
+  },
+
+  "God often walks you through the darkness, not around it": {
+    "Psalm 23:4": {
+      text: "Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me.",
+      theme: "presence",
+      tags: ["valley", "with me", "comfort", "guidance"]
+    },
+    "Isaiah 43:2": {
+      text: "When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you. When you walk through the fire, you will not be burned; the flames will not set you ablaze.",
+      theme: "protect",
+      tags: ["through fire", "not alone", "protection", "God stays"]
+    }
+  }
+}
+
+// How do I move on after failure?
+let q63ans = {
+  "Rise again — failure doesn’t define you": {
+    "Proverbs 24:16": {
+      text: "For though the righteous fall seven times, they rise again, but the wicked stumble when calamity strikes.",
+      theme: "faithful",
+      tags: ["failure", "righteous", "rise again", "perseverance"]
+    },
+    "Micah 7:8": {
+      text: "Do not gloat over me, my enemy! Though I have fallen, I will rise. Though I sit in darkness, the Lord will be my light.",
+      theme: "light",
+      tags: ["fall", "rise", "darkness", "enemy", "light"]
+    }
+  },
+  "Let go of the past and press forward": {
+    "Philippians 3:13–14": {
+      text: "Brothers and sisters, I do not consider myself yet to have taken hold of it. But one thing I do: forgetting what is behind and straining toward what is ahead, I press on toward the goal to win the prize for which God has called me heavenward in Christ Jesus.",
+      theme: "growth",
+      tags: ["past", "future", "press on", "goal", "growth"]
+    }
+  },
+  "God lifts and upholds you": {
+    "Psalm 37:23–24": {
+      text: "The Lord makes firm the steps of the one who delights in him; though he may stumble, he will not fall, for the Lord upholds him with his hand.",
+      theme: "guidance",
+      tags: ["stumble", "uphold", "God’s hand", "fall", "steps"]
+    },
+    "Psalm 145:14": {
+      text: "The Lord upholds all who fall and lifts up all who are bowed down.",
+      theme: "help",
+      tags: ["lift up", "fall", "uphold", "grace"]
+    }
+  },
+  "Trust His faithful work in you": {
+    "Philippians 1:6": {
+      text: "He who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "faithful",
+      tags: ["good work", "completion", "faithful", "God's promise"]
+    }
+  },
+  "You’re renewed day by day": {
+    "2 Corinthians 4:16": {
+      text: "Therefore we do not lose heart. Though outwardly we are wasting away, yet inwardly we are being renewed day by day.",
+      theme: "hope",
+      tags: ["renewed", "daily strength", "do not lose heart", "hope"]
+    }
+  },
+  "Healing & restoration happen in grace": {
+    "1 Peter 5:10": {
+      text: "And the God of all grace, who called you to his eternal glory in Christ, after you have suffered a little while, will himself restore you and make you strong, firm and steadfast.",
+      theme: "restoration",
+      tags: ["grace", "restore", "strength", "suffering", "steadfast"]
+    },
+    "Psalm 40:2–3": {
+      text: "He lifted me out of the slimy pit, out of the mud and mire; he set my feet on a rock and gave me a firm place to stand. He put a new song in my mouth, a hymn of praise to our God.",
+      theme: "transformation",
+      tags: ["lifted", "pit", "new song", "restoration", "firm place"]
+    },
+    "Psalm 30:5": {
+      text: "Weeping may stay for the night, but rejoicing comes in the morning.",
+      theme: "hope",
+      tags: ["weeping", "joy", "morning", "restoration", "emotion"]
+    }
+  },
+  "Your failure is not unforgivable": {
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["confess", "faithful", "forgive", "purify", "mercy"]
+    }
+  },
+  "You’re not alone in the struggle": {
+    "Hebrews 4:16": {
+      text: "Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "mercy",
+      tags: ["grace", "confidence", "help", "mercy", "need"]
+    },
+    "John 16:33": {
+      text: "In this world you will have trouble. But take heart! I have overcome the world.",
+      theme: "hope",
+      tags: ["trouble", "overcome", "Jesus", "encouragement", "victory"]
+    }
+  }
+}
+
+//What does the Bible say about mental health?
+let q64ans = {
+  "The Bible acknowledges mental and emotional pain": {
+    "Psalm 6:6-7": {
+      text: "I am worn out from my groaning. All night long I flood my bed with weeping... My eyes grow weak with sorrow.",
+      theme: "seek",
+      tags: ["weary", "emotional exhaustion", "crying", "mental anguish"]
+    },
+    "Psalm 38:8-9": {
+      text: "I am feeble and utterly crushed; I groan in anguish of heart. All my longings lie open before you, Lord; my sighing is not hidden from you.",
+      theme: "honesty",
+      tags: ["mental pain", "groaning", "God sees", "depression"]
+    },
+    "Proverbs 12:25": {
+      text: "Anxiety weighs down the heart, but a kind word cheers it up.",
+      theme: "hope",
+      tags: ["anxiety", "mental burden", "encouragement", "kindness"]
+    },
+    "Job 3:11": {
+      text: "Why did I not perish at birth, and die as I came from the womb?",
+      theme: "fallenness",
+      tags: ["Job", "suicidal thoughts", "honesty", "emotional darkness"]
+    }
+  },
+
+  "Even God's people went through depression and burnout": {
+    "1 Kings 19:4-8": {
+      text: "Elijah was afraid and ran for his life... He came to a broom bush, sat down under it and prayed that he might die. 'I have had enough, Lord,' he said... All at once an angel touched him and said, 'Get up and eat.'",
+      theme: "help",
+      tags: ["burnout", "depression", "God provides", "hope"]
+    },
+    "Lamentations 3:17-23": {
+      text: "I have been deprived of peace... Yet this I call to mind and therefore I have hope: Because of the Lord’s great love we are not consumed...",
+      theme: "hope",
+      tags: ["mental health", "peace", "darkness", "God’s love", "new mercies"]
+    }
+  },
+
+  "God sees and draws near to the brokenhearted": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "help",
+      tags: ["mental health", "brokenhearted", "God is near", "inner pain"]
+    },
+    "Matthew 11:28-30": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest... For my yoke is easy and my burden is light.",
+      theme: "help",
+      tags: ["burden", "rest", "emotional exhaustion", "relief"]
+    }
+  },
+
+  "God offers peace and protection for your mind": {
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["anxiety", "mental health", "prayer", "peace of God"]
+    },
+    "Isaiah 26:3": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+      theme: "peace",
+      tags: ["mental focus", "trust", "peace", "stability"]
+    },
+    "3 John 1:2": {
+      text: "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.",
+      theme: "peace",
+      tags: ["soul", "wellness", "mental state", "peace"]
+    }
+  }
+};
+
+// Who am I in God’s eyes?
+let q65ans = {
+
+  "You are a new creation in Christ": {
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come.",
+      theme: "transformation",
+      tags: ["identity", "renewal", "Christ", "new life"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me...",
+      theme: "identity",
+      tags: ["Christ lives in me", "surrender", "new self", "faith"]
+    }
+  },
+
+  "You are God’s handiwork with purpose": {
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "purpose",
+      tags: ["created by God", "calling", "design", "good works"]
+    },
+    "Philippians 1:6": {
+      text: "He who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "growth",
+      tags: ["God’s plan", "purpose", "confidence", "process"]
+    }
+  },
+
+  "You are chosen, loved, and set apart": {
+    "1 Peter 2:9": {
+      text: "But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession...",
+      theme: "identity",
+      tags: ["chosen", "royal", "set apart", "God’s possession"]
+    },
+    "Ephesians 1:4–6": {
+      text: "For he chose us in him before the creation of the world to be holy and blameless in his sight. In love he predestined us for adoption to sonship through Jesus Christ...",
+      theme: "love",
+      tags: ["chosen", "predestined", "loved", "adopted"]
+    }
+  },
+
+  "You are adopted and belong to God’s family": {
+    "John 1:12": {
+      text: "Yet to all who did receive him, to those who believed in his name, he gave the right to become children of God.",
+      theme: "salvation",
+      tags: ["child of God", "faith", "belonging", "identity"]
+    },
+    "Romans 8:16–17": {
+      text: "The Spirit himself testifies with our spirit that we are God’s children. Now if we are children, then we are heirs—heirs of God and co-heirs with Christ...",
+      theme: "inheritance",
+      tags: ["children of God", "heirs", "Holy Spirit", "belonging"]
+    },
+    "Ephesians 2:19": {
+      text: "Consequently, you are no longer foreigners and strangers, but fellow citizens with God’s people and also members of his household.",
+      theme: "belonging",
+      tags: ["citizen", "God’s household", "identity", "unity"]
+    }
+  },
+
+  "You are loved, forgiven, and redeemed": {
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["unconditional love", "grace", "forgiveness", "cross"]
+    },
+    "Ephesians 1:7": {
+      text: "In him we have redemption through his blood, the forgiveness of sins, in accordance with the riches of God’s grace.",
+      theme: "grace",
+      tags: ["forgiveness", "redemption", "grace", "Jesus"]
+    },
+    "Isaiah 43:1": {
+      text: "Fear not, for I have redeemed you; I have called you by name; you are mine.",
+      theme: "identity",
+      tags: ["redeemed", "personal", "God’s", "fear not"]
+    }
+  },
+
+  "You are salt, light, and a temple of the Spirit": {
+    "Matthew 5:13–14": {
+      text: "You are the salt of the earth… You are the light of the world. A town built on a hill cannot be hidden.",
+      theme: "light",
+      tags: ["influence", "identity", "witness", "purpose"]
+    },
+    "1 Corinthians 6:19": {
+      text: "Do you not know that your body is a temple of the Holy Spirit within you, whom you have from God? You are not your own.",
+      theme: "holy",
+      tags: ["temple", "Spirit", "belonging", "sacred identity"]
+    }
+  },
+
+  "You are secure and victorious in Christ": {
+    "Romans 8:37": {
+      text: "No, in all these things we are more than conquerors through him who loved us.",
+      theme: "victory",
+      tags: ["conqueror", "love", "strength", "security"]
+    },
+    "Colossians 3:3": {
+      text: "For you died, and your life is now hidden with Christ in God.",
+      theme: "security",
+      tags: ["hidden", "safe in Christ", "eternal life", "identity"]
+    }
+  },
+
+  "You are one with others in Christ": {
+    "Galatians 3:28": {
+      text: "There is neither Jew nor Greek, slave nor free, male nor female, for you are all one in Christ Jesus.",
+      theme: "unity",
+      tags: ["oneness", "identity in Christ", "no division", "belonging"]
+    }
+  }
+
+};
+
+
+//How do I discover my spiritual gifts?
+let q66ans = {
+
+  "Ask God to reveal them": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "guidance",
+      tags: ["wisdom", "asking", "clarity", "gifts"]
+    },
+    "Matthew 7:7": {
+      text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you.",
+      theme: "seek",
+      tags: ["prayer", "searching", "spiritual gifts"]
+    },
+    "Jeremiah 33:3": {
+      text: "Call to me and I will answer you and tell you great and unsearchable things you do not know.",
+      theme: "understanding",
+      tags: ["calling", "listening", "God’s voice", "mystery"]
+    }
+  },
+
+  "Serve faithfully and gifts will become clear": {
+    "Colossians 3:23-24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters. It is the Lord Christ you are serving.",
+      theme: "obedience",
+      tags: ["service", "heart", "faithfulness", "discover gifts"]
+    },
+    "Galatians 5:13": {
+      text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather, serve one another humbly in love.",
+      theme: "humble",
+      tags: ["freedom", "humility", "service", "calling"]
+    },
+    "Romans 12:6": {
+      text: "We have different gifts, according to the grace given to each of us. If your gift is prophesying, then prophesy in accordance with your faith;",
+      theme: "grace",
+      tags: ["variety", "gifts", "faith", "purpose"]
+    }
+  },
+
+  "Your gifts were chosen by God": {
+    "1 Corinthians 12:4-6": {
+      text: "There are different kinds of gifts, but the same Spirit distributes them. There are different kinds of service, but the same Lord. There are different kinds of working, but in all of them and in everyone it is the same God at work.",
+      theme: "spirit",
+      tags: ["unity", "gifting", "God at work"]
+    },
+    "1 Peter 4:10": {
+      text: "Each of you should use whatever gift you have received to serve others, as faithful stewards of God’s grace in its various forms.",
+      theme: "obedience",
+      tags: ["grace", "stewardship", "service", "gifts"]
+    },
+    "Jeremiah 1:5": {
+      text: "Before I formed you in the womb I knew you, before you were born I set you apart...",
+      theme: "creation",
+      tags: ["purpose", "calling", "identity", "chosen"]
+    }
+  },
+
+  "Let others help confirm what God has given you": {
+    "Acts 13:2-3": {
+      text: "While they were worshiping the Lord and fasting, the Holy Spirit said, ‘Set apart for me Barnabas and Saul for the work to which I have called them.’",
+      theme: "spirit",
+      tags: ["calling", "community", "confirmation", "Holy Spirit"]
+    },
+    "1 Timothy 4:14": {
+      text: "Do not neglect your gift, which was given you through prophecy when the body of elders laid their hands on you.",
+      theme: "growth",
+      tags: ["elders", "prophecy", "recognition", "spiritual gifts"]
+    }
+  },
+
+  "Gifts grow through faithful use": {
+    "Matthew 25:14–30": {
+      text: "Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things...",
+      theme: "growth",
+      tags: ["faithfulness", "increase", "stewardship", "talents"]
+    },
+    "Luke 16:10": {
+      text: "Whoever can be trusted with very little can also be trusted with much...",
+      theme: "faithful",
+      tags: ["trust", "small beginnings", "growth", "gifts"]
+    }
+  },
+
+  "You were created on purpose, for a purpose": {
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "purpose",
+      tags: ["creation", "good works", "identity", "prepared path"]
+    }
+  }
+
+};
+
+// what if I don't feel like I belong?
+let q67ans = {
+
+  "Remember you’re part of God’s family": {
+    "Ephesians 2:19": {
+      text: "Consequently, you are no longer foreigners and strangers, but fellow citizens with God's people and also members of his household.",
+      theme: "presence",
+      tags: ["citizenship", "household", "identity", "community"]
+    },
+    "1 John 3:1": {
+      text: "See what great love the Father has lavished on us, that we should be called children of God! And that is what we are!",
+      theme: "love",
+      tags: ["children of God", "belonging", "love", "identity"]
+    },
+    "Romans 8:15": {
+      text: "The Spirit you received does not make you slaves, so that you live in fear again; rather, the Spirit you received brought about your adoption to sonship. And by him we cry, 'Abba, Father.'",
+      theme: "spirit",
+      tags: ["adoption", "identity", "family", "belonging"]
+    }
+  },
+
+  "Know you are chosen and set apart": {
+    "1 Peter 2:9": {
+      text: "But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession...",
+      theme: "submission",
+      tags: ["chosen", "royalty", "holy", "possessed"]
+    },
+    "Jeremiah 1:5": {
+      text: "Before I formed you in the womb I knew you, before you were born I set you apart...",
+      theme: "creation",
+      tags: ["set apart", "purpose", "known", "intentional"]
+    }
+  },
+
+  "Find unity through Christ, not uniformity": {
+    "Galatians 3:28": {
+      text: "There is neither Jew nor Greek, slave nor free, male nor female, for you are all one in Christ Jesus.",
+      theme: "peace",
+      tags: ["oneness", "equality", "division broken", "identity"]
+    },
+    "1 Corinthians 12:26-27": {
+      text: "If one member suffers, all suffer together;... Now you are the body of Christ, and each one of you is a part of it.",
+      theme: "walk",
+      tags: ["body", "community", "together", "belonging"]
+    }
+  },
+
+  "Trust God made you fearfully and wonderfully": {
+    "Psalm 139:14": {
+      text: "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
+      theme: "creation",
+      tags: ["fearfully made", "wonderful", "identity", "value"]
+    },
+    "Isaiah 43:1": {
+      text: "Do not fear, for I have redeemed you; I have summoned you by name; you are mine.",
+      theme: "love",
+      tags: ["identity", "called", "belonging", "value"]
+    }
+  },
+
+  "Remember true home is in heaven": {
+    "Hebrews 13:14": {
+      text: "For here we do not have an enduring city, but we are looking for the city that is to come.",
+      theme: "eternal",
+      tags: ["heavenly", "citizenship", "eternal hope", "belonging"]
+    },
+    "Philippians 3:20": {
+      text: "But our citizenship is in heaven. And we eagerly await a Savior from there, the Lord Jesus Christ.",
+      theme: "savior",
+      tags: ["heaven", "citizenship", "identity", "hope"]
+    }
+  },
+
+  "Anchor your identity in Christ, not people": {
+    "Colossians 3:3": {
+      text: "For you died, and your life is now hidden with Christ in God.",
+      theme: "salvation",
+      tags: ["hidden with Christ", "identity", "security", "eternal"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind.",
+      theme: "transformation",
+      tags: ["renew mind", "non-conformity", "identity", "Christ-likeness"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new creation", "identity", "renewal", "belonging"]
+    }
+  }
+
+};
+
+// how do I find the purpose God has for me?
+let q68ans = {
+
+  "Seek God above all else": {
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["seek God", "kingdom", "priority", "trust", "purpose"]
+    },
+    "Jeremiah 29:13": {
+      text: "You will seek me and find me when you seek me with all your heart.",
+      theme: "seek",
+      tags: ["seek", "find", "whole heart", "purpose"]
+    }
+  },
+
+  "Abide in Christ to bear fruit": {
+    "John 15:4-5": {
+      text: "Remain in me, as I also remain in you... If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.",
+      theme: "walk",
+      tags: ["abide", "fruit", "relationship", "dependence", "purpose"]
+    },
+    "John 10:27": {
+      text: "My sheep listen to my voice; I know them, and they follow me.",
+      theme: "guidance",
+      tags: ["listen", "follow", "relationship", "purpose", "direction"]
+    }
+  },
+
+  "Let God renew your thinking": {
+    "Romans 12:1-2": {
+      text: "Offer your bodies as a living sacrifice... Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is.",
+      theme: "transformation",
+      tags: ["sacrifice", "renew mind", "God’s will", "purpose"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "submit", "path", "direction", "purpose"]
+    }
+  },
+
+  "Ask God for wisdom and direction": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["ask", "guidance", "prayer", "purpose", "wisdom"]
+    },
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "guidance",
+      tags: ["commit", "plans", "purpose", "trust"]
+    }
+  },
+
+  "Be faithful in the small things": {
+    "Luke 16:10": {
+      text: "Whoever can be trusted with very little can also be trusted with much...",
+      theme: "faithful",
+      tags: ["faithfulness", "growth", "trust", "purpose"]
+    },
+    "Colossians 3:23-24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters...",
+      theme: "obedience",
+      tags: ["work", "faithful", "Lord", "reward", "purpose"]
+    }
+  },
+
+  "Walk humbly and live justly": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["justice", "mercy", "humility", "purpose", "walk"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "obedience",
+      tags: ["created", "good works", "prepared", "purpose"]
+    }
+  },
+
+  "Delight in God and commit your ways": {
+    "Psalm 37:4-5": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart. Commit your way to the Lord; trust in him and he will do this.",
+      theme: "guidance",
+      tags: ["delight", "trust", "commit", "desire", "purpose"]
+    },
+    "Proverbs 19:21": {
+      text: "Many are the plans in a person’s heart, but it is the Lord’s purpose that prevails.",
+      theme: "guidance",
+      tags: ["plans", "purpose", "God’s will", "trust"]
+    }
+  },
+
+  "Do everything for God’s glory": {
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["whatever you do", "intentionality", "glory", "purpose"]
+    },
+    "Matthew 5:16": {
+      text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "glory",
+      tags: ["shine", "deeds", "glory", "purpose"]
+    }
+  }
+
+};
+
+// What does it mean to live a meaningful life?
+let q69ans = {
+
+  "Live for God's glory, not just your own gain": {
+    "Ecclesiastes 12:13": {
+      text: "Now all has been heard; here is the conclusion of the matter: Fear God and keep his commandments, for this is the duty of all mankind.",
+      theme: "obedience",
+      tags: ["fear God", "commandments", "purpose", "meaning"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "obedience",
+      tags: ["glory", "daily life", "purpose", "God's will"]
+    }
+  },
+
+  "Find joy and purpose in walking with God": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "walk",
+      tags: ["justice", "mercy", "humility", "God’s path"]
+    },
+    "Psalm 16:11": {
+      text: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.",
+      theme: "presence",
+      tags: ["joy", "God's presence", "life path", "eternity"]
+    }
+  },
+
+  "Use your life to serve and love others": {
+    "Galatians 5:13": {
+      text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather, serve one another humbly in love.",
+      theme: "love",
+      tags: ["freedom", "service", "humility", "love"]
+    },
+    "1 Peter 4:10": {
+      text: "Each of you should use whatever gift you have received to serve others, as faithful stewards of God's grace in its various forms.",
+      theme: "grace",
+      tags: ["gifts", "service", "faithful", "stewardship"]
+    }
+  },
+
+  "Build your life on God, not the world": {
+    "Matthew 6:21": {
+      text: "For where your treasure is, there your heart will be also.",
+      theme: "treasure",
+      tags: ["heart", "values", "priority", "meaning"]
+    },
+    "Matthew 6:33": {
+      text: "But seek first God’s kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["seek God", "priority", "kingdom", "meaning"]
+    }
+  },
+
+  "Trust God’s purpose even in hard times": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who are called according to his purpose.",
+      theme: "purpose",
+      tags: ["good", "called", "purpose", "trust"]
+    },
+    "Psalm 138:8": {
+      text: "The Lord will fulfill his purpose for me; your steadfast love, O Lord, endures forever.",
+      theme: "faithful",
+      tags: ["purpose", "steadfast love", "fulfill", "trust"]
+    }
+  },
+
+  "Live intentionally for God's glory": {
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["whatever you do", "intentionality", "glory", "life"]
+    },
+    "Matthew 5:16": {
+      text: "Let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["good deeds", "shine", "witness", "glorify"]
+    }
+  },
+
+  "Renew your mind to know God's will": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["renew mind", "God’s will", "purpose", "discern"]
+    }
+  },
+
+  "Trust and commit your plans to God": {
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "guidance",
+      tags: ["commit", "plans", "establish", "purpose"]
+    },
+    "Proverbs 19:21": {
+      text: "Many are the plans in a person’s heart, but it is the Lord’s purpose that prevails.",
+      theme: "purpose",
+      tags: ["plans", "purpose", "God’s will", "trust"]
+    }
+  },
+
+  "Serve your neighbors and walk humbly": {
+    "Micah 6:8": {
+      text: "He has shown you... act justly and love mercy and walk humbly with your God.",
+      theme: "obedience",
+      tags: ["justice", "mercy", "humility", "walk"]
+    }
+  },
+
+  "Find joy in God's presence": {
+    "Psalm 16:11": {
+      text: "You will show me the way of life, granting me the joy of your presence and the pleasures of living with you forever.",
+      theme: "presence",
+      tags: ["joy", "presence", "way of life", "pleasures"]
+    }
+  }
+
+};
+
+// How do I forgive myself?
+let q70ans = {
+
+  "Accept God's forgiveness and let go of shame": {
+    "Isaiah 43:25": {
+      text: "I, even I, am he who blots out your transgressions, for my own sake, and remembers your sins no more.",
+      theme: "mercy",
+      tags: ["blot out", "no memory", "forgiveness", "God’s mercy"]
+    },
+    "Colossians 1:22": {
+      text: "But now he has reconciled you by Christ’s physical body through death to present you holy in his sight, without blemish and free from accusation.",
+      theme: "salvation",
+      tags: ["clean", "holy", "free", "accepted", "no accusation"]
+    },
+    "Romans 5:1": {
+      text: "Therefore, since we have been justified through faith, we have peace with God through our Lord Jesus Christ.",
+      theme: "salvation",
+      tags: ["peace", "justified", "Jesus", "guilt-free"]
+    },
+    "Psalm 34:5": {
+      text: "Those who look to him are radiant; their faces are never covered with shame.",
+      theme: "transformation",
+      tags: ["shame lifted", "healing", "joy", "looking to God"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["confession", "cleansing", "faithful", "grace"]
+    },
+    "Psalm 103:10-12": {
+      text: "He does not treat us as our sins deserve or repay us according to our iniquities... as far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "mercy",
+      tags: ["distance", "undeserved", "removed sins", "grace"]
+    },
+    "Romans 8:1": {
+      text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
+      theme: "salvation",
+      tags: ["no condemnation", "freedom", "in Christ", "guilt"]
+    }
+  },
+
+  "Walk in the new life God gives you": {
+    "Ezekiel 36:26": {
+      text: "I will give you a new heart and put a new spirit in you...",
+      theme: "transformation",
+      tags: ["new start", "healing", "spiritual renewal", "identity"]
+    },
+    "Philippians 3:13-14": {
+      text: "But one thing I do: Forgetting what is behind and straining toward what is ahead, I press on toward the goal...",
+      theme: "growth",
+      tags: ["moving forward", "past", "purpose", "future"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new creation", "identity", "Jesus", "past gone"]
+    }
+  }
+
+}
+
+// How do I set boundaries and still be loving?
+let q71ans = {
+
+  "Jesus set boundaries while staying in love": {
+    "Luke 5:16": {
+      text: "But Jesus often withdrew to lonely places and prayed.",
+      theme: "spirit",
+      tags: ["withdraw", "prayer", "rest", "boundaries"]
+    },
+    "Mark 1:37–38": {
+      text: "When they found him, they exclaimed: 'Everyone is looking for you!' Jesus replied, 'Let us go somewhere else—to the nearby villages—so I can preach there also. That is why I have come.'",
+      theme: "obedience",
+      tags: ["purpose", "focus", "mission", "Jesus"]
+    },
+    "John 2:24-25": {
+      text: "But Jesus would not entrust himself to them, for he knew all people. He did not need any testimony about mankind, for he knew what was in each person.",
+      theme: "guidance",
+      tags: ["discernment", "people", "boundaries", "trust"]
+    }
+  },
+
+  "Boundaries are a way to love with truth": {
+    "Galatians 1:10": {
+      text: "Am I now trying to win the approval of human beings, or of God? Or am I trying to please people? If I were still trying to please people, I would not be a servant of Christ.",
+      theme: "truth",
+      tags: ["people pleasing", "God first", "approval", "identity"]
+    },
+    "Ephesians 4:15": {
+      text: "Instead, speaking the truth in love, we will grow to become in every respect the mature body of him who is the head, that is, Christ.",
+      theme: "truth",
+      tags: ["truth", "love", "growth", "maturity"]
+    },
+    "Proverbs 27:6": {
+      text: "Wounds from a friend can be trusted, but an enemy multiplies kisses.",
+      theme: "friend",
+      tags: ["honesty", "truth", "real friendship", "love"]
+    }
+  },
+
+  "God gives wisdom to guard your heart": {
+    "Proverbs 22:24-25": {
+      text: "Do not make friends with a hot-tempered person, do not associate with one easily angered, or you may learn their ways and get yourself ensnared.",
+      theme: "guidance",
+      tags: ["anger", "friendship", "protection", "wisdom"]
+    },
+    "Romans 12:18": {
+      text: "If it is possible, as far as it depends on you, live at peace with everyone.",
+      theme: "peace",
+      tags: ["peace", "effort", "relationships", "boundaries"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "protect",
+      tags: ["heart", "protection", "wisdom", "life"]
+    }
+  },
+
+  "Saying no can be godly and Spirit-led": {
+    "Titus 2:12": {
+      text: "It teaches us to say “No” to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "obedience",
+      tags: ["self-control", "godliness", "boundaries", "upright"]
+    },
+    "2 Timothy 1:7": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.",
+      theme: "spirit",
+      tags: ["power", "love", "discipline", "boldness"]
+    },
+    "Matthew 5:37": {
+      text: "All you need to say is simply 'Yes' or 'No'; anything beyond this comes from the evil one.",
+      theme: "truth",
+      tags: ["clarity", "boundaries", "speech", "honesty"]
+    }
+  }
+};
+
+// What does God say about toxic relationships?
+let q72ans = {
+
+"Set boundaries to protect your walk": {
+  "Proverbs 22:24–25": {
+    text: "Do not make friends with a hot-tempered person, do not associate with one easily angered, or you may learn their ways and get yourself ensnared.",
+    theme: "walk",
+    tags: ["anger", "boundaries", "influence", "friendship"]
+  },
+  "1 Corinthians 15:33": {
+    text: "Do not be misled: ‘Bad company corrupts good character.’",
+    theme: "growth",
+    tags: ["character", "company", "warning", "relationships"]
+  },
+  "Psalm 1:1": {
+    text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers.",
+    theme: "walk",
+    tags: ["separation", "wicked", "blessing", "path"]
+  },
+  "2 Timothy 3:2–5": {
+    text: "People will be lovers of themselves, lovers of money, boastful, proud... having a form of godliness but denying its power. Have nothing to do with such people.",
+    theme: "truth",
+    tags: ["false godliness", "pride", "avoidance", "last days"]
+  },
+  "Proverbs 13:20": {
+    text: "Walk with the wise and become wise, for a companion of fools suffers harm.",
+    theme: "wisdom",
+    tags: ["wisdom", "companionship", "influence", "harm"]
+  }
+},
+
+"Let go when hearts are hard and divisive": {
+  "Matthew 10:14": {
+    text: "If anyone will not welcome you or listen to your words, leave that home or town and shake the dust off your feet.",
+    theme: "obedience",
+    tags: ["rejection", "leaving", "freedom", "Jesus' instructions"]
+  },
+  "Titus 3:10": {
+    text: "Warn a divisive person once, and then warn them a second time. After that, have nothing to do with them.",
+    theme: "peace",
+    tags: ["division", "warnings", "boundaries", "wisdom"]
+  },
+  "Romans 16:17": {
+    text: "I urge you, brothers and sisters, to watch out for those who cause divisions and put obstacles in your way... Keep away from them.",
+    theme: "peace",
+    tags: ["divisions", "obstacles", "wisdom", "distance"]
+  },
+  "2 Thessalonians 3:6": {
+    text: "Keep away from every believer who is idle and disruptive and does not live according to the teaching you received from us.",
+    theme: "obedience",
+    tags: ["disruption", "idle", "distance", "fellowship"]
+  }
+},
+
+"Christlike love doesn’t ignore evil": {
+  "Proverbs 4:14–15": {
+    text: "Do not set foot on the path of the wicked or walk in the way of evildoers. Avoid it, do not travel on it; turn from it and go on your way.",
+    theme: "walk",
+    tags: ["evil", "avoidance", "discernment", "turning"]
+  },
+  "Ephesians 5:11": {
+    text: "Have nothing to do with the fruitless deeds of darkness, but rather expose them.",
+    theme: "truth",
+    tags: ["expose", "darkness", "separation", "accountability"]
+  },
+  "1 Corinthians 5:11": {
+    text: "But now I am writing to you that you must not associate with anyone who claims to be a brother or sister but is sexually immoral or greedy... Do not even eat with such people.",
+    theme: "obedience",
+    tags: ["false believers", "discipline", "boundaries", "purity"]
+  }
+},
+
+"Sometimes love means walking away": {
+  "Matthew 7:6": {
+    text: "Do not give dogs what is sacred; do not throw your pearls to pigs. If you do, they may trample them under their feet, and turn and tear you to pieces.",
+    theme: "wisdom",
+    tags: ["sacred", "boundaries", "value", "discernment"]
+  },
+  "Luke 9:5": {
+    text: "If people do not welcome you, leave their town and shake the dust off your feet as a testimony against them.",
+    theme: "obedience",
+    tags: ["dust", "freedom", "rejection", "testimony"]
+  },
+  "Jeremiah 15:19": {
+    text: "Let this people turn to you, but you must not turn to them.",
+    theme: "obedience",
+    tags: ["influence", "stand firm", "loyalty", "separation"]
+  },
+  "Amos 3:3": {
+    text: "Do two walk together unless they have agreed to do so?",
+    theme: "walk",
+    tags: ["agreement", "alignment", "relationships", "boundaries"]
+  }
+},
+
+"God sees your pain and cares": {
+  "Psalm 147:3": {
+    text: "He heals the brokenhearted and binds up their wounds.",
+    theme: "help",
+    tags: ["healing", "comfort", "pain", "God's care"]
+  },
+  "Romans 12:18": {
+    text: "If it is possible, as far as it depends on you, live at peace with everyone.",
+    theme: "peace",
+    tags: ["peace", "effort", "responsibility", "boundaries"]
+  },
+  "Romans 12:19": {
+    text: "Do not take revenge, my dear friends, but leave room for God's wrath...",
+    theme: "justice",
+    tags: ["revenge", "wrath", "patience", "trust"]
+  },
+  "Proverbs 6:16–19": {
+    text: "There are six things the Lord hates... a false witness who pours out lies and a person who stirs up conflict in the community.",
+    theme: "justice",
+    tags: ["lies", "conflict", "God's hate", "division"]
+  }
+},
+
+"Toxic ties can defile your spirit": {
+  "2 Corinthians 6:14–17": {
+    text: "Do not be yoked together with unbelievers... 'Come out from them and be separate,' says the Lord.",
+    theme: "holy",
+    tags: ["yoke", "separation", "purity", "obedience"]
+  },
+  "James 3:16": {
+    text: "For where you have envy and selfish ambition, there you find disorder and every evil practice.",
+    theme: "fallenness",
+    tags: ["envy", "ambition", "evil", "disorder"]
+  },
+  "James 4:4": {
+    text: "Don’t you know that friendship with the world means enmity against God?",
+    theme: "obedience",
+    tags: ["friendship", "world", "loyalty", "God’s enemies"]
+  }
+}
+
+};
+
+//Is it okay to walk away from someone?
+let q73ans = {
+
+  "Walk away to keep peace, not start war": {
+    "Proverbs 17:14": {
+      text: "Starting a quarrel is like breaching a dam; so drop the matter before a dispute breaks out.",
+      theme: "peace",
+      tags: ["conflict", "wisdom", "boundaries", "letting go"]
+    },
+    "Romans 12:18": {
+      text: "If it is possible, as far as it depends on you, live at peace with everyone.",
+      theme: "peace",
+      tags: ["peace", "relationships", "limits", "responsibility"]
+    },
+    "Proverbs 22:24–25": {
+      text: "Do not make friends with a hot-tempered person, do not associate with one easily angered, or you may learn their ways and get yourself ensnared.",
+      theme: "wisdom",
+      tags: ["anger", "bad company", "influence", "discernment"]
+    }
+  },
+
+  "Sometimes love means creating space": {
+    "Ecclesiastes 3:5–6": {
+      text: "A time to embrace and a time to refrain from embracing, a time to search and a time to give up, a time to keep and a time to throw away.",
+      theme: "guidance",
+      tags: ["seasons", "change", "wisdom", "discernment"]
+    },
+    "1 Samuel 18:10–11": {
+      text: "The next day an evil spirit from God came forcefully on Saul... Saul had a spear in his hand and he hurled it, saying to himself, 'I’ll pin David to the wall.' But David eluded him twice.",
+      theme: "protect",
+      tags: ["abuse", "safety", "escape", "self-protection"]
+    },
+    "Matthew 10:14": {
+      text: "If anyone will not welcome you or listen to your words, leave that home or town and shake the dust off your feet.",
+      theme: "obedience",
+      tags: ["rejection", "mission", "boundaries", "letting go"]
+    }
+  },
+
+  "You can walk away with humility, not pride": {
+    "Galatians 6:1": {
+      text: "Brothers and sisters, if someone is caught in a sin, you who live by the Spirit should restore that person gently. But watch yourselves, or you also may be tempted.",
+      theme: "humble",
+      tags: ["gentleness", "restoration", "boundaries", "humility"]
+    },
+    "Proverbs 26:4–5": {
+      text: "Do not answer a fool according to his folly, or you yourself will be just like him. Answer a fool according to his folly, or he will be wise in his own eyes.",
+      theme: "wisdom",
+      tags: ["discernment", "engagement", "walking away", "when to speak"]
+    }
+  },
+
+  "Sometimes Jesus walked away too": {
+    "John 8:59": {
+      text: "At this, they picked up stones to stone him, but Jesus hid himself, slipping away from the temple grounds.",
+      theme: "guidance",
+      tags: ["safety", "wisdom", "boundaries", "Jesus"]
+    },
+    "Luke 4:29–30": {
+      text: "They got up, drove him out of the town... but he walked right through the crowd and went on his way.",
+      theme: "obedience",
+      tags: ["mission", "leaving", "Jesus", "hostility"]
+    }
+  },
+
+  "Even Paul sometimes left people behind": {
+    "2 Timothy 4:10": {
+      text: "Demas, because he loved this world, has deserted me and has gone to Thessalonica.",
+      theme: "fallenness",
+      tags: ["abandonment", "pain", "letting go", "people change"]
+    },
+    "Acts 15:37–39": {
+      text: "Barnabas wanted to take John (also called Mark)... Paul did not think it wise... They had such a sharp disagreement that they parted company.",
+      theme: "wisdom",
+      tags: ["disagreements", "ministry", "separation", "respect"]
+    }
+  }
+
+};
+
+//How do I honor my parents if we don't get along?
+let q74ans = {
+
+  "Honor your parents because God commands it—even when it’s hard": {
+    "Exodus 20:12": {
+      text: "Honor your father and your mother, so that you may live long in the land the Lord your God is giving you.",
+      theme: "obedience",
+      tags: ["commandment", "respect", "parents", "promise"]
+    },
+    "Ephesians 6:1–3": {
+      text: "Children, obey your parents in the Lord, for this is right. ‘Honor your father and mother’—which is the first commandment with a promise—‘so that it may go well with you and that you may enjoy long life on the earth.’",
+      theme: "obedience",
+      tags: ["honor", "obedience", "in the Lord", "promise"]
+    },
+    "Leviticus 19:3": {
+      text: "Each of you must respect your mother and father, and you must observe my Sabbaths. I am the Lord your God.",
+      theme: "obedience",
+      tags: ["respect", "parents", "law", "honor"]
+    },
+    "Matthew 15:3–6": {
+      text: "Jesus replied, ‘And why do you break the command of God for the sake of your tradition? ... Thus you nullify the word of God for the sake of your tradition.’",
+      theme: "obedience",
+      tags: ["honor", "parents", "tradition", "Jesus' rebuke"]
+    }
+  },
+
+  "Honor includes how you respond—even in conflict": {
+    "Proverbs 15:1": {
+      text: "A gentle answer turns away wrath, but a harsh word stirs up anger.",
+      theme: "wisdom",
+      tags: ["gentleness", "tone", "conflict", "peace"]
+    },
+    "Romans 12:18": {
+      text: "If it is possible, as far as it depends on you, live at peace with everyone.",
+      theme: "peace",
+      tags: ["peace", "effort", "relationships", "boundaries"]
+    },
+    "1 Peter 3:9": {
+      text: "Do not repay evil with evil or insult with insult. On the contrary, repay evil with blessing...",
+      theme: "humble",
+      tags: ["blessing", "honor", "conflict", "grace"]
+    },
+    "Romans 12:19–20": {
+      text: "Do not take revenge... ‘If your enemy is hungry, feed him; if he is thirsty, give him something to drink.’",
+      theme: "mercy",
+      tags: ["revenge", "kindness", "honor", "enemy love"]
+    },
+    "1 Timothy 5:1": {
+      text: "Do not rebuke an older man harshly, but exhort him as if he were your father.",
+      theme: "wisdom",
+      tags: ["respect", "tone", "elders", "conflict"]
+    }
+  },
+
+  "Honor does not mean blind obedience when God’s will says otherwise": {
+    "Acts 5:29": {
+      text: "Peter and the other apostles replied: 'We must obey God rather than human beings!'",
+      theme: "obedience",
+      tags: ["God first", "obedience", "conscience", "boundaries"]
+    },
+    "Matthew 10:37": {
+      text: "Anyone who loves their father or mother more than me is not worthy of me.",
+      theme: "obedience",
+      tags: ["Jesus first", "family conflict", "priority", "obedience"]
+    },
+    "Luke 2:48–49": {
+      text: "‘Why were you searching for me?’ he asked. ‘Didn’t you know I had to be in my Father’s house?’",
+      theme: "obedience",
+      tags: ["Jesus", "God's will", "family misunderstanding", "calling"]
+    }
+  },
+
+  "Jesus experienced family tension too — and stayed faithful": {
+    "Mark 3:21,31–35": {
+      text: "‘Who are my mother and my brothers?’ he asked. Then he looked at those seated in a circle around him and said, ‘Here are my mother and my brothers! Whoever does God’s will is my brother and sister and mother.’",
+      theme: "obedience",
+      tags: ["Jesus", "family", "misunderstood", "God’s will"]
+    }
+  },
+
+  "Treasure your parents' wisdom — when it’s available and true": {
+    "Proverbs 1:8–9": {
+      text: "Listen, my son, to your father’s instruction and do not forsake your mother’s teaching. They are a garland to grace your head and a chain to adorn your neck.",
+      theme: "wisdom",
+      tags: ["instruction", "value", "teaching", "honor"]
+    }
+  },
+
+  "Honor applies for life—obedience is for the season of dependence": {
+    "Colossians 3:20–21": {
+      text: "Children, obey your parents in everything, for this pleases the Lord. Fathers, do not embitter your children, or they will become discouraged.",
+      theme: "obedience",
+      tags: ["obedience", "mutual responsibility", "children", "parents"]
+    }
+  }
+
+};
+
+//What does it look like to live by faith daily?
+let q75ans = {
+
+  "Trust God even when you can’t see the outcome": {
+    "Hebrews 11:1": {
+      text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
+      theme: "faithful",
+      tags: ["faith", "hope", "unseen", "daily trust"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "submission", "faith", "everyday"]
+    },
+    "Genesis 12:1,4": {
+      text: "The Lord had said to Abram, 'Go from your country... to the land I will show you.' So Abram went, as the Lord had told him...",
+      theme: "obedience",
+      tags: ["Abraham", "trust", "daily journey", "obedience", "unknown path"]
+    },
+    "Romans 1:17": {
+      text: "For in the gospel the righteousness of God is revealed—a righteousness that is by faith from first to last, just as it is written: 'The righteous will live by faith.'",
+      theme: "salvation",
+      tags: ["faith", "righteousness", "life of faith", "daily walk"]
+    }
+  },
+
+  "Obey God in your daily choices": {
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "obedience",
+      tags: ["action", "obedience", "faith", "daily life"]
+    },
+    "Luke 9:23": {
+      text: "Then he said to them all: 'Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.'",
+      theme: "submission",
+      tags: ["follow Jesus", "daily choice", "self-denial", "faith in action"]
+    },
+    "James 2:17": {
+      text: "In the same way, faith by itself, if it is not accompanied by action, is dead.",
+      theme: "obedience",
+      tags: ["faith in action", "obedience", "daily deeds", "real faith"]
+    },
+    "Genesis 6:22": {
+      text: "Noah did everything just as God commanded him.",
+      theme: "obedience",
+      tags: ["Noah", "daily obedience", "trust", "God's command"]
+    }
+  },
+
+  "Stay close to God through prayer and gratitude": {
+    "1 Thessalonians 5:16–18": {
+      text: "Rejoice always, pray continually, give thanks in all circumstances; for this is God’s will for you in Christ Jesus.",
+      theme: "devotion",
+      tags: ["prayer", "joy", "gratitude", "God’s will", "everyday faith"]
+    },
+    "Philippians 4:6–7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God...",
+      theme: "peace",
+      tags: ["prayer", "trust", "daily situations", "faith vs worry"]
+    },
+    "Daniel 6:10": {
+      text: "Now when Daniel learned that the decree had been published, he went home... and three times a day he got down on his knees and prayed, giving thanks to his God, just as he had done before.",
+      theme: "devotion",
+      tags: ["prayer", "faithfulness", "habit", "bold faith", "daily life"]
+    }
+  },
+  
+  "Trusting God in Every Step": {
+    "Psalm 37:5": {
+      text: "Commit your way to the Lord; trust in Him, and He will act.",
+      theme: "trust",
+      tags: ["trust", "action", "commit", "way", "daily"]
+    },
+    "Jeremiah 17:7-8": {
+      text: "Blessed is the man who trusts in the Lord, whose trust is the Lord. He is like a tree planted by water, that sends out its roots by the stream, and does not fear when heat comes, for its leaves remain green, and is not anxious in the year of drought, for it does not cease to bear fruit.",
+      theme: "trust",
+      tags: ["trust", "blessed", "fruit", "daily", "roots"]
+    }
+  },
+
+  "Walking in Obedience Even When It's Hard": {
+    "Deuteronomy 30:16": {
+      text: "If you obey the commandments of the Lord your God that I command you today, by loving the Lord your God, by walking in His ways, and by keeping His commandments and His statutes and His rules, then you shall live and multiply, and the Lord your God will bless you in the land that you are entering to take possession of it.",
+      theme: "obedience",
+      tags: ["obedience", "walk", "commandments", "blessing", "daily"]
+    },
+    "Romans 12:1": {
+      text: "I appeal to you therefore, brothers, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship.",
+      theme: "submission",
+      tags: ["sacrifice", "daily", "worship", "obedience", "body"]
+    }
+  },
+
+  "Living with Vision Beyond Sight": {
+    "1 Peter 1:8-9": {
+      text: "Though you have not seen Him, you love Him. Though you do not now see Him, you believe in Him and rejoice with joy that is inexpressible and filled with glory, obtaining the outcome of your faith, the salvation of your souls.",
+      theme: "faith",
+      tags: ["unseen", "believe", "faith", "joy", "salvation"]
+    },
+    "Philippians 3:13-14": {
+      text: "Brothers, I do not consider that I have made it my own. But one thing I do: forgetting what lies behind and straining forward to what lies ahead, I press on toward the goal for the prize of the upward call of God in Christ Jesus.",
+      theme: "growth",
+      tags: ["vision", "goal", "press", "faith", "daily"]
+    }
+  },
+
+  "Faith at Work in Real Life": {
+    "James 1:22": {
+      text: "But be doers of the word, and not hearers only, deceiving yourselves.",
+      theme: "obedience",
+      tags: ["action", "word", "faith", "daily", "doer"]
+    },
+    "1 Corinthians 16:13": {
+      text: "Be watchful, stand firm in the faith, act like men, be strong.",
+      theme: "battle",
+      tags: ["firm", "faith", "strong", "daily", "action"]
+    }
+  },
+
+  "Speaking and Thinking in Faith": {
+    "2 Corinthians 4:13": {
+      text: "Since we have the same spirit of faith according to what has been written, 'I believed, and so I spoke,' we also believe, and so we also speak.",
+      theme: "faith",
+      tags: ["speak", "faith", "believe", "daily", "voice"]
+    },
+    "Philippians 4:8": {
+      text: "Finally, brothers, whatever is true, whatever is honorable, whatever is just, whatever is pure, whatever is lovely, whatever is commendable, if there is any excellence, if there is anything worthy of praise, think about these things.",
+      theme: "truth",
+      tags: ["think", "truth", "pure", "faith", "daily"]
+    }
+  },
+
+  "Relying on God's Strength": {
+    "Isaiah 40:31": {
+      text: "But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.",
+      theme: "strength",
+      tags: ["strength", "faith", "wait", "daily", "walk"]
+    },
+    "Psalm 73:26": {
+      text: "My flesh and my heart may fail, but God is the strength of my heart and my portion forever.",
+      theme: "faithful",
+      tags: ["strength", "fail", "faith", "daily", "heart"]
+    }
+  }
+
+};
+
+//how do I tell others about Jesus?
+let q76ans = {
+  "Speak because you believe and belong": {
+    "Romans 1:16": {
+      text: "For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek.",
+      theme: "word",
+      tags: ["power", "salvation", "gospel", "believe"]
+    },
+    "1 Corinthians 9:16": {
+      text: "For if I preach the gospel, that gives me no ground for boasting. For necessity is laid upon me. Woe to me if I do not preach the gospel!",
+      theme: "obedience",
+      tags: ["preach", "gospel", "obey", "mission"]
+    },
+    "2 Timothy 2:15": {
+      text: "Do your best to present yourself to God as one approved, a worker who has no need to be ashamed, rightly handling the word of truth.",
+      theme: "truth",
+      tags: ["worker", "approved", "truth", "study"]
+    },
+    "2 Corinthians 4:13": {
+      text: "Since we have the same spirit of faith according to what has been written, 'I believed, and so I spoke,' we also believe, and so we also speak.",
+      theme: "faithful",
+      tags: ["believe", "speak", "faith", "spirit"]
+    }
+  },
+
+  "Speak with boldness and trust God to work": {
+    "Acts 28:31": {
+      text: "He proclaimed the kingdom of God and taught about the Lord Jesus Christ—with all boldness and without hindrance!",
+      theme: "boldness",
+      tags: ["proclaim", "teach", "kingdom", "free"]
+    },
+    "Ephesians 3:12": {
+      text: "In whom we have boldness and access with confidence through our faith in him.",
+      theme: "hope",
+      tags: ["boldness", "access", "faith", "confidence"]
+    },
+    "Jeremiah 1:7-8": {
+      text: "But the Lord said to me, ‘Do not say, \"I am only a youth\"; for to all to whom I send you, you shall go, and whatever I command you, you shall speak. Do not be afraid of them, for I am with you to deliver you,’ declares the Lord.",
+      theme: "guidance",
+      tags: ["speak", "go", "youth", "fearless"]
+    }
+  },
+
+  "Be a faithful witness in every part of life": {
+    "2 Corinthians 5:20": {
+      text: "Therefore, we are ambassadors for Christ, God making his appeal through us. We implore you on behalf of Christ, be reconciled to God.",
+      theme: "jesus",
+      tags: ["ambassador", "appeal", "reconcile", "christ"]
+    },
+    "Matthew 28:19-20": {
+      text: "Go therefore and make disciples of all nations, baptizing them... teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age.",
+      theme: "obedience",
+      tags: ["go", "teach", "disciples", "presence"]
+    },
+    "Mark 16:15": {
+      text: "And he said to them, 'Go into all the world and proclaim the gospel to the whole creation.'",
+      theme: "obedience",
+      tags: ["go", "proclaim", "world", "gospel"]
+    },
+    "Philippians 2:15-16": {
+      text: "That you may be blameless and innocent, children of God without blemish in the midst of a crooked and twisted generation, among whom you shine as lights in the world, holding fast to the word of life...",
+      theme: "light",
+      tags: ["shine", "light", "word", "generation"]
+    }
+  },
+
+  "Let your words be wise and your heart gentle": {
+    "Colossians 4:5-6": {
+      text: "Walk in wisdom toward outsiders, making the best use of the time. Let your speech always be gracious, seasoned with salt, so that you may know how you ought to answer each person.",
+      theme: "wisdom",
+      tags: ["wisdom", "speech", "grace", "answer"]
+    },
+    "1 Peter 3:15": {
+      text: "But in your hearts honor Christ the Lord as holy, always being prepared to make a defense to anyone who asks you for a reason for the hope that is in you; yet do it with gentleness and respect.",
+      theme: "respect",
+      tags: ["hope", "gentleness", "respect", "defense"]
+    },
+    "Proverbs 15:23": {
+      text: "To make an apt answer is a joy to a man, and a word in season, how good it is!",
+      theme: "wisdom",
+      tags: ["answer", "season", "speech", "good"]
+    }
+  },
+
+  "Live out what you share": {
+    "Matthew 5:14-16": {
+      text: "You are the light of the world... let your light shine before others, so that they may see your good works and give glory to your Father in heaven.",
+      theme: "light",
+      tags: ["light", "shine", "works", "glory"]
+    },
+    "James 1:22": {
+      text: "But be doers of the word, and not hearers only, deceiving yourselves.",
+      theme: "obedience",
+      tags: ["doer", "word", "action", "truth"]
+    },
+    "1 Thessalonians 1:5": {
+      text: "Because our gospel came to you not only in word, but also in power and in the Holy Spirit and with full conviction. You know what kind of men we proved to be among you for your sake.",
+      theme: "spirit",
+      tags: ["gospel", "power", "conviction", "example"]
+    }
+  },
+
+  "Let God's Word fuel your faith to speak": {
+    "Romans 10:17": {
+      text: "So faith comes from hearing, and hearing through the word of Christ.",
+      theme: "faithful",
+      tags: ["faith", "hearing", "word", "christ"]
+    },
+    "John 15:26-27": {
+      text: "But when the Helper comes, whom I will send to you from the Father, the Spirit of truth... he will bear witness about me. And you also will bear witness, because you have been with me from the beginning.",
+      theme: "spirit",
+      tags: ["spirit", "witness", "truth", "helper"]
+    }
+  }
+};
+
+//What if I’m scared to share my faith?
+let q77ans = {
+  "You can be bold because God's Spirit gives you power, not fear": {
+    "2 Timothy 1:7–8": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline. So do not be ashamed of the testimony about our Lord...",
+      theme: "spirit",
+      tags: ["fearless", "HolySpirit", "testimony", "boldness", "shame"]
+    },
+    "Acts 1:8": {
+      text: "But you will receive power when the Holy Spirit comes on you; and you will be my witnesses...",
+      theme: "power",
+      tags: ["HolySpirit", "witness", "mission", "boldness"]
+    },
+    "Micah 3:8": {
+      text: "But as for me, I am filled with power, with the Spirit of the Lord, and with justice and might, to declare to Jacob his transgression...",
+      theme: "power",
+      tags: ["HolySpirit", "strength", "bold speech", "courage"]
+    }
+  },
+
+  "You are not alone—God is with you when you speak": {
+    "Exodus 4:12": {
+      text: "Now go; I will help you speak and will teach you what to say.",
+      theme: "guidance",
+      tags: ["calling", "speech", "help", "boldness"]
+    },
+    "Jeremiah 1:7–8": {
+      text: "Do not say, 'I am too young.' You must go to everyone I send you to... Do not be afraid of them, for I am with you and will rescue you, declares the Lord.",
+      theme: "obedience",
+      tags: ["calling", "youth", "boldness", "obedience", "presence"]
+    },
+    "Psalm 118:6": {
+      text: "The Lord is with me; I will not be afraid. What can mere mortals do to me?",
+      theme: "presence",
+      tags: ["fear", "boldness", "confidence", "safety"]
+    }
+  },
+
+  "You can trust God's help even in scary or hostile situations": {
+    "1 Thessalonians 2:2": {
+      text: "We had previously suffered and been treated outrageously... but with the help of our God we dared to tell you his gospel in the face of strong opposition.",
+      theme: "help",
+      tags: ["gospel", "opposition", "boldness", "help"]
+    },
+    "Daniel 3:16–18": {
+      text: "...we do not need to defend ourselves... If we are thrown into the blazing furnace, the God we serve is able to deliver us… But even if he does not…",
+      theme: "faithful",
+      tags: ["bold faith", "witness", "trust", "persecution"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you... I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["fear", "strength", "presence", "courage"]
+    }
+  },
+
+  "The gospel is worth sharing—don't be ashamed of it": {
+    "Romans 1:16": {
+      text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes...",
+      theme: "salvation",
+      tags: ["gospel", "boldness", "unashamed", "power"]
+    },
+    "Matthew 10:32–33": {
+      text: "Whoever acknowledges me before others, I will also acknowledge before my Father in heaven. But whoever disowns me before others...",
+      theme: "obedience",
+      tags: ["testimony", "loyalty", "boldness", "confession"]
+    },
+    "Mark 8:38": {
+      text: "If anyone is ashamed of me and my words... the Son of Man will be ashamed of them when he comes...",
+      theme: "truth",
+      tags: ["boldness", "gospel", "eternity", "fear"]
+    }
+  },
+
+  "You’re not the first to feel afraid—others did too, but God used them": {
+    "Acts 18:9–10": {
+      text: "Do not be afraid; keep on speaking, do not be silent. For I am with you, and no one is going to attack and harm you...",
+      theme: "courage",
+      tags: ["boldness", "calling", "presence", "protection"]
+    },
+    "Joshua 1:9": {
+      text: "Be strong and courageous. Do not be afraid... for the Lord your God will be with you wherever you go.",
+      theme: "courage",
+      tags: ["strength", "fear", "boldness", "mission"]
+    },
+    "Luke 12:12": {
+      text: "For the Holy Spirit will teach you at that time what you should say.",
+      theme: "guidance",
+      tags: ["boldness", "HolySpirit", "speech", "help"]
+    }
+  }
+}
+
+// Q78: How do I live as a Christian in today’s world?
+let q78ans = {
+  "Live differently and shine": {
+    "Matthew 5:14-16": {
+      text: "You are the light of the world. A city set on a hill cannot be hidden. Neither do people light a lamp and put it under a bowl. Instead they put it on its stand, and it gives light to everyone in the house. In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["light", "example", "visibility", "witness"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "nonconformity", "mind", "change"]
+    },
+    "Philippians 2:15": {
+      text: "So that you may become blameless and pure, children of God without fault in a warped and crooked generation. Then you will shine among them like stars in the sky.",
+      theme: "holy",
+      tags: ["purity", "children", "shine", "generation"]
+    },
+    "1 Peter 1:14-16": {
+      text: "As obedient children, do not conform to the evil desires you had when you lived in ignorance. But just as he who called you is holy, so be holy in all you do; for it is written: 'Be holy, because I am holy.'",
+      theme: "obedience",
+      tags: ["holiness", "calling", "different", "identity"]
+    }
+  },
+
+  "Follow Jesus in all you do": {
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "jesus",
+      tags: ["action", "word", "deeds", "name"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+      theme: "transformation",
+      tags: ["identity", "christ", "live", "faith"]
+    },
+    "John 15:5": {
+      text: "I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.",
+      theme: "growth",
+      tags: ["fruit", "abide", "connection", "life"]
+    }
+  },
+
+  "Let your behavior speak louder than words": {
+    "1 Peter 2:12": {
+      text: "Live such good lives among the pagans that, though they accuse you of doing wrong, they may see your good deeds and glorify God on the day he visits us.",
+      theme: "witness",
+      tags: ["lifestyle", "good", "example", "behavior"]
+    },
+    "Titus 2:7-8": {
+      text: "In everything set them an example by doing what is good. In your teaching show integrity, seriousness and soundness of speech that cannot be condemned, so that those who oppose you may be ashamed because they have nothing bad to say about us.",
+      theme: "obedience",
+      tags: ["good", "example", "teaching", "behavior"]
+    },
+    "Matthew 7:16": {
+      text: "By their fruit you will recognize them. Do people pick grapes from thornbushes, or figs from thistles?",
+      theme: "fruit",
+      tags: ["fruit", "character", "recognition", "discernment"]
+    }
+  },
+
+  "Stand firm and keep your heart right": {
+    "2 Timothy 3:12-14": {
+      text: "In fact, everyone who wants to live a godly life in Christ Jesus will be persecuted, while evildoers and impostors will go from bad to worse, deceiving and being deceived. But as for you, continue in what you have learned and have become convinced of, because you know those from whom you learned it.",
+      theme: "faithful",
+      tags: ["persecution", "faithful", "continue", "godly"]
+    },
+    "Ephesians 6:13": {
+      text: "Therefore put on the full armor of God, so that when the day of evil comes, you may be able to stand your ground, and after you have done everything, to stand.",
+      theme: "battle",
+      tags: ["armor", "stand", "evil", "resist"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "guidance",
+      tags: ["heart", "guard", "life", "watch"]
+    },
+    "1 Peter 3:14-16": {
+      text: "But even if you should suffer for what is right, you are blessed. 'Do not fear their threats; do not be frightened.' But in your hearts revere Christ as Lord. Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have. But do this with gentleness and respect, keeping a clear conscience, so that those who speak maliciously against your good behavior in Christ may be ashamed of their slander.",
+      theme: "courage",
+      tags: ["fear", "suffering", "boldness", "witness"]
+    }
+  },
+
+  "Love with truth and grace": {
+    "John 13:34-35": {
+      text: "A new command I give you: Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples, if you love one another.",
+      theme: "love",
+      tags: ["commandment", "community", "witness", "discipleship"]
+    },
+    "Ephesians 4:15": {
+      text: "Instead, speaking the truth in love, we will grow to become in every respect the mature body of him who is the head, that is, Christ.",
+      theme: "growth",
+      tags: ["truth", "maturity", "relationships", "unity"]
+    }
+  },
+
+  "Stay rooted in God’s Word and Spirit": {
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["direction", "truth", "Bible", "light"]
+    },
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "walk",
+      tags: ["spiritual life", "flesh", "temptation", "obedience"]
+    },
+    "Colossians 3:16": {
+      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.",
+      theme: "word",
+      tags: ["scripture", "wisdom", "teaching", "community"]
+    }
+  },
+
+  "Focus on eternity, not trends": {
+    "Colossians 3:1-2": {
+      text: "Since, then, you have been raised with Christ, set your hearts on things above, where Christ is, seated at the right hand of God. Set your minds on things above, not on earthly things.",
+      theme: "eternal",
+      tags: ["focus", "values", "identity", "priorities"]
+    },
+    "2 Corinthians 4:18": {
+      text: "So we fix our eyes not on what is seen, but on what is unseen, since what is seen is temporary, but what is unseen is eternal.",
+      theme: "faithful",
+      tags: ["vision", "hope", "perspective", "temporary"]
+    }
+  }
+}
+
+// How do I stand firm in my beliefs when others don’t share them?
+let q79ans = {
+  "You should stand firm in your faith and live boldly, even if others reject or misunderstand you.": {
+    "1 Corinthians 16:13": {
+      text: "Be on your guard; stand firm in the faith; be courageous; be strong.",
+      theme: "battle",
+      tags: ["stand firm", "faith", "courage"]
+    },
+    "Ephesians 6:13": {
+      text: "Put on the full armor of God, so that when the day of evil comes, you may be able to stand your ground, and after you have done everything, to stand.",
+      theme: "battle",
+      tags: ["armor", "faith", "endurance"]
+    },
+    "Philippians 1:27": {
+      text: "Whatever happens, conduct yourselves in a manner worthy of the gospel of Christ... stand firm in the one Spirit, striving together as one for the faith of the gospel.",
+      theme: "obedience",
+      tags: ["gospel", "unity", "firmness"]
+    },
+    "Hebrews 10:23": {
+      text: "Let us hold unswervingly to the hope we profess, for he who promised is faithful.",
+      theme: "faithful",
+      tags: ["hold fast", "hope", "promise"]
+    },
+    "Matthew 10:22": {
+      text: "You will be hated by everyone because of me, but the one who stands firm to the end will be saved.",
+      theme: "endurance",
+      tags: ["persecution", "faith", "salvation"]
+    },
+    "Isaiah 7:9": {
+      text: "If you do not stand firm in your faith, you will not stand at all.",
+      theme: "faithful",
+      tags: ["faith", "stability", "warning"]
+    }
+  },
+
+  "You should be bold and unashamed of your faith.": {
+    "Romans 1:16": {
+      text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes...",
+      theme: "boldness",
+      tags: ["unashamed", "gospel", "salvation"]
+    },
+    "2 Timothy 1:8": {
+      text: "So do not be ashamed of the testimony about our Lord or of me his prisoner. Rather, join me in suffering for the gospel, by the power of God.",
+      theme: "boldness",
+      tags: ["suffering", "gospel", "courage"]
+    },
+    "Acts 4:20": {
+      text: "As for us, we cannot help speaking about what we have seen and heard.",
+      theme: "boldness",
+      tags: ["witness", "truth", "speech"]
+    },
+    "Acts 5:29": {
+      text: "Peter and the other apostles replied: 'We must obey God rather than human beings!'",
+      theme: "obedience",
+      tags: ["obedience", "faith", "boldness"]
+    }
+  },
+
+  "You should expect to feel different or alone sometimes, but know God is with you.": {
+    "2 Timothy 4:16–17": {
+      text: "At my first defense, no one came to my support, but the Lord stood at my side and gave me strength...",
+      theme: "presence",
+      tags: ["alone", "strength", "support"]
+    },
+    "John 15:18–19": {
+      text: "If the world hates you, keep in mind that it hated me first... That is why the world hates you.",
+      theme: "battle",
+      tags: ["rejection", "identity", "Jesus"]
+    },
+    "2 Timothy 3:12": {
+      text: "In fact, everyone who wants to live a godly life in Christ Jesus will be persecuted.",
+      theme: "obedience",
+      tags: ["persecution", "godly", "faith"]
+    },
+    "Matthew 5:10–12": {
+      text: "Blessed are those who are persecuted because of righteousness, for theirs is the kingdom of heaven...",
+      theme: "reward",
+      tags: ["persecution", "kingdom", "joy"]
+    }
+  },
+
+  "You should resist the pressure to conform and keep living differently.": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "transformation",
+      tags: ["nonconformity", "renewal", "mind"]
+    },
+    "James 4:4": {
+      text: "You adulterous people, don’t you know that friendship with the world means enmity against God?",
+      theme: "obedience",
+      tags: ["world", "friendship", "loyalty"]
+    },
+    "1 Peter 2:11–12": {
+      text: "Dear friends, I urge you… to abstain from sinful desires… live such good lives among the pagans…",
+      theme: "obedience",
+      tags: ["lifestyle", "testimony", "purity"]
+    },
+    "Galatians 1:10": {
+      text: "Am I now trying to win the approval of human beings…? If I were still trying to please people, I would not be a servant of Christ.",
+      theme: "obedience",
+      tags: ["approval", "loyalty", "Christ"]
+    }
+  },
+
+  "You should trust God to give you courage and strength to endure.": {
+    "Jeremiah 1:8": {
+      text: "Do not be afraid of them, for I am with you and will rescue you,” declares the Lord.",
+      theme: "protect",
+      tags: ["courage", "rescue", "presence"]
+    },
+    "Ezekiel 2:6–7": {
+      text: "Do not be afraid of them or their words… You must speak my words to them, whether they listen or fail to listen...",
+      theme: "obedience",
+      tags: ["courage", "truth", "mission"]
+    },
+    "2 Timothy 2:12": {
+      text: "If we endure, we will also reign with him. If we disown him, he will also disown us.",
+      theme: "reward",
+      tags: ["endurance", "reign", "faithfulness"]
+    },
+    "Hebrews 12:3": {
+      text: "Consider him who endured such opposition from sinners, so that you will not grow weary and lose heart.",
+      theme: "encouragement",
+      tags: ["endurance", "Jesus", "hope"]
+    },
+    "James 1:12": {
+      text: "Blessed is the one who perseveres under trial because... that person will receive the crown of life...",
+      theme: "reward",
+      tags: ["trial", "perseverance", "crown"]
+    }
+  },
+
+  "You should be a light and keep shining, no matter how dark it feels.": {
+    "Matthew 5:14–16": {
+      text: "You are the light of the world… let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["light", "witness", "glorify"]
+    },
+    "Philippians 2:15": {
+      text: "...you will shine among them like stars in the sky as you hold firmly to the word of life.",
+      theme: "light",
+      tags: ["shine", "word", "example"]
+    }
+  },
+
+  "You should draw your confidence from God, not people.": {
+    "Proverbs 29:25": {
+      text: "Fear of man will prove to be a snare, but whoever trusts in the Lord is kept safe.",
+      theme: "trust",
+      tags: ["fear", "trust", "confidence"]
+    },
+    "Psalm 56:3–4": {
+      text: "When I am afraid, I put my trust in you… what can mere mortals do to me?",
+      theme: "trust",
+      tags: ["fear", "trust", "boldness"]
+    },
+    "Romans 8:31": {
+      text: "If God is for us, who can be against us?",
+      theme: "power",
+      tags: ["confidence", "victory", "trust"]
+    }
+  }
+};
+
+// q80 - What does the Bible teach about sexuality and identity?
+
+const q80ans = {
+  "God created sex, gender, and identity with purpose": {
+    "Genesis 1:27–28": {
+      text: "So God created mankind in his own image, in the image of God he created them; male and female he created them. God blessed them and said to them, 'Be fruitful and increase in number; fill the earth and subdue it. Rule over the fish in the sea and the birds in the sky and over every living creature that moves on the ground.'",
+      theme: "creation",
+      tags: ["creation", "identity", "goodness", "obedience", "gender", "design", "purpose", "sexuality"]
+    },
+    "Genesis 2:24": {
+      text: "That is why a man leaves his father and mother and is united to his wife, and they become one flesh.",
+      theme: "relationship",
+      tags: ["creation", "obedience", "identity", "relationship"]
+    },
+    "Matthew 19:4–5": {
+      text: "'Haven’t you read,' he replied, 'that at the beginning the Creator “made them male and female,” and said, “For this reason a man will leave his father and mother and be united to his wife, and the two will become one flesh”?'",
+      theme: "creation",
+      tags: ["Jesus", "marriage", "design", "male", "female", "creation", "obedience", "truth", "identity"]
+    },
+    "Psalm 100:3": {
+      text: "Know that the Lord is God. It is he who made us, and we are his; we are his people, the sheep of his pasture.",
+      theme: "creation",
+      tags: ["identity", "belonging", "God's design", "worship"]
+    },
+    "Psalm 139:13–14": {
+      text: "For you created my inmost being; you knit me together in my mother’s womb. I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
+      theme: "goodness",
+      tags: ["creation", "identity", "truth", "goodness"]
+    },
+    "Isaiah 45:9": {
+      text: "Woe to those who quarrel with their Maker, those who are nothing but potsherds among the potsherds on the ground. Does the clay say to the potter, ‘What are you making?’ Does your work say, ‘He has no hands’?",
+      theme: "authority",
+      tags: ["authority", "creation", "truth", "identity"]
+    }
+  },
+
+  "Sexual brokenness is part of humanity’s fall, not identity": {
+    "Romans 1:24–27": {
+      text: "Therefore God gave them over in the sinful desires of their hearts to sexual impurity for the degrading of their bodies with one another. They exchanged the truth about God for a lie, and worshiped and served created things rather than the Creator—who is forever praised. Amen. Because of this, God gave them over to shameful lusts. Even their women exchanged natural sexual relations for unnatural ones. In the same way the men also abandoned natural relations with women and were inflamed with lust for one another. Men committed shameful acts with other men, and received in themselves the due penalty for their error.",
+      theme: "fallenness",
+      tags: ["fallenness", "temptation", "truth", "obedience", "Paul", "sexuality", "consequences", "identity", "natural design"]
+    },
+    "Leviticus 18:22": {
+      text: "Do not have sexual relations with a man as one does with a woman; that is detestable.",
+      theme: "law",
+      tags: ["obedience", "truth", "law", "fallenness", "boundaries", "sexual sin", "Leviticus", "purity"]
+    },
+    "1 Corinthians 6:9–11": {
+      text: "Or do you not know that wrongdoers will not inherit the kingdom of God? Do not be deceived: Neither the sexually immoral nor idolaters nor adulterers nor men who have sex with men nor thieves nor the greedy nor drunkards nor slanderers nor swindlers will inherit the kingdom of God. And that is what some of you were. But you were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ and by the Spirit of our God.",
+      theme: "transformation",
+      tags: ["Paul", "sin", "grace", "forgiveness", "identity", "transformation", "obedience", "truth"]
+    },
+    "1 Timothy 1:9–10": {
+      text: "We also know that the law is made not for the righteous but for lawbreakers and rebels, the ungodly and sinful, the unholy and irreligious, for those who kill their fathers or mothers, for murderers, for the sexually immoral, for those practicing homosexuality, for slave traders and liars and perjurers—and for whatever else is contrary to the sound doctrine.",
+      theme: "obedience",
+      tags: ["law", "sin", "Paul", "boundaries", "obedience"]
+    },
+    "Galatians 5:19–21": {
+      text: "The acts of the flesh are obvious: sexual immorality, impurity and debauchery; idolatry and witchcraft; hatred, discord, jealousy, fits of rage, selfish ambition, dissensions, factions and envy; drunkenness, orgies, and the like. I warn you, as I did before, that those who live like this will not inherit the kingdom of God.",
+      theme: "battle",
+      tags: ["obedience", "fallenness", "truth", "battle"]
+    },
+    "Colossians 3:5": {
+      text: "Put to death, therefore, whatever belongs to your earthly nature: sexual immorality, impurity, lust, evil desires and greed, which is idolatry.",
+      theme: "transformation",
+      tags: ["obedience", "battle", "truth", "transformation"]
+    }
+  },
+
+  "Following Jesus means surrendering identity, not shaping it": {
+    "Luke 9:23": {
+      text: "Then he said to them all: 'Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.'",
+      theme: "discipleship",
+      tags: ["obedience", "submission", "discipleship", "identity"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+      theme: "faithful",
+      tags: ["transformation", "identity", "obedience", "faithful"]
+    },
+    "Matthew 10:37–39": {
+      text: "Anyone who loves their father or mother more than me is not worthy of me; anyone who loves their son or daughter more than me is not worthy of me. Whoever does not take up their cross and follow me is not worthy of me. Whoever finds their life will lose it, and whoever loses their life for my sake will find it.",
+      theme: "submission",
+      tags: ["obedience", "submission", "identity", "truth"]
+    },
+    "Romans 12:1–2": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship. Do not conform to the pattern of this world, but be transformed by the renewing of your mind.",
+      theme: "transformation",
+      tags: ["transformation", "obedience", "identity", "truth"]
+    },
+    "Philippians 3:7–8": {
+      text: "But whatever were gains to me I now consider loss for the sake of Christ. What is more, I consider everything a loss because of the surpassing worth of knowing Christ Jesus my Lord, for whose sake I have lost all things. I consider them garbage, that I may gain Christ.",
+      theme: "glory",
+      tags: ["submission", "identity", "obedience", "glory"]
+    }
+  },
+
+  "True identity is in Christ, not sexuality or labels": {
+    "John 1:12–13": {
+      text: "Yet to all who did receive him, to those who believed in his name, he gave the right to become children of God—children born not of natural descent, nor of human decision or a husband’s will, but born of God.",
+      theme: "grace",
+      tags: ["identity", "salvation", "truth", "grace"]
+    },
+    "Colossians 3:3": {
+      text: "For you died, and your life is now hidden with Christ in God.",
+      theme: "truth",
+      tags: ["identity", "transformation", "truth", "obedience"]
+    },
+    "1 Peter 2:9–10": {
+      text: "But you are a chosen people, a royal priesthood, a holy nation, God’s special possession, that you may declare the praises of him who called you out of darkness into his wonderful light. Once you were not a people, but now you are the people of God; once you had not received mercy, but now you have received mercy.",
+      theme: "glory",
+      tags: ["identity", "salvation", "glory", "truth"]
+    },
+    "1 John 3:1": {
+      text: "See what great love the Father has lavished on us, that we should be called children of God! And that is what we are! The reason the world does not know us is that it did not know him.",
+      theme: "love",
+      tags: ["identity", "love", "truth", "grace"]
+    },
+    "Galatians 3:28": {
+      text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.",
+      theme: "unity",
+      tags: ["identity", "unity", "truth", "grace"]
+    }
+  },
+  "God offers mercy to everyone, no matter their past": {
+  "Ezekiel 18:23": {
+    text: "Do I take any pleasure in the death of the wicked? declares the Sovereign Lord. Rather, am I not pleased when they turn from their ways and live?",
+    theme: "mercy",
+    tags: ["God's heart", "life", "repentance", "wickedness", "hope"]
+  },
+  "1 John 1:9": {
+    text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+    theme: "forgiveness",
+    tags: ["sin", "confession", "cleansing", "righteousness", "grace"]
+  }
+},
+
+"Following Jesus involves surrendering all desires to Him": {
+  "Luke 9:23": {
+    text: "Then he said to them all: ‘Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.’",
+    theme: "obedience",
+    tags: ["discipleship", "self-denial", "cross", "daily faith", "desire"]
+  },
+  "Galatians 5:24": {
+    text: "Those who belong to Christ Jesus have crucified the flesh with its passions and desires.",
+    theme: "transformation",
+    tags: ["flesh", "desires", "new life", "belonging", "Christ"]
+  }
+},
+
+"We are not defined by sin, but by who we are in Christ": {
+  "2 Corinthians 5:17": {
+    text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+    theme: "transformation",
+    tags: ["new creation", "identity", "Christ", "change", "past"]
+  },
+  "Galatians 2:20": {
+    text: "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+    theme: "identity",
+    tags: ["faith", "life in Christ", "love", "sacrifice", "identity"]
+  }
+}
+};
+
+// How does God help those struggling with addiction?
+let q81ans = {
+  "God helps by giving us strength and grace when we feel overcome": {
+    "Philippians 4:13": {
+      text: "I can do all things through him who gives me strength.",
+      theme: "power",
+      tags: ["strength", "empowerment", "faith"]
+    },
+    "2 Corinthians 12:9": {
+      text: "My grace is sufficient for you, for my power is made perfect in weakness.",
+      theme: "grace",
+      tags: ["weakness", "sufficiency", "dependence"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "presence",
+      tags: ["help", "courage", "support"]
+    },
+    "Ephesians 3:16": {
+      text: "I pray that out of his glorious riches he may strengthen you with power through his Spirit in your inner being.",
+      theme: "spirit",
+      tags: ["strength", "spirit", "empowerment"]
+    }
+  },
+  "God helps by setting us free from the bondage of sin and old patterns": {
+    "Galatians 5:1": {
+      text: "It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery.",
+      theme: "slavery",
+      tags: ["liberty", "bondage", "deliverance"]
+    },
+    "John 8:36": {
+      text: "So if the Son sets you free, you will be free indeed.",
+      theme: "slavery",
+      tags: ["freedom", "liberation", "identity"]
+    },
+    "Romans 6:14": {
+      text: "For sin shall no longer be your master, because you are not under the law, but under grace.",
+      theme: "grace",
+      tags: ["sin", "master", "freedom"]
+    }
+  },
+  "God helps by providing a way to endure temptation and delivering us": {
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+      theme: "temptation",
+      tags: ["temptation", "endurance", "escape"]
+    },
+    "James 4:7": {
+      text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you.",
+      theme: "submission",
+      tags: ["resist", "submission", "victory"]
+    },
+    "Psalm 50:15": {
+      text: "Call upon me in the day of trouble; I will deliver you, and you shall glorify me.",
+      theme: "glory",
+      tags: ["trouble", "deliverance", "call"]
+    },
+    "Hebrews 2:18": {
+      text: "Because he himself suffered when he was tempted, he is able to help those who are being tempted.",
+      theme: "help",
+      tags: ["suffering", "temptation", "empathy"]
+    }
+  },
+  "God helps by being near, hearing prayers, and healing through community": {
+    "James 5:16": {
+      text: "Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective.",
+      theme: "forgiveness",
+      tags: ["confession", "healing", "accountability"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "mercy",
+      tags: ["anxiety", "care", "surrender"]
+    },
+    "Psalm 34:17": {
+      text: "The righteous cry out, and the Lord hears them; he delivers them from all their troubles.",
+      theme: "help",
+      tags: ["help", "deliverance", "cries"]
+    },
+    "Ecclesiastes 4:9-10": {
+      text: "Two are better than one, because they have a good return for their labor: If either of them falls down, one can help the other up.",
+      theme: "friend",
+      tags: ["support", "friendship", "help"]
+    }
+  },
+  "God helps by renewing our minds and creating endurance to overcome": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["mind", "transformation", "renewal"]
+    },
+    "Hebrews 12:1": {
+      text: "Let us throw off everything that hinders and the sin that so easily entangles. And let us run with perseverance the race marked out for us.",
+      theme: "battle",
+      tags: ["perseverance", "weight", "race"]
+    },
+    "2 Timothy 1:7": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.",
+      theme: "spirit",
+      tags: ["power", "love", "discipline"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "creation",
+      tags: ["new", "creation", "identity"]
+    },
+    "Philippians 3:13-14": {
+      text: "Forgetting what is behind and straining toward what is ahead, I press on toward the goal to win the prize for which God has called me heavenward in Christ Jesus.",
+      theme: "growth",
+      tags: ["press", "goal", "perseverance"]
+    }
+  },
+  "God helps by giving rest and compassion to the brokenhearted": {
+    "Matthew 11:28-30": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls.",
+      theme: "peace",
+      tags: ["rest", "burden", "Jesus"]
+    },
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "mercy",
+      tags: ["brokenhearted", "presence", "comfort"]
+    },
+    "Isaiah 40:31": {
+      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+      theme: "hope",
+      tags: ["hope", "endurance", "renewal"]
+    },
+    "Lamentations 3:22-23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "faithful",
+      tags: ["compassion", "love", "faithfulness"]
+    }
+  },
+  "God helps by promising salvation and protecting those who trust Him": {
+    "Romans 8:38-39": {
+      text: "For I am convinced that neither death nor life... will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "salvation",
+      tags: ["love", "security", "assurance"]
+    },
+    "Hebrews 7:25": {
+      text: "Therefore he is able to save completely those who come to God through him, because he always lives to intercede for them.",
+      theme: "salvation",
+      tags: ["save", "intercede", "mercy"]
+    },
+    "Psalm 91:14-16": {
+      text: "Because he loves me,” says the Lord, “I will rescue him; I will protect him, for he acknowledges my name.",
+      theme: "help",
+      tags: ["rescue", "protection", "love"]
+    }
+  },
+  "God helps by guiding the humble and making their paths straight": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "submit", "understanding"]
+    },
+    "James 4:10": {
+      text: "Humble yourselves before the Lord, and he will lift you up.",
+      theme: "humble",
+      tags: ["humility", "lift", "submit"]
+    }
+  }
+};
+
+
+// How do I deal with lust?
+let q82ans = {
+  "Walk by the Spirit to overcome the desires of the flesh": {
+    "Galatians 5:16-17": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh. For the flesh desires what is contrary to the Spirit, and the Spirit what is contrary to the flesh.",
+      theme: "spirit",
+      tags: ["spirit", "desire", "conflict"]
+    },
+    "2 Timothy 1:7": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.",
+      theme: "power",
+      tags: ["power", "spirit", "discipline"]
+    },
+    "Romans 8:13": {
+      text: "For if you live according to the flesh, you will die; but if by the Spirit you put to death the misdeeds of the body, you will live.",
+      theme: "transformation",
+      tags: ["flesh", "death", "spirit"]
+    }
+  },
+
+  "Renew your mind and focus on what is pure and true": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["mind", "renewal", "will"]
+    },
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "pure",
+      tags: ["thoughts", "focus", "purity"]
+    },
+    "Colossians 3:2": {
+      text: "Set your minds on things above, not on earthly things.",
+      theme: "growth",
+      tags: ["mind", "focus", "above"]
+    }
+  },
+
+  "Look for God’s escape when temptation comes": {
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+      theme: "temptation",
+      tags: ["temptation", "endurance", "escape"]
+    },
+    "James 4:7": {
+      text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you.",
+      theme: "battle",
+      tags: ["resist", "submit", "devil"]
+    },
+    "Matthew 26:41": {
+      text: "Watch and pray so that you will not fall into temptation. The spirit is willing, but the flesh is weak.",
+      theme: "pray",
+      tags: ["watch", "pray", "temptation"]
+    }
+  },
+
+  "Flee sexual sin and chase after righteousness": {
+    "2 Timothy 2:22": {
+      text: "Flee the evil desires of youth and pursue righteousness, faith, love and peace, along with those who call on the Lord out of a pure heart.",
+      theme: "holy",
+      tags: ["flee", "righteousness", "peace"]
+    },
+    "1 Corinthians 6:18": {
+      text: "Flee from sexual immorality. All other sins a person commits are outside the body, but whoever sins sexually, sins against their own body.",
+      theme: "holy",
+      tags: ["flee", "immorality", "body"]
+    },
+    "Ephesians 5:3": {
+      text: "But among you there must not be even a hint of sexual immorality, or of any kind of impurity, or of greed, because these are improper for God’s holy people.",
+      theme: "holy",
+      tags: ["impurity", "holy", "immorality"]
+    },
+    "Proverbs 4:14-15": {
+      text: "Do not set foot on the path of the wicked or walk in the way of evildoers. Avoid it, do not travel on it; turn from it and go on your way.",
+      theme: "walk",
+      tags: ["avoid", "turn", "wicked"]
+    }
+  },
+
+  "Confess your sins and let God renew your heart": {
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["confess", "forgive", "purify"]
+    },
+    "Psalm 51:10": {
+      text: "Create in me a pure heart, O God, and renew a steadfast spirit within me.",
+      theme: "transformation",
+      tags: ["renew", "heart", "steadfast"]
+    },
+    "Proverbs 28:13": {
+      text: "Whoever conceals their sins does not prosper, but the one who confesses and renounces them finds mercy.",
+      theme: "mercy",
+      tags: ["confess", "renounce", "mercy"]
+    }
+  },
+
+  "Fix your eyes on Jesus and let Him strengthen you": {
+    "Hebrews 12:1-2": {
+      text: "Let us run with perseverance the race marked out for us, fixing our eyes on Jesus, the pioneer and perfecter of faith.",
+      theme: "faithful",
+      tags: ["perseverance", "focus", "Jesus"]
+    },
+    "Psalm 119:9": {
+      text: "How can a young person stay on the path of purity? By living according to your word.",
+      theme: "pure",
+      tags: ["purity", "word", "path"]
+    },
+    "Ephesians 3:16": {
+      text: "I pray that out of his glorious riches he may strengthen you with power through his Spirit in your inner being.",
+      theme: "power",
+      tags: ["strength", "inner", "spirit"]
+    }
+  }
+};
+
+// Q83: How does God respond when I'm angry at Him?
+let q83ans = {
+  "God listens even when you're frustrated, confused, or accusing Him": {
+    "Habakkuk 1:2–4": {
+      text: "How long, Lord, must I call for help, but you do not listen? Or cry out to you, ‘Violence!’ but you do not save? Why do you make me look at injustice? Why do you tolerate wrongdoing? Destruction and violence are before me; there is strife, and conflict abounds. Therefore the law is paralyzed, and justice never prevails.",
+      theme: "honest",
+      tags: ["complaint", "violence", "waiting", "confusion"]
+    },
+    "Habakkuk 2:1–4": {
+      text: "I will stand at my watch and station myself on the ramparts; I will look to see what he will say to me... Then the Lord replied: “Write down the revelation and make it plain on tablets... See, the enemy is puffed up; his desires are not upright—but the righteous person will live by his faithfulness.",
+      theme: "guidance",
+      tags: ["waiting", "listening", "response", "faith"]
+    },
+    "Jeremiah 20:7–9": {
+      text: "You deceived me, Lord, and I was deceived; you overpowered me and prevailed. I am ridiculed all day long... But if I say, 'I will not mention his word or speak anymore in his name,' his word is in my heart like a fire, a fire shut up in my bones. I am weary of holding it in; indeed, I cannot.",
+      theme: "word",
+      tags: ["wrestle", "calling", "fire", "anger", "truth"]
+    },
+    "Job 3:11": {
+      text: "Why did I not perish at birth, and die as I came from the womb?",
+      theme: "fallenness",
+      tags: ["grief", "despair", "suffering", "honesty"]
+    },
+    "Psalm 77:1-2": {
+      text: "I cried out to God for help; I cried out to God to hear me. When I was in distress, I sought the Lord; at night I stretched out untiring hands, and I would not be comforted.",
+      theme: "help",
+      tags: ["cry", "trouble", "heard"]
+    },
+    "Psalm 22:1": {
+      text: "My God, my God, why have you forsaken me? Why are you so far from saving me, so far from my cries of anguish?",
+      theme: "presence",
+      tags: ["forsaken", "distance", "groaning"]
+    }
+  },
+
+  "God gently corrects and helps us see His heart": {
+    "Jonah 4:1–4": {
+      text: "But to Jonah this seemed very wrong, and he became angry. He prayed to the Lord, “Isn’t this what I said, Lord, when I was still at home? That is what I tried to forestall by fleeing to Tarshish. I knew that you are a gracious and compassionate God, slow to anger and abounding in love...”. But the Lord replied, “Is it right for you to be angry?”",
+      theme: "guidance",
+      tags: ["anger", "correction", "mercy", "listening"]
+    },
+    "Job 38:1–3": {
+      text: "Then the Lord spoke to Job out of the storm. He said: 'Who is this that obscures my plans with words without knowledge? Brace yourself like a man; I will question you, and you shall answer me.'",
+      theme: "power",
+      tags: ["correction", "perspective", "storm", "answer"]
+    }
+  },
+
+  "God responds with presence and understanding in our pain": {
+    "1 Kings 19:9–13": {
+      text: "And the word of the Lord came to him: 'What are you doing here, Elijah?'... Then a great and powerful wind tore the mountains apart... but the Lord was not in the wind... And after the fire came a gentle whisper. When Elijah heard it, he pulled his cloak over his face and went out and stood at the mouth of the cave.",
+      theme: "presence",
+      tags: ["gentle", "burnout", "running", "presence", "depression"]
+    },
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "help",
+      tags: ["comfort", "presence", "pain", "close"]
+    },
+    "Psalm 73:21–26": {
+      text: "When my heart was grieved and my spirit embittered, I was senseless and ignorant; I was a brute beast before you. Yet I am always with you; you hold me by my right hand... My flesh and my heart may fail, but God is the strength of my heart and my portion forever.",
+      theme: "faithful",
+      tags: ["bitterness", "guidance", "presence", "comfort"]
+    }
+  },
+
+  "God invites honesty and never rejects a wounded heart": {
+    "Psalm 13:1–6": {
+      text: "How long, Lord? Will you forget me forever? How long will you hide your face from me?... But I trust in your unfailing love; my heart rejoices in your salvation. I will sing the Lord’s praise, for he has been good to me.",
+      theme: "faithful",
+      tags: ["honesty", "trust", "crying", "salvation"]
+    },
+    "Lamentations 3:19–24": {
+      text: "I remember my affliction and my wandering, the bitterness and the gall... Yet this I call to mind and therefore I have hope: Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "hope",
+      tags: ["lament", "compassion", "love", "faithfulness"]
+    }
+  },
+
+  "God stays even when you pull away": {
+    "Hosea 11:7–9": {
+      text: "My people are determined to turn from me... How can I give you up, Ephraim? How can I hand you over, Israel?... My heart is changed within me; all my compassion is aroused.",
+      theme: "faithful",
+      tags: ["compassion", "faithfulness", "rejection", "grace"]
+    },
+    "2 Timothy 2:13": {
+      text: "If we are faithless, he remains faithful, for he cannot disown himself.",
+      theme: "faithful",
+      tags: ["faithlessness", "faithful", "character", "enduring"]
+    },
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["mercy", "grace", "unchanging", "sin", "commitment"]
+    }
+  },
+
+  "God responds with compassion and mercy even when we express anger": {
+    "Psalm 103:8": {
+      text: "The Lord is compassionate and gracious, slow to anger, abounding in love.",
+      theme: "mercy",
+      tags: ["merciful", "gracious", "slow"]
+    },
+    "Psalm 103:9": {
+      text: "He will not always accuse, nor will he harbor his anger forever.",
+      theme: "mercy",
+      tags: ["patience", "judgment", "love"]
+    },
+    "Isaiah 54:7": {
+      text: "For a brief moment I abandoned you, but with deep compassion I will bring you back.",
+      theme: "compassion",
+      tags: ["abandon", "return", "compassion"]
+    }
+  },
+
+  "God responds by guiding us into wisdom and perspective when we feel lost": {
+    "Isaiah 55:8-9": {
+      text: "For my thoughts are not your thoughts, neither are your ways my ways... As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      theme: "wisdom",
+      tags: ["thoughts", "ways", "perspective"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "understanding", "submit"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["instruct", "counsel", "way"]
+    }
+  },
+
+  "God responds with patience, even when our anger lingers": {
+    "Psalm 77:9": {
+      text: "Has God forgotten to be merciful? Has he in anger withheld his compassion?",
+      theme: "mercy",
+      tags: ["question", "anger", "mercy"]
+    },
+    "Psalm 6:1-3": {
+      text: "Lord, do not rebuke me in your anger or discipline me in your wrath. Have mercy on me, Lord, for I am faint... My soul is in deep anguish. How long, Lord, how long?",
+      theme: "mercy",
+      tags: ["rebuke", "mercy", "trouble"]
+    },
+    "Lamentations 3:22-23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "faithful",
+      tags: ["compassion", "faithfulness", "renewal"]
+    }
+  },
+
+  "God responds by not withholding salvation, no matter our anger": {
+    "Romans 8:38-39": {
+      text: "For I am convinced that neither death nor life, neither angels nor demons... nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "salvation",
+      tags: ["love", "security", "assurance"]
+    },
+    "Psalm 145:18": {
+      text: "The Lord is near to all who call on him, to all who call on him in truth.",
+      theme: "presence",
+      tags: ["near", "call", "truth"]
+    }
+  }
+};
+
+// What does the Bible say about racism and justice?
+let q84ans = {
+"God shows no partiality and calls us to justice and fair judgment": {
+"Romans 2:11": {
+text: "For God does not show favoritism.",
+theme: "justice",
+tags: ["fair", "partiality", "God", "equity"]
+},
+"James 2:1": {
+text: "My brothers and sisters, believers in our glorious Lord Jesus Christ must not show favoritism.",
+theme: "justice",
+tags: ["favoritism", "sin", "faith", "equality"]
+},
+"Acts 10:34–35": {
+text: "God shows no partiality but accepts from every nation the one who fears him and does what is right.",
+theme: "justice",
+tags: ["nation", "God", "partiality", "accept"]
+},
+"Deuteronomy 10:17": {
+text: "For the Lord your God is God of gods and Lord of lords... he is impartial and does not accept bribes.",
+theme: "justice",
+tags: ["impartiality", "bribe", "honor", "God"]
+},
+"Colossians 3:25": {
+text: "Anyone who does wrong will be paid back for their wrongs. There is no favoritism.",
+theme: "justice",
+tags: ["repay", "sin", "partiality", "fair"]
+}
+},
+
+"God’s design is unity in diversity—no division by ethnicity or status": {
+"Galatians 3:28": {
+text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.",
+theme: "unity",
+tags: ["one", "identity", "diversity", "Christ"]
+},
+"1 Corinthians 12:13": {
+text: "For we were all baptized by one Spirit so as to form one body... whether Jews or Gentiles, slave or free—and we were all given the one Spirit.",
+theme: "unity",
+tags: ["body", "Spirit", "diversity", "baptism"]
+},
+"Acts 17:26": {
+text: "He made from one man every nation... and determined the times and places they should live.",
+theme: "creation",
+tags: ["nation", "creation", "diversity", "purpose"]
+},
+"Revelation 7:9": {
+text: "A great multitude from every nation, tribe, people and language, standing before the throne and the Lamb.",
+theme: "glory",
+tags: ["multitude", "nations", "diversity", "worship"]
+}
+},
+
+"God cares deeply for the marginalized, oppressed and foreigners": {
+"Deuteronomy 24:17": {
+text: "Do not deprive the foreigner or the fatherless of justice, or take the cloak of the widow as a pledge.",
+theme: "mercy",
+tags: ["foreigner", "fatherless", "justice", "widow"]
+},
+"Leviticus 19:34": {
+text: "The foreigner residing among you must be treated as your native-born. Love them as yourself.",
+theme: "loving",
+tags: ["foreigner", "love", "equal", "justice"]
+},
+"Isaiah 1:17": {
+text: "Learn to do right; seek justice. Defend the oppressed, take up the cause of the fatherless... plead the widow’s case.",
+theme: "justice",
+tags: ["seek", "defend", "widow", "fatherless"]
+},
+"Psalm 82:3": {
+text: "Give justice to the weak and the fatherless; maintain the rights of the afflicted and the destitute.",
+theme: "justice",
+tags: ["weak", "afflicted", "justice", "fatherless"]
+}
+},
+
+"God condemns prejudice and calls His people to love all as image-bearers": {
+"Genesis 1:27": {
+text: "God created mankind in his own image; in the image of God he created them; male and female he created them.",
+theme: "creation",
+tags: ["image", "God", "humanity", "worth"]
+},
+"1 Samuel 16:7": {
+text: "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.",
+theme: "truth",
+tags: ["heart", "appearance", "judge", "God"]
+},
+"James 3:9": {
+text: "With the tongue we praise our Lord... and with it we curse human beings, who have been made in God’s likeness.",
+theme: "truth",
+tags: ["tongue", "curse", "image", "people"]
+},
+"1 John 4:20": {
+text: "If anyone says, 'I love God,' yet hates a brother or sister, they are a liar. For whoever does not love them... cannot love God.",
+theme: "love",
+tags: ["hate", "brother", "love", "claim"]
+}
+},
+// Additional mother keys for Q84
+
+"God punishes oppressors and nations who crush the innocent": {
+"Amos 5:24": {
+text: "But let justice roll on like a river, righteousness like a never-failing stream!",
+theme: "justice",
+tags: ["justice", "righteousness", "judgment", "flow"]
+},
+"Jeremiah 22:3": {
+text: "This is what the Lord says: Do what is just and right. Rescue from the hand of the oppressor the one who has been robbed. Do no wrong or violence to the foreigner, the fatherless or the widow, and do not shed innocent blood in this place.",
+theme: "justice",
+tags: ["oppressor", "robbed", "rescue", "widow"]
+},
+"Isaiah 10:1–2": {
+text: "Woe to those who make unjust laws, to those who issue oppressive decrees, to deprive the poor of their rights and withhold justice from the oppressed of my people, making widows their prey and robbing the fatherless.",
+theme: "justice",
+tags: ["woe", "oppression", "laws", "poor"]
+},
+"Malachi 3:5": {
+text: "So I will come to put you on trial. I will be quick to testify against sorcerers, adulterers and perjurers, against those who defraud laborers of their wages, who oppress the widows and the fatherless, and deprive the foreigners among you of justice, but do not fear me,\" says the Lord Almighty.",
+theme: "justice",
+tags: ["trial", "oppression", "testify", "foreigners"]
+}
+},
+
+"Jesus taught us to love the stranger and reject pride in heritage": {
+"Luke 10:36–37": {
+text: "\"Which of these three do you think was a neighbor to the man who fell into the hands of robbers?\" The expert in the law replied, \"The one who had mercy on him.\" Jesus told him, \"Go and do likewise.\"",
+theme: "mercy",
+tags: ["neighbor", "mercy", "parable", "Samaritan"]
+},
+"Luke 4:25–27": {
+text: "I assure you that there were many widows in Israel in Elijah’s time, when the sky was shut for three and a half years and there was a severe famine throughout the land. Yet Elijah was not sent to any of them, but to a widow in Zarephath in the region of Sidon. And there were many in Israel with leprosy in the time of Elisha the prophet, yet not one of them was cleansed—only Naaman the Syrian.",
+theme: "truth",
+tags: ["Gentile", "healing", "widow", "grace"]
+},
+"Matthew 8:10–12": {
+text: "When Jesus heard this, he was amazed and said to those following him, \"Truly I tell you, I have not found anyone in Israel with such great faith. I say to you that many will come from the east and the west and will take their places at the feast with Abraham, Isaac and Jacob in the kingdom of heaven. But the subjects of the kingdom will be thrown outside, into the darkness, where there will be weeping and gnashing of teeth.\"",
+theme: "faith",
+tags: ["faith", "Gentile", "kingdom", "unexpected"]
+},
+"Matthew 23:12": {
+text: "For those who exalt themselves will be humbled, and those who humble themselves will be exalted.",
+theme: "humble",
+tags: ["pride", "humility", "reverse", "justice"]
+}
+}
+};
+
+// What if I feel like I don’t matter?
+let q85ans = {
+
+  "You are deeply seen and loved by God": {
+    "Luke 12:6-7": {
+      text: "Are not five sparrows sold for two pennies? Yet not one of them is forgotten by God. Indeed, the very hairs of your head are all numbered. Don’t be afraid; you are worth more than many sparrows.",
+      theme: "value",
+      tags: ["worth", "God sees", "you matter", "personal attention"]
+    },
+    "Psalm 139:13-16": {
+      text: "For you created my inmost being; you knit me together in my mother’s womb... Your eyes saw my unformed body; all the days ordained for me were written in your book before one of them came to be.",
+      theme: "creation",
+      tags: ["value", "closeness", "God’s design", "you matter"]
+    },
+    "Isaiah 43:1": {
+      text: "Do not fear, for I have redeemed you; I have summoned you by name; you are mine.",
+      theme: "friend",
+      tags: ["belonging", "God knows you", "called by name"]
+    },
+    "Jeremiah 31:3": {
+      text: "I have loved you with an everlasting love; I have drawn you with unfailing kindness.",
+      theme: "love",
+      tags: ["unfailing love", "worth", "God's heart", "you matter"]
+    },
+    "Hosea 11:8": {
+      text: "How can I give you up, Ephraim? How can I hand you over, Israel?... My heart is changed within me; all my compassion is aroused.",
+      theme: "mercy",
+      tags: ["God's mercy", "compassion", "deep care", "you matter"]
+    }
+  },
+
+  "Your life matters even when it hurts": {
+    "Job 10:8-12": {
+      text: "Your hands shaped me and made me... Did you not clothe me with skin and flesh... You gave me life and showed me kindness...",
+      theme: "creation",
+      tags: ["value", "suffering", "God formed me"]
+    },
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "help",
+      tags: ["mental health", "you’re not alone", "God is near"]
+    },
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["you are loved", "sacrifice", "worth"]
+    },
+    "Isaiah 49:15-16": {
+      text: "Can a mother forget the baby at her breast...? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands...",
+      theme: "faithful",
+      tags: ["God remembers", "you are not forgotten", "deep love"]
+    }
+  },
+
+  "God made you for a reason": {
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "purpose",
+      tags: ["value", "mission", "calling"]
+    },
+    "1 Peter 2:9": {
+      text: "But you are a chosen people... God’s special possession, that you may declare the praises of him who called you out of darkness into his wonderful light.",
+      theme: "light",
+      tags: ["you belong", "chosen", "identity in God"]
+    },
+    "John 1:12": {
+      text: "Yet to all who did receive him... he gave the right to become children of God.",
+      theme: "salvation",
+      tags: ["belonging", "value", "child of God"]
+    },
+    "Romans 8:16-17": {
+      text: "The Spirit himself testifies with our spirit that we are God’s children. Now if we are children, then we are heirs—heirs of God and co-heirs with Christ...",
+      theme: "glory",
+      tags: ["inheritance", "child of God", "dignity"]
+    },
+    "Matthew 5:14": {
+      text: "You are the light of the world. A town built on a hill cannot be hidden.",
+      theme: "light",
+      tags: ["influence", "calling", "you shine", "God's plan"]
+    }
+  }
+
+};
+
+// What should I do when my emotions don't make sense?
+let q86ans = {
+
+  "Ask God to search and reveal what’s going on inside": {
+    "Psalm 139:23-24": {
+      text: "Search me, God, and know my heart; test me and know my anxious thoughts. See if there is any offensive way in me, and lead me in the way everlasting.",
+      theme: "guidance",
+      tags: ["confusion", "self-awareness", "inner life", "help"]
+    },
+    "Proverbs 20:5": {
+      text: "The purposes of a person’s heart are deep waters, but one who has insight draws them out.",
+      theme: "understanding",
+      tags: ["deep emotions", "introspection", "God’s wisdom"]
+    }
+  },
+
+  "Talk to God honestly even if you don’t have the words": {
+    "Romans 8:26": {
+      text: "In the same way, the Spirit helps us in our weakness. We do not know what we ought to pray for, but the Spirit himself intercedes for us through wordless groans.",
+      theme: "spirit",
+      tags: ["wordless emotions", "Holy Spirit", "comfort", "weakness"]
+    },
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "devotion",
+      tags: ["pour out emotions", "refuge", "trust"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "help",
+      tags: ["surrender", "emotional release", "God cares"]
+    }
+  },
+
+  "Pay attention to emotions—they may be trying to teach you something": {
+    "Genesis 4:6-7": {
+      text: "Then the Lord said to Cain, 'Why are you angry? Why is your face downcast? If you do what is right, will you not be accepted?...'",
+      theme: "guidance",
+      tags: ["self-check", "anger", "God's questions", "emotion as signal"]
+    },
+    "Proverbs 14:10": {
+      text: "Each heart knows its own bitterness, and no one else can share its joy.",
+      theme: "understanding",
+      tags: ["personal emotions", "no one fully understands", "internal reality"]
+    }
+  },
+
+  "Speak truth over emotions instead of being ruled by them": {
+    "Psalm 42:5": {
+      text: "Why, my soul, are you downcast? Why so disturbed within me? Put your hope in God, for I will yet praise him, my Savior and my God.",
+      theme: "hope",
+      tags: ["self-talk", "hope", "feeling low", "truth over emotion"]
+    },
+    "2 Corinthians 10:5": {
+      text: "We demolish arguments and every pretension that sets itself up against the knowledge of God, and we take captive every thought to make it obedient to Christ.",
+      theme: "battle",
+      tags: ["thought life", "emotional control", "mental discipline"]
+    }
+  },
+
+  "Let God grow the fruit of healthy emotions in you": {
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "transformation",
+      tags: ["emotional maturity", "spiritual growth", "inner fruit"]
+    },
+    "Ezekiel 11:19": {
+      text: "I will give them an undivided heart and put a new spirit in them; I will remove from them their heart of stone and give them a heart of flesh.",
+      theme: "transformation",
+      tags: ["new emotions", "healing", "change of heart"]
+    }
+  },
+
+  "Emotions aren’t evil—but they must be governed with wisdom": {
+    "Proverbs 25:28": {
+      text: "Like a city whose walls are broken through is a person who lacks self-control.",
+      theme: "wisdom",
+      tags: ["emotional discipline", "boundaries", "self-regulation"]
+    },
+    "Ecclesiastes 3:4": {
+      text: "A time to weep and a time to laugh, a time to mourn and a time to dance.",
+      theme: "wisdom",
+      tags: ["seasonal emotions", "timing", "emotional variety"]
+    }
+  },
+
+  "Worship and thanksgiving realign your heart": {
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["gratitude", "prayer", "emotional reset", "calm"]
+    },
+    "Psalm 34:1-3": {
+      text: "I will bless the Lord at all times; his praise shall continually be in my mouth... Oh, magnify the Lord with me, and let us exalt his name together!",
+      theme: "praise",
+      tags: ["worship", "joy", "magnify", "shift perspective"]
+    }
+  }
+
+};
+
+// What should I do when healing takes so long?
+let q87ans = {
+
+  "Trust that healing has a purpose, even if it’s slow": {
+    "Romans 5:3-5": {
+      text: "Suffering produces perseverance; perseverance, character; and character, hope. And hope does not put us to shame...",
+      theme: "growth",
+      tags: ["process of healing", "suffering has purpose", "character building"]
+    },
+    "James 1:2-4": {
+      text: "Consider it pure joy... whenever you face trials... because... the testing of your faith produces perseverance. Let perseverance finish its work so you may be mature and complete...",
+      theme: "growth",
+      tags: ["perseverance", "pain has purpose", "spiritual maturity"]
+    },
+    "2 Corinthians 4:16-18": {
+      text: "Though outwardly we are wasting away, yet inwardly we are being renewed day by day... For our light and momentary troubles are achieving for us an eternal glory...",
+      theme: "transformation",
+      tags: ["inner healing", "eternal perspective", "slow renewal", "hope in suffering"]
+    },
+    "Psalm 30:5": {
+      text: "…weeping may stay for the night, but rejoicing comes in the morning.",
+      theme: "hope",
+      tags: ["healing timeline", "joy follows sorrow", "God’s timing"]
+    }
+  },
+
+  "Wait for God’s timing—it is not a delay but a design": {
+    "Ecclesiastes 3:1-3": {
+      text: "There is a time for everything, and a season for every activity under the heavens: a time to be born and a time to die... a time to heal...",
+      theme: "guidance",
+      tags: ["God's timing", "seasons", "healing delay", "purpose in timing"]
+    },
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient...",
+      theme: "faithful",
+      tags: ["God is not late", "God’s patience", "faith in delay"]
+    },
+    "John 11:5-6": {
+      text: "Now Jesus loved Martha and her sister and Lazarus. So when he heard that Lazarus was sick, he stayed where he was two more days.",
+      theme: "trust",
+      tags: ["delay with purpose", "Jesus’ timing", "trust even when late"]
+    },
+    "Habakkuk 2:3": {
+      text: "For the revelation awaits an appointed time; it speaks of the end and will not prove false…",
+      theme: "hope",
+      tags: ["appointed time", "faith in waiting", "divine timing"]
+    }
+  },
+
+  "Let your hope rest in God’s goodness while you wait": {
+    "Psalm 27:13-14": {
+      text: "I remain confident of this: I will see the goodness of the Lord in the land of the living. Wait for the Lord; be strong and take heart and wait for the Lord.",
+      theme: "hope",
+      tags: ["waiting", "strength", "hope in pain", "God will act"]
+    },
+    "Lamentations 3:25-26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "seek",
+      tags: ["quiet waiting", "God's goodness", "hope in delay"]
+    },
+    "Isaiah 40:31": {
+      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles... run and not grow weary... walk and not be faint.",
+      theme: "strength",
+      tags: ["renewal", "trust in God", "waiting reward", "strength returns"]
+    },
+    "Psalm 37:7": {
+      text: "Be still before the Lord and wait patiently for him; do not fret when people succeed in their ways…",
+      theme: "peace",
+      tags: ["patient waiting", "calm", "trust", "not fretting"]
+    }
+  },
+
+  "Know that God is healing you, even when you can’t see it": {
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "healing",
+      tags: ["emotional healing", "God cares", "personal restoration"]
+    },
+    "Jeremiah 17:14": {
+      text: "Heal me, Lord, and I will be healed; save me and I will be saved…",
+      theme: "healing",
+      tags: ["personal prayer", "restoration request", "faith in healing"]
+    }
+  },
+
+  "Strengthen your heart by focusing on eternal things": {
+    "Matthew 6:19-21": {
+      text: "Do not store up for yourselves treasures on earth… But store up for yourselves treasures in heaven…",
+      theme: "eternal",
+      tags: ["eternal perspective", "recalibration", "healing lens"]
+    },
+    "Colossians 3:2": {
+      text: "Set your minds on things above, not on earthly things.",
+      theme: "peace",
+      tags: ["focus shift", "mindset", "eternal focus"]
+    }
+  }
+
+};
+
+// What should I do when it feels like God is silent?
+let q88ans = {
+
+  "Remember God hears even when He seems silent": {
+    "Micah 7:7": {
+      text: "But as for me, I watch in hope for the Lord, I wait for God my Savior; my God will hear me.",
+      theme: "hope",
+      tags: ["waiting", "prayer", "hope", "confidence"]
+    },
+    "Lamentations 3:55-57": {
+      text: "I called on your name, Lord, from the depths of the pit. You heard my plea: 'Do not close your ears to my cry for relief.' You came near when I called you, and you said, 'Do not fear.'",
+      theme: "presence",
+      tags: ["cry for help", "God hears", "do not fear", "hope"]
+    }
+  },
+
+  "Trust His silence has purpose": {
+    "Habakkuk 2:3": {
+      text: "For the revelation awaits an appointed time; it speaks of the end and will not prove false. Though it linger, wait for it; it will certainly come and will not delay.",
+      theme: "guidance",
+      tags: ["waiting", "appointed time", "God’s plan", "trust"]
+    },
+    "Ecclesiastes 3:1": {
+      text: "There is a time for everything, and a season for every activity under the heavens.",
+      theme: "wisdom",
+      tags: ["timing", "seasons", "purpose", "waiting"]
+    }
+  },
+
+  "Keep crying out anyway—He invites your persistence": {
+    "Psalm 40:1-3": {
+      text: "I waited patiently for the Lord; he turned to me and heard my cry. He lifted me out of the slimy pit... He put a new song in my mouth, a hymn of praise to our God.",
+      theme: "faithful",
+      tags: ["deliverance", "patience", "crying out", "rescue"]
+    },
+    "Hebrews 4:16": {
+      text: "Let us then approach God's throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["confidence", "help", "mercy", "persistent prayer"]
+    }
+  },
+
+  "He’s closer than you feel": {
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "presence",
+      tags: ["courage", "God with you", "never alone", "strength"]
+    },
+    "Psalm 23:4": {
+      text: "Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me.",
+      theme: "protect",
+      tags: ["valley", "fear", "comfort", "God’s presence"]
+    }
+  }
+
+}
+
+// How do I stop comparing myself to others?
+let q89ans = {
+
+  "You are uniquely and wonderfully made by God": {
+    "Psalm 139:14": {
+      text: "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
+      theme: "creation",
+      tags: ["identity", "uniqueness", "self-worth", "God's design"]
+    }
+  },
+
+  "Godliness with contentment leads to true gain": {
+    "1 Timothy 6:6": {
+      text: "But godliness with contentment is great gain.",
+      theme: "peace",
+      tags: ["contentment", "peace", "satisfaction", "spiritual maturity"]
+    }
+  },
+
+  "Learn to be content in every season": {
+    "Philippians 4:11–12": {
+      text: "I have learned to be content whatever the circumstances... I have learned the secret of being content in any and every situation.",
+      theme: "peace",
+      tags: ["contentment", "seasons", "joy", "inner strength"]
+    }
+  },
+
+  "Focus on your own growth, not others’ path": {
+    "Galatians 6:4–5": {
+      text: "Each one should test their own actions... For each one should carry their own load.",
+      theme: "growth",
+      tags: ["growth", "self-examination", "responsibility", "focus"]
+    }
+  },
+
+  "Your identity is rooted in Christ alone": {
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me... I live by faith in the Son of God, who loved me and gave himself for me.",
+      theme: "faith",
+      tags: ["identity", "Christ", "faith", "self-worth"]
+    }
+  },
+
+  "Seek God’s approval, not people’s praise": {
+    "Matthew 6:1–2": {
+      text: "Be careful not to practice your righteousness in front of others to be seen by them... your Father, who sees what is done in secret, will reward you.",
+      theme: "eternal",
+      tags: ["approval", "pride", "humility", "audience of One"]
+    }
+  },
+
+  "God gave each of us different gifts and callings": {
+    "Romans 12:6": {
+      text: "We have different gifts, according to the grace given to each of us.",
+      theme: "grace",
+      tags: ["gifts", "calling", "uniqueness", "comparison"]
+    }
+  },
+
+  "Do your best for God—not to impress people": {
+    "Colossians 3:23–24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord... It is the Lord Christ you are serving.",
+      theme: "obedience",
+      tags: ["excellence", "purpose", "work ethic", "motives"]
+    }
+  },
+
+  "God has prepared good things uniquely for you": {
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "purpose",
+      tags: ["calling", "purpose", "God's plan", "identity"]
+    }
+  },
+
+  "Don’t envy others—walk with the Spirit": {
+    "Galatians 5:25–26": {
+      text: "Since we live by the Spirit, let us keep in step with the Spirit. Let us not become conceited, provoking and envying each other.",
+      theme: "spirit",
+      tags: ["envy", "spirit", "comparison", "humility"]
+    }
+  }
+
+};
+
+// What if I don’t feel special?
+let q90ans = {
+
+  "God knew and chose you before you were born": {
+    "Jeremiah 1:5": {
+      text: "Before I formed you in the womb I knew you, before you were born I set you apart; I appointed you as a prophet to the nations.",
+      theme: "creation",
+      tags: ["formed", "set apart", "purpose", "identity"]
+    },
+    "Deuteronomy 7:6": {
+      text: "For you are a people holy to the Lord your God. The Lord your God has chosen you out of all the peoples on the face of the earth to be his people, his treasured possession.",
+      theme: "identity",
+      tags: ["chosen", "treasured", "belonging", "God’s people"]
+    },
+    "Psalm 139:13–14": {
+      text: "For you created my inmost being; you knit me together in my mother’s womb. I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
+      theme: "creation",
+      tags: ["made", "wonderfully", "purpose", "design"]
+    }
+  },
+
+  "God loves you personally and sacrificially": {
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+      theme: "love",
+      tags: ["Christ", "love", "sacrifice", "identity"]
+    },
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "mercy",
+      tags: ["grace", "love", "salvation", "undeserved"]
+    },
+    "Ephesians 2:4–5": {
+      text: "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+      theme: "grace",
+      tags: ["love", "alive", "salvation", "value"]
+    }
+  },
+
+  "You are not forgotten by God": {
+    "Luke 12:6–7": {
+      text: "Are not five sparrows sold for two pennies? Yet not one of them is forgotten by God. Indeed, the very hairs of your head are all numbered. Don’t be afraid; you are worth more than many sparrows.",
+      theme: "protect",
+      tags: ["worth", "remembered", "valuable", "God’s care"]
+    },
+    "Isaiah 49:16": {
+      text: "See, I have engraved you on the palms of my hands; your walls are ever before me.",
+      theme: "faithful",
+      tags: ["engraved", "remembrance", "love", "value"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+      theme: "love",
+      tags: ["delight", "rejoice", "presence", "identity"]
+    }
+  },
+
+  "You are God’s beloved and His friend": {
+    "John 15:15": {
+      text: "I no longer call you servants, because a servant does not know his master’s business. Instead, I have called you friends, for everything that I learned from my Father I have made known to you.",
+      theme: "friend",
+      tags: ["friendship", "intimacy", "identity", "relationship"]
+    },
+    "Song of Songs 4:7": {
+      text: "You are altogether beautiful, my darling; there is no flaw in you.",
+      theme: "love",
+      tags: ["beautiful", "beloved", "valued", "affirmation"]
+    },
+    "Isaiah 43:4": {
+      text: "Since you are precious and honored in my sight, and because I love you, I will give people in exchange for you, nations in exchange for your life.",
+      theme: "love",
+      tags: ["precious", "honored", "loved", "worth"]
+    }
+  }
+
+};
+
+// Can God use someone like me?
+let q91ans = {
+
+  "God delights in using unexpected people": {
+    "1 Corinthians 1:27": {
+      text: "But God chose what is foolish in the world to shame the wise; God chose what is weak in the world to shame the strong.",
+      theme: "power",
+      tags: ["calling", "God's plan", "humble", "purpose"]
+    },
+    "1 Corinthians 1:29": {
+      text: "so that no one may boast before him.",
+      theme: "humility",
+      tags: ["glory", "boasting", "humble", "dependence"]
+    },
+    "Luke 1:52": {
+      text: "He has brought down rulers from their thrones but has lifted up the humble.",
+      theme: "humble",
+      tags: ["humility", "honor", "God's choice", "calling"]
+    }
+  },
+
+  "God’s strength shines through our limitations": {
+    "2 Corinthians 12:9": {
+      text: "My grace is sufficient for you, for my power is made perfect in weakness.",
+      theme: "power",
+      tags: ["weakness", "strength", "grace", "God's sufficiency"]
+    },
+    "Philippians 4:13": {
+      text: "I can do all this through him who gives me strength.",
+      theme: "power",
+      tags: ["strength", "calling", "Christ", "confidence"]
+    },
+    "Isaiah 40:29": {
+      text: "He gives strength to the weary and increases the power of the weak.",
+      theme: "power",
+      tags: ["strength", "encouragement", "God helps", "calling"]
+    }
+  },
+
+  "God equips those He calls—even if they feel unqualified": {
+    "Judges 6:15": {
+      text: "But Lord,” Gideon asked, “how can I save Israel? My clan is the weakest in Manasseh, and I am the least in my family.",
+      theme: "fear",
+      tags: ["insecurity", "God's calling", "weak", "trust"]
+    },
+    "Exodus 4:10": {
+      text: "Moses said to the Lord, 'Pardon your servant, Lord. I have never been eloquent…'",
+      theme: "help",
+      tags: ["reluctance", "God equips", "calling", "obedience"]
+    },
+    "Jeremiah 1:6-7": {
+      text: "'Alas, Sovereign Lord,' I said, 'I do not know how to speak; I am too young.' But the Lord said to me, 'Do not say, 'I am too young.' You must go to everyone I send you to and say whatever I command you.'",
+      theme: "authority",
+      tags: ["youth", "purpose", "God sends", "calling"]
+    }
+  },
+
+  "God uses people who walk closely with Him": {
+    "Acts 4:13": {
+      text: "Now when they saw the courage of Peter and John and realized that they were unschooled, ordinary men, they were astonished and took note that these men had been with Jesus.",
+      theme: "spirit",
+      tags: ["Spirit-filled", "boldness", "discipleship", "presence"]
+    },
+    "John 15:5": {
+      text: "I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.",
+      theme: "presence",
+      tags: ["abide", "fruitful", "closeness", "calling"]
+    }
+  }
+
+};
+
+// How do I know if I’m on the right path?
+let q92ans = {
+
+  "Let God's Word and Spirit lead you": {
+    "Romans 8:14": {
+      text: "For those who are led by the Spirit of God are the children of God.",
+      theme: "spirit",
+      tags: ["Holy Spirit", "guidance", "identity", "direction"]
+    },
+    "Galatians 5:25": {
+      text: "Since we live by the Spirit, let us keep in step with the Spirit.",
+      theme: "spirit",
+      tags: ["Spirit-led", "walking", "obedience", "daily decisions"]
+    },
+    "Proverbs 16:9": {
+      text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+      theme: "guidance",
+      tags: ["God’s control", "plans", "path", "trust"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["God’s Word", "direction", "light", "clarity"]
+    }
+  },
+
+  "Stay close to God through obedience": {
+    "John 14:21": {
+      text: "Whoever has my commands and keeps them is the one who loves me. The one who loves me will be loved by my Father, and I too will love them and show myself to them.",
+      theme: "obedience",
+      tags: ["Jesus", "love", "commands", "revelation"]
+    },
+    "Deuteronomy 5:33": {
+      text: "Walk in obedience to all that the Lord your God has commanded you, so that you may live and prosper and prolong your days in the land that you will possess.",
+      theme: "obedience",
+      tags: ["walk", "obedience", "prosperity", "God’s will"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["voice", "God's direction", "walking", "decisions"]
+    }
+  },
+
+  "The right path produces fruit and peace": {
+    "Psalm 1:1–3": {
+      text: "Blessed is the one who does not walk in step with the wicked… but whose delight is in the law of the Lord… That person is like a tree planted by streams of water, which yields its fruit in season…",
+      theme: "growth",
+      tags: ["fruit", "righteousness", "delight", "law", "blessing"]
+    },
+    "Matthew 7:16": {
+      text: "By their fruit you will recognize them. Do people pick grapes from thornbushes, or figs from thistles?",
+      theme: "wisdom",
+      tags: ["fruit", "discernment", "evidence", "results"]
+    },
+    "Hebrews 12:11": {
+      text: "No discipline seems pleasant at the time, but painful. Later on, however, it produces a harvest of righteousness and peace for those who have been trained by it.",
+      theme: "transformation",
+      tags: ["discipline", "peace", "growth", "training"]
+    },
+    "James 3:17": {
+      text: "But the wisdom that comes from heaven is first of all pure; then peace-loving, considerate, submissive, full of mercy and good fruit, impartial and sincere.",
+      theme: "wisdom",
+      tags: ["peace", "fruit", "wisdom", "God's way"]
+    }
+  }
+
+};
+
+// What if I don’t have a big dream?
+let q93ans = {
+  "God values faithfulness, not fame": {
+    "Luke 16:10": {
+      text: "Whoever can be trusted with very little can also be trusted with much, and whoever is dishonest with very little will also be dishonest with much.",
+      theme: "obedience",
+      tags: ["faithfulness", "small things", "trust", "integrity"]
+    },
+    "1 Samuel 16:7": {
+      text: "But the Lord said to Samuel, 'Do not consider his appearance or his height, for I have rejected him. The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.'",
+      theme: "truth",
+      tags: ["faithfulness", "heart", "God’s view", "identity"]
+    }
+  },
+
+  "Small beginnings matter to God": {
+    "Zechariah 4:10": {
+      text: "Do not despise these small beginnings, for the Lord rejoices to see the work begin.",
+      theme: "growth",
+      tags: ["beginnings", "faith", "purpose", "significance"]
+    },
+    "Job 8:7": {
+      text: "Though your beginning was small, yet your latter end would increase abundantly.",
+      theme: "hope",
+      tags: ["growth", "small beginnings", "future", "trust"]
+    }
+  },
+
+  "A meaningful life can be simple and steady": {
+    "1 Thessalonians 4:11": {
+      text: "Make it your ambition to lead a quiet life: You should mind your own business and work with your hands, just as we told you.",
+      theme: "peace",
+      tags: ["quiet life", "ambition", "contentment", "purpose"]
+    },
+    "Psalm 37:3": {
+      text: "Trust in the Lord and do good; dwell in the land and enjoy safe pasture.",
+      theme: "peace",
+      tags: ["faithfulness", "trust", "simple life", "goodness"]
+    }
+  },
+
+  "God will guide each step, even if you don’t have a big vision": {
+    "Proverbs 16:9": {
+      text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+      theme: "guidance",
+      tags: ["direction", "God’s will", "steps", "trust"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["direction", "steps", "hearing God", "path"]
+    }
+  },
+
+  "You already have a purpose": {
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "purpose",
+      tags: ["calling", "created", "God’s plan", "works"]
+    },
+    "2 Peter 1:3": {
+      text: "His divine power has given us everything we need for a godly life through our knowledge of him who called us by his own glory and goodness.",
+      theme: "growth",
+      tags: ["calling", "power", "purpose", "godly life"]
+    }
+  }
+  
+};
+
+// How should I deal with betrayal?
+let q94ans = {
+  "You should trust God to bring justice instead of seeking revenge": {
+    "Romans 12:19": {
+      text: "Do not take revenge, my dear friends, but leave room for God’s wrath, for it is written: 'It is mine to avenge; I will repay,' says the Lord.",
+      theme: "justice",
+      tags: ["revenge", "trust", "letting go"]
+    },
+    "Deuteronomy 32:35": {
+      text: "It is mine to avenge; I will repay. In due time their foot will slip; their day of disaster is near and their doom rushes upon them.",
+      theme: "justice",
+      tags: ["judgment", "timing", "revenge"]
+    },
+    "Psalm 37:12–13": {
+      text: "The wicked plot against the righteous and gnash their teeth at them; but the Lord laughs at the wicked, for he knows their day is coming.",
+      theme: "justice",
+      tags: ["betrayal", "wickedness", "judgment"]
+    }
+  },
+
+  "You should bring your pain to God and be honest with Him": {
+    "Psalm 55:12–14": {
+      text: "If an enemy were insulting me, I could endure it; but it is you, a man like myself, my companion, my close friend, with whom I once enjoyed sweet fellowship...",
+      theme: "fallenness",
+      tags: ["pain", "betrayal", "friendship"]
+    },
+    "Psalm 56:8": {
+      text: "You have kept count of my tossings; put my tears in your bottle. Are they not in your record?",
+      theme: "friend",
+      tags: ["comfort", "tears", "intimacy"]
+    },
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "seek",
+      tags: ["trust", "honesty", "refuge"]
+    }
+  },
+
+  "You should remember that God can turn betrayal into something good": {
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "transformation",
+      tags: ["redemption", "betrayal", "purpose"]
+    },
+    "Lamentations 3:22–24": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness. I say to myself, 'The Lord is my portion; therefore I will wait for him.'",
+      theme: "faithful",
+      tags: ["hope", "healing", "love"]
+    }
+  },
+
+  "You should choose forgiveness when you're ready": {
+    "Matthew 6:14–15": {
+      text: "For if you forgive other people when they sin against you, your heavenly Father will also forgive you. But if you do not forgive others their sins, your Father will not forgive your sins.",
+      theme: "forgiveness",
+      tags: ["mercy", "forgiveness", "grace"]
+    },
+    "Colossians 3:13": {
+      text: "Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you.",
+      theme: "forgiveness",
+      tags: ["grace", "patience", "healing"]
+    },
+    "Ephesians 4:31–32": {
+      text: "Get rid of all bitterness, rage and anger, brawling and slander, along with every form of malice. Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.",
+      theme: "transformation",
+      tags: ["forgiveness", "kindness", "healing"]
+    }
+  },
+
+  "You should place your trust in God, not in people": {
+    "Proverbs 3:5–6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "direction", "healing"]
+    },
+    "Jeremiah 17:5–8": {
+      text: "Cursed is the one who trusts in man, who draws strength from mere flesh and whose heart turns away from the Lord. [...] But blessed is the one who trusts in the Lord, whose confidence is in him.",
+      theme: "trust",
+      tags: ["wisdom", "hope", "stability"]
+    },
+    "Psalm 118:8": {
+      text: "It is better to take refuge in the Lord than to trust in humans.",
+      theme: "guidance",
+      tags: ["refuge", "trust", "betrayal"]
+    }
+  },
+
+  "You are not alone—God is with you in betrayal": {
+    "Hebrews 4:15": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin.",
+      theme: "jesus",
+      tags: ["understanding", "comfort", "compassion"]
+    },
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "presence",
+      tags: ["comfort", "healing", "hope"]
+    },
+    "2 Timothy 4:16–17": {
+      text: "At my first defense, no one came to my support, but everyone deserted me. May it not be held against them. But the Lord stood at my side and gave me strength...",
+      theme: "presence",
+      tags: ["desertion", "God's presence", "strength", "forgiveness"]
+    }
+  },
+
+  "You should take refuge in God's protection and strength": {
+    "Isaiah 54:17": {
+      text: "No weapon formed against you shall prosper, and every tongue which rises against you in judgment You shall condemn. This is the heritage of the servants of the Lord...",
+      theme: "protect",
+      tags: ["security", "protection", "strength"]
+    },
+    "Exodus 14:14": {
+      text: "The Lord will fight for you; you need only to be still.",
+      theme: "protect",
+      tags: ["justice", "faith", "calm"]
+    },
+    "Proverbs 18:10": {
+      text: "The name of the Lord is a strong tower; the righteous run to it and are safe.",
+      theme: "protect",
+      tags: ["safety", "strength", "presence"]
+    },
+    "Psalm 91:4": {
+      text: "He will cover you with his feathers, and under his wings you will find refuge; his faithfulness will be your shield and rampart.",
+      theme: "protect",
+      tags: ["comfort", "safety", "faithfulness"]
+    }
+  },
+
+  "You should remember that Jesus was betrayed too": {
+    "Luke 22:48": {
+      text: "But Jesus asked him, 'Judas, are you betraying the Son of Man with a kiss?'",
+      theme: "obedience",
+      tags: ["betrayal", "jesus", "pain"]
+    },
+    "John 13:21": {
+      text: "After he had said this, Jesus was troubled in spirit and testified, 'Very truly I tell you, one of you is going to betray me.'",
+      theme: "jesus",
+      tags: ["pain", "awareness", "betrayal"]
+    },
+    "Luke 23:34": {
+      text: "Jesus said, 'Father, forgive them, for they do not know what they are doing.'",
+      theme: "mercy",
+      tags: ["forgiveness", "jesus", "love"]
+    }
+  }
+}
+
+// How does a godly relationship or marriage look like?
+let q95ans = {
+  "Godly relationships reflect Christlike love and sacrifice": {
+    "John 15:13": {
+      text: "Greater love has no one than this: to lay down one’s life for one’s friends.",
+      theme: "love",
+      tags: ["friendship", "sacrifice", "devotion"]
+    },
+    "Ephesians 5:25": {
+      text: "Husbands, love your wives, just as Christ loved the church and gave himself up for her.",
+      theme: "love",
+      tags: ["marriage", "sacrifice", "Christlike"]
+    },
+    "Galatians 6:2": {
+      text: "Carry each other’s burdens, and in this way you will fulfill the law of Christ.",
+      theme: "help",
+      tags: ["friendship", "burdens", "support"]
+    },
+    "1 John 4:11": {
+      text: "Dear friends, since God so loved us, we also ought to love one another.",
+      theme: "love",
+      tags: ["relationships", "friendship", "God's love"]
+    }
+  },
+
+  "Godly relationships build one another up in love and truth": {
+    "Ephesians 4:15–16": {
+      text: "Instead, speaking the truth in love, we will grow to become in every respect the mature body of him who is the head, that is, Christ.",
+      theme: "growth",
+      tags: ["truth", "maturity", "unity"]
+    },
+    "1 Thessalonians 5:11": {
+      text: "Therefore encourage one another and build each other up, just as in fact you are doing.",
+      theme: "encouragement",
+      tags: ["friendship", "unity", "support"]
+    },
+    "Proverbs 27:17": {
+      text: "As iron sharpens iron, so one person sharpens another.",
+      theme: "growth",
+      tags: ["friendship", "wisdom", "discipleship"]
+    },
+    "Colossians 3:16": {
+      text: "Let the message of Christ dwell among you richly... teaching and admonishing one another with all wisdom...",
+      theme: "wisdom",
+      tags: ["truth", "teaching", "mutual growth"]
+    }
+  },
+
+  "Godly relationships are rooted in mutual honor and humility": {
+    "Romans 12:10": {
+      text: "Be devoted to one another in love. Honor one another above yourselves.",
+      theme: "humble",
+      tags: ["respect", "love", "marriage"]
+    },
+    "Philippians 2:3–4": {
+      text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves...",
+      theme: "humble",
+      tags: ["relationships", "selflessness", "unity"]
+    },
+    "Ephesians 5:21": {
+      text: "Submit to one another out of reverence for Christ.",
+      theme: "submission",
+      tags: ["marriage", "respect", "unity"]
+    },
+    "1 Peter 5:5": {
+      text: "All of you, clothe yourselves with humility toward one another, because, 'God opposes the proud but shows favor to the humble.'",
+      theme: "humble",
+      tags: ["attitude", "relationships", "favor"]
+    }
+  },
+
+  "Godly relationships prioritize purity and commitment before God": {
+    "Hebrews 13:4": {
+      text: "Marriage should be honored by all, and the marriage bed kept pure, for God will judge the adulterer and all the sexually immoral.",
+      theme: "holy",
+      tags: ["marriage", "purity", "judgment"]
+    },
+    "1 Corinthians 6:18–20": {
+      text: "Flee from sexual immorality... your bodies are temples of the Holy Spirit...",
+      theme: "holy",
+      tags: ["sexuality", "respect", "God's temple"]
+    },
+    "Malachi 2:15": {
+      text: "Has not the one God made you? You belong to him in body and spirit... So be on your guard, and do not be unfaithful to the wife of your youth.",
+      theme: "faithful",
+      tags: ["marriage", "loyalty", "legacy"]
+    },
+    "1 Thessalonians 4:3–5": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality...",
+      theme: "holy",
+      tags: ["purity", "self-control", "obedience"]
+    }
+  },
+
+  "Godly relationships include family responsibility and care": {
+    "1 Timothy 5:8": {
+      text: "Anyone who does not provide for their relatives, and especially for their own household, has denied the faith and is worse than an unbeliever.",
+      theme: "obedience",
+      tags: ["family", "provision", "faith"]
+    },
+    "Ephesians 6:1–2": {
+      text: "Children, obey your parents in the Lord, for this is right. ‘Honor your father and mother’—which is the first commandment with a promise—",
+      theme: "obedience",
+      tags: ["family", "honor", "children"]
+    },
+    "Ephesians 6:4": {
+      text: "Fathers, do not exasperate your children; instead, bring them up in the training and instruction of the Lord.",
+      theme: "guidance",
+      tags: ["family", "instruction", "parenting"]
+    },
+    "Colossians 3:18–21": {
+      text: "Wives, submit yourselves to your husbands... Children, obey your parents... Fathers, do not embitter your children...",
+      theme: "obedience",
+      tags: ["family", "roles", "peace"]
+    }
+  },
+
+  "Godly relationships are marked by unity, loyalty, and shared joy": {
+    "Psalm 133:1": {
+      text: "How good and pleasant it is when God’s people live together in unity!",
+      theme: "peace",
+      tags: ["unity", "joy", "togetherness"]
+    },
+    "Ecclesiastes 4:9–12": {
+      text: "Two are better than one... though one may be overpowered, two can defend themselves. A cord of three strands is not quickly broken.",
+      theme: "strength",
+      tags: ["marriage", "friendship", "support"]
+    },
+    "Proverbs 17:17": {
+      text: "A friend loves at all times, and a brother is born for a time of adversity.",
+      theme: "love",
+      tags: ["loyalty", "friendship", "family"]
+    },
+    "Romans 12:15": {
+      text: "Rejoice with those who rejoice; mourn with those who mourn.",
+      theme: "presence",
+      tags: ["empathy", "relationships", "care"]
+    },
+    "Amos 3:3": {
+      text: "Do two walk together unless they have agreed to do so?",
+      theme: "walk",
+      tags: ["unity", "agreement", "companionship"]
+    }
+  }
+};
+
+// Where is God when I feel abandoned or rejected?
+let q96ans = {
+  "God is with you even when others leave": {
+    "Psalm 27:10": {
+      text: "Though my father and mother forsake me, the LORD will receive me.",
+      theme: "presence",
+      tags: ["family rejection", "God's comfort"]
+    },
+    "Deuteronomy 31:8": {
+      text: "The LORD himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.",
+      theme: "presence",
+      tags: ["guidance", "courage", "security"]
+    },
+    "Hebrews 13:5": {
+      text: "Keep your lives free from the love of money and be content with what you have, because God has said, 'Never will I leave you; never will I forsake you.'",
+      theme: "faithful",
+      tags: ["God's promise", "enduring presence"]
+    },
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the LORD your God will be with you wherever you go.",
+      theme: "presence",
+      tags: ["courage", "companionship", "strength"]
+    },
+    "John 14:18": {
+      text: "I will not leave you as orphans; I will come to you.",
+      theme: "help",
+      tags: ["comfort", "reassurance", "God’s nearness"]
+    },
+    "Matthew 28:20": {
+      text: "And surely I am with you always, to the very end of the age.",
+      theme: "presence",
+      tags: ["Jesus", "forever", "companionship"]
+    }
+  },
+
+  "God understands what rejection feels like": {
+    "1 Peter 2:4": {
+      text: "As you come to him, the living Stone—rejected by humans but chosen by God and precious to him—",
+      theme: "jesus",
+      tags: ["rejection", "identity", "chosen"]
+    },
+    "Psalm 51:17": {
+      text: "My sacrifice, O God, is a broken spirit; a broken and contrite heart you, God, will not despise.",
+      theme: "mercy",
+      tags: ["humility", "repentance", "acceptance"]
+    },
+    "Hebrews 4:15": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin.",
+      theme: "jesus",
+      tags: ["understanding", "temptation", "compassion"]
+    }
+  },
+
+  "God stays close when your heart is breaking": {
+    "Psalm 34:18": {
+      text: "The LORD is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "mercy",
+      tags: ["brokenness", "comfort", "healing"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["strength", "support", "fearless"]
+    },
+    "2 Corinthians 1:3-4": {
+      text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
+      theme: "mercy",
+      tags: ["suffering", "God’s compassion", "comforting others"]
+    },
+    "2 Corinthians 12:9": {
+      text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["weakness", "dependence", "strength"]
+    },
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "healing",
+      tags: ["emotional pain", "restoration", "God’s care"]
+    }
+  },
+
+  "Even in despair you’re not forgotten": {
+    "Psalm 56:8": {
+      text: "Record my misery; list my tears on your scroll—are they not in your record?",
+      theme: "understanding",
+      tags: ["tears", "God's care", "loneliness"]
+    },
+    "Psalm 142:4": {
+      text: "Look and see, there is no one at my right hand; no one is concerned for me. I have no refuge; no one cares for my life.",
+      theme: "help",
+      tags: ["abandonment", "cry for help", "isolation"]
+    },
+    "Psalm 142:6-7": {
+      text: "Listen to my cry, for I am in desperate need; rescue me from those who pursue me, for they are too strong for me. Set me free from my prison, that I may praise your name. Then the righteous will gather about me because of your goodness to me.",
+      theme: "help",
+      tags: ["distress", "deliverance", "hope"]
+    },
+    "Lamentations 3:22-23": {
+      text: "Because of the LORD’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "faithful",
+      tags: ["compassion", "hope", "God’s love"]
+    }
+  },
+
+  "God’s love never fails—even rejection cannot undo it": {
+    "Psalm 94:14": {
+      text: "For the LORD will not reject his people; he will never forsake his inheritance.",
+      theme: "faithful",
+      tags: ["security", "belonging", "God’s promise"]
+    },
+    "Isaiah 49:15": {
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you!",
+      theme: "love",
+      tags: ["unfailing love", "God’s memory", "value"]
+    },
+    "Romans 8:38-39": {
+      text: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["eternal", "security", "identity"]
+    },
+    "Jeremiah 31:3": {
+      text: "The LORD appeared to us in the past, saying: 'I have loved you with an everlasting love; I have drawn you with unfailing kindness.'",
+      theme: "love",
+      tags: ["everlasting", "God’s pursuit", "kindness"]
+    }
+  },
+
+  "In your lonely season God becomes your refuge and strength": {
+    "Psalm 46:1": {
+      text: "God is our refuge and strength, an ever-present help in trouble.",
+      theme: "presence",
+      tags: ["strength", "refuge", "trouble"]
+    },
+    "Isaiah 43:1-2": {
+      text: "But now, this is what the LORD says—he who created you, Jacob, he who formed you, Israel: 'Do not fear, for I have redeemed you; I have summoned you by name; you are mine. When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you. When you walk through the fire, you will not be burned; the flames will not set you ablaze.'",
+      theme: "presence",
+      tags: ["protection", "presence", "deliverance"]
+    },
+    "Psalm 25:16-18": {
+      text: "Turn to me and be gracious to me, for I am lonely and afflicted. Relieve the troubles of my heart and free me from my anguish. Look on my affliction and my distress and take away all my sins.",
+      theme: "help",
+      tags: ["distress", "mercy", "deliverance"]
+    },
+    "Proverbs 18:10": {
+      text: "The name of the LORD is a fortified tower; the righteous run to it and are safe.",
+      theme: "protect",
+      tags: ["safety", "refuge", "God’s name"]
+    }
+  },
+
+  "God chooses you even if others reject you": {
+    "Romans 8:31": {
+      text: "What, then, shall we say in response to these things? If God is for us, who can be against us?",
+      theme: "authority",
+      tags: ["confidence", "divine favor", "opposition"]
+    },
+    "Matthew 5:11-12": {
+      text: "Blessed are you when people insult you, persecute you and falsely say all kinds of evil against you because of me. Rejoice and be glad, because great is your reward in heaven, for in the same way they persecuted the prophets who were before you.",
+      theme: "salvation",
+      tags: ["persecution", "blessing", "eternal reward"]
+    },
+    "Isaiah 53:3": {
+      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain. Like one from whom people hide their faces he was despised, and we held him in low esteem.",
+      theme: "jesus",
+      tags: ["rejection", "identification", "suffering"]
+    },
+    "1 Samuel 16:7": {
+      text: "But the LORD said to Samuel, 'Do not consider his appearance or his height, for I have rejected him. The LORD does not look at the things people look at. People look at the outward appearance, but the LORD looks at the heart.'",
+      theme: "truth",
+      tags: ["value", "identity", "God's view"]
+    },
+    "Ephesians 1:4-5": {
+      text: "For he chose us in him before the creation of the world to be holy and blameless in his sight. In love he predestined us for adoption to sonship through Jesus Christ, in accordance with his pleasure and will.",
+      theme: "salvation",
+      tags: ["chosen", "adoption", "identity"]
+    }
+  }
+};
+
+//How do I deal with loneliness?
+let q97ans = {
+  "Trust that God is always with you—even when you feel alone": {
+    "Psalm 139:7–10": {
+      text: "Where can I go from your Spirit? Where can I flee from your presence? If I go up to the heavens, you are there; if I make my bed in the depths, you are there. If I rise on the wings of the dawn, if I settle on the far side of the sea, even there your hand will guide me, your right hand will hold me fast.",
+      theme: "presence",
+      tags: ["presence", "guidance", "comfort"]
+    },
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "presence",
+      tags: ["promise", "fear", "courage"]
+    },
+    "Hebrews 13:5–6": {
+      text: "\"Never will I leave you; never will I forsake you.\" So we say with confidence, \"The Lord is my helper; I will not be afraid. What can mere mortals do to me?\"",
+      theme: "faithful",
+      tags: ["promise", "help", "fear"]
+    },
+    "Matthew 28:20": {
+      text: "And surely I am with you always, to the very end of the age.",
+      theme: "presence",
+      tags: ["presence", "companion", "eternal"]
+    },
+    "Psalm 27:10": {
+      text: "Though my father and mother forsake me, the Lord will receive me.",
+      theme: "presence",
+      tags: ["rejection", "acceptance", "comfort"]
+    }
+  },
+  "Draw near to God in your loneliness": {
+    "James 4:8": {
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      theme: "seek",
+      tags: ["seek", "return", "repentance"]
+    },
+    "Psalm 25:16–18": {
+      text: "Turn to me and be gracious to me, for I am lonely and afflicted. Relieve the troubles of my heart and free me from my anguish. Look on my affliction and my distress and take away all my sins.",
+      theme: "mercy",
+      tags: ["loneliness", "anguish", "prayer"]
+    },
+    "Psalm 42:1–5": {
+      text: "As the deer pants for streams of water, so my soul pants for you, my God. My soul thirsts for God, for the living God. When can I go and meet with God? My tears have been my food day and night, while people say to me all day long, \"Where is your God?\" These things I remember as I pour out my soul: how I used to go to the house of God under the protection of the Mighty One with shouts of joy and praise among the festive throng. Why, my soul, are you downcast? Why so disturbed within me? Put your hope in God, for I will yet praise him, my Savior and my God.",
+      theme: "seek",
+      tags: ["longing", "thirst", "hope"]
+    }
+  },
+  "Rest in Jesus who offers comfort and companionship": {
+    "Matthew 11:28–30": {
+      text: "\"Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls. For my yoke is easy and my burden is light.\"",
+      theme: "peace",
+      tags: ["rest", "burden", "gentle"]
+    },
+    "John 14:18": {
+      text: "I will not leave you as orphans; I will come to you.",
+      theme: "presence",
+      tags: ["companion", "promise", "presence"]
+    },
+    "John 16:32–33": {
+      text: "A time is coming, and in fact has come, when you will be scattered, each to your own home. You will leave me all alone. Yet I am not alone, for my Father is with me. I have told you these things, so that in me you may have peace. In this world you will have trouble. But take heart! I have overcome the world.",
+      theme: "peace",
+      tags: ["peace", "victory", "trouble"]
+    }
+  },
+  "Let God heal your heart and comfort your pain": {
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "healing",
+      tags: ["healing", "comfort", "brokenness"]
+    },
+    "Lamentations 3:31–32": {
+      text: "For no one is cast off by the Lord forever. Though he brings grief, he will show compassion, so great is his unfailing love.",
+      theme: "mercy",
+      tags: ["compassion", "grief", "love"]
+    },
+    "2 Corinthians 1:3–4": {
+      text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
+      theme: "comfort",
+      tags: ["comfort", "trouble", "compassion"]
+    }
+  },
+  "Let God place you in community when you're isolated": {
+    "Psalm 68:6": {
+      text: "God sets the lonely in families, he leads out the prisoners with singing; but the rebellious live in a sun-scorched land.",
+      theme: "guidance",
+      tags: ["family", "lonely", "placement"]
+    }
+  },
+  "Be honest with God about your loneliness": {
+    "Psalm 38:9": {
+      text: "All my longings lie open before you, Lord; my sighing is not hidden from you.",
+      theme: "truth",
+      tags: ["honesty", "longing", "sorrow"]
+    },
+    "Psalm 56:8": {
+      text: "Record my misery; list my tears on your scroll—are they not in your record?",
+      theme: "faithful",
+      tags: ["tears", "record", "suffering"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "help",
+      tags: ["anxiety", "care", "trust"]
+    }
+  },
+  "Lean on God's strength and protection in your weakness": {
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["strength", "fear", "support"]
+    },
+    "Psalm 23:4": {
+      text: "Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me.",
+      theme: "presence",
+      tags: ["valley", "fear", "comfort"]
+    },
+    "Psalm 73:23–26": {
+      text: "Yet I am always with you; you hold me by my right hand. You guide me with your counsel, and afterward you will take me into glory. Whom have I in heaven but you? And earth has nothing I desire besides you. My flesh and my heart may fail, but God is the strength of my heart and my portion forever.",
+      theme: "guidance",
+      tags: ["strength", "guidance", "desire"]
+    }
+  }
+};
+
+//What if I'm scared to open up again? 
+let q98ans = {
+  "Remember that God heals what’s broken": {
+    "Isaiah 61:1": {
+      text: "The Spirit of the Sovereign Lord is on me, because the Lord has anointed me to proclaim good news to the poor. He has sent me to bind up the brokenhearted, to proclaim freedom for the captives and release from darkness for the prisoners.",
+      theme: "healing",
+      tags: ["freedom", "healing", "hope", "comfort"]
+    },
+    "Jeremiah 30:17": {
+      text: "But I will restore you to health and heal your wounds,’ declares the Lord, ‘because you are called an outcast, Zion for whom no one cares.’",
+      theme: "healing",
+      tags: ["restoration", "wounds", "outcast", "love"]
+    },
+    "Malachi 4:2": {
+      text: "But for you who revere my name, the sun of righteousness will rise with healing in its rays. And you will go out and frolic like well-fed calves.",
+      theme: "healing",
+      tags: ["healing", "joy", "freedom", "righteousness"]
+    }
+  },
+
+  "Remember you are not alone": {
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "peace",
+      tags: ["care", "anxiety", "trust", "release"]
+    },
+    "Isaiah 43:2": {
+      text: "When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you. When you walk through the fire, you will not be burned; the flames will not set you ablaze.",
+      theme: "protect",
+      tags: ["fire", "water", "protection", "presence"]
+    }
+  },
+
+  "God gives you hope for something new": {
+    "Romans 5:3–5": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope. And hope does not put us to shame, because God’s love has been poured out into our hearts through the Holy Spirit, who has been given to us.",
+      theme: "hope",
+      tags: ["hope", "growth", "endurance", "love"]
+    },
+    "Isaiah 43:18–19": {
+      text: "Forget the former things; do not dwell on the past. See, I am doing a new thing! Now it springs up; do you not perceive it? I am making a way in the wilderness and streams in the wasteland.",
+      theme: "transformation",
+      tags: ["new", "past", "future", "renewal"]
+    }
+  },
+
+  "You are still loved and delighted in": {
+    "Romans 8:38–39": {
+      text: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["inseparable", "security", "eternal", "presence"]
+    },
+    "Isaiah 54:10": {
+      text: "Though the mountains be shaken and the hills be removed, yet my unfailing love for you will not be shaken nor my covenant of peace be removed,” says the Lord, who has compassion on you.",
+      theme: "love",
+      tags: ["unshaken", "compassion", "faithfulness", "peace"]
+    }
+  }
+};
+
+// What if people make fun of my faith?
+let q99ans = {
+  "Some people in the Bible were mocked, insulted, or even attacked because of their faith — and God saw it all": {
+    "Psalm 69:7": {
+      text: "For I endure scorn for your sake, and shame covers my face.",
+      theme: "fallenness",
+      tags: ["shame", "mockery", "scorn"]
+    },
+    "Luke 6:22–23": {
+      text: "Blessed are you when people hate you, when they exclude you and insult you and reject your name as evil because of the Son of Man… Rejoice in that day and leap for joy, because great is your reward in heaven.",
+      theme: "blessing",
+      tags: ["insult", "rejection", "reward"]
+    },
+    "2 Chronicles 36:16": {
+      text: "But they mocked God’s messengers, despised his words and scoffed at his prophets until the wrath of the Lord was aroused...",
+      theme: "truth",
+      tags: ["mockery", "prophets", "judgment"]
+    },
+    "Hebrews 11:36–37": {
+      text: "Some faced jeers and flogging, and even chains and imprisonment… they were put to death by stoning… persecuted and mistreated.",
+      theme: "faithful",
+      tags: ["jeers", "persecution", "suffering"]
+    },
+    "Jeremiah 20:7–8": {
+      text: "...the word of the Lord has brought me insult and reproach all day long.",
+      theme: "word",
+      tags: ["reproach", "discouragement", "truth"]
+    },
+    "2 Chronicles 30:10": {
+      text: "...the people scorned and ridiculed them.",
+      theme: "obedience",
+      tags: ["mockery", "ridicule", "rejection"]
+    },
+    "Psalm 123:3–4": {
+      text: "We have endured no end of ridicule from the arrogant, of contempt from the proud.",
+      theme: "humble",
+      tags: ["mockery", "humility", "endurance"]
+    }
+  },
+
+  "You’re not the only one who has been mocked — even Jesus was": {
+    "Mark 15:31–32": {
+      text: "In the same way the chief priests and the teachers of the law mocked him among themselves. ‘He saved others,’ they said, ‘but he can’t save himself!’",
+      theme: "jesus",
+      tags: ["mockery", "unbelief", "rejection"]
+    },
+    "Isaiah 53:3": {
+      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain…",
+      theme: "jesus",
+      tags: ["rejection", "pain", "prophecy"]
+    },
+    "Matthew 5:11–12": {
+      text: "Blessed are you when people insult you… Rejoice and be glad, because great is your reward in heaven. For in the same way they persecuted the prophets…",
+      theme: "blessing",
+      tags: ["insult", "reward", "persecution"]
+    }
+  },
+
+  "Don’t be ashamed of your faith — be bold and confident": {
+    "Romans 1:16": {
+      text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation…",
+      theme: "boldness",
+      tags: ["faith", "confidence", "salvation"]
+    },
+    "2 Timothy 1:12": {
+      text: "...I am not ashamed, because I know whom I have believed…",
+      theme: "faithful",
+      tags: ["trust", "boldness", "belief"]
+    },
+    "Hebrews 10:35–36": {
+      text: "So do not throw away your confidence; it will be richly rewarded.",
+      theme: "hope",
+      tags: ["confidence", "reward", "encouragement"]
+    }
+  },
+
+  "God’s approval matters more than people's opinions": {
+    "Galatians 1:10": {
+      text: "Am I now trying to win the approval of human beings, or of God?... If I were still trying to please people, I would not be a servant of Christ.",
+      theme: "obedience",
+      tags: ["approval", "servanthood", "people-pleasing"]
+    },
+    "John 12:42–43": {
+      text: "...they loved human praise more than praise from God.",
+      theme: "truth",
+      tags: ["approval", "pride", "fear"]
+    },
+    "Isaiah 51:7": {
+      text: "Do not fear the reproach of mere mortals or be terrified by their insults.",
+      theme: "fear",
+      tags: ["fear", "mockery", "strength"]
+    }
+  },
+
+  "You are blessed when you suffer for Christ — He’s with you": {
+    "1 Peter 4:14": {
+      text: "If you are insulted because of the name of Christ, you are blessed, for the Spirit of glory and of God rests on you.",
+      theme: "spirit",
+      tags: ["insult", "glory", "blessing"]
+    },
+    "2 Timothy 3:12": {
+      text: "Everyone who wants to live a godly life in Christ Jesus will be persecuted.",
+      theme: "obedience",
+      tags: ["persecution", "truth", "faith"]
+    },
+    "Romans 10:11": {
+      text: "Anyone who believes in him will never be put to shame.",
+      theme: "hope",
+      tags: ["belief", "confidence", "identity"]
+    }
+  },
+
+  "Jesus warned us this would happen — but we are not alone": {
+    "John 15:18–20": {
+      text: "If the world hates you, keep in mind that it hated me first... If they persecuted me, they will persecute you also.",
+      theme: "jesus",
+      tags: ["warning", "hate", "encouragement"]
+    },
+    "Matthew 10:22": {
+      text: "You will be hated by everyone because of me, but the one who stands firm to the end will be saved.",
+      theme: "salvation",
+      tags: ["hate", "endurance", "faithfulness"]
+    },
+    "Luke 21:17–19": {
+      text: "Everyone will hate you because of me. But not a hair of your head will perish. Stand firm, and you will win life.",
+      theme: "protect",
+      tags: ["security", "life", "strength"]
+    }
+  },
+
+  "God sees the mocking and rewards those who endure": {
+    "1 Peter 3:14–16": {
+      text: "Even if you should suffer for what is right, you are blessed. ‘Do not fear their threats; do not be frightened.’",
+      theme: "fear",
+      tags: ["suffering", "courage", "blessing"]
+    },
+    "Psalm 31:19–20": {
+      text: "...you hide them in the shelter of your presence from all human intrigues; you keep them safe in your dwelling from accusing tongues.",
+      theme: "protect",
+      tags: ["safety", "presence", "accusation"]
+    },
+    "Matthew 6:4": {
+      text: "...your Father, who sees what is done in secret, will reward you.",
+      theme: "reward",
+      tags: ["reward", "faithfulness", "secrecy"]
+    }
+  },
+
+  "You’re part of a bigger story — others have suffered for His name too": {
+    "1 Thessalonians 3:3–4": {
+      text: "...you know quite well that we are destined for them.",
+      theme: "faithful",
+      tags: ["destiny", "suffering", "expectation"]
+    },
+    "Acts 5:41": {
+      text: "The apostles left the Sanhedrin, rejoicing because they had been counted worthy of suffering disgrace for the Name.",
+      theme: "rejoicing",
+      tags: ["joy", "disgrace", "faith"]
+    },
+    "Philippians 1:29–30": {
+      text: "...you have been granted... not only to believe in him, but also to suffer for him, since you are going through the same struggle you saw I had…",
+      theme: "obedience",
+      tags: ["struggle", "faith", "gift"]
+    }
+  },
+  
+  "Respond with kindness and wisdom": {
+    "Colossians 4:5–6": {
+      text: "Be wise in the way you act toward outsiders; make the most of every opportunity. Let your conversation be always full of grace, seasoned with salt, so that you may know how to answer everyone.",
+      theme: "grace",
+      tags: ["wisdom", "speech", "gentleness"]
+    },
+    "Proverbs 15:1": {
+      text: "A gentle answer turns away wrath, but a harsh word stirs up anger.",
+      theme: "peace",
+      tags: ["speech", "gentleness", "anger"]
+    },
+    "1 Peter 3:15": {
+      text: "But in your hearts revere Christ as Lord. Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have. But do this with gentleness and respect,",
+      theme: "truth",
+      tags: ["witness", "kindness", "faith"]
+    }
+  }
+};
+
+// Q100. How can I live out my faith at school or work?
+let q100ans = {
+  "Be unashamed and consistent in prayer and devotion, even when it's unpopular or risky": {
+    "Daniel 6:10": {
+      text: "Now when Daniel learned that the decree had been published, he went home to his upstairs room where the windows opened toward Jerusalem. Three times a day he got down on his knees and prayed, giving thanks to his God, just as he had done before.",
+      theme: "devotion",
+      tags: ["Daniel", "prayer", "boldness", "routine", "public faith"]
+    },
+    "Romans 1:16": {
+      text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes: first to the Jew, then to the Gentile.",
+      theme: "boldness",
+      tags: ["faith", "identity", "confidence", "gospel", "school", "work"]
+    }
+  },
+  "Honor God through excellence, honesty, and faithfulness in your responsibilities": {
+    "Luke 16:10": {
+      text: "Whoever can be trusted with very little can also be trusted with much, and whoever is dishonest with very little will also be dishonest with much.",
+      theme: "obedience",
+      tags: ["integrity", "faithfulness", "work ethic", "responsibility"]
+    },
+    "Proverbs 22:29": {
+      text: "Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank.",
+      theme: "transformation",
+      tags: ["diligence", "skill", "promotion", "workplace"]
+    },
+    "Matthew 25:23": {
+      text: "His master replied, ‘Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things. Come and share your master’s happiness!’",
+      theme: "faithful",
+      tags: ["reward", "service", "small beginnings", "faithfulness"]
+    },
+    "Colossians 3:23": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.",
+      theme: "obedience",
+      tags: ["work", "purpose", "God-centered", "motivation"]
+    }
+  },
+  "Show kindness, humility, and teamwork in relationships": {
+    "Philippians 2:3–4": {
+      text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, not looking to your own interests but each of you to the interests of the others.",
+      theme: "humble",
+      tags: ["humility", "relationships", "teamwork", "attitude"]
+    },
+    "Romans 12:18": {
+      text: "If it is possible, as far as it depends on you, live at peace with everyone.",
+      theme: "peace",
+      tags: ["relationships", "conflict", "wisdom", "workplace"]
+    },
+    "Galatians 6:10": {
+      text: "Therefore, as we have opportunity, let us do good to all people, especially to those who belong to the family of believers.",
+      theme: "goodness",
+      tags: ["kindness", "generosity", "community", "Christian unity"]
+    }
+  },
+  "Let your faith guide your choices, even when it's hard": {
+    "Genesis 39:9": {
+      text: "No one is greater in this house than I am. My master has withheld nothing from me except you, because you are his wife. How then could I do such a wicked thing and sin against God?",
+      theme: "obedience",
+      tags: ["temptation", "self-control", "Joseph", "purity", "workplace integrity"]
+    },
+    "Esther 4:14": {
+      text: "For if you remain silent at this time, relief and deliverance for the Jews will arise from another place, but you and your father’s family will perish. And who knows but that you have come to your royal position for such a time as this?",
+      theme: "courage",
+      tags: ["calling", "courage", "purpose", "God's timing", "leadership"]
+    },
+    "Matthew 5:16": {
+      text: "In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["witness", "example", "visibility", "behavior", "honor"]
+    }
+  },
+  "Pray for wisdom and courage before making decisions or speaking up": {
+    "Nehemiah 2:4–5": {
+      text: "The king said to me, 'What is it you want?' Then I prayed to the God of heaven, and I answered the king, 'If it pleases the king and if your servant has found favor in his sight, let him send me to the city in Judah where my ancestors are buried so that I can rebuild it.'",
+      theme: "guidance",
+      tags: ["quick prayer", "work", "boldness", "wisdom", "leadership"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["decision making", "help", "prayer", "God's provision"]
+    }
+  }
+};
+
+// Q101. What if I feel like a hypocrite?
+let q101ans = {
+  "God sees the heart, not just performance": {
+    "1 Samuel 16:7": {
+      text: "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.",
+      theme: "truth",
+      tags: ["appearance", "heart", "God’s view", "identity"]
+    },
+    "Isaiah 29:13": {
+      text: "These people come near to me with their mouth and honor me with their lips, but their hearts are far from me...",
+      theme: "truth",
+      tags: ["heart", "lip service", "genuine faith"]
+    },
+    "Psalm 51:6": {
+      text: "Surely you desire truth in the inner parts; you teach me wisdom in the inmost place.",
+      theme: "truth",
+      tags: ["truth", "wisdom", "inner life", "God’s desire"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "walk",
+      tags: ["heart", "motives", "faith", "overflow"]
+    }
+  },
+  "Conviction is different from condemnation": {
+    "Romans 8:1": {
+      text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
+      theme: "grace",
+      tags: ["freedom", "identity", "Christ", "guilt", "shame"]
+    },
+    "2 Corinthians 7:10": {
+      text: "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death.",
+      theme: "repentance",
+      tags: ["repentance", "conviction", "godly sorrow", "salvation"]
+    },
+    "John 3:17": {
+      text: "For God did not send his Son into the world to condemn the world, but to save the world through him.",
+      theme: "salvation",
+      tags: ["Jesus", "grace", "salvation", "purpose"]
+    }
+  },
+  "Be real with God instead of pretending perfection": {
+    "Psalm 51:17": {
+      text: "My sacrifice, O God, is a broken spirit; a broken and contrite heart you, God, will not despise.",
+      theme: "humble",
+      tags: ["repentance", "humility", "heart", "forgiveness"]
+    },
+    "Luke 18:13–14": {
+      text: "But the tax collector stood at a distance. He would not even look up to heaven, but beat his breast and said, ‘God, have mercy on me, a sinner.’... This man, rather than the other, went home justified before God.",
+      theme: "humble",
+      tags: ["mercy", "repentance", "justified", "humility"]
+    },
+    "1 John 1:8–9": {
+      text: "If we claim to be without sin, we deceive ourselves and the truth is not in us. If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["confession", "truth", "faithfulness", "cleansing"]
+    }
+  },
+  "Growth is a process, not instant perfection": {
+    "Philippians 1:6": {
+      text: "Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "growth",
+      tags: ["process", "God’s work", "sanctification", "confidence"]
+    },
+    "Romans 7:15": {
+      text: "I do not understand what I do. For what I want to do I do not do, but what I hate I do.",
+      theme: "struggle",
+      tags: ["sin", "inner battle", "conflict", "Paul"]
+    },
+    "Romans 7:19": {
+      text: "For I do not do the good I want to do, but the evil I do not want to do—this I keep on doing.",
+      theme: "struggle",
+      tags: ["weakness", "sin", "discipline", "realness"]
+    },
+    "Proverbs 24:16": {
+      text: "For though the righteous fall seven times, they rise again, but the wicked stumble when calamity strikes.",
+      theme: "growth",
+      tags: ["perseverance", "resilience", "falling", "righteous"]
+    }
+  },
+  "Don't hide your light just because you're not perfect": {
+    "Matthew 5:14–16": {
+      text: "You are the light of the world... let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["testimony", "witness", "identity", "shine", "faith"]
+    },
+    "2 Corinthians 4:7": {
+      text: "But we have this treasure in jars of clay to show that this all-surpassing power is from God and not from us.",
+      theme: "humble",
+      tags: ["weakness", "glory", "God’s power", "vessel"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
+      theme: "identity",
+      tags: ["union with Christ", "life", "faith", "transformation"]
+    }
+  }
+};
+
+// Q102. How do I balance grace and truth?
+let q102ans = {
+  "Follow Jesus' example—He was full of both grace and truth": {
+    "John 1:14": {
+      text: "The Word became flesh and made his dwelling among us. We have seen his glory, the glory of the one and only Son, who came from the Father, full of grace and truth.",
+      theme: "jesus",
+      tags: ["Jesus", "character", "glory", "grace", "truth", "balance"]
+    },
+    "John 1:17": {
+      text: "For the law was given through Moses; grace and truth came through Jesus Christ.",
+      theme: "jesus",
+      tags: ["law", "grace", "truth", "Jesus", "Moses", "gospel"]
+    },
+    "Hebrews 4:15–16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence...",
+      theme: "savior",
+      tags: ["Jesus", "grace", "truth", "temptation", "empathy", "confidence"]
+    }
+  },
+
+  "Speak truth with love, not as a weapon": {
+    "Ephesians 4:15": {
+      text: "Instead, speaking the truth in love, we will grow to become in every respect the mature body of him who is the head, that is, Christ.",
+      theme: "growth",
+      tags: ["truth", "love", "maturity", "body of Christ", "speech", "grace"]
+    },
+    "Colossians 4:6": {
+      text: "Let your conversation be always full of grace, seasoned with salt, so that you may know how to answer everyone.",
+      theme: "guidance",
+      tags: ["speech", "grace", "wisdom", "conversation", "truth", "balance"]
+    },
+    "Proverbs 16:24": {
+      text: "Gracious words are a honeycomb, sweet to the soul and healing to the bones.",
+      theme: "goodness",
+      tags: ["speech", "healing", "grace", "truth", "kindness"]
+    },
+    "James 3:17": {
+      text: "But the wisdom that comes from heaven is first of all pure; then peace-loving, considerate, submissive, full of mercy and good fruit, impartial and sincere.",
+      theme: "wisdom",
+      tags: ["truth", "grace", "wisdom", "peace", "mercy", "balance"]
+    }
+  },
+
+  "Use both grace and truth when correcting others": {
+    "John 8:10–11": {
+      text: "Jesus straightened up and asked her, 'Woman, where are they? Has no one condemned you?' 'No one, sir,' she said. 'Then neither do I condemn you,' Jesus declared. 'Go now and leave your life of sin.'",
+      theme: "forgiveness",
+      tags: ["grace", "truth", "correction", "mercy", "repentance", "Jesus"]
+    },
+    "Galatians 6:1": {
+      text: "Brothers and sisters, if someone is caught in a sin, you who live by the Spirit should restore that person gently. But watch yourselves, or you also may be tempted.",
+      theme: "help",
+      tags: ["grace", "truth", "sin", "gentleness", "community", "humility"]
+    },
+    "2 Timothy 2:24–25": {
+      text: "And the Lord’s servant must not be quarrelsome but must be kind to everyone, able to teach, not resentful. Opponents must be gently instructed, in the hope that God will grant them repentance leading them to a knowledge of the truth.",
+      theme: "guidance",
+      tags: ["grace", "truth", "kindness", "instruction", "repentance", "gentleness"]
+    },
+    "Matthew 18:15": {
+      text: "If your brother or sister sins, go and point out their fault, just between the two of you. If they listen to you, you have won them over.",
+      theme: "obedience",
+      tags: ["truth", "grace", "correction", "reconciliation", "wisdom", "privacy"]
+    }
+  },
+
+  "Truth without grace is harsh; grace without truth is misleading": {
+    "Proverbs 27:6": {
+      text: "Wounds from a friend can be trusted, but an enemy multiplies kisses.",
+      theme: "truth",
+      tags: ["truth", "rebuke", "friendship", "honesty", "grace"]
+    },
+    "Romans 6:1–2": {
+      text: "What shall we say, then? Shall we go on sinning so that grace may increase? By no means! We are those who have died to sin; how can we live in it any longer?",
+      theme: "obedience",
+      tags: ["grace", "truth", "sin", "freedom", "repentance", "correction"]
+    },
+    "Titus 2:11–12": {
+      text: "For the grace of God has appeared that offers salvation to all people. It teaches us to say 'No' to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "transformation",
+      tags: ["grace", "truth", "salvation", "instruction", "self-control"]
+    },
+    "Isaiah 30:10": {
+      text: "They say to the seers, 'See no more visions!' and to the prophets, 'Give us no more visions of what is right! Tell us pleasant things, prophesy illusions.'",
+      theme: "truth",
+      tags: ["truth", "grace", "deception", "illusion", "rebellion", "judgment"]
+    }
+  },
+
+  "Balancing grace and truth grows with spiritual maturity": {
+    "Philippians 1:9–10": {
+      text: "And this is my prayer: that your love may abound more and more in knowledge and depth of insight, so that you may be able to discern what is best...",
+      theme: "understanding",
+      tags: ["love", "discernment", "wisdom", "grace", "truth", "growth"]
+    },
+    "Hebrews 5:14": {
+      text: "But solid food is for the mature, who by constant use have trained themselves to distinguish good from evil.",
+      theme: "growth",
+      tags: ["discernment", "truth", "grace", "training", "growth"]
+    },
+    "1 Corinthians 13:6": {
+      text: "Love does not delight in evil but rejoices with the truth.",
+      theme: "love",
+      tags: ["truth", "grace", "love", "character", "wisdom"]
+    }
+  }
+};
+
+// Q103. How can I be a good example to others?
+let q103ans = {
+  "Follow Christ’s example in your life": {
+    "1 Corinthians 11:1": {
+      text: "Follow my example, as I follow the example of Christ.",
+      theme: "walk",
+      tags: ["example", "Christ", "imitate", "leadership", "influence"]
+    },
+    "Philippians 3:17": {
+      text: "Join together in following my example, brothers and sisters, and just as you have us as a model, keep your eyes on those who live as we do.",
+      theme: "walk",
+      tags: ["follow", "rolemodel", "Christlike", "discipleship", "imitate"]
+    },
+    "1 Thessalonians 1:6": {
+      text: "And you became imitators of us and of the Lord, for you received the word in much affliction, with the joy of the Holy Spirit,",
+      theme: "growth",
+      tags: ["imitators", "joy", "Spirit", "affliction", "faithfulness"]
+    },
+    "John 13:15": {
+      text: "I have set you an example that you should do as I have done for you.",
+      theme: "obedience",
+      tags: ["Jesus", "serve", "example", "imitate", "follow"]
+    }
+  },
+
+  "Let your actions speak for your faith": {
+    "1 Peter 2:12": {
+      text: "Live such good lives among the pagans that they may see your good deeds and glorify God on the day he visits.",
+      theme: "witness",
+      tags: ["behavior", "good", "deeds", "God", "example"]
+    },
+    "Matthew 5:14-16": {
+      text: "You are the light of the world. A city set on a hill cannot be hidden... let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["light", "goodworks", "visibility", "glorify"]
+    },
+    "1 Peter 3:15-16": {
+      text: "But in your hearts revere Christ as Lord. Always be prepared to give an answer... with gentleness and respect, keeping a clear conscience, so that those who speak maliciously... may be ashamed of their slander.",
+      theme: "witness",
+      tags: ["gentleness", "respect", "answer", "defense", "behavior"]
+    }
+  },
+
+  "Uphold integrity—even in small things": {
+    "Titus 2:7-8": {
+      text: "In everything set them an example by doing what is good. In your teaching show integrity, seriousness and soundness of speech...",
+      theme: "obedience",
+      tags: ["integrity", "teaching", "conduct", "truth"]
+    },
+    "Luke 16:10": {
+      text: "Whoever can be trusted with very little can also be trusted with much, and whoever is dishonest with very little will also be dishonest with much.",
+      theme: "faithful",
+      tags: ["trust", "honesty", "faithfulness", "responsibility"]
+    },
+    "Proverbs 11:3": {
+      text: "The integrity of the upright guides them, but the unfaithful are destroyed by their duplicity.",
+      theme: "obedience",
+      tags: ["integrity", "upright", "faithful", "character"]
+    }
+  },
+
+  "Humility, kindness, and Spirit‑led character matter": {
+    "Philippians 2:3-5": {
+      text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves... In your relationships with one another, have the same mindset as Christ Jesus.",
+      theme: "humble",
+      tags: ["humility", "Christ", "relationships", "mindset"]
+    },
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self‑control...",
+      theme: "fruit",
+      tags: ["Spirit", "kindness", "character", "gentleness"]
+    },
+    "Colossians 3:12": {
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience.",
+      theme: "walk",
+      tags: ["character", "kindness", "humility", "patience", "gentleness"]
+    }
+  },
+
+  "Speak faith into action — don’t just hear the word": {
+    "James 1:22": {
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
+      theme: "obedience",
+      tags: ["action", "obey", "word", "integrity"]
+    },
+    "1 Timothy 4:12": {
+      text: "Set an example for the believers in speech, in conduct, in love, in faith and in purity.",
+      theme: "walk",
+      tags: ["example", "speech", "conduct", "faith"]
+    },
+    "Romans 2:21-23": {
+      text: "You, then, who teach others, do you not teach yourself? You who preach against stealing, do you steal? ...You who boast in the law, do you dishonor God by breaking the law?",
+      theme: "obedience",
+      tags: ["hypocrisy", "example", "actions", "law", "teaching"]
+    }
+  }
+};
+
+// What if I messed up sexually?
+let q104ans = {
+  "God forgives even sexual sin, offering complete renewal": {
+    "1 Corinthians 6:9–11": {
+      text: "Or do you not know that the unrighteous will not inherit the kingdom of God? Do not be deceived: neither the sexually immoral, nor idolaters, nor adulterers, nor men who practice homosexuality, nor thieves, nor the greedy, nor drunkards, nor revilers, nor swindlers will inherit the kingdom of God. And such were some of you. But you were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ and by the Spirit of our God.",
+      theme: "transformation",
+      tags: ["past", "renewal", "justified", "washed"]
+    },
+    "Micah 7:18–19": {
+      text: "Who is a God like you, pardoning iniquity and passing over transgression for the remnant of his inheritance? He does not retain his anger forever, because he delights in steadfast love. He will again have compassion on us; he will tread our iniquities underfoot. You will cast all our sins into the depths of the sea.",
+      theme: "mercy",
+      tags: ["pardoning", "compassion", "forgiveness", "depths"]
+    },
+    "Romans 8:1": {
+      text: "There is therefore now no condemnation for those who are in Christ Jesus.",
+      theme: "salvation",
+      tags: ["no-condemnation", "grace", "security", "identity", "forgiveness"]
+    },
+    "Isaiah 1:18": {
+      text: "Come now, let us reason together, says the Lord: though your sins are like scarlet, they shall be as white as snow; though they are red like crimson, they shall become like wool.",
+      theme: "grace",
+      tags: ["cleansing", "shame", "renewal", "sin", "mercy"]
+    }
+  },
+
+  "God hears & heals brokenness when you repent honestly": {
+    "Psalm 51:1–3,10,17": {
+      text: "Have mercy on me, O God, according to your steadfast love; according to your abundant mercy blot out my transgressions. Wash me thoroughly from my iniquity, and cleanse me from my sin! For I know my transgressions, and my sin is ever before me. Create in me a clean heart, O God, and renew a right spirit within me. The sacrifices of God are a broken spirit; a broken and contrite heart, O God, you will not despise.",
+      theme: "forgiveness",
+      tags: ["repentance", "heart", "cleansing", "broken"]
+    },
+    "Proverbs 28:13": {
+      text: "Whoever conceals his transgressions does not prosper, but he who confesses and forsakes them will obtain mercy.",
+      theme: "mercy",
+      tags: ["confess", "forsake", "healing", "honesty"]
+    },
+    "Joel 2:12–13,25": {
+      text: "“Yet even now,” declares the Lord, “return to me with all your heart, with fasting, with weeping, and with mourning; and rend your hearts and not your garments.” Return to the Lord your God, for he is gracious and merciful, slow to anger and abounding in steadfast love; and he relents over disaster. And I will restore to you the years that the swarming locust has eaten...",
+      theme: "restoration",
+      tags: ["return", "healing", "hope", "restoration"]
+    }
+  },
+
+  "Jesus meets sinners with mercy, not shame": {
+    "John 8:10–11": {
+      text: "Jesus stood up and said to her, “Woman, where are they? Has no one condemned you?” She said, “No one, Lord.” And Jesus said, “Neither do I condemn you; go, and from now on sin no more.”",
+      theme: "mercy",
+      tags: ["forgiveness", "second-chance", "grace", "compassion"]
+    },
+    "Luke 7:36–50": {
+      text: "When one of the Pharisees invited Jesus to have dinner with him, Jesus went to the Pharisee’s house and reclined at the table. A woman in that town who lived a sinful life learned that Jesus was eating at the Pharisee’s house... Then Jesus said to Simon, “Do you see this woman? I entered your house. You did not give me water for my feet, but she wet my feet with her tears... Therefore, I tell you, her many sins have been forgiven—as her great love has shown. But whoever has been forgiven little loves little.” Then Jesus said to the woman, “Your faith has saved you; go in peace.”",
+      theme: "love",
+      tags: ["forgiven", "love", "faith", "peace"]
+    },
+    "Luke 15:20–24": {
+      text: "“But while he was still a long way off, his father saw him and was filled with compassion... and ran and embraced him and kissed him. The son said to him, ‘Father, I have sinned against heaven and before you.’ But the father said to his servants, ‘Bring quickly the best robe... and put a ring on his hand... For this my son was dead, and is alive again; he was lost, and is found.’",
+      theme: "transformation",
+      tags: ["return", "embrace", "restore", "celebration"]
+    }
+  },
+
+  "God calls sexual sin harmful—even during healing": {
+    "1 Corinthians 6:18–20": {
+      text: "Flee from sexual immorality. Every other sin a person commits is outside the body, but the sexually immoral person sins against his own body... Do you not know that your bodies are temples of the Holy Spirit... For you were bought with a price. So glorify God in your body.",
+      theme: "obedience",
+      tags: ["flee", "temple", "honor", "sanctity"]
+    }
+  },
+
+  "God searches hearts and leads toward purity": {
+    "Psalm 139:23–24": {
+      text: "Search me, O God, and know my heart! Test me and know my thoughts! And see if there be any grievous way in me... and lead me in the way everlasting.",
+      theme: "guidance",
+      tags: ["search", "heart", "lead", "everlasting"]
+    }
+  },
+
+  "We can approach God with confidence, even in our weakness": {
+    "Hebrews 4:15–16": {
+      text: "For we do not have a high priest... who is unable to sympathize with our weaknesses... Let us then with confidence draw near to the throne of grace, that we may receive mercy and find grace to help in time of need.",
+      theme: "help",
+      tags: ["weakness", "mercy", "grace", "confidence"]
+    },
+    "2 Corinthians 7:10": {
+      text: "For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death.",
+      theme: "transformation",
+      tags: ["grief", "repentance", "salvation", "godly"]
+    },
+    "Psalm 32:1–5": {
+      text: "Blessed is the one whose transgression is forgiven, whose sin is covered. Blessed is the one whose sin the Lord does not count against them and in whose spirit is no deceit. I acknowledged my sin to you... then you forgave the guilt of my sin.",
+      theme: "forgiveness",
+      tags: ["blessed", "confess", "guilt", "joy"]
+    }
+  },
+
+  "Healing flows through confession and community": {
+    "James 5:16": {
+      text: "Therefore confess your sins to one another and pray for one another, that you may be healed. The prayer of a righteous person has great power as it is working.",
+      theme: "healing",
+      tags: ["confess", "pray", "community", "power"]
+    },
+    "Galatians 6:1": {
+      text: "Brothers, if someone is caught in a sin, you who are spiritual should restore him gently, keeping watch on yourself, so that you also may not be tempted.",
+      theme: "healing",
+      tags: ["restore", "gentleness", "sin", "community"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.",
+      theme: "grace",
+      tags: ["confess", "cleanse", "faithful", "righteous"]
+    }
+  },
+
+  "God calls us to ongoing purity and transformation": {
+    "1 Thessalonians 4:3–5": {
+      text: "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each of you know how to control your own body in holiness and honor.",
+      theme: "obedience",
+      tags: ["sanctification", "control", "holiness", "honor"]
+    },
+    "Ephesians 5:3": {
+      text: "But immorality and impurity or greed must not even be named among you, as is proper among saints.",
+      theme: "obedience",
+      tags: ["purity", "immorality", "impurity", "holy"]
+    }
+  },
+
+  "God is still at work in you—it’s not over": {
+    "Philippians 1:6": {
+      text: "And I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ.",
+      theme: "faithful",
+      tags: ["growth", "completion", "hope", "process"]
+    },
+    "2 Corinthians 3:18": {
+      text: "And we all, with unveiled face, beholding the glory of the Lord, are being transformed into the same image from one degree of glory to another...",
+      theme: "transformation",
+      tags: ["glory", "image", "transform", "progress"]
+    }
+  }
+};
+
+// What does the Bible say about abortion?
+let q105ans = {
+  "God is the creator of life, even from the womb": {
+    "Psalm 139:13–16": {
+      text: "For you formed my inward parts; you knitted me together in my mother's womb. I praise you, for I am fearfully and wonderfully made. Wonderful are your works; my soul knows it very well. My frame was not hidden from you, when I was being made in secret, intricately woven in the depths of the earth. Your eyes saw my unformed substance; in your book were written, every one of them, the days that were formed for me, when as yet there was none of them.",
+      theme: "creation",
+      tags: ["life", "womb", "value", "known", "designed"]
+    },
+    "Jeremiah 1:5": {
+      text: "Before I formed you in the womb I knew you, and before you were born I consecrated you; I appointed you a prophet to the nations.",
+      theme: "purpose",
+      tags: ["womb", "identity", "calling", "design", "life"]
+    },
+    "Job 31:15": {
+      text: "Did not he who made me in the womb make him? And did not one fashion us in the womb?",
+      theme: "creation",
+      tags: ["womb", "creator", "equality", "life", "shared-value"]
+    }
+  },
+  "Human life is sacred, and taking innocent life is forbidden": {
+    "Genesis 9:5–6": {
+      text: "And for your lifeblood I will require a reckoning: from every beast I will require it and from man. From his fellow man I will require a reckoning for the life of man. Whoever sheds the blood of man, by man shall his blood be shed, for God made man in his own image.",
+      theme: "justice",
+      tags: ["murder", "image", "value", "life"]
+    },
+    "Proverbs 6:16–19": {
+      text: "There are six things that the Lord hates, seven that are an abomination to him: haughty eyes, a lying tongue, and hands that shed innocent blood, a heart that devises wicked plans, feet that make haste to run to evil, a false witness who breathes out lies, and one who sows discord among brothers.",
+      theme: "truth",
+      tags: ["hate", "innocent", "blood", "abomination"]
+    },
+    "Deuteronomy 27:25": {
+      text: "'Cursed be anyone who takes a bribe to shed innocent blood.' And all the people shall say, 'Amen.'",
+      theme: "justice",
+      tags: ["curse", "innocent", "blood", "bribe"]
+    },
+    "Exodus 21:22–25": {
+      text: "When men strive together and hit a pregnant woman, so that her children come out, but there is no harm, the one who hit her shall surely be fined, as the woman's husband shall impose on him, and he shall pay as the judges determine. But if there is harm, then you shall pay life for life, eye for eye, tooth for tooth, hand for hand, foot for foot, burn for burn, wound for wound, stripe for stripe.",
+      theme: "justice",
+      tags: ["injury", "womb", "life", "legal"]
+    }
+  },
+  "God shows compassion and mercy even after grievous sin": {
+    "1 Corinthians 6:9–11": {
+      text: "Or do you not know that the unrighteous will not inherit the kingdom of God? Do not be deceived: neither the sexually immoral, nor idolaters, nor adulterers, nor men who practice homosexuality, nor thieves, nor the greedy, nor drunkards, nor revilers, nor swindlers will inherit the kingdom of God. And such were some of you. But you were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ and by the Spirit of our God.",
+      theme: "transformation",
+      tags: ["forgiveness", "change", "mercy", "washed", "grace"]
+    },
+    "Isaiah 1:18": {
+      text: "Come now, let us reason together, says the Lord: though your sins are like scarlet, they shall be as white as snow; though they are red like crimson, they shall become like wool.",
+      theme: "grace",
+      tags: ["mercy", "cleansing", "forgiveness", "hope", "restoration"]
+    },
+    "Micah 7:18–19": {
+      text: "Who is a God like you, pardoning iniquity and passing over transgression for the remnant of his inheritance? He does not retain his anger forever, because he delights in steadfast love. He will again have compassion on us; he will tread our iniquities underfoot. You will cast all our sins into the depths of the sea.",
+      theme: "mercy",
+      tags: ["pardoning", "compassion", "cleansing", "depths"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.",
+      theme: "grace",
+      tags: ["confess", "cleanse", "faithful", "forgive"]
+    }
+  },
+  "Even in failure, God invites us to return and restores what was lost": {
+    "Joel 2:12–13": {
+      text: "'Yet even now,' declares the Lord, 'return to me with all your heart, with fasting, with weeping, and with mourning; and rend your hearts and not your garments.' Return to the Lord your God, for he is gracious and merciful, slow to anger, and abounding in steadfast love; and he relents over disaster.",
+      theme: "restoration",
+      tags: ["return", "grace", "mercy", "love"]
+    },
+    "Joel 2:25": {
+      text: "I will restore to you the years that the swarming locust has eaten, the hopper, the destroyer, and the cutter, my great army, which I sent among you.",
+      theme: "restoration",
+      tags: ["restore", "loss", "healing", "hope"]
+    },
+    "Psalm 51:1–3": {
+      text: "Have mercy on me, O God, according to your steadfast love; according to your abundant mercy blot out my transgressions. Wash me thoroughly from my iniquity, and cleanse me from my sin! For I know my transgressions, and my sin is ever before me.",
+      theme: "forgiveness",
+      tags: ["repentance", "mercy", "cleansing", "humble"]
+    },
+    "Psalm 51:10": {
+      text: "Create in me a clean heart, O God, and renew a right spirit within me.",
+      theme: "transformation",
+      tags: ["heart", "renewal", "purity", "spirit"]
+    },
+    "Psalm 51:17": {
+      text: "The sacrifices of God are a broken spirit; a broken and contrite heart, O God, you will not despise.",
+      theme: "humble",
+      tags: ["broken", "heart", "mercy", "repentance"]
+    },
+    "Romans 8:1": {
+      text: "There is therefore now no condemnation for those who are in Christ Jesus.",
+      theme: "salvation",
+      tags: ["no-condemnation", "identity", "security", "grace", "freedom"]
+    }
+  },
+  "Healing begins through confession, honesty, and prayer": {
+    "James 5:16": {
+      text: "Therefore, confess your sins to one another and pray for one another, that you may be healed. The prayer of a righteous person has great power as it is working.",
+      theme: "healing",
+      tags: ["confess", "pray", "community", "power"]
+    },
+    "Proverbs 28:13": {
+      text: "Whoever conceals his transgressions will not prosper, but he who confesses and forsakes them will obtain mercy.",
+      theme: "mercy",
+      tags: ["confess", "forsake", "healing", "honesty"]
+    }
+  }
+};
+
+//What roles has God given to women and to men?
+let q106ans = {
+  "God created male and female in His image and gave both purpose": {
+    "Genesis 1:27–28": {
+      text: "So God created man in His own image; in the image of God He created him; male and female He created them. Then God blessed them, and God said to them, 'Be fruitful and multiply; fill the earth and subdue it; have dominion over the fish of the sea, over the birds of the air, and over every living thing that moves on the earth.'",
+      theme: "creation",
+      tags: ["image", "dominion", "blessing", "multiply"]
+    }
+  },
+
+  "God gave woman as a helper suitable for man, equal in value": {
+    "Genesis 2:18": {
+      text: "And the Lord God said, 'It is not good that man should be alone; I will make him a helper comparable to him.'",
+      theme: "creation",
+      tags: ["helper", "companionship", "design"]
+    }
+  },
+
+  "After the fall, God described how sin would distort gender dynamics": {
+    "Genesis 3:16": {
+      text: "To the woman He said: 'I will greatly multiply your sorrow and your conception; in pain you shall bring forth children; your desire shall be for your husband, and he shall rule over you.'",
+      theme: "fallenness",
+      tags: ["curse", "pain", "desire", "dominion"]
+    }
+  },
+
+  "God values both genders equally in salvation and spiritual identity": {
+    "Galatians 3:28": {
+      text: "There is neither Jew nor Greek, there is neither slave nor free, there is neither male nor female; for you are all one in Christ Jesus.",
+      theme: "salvation",
+      tags: ["equality", "oneness", "identity", "value"]
+    }
+  },
+
+  "Men are called to love their wives sacrificially like Christ": {
+    "Ephesians 5:25": {
+      text: "Husbands, love your wives, just as Christ also loved the church and gave Himself for her.",
+      theme: "love",
+      tags: ["sacrifice", "marriage", "leadership"]
+    }
+  },
+
+  "God set a spiritual structure that includes male headship": {
+    "1 Corinthians 11:3": {
+      text: "But I want you to know that the head of every man is Christ, the head of woman is man, and the head of Christ is God.",
+      theme: "authority",
+      tags: ["structure", "order", "headship"]
+    }
+  },
+
+  "Women prayed and prophesied in early churches, but were instructed to do so with honor and order": {
+    "1 Corinthians 11:5–6": {
+      text: "But every woman who prays or prophesies with her head uncovered dishonors her head, for that is one and the same as if her head were shaved. For if a woman is not covered, let her also be shorn. But if it is shameful for a woman to be shorn or shaved, let her be covered.",
+      theme: "obedience",
+      tags: ["prayer", "prophecy", "honor", "symbol"]
+    }
+  },
+
+  "Some verses gave temporary limits for church order—not to silence women forever": {
+    "1 Corinthians 14:34–35": {
+      text: "Let your women keep silent in the churches, for they are not permitted to speak; but they are to be submissive, as the law also says. And if they want to learn something, let them ask their own husbands at home; for it is shameful for women to speak in church.",
+      theme: "obedience",
+      tags: ["silence", "order", "church", "roles", "context: some believe this was for specific disruptions"]
+    },
+    "1 Timothy 2:11–12": {
+      text: "Let a woman learn in silence with all submission. And I do not permit a woman to teach or to have authority over a man, but to be in silence.",
+      theme: "obedience",
+      tags: ["authority", "teaching", "submission", "context: interpreted differently across traditions"]
+    },
+    
+    "Titus 2:4–5": {
+      text: "That they admonish the young women to love their husbands, to love their children, to be discreet, chaste, homemakers, good, obedient to their own husbands, that the word of God may not be blasphemed.",
+      theme: "obedience",
+      tags: ["home", "love", "chaste", "discipleship"]
+    }
+  },
+  
+  "Paul described overseer roles using masculine terms — but this reflected church culture, not eternal law": {
+"1 Timothy 3:2": {
+text: "A bishop then must be blameless, the husband of one wife, temperate, sober-minded, of good behavior, hospitable, able to teach;",
+theme: "obedience",
+tags: ["bishop", "leader", "church", "roles"]
+}
+},
+
+  "Men are called to provide for and lead their households": {
+    "1 Timothy 5:8": {
+      text: "But if anyone does not provide for his own, and especially for those of his household, he has denied the faith and is worse than an unbeliever.",
+      theme: "obedience",
+      tags: ["provision", "household", "responsibility"]
+    }
+  },
+
+  "God raised women to lead, judge, and teach in both Old and New Testaments": {
+    "Judges 4:4–5": {
+      text: "Now Deborah, a prophetess, the wife of Lapidoth, was judging Israel at that time. And she would sit under the palm tree of Deborah between Ramah and Bethel in the mountains of Ephraim. And the children of Israel came up to her for judgment.",
+      theme: "leadership",
+      tags: ["prophetess", "judge", "wisdom"]
+    },
+    "Acts 18:26": {
+      text: "So he began to speak boldly in the synagogue. When Aquila and Priscilla heard him, they took him aside and explained to him the way of God more accurately.",
+      theme: "understanding",
+      tags: ["teaching", "discipleship", "correction"]
+    },
+    "Romans 16:1": {
+      text: "I commend to you Phoebe our sister, who is a servant of the church in Cenchrea.",
+      theme: "service",
+      tags: ["servant", "deacon", "commendation"]
+    },
+    "Romans 16:7": {
+      text: "Greet Andronicus and Junia, my countrymen and my fellow prisoners, who are of note among the apostles, who also were in Christ before me.",
+      theme: "leadership",
+      tags: ["apostle", "honor", "women", "controversial identity"]
+    }
+  },
+
+  "The Holy Spirit gives spiritual gifts to both men and women to build His people": {
+"Acts 2:17-18": {
+text: "'And it shall come to pass in the last days, says God, that I will pour out of My Spirit on all flesh; your sons and your daughters shall prophesy... And on My menservants and on My maidservants I will pour out My Spirit in those days; and they shall prophesy.'",
+theme: "spirit",
+tags: ["prophecy", "equal", "gifts"]
+},
+"Romans 12:6-8": {
+text: "Having then gifts differing according to the grace that is given to us, let us use them: if prophecy, let us prophesy in proportion to our faith; or ministry, let us use it in our ministering; he who teaches, in teaching; he who exhorts, in exhortation; he who gives, with liberality; he who leads, with diligence; he who shows mercy, with cheerfulness.",
+theme: "growth",
+tags: ["gifts", "ministry", "service"]
+},
+"1 Corinthians 12:4–7": {
+text: "There are diversities of gifts, but the same Spirit. There are differences of ministries, but the same Lord. And there are diversities of activities, but it is the same God who works all in all. But the manifestation of the Spirit is given to each one for the profit of all.",
+theme: "growth",
+tags: ["service", "gifts", "spirit"]
+}
+},
+
+  "A godly woman is strong, wise, and diligent in every area of life": {
+    "Proverbs 31:25–28": {
+      text: "Strength and honor are her clothing; she shall rejoice in time to come. She opens her mouth with wisdom, and on her tongue is the law of kindness. She watches over the ways of her household, and does not eat the bread of idleness. Her children rise up and call her blessed; her husband also, and he praises her:",
+      theme: "wisdom",
+      tags: ["honor", "wisdom", "household", "praise"]
+    }
+  }
+};
+
+// q107 - What does God say about suicide?
+let q107ans = {
+  "God is near the brokenhearted": {
+    "Psalm 34:18": {
+      text: "The Lord is near to the brokenhearted and saves the crushed in spirit.",
+      theme: "presence",
+      tags: ["comfort", "hope", "pain", "loss", "presence"]
+    },
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "healing",
+      tags: ["comfort", "healing", "broken", "grief"]
+    },
+    "Isaiah 49:15-16": {
+      text: "Can a woman forget her nursing child, that she should have no compassion on the son of her womb? Even these may forget, yet I will not forget you. Behold, I have engraved you on the palms of my hands; your walls are continually before me.",
+      theme: "love",
+      tags: ["never", "alone", "forgotten", "love", "value"]
+    },
+    "Psalm 42:11": {
+      text: "Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him, my salvation and my God.",
+      theme: "hope",
+      tags: ["sadness", "hope", "soul", "trust"]
+    },
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.",
+      theme: "hope",
+      tags: ["future", "purpose", "plans", "life"]
+    },
+    "Romans 8:38–39": {
+      text: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers... will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["inseparable", "security", "Jesus", "presence"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["fear", "strength", "support", "presence"]
+    },
+    "2 Corinthians 1:8–10": {
+      text: "We were under great pressure, far beyond our ability to endure, so that we despaired of life itself... But this happened that we might not rely on ourselves but on God... He has delivered us from such a deadly peril, and he will deliver us again.",
+      theme: "deliverance",
+      tags: ["despair", "pressure", "rescue", "dependence"]
+    }
+  },
+
+ 
+
+  "God gives and values life": {
+    "Job 1:21": {
+      text: "And he said, 'Naked I came from my mother's womb, and naked shall I return. The Lord gave, and the Lord has taken away; blessed be the name of the Lord.'",
+      theme: "authority",
+      tags: ["life", "death", "ownership", "trust"]
+    },
+    "1 Corinthians 6:19-20": {
+      text: "Or do you not know that your body is a temple of the Holy Spirit within you, whom you have from God? You are not your own, for you were bought with a price. So glorify God in your body.",
+      theme: "submission",
+      tags: ["body", "temple", "ownership", "value", "purpose"]
+    },
+    "Isaiah 43:1-2": {
+      text: "But now thus says the Lord, he who created you, O Jacob, he who formed you, O Israel: 'Fear not, for I have redeemed you; I have called you by name, you are mine... when you pass through the waters, I will be with you.'",
+      theme: "protect",
+      tags: ["belonging", "identity", "value", "redeemed"]
+    },
+    "Colossians 1:16-17": {
+      text: "For by him all things were created, in heaven and on earth... all things were created through him and for him. And he is before all things, and in him all things hold together.",
+      theme: "creation",
+      tags: ["life", "meaning", "creator", "sustainer"]
+    },
+    "Deuteronomy 30:19": {
+      text: "This day I call the heavens and the earth as witnesses against you that I have set before you life and death, blessings and curses. Now choose life, so that you and your children may live.",
+      theme: "obedience",
+      tags: ["choice", "life", "command", "future"]
+    },
+    "Psalm 139:13–16": {
+      text: "For you created my inmost being; you knit me together in my mother’s womb... All the days ordained for me were written in your book before one of them came to be.",
+      theme: "creation",
+      tags: ["value", "identity", "intimacy", "plan"]
+    },
+    "Ecclesiastes 7:17": {
+      text: "Do not be overwicked, and do not be a fool—why die before your time?",
+      theme: "wisdom",
+      tags: ["warning", "premature", "death", "foolishness"]
+    }
+  },
+
+  "Life is still worth living": {
+    "John 10:10": {
+      text: "The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.",
+      theme: "life",
+      tags: ["purpose", "life", "enemy", "abundance"]
+    },
+    "Romans 5:3-5": {
+      text: "Not only that, but we rejoice in our sufferings, knowing that suffering produces endurance, and endurance produces character, and character produces hope, and hope does not put us to shame...",
+      theme: "growth",
+      tags: ["pain", "endurance", "character", "hope"]
+    },
+    "Lamentations 3:31-33": {
+      text: "For the Lord will not cast off forever, but, though he cause grief, he will have compassion... he does not willingly afflict or grieve the children of men.",
+      theme: "mercy",
+      tags: ["grief", "mercy", "compassion", "truth"]
+    }
+  },
+
+ 
+  "Some people in the Bible wanted to die—but God responded with care, not punishment": {
+    "1 Kings 19:4": {
+      text: "While he himself went a day's journey into the wilderness, he came to a broom bush, sat down under it and prayed that he might die. 'I have had enough, Lord,' he said. 'Take my life; I am no better than my ancestors.'",
+      theme: "help",
+      tags: ["elijah", "depression", "despair", "prayer", "suicide", "burnout", "honesty"]
+    }
+  },
+  "God didn’t agree with Jonah’s anger or despair—He answered with a question and care": {
+    "Jonah 4:3": {
+      text: "Now, O Lord, take away my life, for it is better for me to die than to live.",
+      theme: "emotion",
+      tags: ["jonah", "anger", "hopelessness", "despair", "emotions", "god-responds", "compassion"]
+    }
+  },
+  "Job’s grief was deep—but God stayed present through his raw, honest pain": {
+    "Job 3:11": {
+      text: "Why did I not perish at birth, and die as I came from the womb?",
+      theme: "fallenness",
+      tags: ["job", "suffering", "grief", "despair", "honesty", "lament", "brokenness"]
+    }
+  },
+  "Paul felt torn—but he chose life because others needed him": {
+    "Philippians 1:23-24": {
+      text: "I am torn between the two: I desire to depart and be with Christ, which is better by far; but it is more necessary for you that I remain in the body.",
+      theme: "purpose",
+      tags: ["paul", "heaven", "mission", "life", "calling", "decision", "sacrifice"]
+    }
+  },
+  "Samson’s death was dramatic—but it came in the middle of fulfilling his calling": {
+    "Judges 16:30": {
+      text: "Samson said, 'Let me die with the Philistines!' Then he pushed with all his might, and down came the temple on the rulers and all the people in it. Thus he killed many more when he died than while he lived.",
+      theme: "battle",
+      tags: ["samson", "calling", "sacrifice", "war", "death", "strength", "vengeance"]
+    }
+  },
+  "Saul died by his own hand—but his story is a tragic fall, not a model to follow": {
+    "1 Samuel 31:4-5": {
+      text: "Saul said to his armor-bearer, 'Draw your sword and run me through…' But his armor-bearer was terrified and would not do it; so Saul took his own sword and fell on it. When the armor-bearer saw that Saul was dead, he too fell on his sword and died with him.",
+      theme: "fallenness",
+      tags: ["saul", "tragedy", "defeat", "failure", "shame", "death", "battle"]
+    }
+  },
+  "Judas took his life—but this was after turning away from the one who loved him most": {
+    "Matthew 27:5": {
+      text: "So Judas threw the money into the temple and left. Then he went away and hanged himself.",
+      theme: "temptation",
+      tags: ["judas", "regret", "guilt", "betrayal", "death", "consequence", "sin"]
+    }
+  },
+
+  "Ahithophel ended his life after being rejected—his story shows the weight of pride and disappointment": {
+    "2 Samuel 17:23": {
+      text: "When Ahithophel saw that his counsel was not followed, he saddled his donkey and went home to his city... Then he put his house in order and hanged himself, and he died.",
+      theme: "emotion",
+      tags: ["rejection", "shame", "recorded", "death"]
+    }
+  },
+  "Even Moses felt so overwhelmed he asked God to end his life—but God didn’t abandon him": {
+    "Numbers 11:15": {
+      text: "If you will treat me like this, kill me at once, if I find favor in your sight, that I may not see my wretchedness.",
+      theme: "emotion",
+      tags: ["moses", "overwhelmed", "leadership", "burden"]
+    }
+  },
+  "Jonah wanted to die after things didn’t go his way—but God still engaged him in conversation": {
+    "Jonah 4:3": {
+      text: "Therefore now, O Lord, please take my life from me, for it is better for me to die than to live.",
+      theme: "emotion",
+      tags: ["anger", "jonah", "complaint", "despair"]
+    }
+  },
+  "Jeremiah cursed his own birth—but he kept talking to God, even through pain": {
+    "Jeremiah 20:14-18": {
+      text: "Cursed be the day on which I was born! The day when my mother bore me, let it not be blessed! ... Why did I come out from the womb to see toil and sorrow, and spend my days in shame?",
+      theme: "fallenness",
+      tags: ["grief", "regret", "birth", "shame", "despair"]
+    }
+  },
+  "Some psalms describe deep depression and a soul near death—but they bring that darkness to God": {
+    "Psalm 88:3-6": {
+      text: "For my soul is full of troubles, and my life draws near to Sheol. I am counted among those who go down to the pit... You have put me in the depths of the pit, in the regions dark and deep.",
+      theme: "darkness",
+      tags: ["depression", "sheol", "cry", "trouble", "depth"]
+    }
+  },
+  "Even faithful people asked how long they’d be stuck in sorrow—God welcomes our honest cries": {
+    "Psalm 13:1-2": {
+      text: "How long, O Lord? Will you forget me forever? How long will you hide your face from me? How long must I take counsel in my soul and have sorrow in my heart all the day?",
+      theme: "lament",
+      tags: ["forgotten", "longing", "pain", "questions"]
+    }
+  },
+  "Judas’s end was full of regret and horror—a tragic warning about sin and shame": {
+    "Acts 1:18": {
+      text: "Now this man acquired a field with the reward of his wickedness, and falling headlong he burst open in the middle and all his bowels gushed out.",
+      theme: "judgment",
+      tags: ["judas", "death", "betrayal", "consequence"]
+    }
+  },
+  "Samson’s final act was a sacrifice in battle—not suicide, but a moment of purpose and surrender": {
+    "Judges 16:30": {
+      text: "Then Samson said, 'Let me die with the Philistines!' Then he pushed with all his might, and down came the temple on the rulers and all the people in it. Thus he killed many more when he died than while he lived.",
+      theme: "battle",
+      tags: ["samson", "sacrifice", "strength", "end"]
+    }
+  }
+
+};
+
+// What does God say about Christians who act like they're better than others?
+let q108ans = {
+  "God calls us to walk in humility, not pride or comparison": {
+    "1 Corinthians 4:7": {
+      text: "For who makes you different from anyone else? What do you have that you did not receive? And if you did receive it, why do you boast as though you did not?",
+      theme: "humble",
+      tags: ["gift", "grace", "comparison", "boasting"]
+    },
+    "James 4:6": {
+      text: "But he gives more grace. Therefore it says, 'God opposes the proud but gives grace to the humble.'",
+      theme: "humble",
+      tags: ["grace", "pride", "humility", "favor"]
+    },
+    "Philippians 2:3-4": {
+      text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, not looking to your own interests but each of you to the interests of the others.",
+      theme: "humble",
+      tags: ["humility", "others", "selflessness", "unity"]
+    },
+    "1 Peter 5:5-6": {
+      text: "All of you, clothe yourselves with humility toward one another, because, 'God opposes the proud but shows favor to the humble.' Humble yourselves, therefore, under God’s mighty hand, that he may lift you up in due time.",
+      theme: "humble",
+      tags: ["humility", "favor", "exaltation", "submission"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "humble",
+      tags: ["justice", "mercy", "walk", "humility", "requirement"]
+    },
+    "Matthew 23:11-12": {
+      text: "The greatest among you will be your servant. For those who exalt themselves will be humbled, and those who humble themselves will be exalted.",
+      theme: "humble",
+      tags: ["greatness", "servanthood", "humility", "exaltation"]
+    },
+    "Colossians 3:12-13": {
+      text: "Therefore, as God’s chosen people... clothe yourselves with compassion, kindness, humility, gentleness and patience. Bear with each other and forgive one another... Forgive as the Lord forgave you.",
+      theme: "humble",
+      tags: ["forgiveness", "humility", "character", "identity"]
+    },
+    "Galatians 6:3": {
+      text: "If anyone thinks they are something when they are not, they deceive themselves.",
+      theme: "truth",
+      tags: ["pride", "self-deception", "humility"]
+    }
+  },
+
+  "Judging or looking down on others invites judgment on ourselves": {
+    "Matthew 7:1-5": {
+      text: "Do not judge, or you too will be judged... You hypocrite, first take the plank out of your own eye, and then you will see clearly to remove the speck from your brother’s eye.",
+      theme: "judgment",
+      tags: ["judging", "hypocrisy", "self-reflection"]
+    },
+    "Luke 6:37": {
+      text: "Do not judge, and you will not be judged. Do not condemn, and you will not be condemned. Forgive, and you will be forgiven.",
+      theme: "mercy",
+      tags: ["judgment", "mercy", "forgiveness"]
+    },
+    "Romans 14:10-13": {
+      text: "You, then, why do you judge your brother or sister? Or why do you treat them with contempt? For we will all stand before God’s judgment seat... Let us stop passing judgment on one another.",
+      theme: "unity",
+      tags: ["judgment", "accountability", "brotherhood", "respect"]
+    },
+    "Proverbs 16:5": {
+      text: "The Lord detests all the proud of heart. Be sure of this: They will not go unpunished.",
+      theme: "judgment",
+      tags: ["pride", "detestable", "consequences"]
+    }
+  },
+
+  "True righteousness comes from humility, not self-confidence": {
+    "Luke 18:9-14": {
+      text: "To some who were confident of their own righteousness and looked down on everyone else, Jesus told this parable... 'I tell you that this man, rather than the other, went home justified before God. For all those who exalt themselves will be humbled, and those who humble themselves will be exalted.'",
+      theme: "humble",
+      tags: ["pharisee", "tax collector", "self-righteous", "comparison", "justified"]
+    },
+    "Romans 12:3": {
+      text: "For by the grace given me I say to every one of you: Do not think of yourself more highly than you ought, but rather think of yourself with sober judgment, in accordance with the faith God has distributed to each of you.",
+      theme: "humble",
+      tags: ["self-image", "faith", "sober judgment", "equality"]
+    },
+    "Proverbs 27:2": {
+      text: "Let someone else praise you, and not your own mouth; an outsider, and not your own lips.",
+      theme: "truth",
+      tags: ["boasting", "praise", "self-image"]
+    }
+  },
+
+  "God wants His people to live in unity and equal concern": {
+    "1 Corinthians 12:21-26": {
+      text: "The eye cannot say to the hand, 'I don’t need you!'... those parts of the body that seem to be weaker are indispensable... so that there should be no division in the body, but that its parts should have equal concern for each other.",
+      theme: "unity",
+      tags: ["body of Christ", "interdependence", "honor", "equality"]
+    },
+    "Ephesians 4:2-3": {
+      text: "Be completely humble and gentle; be patient, bearing with one another in love. Make every effort to keep the unity of the Spirit through the bond of peace.",
+      theme: "unity",
+      tags: ["humility", "gentleness", "patience", "peace", "spirit"]
+    }
+  }
+};
+
+// What kind of person does God want me to become?
+let q109ans = {
+  "Formed by Christlike character": {
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "growth",
+      tags: ["fruit", "spirit", "character", "virtue"]
+    },
+    "Colossians 3:12-14": {
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience. Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you. And over all these virtues put on love, which binds them all together in perfect unity.",
+      theme: "growth",
+      tags: ["virtues", "forgiveness", "love", "unity", "clothing"]
+    },
+    "Romans 8:29": {
+      text: "For those God foreknew he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers and sisters.",
+      theme: "transformation",
+      tags: ["conform", "image", "Jesus", "purpose"]
+    },
+    "Philippians 2:5": {
+      text: "In your relationships with one another, have the same mindset as Christ Jesus:",
+      theme: "humble",
+      tags: ["mindset", "Jesus", "relationship", "attitude"]
+    }
+  },
+
+  "Transformed and renewed in mind and image": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "mind", "God's will", "conformity"]
+    },
+    "2 Corinthians 3:18": {
+      text: "And we all, who with unveiled faces contemplate the Lord’s glory, are being transformed into his image with ever-increasing glory, which comes from the Lord, who is the Spirit.",
+      theme: "transformation",
+      tags: ["glory", "image", "spirit", "transformation"]
+    },
+    "Ephesians 4:22-24": {
+      text: "You were taught, with regard to your former way of life, to put off your old self, which is being corrupted by its deceitful desires; to be made new in the attitude of your minds; and to put on the new self, created to be like God in true righteousness and holiness.",
+      theme: "transformation",
+      tags: ["new self", "renewal", "righteousness", "holiness"]
+    }
+  },
+
+  "Rooted in love for God and others": {
+    "1 Corinthians 13:4-7": {
+      text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. Love does not delight in evil but rejoices with the truth. It always protects, always trusts, always hopes, always perseveres.",
+      theme: "love",
+      tags: ["patience", "kindness", "truth", "character"]
+    },
+    "John 13:34-35": {
+      text: "A new command I give you: Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples, if you love one another.",
+      theme: "love",
+      tags: ["command", "disciples", "identity", "Jesus"]
+    },
+    "Matthew 22:37-39": {
+      text: "Jesus replied: 'Love the Lord your God with all your heart and with all your soul and with all your mind.' This is the first and greatest commandment. And the second is like it: 'Love your neighbor as yourself.'",
+      theme: "obedience",
+      tags: ["greatest commandment", "heart", "neighbor", "love"]
+    }
+  },
+
+  "Marked by humility": {
+    "Philippians 2:3-5": {
+      text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, not looking to your own interests but each of you to the interests of the others. In your relationships with one another, have the same mindset as Christ Jesus:",
+      theme: "humble",
+      tags: ["humility", "relationships", "mindset", "Jesus"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["justice", "mercy", "humility", "walk"]
+    }
+  },
+
+  "Known by service to others": {
+    "Mark 10:43-45": {
+      text: "Not so with you. Instead, whoever wants to become great among you must be your servant, and whoever wants to be first must be slave of all. For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
+      theme: "serving",
+      tags: ["servant", "greatness", "Jesus", "example"]
+    },
+    "Galatians 5:13": {
+      text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather, serve one another humbly in love.",
+      theme: "serving",
+      tags: ["freedom", "flesh", "love", "humility"]
+    }
+  },
+
+  "Holy, growing, and complete": {
+    "1 Thessalonians 4:3": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality;",
+      theme: "holy",
+      tags: ["will of God", "sanctified", "purity"]
+    },
+    "James 1:4": {
+      text: "Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+      theme: "growth",
+      tags: ["perseverance", "maturity", "completion"]
+    },
+    "2 Peter 1:5-7": {
+      text: "For this very reason, make every effort to add to your faith goodness; and to goodness, knowledge; and to knowledge, self-control; and to self-control, perseverance; and to perseverance, godliness; and to godliness, mutual affection; and to mutual affection, love.",
+      theme: "growth",
+      tags: ["effort", "faith", "virtues", "spiritual growth"]
+    }
+  },
+
+  "Rooted in identity and calling": {
+    "1 Peter 2:9": {
+      text: "But you are a chosen people, a royal priesthood, a holy nation, God’s special possession, that you may declare the praises of him who called you out of darkness into his wonderful light.",
+      theme: "identity",
+      tags: ["chosen", "light", "calling", "worship"]
+    },
+    "Matthew 5:3-10": {
+      text: "Blessed are the poor in spirit, for theirs is the kingdom of heaven. Blessed are those who mourn, for they will be comforted. Blessed are the meek, for they will inherit the earth. Blessed are those who hunger and thirst for righteousness, for they will be filled. Blessed are the merciful, for they will be shown mercy. Blessed are the pure in heart, for they will see God. Blessed are the peacemakers, for they will be called children of God. Blessed are those who are persecuted because of righteousness, for theirs is the kingdom of heaven.",
+      theme: "growth",
+      tags: ["blessed", "beatitudes", "kingdom", "identity"]
+    }
+  }
+};
+
+// What kind of wisdom does God want me to have?
+let q110ans = {
+  "True wisdom begins with God": {
+    "Proverbs 9:10": {
+      text: "The fear of the Lord is the beginning of wisdom, and knowledge of the Holy One is understanding.",
+      theme: "wisdom",
+      tags: ["fear", "beginning", "knowledge"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["ask", "guidance", "generosity"]
+    },
+    "Colossians 2:3": {
+      text: "In Christ are hidden all the treasures of wisdom and knowledge.",
+      theme: "jesus",
+      tags: ["wisdom", "knowledge", "treasure"]
+    }
+  },
+
+  "God’s wisdom vs worldly wisdom": {
+    "1 Corinthians 1:25": {
+      text: "For the foolishness of God is wiser than human wisdom, and the weakness of God is stronger than human strength.",
+      theme: "wisdom",
+      tags: ["humility", "strength", "perspective"]
+    },
+    "James 3:13-17": {
+      text: "Who is wise and understanding among you? Let them show it by their good life, by deeds done in the humility that comes from wisdom. But if you harbor bitter envy and selfish ambition... the wisdom that comes from heaven is first of all pure; then peace-loving, considerate, submissive, full of mercy and good fruit, impartial and sincere.",
+      theme: "humble",
+      tags: ["peace", "purity", "fruit", "mercy"]
+    },
+    "1 Corinthians 2:6-7": {
+      text: "We do, however, speak a message of wisdom among the mature, but not the wisdom of this age... No, we declare God’s wisdom, a mystery that has been hidden and that God destined for our glory before time began.",
+      theme: "wisdom",
+      tags: ["maturity", "eternal", "mystery"]
+    }
+  },
+
+  "Wisdom shown by how we live": {
+    "Proverbs 3:5-7": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding... Do not be wise in your own eyes; fear the Lord and shun evil.",
+      theme: "obedience",
+      tags: ["trust", "fear", "humility"]
+    },
+    "Matthew 7:24": {
+      text: "Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.",
+      theme: "obedience",
+      tags: ["action", "foundation", "practice"]
+    },
+    "Ecclesiastes 7:12": {
+      text: "Wisdom is a shelter as money is a shelter, but the advantage of knowledge is this: Wisdom preserves those who have it.",
+      theme: "wisdom",
+      tags: ["protection", "value", "preserve"]
+    }
+  },
+
+  "Wisdom leads to good decisions & fear of sin": {
+    "Proverbs 4:7": {
+      text: "The beginning of wisdom is this: Get wisdom. Though it cost all you have, get understanding.",
+      theme: "growth",
+      tags: ["pursuit", "value", "understanding"]
+    },
+    "Job 28:28": {
+      text: "The fear of the Lord—that is wisdom, and to shun evil is understanding.",
+      theme: "fear",
+      tags: ["evil", "discernment", "obedience"]
+    }
+  },
+
+  "Wisdom isn’t just knowledge, but obedience": {
+    "Deuteronomy 4:6": {
+      text: "Observe them carefully, for this will show your wisdom and understanding to the nations, who will hear about all these decrees and say, 'Surely this great nation is a wise and understanding people.'",
+      theme: "obedience",
+      tags: ["laws", "witness", "nations"]
+    }
+  },
+
+  "Ask God for wisdom": {
+    "1 Kings 3:9": {
+      text: "So give your servant a discerning heart to govern your people and to distinguish between right and wrong. For who is able to govern this great people of yours?",
+      theme: "wisdom",
+      tags: ["discernment", "leadership", "prayer"]
+    }
+  },
+
+  "God’s wisdom vs worldly pride": {
+    "Isaiah 55:8-9": {
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
+      theme: "truth",
+      tags: ["difference", "greatness", "understanding"]
+    }
+  },
+
+  "Christ is wisdom personified": {
+    "1 Corinthians 1:30": {
+      text: "It is because of him that you are in Christ Jesus, who has become for us wisdom from God—that is, our righteousness, holiness and redemption.",
+      theme: "jesus",
+      tags: ["wisdom", "identity", "righteousness"]
+    }
+  },
+
+  "Wisdom as skillful living, not just intellect": {
+    "Ecclesiastes 10:10": {
+      text: "If the ax is dull and its edge unsharpened, more strength is needed, but skill will bring success.",
+      theme: "wisdom",
+      tags: ["skill", "success", "effort"]
+    },
+    "Proverbs 24:3-4": {
+      text: "By wisdom a house is built, and through understanding it is established; through knowledge its rooms are filled with rare and beautiful treasures.",
+      theme: "wisdom",
+      tags: ["build", "understanding", "treasures"]
+    }
+  },
+
+  "Living wisely includes watching your path": {
+    "Ephesians 5:15-17": {
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity... Therefore do not be foolish, but understand what the Lord’s will is.",
+      theme: "guidance",
+      tags: ["time", "purpose", "watchfulness"]
+    },
+    "Psalm 90:12": {
+      text: "Teach us to number our days, that we may gain a heart of wisdom.",
+      theme: "wisdom",
+      tags: ["time", "perspective", "heart"]
+    }
+  },
+
+  "Wisdom includes humility and listening": {
+    "Proverbs 12:15": {
+      text: "The way of fools seems right to them, but the wise listen to advice.",
+      theme: "humble",
+      tags: ["advice", "listening", "foolishness"]
+    },
+    "Proverbs 19:20": {
+      text: "Listen to advice and accept discipline, and at the end you will be counted among the wise.",
+      theme: "humble",
+      tags: ["discipline", "growth", "wisdom"]
+    },
+    "Proverbs 11:2": {
+      text: "When pride comes, then comes disgrace, but with humility comes wisdom.",
+      theme: "humble",
+      tags: ["pride", "humility", "honor"]
+    }
+  },
+
+  "Wisdom doesn’t always come with age—it comes from God": {
+    "Job 32:7-9": {
+      text: "I thought, ‘Age should speak; advanced years should teach wisdom.’ But it is the spirit in a person, the breath of the Almighty, that gives them understanding.",
+      theme: "spirit",
+      tags: ["age", "insight", "God-given"]
+    }
+  },
+
+  "Wisdom produces a righteous life": {
+    "Daniel 12:3": {
+      text: "Those who are wise will shine like the brightness of the heavens, and those who lead many to righteousness, like the stars for ever and ever.",
+      theme: "wisdom",
+      tags: ["righteousness", "light", "influence"]
+    },
+    "James 3:13": {
+      text: "Who is wise and understanding among you? Let them show it by their good life, by deeds done in the humility that comes from wisdom.",
+      theme: "wisdom",
+      tags: ["life", "deeds", "humility"]
+    }
+  },
+
+  "God’s commands make the simple wise": {
+    "Psalm 19:7": {
+      text: "The law of the Lord is perfect, refreshing the soul. The statutes of the Lord are trustworthy, making wise the simple.",
+      theme: "word",
+      tags: ["law", "refresh", "trust"]
+    },
+    "Psalm 111:10": {
+      text: "The fear of the Lord is the beginning of wisdom; all who follow his precepts have good understanding. To him belongs eternal praise.",
+      theme: "obedience",
+      tags: ["fear", "understanding", "praise"]
+    }
+  }
+};
+
+// What does the Bible say about overthinking or being indecisive?
+let q111ans = {
+  "Trusting God brings peace and clarity, not confusion": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "direction", "overthinking"]
+    },
+    "Isaiah 26:3": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+      theme: "peace",
+      tags: ["trust", "mind", "overthinking"]
+    },
+    "John 14:27": {
+      text: "Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.",
+      theme: "peace",
+      tags: ["peace", "fear", "decision"]
+    },
+    "Colossians 3:15": {
+      text: "Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful.",
+      theme: "peace",
+      tags: ["peace", "decision", "rule"]
+    }
+  },
+
+  "God is not the author of confusion": {
+    "1 Corinthians 14:33": {
+      text: "For God is not a God of disorder but of peace—as in all the congregations of the Lord’s people.",
+      theme: "peace",
+      tags: ["confusion", "order", "decision"]
+    }
+  },
+
+  "Overthinking can paralyze action": {
+    "Ecclesiastes 11:4": {
+      text: "Whoever watches the wind will not plant; whoever looks at the clouds will not reap.",
+      theme: "wisdom",
+      tags: ["hesitation", "waiting", "overthinking"]
+    },
+    "Proverbs 14:8": {
+      text: "The wisdom of the prudent is to give thought to their ways, but the folly of fools is deception.",
+      theme: "wisdom",
+      tags: ["thoughtful", "action", "foolishness"]
+    },
+    "Proverbs 14:15": {
+      text: "The simple believe anything, but the prudent give thought to their steps.",
+      theme: "wisdom",
+      tags: ["prudence", "thinking", "steps"]
+    },
+    "Proverbs 12:25": {
+      text: "Anxiety weighs down the heart, but a kind word cheers it up.",
+      theme: "emotion",
+      tags: ["anxiety", "overthinking", "comfort"]
+    }
+  },
+
+  "Seek God’s will when uncertain": {
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["instruction", "direction", "decisions"]
+    },
+    "Proverbs 16:9": {
+      text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+      theme: "guidance",
+      tags: ["planning", "steps", "God's will"]
+    },
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["anxiety", "prayer", "trust"]
+    },
+    "Psalm 37:23-24": {
+      text: "The Lord makes firm the steps of the one who delights in him; though he may stumble, he will not fall, for the Lord upholds him with his hand.",
+      theme: "guidance",
+      tags: ["steps", "delight", "support"]
+    },
+    "Proverbs 19:20-21": {
+      text: "Listen to advice and accept discipline, and at the end you will be counted among the wise. Many are the plans in a person’s heart, but it is the Lord’s purpose that prevails.",
+      theme: "guidance",
+      tags: ["planning", "purpose", "submission"]
+    },
+    "Proverbs 11:14": {
+      text: "For lack of guidance a nation falls, but victory is won through many advisers.",
+      theme: "wisdom",
+      tags: ["advice", "guidance", "victory"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "word",
+      tags: ["scripture", "guidance", "clarity"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["direction", "voice", "certainty"]
+    }
+  },
+
+  "Worry leads to indecision; trust frees you": {
+    "Matthew 6:27": {
+      text: "Can any one of you by worrying add a single hour to your life?",
+      theme: "peace",
+      tags: ["worry", "time", "trust"]
+    },
+    "Matthew 6:34": {
+      text: "Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.",
+      theme: "peace",
+      tags: ["worry", "daily", "focus"]
+    },
+    "Luke 12:25-26": {
+      text: "Who of you by worrying can add a single hour to your life? Since you cannot do this very little thing, why do you worry about the rest?",
+      theme: "peace",
+      tags: ["trust", "worry", "control"]
+    },
+    "Psalm 94:19": {
+      text: "When anxiety was great within me, your consolation brought me joy.",
+      theme: "peace",
+      tags: ["comfort", "anxiety", "overthinking"]
+    }
+  },
+
+  "God values a steady, wise heart": {
+    "James 1:5-8": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. But when you ask, you must believe and not doubt, because the one who doubts is like a wave of the sea, blown and tossed by the wind. That person should not expect to receive anything from the Lord. Such a person is double-minded and unstable in all they do.",
+      theme: "wisdom",
+      tags: ["doubt", "decision", "asking"]
+    },
+    "Proverbs 12:15": {
+      text: "The way of fools seems right to them, but the wise listen to advice.",
+      theme: "wisdom",
+      tags: ["listening", "advice", "pride"]
+    },
+    "Proverbs 15:22": {
+      text: "Plans fail for lack of counsel, but with many advisers they succeed.",
+      theme: "wisdom",
+      tags: ["counsel", "planning", "success"]
+    }
+  },
+
+  "Decisiveness honors God": {
+    "1 Kings 18:21": {
+      text: "Elijah went before the people and said, 'How long will you waver between two opinions? If the Lord is God, follow him; but if Baal is God, follow him.' But the people said nothing.",
+      theme: "obedience",
+      tags: ["decisiveness", "worship", "commitment"]
+    },
+    "Joshua 24:15": {
+      text: "But if serving the Lord seems undesirable to you, then choose for yourselves this day whom you will serve, whether the gods your ancestors served beyond the Euphrates, or the gods of the Amorites, in whose land you are living. But as for me and my household, we will serve the Lord.",
+      theme: "obedience",
+      tags: ["decision", "worship", "choice"]
+    },
+    "James 4:17": {
+      text: "If anyone, then, knows the good they ought to do and doesn’t do it, it is sin for them.",
+      theme: "obedience",
+      tags: ["responsibility", "indecision", "action"]
+    }
+  }
+};
+
+// What if my plans keep failing — is that just God saying no?
+let q112ans = {
+  "God ultimately directs when our plans change or fail": {
+    "Proverbs 16:9": {
+      text: "In their hearts humans plan their course, but the Lord establishes their steps.",
+      theme: "guidance",
+      tags: ["plans", "steps", "direction"]
+    },
+    "Proverbs 19:21": {
+      text: "Many are the plans in a person’s heart, but it is the Lord’s purpose that prevails.",
+      theme: "purpose",
+      tags: ["plans", "purpose", "sovereignty"]
+    },
+    "Psalm 37:5": {
+      text: "Commit your way to the Lord; trust in him and he will act.",
+      theme: "guidance",
+      tags: ["commitment", "trust", "action"]
+    },
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "guidance",
+      tags: ["commitment", "plans", "God's will"]
+    },
+    "Proverbs 16:1": {
+      text: "To humans belong the plans of the heart, but from the Lord comes the proper answer of the tongue.",
+      theme: "guidance",
+      tags: ["plans", "speech", "outcome"]
+    },
+    "Proverbs 16:33": {
+      text: "The lot is cast into the lap, but its every decision is from the Lord.",
+      theme: "sovereignty",
+      tags: ["chance", "decision", "God’s authority"]
+    },
+    "Proverbs 15:22": {
+      text: "Plans fail for lack of counsel, but with many advisers they succeed.",
+      theme: "wisdom",
+      tags: ["counsel", "advice", "planning"]
+    }
+  },
+
+  "God brings good through failure for those who love Him": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "hope",
+      tags: ["good", "purpose", "love"]
+    },
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "redemption",
+      tags: ["intention", "good", "purpose"]
+    }
+  },
+
+  "God's plan is higher than ours—even when we don’t understand": {
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
+      theme: "purpose",
+      tags: ["plans", "future", "hope"]
+    },
+    "Isaiah 55:8-9": {
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
+      theme: "truth",
+      tags: ["God’s ways", "transcendence", "understanding"]
+    },
+    "Job 42:2": {
+      text: "I know that you can do all things; no purpose of yours can be thwarted.",
+      theme: "sovereignty",
+      tags: ["God’s purpose", "sovereignty", "unfail"]
+    }
+  },
+
+  "Failure can be a season of waiting or realignment": {
+    "Lamentations 3:25-26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "hope",
+      tags: ["waiting", "hope", "patience"]
+    },
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "perseverance",
+      tags: ["patience", "harvest", "purpose"]
+    }
+  },
+
+  "Sometimes God closes doors—and leads us another way": {
+    "Acts 16:6-7": {
+      text: "Paul and his companions traveled throughout the region of Phrygia and Galatia, having been kept by the Holy Spirit from preaching the word in the province of Asia. When they came to the border of Mysia, they tried to enter Bithynia, but the Spirit of Jesus would not allow them to.",
+      theme: "guidance",
+      tags: ["closed doors", "Holy Spirit", "redirect"]
+    },
+    "2 Corinthians 12:8-9": {
+      text: "Three times I pleaded with the Lord to take it away from me. But he said to me, \"My grace is sufficient for you, for my power is made perfect in weakness.\" Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["weakness", "grace", "surrender"]
+    }
+  },
+
+  "Holding onto God's promises sustains through setbacks": {
+    "Psalm 33:10-11": {
+      text: "The Lord foils the plans of the nations; he thwarts the purposes of the peoples. But the plans of the Lord stand firm forever, the purposes of his heart through all generations.",
+      theme: "sovereignty",
+      tags: ["God’s plan", "lasting", "authority"]
+    },
+    "Psalm 23:1-6": {
+      text: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures, he leads me beside quiet waters, he refreshes my soul. He guides me along the right paths for his name’s sake. Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me. You prepare a table before me in the presence of my enemies. You anoint my head with oil; my cup overflows. Surely your goodness and love will follow me all the days of my life, and I will dwell in the house of the Lord forever.",
+      theme: "guidance",
+      tags: ["shepherd", "restoration", "paths"]
+    },
+    "Psalm 46:10": {
+      text: "He says, \"Be still, and know that I am God; I will be exalted among the nations, I will be exalted in the earth.\"",
+      theme: "peace",
+      tags: ["stillness", "trust", "identity"]
+    }
+  }
+};
+
+// What should I do while waiting for God's timing?
+let q113ans = {
+  "Actively hope and quietly wait on the Lord": {
+    "Lamentations 3:25-26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "hope",
+      tags: ["seek", "quiet", "wait", "salvation"]
+    },
+    "Psalm 37:7": {
+      text: "Be still before the Lord and wait patiently for him; do not fret when people succeed in their ways, when they carry out their wicked schemes.",
+      theme: "patience",
+      tags: ["still", "patient", "fret not"]
+    },
+    "Psalm 27:14": {
+      text: "Wait for the Lord; be strong and take heart and wait for the Lord.",
+      theme: "strength",
+      tags: ["wait", "strong", "courage"]
+    },
+    "Micah 7:7": {
+      text: "But as for me, I watch in hope for the Lord, I wait for God my Savior; my God will hear me.",
+      theme: "watching",
+      tags: ["watch", "hope", "hear"]
+    },
+    "Psalm 130:5": {
+      text: "I wait for the Lord, my whole being waits, and in his word I put my hope.",
+      theme: "identity",
+      tags: ["wait", "hope", "word", "whole being"]
+    }
+  },
+
+  "Renew strength and trust through active waiting": {
+    "Isaiah 40:31": {
+      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+      theme: "renewal",
+      tags: ["hope", "strength", "not weary"]
+    },
+    "Romans 8:25": {
+      text: "But if we hope for what we do not yet have, we wait for it patiently.",
+      theme: "faith",
+      tags: ["hope", "patient", "wait"]
+    },
+    "James 5:7-8": {
+      text: "Be patient, then, brothers and sisters, until the Lord’s coming. See how the farmer waits for the land to yield its valuable crop. You too, be patient and stand firm, because the Lord’s coming is near.",
+      theme: "endurance",
+      tags: ["patient", "farmer", "stand firm"]
+    },
+    "Hebrews 6:12": {
+      text: "We do not want you to become lazy, but to imitate those who through faith and patience inherit what has been promised.",
+      theme: "endurance",
+      tags: ["faith", "patience", "inherit promise"]
+    },
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "perseverance",
+      tags: ["weary", "harvest", "not give up"]
+    }
+  },
+
+  "Trust God’s timeline and motive above delay": {
+    "2 Peter 3:8-9": {
+      text: "But do not forget this one thing, dear friends: With the Lord a day is like a thousand years, and a thousand years are like a day. The Lord is not slow in keeping his promise… but is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "timing",
+      tags: ["delay", "patience", "mercy"]
+    },
+    "Habakkuk 2:3": {
+      text: "For the vision awaits its appointed time; it speaks of the end and will not prove false. Though it linger, wait for it; it will certainly come and will not delay.",
+      theme: "certainty",
+      tags: ["vision", "appointed", "delay"]
+    },
+    "Ecclesiastes 3:11": {
+      text: "He has made everything beautiful in its time. Also, he has set eternity in the human heart; yet no one can fathom what God has done from beginning to end.",
+      theme: "timing",
+      tags: ["beautiful", "eternity", "time"]
+    },
+    "Isaiah 30:18": {
+      text: "Yet the Lord longs to be gracious to you; therefore he will rise up to show you compassion. For the Lord is a God of justice. Blessed are all who wait for him!",
+      theme: "grace",
+      tags: ["gracious", "wait", "blessed"]
+    }
+  },
+
+  "Use the waiting season to serve, reflect, and grow": {
+    "James 1:2-4": {
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+      theme: "maturity",
+      tags: ["joy", "trials", "perseverance"]
+    },
+    "Romans 5:3-4": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope.",
+      theme: "growth",
+      tags: ["suffering", "hope", "character"]
+    },
+    "1 Peter 5:10": {
+      text: "And the God of all grace, who called you to his eternal glory in Christ, after you have suffered a little while, will himself restore you and make you strong, firm and steadfast.",
+      theme: "comfort",
+      tags: ["restore", "grace", "strengthen"]
+    }
+  },
+
+  "Seek God deeply and serve others in the meantime": {
+    "Acts 16:6-7": {
+      text: "Paul and his companions traveled throughout the region of Phrygia and Galatia, having been kept by the Holy Spirit from preaching the word in the province of Asia. When they came to the border of Mysia, they tried to enter Bithynia, but the Spirit of Jesus would not allow them.",
+      theme: "obedience",
+      tags: ["Holy Spirit", "redirect", "serve"]
+    },
+    "Galatians 5:13": {
+      text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather, serve one another humbly in love.",
+      theme: "service",
+      tags: ["serve", "humble", "love"]
+    },
+    "Hebrews 10:36": {
+      text: "You need to persevere so that when you have done the will of God, you will receive what he has promised.",
+      theme: "endurance",
+      tags: ["endure", "promise", "God’s will"]
+    }
+  }
+};
+
+// What should I do to know if a decision is from God or just my own desire?
+let q114ans = {
+  "Let Scripture be your primary guide": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "wisdom",
+      tags: ["trust", "submit", "paths"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["word", "path", "light"]
+    },
+    "Matthew 7:21": {
+      text: "Not everyone who says to me, ‘Lord, Lord,’ will enter the Kingdom of Heaven, but only the one who does the will of my Father in heaven.",
+      theme: "obedience",
+      tags: ["will", "Father", "obedience"]
+    },
+    "Psalm 25:4": {
+      text: "Make me to know your ways, O Lord; teach me your paths.",
+      theme: "guidance",
+      tags: ["teach", "ways", "paths"]
+    },
+    "Jeremiah 6:16": {
+      text: "Thus says the Lord: ‘Stand at the crossroads and look; ask for the ancient paths, where the good way is; and walk in it…’",
+      theme: "wisdom",
+      tags: ["paths", "walk", "ancient"]
+    },
+    "Ephesians 5:15-17": {
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity… do not be foolish, but understand what the Lord’s will is.",
+      theme: "obedience",
+      tags: ["wise", "will", "live"]
+    }
+  },
+
+  "Pray and ask God for wisdom": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, let him ask God, who gives generously to all without finding fault, and it will be given to him.",
+      theme: "prayer",
+      tags: ["ask", "wisdom", "generous"]
+    },
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["anxious", "petition", "guard", "peace"]
+    },
+    "1 John 5:14": {
+      text: "This is the confidence we have in approaching God: that if we ask anything according to His will, He hears us.",
+      theme: "faith",
+      tags: ["ask", "confidence", "will"]
+    },
+    "Proverbs 2:1–5": {
+      text: "My child, if you accept my words and store up my commands... if you call out for insight and lift up your voice for understanding... then you will understand the fear of the Lord…",
+      theme: "wisdom",
+      tags: ["insight", "fear", "understanding"]
+    }
+  },
+
+  "Follow the Spirit’s leading in your heart": {
+    "Romans 8:14-15": {
+      text: "For those who are led by the Spirit of God are the children of God... you received the Spirit of adoption as sons, by whom we cry, 'Abba! Father!'",
+      theme: "spirit",
+      tags: ["led", "Spirit", "adoption", "faith"]
+    },
+    "Colossians 3:15": {
+      text: "Let the peace of Christ rule in your hearts, since as members of one body you were called to peace.",
+      theme: "peace",
+      tags: ["peace", "heart", "unity"]
+    },
+    "John 16:13": {
+      text: "When the Spirit of truth comes, he will guide you into all the truth... he will tell you the things that are to come.",
+      theme: "spirit",
+      tags: ["truth", "Spirit", "guide"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["teach", "counsel", "way"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, ‘This is the way; walk in it.’",
+      theme: "guidance",
+      tags: ["voice", "walk", "way"]
+    }
+  },
+
+  "Seek counsel from others who follow Christ": {
+    "Proverbs 11:14": {
+      text: "Where there is no guidance, a people falls, but in an abundance of counselors there is safety.",
+      theme: "wisdom",
+      tags: ["counsel", "safety", "guidance"]
+    },
+    "Proverbs 15:22": {
+      text: "Plans fail for lack of counsel, but with many advisers they succeed.",
+      theme: "wisdom",
+      tags: ["plans", "advisers", "success"]
+    },
+    "Acts 13:2-3": {
+      text: "While they were worshiping the Lord... the Holy Spirit said, 'Set apart for me Barnabas and Saul for the work to which I have called them.' Then after fasting... they laid their hands on them and sent them off.",
+      theme: "obedience",
+      tags: ["worship", "Spirit", "send"]
+    }
+  },
+
+  "Watch your circumstances but depend on God first": {
+    "Proverbs 16:1": {
+      text: "To humans belong the plans of the heart, but from the Lord comes the proper answer of the tongue.",
+      theme: "guidance",
+      tags: ["plans", "heart", "answer"]
+    },
+    "Proverbs 21:1": {
+      text: "The king’s heart is in the hand of the Lord, and he directs it like a watercourse wherever he pleases.",
+      theme: "sovereignty",
+      tags: ["heart", "Lord", "direction"]
+    },
+    "Psalm 37:23": {
+      text: "The steps of a man are established by the Lord, when he delights in his way.",
+      theme: "guidance",
+      tags: ["steps", "delight", "Lord"]
+    },
+    "Isaiah 58:11": {
+      text: "The Lord will guide you always; he will satisfy your needs in a sun-scorched land... You will be like a well-watered garden...",
+      theme: "faithful",
+      tags: ["guide", "needs", "garden"]
+    },
+    "Deuteronomy 31:8": {
+      text: "The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.",
+      theme: "presence",
+      tags: ["before", "with you", "courage"]
+    }
+  },
+
+  "Test your motives and expectations": {
+    "Proverbs 1:7": {
+      text: "The fear of the Lord is the beginning of knowledge; fools despise wisdom and instruction.",
+      theme: "wisdom",
+      tags: ["fear", "wisdom", "beginning"]
+    },
+    "Galatians 5:16-17": {
+      text: "But I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "temptation",
+      tags: ["Spirit", "flesh", "desires"]
+    },
+    "1 Samuel 16:7": {
+      text: "For the Lord sees not as man sees: man looks on the outward appearance, but the Lord looks on the heart.",
+      theme: "truth",
+      tags: ["heart", "appearances", "God sees"]
+    }
+  },
+
+  "Watch for God’s peace as confirmation": {
+    "Philippians 4:7": {
+      text: "And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["guard", "peace", "mind"]
+    },
+    "Isaiah 26:3": {
+      text: "You keep him in perfect peace whose mind is stayed on you, because he trusts in you.",
+      theme: "peace",
+      tags: ["perfect", "peace", "trust"]
+    }
+  },
+
+  "Remember God’s wisdom exceeds worldly logic": {
+    "1 Corinthians 1:25": {
+      text: "For the foolishness of God is wiser than men, and the weakness of God is stronger than men.",
+      theme: "wisdom",
+      tags: ["wisdom", "God", "strength"]
+    },
+    "1 Corinthians 2:6-7": {
+      text: "Yet among the mature we do speak wisdom... the hidden wisdom of God, which God ordained before the ages for our glory.",
+      theme: "wisdom",
+      tags: ["hidden", "wisdom", "glory"]
+    },
+    "Isaiah 55:8-9": {
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord.",
+      theme: "truth",
+      tags: ["transcendence", "ways", "thoughts"]
+    }
+  }
+};
+
+
+// How do I hear God's voice more clearly?
+let q115ans = {
+  "God speaks through His Word and Spirit": {
+    "John 10:27": {
+      text: "My sheep listen to my voice; I know them, and they follow me.",
+      theme: "guidance",
+      tags: ["voice", "follow", "relationship"]
+    },
+    "Hebrews 4:12": {
+      text: "For the word of God is alive and active. Sharper than any double-edged sword, it penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes of the heart.",
+      theme: "word",
+      tags: ["scripture", "discernment", "truth"]
+    },
+    "John 16:13": {
+      text: "But when he, the Spirit of truth, comes, he will guide you into all the truth. He will not speak on his own; he will speak only what he hears, and he will tell you what is yet to come.",
+      theme: "spirit",
+      tags: ["truth", "guidance", "Holy Spirit"]
+    },
+    "John 14:26": {
+      text: "But the Advocate, the Holy Spirit, whom the Father will send in my name, will teach you all things and will remind you of everything I have said to you.",
+      theme: "spirit",
+      tags: ["teaching", "memory", "Holy Spirit"]
+    },
+    "1 Corinthians 2:10–12": {
+      text: "These are the things God has revealed to us by his Spirit. The Spirit searches all things, even the deep things of God. For who knows a person's thoughts except their own spirit within them? In the same way no one knows the thoughts of God except the Spirit of God. What we have received is not the spirit of the world, but the Spirit who is from God, so that we may understand what God has freely given us.",
+      theme: "spirit",
+      tags: ["revelation", "understanding", "Holy Spirit"]
+    }
+  },
+
+  "Listening involves quiet, trust, and obedience": {
+    "Psalm 46:10": {
+      text: "Be still, and know that I am God; I will be exalted among the nations, I will be exalted in the earth.",
+      theme: "seek",
+      tags: ["stillness", "trust", "awareness"]
+    },
+    "Isaiah 30:21": {
+      text: "Whether you turn to the right or to the left, your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      theme: "guidance",
+      tags: ["direction", "ears", "path"]
+    },
+    "1 Kings 19:12": {
+      text: "After the earthquake came a fire, but the Lord was not in the fire. And after the fire came a gentle whisper.",
+      theme: "presence",
+      tags: ["whisper", "quiet", "gentleness"]
+    },
+    "1 Kings 19:12–13": {
+      text: "After the earthquake came a fire, but the Lord was not in the fire. And after the fire came a gentle whisper. When Elijah heard it, he pulled his cloak over his face and went out and stood at the mouth of the cave.",
+      theme: "guidance",
+      tags: ["stillness", "whisper", "presence"]
+    },
+    "Jeremiah 33:3": {
+      text: "Call to me and I will answer you and tell you great and unsearchable things you do not know.",
+      theme: "prayer",
+      tags: ["calling", "answers", "revelation"]
+    }
+  },
+
+  "Draw near to deepen your hearing": {
+    "Hebrews 10:22": {
+      text: "Let us draw near to God with a sincere heart and with the full assurance that faith brings, having our hearts sprinkled to cleanse us from a guilty conscience and having our bodies washed with pure water.",
+      theme: "seek",
+      tags: ["draw near", "faith", "cleansing"]
+    },
+    "Hosea 6:3": {
+      text: "Let us acknowledge the Lord; let us press on to acknowledge him. As surely as the sun rises, he will appear; he will come to us like the winter rains, like the spring rains that water the earth.",
+      theme: "seek",
+      tags: ["pursue", "God’s presence", "promise"]
+    },
+    "Jeremiah 29:13": {
+      text: "You will seek me and find me when you seek me with all your heart.",
+      theme: "seek",
+      tags: ["wholehearted", "seeking", "finding God"]
+    }
+  },
+
+  "Scripture trains us to recognize His voice": {
+    "Hebrews 5:14": {
+      text: "But solid food is for the mature, who by constant use have trained themselves to distinguish good from evil.",
+      theme: "growth",
+      tags: ["discernment", "maturity", "practice"]
+    },
+    "2 Timothy 3:16–17": {
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness, so that the servant of God may be thoroughly equipped for every good work.",
+      theme: "word",
+      tags: ["scripture", "equipping", "teaching"]
+    }
+  },
+
+  "Obedience opens our ears": {
+    "John 7:17": {
+      text: "Anyone who chooses to do the will of God will find out whether my teaching comes from God or whether I speak on my own.",
+      theme: "obedience",
+      tags: ["doing", "discernment", "truth"]
+    },
+    "Isaiah 50:4–5": {
+      text: "The Sovereign Lord has given me a well-instructed tongue, to know the word that sustains the weary. He wakens me morning by morning, wakens my ear to listen like one being instructed. The Sovereign Lord has opened my ears; I have not been rebellious, I have not turned away.",
+      theme: "obedience",
+      tags: ["listening", "daily", "obedience"]
+    }
+  }
+};
+
+// What's one way I can get to know Jesus better today?
+let q116ans = {
+  "We know Him by spending time in His Word": {
+    "John 5:39": {
+      text: "You study the Scriptures diligently because you think that in them you have eternal life. These are the very Scriptures that testify about me.",
+      theme: "word",
+      tags: ["Jesus", "Scripture", "relationship"]
+    },
+    "Luke 24:27": {
+      text: "And beginning with Moses and all the Prophets, he explained to them what was said in all the Scriptures concerning himself.",
+      theme: "understanding",
+      tags: ["Jesus", "Scripture", "truth"]
+    },
+    "Colossians 3:16": {
+      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom...",
+      theme: "growth",
+      tags: ["teaching", "wisdom", "message"]
+    },
+    "2 Timothy 3:15": {
+      text: "...from infancy you have known the Holy Scriptures, which are able to make you wise for salvation through faith in Christ Jesus.",
+      theme: "wisdom",
+      tags: ["Scripture", "salvation", "Jesus"]
+    },
+    "Psalm 119:15–16": {
+      text: "I meditate on your precepts and consider your ways. I delight in your decrees; I will not neglect your word.",
+      theme: "devotion",
+      tags: ["Scripture", "meditation", "delight"]
+    },
+    "John 15:7": {
+      text: "If you remain in me and my words remain in you, ask whatever you wish, and it will be done for you.",
+      theme: "relationship",
+      tags: ["Jesus", "prayer", "obedience"]
+    }
+  },
+
+  "We draw near through prayer and presence": {
+    "Mark 1:35": {
+      text: "Very early in the morning, while it was still dark, Jesus got up, left the house and went off to a solitary place, where he prayed.",
+      theme: "devotion",
+      tags: ["prayer", "solitude", "Jesus"]
+    },
+    "Psalm 27:8": {
+      text: "My heart says of you, ‘Seek his face!’ Your face, Lord, I will seek.",
+      theme: "seek",
+      tags: ["presence", "desire", "relationship"]
+    },
+    "Jeremiah 29:13": {
+      text: "You will seek me and find me when you seek me with all your heart.",
+      theme: "seek",
+      tags: ["presence", "wholehearted", "relationship"]
+    },
+    "Hebrews 4:16": {
+      text: "Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["prayer", "confidence", "help"]
+    },
+    "Psalm 62:8": {
+      text: "Trust in him at all times, you people; pour out your hearts to him, for God is our refuge.",
+      theme: "trust",
+      tags: ["prayer", "honesty", "refuge"]
+    },
+    "James 4:8": {
+      text: "Come near to God and he will come near to you...",
+      theme: "seek",
+      tags: ["presence", "relationship", "invitation"]
+    }
+  },
+
+  "We know Him more as we obey and follow": {
+    "John 14:21": {
+      text: "Whoever has my commands and keeps them is the one who loves me. The one who loves me will be loved by my Father, and I too will love them and show myself to them.",
+      theme: "obedience",
+      tags: ["commands", "love", "relationship"]
+    },
+    "Luke 6:46–47": {
+      text: "Why do you call me, ‘Lord, Lord,’ and do not do what I say? As for everyone who comes to me and hears my words and puts them into practice...",
+      theme: "obedience",
+      tags: ["practice", "Jesus", "truth"]
+    },
+    "1 John 2:3–5": {
+      text: "We know that we have come to know him if we keep his commands. Whoever says, ‘I know him,’ but does not do what he commands is a liar...",
+      theme: "obedience",
+      tags: ["truth", "relationship", "commands"]
+    },
+    "John 8:31": {
+      text: "If you hold to my teaching, you are really my disciples.",
+      theme: "obedience",
+      tags: ["discipleship", "teaching", "faithfulness"]
+    },
+    "Romans 12:1–2": {
+      text: "Offer your bodies as a living sacrifice... Then you will be able to test and approve what God’s will is...",
+      theme: "transformation",
+      tags: ["worship", "renewal", "obedience"]
+    },
+    "Matthew 7:24": {
+      text: "Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.",
+      theme: "wisdom",
+      tags: ["obedience", "foundation", "practice"]
+    }
+  },
+
+  "We know Him more by walking like Him": {
+    "Philippians 2:5": {
+      text: "In your relationships with one another, have the same mindset as Christ Jesus...",
+      theme: "humble",
+      tags: ["mindset", "Jesus", "relationships"]
+    },
+    "1 John 2:6": {
+      text: "Whoever claims to live in him must live as Jesus did.",
+      theme: "walk",
+      tags: ["example", "Jesus", "life"]
+    },
+    "Ephesians 5:2": {
+      text: "...walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      theme: "love",
+      tags: ["walk", "sacrifice", "Jesus"]
+    },
+    "John 13:15": {
+      text: "I have set you an example that you should do as I have done for you.",
+      theme: "example",
+      tags: ["Jesus", "service", "follow"]
+    },
+    "Galatians 5:25": {
+      text: "Since we live by the Spirit, let us keep in step with the Spirit.",
+      theme: "spirit",
+      tags: ["walk", "Spirit", "obedience"]
+    },
+    "Colossians 1:10": {
+      text: "...that you may live a life worthy of the Lord and please him in every way: bearing fruit in every good work, growing in the knowledge of God.",
+      theme: "growth",
+      tags: ["fruit", "knowledge", "walk"]
+    }
+  }
+};
+
+// What does the Bible say about procrastination, laziness, or lack of motivation?
+let q117ans = {
+  "God honors diligence, not delay": {
+    "Proverbs 13:4": {
+      text: "The soul of the sluggard craves and gets nothing, while the soul of the diligent is richly supplied.",
+      theme: "guidance",
+      tags: ["diligence", "desire", "results"]
+    },
+    "Proverbs 10:4–5": {
+      text: "Lazy hands make for poverty, but diligent hands bring wealth. He who gathers crops in summer is a prudent son, but he who sleeps during harvest is a disgraceful son.",
+      theme: "guidance",
+      tags: ["diligence", "timing", "harvest"]
+    },
+    "Romans 12:11": {
+      text: "Never be lacking in zeal, but keep your spiritual fervor, serving the Lord.",
+      theme: "devotion",
+      tags: ["zeal", "service", "energy"]
+    },
+    "Ecclesiastes 11:4": {
+      text: "Whoever watches the wind will not plant; whoever looks at the clouds will not reap.",
+      theme: "wisdom",
+      tags: ["excuses", "timing", "faith"]
+    },
+    "Hebrews 6:11–12": {
+      text: "We want each of you to show this same diligence to the very end, so that what you hope for may be fully realized. We do not want you to become lazy, but to imitate those who through faith and patience inherit what has been promised.",
+      theme: "growth",
+      tags: ["diligence", "hope", "faith"]
+    }
+  },
+
+  "Laziness has real consequences": {
+    "Proverbs 6:6–11": {
+      text: "Go to the ant, you sluggard; consider its ways and be wise! It has no commander, no overseer or ruler, yet it stores its provisions in summer and gathers its food at harvest. How long will you lie there, you sluggard? When will you get up from your sleep? A little sleep, a little slumber, a little folding of the hands to rest—and poverty will come on you like a thief and scarcity like an armed man.",
+      theme: "wisdom",
+      tags: ["laziness", "poverty", "warning"]
+    },
+    "Proverbs 24:30–34": {
+      text: "I went past the field of a sluggard, past the vineyard of someone who has no sense; thorns had come up everywhere, the ground was covered with weeds, and the stone wall was in ruins. I applied my heart to what I observed and learned a lesson from what I saw: A little sleep, a little slumber, a little folding of the hands to rest—and poverty will come on you like a thief and scarcity like an armed man.",
+      theme: "wisdom",
+      tags: ["sluggard", "neglect", "poverty"]
+    },
+    "Matthew 25:26–30": {
+      text: "But his master replied, ‘You wicked, lazy servant!... throw that worthless servant outside, into the darkness, where there will be weeping and gnashing of teeth.’",
+      theme: "obedience",
+      tags: ["responsibility", "servanthood", "consequence"]
+    },
+    "Proverbs 21:25–26": {
+      text: "The craving of a sluggard will be the death of him, because his hands refuse to work. All day long he craves for more, but the righteous give without sparing.",
+      theme: "wisdom",
+      tags: ["craving", "work", "generosity"]
+    },
+    "Ecclesiastes 10:18": {
+      text: "Through laziness, the rafters sag; because of idle hands, the house leaks.",
+      theme: "guidance",
+      tags: ["neglect", "idleness", "damage"]
+    },
+    "Proverbs 20:4": {
+      text: "Sluggards do not plow in season; so at harvest time they look but find nothing.",
+      theme: "guidance",
+      tags: ["timing", "laziness", "loss"]
+    },
+    "Proverbs 24:33–34": {
+      text: "A little sleep, a little slumber, a little folding of the hands to rest—and poverty will come on you like a prowler, and your need like an armed man.",
+      theme: "wisdom",
+      tags: ["poverty", "slumber", "warning"]
+    }
+  },
+
+  "Our time and energy are gifts to steward": {
+    "Ephesians 5:15–17": {
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity, because the days are evil. Therefore do not be foolish, but understand what the Lord’s will is.",
+      theme: "guidance",
+      tags: ["wisdom", "time", "will of God"]
+    },
+    "Colossians 3:23–24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters... It is the Lord Christ you are serving.",
+      theme: "obedience",
+      tags: ["work", "heart", "Lord"]
+    },
+    "Proverbs 14:23": {
+      text: "All hard work brings a profit, but mere talk leads only to poverty.",
+      theme: "wisdom",
+      tags: ["profit", "action", "talk"]
+    },
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "hope",
+      tags: ["perseverance", "good", "reward"]
+    },
+    "2 Thessalonians 3:10–12": {
+      text: "For even when we were with you, we gave you this rule: ‘The one who is unwilling to work shall not eat.’... we command and urge in the Lord Jesus Christ to settle down and earn the food they eat.",
+      theme: "obedience",
+      tags: ["work", "discipline", "command"]
+    },
+    "1 Corinthians 9:24–27": {
+      text: "Do you not know that in a race all the runners run, but only one gets the prize?... I strike a blow to my body and make it my slave so that after I have preached to others, I myself will not be disqualified for the prize.",
+      theme: "growth",
+      tags: ["discipline", "goal", "effort"]
+    },
+    "1 Corinthians 15:10": {
+      text: "But by the grace of God I am what I am, and his grace to me was not without effect. No, I worked harder than all of them—yet not I, but the grace of God that was with me.",
+      theme: "grace",
+      tags: ["grace", "effort", "humility"]
+    },
+    "James 4:17": {
+      text: "If anyone, then, knows the good they ought to do and doesn’t do it, it is sin for them.",
+      theme: "obedience",
+      tags: ["omission", "conviction", "sin"]
+    },
+    "Proverbs 18:9": {
+      text: "Whoever is slack in his work is brother to him who destroys.",
+      theme: "guidance",
+      tags: ["slack", "destruction", "warning"]
+    },
+    "Ecclesiastes 9:10": {
+      text: "Whatever your hand finds to do, do it with all your might, for in the realm of the dead, where you are going, there is neither working nor planning nor knowledge nor wisdom.",
+      theme: "purpose",
+      tags: ["effort", "finality", "urgency"]
+    },
+    "Proverbs 21:5": {
+      text: "The plans of the diligent lead surely to plenty, but those of everyone who is hasty, surely to poverty.",
+      theme: "wisdom",
+      tags: ["planning", "diligence", "poverty"]
+    },
+    "1 Corinthians 15:58": {
+      text: "Therefore, my dear brothers and sisters, stand firm. Let nothing move you. Always give yourselves fully to the work of the Lord... your labor in the Lord is not in vain.",
+      theme: "purpose",
+      tags: ["steadfast", "labor", "eternity"]
+    },
+    "Philippians 2:14–15": {
+      text: "Do everything without grumbling or arguing, so that you may become blameless and pure... children of God without fault in a warped and crooked generation.",
+      theme: "obedience",
+      tags: ["attitude", "blameless", "witness"]
+    },
+    "Titus 2:7–8": {
+      text: "In everything set them an example by doing what is good. In your teaching show integrity, seriousness and soundness of speech that cannot be condemned...",
+      theme: "growth",
+      tags: ["example", "integrity", "teaching"]
+    }
+  }
+};
+
+// As a Christian, how should I view success?
+let q118ans = {
+  "Success is living faithfully before God": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["faithful","character","God’s desire"]
+    },
+    "Matthew 25:21": {
+      text: "His master replied, ‘Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things. Come and share your master’s happiness!’",
+      theme: "faithful",
+      tags: ["reward","faithfulness","eternal"]
+    },
+    "1 Corinthians 4:2": {
+      text: "Now it is required that those who have been given a trust must prove faithful.",
+      theme: "faithful",
+      tags: ["trust","stewardship","loyalty"]
+    },
+    "Joshua 1:8": {
+      text: "Keep this Book of the Law always on your lips; meditate on it day and night, so that you may be careful to do everything written in it. Then you will be prosperous and successful.",
+      theme: "obedience",
+      tags: ["scripture","prosper","faithful"]
+    },
+    "John 15:5": {
+      text: "I am the vine; you are the branches. If you remain in me and I in you, you will bear much fruit; apart from me you can do nothing.",
+      theme: "devotion",
+      tags: ["fruit","dependence","Jesus"]
+    }
+  },
+  "Worldly success is not the goal": {
+    "Luke 12:15": {
+      text: "Watch out! Be on your guard against all kinds of greed; life does not consist in an abundance of possessions.",
+      theme: "truth",
+      tags: ["materialism","warning","greed"]
+    },
+    "Mark 8:36": {
+      text: "What good is it for someone to gain the whole world, yet forfeit their soul?",
+      theme: "salvation",
+      tags: ["eternal","soul","priorities"]
+    },
+    "Jeremiah 9:23–24": {
+      text: "This is what the Lord says: ‘Let not the wise boast of their wisdom or the strong boast of their strength or the rich boast of their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises lovingkindness, justice and righteousness on the earth, for in these I delight,’ declares the Lord.",
+      theme: "truth",
+      tags: ["boasting","wisdom","relationship"]
+    },
+    "Ecclesiastes 12:13": {
+      text: "Now all has been heard; here is the conclusion of the matter: Fear God and keep his commandments, for this is the duty of all mankind.",
+      theme: "obedience",
+      tags: ["purpose","truth","end of life"]
+    }
+  },
+  "True success is eternal reward": {
+    "2 Timothy 4:7–8": {
+      text: "I have fought the good fight, I have finished the race, I have kept the faith. Now there is in store for me the crown of righteousness, which the Lord, the righteous Judge, will award to me on that day—and not only to me, but also to all who have longed for his appearing.",
+      theme: "eternal",
+      tags: ["reward","perseverance","heaven"]
+    },
+    "Colossians 3:23–24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know that you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.",
+      theme: "devotion",
+      tags: ["work","motivation","service"]
+    },
+    "Revelation 2:10": {
+      text: "Be faithful, even to the point of death, and I will give you life as your victor’s crown.",
+      theme: "eternal",
+      tags: ["faithfulness","reward","heaven"]
+    },
+    "Matthew 6:19–21": {
+      text: "Do not store up for yourselves treasures on earth, where moths and vermin destroy, and where thieves break in and steal. But store up for yourselves treasures in heaven… For where your treasure is, there your heart will be also.",
+      theme: "eternal",
+      tags: ["heaven","priority","heart"]
+    }
+  },
+  "Success is becoming like Christ": {
+    "Romans 8:29": {
+      text: "For those God foreknew he also predestined to be conformed to the image of his Son...",
+      theme: "transformation",
+      tags: ["Christlike","identity","purpose"]
+    },
+    "Philippians 3:8–9": {
+      text: "I consider everything a loss compared to the surpassing worth of knowing Christ Jesus my Lord, for whose sake I have lost all things. I consider them rubbish, that I may gain Christ and be found in him...",
+      theme: "salvation",
+      tags: ["Christ","worth","faith"]
+    },
+    "Galatians 5:22–23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "growth",
+      tags: ["character","Spirit","evidence"]
+    }
+  },
+  "Success is serving and helping others": {
+    "Matthew 20:26–28": {
+      text: "Whoever wants to become great among you must be your servant... just as the Son of Man did not come to be served, but to serve, and to give his life a ransom for many.",
+      theme: "humble",
+      tags: ["service","greatness","Jesus"]
+    },
+    "Hebrews 6:10": {
+      text: "God is not unjust; he will not forget your work and the love you have shown him as you have helped his people and continue to help them.",
+      theme: "help",
+      tags: ["service","reward","love"]
+    },
+    "Proverbs 11:25": {
+      text: "A generous person will prosper; whoever refreshes others will be refreshed.",
+      theme: "goodness",
+      tags: ["generosity","blessing","service"]
+    }
+  },
+  "Success is peace, contentment, and wholeness": {
+    "Philippians 4:11–13": {
+      text: "I have learned the secret of being content in any and every situation... I can do all this through him who gives me strength.",
+      theme: "peace",
+      tags: ["contentment","strength","joy"]
+    },
+    "Psalm 1:1–3": {
+      text: "Blessed is the one who does not walk in step with the wicked... That person is like a tree planted by streams of water, which yields its fruit in season and whose leaf does not wither—whatever they do prospers.",
+      theme: "growth",
+      tags: ["blessing","stability","fruit"]
+    },
+    "Isaiah 26:3": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+      theme: "peace",
+      tags: ["trust","peace","steadfast"]
+    }
+  },
+  "God’s definition of success is different from ours": {
+    "Zechariah 4:10": {
+      text: "Do not despise these small beginnings, for the Lord rejoices to see the work begin...",
+      theme: "humble",
+      tags: ["beginning","small","God’s way"]
+    },
+    "Matthew 10:42": {
+      text: "And if anyone gives even a cup of cold water to one of these little ones who is my disciple... that person will certainly not lose their reward.",
+      theme: "help",
+      tags: ["small acts","reward","service"]
+    },
+    "1 Samuel 16:7": {
+      text: "The Lord does not look at the things people look at... the Lord looks at the heart.",
+      theme: "truth",
+      tags: ["heart","perspective","value"]
+    },
+    "Isaiah 55:8–9": {
+      text: "“For my thoughts are not your thoughts, neither are your ways my ways,” declares the Lord.",
+      theme: "truth",
+      tags: ["God’s view","different","understanding"]
+    }
+  }
+};
+
+// Q119: How does God use my pain or past mistakes for His good purposes?
+let q119ans = {
+  "He uses my pain to help others and bring healing": {
+    "2 Corinthians 1:3–4": {
+      text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
+      theme: "comfort",
+      tags: ["pain", "helping", "others"]
+    },
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "purpose",
+      tags: ["harm", "redemption", "God's plan"]
+    },
+    "Philippians 1:12": {
+      text: "Now I want you to know, brothers and sisters, that what has happened to me has actually served to advance the gospel.",
+      theme: "purpose",
+      tags: ["setback", "ministry", "witness"]
+    }
+  },
+
+  "He brings beauty, joy, and redemption out of brokenness": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "goodness",
+      tags: ["pain", "trust", "purpose"]
+    },
+    "Isaiah 61:3": {
+      text: "And provide for those who grieve in Zion—to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair.",
+      theme: "transformation",
+      tags: ["healing", "joy", "renewal"]
+    },
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "healing",
+      tags: ["broken", "comfort", "restoration"]
+    },
+    "Micah 7:8": {
+      text: "Do not gloat over me, my enemy! Though I have fallen, I will rise. Though I sit in darkness, the Lord will be my light.",
+      theme: "hope",
+      tags: ["failure", "redemption", "light"]
+    }
+  },
+
+  "He shapes my character and teaches me through trials": {
+    "Romans 5:3–5": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope. And hope does not put us to shame, because God’s love has been poured out into our hearts through the Holy Spirit, who has been given to us.",
+      theme: "hope",
+      tags: ["suffering", "growth", "strength"]
+    },
+    "Proverbs 3:11–12": {
+      text: "My son, do not despise the Lord’s discipline, and do not resent his rebuke, because the Lord disciplines those he loves, as a father the son he delights in.",
+      theme: "growth",
+      tags: ["correction", "mistakes", "love"]
+    },
+    "Psalm 32:5": {
+      text: "Then I acknowledged my sin to you and did not cover up my iniquity. I said, 'I will confess my transgressions to the Lord.' And you forgave the guilt of my sin.",
+      theme: "forgiveness",
+      tags: ["sin", "repentance", "healing"]
+    }
+  },
+
+  "He still calls and uses me despite my past": {
+    "John 21:17": {
+      text: "The third time he said to him, 'Simon son of John, do you love me?' Peter was hurt because Jesus asked him the third time, 'Do you love me?' He said, 'Lord, you know all things; you know that I love you.' Jesus said, 'Feed my sheep.'",
+      theme: "restoration",
+      tags: ["failure", "calling", "love"]
+    },
+    "1 Timothy 1:15–16": {
+      text: "Here is a trustworthy saying that deserves full acceptance: Christ Jesus came into the world to save sinners—of whom I am the worst. But for that very reason I was shown mercy so that in me, the worst of sinners, Christ Jesus might display his immense patience as an example for those who would believe in him and receive eternal life.",
+      theme: "mercy",
+      tags: ["past", "grace", "calling"]
+    },
+    "Isaiah 6:6–8": {
+      text: "Then one of the seraphim flew to me with a live coal in his hand... with it he touched my mouth and said, 'See, this has touched your lips; your guilt is taken away and your sin atoned for.' Then I heard the voice of the Lord saying, 'Whom shall I send?' And I said, 'Here am I. Send me!'",
+      theme: "submission",
+      tags: ["calling", "cleansing", "readiness"]
+    }
+  },
+
+  "He turns our story into something that brings Him glory": {
+    "John 9:1–3": {
+      text: "As he went along, he saw a man blind from birth. His disciples asked him, 'Rabbi, who sinned, this man or his parents, that he was born blind?' 'Neither this man nor his parents sinned,' said Jesus, 'but this happened so that the works of God might be displayed in him.'",
+      theme: "glory",
+      tags: ["suffering", "purpose", "healing"]
+    },
+    "2 Corinthians 12:9": {
+      text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["weakness", "power", "trust"]
+    },
+    "Ecclesiastes 3:11": {
+      text: "He has made everything beautiful in its time. He has also set eternity in the human heart; yet no one can fathom what God has done from beginning to end.",
+      theme: "eternal",
+      tags: ["timing", "beauty", "purpose"]
+    }
+  }
+};
+
+// What should I do when God seems to delay or withhold an answer to my prayer.
+let q120ans = {
+  "Trust that He has a reason beyond what I can see": {
+    "Isaiah 55:8–9": {
+      text: "For my thoughts are not your thoughts, neither are your ways my ways,” declares the Lord. “As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      theme: "understanding",
+      tags: ["trust", "unanswered prayer", "mystery"]
+    },
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "grace",
+      tags: ["delay", "prayer", "repentance"]
+    },
+    "John 13:7": {
+      text: "Jesus replied, 'You do not realize now what I am doing, but later you will understand.'",
+      theme: "understanding",
+      tags: ["delay", "trust", "timing"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "goodness",
+      tags: ["purpose", "waiting", "trust"]
+    }
+  },
+  "Keep praying and do not lose heart": {
+    "Luke 18:1": {
+      text: "Then Jesus told his disciples a parable to show them that they should always pray and not give up.",
+      theme: "pray",
+      tags: ["persistence", "hope", "unanswered prayer"]
+    },
+    "1 Thessalonians 5:17": {
+      text: "Pray without ceasing.",
+      theme: "pray",
+      tags: ["prayer", "discipline", "trust"]
+    },
+    "Psalm 5:3": {
+      text: "In the morning, Lord, you hear my voice; in the morning I lay my requests before you and wait expectantly.",
+      theme: "hope",
+      tags: ["waiting", "expectation", "prayer"]
+    }
+  },
+  "Let waiting refine your heart, not harden it": {
+    "Psalm 37:7": {
+      text: "Be still before the Lord and wait patiently for him; do not fret when people succeed in their ways, when they carry out their wicked schemes.",
+      theme: "peace",
+      tags: ["waiting", "comparison", "stillness"]
+    },
+    "Lamentations 3:25–26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "hope",
+      tags: ["waiting", "quiet", "faith"]
+    },
+    "Romans 5:3–5": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope. And hope does not put us to shame, because God’s love has been poured out into our hearts through the Holy Spirit.",
+      theme: "growth",
+      tags: ["suffering", "hope", "waiting"]
+    }
+  },
+  "Search your heart and surrender again": {
+    "James 4:3": {
+      text: "When you ask, you do not receive, because you ask with wrong motives, that you may spend what you get on your pleasures.",
+      theme: "obedience",
+      tags: ["motives", "surrender", "selfishness"]
+    },
+    "Psalm 66:18": {
+      text: "If I had cherished sin in my heart, the Lord would not have listened;",
+      theme: "holy",
+      tags: ["sin", "prayer", "repentance"]
+    },
+    "1 John 5:14": {
+      text: "This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us.",
+      theme: "faith",
+      tags: ["confidence", "prayer", "God's will"]
+    }
+  },
+  "Remember stories of delayed answers": {
+    "John 11:6": {
+      text: "So when he heard that Lazarus was sick, he stayed where he was two more days.",
+      theme: "faithful",
+      tags: ["delay", "Jesus", "trust"]
+    },
+    "Genesis 21:2": {
+      text: "Sarah became pregnant and bore a son to Abraham in his old age, at the very time God had promised him.",
+      theme: "faithful",
+      tags: ["delay", "promise", "God's timing"]
+    },
+    "Habakkuk 2:3": {
+      text: "For the revelation awaits an appointed time; it speaks of the end and will not prove false. Though it linger, wait for it; it will certainly come and will not delay.",
+      theme: "truth",
+      tags: ["vision", "waiting", "God’s promise"]
+    }
+  },
+  
+  "Keep praying and waiting with trust": {
+    "Psalm 27:14": {
+      text: "Wait for the Lord; be strong and take heart and wait for the Lord.",
+      theme: "wait",
+      tags: ["prayer", "trust", "patience"]
+    },
+    "Luke 18:1": {
+      text: "Then Jesus told his disciples a parable to show them that they should always pray and not give up.",
+      theme: "prayer",
+      tags: ["persistence", "trust", "timing"]
+    },
+    "Romans 12:12": {
+      text: "Be joyful in hope, patient in affliction, faithful in prayer.",
+      theme: "patience",
+      tags: ["waiting", "joy", "hope"]
+    },
+    "Micah 7:7": {
+      text: "But as for me, I watch in hope for the Lord, I wait for God my Savior; my God will hear me.",
+      theme: "hope",
+      tags: ["prayer", "trust", "waiting"]
+    },
+    "Psalm 130:5-6": {
+      text: "I wait for the Lord, my whole being waits, and in his word I put my hope. I wait for the Lord more than watchmen wait for the morning, more than watchmen wait for the morning.",
+      theme: "hope",
+      tags: ["trust", "scripture", "waiting"]
+    }
+  },
+
+  "Remember that God's timing is wiser than mine": {
+    "2 Peter 3:8-9": {
+      text: "But do not forget this one thing, dear friends: With the Lord a day is like a thousand years, and a thousand years are like a day. The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you...",
+      theme: "timing",
+      tags: ["trust", "delay", "faith"]
+    },
+    "Ecclesiastes 3:11": {
+      text: "He has made everything beautiful in its time. He has also set eternity in the human heart; yet no one can fathom what God has done from beginning to end.",
+      theme: "timing",
+      tags: ["faith", "patience", "trust"]
+    },
+    "Isaiah 55:8-9": {
+      text: "'For my thoughts are not your thoughts, neither are your ways my ways,' declares the Lord. 'As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.'",
+      theme: "understanding",
+      tags: ["wisdom", "timing", "trust"]
+    }
+  },
+
+  "Don't confuse delay with abandonment": {
+    "Lamentations 3:25-26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "hope",
+      tags: ["faith", "silence", "trust"]
+    },
+    "John 11:5-6": {
+      text: "Now Jesus loved Martha and her sister and Lazarus. So when he heard that Lazarus was sick, he stayed where he was two more days.",
+      theme: "timing",
+      tags: ["love", "delay", "trust"]
+    },
+    "Psalm 66:18-20": {
+      text: "If I had cherished sin in my heart, the Lord would not have listened; but God has surely listened and has heard my prayer. Praise be to God, who has not rejected my prayer or withheld his love from me!",
+      theme: "prayer",
+      tags: ["repentance", "hope", "listening"]
+    }
+  },
+
+  "Let the delay shape your character and hope": {
+    "James 1:2-4": {
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+      theme: "growth",
+      tags: ["patience", "delay", "faith"]
+    },
+    "Romans 5:3-5": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope. And hope does not put us to shame...",
+      theme: "transformation",
+      tags: ["hope", "delay", "growth"]
+    },
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "obedience",
+      tags: ["waiting", "perseverance", "hope"]
+    },
+    "Hebrews 10:35-36": {
+      text: "So do not throw away your confidence; it will be richly rewarded. You need to persevere so that when you have done the will of God, you will receive what he has promised.",
+      theme: "faithful",
+      tags: ["perseverance", "reward", "timing"]
+    }
+  },
+
+  "Pour out your honest emotions to God": {
+    "Psalm 13:1-2": {
+      text: "How long, Lord? Will you forget me forever? How long will you hide your face from me? How long must I wrestle with my thoughts and day after day have sorrow in my heart?",
+      theme: "emotion",
+      tags: ["honesty", "cry", "silence"]
+    },
+    "Habakkuk 1:2": {
+      text: "How long, Lord, must I call for help, but you do not listen? Or cry out to you, 'Violence!' but you do not save?",
+      theme: "emotion",
+      tags: ["waiting", "desperation", "prayer"]
+    },
+    "Job 30:20": {
+      text: "I cry out to you, God, but you do not answer; I stand up, but you merely look at me.",
+      theme: "emotion",
+      tags: ["honest", "silence", "pain"]
+    }
+  },
+
+  "Cling to God's promises even in silence": {
+    "Isaiah 40:31": {
+      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+      theme: "hope",
+      tags: ["endurance", "faith", "strength"]
+    },
+    "Psalm 84:11": {
+      text: "For the Lord God is a sun and shield; the Lord bestows favor and honor; no good thing does he withhold from those whose walk is blameless.",
+      theme: "goodness",
+      tags: ["faith", "waiting", "reward"]
+    },
+    "Hebrews 11:1": {
+      text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
+      theme: "faith",
+      tags: ["trust", "delay", "unseen"]
+    },
+    "Mark 11:24": {
+      text: "Therefore I tell you, whatever you ask for in prayer, believe that you have received it, and it will be yours.",
+      theme: "faith",
+      tags: ["prayer", "belief", "trust"]
+    },
+    "Isaiah 49:15-16": {
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands...",
+      theme: "love",
+      tags: ["comfort", "reminder", "presence"]
+    },
+    "Psalm 40:1": {
+      text: "I waited patiently for the Lord; he turned to me and heard my cry.",
+      theme: "patience",
+      tags: ["listening", "hope", "answered"]
+    }
+  }
+};
+
+// Can I pray for things I want or just for God's will?
+let q121ans = {
+  "God invites us to ask for what we need and want": {
+    "Matthew 7:7–11": {
+      text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you... your Father in heaven gives good gifts to those who ask him!",
+      theme: "prayer",
+      tags: ["asking", "needs", "trust"]
+    },
+    "John 16:24": {
+      text: "Until now you have not asked for anything in my name. Ask and you will receive, and your joy will be complete.",
+      theme: "joy",
+      tags: ["asking", "prayer", "desire"]
+    },
+    "Mark 11:24": {
+      text: "Therefore I tell you, whatever you ask for in prayer, believe that you have received it, and it will be yours.",
+      theme: "faith",
+      tags: ["asking", "prayer", "belief"]
+    },
+    "Psalm 145:18–19": {
+      text: "The Lord is near to all who call on him, to all who call on him in truth. He fulfills the desires of those who fear him; he hears their cry and saves them.",
+      theme: "presence",
+      tags: ["calling", "desire", "faith"]
+    },
+    "Ephesians 3:20": {
+      text: "Now to him who is able to do immeasurably more than all we ask or imagine, according to his power that is at work within us...",
+      theme: "power",
+      tags: ["asking", "trust", "hope"]
+    }
+  },
+  "God wants our prayers to come from trust, not just selfish wants": {
+    "Philippians 4:6": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      theme: "peace",
+      tags: ["anxiety", "petition", "thanksgiving"]
+    },
+    "James 4:3": {
+      text: "When you ask, you do not receive, because you ask with wrong motives, that you may spend what you get on your pleasures.",
+      theme: "heart",
+      tags: ["motive", "asking", "selfishness"]
+    },
+    "Romans 8:32": {
+      text: "He who did not spare his own Son, but gave him up for us all—how will he not also, along with him, graciously give us all things?",
+      theme: "grace",
+      tags: ["generosity", "trust", "provision"]
+    },
+    "Hebrews 4:16": {
+      text: "Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["boldness", "need", "mercy"]
+    }
+  },
+  "We align our desires by abiding in Him": {
+    "John 15:7": {
+      text: "If you remain in me and my words remain in you, ask whatever you wish, and it will be done for you.",
+      theme: "obedience",
+      tags: ["abide", "asking", "fruitfulness"]
+    },
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "desire",
+      tags: ["delight", "trust", "joy"]
+    },
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "guidance",
+      tags: ["plans", "trust", "surrender"]
+    }
+  },
+  "We can still pray for God’s will even as we ask": {
+    "1 John 5:14–15": {
+      text: "This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us... we know that we have what we asked of him.",
+      theme: "faith",
+      tags: ["will", "confidence", "prayer"]
+    },
+    "Matthew 6:9–10": {
+      text: "This, then, is how you should pray: ‘Our Father in heaven, hallowed be your name, your kingdom come, your will be done, on earth as it is in heaven.’",
+      theme: "obedience",
+      tags: ["submission", "kingdom", "prayer"]
+    },
+    "Luke 11:9–13": {
+      text: "So I say to you: Ask and it will be given to you; seek and you will find... how much more will your Father in heaven give the Holy Spirit to those who ask him!",
+      theme: "spirit",
+      tags: ["asking", "Holy Spirit", "trust"]
+    }
+  }
+};
+
+// How do I stay focused when I pray?
+let q122ans = {
+  "Ask God to help you be still and focused in His presence": {
+    "Psalm 46:10": {
+      text: "Be still, and know that I am God; I will be exalted among the nations, I will be exalted in the earth.",
+      theme: "presence",
+      tags: ["prayer", "stillness", "focus"]
+    },
+    "Isaiah 26:3": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+      theme: "peace",
+      tags: ["mind", "focus", "trust"]
+    },
+    "Psalm 119:15": {
+      text: "I meditate on your precepts and consider your ways.",
+      theme: "devotion",
+      tags: ["prayer", "meditation", "focus"]
+    },
+    "Lamentations 3:25–26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "seek",
+      tags: ["stillness", "prayer", "waiting"]
+    }
+  },
+
+  "Focus your heart and thoughts on Jesus, not distractions": {
+    "Hebrews 12:1–2": {
+      text: "Therefore, since we are surrounded by such a great cloud of witnesses, let us throw off everything that hinders... and let us run with perseverance the race marked out for us, fixing our eyes on Jesus, the pioneer and perfecter of faith.",
+      theme: "focus",
+      tags: ["distraction", "prayer", "Jesus"]
+    },
+    "2 Corinthians 10:5": {
+      text: "We demolish arguments and every pretension that sets itself up against the knowledge of God, and we take captive every thought to make it obedient to Christ.",
+      theme: "obedience",
+      tags: ["thoughts", "prayer", "focus"]
+    },
+    "Mark 12:30": {
+      text: "Love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength.",
+      theme: "devotion",
+      tags: ["mind", "focus", "love"]
+    }
+  },
+
+  "Avoid mindless repetition and center your prayers on God": {
+    "Matthew 6:7": {
+      text: "And when you pray, do not keep on babbling like pagans, for they think they will be heard because of their many words.",
+      theme: "truth",
+      tags: ["prayer", "focus", "intentionality"]
+    }
+  },
+
+  "Let your desire to connect with God be greater than your distractions": {
+    "Luke 10:41–42": {
+      text: "‘Martha, Martha,’ the Lord answered, ‘you are worried and upset about many things, but few things are needed—or indeed only one. Mary has chosen what is better, and it will not be taken away from her.’",
+      theme: "seek",
+      tags: ["focus", "distraction", "presence"]
+    }
+  },
+
+  "Remember why you’re praying—to connect with God and draw near": {
+    "Psalm 145:18": {
+      text: "The Lord is near to all who call on him, to all who call on him in truth.",
+      theme: "presence",
+      tags: ["prayer", "closeness", "truth"]
+    },
+    "James 4:8": {
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      theme: "seek",
+      tags: ["prayer", "nearness", "focus"]
+    },
+    "Hebrews 10:22": {
+      text: "Let us draw near to God with a sincere heart and with the full assurance that faith brings, having our hearts sprinkled to cleanse us from a guilty conscience and having our bodies washed with pure water.",
+      theme: "faith",
+      tags: ["prayer", "nearness", "assurance"]
+    },
+    "Matthew 6:6": {
+      text: "But when you pray, go into your room, close the door and pray to your Father, who is unseen. Then your Father, who sees what is done in secret, will reward you.",
+      theme: "devotion",
+      tags: ["prayer", "focus", "private"]
+    },
+    "Jeremiah 29:13": {
+      text: "You will seek me and find me when you seek me with all your heart.",
+      theme: "seek",
+      tags: ["prayer", "focus", "heart"]
+    }
+  },
+
+  "Set your heart to pray with purpose and devotion": {
+    "Daniel 10:12": {
+      text: "Then he continued, 'Do not be afraid, Daniel. Since the first day that you set your mind to gain understanding and to humble yourself before your God, your words were heard, and I have come in response to them.'",
+      theme: "humble",
+      tags: ["prayer", "intentional", "focus"]
+    },
+    "Colossians 4:2": {
+      text: "Devote yourselves to prayer, being watchful and thankful.",
+      theme: "devotion",
+      tags: ["prayer", "focus", "thankfulness"]
+    },
+    "Romans 12:12": {
+      text: "Be joyful in hope, patient in affliction, faithful in prayer.",
+      theme: "devotion",
+      tags: ["prayer", "faithful", "focus"]
+    },
+    "Psalm 5:3": {
+      text: "In the morning, Lord, you hear my voice; in the morning I lay my requests before you and wait expectantly.",
+      theme: "devotion",
+      tags: ["prayer", "morning", "focus"]
+    },
+    "Psalm 143:8": {
+      text: "Let the morning bring me word of your unfailing love, for I have put my trust in you. Show me the way I should go, for to you I entrust my life.",
+      theme: "guidance",
+      tags: ["prayer", "focus", "trust"]
+    },
+    "Psalm 63:1": {
+      text: "You, God, are my God, earnestly I seek you; I thirst for you, my whole being longs for you, in a dry and parched land where there is no water.",
+      theme: "seek",
+      tags: ["prayer", "desire", "focus"]
+    }
+  }
+};
+
+// Can I be close to someone who doesn't believe in God?
+let q123ans = {
+  "God warns against deep partnerships that pull you away": {
+    "2 Corinthians 6:14–15": {
+      text: "Do not be unequally yoked with unbelievers. For what partnership has righteousness with lawlessness? Or what fellowship has light with darkness? What accord has Christ with Belial? Or what portion does a believer share with an unbeliever?",
+      theme: "boundaries",
+      tags: ["relationship", "friendship", "partnership"]
+    },
+    "Amos 3:3": {
+      text: "Do two walk together, unless they have agreed to meet?",
+      theme: "walk",
+      tags: ["friendship", "unity", "agreement"]
+    },
+    "James 4:4": {
+      text: "You adulterous people! Do you not know that friendship with the world is enmity with God? Therefore whoever wishes to be a friend of the world makes himself an enemy of God.",
+      theme: "friendship",
+      tags: ["worldliness", "loyalty", "warning"]
+    },
+    "Deuteronomy 7:3–4": {
+      text: "You shall not intermarry with them, giving your daughters to their sons or taking their daughters for your sons, for they would turn away your sons from following me, to serve other gods.",
+      theme: "obedience",
+      tags: ["marriage", "influence", "idol worship"]
+    },
+    "Nehemiah 13:25–27": {
+      text: "Thus I confronted them and cursed them and beat some of them and pulled out their hair... Shall we then listen to you and do all this great evil and act treacherously against our God by marrying foreign women?",
+      theme: "obedience",
+      tags: ["marriage", "compromise", "consequences"]
+    }
+  },
+
+  "The people you spend time with shape your life": {
+    "Proverbs 13:20": {
+      text: "Whoever walks with the wise becomes wise, but the companion of fools will suffer harm.",
+      theme: "wisdom",
+      tags: ["friendship", "choices", "influence"]
+    },
+    "1 Corinthians 15:33": {
+      text: "Do not be deceived: 'Bad company ruins good morals.'",
+      theme: "growth",
+      tags: ["company", "character", "influence"]
+    },
+    "Psalm 1:1–2": {
+      text: "Blessed is the man who walks not in the counsel of the wicked... but his delight is in the law of the Lord, and on his law he meditates day and night.",
+      theme: "devotion",
+      tags: ["blessing", "influence", "habits"]
+    },
+    "Proverbs 22:24–25": {
+      text: "Make no friendship with a man given to anger, nor go with a wrathful man, lest you learn his ways and entangle yourself in a snare.",
+      theme: "protect",
+      tags: ["influence", "friendship", "temper"]
+    },
+    "Psalm 26:4–5": {
+      text: "I do not sit with men of falsehood, nor do I consort with hypocrites. I hate the assembly of evildoers, and I will not sit with the wicked.",
+      theme: "obedience",
+      tags: ["purity", "company", "discernment"]
+    }
+  },
+
+  "You can love others without compromising your faith": {
+    "John 17:15–18": {
+      text: "I do not ask that you take them out of the world, but that you keep them from the evil one... I have sent them into the world.",
+      theme: "mission",
+      tags: ["protection", "purpose", "separation"]
+    },
+    "Matthew 5:14–16": {
+      text: "You are the light of the world. A city set on a hill cannot be hidden... let your light shine before others, so that they may see your good works and give glory to your Father.",
+      theme: "light",
+      tags: ["witness", "example", "good works"]
+    },
+    "Colossians 4:5–6": {
+      text: "Walk in wisdom toward outsiders, making the best use of the time. Let your speech always be gracious, seasoned with salt...",
+      theme: "wisdom",
+      tags: ["outsiders", "grace", "speech"]
+    },
+    "Romans 12:18": {
+      text: "If possible, so far as it depends on you, live peaceably with all.",
+      theme: "peace",
+      tags: ["relationships", "peace", "responsibility"]
+    },
+    "1 Corinthians 5:9–10": {
+      text: "I wrote to you not to associate with sexually immoral people—not at all meaning the people of this world who are immoral... you would have to leave the world.",
+      theme: "boundaries",
+      tags: ["association", "witness", "balance"]
+    },
+    "Jude 1:22–23": {
+      text: "And have mercy on those who doubt; save others by snatching them out of the fire...",
+      theme: "mercy",
+      tags: ["rescue", "evangelism", "care"]
+    },
+    "Galatians 6:1": {
+      text: "Brothers, if anyone is caught in any transgression, you who are spiritual should restore him in a spirit of gentleness...",
+      theme: "guidance",
+      tags: ["restoration", "gentleness", "caution"]
+    }
+  },
+
+  "Your love and example can help lead others to God": {
+    "1 Peter 3:1–2": {
+      text: "Wives, be subject to your own husbands, so that even if some do not obey the word, they may be won without a word by the conduct of their wives...",
+      theme: "witness",
+      tags: ["conduct", "marriage", "influence"]
+    },
+    "Luke 5:31–32": {
+      text: "Jesus answered them, 'Those who are well have no need of a physician, but those who are sick. I have not come to call the righteous but sinners to repentance.'",
+      theme: "mercy",
+      tags: ["calling", "salvation", "example"]
+    },
+    "Matthew 9:10–13": {
+      text: "'I desire mercy, and not sacrifice.' For I came not to call the righteous, but sinners.",
+      theme: "mercy",
+      tags: ["mission", "calling", "mercy"]
+    },
+    "2 Timothy 2:24–26": {
+      text: "And the Lord's servant must not be quarrelsome but kind to everyone, able to teach... that they may come to their senses and escape from the devil.",
+      theme: "guidance",
+      tags: ["kindness", "truth", "hope"]
+    },
+    "Philippians 2:14–15": {
+      text: "Do all things without grumbling... that you may be blameless and innocent... among whom you shine as lights in the world.",
+      theme: "light",
+      tags: ["testimony", "character", "shining"]
+    },
+    "1 Peter 2:12": {
+      text: "Keep your conduct among the Gentiles honorable, so that... they may see your good deeds and glorify God.",
+      theme: "light",
+      tags: ["example", "honor", "witness"]
+    }
+  },
+
+  "Don’t let your closeness make you fall too": {
+    "Romans 16:17–18": {
+      text: "Watch out for those who cause divisions... for such persons do not serve our Lord Christ, but their own appetites...",
+      theme: "discernment",
+      tags: ["division", "warning", "loyalty"]
+    },
+    "Ephesians 5:7–11": {
+      text: "Do not become partners with them... Take no part in the unfruitful works of darkness, but instead expose them.",
+      theme: "obedience",
+      tags: ["separation", "light", "truth"]
+    },
+    "2 Thessalonians 3:14–15": {
+      text: "Have nothing to do with him, that he may be ashamed. Do not regard him as an enemy, but warn him as a brother.",
+      theme: "boundaries",
+      tags: ["correction", "discipline", "love"]
+    },
+    "1 Corinthians 9:22–23": {
+      text: "I have become all things to all people, that by all means I might save some... for the sake of the gospel.",
+      theme: "mission",
+      tags: ["strategy", "sacrifice", "gospel"]
+    }
+  }
+};
+
+// q124 - What if I'm tired of trying to be good?
+let q124ans = {
+  "God's mercy, not our performance, saves us": {
+    "Titus 3:4-7": {
+      text: "But when the kindness and love of God our Savior appeared, He saved us, not because of righteous things we had done, but because of His mercy. He saved us through the washing of rebirth and renewal by the Holy Spirit, whom He poured out on us generously through Jesus Christ our Savior, so that, having been justified by His grace, we might become heirs having the hope of eternal life.",
+      theme: "grace",
+      tags: ["tired", "trying", "salvation", "not by works"]
+    },
+    "Romans 5:6-8": {
+      text: "You see, at just the right time, when we were still powerless, Christ died for the ungodly. Very rarely will anyone die for a righteous person, though for a good person someone might possibly dare to die. But God demonstrates His own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "salvation",
+      tags: ["weakness", "love", "grace", "not earned"]
+    },
+    "Romans 8:1-2": {
+      text: "Therefore, there is now no condemnation for those who are in Christ Jesus, because through Christ Jesus the law of the Spirit who gives life has set you free from the law of sin and death.",
+      theme: "salvation",
+      tags: ["grace", "freedom", "guilt", "struggle"]
+    }
+  },
+  "God renews our strength and leads gently": {
+    "Matthew 11:28-30": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls. For my yoke is easy and my burden is light.",
+      theme: "rest",
+      tags: ["tired", "pressure", "gentleness", "Jesus"]
+    },
+    "Isaiah 40:29-31": {
+      text: "He gives strength to the weary and increases the power of the weak. Even youths grow tired and weary, and young men stumble and fall; but those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
+      theme: "strength",
+      tags: ["hope", "renewal", "weakness", "tired"]
+    },
+    "Psalm 23:1-3": {
+      text: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures, He leads me beside quiet waters, He refreshes my soul. He guides me along the right paths for His name’s sake.",
+      theme: "guidance",
+      tags: ["rest", "provision", "peace", "God leads"]
+    },
+    "Isaiah 30:15": {
+      text: "This is what the Sovereign Lord, the Holy One of Israel, says: 'In repentance and rest is your salvation, in quietness and trust is your strength, but you would have none of it.'",
+      theme: "peace",
+      tags: ["quiet", "trust", "rest", "strength"]
+    },
+    "Isaiah 42:3": {
+      text: "A bruised reed He will not break, and a smoldering wick He will not snuff out. In faithfulness He will bring forth justice.",
+      theme: "mercy",
+      tags: ["gentleness", "compassion", "hope", "God’s heart"]
+    },
+    "Psalm 103:13-14": {
+      text: "As a father has compassion on his children, so the Lord has compassion on those who fear Him; for He knows how we are formed, He remembers that we are dust.",
+      theme: "mercy",
+      tags: ["compassion", "weakness", "human", "God understands"]
+    }
+  },
+  "God transforms and empowers us from within": {
+    "Philippians 2:13": {
+      text: "For it is God who works in you to will and to act in order to fulfill His good purpose.",
+      theme: "transformation",
+      tags: ["God works", "growth", "power", "grace"]
+    },
+    "Ezekiel 36:26-27": {
+      text: "I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh. And I will put my Spirit in you and move you to follow My decrees and be careful to keep My laws.",
+      theme: "transformation",
+      tags: ["Holy Spirit", "new heart", "obedience", "change"]
+    },
+    "2 Corinthians 12:9-10": {
+      text: "But He said to me, 'My grace is sufficient for you, for My power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me. That is why, for Christ’s sake, I delight in weaknesses, in insults, in hardships, in persecutions, in difficulties. For when I am weak, then I am strong.",
+      theme: "grace",
+      tags: ["weakness", "strength", "humility", "God’s power"]
+    },
+    "Galatians 3:3": {
+      text: "Are you so foolish? After beginning by means of the Spirit, are you now trying to finish by means of the flesh?",
+      theme: "grace",
+      tags: ["Spirit-led", "trying", "performance", "faith"]
+    },
+    "Hebrews 4:15-16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet He did not sin. Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["weakness", "mercy", "help", "confidence"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["humility", "mercy", "justice", "God's will"]
+    }
+  }
+};
+
+// What kind of life is God planning for me?
+let q125ans = {
+  "A life with purpose, shaped by God’s plan and workmanship": {
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.",
+      theme: "guidance",
+      tags: ["plans", "hope", "future"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "purpose",
+      tags: ["workmanship", "calling", "prepared"]
+    },
+    "Psalm 139:16": {
+      text: "Your eyes saw my unformed body; all the days ordained for me were written in your book before one of them came to be.",
+      theme: "creation",
+      tags: ["destiny", "life", "ordained"]
+    },
+    "Colossians 1:9–10": {
+      text: "We continually ask God to fill you with the knowledge of his will through all the wisdom and understanding that the Spirit gives, so that you may live a life worthy of the Lord and please him in every way: bearing fruit in every good work, growing in the knowledge of God.",
+      theme: "growth",
+      tags: ["fruit", "knowledge", "wisdom"]
+    },
+    "1 Peter 2:9": {
+      text: "But you are a chosen people, a royal priesthood, a holy nation, God’s special possession, that you may declare the praises of him who called you out of darkness into his wonderful light.",
+      theme: "identity",
+      tags: ["chosen", "purpose", "light"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new", "creation", "change"]
+    }
+  },
+
+  "A life of trust, direction, and God’s guidance": {
+    "Proverbs 3:5–6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "path", "direction"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go; I will counsel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["instruction", "teaching", "counsel"]
+    },
+    "Isaiah 55:8–9": {
+      text: "For my thoughts are not your thoughts, neither are your ways my ways,” declares the Lord. “As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      theme: "understanding",
+      tags: ["mystery", "trust", "perspective"]
+    }
+  },
+
+  "A fruitful life that blesses others and reflects God": {
+    "Galatians 5:22–23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "spirit",
+      tags: ["fruit", "character", "growth"]
+    },
+    "Matthew 5:14–16": {
+      text: "You are the light of the world. A town built on a hill cannot be hidden. Neither do people light a lamp and put it under a bowl. Instead they put it on its stand, and it gives light to everyone in the house. In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["shine", "glory", "witness"]
+    },
+    "Psalm 1:1–3": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night. That person is like a tree planted by streams of water, which yields its fruit in season and whose leaf does not wither—whatever they do prospers.",
+      theme: "obedience",
+      tags: ["fruit", "rooted", "prosperity"]
+    }
+  },
+
+  "A life that endures trials and matures through suffering": {
+    "James 1:2–4": {
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+      theme: "growth",
+      tags: ["trial", "joy", "perseverance"]
+    },
+    "1 Peter 1:6–7": {
+      text: "In all this you greatly rejoice, though now for a little while you may have had to suffer grief in all kinds of trials. These have come so that the proven genuineness of your faith—of greater worth than gold...—may result in praise, glory and honor when Jesus Christ is revealed.",
+      theme: "testing",
+      tags: ["faith", "trials", "worth"]
+    },
+    "Romans 5:3–5": {
+      text: "Not only so, but we also glory in our sufferings, because we know that suffering produces perseverance; perseverance, character; and character, hope. And hope does not put us to shame...",
+      theme: "hope",
+      tags: ["suffering", "growth", "hope"]
+    },
+    "Hebrews 12:10–11": {
+      text: "They disciplined us for a little while as they thought best; but God disciplines us for our good, in order that we may share in his holiness. No discipline seems pleasant at the time... Later on, however, it produces a harvest of righteousness and peace for those who have been trained by it.",
+      theme: "discipline",
+      tags: ["training", "righteousness", "peace"]
+    }
+  },
+
+  "A life of peace, rest, and closeness with God": {
+    "Psalm 23:1–3": {
+      text: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures, he leads me beside quiet waters, he refreshes my soul. He guides me along the right paths for his name’s sake.",
+      theme: "peace",
+      tags: ["shepherd", "rest", "refreshing"]
+    },
+    "Psalm 16:11": {
+      text: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.",
+      theme: "presence",
+      tags: ["joy", "path", "pleasure"]
+    },
+    "Matthew 11:28–30": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me... you will find rest for your souls. For my yoke is easy and my burden is light.",
+      theme: "rest",
+      tags: ["yoke", "peace", "relief"]
+    }
+  },
+
+  "A life shaped by eternal hope and future glory": {
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "hope",
+      tags: ["good", "calling", "purpose"]
+    },
+    "Philippians 1:6": {
+      text: "Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "faithful",
+      tags: ["completion", "confidence", "process"]
+    },
+    "Revelation 21:4": {
+      text: "‘He will wipe every tear from their eyes. There will be no more death’ or mourning or crying or pain, for the old order of things has passed away.",
+      theme: "eternal",
+      tags: ["future", "comfort", "hope"]
+    },
+    "Titus 1:2": {
+      text: "In the hope of eternal life, which God, who does not lie, promised before the beginning of time.",
+      theme: "eternal",
+      tags: ["promise", "truth", "life"]
+    },
+    "1 John 2:17": {
+      text: "The world and its desires pass away, but whoever does the will of God lives forever.",
+      theme: "obedience",
+      tags: ["eternity", "will", "life"]
+    }
+  },
+
+  "A life of devotion, righteousness, and deep relationship": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["justice", "humility", "mercy"]
+    },
+    "Deuteronomy 30:19–20": {
+      text: "This day I call the heavens and the earth as witnesses... Now choose life, so that you and your children may live and that you may love the Lord your God, listen to his voice, and hold fast to him...",
+      theme: "obedience",
+      tags: ["life", "choice", "love"]
+    },
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["kingdom", "priority", "trust"]
+    },
+    "Psalm 37:4–5": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart. Commit your way to the Lord; trust in him and he will do this:",
+      theme: "desire",
+      tags: ["delight", "trust", "fulfillment"]
+    },
+    "2 Timothy 4:7–8": {
+      text: "I have fought the good fight, I have finished the race, I have kept the faith. Now there is in store for me the crown of righteousness...",
+      theme: "faithful",
+      tags: ["reward", "endurance", "crown"]
+    },
+    "Isaiah 58:10–11": {
+      text: "And if you spend yourselves in behalf of the hungry... then your light will rise... The Lord will guide you always... You will be like a well-watered garden...",
+      theme: "mercy",
+      tags: ["generosity", "guidance", "refreshing"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
+      theme: "love",
+      tags: ["presence", "joy", "delight"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is...",
+      theme: "transformation",
+      tags: ["renewal", "will", "change"]
+    }
+  }
+};
+
+// What kind of character and values should guide a Christian's choices?
+let q126ans = {
+  "Let the Spirit shape your character and choices": {
+    "Galatians 5:22–23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "spirit",
+      tags: ["fruit", "character", "self-control"]
+    }
+  },
+  "Fix your mind on virtues that guide godly choices": {
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "truth",
+      tags: ["thoughts", "virtue", "focus"]
+    }
+  },
+  "Let God's will—not the world—shape your choices": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "mind", "nonconformity"]
+    }
+  },
+  "Trust and submit to God when choosing your path": {
+    "Proverbs 3:5–6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "submission", "direction"]
+    }
+  },
+  "Let justice, mercy, and humility guide your life": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "humble",
+      tags: ["justice", "mercy", "humility"]
+    }
+  },
+  "Base your choices on God’s Word for lasting strength": {
+    "Matthew 7:24": {
+      text: "Therefore everyone who hears these words of mine and puts them into practice is like a wise man who built his house on the rock.",
+      theme: "obedience",
+      tags: ["foundation", "wisdom", "action"]
+    }
+  },
+  "God’s Word helps you see clearly where to step": {
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "word",
+      tags: ["light", "guidance", "scripture"]
+    }
+  },
+  "Godly wisdom is pure, gentle, and peace-loving": {
+    "James 3:17": {
+      text: "But the wisdom that comes from heaven is first of all pure; then peace-loving, considerate, submissive, full of mercy and good fruit, impartial and sincere.",
+      theme: "wisdom",
+      tags: ["peace", "purity", "gentleness"]
+    }
+  },
+  "Put on Christlike character in how you relate to others": {
+    "Colossians 3:12–14": {
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience. Bear with each other and forgive one another... And over all these virtues put on love, which binds them all together in perfect unity.",
+      theme: "love",
+      tags: ["character", "unity", "forgiveness"]
+    }
+  },
+  "Live wisely and make the most of every opportunity": {
+    "Ephesians 5:15–17": {
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity, because the days are evil. Therefore do not be foolish, but understand what the Lord’s will is.",
+      theme: "walk",
+      tags: ["wisdom", "intentional", "discernment"]
+    }
+  },
+  "Test what’s good, avoid all evil": {
+    "1 Thessalonians 5:21–22": {
+      text: "But test them all; hold on to what is good, reject every kind of evil.",
+      theme: "discernment",
+      tags: ["testing", "evil", "good"]
+    }
+  },
+  "Clothe yourself with Christ and say no to sin": {
+    "Romans 13:12–14": {
+      text: "So let us put aside the deeds of darkness and put on the armor of light... Rather, clothe yourselves with the Lord Jesus Christ, and do not think about how to gratify the desires of the flesh.",
+      theme: "obedience",
+      tags: ["light", "self-denial", "identity"]
+    }
+  },
+  "Let love lead your decisions": {
+    "Matthew 22:37–39": {
+      text: "Jesus replied: ‘Love the Lord your God with all your heart and with all your soul and with all your mind.’... ‘Love your neighbor as yourself.’",
+      theme: "love",
+      tags: ["command", "priority", "relationships"]
+    }
+  },
+  "Do everything in Jesus’ name with thanks": {
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "devotion",
+      tags: ["gratitude", "actions", "Jesus"]
+    }
+  },
+  "Let integrity guide every step": {
+    "Proverbs 11:3": {
+      text: "The integrity of the upright guides them, but the unfaithful are destroyed by their duplicity.",
+      theme: "truth",
+      tags: ["integrity", "guidance", "honesty"]
+    }
+  },
+  "Set an example through your speech and life": {
+    "1 Timothy 4:12": {
+      text: "Don’t let anyone look down on you because you are young, but set an example for the believers in speech, in conduct, in love, in faith and in purity.",
+      theme: "growth",
+      tags: ["example", "purity", "influence"]
+    }
+  },
+  "Seek His kingdom first, and let it shape all else": {
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["priority", "focus", "trust"]
+    }
+  },
+  "Character starts in the heart and shows in actions": {
+    "Psalm 15:1–2": {
+      text: "Lord, who may dwell in your sacred tent? Who may live on your holy mountain? The one whose walk is blameless, who does what is righteous, who speaks the truth from their heart;",
+      theme: "holy",
+      tags: ["righteousness", "truth", "heart"]
+    }
+  },
+  "Whatever you do, do it to honor God": {
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["purpose", "worship", "intent"]
+    }
+  },
+  "Ask God for wisdom in every decision": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["decision", "prayer", "need"]
+    }
+  },
+  "Be holy in everything, as God is holy": {
+    "1 Peter 1:15–16": {
+      text: "But just as he who called you is holy, so be holy in all you do; for it is written: ‘Be holy, because I am holy.’",
+      theme: "holy",
+      tags: ["set apart", "purity", "obedience"]
+    }
+  },
+  "Dedicate all your plans to God": {
+    "Proverbs 16:2–3": {
+      text: "All a person’s ways seem pure to them, but motives are weighed by the Lord. Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "guidance",
+      tags: ["motives", "commitment", "plans"]
+    }
+  },
+  "Hunger for righteousness in every choice": {
+    "Matthew 5:6": {
+      text: "Blessed are those who hunger and thirst for righteousness, for they will be filled.",
+      theme: "righteousness",
+      tags: ["desire", "priority", "filling"]
+    }
+  },
+  "Guard your heart—it determines your direction": {
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "protect",
+      tags: ["heart", "choices", "focus"]
+    }
+  },
+  "Grow steadily in Christlike traits": {
+    "2 Peter 1:5–7": {
+      text: "For this very reason, make every effort to add to your faith goodness; and to goodness, knowledge; and to knowledge, self-control; to self-control, perseverance; and to perseverance, godliness; and to godliness, mutual affection; and to mutual affection, love.",
+      theme: "growth",
+      tags: ["maturity", "effort", "virtue"]
+    }
+  },
+  "Treat others as you want to be treated": {
+    "Luke 6:31": {
+      text: "Do to others as you would have them do to you.",
+      theme: "obedience",
+      tags: ["kindness", "fairness", "ethic"]
+    }
+  },
+  "Make choices that bring peace and build others up": {
+    "Romans 14:19": {
+      text: "Let us therefore make every effort to do what leads to peace and to mutual edification.",
+      theme: "peace",
+      tags: ["peace", "edification", "effort"]
+    }
+  },
+  "Love with actions, not just words": {
+    "1 John 3:18": {
+      text: "Dear children, let us not love with words or speech but with actions and in truth.",
+      theme: "truth",
+      tags: ["action", "love", "authenticity"]
+    }
+  },
+  "Be honest, do good, and pursue peace": {
+    "Psalm 34:13–14": {
+      text: "Keep your tongue from evil and your lips from telling lies. Turn from evil and do good; seek peace and pursue it.",
+      theme: "peace",
+      tags: ["speech", "truth", "action"]
+    }
+  },
+  "Choose justice, compassion, and advocacy": {
+    "Isaiah 1:17": {
+      text: "Learn to do right; seek justice. Defend the oppressed. Take up the cause of the fatherless; plead the case of the widow.",
+      theme: "justice",
+      tags: ["advocacy", "justice", "compassion"]
+    }
+  },
+  "Live with a clear conscience and honor": {
+    "Hebrews 13:18": {
+      text: "Pray for us. We are sure that we have a clear conscience and desire to live honorably in every way.",
+      theme: "truth",
+      tags: ["honor", "conscience", "integrity"]
+    }
+  },
+  "Be honest before both God and people": {
+    "2 Corinthians 8:21": {
+      text: "For we are taking pains to do what is right, not only in the eyes of the Lord but also in the eyes of man.",
+      theme: "truth",
+      tags: ["integrity", "reputation", "honesty"]
+    }
+  }
+};
+
+
+// What does the Bible say about the devil and how to resist him?
+let q127ans = {
+  "The Bible describes the devil as a deceptive and dangerous enemy, but teaches that we can resist him through faith and God's Word.": {
+    "1 Peter 5:8-9": {
+      text: "Be sober-minded; be watchful. Your adversary the devil prowls around like a roaring lion, seeking someone to devour. Resist him, firm in your faith, knowing that the same kinds of suffering are being experienced by your brotherhood throughout the world.",
+      theme: "battle",
+      tags: ["devil", "resist", "spiritual warfare", "faith", "danger"]
+    },
+    "Ephesians 6:11": {
+      text: "Put on the whole armor of God, that you may be able to stand against the schemes of the devil.",
+      theme: "protect",
+      tags: ["armor", "resist", "spiritual warfare", "schemes"]
+    },
+    "James 4:7": {
+      text: "Submit yourselves therefore to God. Resist the devil, and he will flee from you.",
+      theme: "obedience",
+      tags: ["resist", "flee", "submission", "enemy"]
+    },
+    "John 10:10": {
+      text: "The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.",
+      theme: "truth",
+      tags: ["devil", "contrast", "life", "enemy", "destruction"]
+    },
+    "2 Corinthians 11:14": {
+      text: "And no wonder, for even Satan disguises himself as an angel of light.",
+      theme: "deception",
+      tags: ["disguise", "enemy", "falsehood", "discernment"]
+    },
+    "Revelation 12:10-11": {
+      text: "And I heard a loud voice in heaven, saying, 'Now the salvation and the power and the kingdom of our God and the authority of his Christ have come, for the accuser of our brothers has been thrown down, who accuses them day and night before our God. And they have conquered him by the blood of the Lamb and by the word of their testimony, for they loved not their lives even unto death.'",
+      theme: "victory",
+      tags: ["accuser", "devil", "blood of Jesus", "testimony", "overcome"]
+    }
+  },
+
+  "We resist the devil not in our own strength, but by living in God's truth, wearing His armor, and using Scripture like Jesus did.": {
+    "Matthew 4:1-11": {
+      text: "Then Jesus was led up by the Spirit into the wilderness to be tempted by the devil... [Satan tempts him three times]... Then Jesus said to him, 'Be gone, Satan! For it is written, \"You shall worship the Lord your God and him only shall you serve.\"' Then the devil left him, and behold, angels came and were ministering to him.",
+      theme: "word",
+      tags: ["temptation", "resist", "Jesus", "scripture", "wilderness"]
+    },
+    "Ephesians 6:17": {
+      text: "And take the helmet of salvation, and the sword of the Spirit, which is the word of God.",
+      theme: "spirit",
+      tags: ["sword", "armor", "word", "battle", "defense"]
+    },
+    "Psalm 119:11": {
+      text: "I have stored up your word in my heart, that I might not sin against you.",
+      theme: "obedience",
+      tags: ["word", "resist", "purity", "temptation"]
+    }
+  },
+
+  "The devil often works through lies, confusion, and accusation. Knowing who you are in Christ helps you resist his voice.": {
+    "John 8:44": {
+      text: "You are of your father the devil, and your will is to do your father's desires. He was a murderer from the beginning... for he is a liar and the father of lies.",
+      theme: "truth",
+      tags: ["liar", "identity", "enemy", "origin"]
+    },
+    "Romans 8:1": {
+      text: "There is therefore now no condemnation for those who are in Christ Jesus.",
+      theme: "salvation",
+      tags: ["identity", "condemnation", "enemy", "truth"]
+    },
+    "2 Corinthians 10:4-5": {
+      text: "For the weapons of our warfare are not of the flesh but have divine power to destroy strongholds. We destroy arguments and every lofty opinion raised against the knowledge of God, and take every thought captive to obey Christ.",
+      theme: "battle",
+      tags: ["strongholds", "thoughts", "lies", "resistance", "authority"]
+    }
+  },
+
+  "The devil is already defeated. We resist him from a place of victory in Jesus—not fear.": {
+    "Colossians 2:15": {
+      text: "He disarmed the rulers and authorities and put them to open shame, by triumphing over them in him.",
+      theme: "glory",
+      tags: ["victory", "Jesus", "devil", "defeat", "freedom"]
+    },
+    "Hebrews 2:14": {
+      text: "Since therefore the children share in flesh and blood, he himself likewise partook of the same things, that through death he might destroy the one who has the power of death, that is, the devil.",
+      theme: "savior",
+      tags: ["power", "devil", "death", "victory", "Jesus"]
+    },
+    "1 John 3:8": {
+      text: "The reason the Son of God appeared was to destroy the works of the devil.",
+      theme: "purpose",
+      tags: ["Jesus", "devil", "mission", "freedom", "victory"]
+    }
+  }
+};
+
+// How can I tell if I'm under spiritual attack?
+let q128ans = {
+  "Spiritual attacks often come with confusion, fear, temptation, or exhaustion. The Bible shows we must stay alert and examine the fruit of what's happening.": {
+    "1 Peter 5:8": {
+      text: "Be sober-minded; be watchful. Your adversary the devil prowls around like a roaring lion, seeking someone to devour.",
+      theme: "battle",
+      tags: ["alert", "enemy", "devour", "discernment", "watchful"]
+    },
+    "Ephesians 6:12": {
+      text: "For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places.",
+      theme: "spirit",
+      tags: ["warfare", "unseen", "discern", "struggle", "evil"]
+    },
+    "2 Corinthians 2:11": {
+      text: "So that we would not be outwitted by Satan; for we are not ignorant of his designs.",
+      theme: "wisdom",
+      tags: ["trickery", "schemes", "attack", "awareness"]
+    },
+    "James 3:16": {
+      text: "For where jealousy and selfish ambition exist, there will be disorder and every vile practice.",
+      theme: "truth",
+      tags: ["fruit", "chaos", "signs", "disorder", "internal"]
+    },
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.",
+      theme: "growth",
+      tags: ["contrast", "fruit", "peace", "discernment"]
+    }
+  },
+
+  "One way to tell you're under attack is when you're tempted to doubt God's love, identity, or truth—just like Jesus was.": {
+    "Matthew 4:3": {
+      text: "And the tempter came and said to him, 'If you are the Son of God, command these stones to become loaves of bread.'",
+      theme: "identity",
+      tags: ["doubt", "Jesus", "temptation", "questioning", "value"]
+    },
+    "Genesis 3:1": {
+      text: "Now the serpent was more crafty than any other beast of the field that the Lord God had made. He said to the woman, 'Did God actually say, \"You shall not eat of any tree in the garden\"?'",
+      theme: "temptation",
+      tags: ["question", "truth", "twist", "doubt", "origin"]
+    },
+    "Ephesians 6:16": {
+      text: "In all circumstances take up the shield of faith, with which you can extinguish all the flaming darts of the evil one.",
+      theme: "faith",
+      tags: ["defense", "attack", "flaming darts", "protection"]
+    }
+  },
+
+  "Spiritual attacks may come as unusual heaviness, hopelessness, isolation, or ongoing temptation. God's Word helps us expose them.": {
+    "Psalm 42:11": {
+      text: "Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him, my salvation and my God.",
+      theme: "emotion",
+      tags: ["inner struggle", "discouragement", "heaviness", "hope"]
+    },
+    "2 Corinthians 10:5": {
+      text: "We destroy arguments and every lofty opinion raised against the knowledge of God, and take every thought captive to obey Christ.",
+      theme: "battle",
+      tags: ["thoughts", "mental attack", "captivity", "truth"]
+    },
+    "Isaiah 61:3": {
+      text: "To grant to those who mourn in Zion—to give them a beautiful headdress instead of ashes, the oil of gladness instead of mourning, the garment of praise instead of a faint spirit; that they may be called oaks of righteousness, the planting of the Lord, that he may be glorified.",
+      theme: "transformation",
+      tags: ["heaviness", "exchange", "glory", "spirit", "attack"]
+    }
+  },
+
+  "Spiritual attack often targets your calling, progress, or intimacy with God—especially when you're about to grow.": {
+    "Luke 22:31-32": {
+      text: "'Simon, Simon, behold, Satan demanded to have you, that he might sift you like wheat, but I have prayed for you that your faith may not fail. And when you have turned again, strengthen your brothers.'",
+      theme: "purpose",
+      tags: ["calling", "prayer", "warning", "targeted", "growth"]
+    },
+    "Daniel 10:12-13": {
+      text: "Then he said to me, 'Fear not, Daniel, for from the first day that you set your heart to understand and humbled yourself before your God, your words have been heard, and I have come because of your words. The prince of the kingdom of Persia withstood me twenty-one days...'",
+      theme: "spirit",
+      tags: ["delay", "spiritual warfare", "unseen", "prayer block"]
+    },
+    "Nehemiah 6:9": {
+      text: "For they all wanted to frighten us, thinking, 'Their hands will drop from the work, and it will not be done.' But now, O God, strengthen my hands.",
+      theme: "help",
+      tags: ["opposition", "fear", "resistance", "attack on work"]
+    }
+  }
+};
+
+// Why does God let the devil have any power at all?
+let q129ans = {
+  "God allows the devil limited power for now, but only within boundaries that serve His bigger plan—often to refine, test, or humble us.": {
+    "Job 1:12": {
+      text: "And the Lord said to Satan, 'Behold, all that he has is in your hand. Only against him do not stretch out your hand.' So Satan went out from the presence of the Lord.",
+      theme: "authority",
+      tags: ["limited power", "permission", "testing", "control"]
+    },
+    "2 Corinthians 12:7": {
+      text: "So to keep me from becoming conceited because of the surpassing greatness of the revelations, a thorn was given me in the flesh, a messenger of Satan to harass me, to keep me from becoming conceited.",
+      theme: "humble",
+      tags: ["thorn", "messenger", "pride", "allowed", "purpose"]
+    },
+    "Luke 22:31-32": {
+      text: "'Simon, Simon, behold, Satan demanded to have you, that he might sift you like wheat, but I have prayed for you that your faith may not fail. And when you have turned again, strengthen your brothers.'",
+      theme: "growth",
+      tags: ["sifting", "permission", "intercession", "faith", "strengthen"]
+    }
+  },
+
+  "God lets evil exist to give humans the choice to love and obey freely—real love needs freedom, and freedom includes risk.": {
+    "Deuteronomy 30:19": {
+      text: "I call heaven and earth to witness against you today, that I have set before you life and death, blessing and curse. Therefore choose life, that you and your offspring may live,",
+      theme: "choice",
+      tags: ["free will", "test", "life", "love", "obedience"]
+    },
+    "Genesis 2:16-17": {
+      text: "And the Lord God commanded the man, saying, 'You may surely eat of every tree of the garden, but of the tree of the knowledge of good and evil you shall not eat, for in the day that you eat of it you shall surely die.'",
+      theme: "fallenness",
+      tags: ["free choice", "boundaries", "temptation", "warning"]
+    },
+    "James 1:13-14": {
+      text: "Let no one say when he is tempted, 'I am being tempted by God,' for God cannot be tempted with evil, and he himself tempts no one. But each person is tempted when he is lured and enticed by his own desire.",
+      theme: "temptation",
+      tags: ["choice", "evil", "desire", "blame", "freedom"]
+    }
+  },
+
+  "Even Satan’s power serves God’s glory in the end—his defeat will make God’s justice, mercy, and power even more clear.": {
+    "Romans 9:22-23": {
+      text: "What if God, desiring to show his wrath and to make known his power, has endured with much patience vessels of wrath prepared for destruction, in order to make known the riches of his glory for vessels of mercy, which he has prepared beforehand for glory—",
+      theme: "glory",
+      tags: ["justice", "patience", "wrath", "contrast", "mercy"]
+    },
+    "Colossians 2:15": {
+      text: "He disarmed the rulers and authorities and put them to open shame, by triumphing over them in him.",
+      theme: "victory",
+      tags: ["disarm", "shame", "devil defeated", "cross", "justice"]
+    },
+    "Revelation 20:10": {
+      text: "And the devil who had deceived them was thrown into the lake of fire and sulfur where the beast and the false prophet were, and they will be tormented day and night forever and ever.",
+      theme: "eternal",
+      tags: ["end", "judgment", "torment", "deceit", "justice"]
+    }
+  },
+
+  "God uses the devil’s schemes to train us—through resistance, we grow stronger and more like Christ.": {
+    "James 4:7": {
+      text: "Submit yourselves therefore to God. Resist the devil, and he will flee from you.",
+      theme: "obedience",
+      tags: ["training", "resistance", "victory", "growth"]
+    },
+    "1 Peter 1:6-7": {
+      text: "In this you rejoice, though now for a little while, if necessary, you have been grieved by various trials, so that the tested genuineness of your faith—more precious than gold that perishes though it is tested by fire—may be found to result in praise and glory and honor at the revelation of Jesus Christ.",
+      theme: "faithful",
+      tags: ["trials", "testing", "refinement", "growth", "fire"]
+    },
+    "Romans 5:3-4": {
+      text: "Not only that, but we rejoice in our sufferings, knowing that suffering produces endurance, and endurance produces character, and character produces hope.",
+      theme: "hope",
+      tags: ["endurance", "process", "character", "growth", "struggle"]
+    }
+  }
+};
+
+// What's something amazing about God I can learn today?
+let q130ans = {
+  "God’s greatness is beyond human understanding": {
+    "Psalm 145:3": {
+      text: "Great is the Lord and most worthy of praise; his greatness no one can fathom.",
+      theme: "glory",
+      tags: ["greatness", "praise"]
+    },
+    "Isaiah 40:28": {
+      text: "Do you not know? Have you not heard? The Lord is the everlasting God, the Creator of the ends of the earth. He will not grow tired or weary, and his understanding no one can fathom.",
+      theme: "eternal",
+      tags: ["creator", "power", "wisdom"]
+    },
+    "Job 5:9": {
+      text: "He performs wonders that cannot be fathomed, miracles that cannot be counted.",
+      theme: "power",
+      tags: ["miracles", "mystery"]
+    },
+    "Romans 11:33": {
+      text: "Oh, the depth of the riches of the wisdom and knowledge of God! How unsearchable his judgments, and his paths beyond tracing out!",
+      theme: "wisdom",
+      tags: ["knowledge", "mystery", "judgment"]
+    },
+    "Psalm 147:4–5": {
+      text: "He determines the number of the stars and calls them each by name. Great is our Lord and mighty in power; his understanding has no limit.",
+      theme: "creation",
+      tags: ["stars", "knowledge", "power"]
+    },
+    "Psalm 86:15": {
+      text: "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+      theme: "love",
+      tags: ["grace", "mercy", "compassion"]
+    }
+  },
+
+  "God is deeply personal and knows us fully": {
+    "Psalm 139:1–6": {
+      text: "You have searched me, Lord, and you know me. You know when I sit and when I rise; you perceive my thoughts from afar. You discern my going out and my lying down; you are familiar with all my ways. Before a word is on my tongue you, Lord, know it completely. You hem me in behind and before, and you lay your hand upon me. Such knowledge is too wonderful for me, too lofty for me to attain.",
+      theme: "understanding",
+      tags: ["presence", "knowledge", "comfort"]
+    },
+    "John 10:27–29": {
+      text: "My sheep listen to my voice; I know them, and they follow me. I give them eternal life, and they shall never perish; no one will snatch them out of my hand. My Father, who has given them to me, is greater than all; no one can snatch them out of my Father’s hand.",
+      theme: "salvation",
+      tags: ["relationship", "security", "eternal"]
+    }
+  },
+
+  "God is full of faithful love and mercy": {
+    "Exodus 34:6": {
+      text: "And he passed in front of Moses, proclaiming, 'The Lord, the Lord, the compassionate and gracious God, slow to anger, abounding in love and faithfulness.'",
+      theme: "mercy",
+      tags: ["character", "love", "compassion"]
+    },
+    "Psalm 145:8–9": {
+      text: "The Lord is gracious and compassionate, slow to anger and rich in love. The Lord is good to all; he has compassion on all he has made.",
+      theme: "goodness",
+      tags: ["kindness", "compassion"]
+    },
+    "Lamentations 3:22–23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "faithful",
+      tags: ["love", "mercy", "hope"]
+    },
+    "Psalm 103:10–13": {
+      text: "He does not treat us as our sins deserve or repay us according to our iniquities. For as high as the heavens are above the earth, so great is his love for those who fear him; as far as the east is from the west, so far has he removed our transgressions from us. As a father has compassion on his children, so the Lord has compassion on those who fear him.",
+      theme: "forgiveness",
+      tags: ["mercy", "compassion", "grace"]
+    },
+    "1 John 4:16": {
+      text: "And so we know and rely on the love God has for us. God is love. Whoever lives in love lives in God, and God in them.",
+      theme: "love",
+      tags: ["identity", "union", "trust"]
+    },
+    "Ephesians 2:4–5": {
+      text: "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions—it is by grace you have been saved.",
+      theme: "grace",
+      tags: ["salvation", "love", "mercy"]
+    },
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "salvation",
+      tags: ["sacrifice", "mercy"]
+    }
+  },
+
+  "God is always present and brings peace": {
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+      theme: "presence",
+      tags: ["joy", "love", "salvation"]
+    },
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "help",
+      tags: ["presence", "fearless", "courage"]
+    },
+    "Psalm 46:1–2": {
+      text: "God is our refuge and strength, an ever-present help in trouble. Therefore we will not fear, though the earth give way and the mountains fall into the heart of the sea.",
+      theme: "peace",
+      tags: ["protection", "refuge", "stability"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["comfort", "strength", "presence"]
+    }
+  },
+
+  "God is unchanging and trustworthy": {
+    "Malachi 3:6": {
+      text: "I the Lord do not change. So you, the descendants of Jacob, are not destroyed.",
+      theme: "faithful",
+      tags: ["unchanging", "promise"]
+    },
+    "Hebrews 13:8": {
+      text: "Jesus Christ is the same yesterday and today and forever.",
+      theme: "eternal",
+      tags: ["consistency", "trust"]
+    },
+    "James 1:17": {
+      text: "Every good and perfect gift is from above, coming down from the Father of the heavenly lights, who does not change like shifting shadows.",
+      theme: "goodness",
+      tags: ["giver", "trust", "unchanging"]
+    }
+  },
+
+  "God’s wisdom and plans are beyond us—but always good": {
+    "Isaiah 55:8–9": {
+      text: "For my thoughts are not your thoughts, neither are your ways my ways,” declares the Lord. “As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      theme: "wisdom",
+      tags: ["mystery", "trust"]
+    },
+    "Romans 11:33–36": {
+      text: "Oh, the depth of the riches of the wisdom and knowledge of God! How unsearchable his judgments, and his paths beyond tracing out! 'Who has known the mind of the Lord? Or who has been his counselor?' 'Who has ever given to God, that God should repay them?' For from him and through him and for him are all things. To him be the glory forever! Amen.",
+      theme: "glory",
+      tags: ["wisdom", "sovereignty", "awe"]
+    },
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "salvation",
+      tags: ["sovereignty", "good from evil"]
+    },
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "grace",
+      tags: ["patience", "repentance", "promise"]
+    },
+    "1 Corinthians 1:27–29": {
+      text: "But God chose the foolish things of the world to shame the wise; God chose the weak things of the world to shame the strong. God chose the lowly things of this world and the despised things—and the things that are not—to nullify the things that are, so that no one may boast before him.",
+      theme: "wisdom",
+      tags: ["humble", "glory", "unexpected"]
+    }
+  },
+
+  "Jesus shows us God's glory and love in human form": {
+    "John 1:14": {
+      text: "The Word became flesh and made his dwelling among us. We have seen his glory, the glory of the one and only Son, who came from the Father, full of grace and truth.",
+      theme: "jesus",
+      tags: ["incarnation", "truth", "grace"]
+    },
+    "John 14:9": {
+      text: "Jesus answered: 'Don’t you know me, Philip, even after I have been among you such a long time? Anyone who has seen me has seen the Father. How can you say, ‘Show us the Father’?'",
+      theme: "jesus",
+      tags: ["revelation", "relationship"]
+    },
+    "Hebrews 4:15–16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["jesus", "mercy", "access"]
+    }
+  },
+
+  "God’s goodness will one day wipe away every sorrow": {
+    "Revelation 21:3–5": {
+      text: "And I heard a loud voice from the throne saying, 'Look! God’s dwelling place is now among the people, and he will dwell with them. They will be his people, and God himself will be with them and be their God. He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away.' He who was seated on the throne said, 'I am making everything new!' Then he said, 'Write this down, for these words are trustworthy and true.'",
+      theme: "hope",
+      tags: ["new creation", "presence", "healing"]
+    },
+    "Psalm 34:8": {
+      text: "Taste and see that the Lord is good; blessed is the one who takes refuge in him.",
+      theme: "goodness",
+      tags: ["trust", "refuge"]
+    },
+    "Psalm 18:30": {
+      text: "As for God, his way is perfect: The Lord’s word is flawless; he shields all who take refuge in him.",
+      theme: "word",
+      tags: ["shield", "trust", "truth"]
+    },
+    "Colossians 1:15–17": {
+      text: "The Son is the image of the invisible God, the firstborn over all creation. For in him all things were created: things in heaven and on earth, visible and invisible... He is before all things, and in him all things hold together.",
+      theme: "creation",
+      tags: ["jesus", "power", "sustainer"]
+    },
+    "Psalm 36:5–9": {
+      text: "Your love, Lord, reaches to the heavens, your faithfulness to the skies. Your righteousness is like the highest mountains, your justice like the great deep... For with you is the fountain of life; in your light we see light.",
+      theme: "light",
+      tags: ["love", "justice", "life"]
+    }
+  }
+};
+
+// What promise from God can I hold onto right now?
+let q131ans = {
+  "God promises to be with you, protect you, and give you peace—even in trouble.": {
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["presence", "strength", "promise"]
+    },
+    "Deuteronomy 31:8": {
+      text: "The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.",
+      theme: "faithful",
+      tags: ["comfort", "strength", "promise"]
+    },
+    "Isaiah 43:2": {
+      text: "When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you. When you walk through the fire, you will not be burned; the flames will not set you ablaze.",
+      theme: "protect",
+      tags: ["trouble", "presence", "promise"]
+    },
+    "Psalm 23:1–4": {
+      text: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures, he leads me beside quiet waters, he refreshes my soul. He guides me along the right paths for his name’s sake. Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me.",
+      theme: "guidance",
+      tags: ["comfort", "promise", "peace"]
+    },
+    "Psalm 91:1–6": {
+      text: "Whoever dwells in the shelter of the Most High will rest in the shadow of the Almighty. I will say of the Lord, 'He is my refuge and my fortress, my God, in whom I trust.' Surely he will save you from the fowler’s snare and from the deadly pestilence. He will cover you with his feathers, and under his wings you will find refuge; his faithfulness will be your shield and rampart. You will not fear the terror of night, nor the arrow that flies by day, nor the pestilence that stalks in the darkness, nor the plague that destroys at midday.",
+      theme: "protect",
+      tags: ["refuge", "promise", "peace"]
+    },
+    "Psalm 46:1–3": {
+      text: "God is our refuge and strength, an ever-present help in trouble. Therefore we will not fear, though the earth give way and the mountains fall into the heart of the sea, though its waters roar and foam and the mountains quake with their surging.",
+      theme: "help",
+      tags: ["refuge", "trouble", "promise"]
+    }
+  },
+
+  "God promises to take care of your needs and never abandon you.": {
+    "Philippians 4:19": {
+      text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
+      theme: "faithful",
+      tags: ["provision", "promise", "trust"]
+    },
+    "Matthew 11:28–30": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls. For my yoke is easy and my burden is light.",
+      theme: "peace",
+      tags: ["comfort", "rest", "promise"]
+    },
+    "Psalm 34:17–18": {
+      text: "The righteous cry out, and the Lord hears them; he delivers them from all their troubles. The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "help",
+      tags: ["promise", "comfort", "presence"]
+    },
+    "Psalm 121:7–8": {
+      text: "The Lord will keep you from all harm—he will watch over your life; the Lord will watch over your coming and going both now and forevermore.",
+      theme: "protect",
+      tags: ["watch", "promise", "faithful"]
+    },
+    "1 Peter 5:10": {
+      text: "And the God of all grace, who called you to his eternal glory in Christ, after you have suffered a little while, will himself restore you and make you strong, firm and steadfast.",
+      theme: "grace",
+      tags: ["healing", "restoration", "promise"]
+    }
+  },
+
+  "God promises that His love, forgiveness, and salvation are sure.": {
+    "Romans 8:38–39": {
+      text: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["security", "salvation", "promise"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["salvation", "cleansing", "promise"]
+    },
+    "Romans 10:9–10": {
+      text: "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved. For it is with your heart that you believe and are justified, and it is with your mouth that you profess your faith and are saved.",
+      theme: "salvation",
+      tags: ["faith", "promise", "security"]
+    },
+    "John 10:28–29": {
+      text: "I give them eternal life, and they shall never perish; no one will snatch them out of my hand. My Father, who has given them to me, is greater than all; no one can snatch them out of my Father’s hand.",
+      theme: "protect",
+      tags: ["salvation", "security", "promise"]
+    }
+  },
+
+  "God promises strength, grace, and hope through every weakness and challenge.": {
+    "2 Corinthians 12:9": {
+      text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["strength", "promise", "hope"]
+    },
+    "John 16:33": {
+      text: "I have told you these things, so that in me you may have peace. In this world you will have trouble. But take heart! I have overcome the world.",
+      theme: "peace",
+      tags: ["strength", "encouragement", "promise"]
+    },
+    "Isaiah 26:3": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+      theme: "peace",
+      tags: ["trust", "promise", "comfort"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "goodness",
+      tags: ["hope", "trust", "promise"]
+    }
+  },
+
+  "God promises His plans for you are good and secure—even if you can't see it yet.": {
+    "Jeremiah 29:11": {
+      text: "'For I know the plans I have for you,' declares the Lord, 'plans to prosper you and not to harm you, plans to give you hope and a future.'",
+      theme: "hope",
+      tags: ["future", "promise", "trust"]
+    },
+    "Revelation 21:3–5": {
+      text: "And I heard a loud voice from the throne saying, 'Look! God’s dwelling place is now among the people, and he will dwell with them. They will be his people, and God himself will be with them and be their God. He will wipe every tear from their eyes. There will be no more death' or mourning or crying or pain, for the old order of things has passed away.' He who was seated on the throne said, 'I am making everything new!' Then he said, 'Write this down, for these words are trustworthy and true.'",
+      theme: "hope",
+      tags: ["future", "comfort", "promise"]
+    },
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "goodness",
+      tags: ["trust", "providence", "promise"]
+    },
+    "Romans 11:29": {
+      text: "For God’s gifts and his call are irrevocable.",
+      theme: "faithful",
+      tags: ["security", "purpose", "promise"]
+    },
+    "1 Thessalonians 5:24": {
+      text: "The one who calls you is faithful, and he will do it.",
+      theme: "faithful",
+      tags: ["calling", "promise", "trust"]
+    }
+  },
+
+  "God promises that His character is unchanging and faithful forever.": {
+    "Numbers 23:19": {
+      text: "God is not human, that he should lie, not a human being, that he should change his mind. Does he speak and then not act? Does he promise and not fulfill?",
+      theme: "truth",
+      tags: ["faithfulness", "promise", "trust"]
+    },
+    "2 Timothy 2:13": {
+      text: "If we are faithless, he remains faithful, for he cannot disown himself.",
+      theme: "faithful",
+      tags: ["trust", "promise", "unchanging"]
+    },
+    "Malachi 3:6": {
+      text: "'I the Lord do not change. So you, the descendants of Jacob, are not destroyed.'",
+      theme: "eternal",
+      tags: ["unchanging", "faithful", "promise"]
+    }
+  },
+
+  "God promises to fight for you and lead you.": {
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+      theme: "courage",
+      tags: ["presence", "promise", "strength"]
+    },
+    "Exodus 14:14": {
+      text: "The Lord will fight for you; you need only to be still.",
+      theme: "help",
+      tags: ["protection", "promise", "trust"]
+    },
+    "Proverbs 3:5–6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "promise", "direction"]
+    }
+  }
+};
+
+// What helps me grow in thankfulness today?
+let q132ans = {
+  "Thankfulness grows when I remember God’s goodness and faithful love": {
+    "Psalm 107:1": {
+      text: "Give thanks to the Lord, for he is good; his love endures forever.",
+      theme: "gratitude",
+      tags: ["goodness", "love", "praise"]
+    },
+    "Psalm 100:4": {
+      text: "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name.",
+      theme: "gratitude",
+      tags: ["worship", "joy", "praise"]
+    },
+    "Psalm 103:2": {
+      text: "Praise the Lord, my soul, and forget not all his benefits—",
+      theme: "gratitude",
+      tags: ["remember", "blessings"]
+    },
+    "Psalm 9:1": {
+      text: "I will give thanks to you, Lord, with all my heart; I will tell of all your wonderful deeds.",
+      theme: "praise",
+      tags: ["testimony", "gratitude", "worship"]
+    },
+    "James 1:17": {
+      text: "Every good and perfect gift is from above, coming down from the Father of the heavenly lights, who does not change like shifting shadows.",
+      theme: "faithful",
+      tags: ["gifts", "grace", "praise"]
+    },
+    "Psalm 136:1": {
+      text: "Give thanks to the Lord, for he is good. His love endures forever.",
+      theme: "gratitude",
+      tags: ["goodness", "endures", "praise"]
+    },
+    "Psalm 145:8": {
+      text: "The Lord is gracious and compassionate, slow to anger and rich in love.",
+      theme: "gratitude",
+      tags: ["compassion", "mercy", "faithful"]
+    }
+  },
+
+  "Thankfulness grows when I stay rooted in Christ and community": {
+    "Colossians 3:15–17": {
+      text: "Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful. Let the message of Christ dwell among you richly... And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "peace",
+      tags: ["unity", "gratitude", "worship"]
+    },
+    "Colossians 3:17": {
+      text: "And whatever you do... do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "gratitude",
+      tags: ["action", "purpose", "thankfulness"]
+    },
+    "Ephesians 5:20": {
+      text: "Always giving thanks to God the Father for everything, in the name of our Lord Jesus Christ.",
+      theme: "gratitude",
+      tags: ["discipline", "everyday", "habit"]
+    },
+    "Colossians 2:6–7": {
+      text: "So then, just as you received Christ Jesus as Lord, continue to live your lives in him, rooted and built up in him, strengthened in the faith as you were taught, and overflowing with thankfulness.",
+      theme: "growth",
+      tags: ["faith", "overflow", "gratitude"]
+    },
+  },
+
+  "Thankfulness grows when I choose it even in difficulty": {
+    "1 Thessalonians 5:18": {
+      text: "Give thanks in all circumstances; for this is God’s will for you in Christ Jesus.",
+      theme: "obedience",
+      tags: ["faith", "circumstances", "obedience"]
+    },
+    "Philippians 4:6": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      theme: "peace",
+      tags: ["prayer", "trust", "gratitude"]
+    },
+    "Hebrews 12:28": {
+      text: "Therefore, since we are receiving a kingdom that cannot be shaken, let us be thankful, and so worship God acceptably with reverence and awe.",
+      theme: "eternal",
+      tags: ["worship", "gratitude", "kingdom"]
+    },
+    "Daniel 6:10": {
+      text: "Now when Daniel learned that the decree had been published, he went home to his upstairs room... Three times a day he got down on his knees and prayed, giving thanks to his God, just as he had done before.",
+      theme: "obedience",
+      tags: ["faith", "habit", "perseverance"]
+    }
+  },
+
+  "Thankfulness grows when I respond to God’s mercy and restoration": {
+    "Luke 17:15–18": {
+      text: "One of them, when he saw he was healed, came back, praising God in a loud voice. He threw himself at Jesus’ feet and thanked him—and he was a Samaritan. Jesus asked, 'Were not all ten cleansed? Where are the other nine? Has no one returned to give praise to God except this foreigner?'",
+      theme: "mercy",
+      tags: ["gratitude", "healing", "return"]
+    },
+    "2 Corinthians 4:15": {
+      text: "All this is for your benefit, so that the grace that is reaching more and more people may cause thanksgiving to overflow to the glory of God.",
+      theme: "grace",
+      tags: ["overflow", "glory", "growth"]
+    },
+    "Psalm 116:12": {
+      text: "What shall I return to the Lord for all his goodness to me?",
+      theme: "gratitude",
+      tags: ["reflection", "response"]
+    },
+    "2 Corinthians 9:15": {
+      text: "Thanks be to God for his indescribable gift!",
+      theme: "gratitude",
+      tags: ["gift", "thanks", "marvel"]
+    }
+  },
+
+  "Thankfulness fades when I forget to give thanks": {
+    "Romans 1:21": {
+      text: "For although they knew God, they neither glorified him as God nor gave thanks to him, but their thinking became futile and their foolish hearts were darkened.",
+      theme: "fallenness",
+      tags: ["warning", "gratitude", "humility"]
+    }
+  },
+
+  "Thankfulness grows when I choose gratitude as lifestyle": {
+    "Psalm 34:1": {
+      text: "I will extol the LORD at all times; his praise will always be on my lips.",
+      theme: "gratitude",
+      tags: ["praise", "habit", "joy"]
+    },
+    "Psalm 69:30": {
+      text: "I will praise God’s name in song and glorify him with thanksgiving.",
+      theme: "gratitude",
+      tags: ["song", "praise", "gratitude"]
+    },
+    "Psalm 118:24": {
+      text: "This is the day that the Lord has made; let us rejoice and be glad in it.",
+      theme: "gratitude",
+      tags: ["joy", "today", "intentional"]
+    },
+    "Ephesians 1:16": {
+      text: "I have not stopped giving thanks for you, remembering you in my prayers.",
+      theme: "gratitude",
+      tags: ["community", "prayer", "thankful"]
+    },
+    "1 Chronicles 29:13": {
+      text: "Now therefore, our God, we thank thee, and praise thy glorious name.",
+      theme: "gratitude",
+      tags: ["corporate", "praise"]
+    }
+  }
+};
+
+// Q133: What does it look like to live joyfully with God?
+let q133ans = {
+  "Joy comes through God's presence and abiding relationship": {
+    "John 15:10–11": {
+      text: "If you keep my commands, you will remain in my love, just as I have kept my Father’s commands and remain in his love. I have told you this so that my joy may be in you and that your joy may be complete.",
+      theme: "presence",
+      tags: ["abiding", "obedience", "complete joy"]
+    },
+    "Psalm 16:11": {
+      text: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.",
+      theme: "presence",
+      tags: ["joy", "eternal", "path of life"]
+    },
+    "Romans 14:17": {
+      text: "For the kingdom of God is not a matter of eating and drinking, but of righteousness, peace and joy in the Holy Spirit.",
+      theme: "spirit",
+      tags: ["kingdom", "joy", "Holy Spirit"]
+    },
+    "Psalm 28:7": {
+      text: "The Lord is my strength and my shield; my heart trusts in him, and he helps me. My heart leaps for joy, and with my song I praise him.",
+      theme: "trust",
+      tags: ["strength", "joy", "song"]
+    },
+    "Psalm 5:11": {
+      text: "But let all who take refuge in you be glad; let them ever sing for joy. Spread your protection over them, that those who love your name may rejoice in you.",
+      theme: "protect",
+      tags: ["refuge", "joy", "rejoicing"]
+    }
+  },
+
+  "Joy flows from salvation, faith, and transformation": {
+    "Isaiah 61:10": {
+      text: "I delight greatly in the Lord; my soul rejoices in my God. For he has clothed me with garments of salvation and arrayed me in a robe of his righteousness...",
+      theme: "salvation",
+      tags: ["delight", "rejoicing", "righteousness"]
+    },
+    "1 Peter 1:8–9": {
+      text: "Though you have not seen him, you love him... you believe in him and are filled with an inexpressible and glorious joy, for you are receiving... the salvation of your souls.",
+      theme: "faith",
+      tags: ["joy", "faith", "salvation"]
+    },
+    "Isaiah 12:2–3": {
+      text: "Surely God is my salvation; I will trust and not be afraid... With joy you will draw water from the wells of salvation.",
+      theme: "salvation",
+      tags: ["trust", "joy", "salvation"]
+    },
+    "Galatians 5:22": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness.",
+      theme: "growth",
+      tags: ["Spirit", "fruit", "joy"]
+    },
+    "Psalm 30:11": {
+      text: "You turned my wailing into dancing; you removed my sackcloth and clothed me with joy.",
+      theme: "transformation",
+      tags: ["joy", "restoration", "dancing"]
+    },
+    "Isaiah 35:10": {
+      text: "And those the Lord has rescued will return... everlasting joy will crown their heads. Gladness and joy will overtake them...",
+      theme: "eternal",
+      tags: ["rescue", "gladness", "joy"]
+    }
+  },
+
+  "Joy is expressed through praise and celebration": {
+    "Psalm 33:1": {
+      text: "Sing joyfully to the Lord, you righteous; it is fitting for the upright to praise him.",
+      theme: "praise",
+      tags: ["joy", "upright", "sing"]
+    },
+    "Psalm 71:23": {
+      text: "My lips will shout for joy when I sing praise to you—I whom you have delivered.",
+      theme: "praise",
+      tags: ["joy", "praise", "deliverance"]
+    },
+    "Psalm 100:1–2": {
+      text: "Shout for joy to the Lord, all the earth. Worship the Lord with gladness; come before him with joyful songs.",
+      theme: "devotion",
+      tags: ["joy", "worship", "songs"]
+    },
+    "Psalm 92:4": {
+      text: "For you make me glad by your deeds, Lord; I sing for joy at what your hands have done.",
+      theme: "goodness",
+      tags: ["joy", "deeds", "song"]
+    },
+    "Psalm 126:2–3": {
+      text: "Our mouths were filled with laughter, our tongues with songs of joy... The Lord has done great things for us, and we are filled with joy.",
+      theme: "goodness",
+      tags: ["joy", "laughter", "restoration"]
+    },
+    "Philippians 4:4": {
+      text: "Rejoice in the Lord always. I will say it again: Rejoice!",
+      theme: "joy",
+      tags: ["command", "always", "rejoicing"]
+    },
+    "Luke 1:47": {
+      text: "And my spirit rejoices in God my Savior.",
+      theme: "savior",
+      tags: ["joy", "Savior", "rejoicing"]
+    }
+  },
+
+  "God Himself rejoices over His people": {
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you... He will take great delight in you; in his love... he will rejoice over you with singing.",
+      theme: "love",
+      tags: ["rejoicing", "presence", "delight"]
+    }
+  },
+
+  "Joy is deeper than circumstance—it is strength": {
+    "Psalm 4:7": {
+      text: "You have filled my heart with greater joy than when their grain and new wine abound.",
+      theme: "peace",
+      tags: ["joy", "contentment", "heart"]
+    },
+    "Nehemiah 8:10": {
+      text: "Nehemiah said... 'Do not grieve, for the joy of the Lord is your strength.'",
+      theme: "strength",
+      tags: ["joy", "strength", "celebration"]
+    }
+  }
+};
+
+// Q134: What is a truth from the Bible that will fill me with joy or wonder?
+let q134ans = {
+  "God is beyond our imagination — His greatness and wisdom are unfathomable": {
+    "Psalm 145:3": {
+      text: "Great is the Lord and most worthy of praise; his greatness no one can fathom.",
+      theme: "glory",
+      tags: ["praise", "greatness", "awe"]
+    },
+    "Isaiah 40:28": {
+      text: "Do you not know? Have you not heard? The Lord is the everlasting God, the Creator of the ends of the earth. He will not grow tired or weary, and his understanding no one can fathom.",
+      theme: "glory",
+      tags: ["creator", "strength", "wisdom"]
+    },
+    "Job 5:9": {
+      text: "He performs wonders that cannot be fathomed, miracles that cannot be counted.",
+      theme: "glory",
+      tags: ["miracles", "wonder", "power"]
+    },
+    "Romans 11:33": {
+      text: "Oh, the depth of the riches of the wisdom and knowledge of God! How unsearchable his judgments, and his paths beyond tracing out!",
+      theme: "glory",
+      tags: ["wisdom", "mystery", "judgment"]
+    },
+    "Exodus 15:11": {
+      text: "Who among the gods is like you, Lord? Who is like you—majestic in holiness, awesome in glory, working wonders?",
+      theme: "glory",
+      tags: ["holiness", "wonder", "glory"]
+    },
+    "Psalm 147:4–5": {
+      text: "He determines the number of the stars and calls them each by name. Great is our Lord and mighty in power; his understanding has no limit.",
+      theme: "glory",
+      tags: ["creation", "stars", "power"]
+    }
+  },
+
+  "God’s love is vast, intimate, and personal": {
+    "Psalm 86:15": {
+      text: "But you, Lord, are a compassionate and gracious God, slow to anger, abounding in love and faithfulness.",
+      theme: "love",
+      tags: ["grace", "patience", "compassion"]
+    },
+    "Psalm 36:5–9": {
+      text: "Your love, Lord, reaches to the heavens, your faithfulness to the skies... For with you is the fountain of life; in your light we see light.",
+      theme: "glory",
+      tags: ["love", "life", "light"]
+    },
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["mercy", "grace", "sacrifice"]
+    },
+    "1 John 4:8": {
+      text: "Whoever does not love does not know God, because God is love.",
+      theme: "love",
+      tags: ["identity", "truth", "nature"]
+    },
+    "1 John 4:16": {
+      text: "And so we know and rely on the love God has for us. God is love. Whoever lives in love lives in God, and God in them.",
+      theme: "love",
+      tags: ["trust", "union", "abiding"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you... he will rejoice over you with singing.",
+      theme: "love",
+      tags: ["joy", "presence", "delight"]
+    }
+  },
+
+  "Jesus is God made visible — full of glory and grace": {
+    "John 1:14": {
+      text: "The Word became flesh and made his dwelling among us... full of grace and truth.",
+      theme: "jesus",
+      tags: ["incarnation", "truth", "glory"]
+    },
+    "John 14:9": {
+      text: "Anyone who has seen me has seen the Father.",
+      theme: "jesus",
+      tags: ["identity", "revelation", "truth"]
+    },
+    "Hebrews 13:8": {
+      text: "Jesus Christ is the same yesterday and today and forever.",
+      theme: "jesus",
+      tags: ["unchanging", "eternal", "trust"]
+    },
+    "Colossians 1:15–17": {
+      text: "The Son is the image of the invisible God... in him all things hold together.",
+      theme: "jesus",
+      tags: ["creator", "sustainer", "divinity"]
+    },
+    "Ephesians 2:4–5": {
+      text: "But because of his great love for us, God... made us alive with Christ even when we were dead in transgressions.",
+      theme: "jesus",
+      tags: ["salvation", "grace", "mercy"]
+    }
+  },
+
+  "Our future with God is full of beauty, peace, and restoration": {
+    "Revelation 21:3–5": {
+      text: "He will wipe every tear... I am making everything new!",
+      theme: "eternal",
+      tags: ["hope", "new creation", "comfort"]
+    },
+    "Revelation 22:12": {
+      text: "Look, I am coming soon! My reward is with me...",
+      theme: "eternal",
+      tags: ["return", "reward", "urgency"]
+    },
+    "Revelation 21:23–25": {
+      text: "The city does not need the sun... for the glory of God gives it light.",
+      theme: "eternal",
+      tags: ["light", "presence", "peace"]
+    },
+    "Revelation 7:16–17": {
+      text: "The Lamb... will lead them to springs of living water. And God will wipe away every tear...",
+      theme: "eternal",
+      tags: ["peace", "comfort", "shepherd"]
+    },
+    "2 Peter 3:13": {
+      text: "We are looking forward to a new heaven and a new earth, where righteousness dwells.",
+      theme: "eternal",
+      tags: ["promise", "righteousness", "hope"]
+    },
+    "Hebrews 9:28": {
+      text: "He will appear a second time... to bring salvation to those who are waiting for him.",
+      theme: "eternal",
+      tags: ["return", "salvation", "hope"]
+    },
+    "Acts 1:11": {
+      text: "This same Jesus... will come back in the same way...",
+      theme: "eternal",
+      tags: ["return", "truth", "expectation"]
+    },
+    "1 Thessalonians 4:16–17": {
+      text: "The Lord himself will come down from heaven... and we will be with the Lord forever.",
+      theme: "eternal",
+      tags: ["resurrection", "reunion", "forever"]
+    },
+    "Philippians 3:20–21": {
+      text: "He... will transform our lowly bodies so that they will be like his glorious body.",
+      theme: "eternal",
+      tags: ["transformation", "glory", "future"]
+    },
+    "Isaiah 11:6–9": {
+      text: "The wolf will live with the lamb... the earth will be filled with the knowledge of the Lord...",
+      theme: "eternal",
+      tags: ["peace", "nature", "knowledge"]
+    },
+    "Isaiah 35:5–10": {
+      text: "The eyes of the blind will be opened... gladness and joy will overtake them...",
+      theme: "eternal",
+      tags: ["healing", "joy", "restoration"]
+    }
+  }
+};
+
+// What is a surprising thing the Bible says?
+let q135ans = {
+  "God's ways flip our expectations": {
+    "Isaiah 55:8-9": {
+      text: "For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord. For as the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      theme: "wisdom",
+      tags: ["God's mind", "different", "surprising"]
+    },
+    "1 Corinthians 1:27-29": {
+      text: "But God chose what is foolish in the world to shame the wise; God chose what is weak in the world to shame the strong... so that no human being might boast in the presence of God.",
+      theme: "wisdom",
+      tags: ["weak", "strong", "foolish", "humble"]
+    },
+    "Matthew 20:16": {
+      text: "So the last will be first, and the first last.",
+      theme: "humble",
+      tags: ["status", "upside-down", "kingdom"]
+    },
+    "Luke 6:20-26": {
+      text: "Blessed are you who are poor, for yours is the kingdom of God... But woe to you who are rich, for you have already received your comfort.",
+      theme: "truth",
+      tags: ["poor", "rich", "blessing", "warning"]
+    },
+    "Matthew 23:11-12": {
+      text: "The greatest among you shall be your servant. Whoever exalts himself will be humbled, and whoever humbles himself will be exalted.",
+      theme: "humble",
+      tags: ["servant", "status", "surprising"]
+    },
+    "Luke 22:26": {
+      text: "Let the greatest among you become as the youngest, and the leader as one who serves.",
+      theme: "humble",
+      tags: ["serve", "greatness", "status"]
+    },
+    "Matthew 6:3": {
+      text: "But when you give to the needy, do not let your left hand know what your right hand is doing.",
+      theme: "obedience",
+      tags: ["giving", "secret", "humble"]
+    },
+    "Luke 21:3-4": {
+      text: "Truly, I tell you, this poor widow has put in more than all of them. For they all contributed out of their abundance, but she out of her poverty put in all she had to live on.",
+      theme: "humble",
+      tags: ["giving", "sacrifice", "surprise"]
+    }
+  },
+  "Love and mercy where we expect judgment": {
+    "Romans 5:8": {
+      text: "But God shows his love for us in that while we were still sinners, Christ died for us.",
+      theme: "mercy",
+      tags: ["grace", "love", "undeserved"]
+    },
+    "Luke 15:20": {
+      text: "But while he was still a long way off, his father saw him and felt compassion, and ran and embraced him and kissed him.",
+      theme: "mercy",
+      tags: ["forgiveness", "father", "surprising grace"]
+    },
+    "Acts 7:59-60": {
+      text: "And as they were stoning Stephen, he called out... 'Lord, do not hold this sin against them.'", 
+      theme: "forgiveness",
+      tags: ["martyr", "grace", "mercy"]
+    },
+    "John 11:35": {
+      text: "Jesus wept.",
+      theme: "emotion",
+      tags: ["compassion", "grief", "God weeps"]
+    },
+    "Hosea 3:1-3": {
+      text: "And the Lord said to me, 'Go again, love a woman who is loved by another man and is an adulteress.'... So I bought her for fifteen shekels of silver...",
+      theme: "mercy",
+      tags: ["unfaithful", "love", "redeem"]
+    }
+  },
+  "Weakness, trial, and humility are honored": {
+    "2 Corinthians 12:9": {
+      text: "My grace is sufficient for you, for my power is made perfect in weakness.",
+      theme: "strength",
+      tags: ["weak", "grace", "power"]
+    },
+    "James 1:2-4": {
+      text: "Count it all joy, my brothers, when you meet trials... for you know that the testing of your faith produces steadfastness.",
+      theme: "growth",
+      tags: ["trial", "joy", "faith"]
+    },
+    "Hebrews 12:6": {
+      text: "For the Lord disciplines the one he loves, and chastises every son whom he receives.",
+      theme: "discipline",
+      tags: ["love", "pain", "training"]
+    },
+    "Romans 12:20-21": {
+      text: "If your enemy is hungry, feed him; if he is thirsty, give him something to drink... Overcome evil with good.",
+      theme: "mercy",
+      tags: ["enemy", "good", "evil"]
+    },
+    "Proverbs 25:21-22": {
+      text: "If your enemy is hungry, give him bread to eat... for you will heap burning coals on his head, and the Lord will reward you.",
+      theme: "mercy",
+      tags: ["enemy", "kindness", "reward"]
+    },
+    "Matthew 5:44": {
+      text: "But I say to you, Love your enemies and pray for those who persecute you.",
+      theme: "love",
+      tags: ["enemy", "love", "hard"]
+    },
+    "Ecclesiastes 7:2": {
+      text: "It is better to go to the house of mourning than to go to the house of feasting...",
+      theme: "wisdom",
+      tags: ["death", "truth", "perspective"]
+    }
+  },
+  "God’s plan and identity are bigger than we imagine": {
+    "Philippians 2:5-11": {
+      text: "Though he was in the form of God... he humbled himself by becoming obedient to the point of death, even death on a cross...",
+      theme: "jesus",
+      tags: ["humility", "divine", "surprising"]
+    },
+    "John 14:12": {
+      text: "Truly, truly, I say to you, whoever believes in me will also do the works that I do; and greater works than these will he do...",
+      theme: "power",
+      tags: ["faith", "miracles", "surprising"]
+    },
+    "Galatians 3:28": {
+      text: "There is neither Jew nor Greek, slave nor free, male and female, for you are all one in Christ Jesus.",
+      theme: "unity",
+      tags: ["equality", "surprising", "identity"]
+    },
+    "Psalm 8:3-4": {
+      text: "When I look at your heavens... what is man that you are mindful of him?",
+      theme: "creation",
+      tags: ["awe", "wonder", "value"]
+    },
+    "Isaiah 40:26": {
+      text: "Lift up your eyes... He who brings out their host by number, calling them all by name...",
+      theme: "creation",
+      tags: ["stars", "God’s power", "awe"]
+    },
+    "2 Peter 3:9": {
+      text: "The Lord is not slow to fulfill his promise... but is patient toward you, not wishing that any should perish...",
+      theme: "mercy",
+      tags: ["patience", "judgment", "grace"]
+    }
+  },
+  "The kingdom of God is upside-down": {
+    "Matthew 18:3-4": {
+      text: "Unless you turn and become like children, you will never enter the kingdom of heaven...",
+      theme: "humble",
+      tags: ["children", "kingdom", "faith"]
+    },
+    "Matthew 25:40": {
+      text: "...As you did it to one of the least of these my brothers, you did it to me.",
+      theme: "humble",
+      tags: ["service", "value", "surprise"]
+    },
+    "Mark 10:45": {
+      text: "For even the Son of Man came not to be served but to serve...",
+      theme: "jesus",
+      tags: ["service", "model", "kingdom"]
+    },
+    "Matthew 19:14": {
+      text: "Let the little children come to me and do not hinder them, for to such belongs the kingdom of heaven.",
+      theme: "humble",
+      tags: ["children", "kingdom", "surprising"]
+    },
+    "Revelation 21:4": {
+      text: "He will wipe away every tear from their eyes, and death shall be no more...",
+      theme: "hope",
+      tags: ["healing", "future", "peace"]
+    },
+    "Revelation 19:16": {
+      text: "On his robe and on his thigh he has a name written, King of kings and Lord of lords.",
+      theme: "jesus",
+      tags: ["return", "power", "glory"]
+    },
+    "Isaiah 11:6": {
+      text: "The wolf shall dwell with the lamb... and a little child shall lead them.",
+      theme: "peace",
+      tags: ["future", "kingdom", "surprising"]
+    },
+    "Hebrews 4:15": {
+      text: "We do not have a high priest who is unable to sympathize with our weaknesses...",
+      theme: "jesus",
+      tags: ["compassion", "weakness", "priest"]
+    }
+  }
+};
+
+// Q136: What truth about God do I wish my younger self had known?
+let q136ans = {
+  "God is unchanging and forever with you, even in fear or doubt": {
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "faithful",
+      tags: ["presence", "never alone", "courage"]
+    },
+    "Hebrews 10:23": {
+      text: "Let us hold unswervingly to the hope we profess, for he who promised is faithful.",
+      theme: "hope",
+      tags: ["promises", "faithful", "steadfast"]
+    },
+    "Malachi 3:6": {
+      text: "For I the Lord do not change; therefore you, O children of Jacob, are not consumed.",
+      theme: "faithful",
+      tags: ["unchanging", "trust", "secure"]
+    },
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid... for the Lord your God will be with you wherever you go.",
+      theme: "presence",
+      tags: ["courage", "not alone", "command"]
+    },
+    "Psalm 139:7": {
+      text: "Where can I go from your Spirit? Where can I flee from your presence?",
+      theme: "presence",
+      tags: ["everywhere", "Spirit", "unescapable"]
+    }
+  },
+
+  "God’s love and mercy begin fresh every morning": {
+    "Lamentations 3:22-23": {
+      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning; great is your faithfulness.",
+      theme: "mercy",
+      tags: ["new mercies", "faithfulness", "grace"]
+    },
+    "Psalm 119:90": {
+      text: "Your faithfulness continues through all generations; you established the earth, and it endures.",
+      theme: "faithful",
+      tags: ["generations", "steadfast", "foundation"]
+    },
+    "Psalm 103:11-12": {
+      text: "For as high as the heavens are above the earth, so great is his love... as far as the east is from the west, so far has he removed our transgressions.",
+      theme: "forgiveness",
+      tags: ["love", "mercy", "cleansing"]
+    }
+  },
+
+  "God works all things—even failure or mistakes—for good": {
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you... plans to prosper you and not to harm you, plans to give you hope and a future.",
+      theme: "purpose",
+      tags: ["plan", "hope", "future"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him...",
+      theme: "purpose",
+      tags: ["all things", "trust", "good"]
+    },
+    "Isaiah 43:18-19": {
+      text: "Forget the former things; do not dwell on the past. See, I am doing a new thing!",
+      theme: "transformation",
+      tags: ["new", "future", "movement"]
+    },
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done...",
+      theme: "purpose",
+      tags: ["evil to good", "redemption", "outcome"]
+    }
+  },
+
+  "Lean on God rather than self‑understanding": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and do not lean on your own understanding...",
+      theme: "wisdom",
+      tags: ["trust", "guidance", "submit"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go...",
+      theme: "guidance",
+      tags: ["instruction", "loving counsel", "direction"]
+    },
+    "Isaiah 55:8-9": {
+      text: "For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord.",
+      theme: "wisdom",
+      tags: ["higher ways", "God’s mind", "humility"]
+    }
+  },
+
+  "Trials refine faith—they’re not wasted": {
+    "James 1:2-4": {
+      text: "Count it all joy... when you meet trials... that the testing of your faith produces steadfastness.",
+      theme: "growth",
+      tags: ["trials", "joy", "perseverance"]
+    },
+    "1 Peter 1:6-7": {
+      text: "Though now for a little while... you have had grief in various trials, so that the tested genuineness of your faith... may result in praise, glory and honor.",
+      theme: "growth",
+      tags: ["tested", "refined", "honor"]
+    },
+    "Hebrews 12:6": {
+      text: "For the Lord disciplines the one he loves...",
+      theme: "growth",
+      tags: ["discipline", "love", "refine"]
+    },
+    "Romans 5:3-4": {
+      text: "We also glory in our sufferings, because suffering produces perseverance; perseverance, character; and character, hope.",
+      theme: "growth",
+      tags: ["hope", "maturity", "building"]
+    }
+  },
+
+  "Who I am now—in Christ—means everything already changed": {
+    "2 Corinthians 5:17": {
+      text: "If anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come.",
+      theme: "transformation",
+      tags: ["new creation", "identity", "change"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are his workmanship... created in Christ Jesus for good works...",
+      theme: "purpose",
+      tags: ["calling", "crafted", "good works"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
+      theme: "identity",
+      tags: ["Christ in me", "dead to old", "alive"]
+    }
+  },
+
+  "God’s love poured into our hearts gives confidence, not fear": {
+    "Romans 8:38-39": {
+      text: "Nothing... will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["inseparable", "Christ", "security"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "peace",
+      tags: ["anxiety", "care", "relief"]
+    },
+    "1 John 4:16": {
+      text: "God is love. Whoever lives in love lives in God, and God in them.",
+      theme: "love",
+      tags: ["union", "identity", "truth"]
+    },
+    "2 Timothy 1:7": {
+      text: "For God gave us a spirit not of fear but of power and love and self-control.",
+      theme: "spirit",
+      tags: ["courage", "power", "love"]
+    }
+  }
+};
+
+// What does the Bible say about God’s presence in my daily life?
+let q137ans = {
+  "God is present in every moment, even the unnoticed ones": {
+    "Psalm 139:7–10": {
+      text: "Where can I go from your Spirit? Where can I flee from your presence? If I go up to the heavens, you are there; if I make my bed in the depths, you are there. If I rise on the wings of the dawn, if I settle on the far side of the sea, even there your hand will guide me, your right hand will hold me fast.",
+      theme: "presence",
+      tags: ["guidance", "constant", "comfort"]
+    },
+    "Proverbs 3:5–6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["daily walk", "trust", "surrender"]
+    },
+    "Jeremiah 23:23–24": {
+      text: "“Am I only a God nearby,” declares the Lord, “and not a God far away? Who can hide in secret places so that I cannot see them?” declares the Lord. “Do not I fill heaven and earth?” declares the Lord.",
+      theme: "presence",
+      tags: ["everywhere", "seen", "never alone"]
+    },
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "presence",
+      tags: ["courage", "security", "faith"]
+    }
+  },
+  "God shows up in ordinary work and quiet obedience": {
+    "Colossians 3:23–24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know that you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.",
+      theme: "obedience",
+      tags: ["daily life", "work", "reward"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "devotion",
+      tags: ["ordinary", "intention", "honor"]
+    },
+    "Zechariah 4:10": {
+      text: "Do not despise these small beginnings, for the Lord rejoices to see the work begin, to see the plumb line in Zerubbabel’s hand...",
+      theme: "growth",
+      tags: ["process", "small", "faith"]
+    },
+    "Ecclesiastes 9:10": {
+      text: "Whatever your hand finds to do, do it with all your might, for in the realm of the dead, where you are going, there is neither working nor planning nor knowledge nor wisdom.",
+      theme: "devotion",
+      tags: ["effort", "present", "urgency"]
+    }
+  },
+  "God is close and caring in small needs and feelings": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "comfort",
+      tags: ["feelings", "nearness", "rescue"]
+    },
+    "Matthew 10:29–31": {
+      text: "Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father’s care. And even the very hairs of your head are all numbered. So don’t be afraid; you are worth more than many sparrows.",
+      theme: "care",
+      tags: ["details", "worth", "presence"]
+    },
+    "Isaiah 40:11": {
+      text: "He tends his flock like a shepherd: He gathers the lambs in his arms and carries them close to his heart; he gently leads those that have young.",
+      theme: "love",
+      tags: ["gentleness", "guidance", "shepherd"]
+    },
+    "Philippians 4:19": {
+      text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
+      theme: "provision",
+      tags: ["needs", "riches", "trust"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["fear", "strength", "faithfulness"]
+    }
+  }
+};
+
+// what kind of adventure might God be inviting me into?
+let q138ans = {
+  "A mission to bring his light into dark places": {
+    "Genesis 12:1": {
+      text: "The Lord had said to Abram, 'Go from your country, your people and your father's household to the land I will show you.'",
+      theme: "guidance",
+      tags: ["calling", "obedience", "unknown", "faith", "journey"]
+    },
+    "Acts 13:2-3": {
+      text: "While they were worshipping the Lord and fasting, the Holy Spirit said, 'Set apart for me Barnabus and Saul for the work to which I have called them.' So after they had fasted and prayed, they placed their hands on them and sent them off.",
+      theme: "mission",
+      tags: ["Holy Spirit", "purpose", "calling", "ministry", "adventure"]
+    },
+    "Isiah 6:8": {
+      text: "Then I heard the voice of the Lord saying, 'Whom shall I send? And who will go for us?' And I said, 'Here I am, send me!'",
+      theme: "obedience",
+      tags: ["call", "mission", "willingness", "response", "purpose"]
+    }
+  },
+  "A personal journey of transformation and trust": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is- his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["mind", "change", "growth", "faith", "purpose"]
+    },
+    "2 Corinthians 5:7": {
+      text: "For we live by faith, not by sight.",
+      theme: "faithful",
+      tags: ["trust", "uncertainty", "walk", "adventure", "growth"]
+    },
+    "Psalm 32:8": {
+      text: "I will instruct you and teach you in the way you should go: I will cousel you with my loving eye on you.",
+      theme: "guidance",
+      tags: ["direction", "learning", "relationship", "adventure"]
+    }
+  },
+  "A battle for goodness and truth in a broken world": {
+    "Ephesians 6:12": {
+      text: "For our struggle is not against flesh and blood, but against the rulers, against the authorities, against the powers of this dark world and against the spiritual forces of evil in the heavenly realms.",
+      theme: "battle",
+      tags: ["spiritual warfare", "truth", "courage", "resistance"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "justice",
+      tags: ["purpose", "calling", "righteousness", "humility", "mission"]
+    },
+    "Romans 12:21": {
+      text: "Do not be overcome by evil, but overcome evil with good.",
+      theme: "goodness",
+      tags: ["overcome", "resistance", "light", "hope", "mission"]
+    }
+  }
+};
+
+// What does the Bible say about growing bold in faith?
+let q139ans = {
+  "Boldness through God's Presence": {
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+      theme: "presence",
+      tags: ["courage", "command", "strength"]
+    },
+    "Acts 4:13": {
+      text: "When they saw the courage of Peter and John and realized that they were unschooled, ordinary men, they were astonished and took note that these men had been with Jesus.",
+      theme: "transformation",
+      tags: ["boldness", "ordinary", "with Jesus"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "presence",
+      tags: ["fear", "help", "strength"]
+    }
+  },
+
+  "Speaking and Acting Boldly": {
+    "2 Timothy 1:7": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.",
+      theme: "spirit",
+      tags: ["courage", "power", "self-control"]
+    },
+    "Ephesians 6:19–20": {
+      text: "Pray also for me, that whenever I speak, words may be given me so that I will fearlessly make known the mystery of the gospel, for which I am an ambassador in chains. Pray that I may declare it fearlessly, as I should.",
+      theme: "boldness",
+      tags: ["gospel", "fearless", "prayer"]
+    },
+    "Acts 28:31": {
+      text: "He proclaimed the kingdom of God and taught about the Lord Jesus Christ—with all boldness and without hindrance!",
+      theme: "obedience",
+      tags: ["kingdom", "boldness", "witness"]
+    }
+  },
+
+  "Confidence in God's Power and Plans": {
+    "Proverbs 28:1": {
+      text: "The wicked flee though no one pursues, but the righteous are as bold as a lion.",
+      theme: "righteousness",
+      tags: ["boldness", "righteous", "fearlessness"]
+    },
+    "Romans 8:31": {
+      text: "What, then, shall we say in response to these things? If God is for us, who can be against us?",
+      theme: "help",
+      tags: ["confidence", "faith", "protection"]
+    },
+    "Philippians 1:6": {
+      text: "Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "faithful",
+      tags: ["confidence", "growth", "trust"]
+    },
+    "Hebrews 10:35–36": {
+      text: "So do not throw away your confidence; it will be richly rewarded. You need to persevere so that when you have done the will of God, you will receive what he has promised.",
+      theme: "obedience",
+      tags: ["perseverance", "reward", "promise"]
+    }
+  },
+
+  "Boldness in the Face of Opposition": {
+    "1 Corinthians 16:13": {
+      text: "Be on your guard; stand firm in the faith; be courageous; be strong.",
+      theme: "battle",
+      tags: ["faith", "courage", "strength"]
+    },
+    "Daniel 3:17–18": {
+      text: "If we are thrown into the blazing furnace, the God we serve is able to deliver us from it, and he will deliver us from Your Majesty’s hand. But even if he does not, we want you to know, Your Majesty, that we will not serve your gods or worship the image of gold you have set up.",
+      theme: "faith",
+      tags: ["courage", "devotion", "deliverance"]
+    },
+    "Psalm 27:1": {
+      text: "The Lord is my light and my salvation—whom shall I fear? The Lord is the stronghold of my life—of whom shall I be afraid?",
+      theme: "protect",
+      tags: ["fear", "trust", "safety"]
+    }
+  }
+};
+
+// How can I use the talents God gave me to bless others?
+let q140ans = {
+  "God gives gifts so we can serve others for His glory": {
+    "1 Peter 4:10": {
+      text: "As each has received a gift, use it to serve one another, as faithful stewards of God’s varied grace.",
+      theme: "service",
+      tags: ["gift", "serve", "stewardship"]
+    },
+    "Romans 12:6-8": {
+      text: "We have different gifts, according to the grace given to each of us. If your gift is prophesying, then prophesy in accordance with your faith; if it is serving, then serve; if it is teaching, then teach; if it is to encourage, then give encouragement; if it is giving, then give generously; if it is to lead, do it diligently; if it is to show mercy, do it cheerfully.",
+      theme: "gifts",
+      tags: ["diversity", "use", "encouragement"]
+    },
+    "1 Corinthians 12:4-6": {
+      text: "There are different kinds of gifts, but the same Spirit distributes them. There are different kinds of service, but the same Lord. There are different kinds of working, but in all of them and in everyone it is the same God at work.",
+      theme: "unity",
+      tags: ["diversity", "Spirit", "common good"]
+    },
+    "Ephesians 4:11-13": {
+      text: "And he gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip the saints for the work of ministry, for building up the body of Christ, until we all attain unity in the faith and knowledge of the Son of God and become mature.",
+      theme: "equipping",
+      tags: ["equip", "unity", "growth"]
+    }
+  },
+  "When we give and encourage others, gifts come alive": {
+    "1 Thessalonians 5:11": {
+      text: "Therefore encourage one another and build each other up, just as in fact you are doing.",
+      theme: "encouragement",
+      tags: ["encourage", "build up", "others"]
+    },
+    "Romans 15:2": {
+      text: "Each of us should please our neighbors for their good, to build them up.",
+      theme: "love",
+      tags: ["neighbors", "edify", "good"]
+    },
+    "Hebrews 10:24": {
+      text: "And let us consider how we may spur one another on toward love and good deeds.",
+      theme: "motivation",
+      tags: ["spur", "love", "good works"]
+    }
+  },
+  "Generosity and using skills blesses others": {
+    "Matthew 25:14-30": {
+      text: "For it will be like a man going on a journey, who called his servants and entrusted to them his property... and he who had received the one talent went and hid his master’s money... Throw that worthless servant outside.",
+      theme: "responsibility",
+      tags: ["talents", "faithfulness", "accountability"]
+    },
+    "Acts 20:35": {
+      text: "In everything I did, I showed you that by this kind of hard work we must help the weak, remembering the words the Lord Jesus himself said: 'It is more blessed to give than to receive.'",
+      theme: "generosity",
+      tags: ["give", "serve", "humility"]
+    },
+    "Proverbs 22:9": {
+      text: "The generous will themselves be blessed, for they share their food with the poor.",
+      theme: "kindness",
+      tags: ["generosity", "blessing", "help"]
+    }
+  },
+  "Passions and talents are God‑given tools to enhance others' lives": {
+    "Colossians 3:23-24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know you will receive an inheritance from the Lord as your reward.",
+      theme: "devotion",
+      tags: ["work", "heart", "purpose"]
+    },
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you, plans to prosper you and not to harm you, plans to give hope and a future.",
+      theme: "purpose",
+      tags: ["plans", "hope", "future"]
+    },
+    "Psalm 139:14": {
+      text: "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
+      theme: "identity",
+      tags: ["creation", "purpose", "wonder"]
+    },
+    "2 Timothy 1:6": {
+      text: "For this reason I remind you to fan into flame the gift of God, which is in you through the laying on of my hands.",
+      theme: "discipleship",
+      tags: ["rekindle", "gift", "steward"]
+    },
+    "1 Timothy 4:14": {
+      text: "Do not neglect your gift, which was given you through prophecy when the body of elders laid their hands on you.",
+      theme: "stewardship",
+      tags: ["neglect", "use", "gift"]
+    }
+  },
+  "Serving humbly reflects Christ’s heart": {
+    "Mark 10:45": {
+      text: "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
+      theme: "service",
+      tags: ["serve", "Christ", "sacrifice"]
+    },
+    "Galatians 5:13": {
+      text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather serve one another humbly in love.",
+      theme: "humility",
+      tags: ["serve", "freedom", "love"]
+    }
+  }
+};
+
+// How can I trust the Bible if people wrote it?
+let q141ans = {
+  "Scripture was inspired by God, not merely human effort": {
+    "2 Timothy 3:16-17": {
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness, so that the servant of God may be thoroughly equipped for every good work.",
+      theme: "word",
+      tags: ["inspired", "teaching", "righteousness"]
+    },
+    "2 Peter 1:20-21": {
+      text: "Above all, you must understand that no prophecy of Scripture came about by the prophet’s own interpretation of things. For prophecy never had its origin in the human will, but prophets, though human, spoke from God as they were carried along by the Holy Spirit.",
+      theme: "truth",
+      tags: ["Holy Spirit", "prophecy", "origin"]
+    },
+    "1 Thessalonians 2:13": {
+      text: "And we also thank God continually because, when you received the word of God, which you heard from us, you accepted it not as a human word, but as it actually is, the word of God, which is indeed at work in you who believe.",
+      theme: "faith",
+      tags: ["word", "receive", "believe"]
+    },
+    "Exodus 24:4": {
+      text: "Moses then wrote down everything the Lord had said. He got up early the next morning and built an altar at the foot of the mountain and set up twelve stone pillars representing the twelve tribes of Israel.",
+      theme: "obedience",
+      tags: ["written", "command", "Moses"]
+    },
+    "Jeremiah 30:2": {
+      text: "This is what the Lord, the God of Israel, says: 'Write in a book all the words I have spoken to you.'",
+      theme: "word",
+      tags: ["write", "revelation", "instruction"]
+    }
+  },
+  "God watches over His word to preserve it": {
+    "Isaiah 40:8": {
+      text: "The grass withers and the flowers fall, but the word of our God endures forever.",
+      theme: "eternal",
+      tags: ["unchanging", "truth", "forever"]
+    },
+    "Psalm 12:6": {
+      text: "And the words of the Lord are flawless, like silver purified in a crucible, like gold refined seven times.",
+      theme: "truth",
+      tags: ["pure", "refined", "trustworthy"]
+    },
+    "Matthew 24:35": {
+      text: "Heaven and earth will pass away, but my words will never pass away.",
+      theme: "eternal",
+      tags: ["unchanging", "firm", "Jesus"]
+    },
+    "Jeremiah 1:12": {
+      text: "The Lord said to me, 'You have seen correctly, for I am watching to see that my word is fulfilled.'",
+      theme: "faithful",
+      tags: ["watchful", "promise", "fulfill"]
+    },
+    "Psalm 119:89": {
+      text: "Your word, Lord, is eternal; it stands firm in the heavens.",
+      theme: "eternal",
+      tags: ["firm", "unchanging", "truth"]
+    }
+  },
+  "Scripture proves itself by power, prophecy, and fruit": {
+    "Hebrews 4:12": {
+      text: "For the word of God is alive and active. Sharper than any double-edged sword, it penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes of the heart.",
+      theme: "power",
+      tags: ["alive", "active", "penetrate"]
+    },
+    "John 5:39": {
+      text: "You study the Scriptures diligently because you think that in them you have eternal life. These are the very Scriptures that testify about me.",
+      theme: "jesus",
+      tags: ["testify", "eternal", "scripture"]
+    },
+    "Isaiah 55:10-11": {
+      text: "As the rain and the snow come down from heaven, and do not return to it without watering the earth and making it bud and flourish... so is my word that goes out from my mouth: It will not return to me empty, but will accomplish what I desire and achieve the purpose for which I sent it.",
+      theme: "purpose",
+      tags: ["effective", "fulfilled", "fruitful"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["light", "direction", "truth"]
+    },
+    "Romans 15:4": {
+      text: "For everything that was written in the past was written to teach us, so that through the endurance taught in the Scriptures and the encouragement they provide we might have hope.",
+      theme: "hope",
+      tags: ["written", "encouragement", "instruction"]
+    },
+    "Deuteronomy 18:22": {
+      text: "If what a prophet proclaims in the name of the Lord does not take place or come true, that is a message the Lord has not spoken. That prophet has spoken presumptuously, so do not be alarmed.",
+      theme: "truth",
+      tags: ["prophecy", "test", "discernment"]
+    }
+  },
+  "Even Jesus treated Scripture as God's Word": {
+    "Matthew 4:4": {
+      text: "Jesus answered, 'It is written: Man shall not live on bread alone, but on every word that comes from the mouth of God.'",
+      theme: "obedience",
+      tags: ["Jesus", "Scripture", "trust"]
+    },
+    "John 17:17": {
+      text: "Sanctify them by the truth; your word is truth.",
+      theme: "truth",
+      tags: ["sanctify", "truth", "word"]
+    },
+    "Luke 24:44": {
+      text: "He said to them, 'This is what I told you while I was still with you: Everything must be fulfilled that is written about me in the Law of Moses, the Prophets and the Psalms.'",
+      theme: "jesus",
+      tags: ["fulfilled", "written", "prophets"]
+    },
+    "Luke 4:17-21": {
+      text: "And the scroll of the prophet Isaiah was handed to him. Unrolling it, he found the place where it is written: 'The Spirit of the Lord is on me... Today this scripture is fulfilled in your hearing.'",
+      theme: "jesus",
+      tags: ["fulfilled", "scripture", "prophecy"]
+    }
+  }
+};
+
+// Why are there so many versions of the Bible?
+let q142ans = {
+  "The Bible was written in ancient languages and must be translated": {
+    "Nehemiah 8:8": {
+      text: "They read from the Book of the Law of God, making it clear and giving the meaning so that the people understood what was being read.",
+      theme: "understanding",
+      tags: ["translation", "clarity", "scripture"]
+    },
+    "Acts 2:6": {
+      text: "When they heard this sound, a crowd came together in bewilderment, because each one heard their own language being spoken.",
+      theme: "spirit",
+      tags: ["language", "translation", "Pentecost"]
+    },
+    "1 Corinthians 14:9": {
+      text: "So it is with you. Unless you speak intelligible words with your tongue, how will anyone know what you are saying? You will just be speaking into the air.",
+      theme: "understanding",
+      tags: ["clarity", "communication", "tongues"]
+    },
+    "Matthew 28:19": {
+      text: "Therefore go and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit.",
+      theme: "obedience",
+      tags: ["mission", "nations", "languages"]
+    }
+  },
+  "Different versions help people understand better, but the meaning stays true": {
+    "Proverbs 4:7": {
+      text: "The beginning of wisdom is this: Get wisdom. Though it cost all you have, get understanding.",
+      theme: "wisdom",
+      tags: ["understanding", "seek", "learning"]
+    },
+    "Colossians 4:4": {
+      text: "Pray that I may proclaim it clearly, as I should.",
+      theme: "truth",
+      tags: ["clarity", "gospel", "communication"]
+    },
+    "Romans 15:4": {
+      text: "For everything that was written in the past was written to teach us, so that through the endurance taught in the Scriptures and the encouragement they provide we might have hope.",
+      theme: "hope",
+      tags: ["written", "teaching", "encouragement"]
+    },
+    "2 Peter 3:15-16": {
+      text: "Bear in mind that our Lord’s patience means salvation, just as our dear brother Paul also wrote... His letters contain some things that are hard to understand, which ignorant and unstable people distort, as they do the other Scriptures, to their own destruction.",
+      theme: "truth",
+      tags: ["misunderstanding", "distortion", "warning"]
+    }
+  },
+  "God’s Word remains unchanged even when translated": {
+    "Isaiah 40:8": {
+      text: "The grass withers and the flowers fall, but the word of our God endures forever.",
+      theme: "eternal",
+      tags: ["unchanging", "truth", "word"]
+    },
+    "Psalm 119:160": {
+      text: "All your words are true; all your righteous laws are eternal.",
+      theme: "truth",
+      tags: ["truth", "eternal", "unchanging"]
+    },
+    "Matthew 24:35": {
+      text: "Heaven and earth will pass away, but my words will never pass away.",
+      theme: "eternal",
+      tags: ["unchanging", "firm", "Jesus"]
+    },
+    "John 17:17": {
+      text: "Sanctify them by the truth; your word is truth.",
+      theme: "truth",
+      tags: ["word", "truth", "sanctify"]
+    }
+  }
+};
+
+
+// Why are there so many denominations if we all use the same Bible?
+let q143ans = {
+  "Division often comes from human pride or misunderstanding, not from God's Word": {
+    "1 Corinthians 1:10-13": {
+      text: "I appeal to you, brothers and sisters, in the name of our Lord Jesus Christ, that all of you agree with one another in what you say and that there be no divisions among you, but that you be perfectly united in mind and thought. My brothers and sisters, some from Chloe’s household have informed me that there are quarrels among you. What I mean is this: One of you says, 'I follow Paul'; another, 'I follow Apollos'; another, 'I follow Cephas'; still another, 'I follow Christ.' Is Christ divided? Was Paul crucified for you? Were you baptized in the name of Paul?",
+      theme: "unity",
+      tags: ["division", "pride", "church"]
+    },
+    "James 4:1": {
+      text: "What causes fights and quarrels among you? Don’t they come from your desires that battle within you?",
+      theme: "fallenness",
+      tags: ["conflict", "division", "selfishness"]
+    },
+    "Proverbs 16:18": {
+      text: "Pride goes before destruction, a haughty spirit before a fall.",
+      theme: "humble",
+      tags: ["pride", "division", "warning"]
+    }
+  },
+  "God still uses different groups to reach different people": {
+    "Philippians 1:15-18": {
+      text: "It is true that some preach Christ out of envy and rivalry, but others out of goodwill. The latter do so out of love, knowing that I am put here for the defense of the gospel. The former preach Christ out of selfish ambition, not sincerely... But what does it matter? The important thing is that in every way, whether from false motives or true, Christ is preached. And because of this I rejoice.",
+      theme: "jesus",
+      tags: ["motives", "preaching", "Christ"]
+    },
+    "Romans 14:5": {
+      text: "One person considers one day more sacred than another; another considers every day alike. Each of them should be fully convinced in their own mind.",
+      theme: "obedience",
+      tags: ["conscience", "differences", "freedom"]
+    },
+    "1 Corinthians 12:4-6": {
+      text: "There are different kinds of gifts, but the same Spirit distributes them. There are different kinds of service, but the same Lord. There are different kinds of working, but in all of them and in everyone it is the same God at work.",
+      theme: "spirit",
+      tags: ["diversity", "unity", "purpose"]
+    }
+  },
+  "Jesus desires unity among all believers": {
+    "John 17:20-21": {
+      text: "My prayer is not for them alone. I pray also for those who will believe in me through their message, that all of them may be one, Father, just as you are in me and I am in you. May they also be in us so that the world may believe that you have sent me.",
+      theme: "unity",
+      tags: ["oneness", "prayer", "believers"]
+    },
+    "Ephesians 4:3-6": {
+      text: "Make every effort to keep the unity of the Spirit through the bond of peace. There is one body and one Spirit, just as you were called to one hope... one Lord, one faith, one baptism; one God and Father of all, who is over all and through all and in all.",
+      theme: "unity",
+      tags: ["one", "faith", "peace"]
+    },
+    "Colossians 3:14": {
+      text: "And over all these virtues put on love, which binds them all together in perfect unity.",
+      theme: "love",
+      tags: ["unity", "love", "church"]
+    },
+    "Psalm 133:1": {
+      text: "How good and pleasant it is when God’s people live together in unity!",
+      theme: "peace",
+      tags: ["unity", "joy", "fellowship"]
+    }
+  },
+  "The Bible calls us to test everything by the Word, even in disagreement": {
+    "Acts 17:11": {
+      text: "Now the Berean Jews were of more noble character than those in Thessalonica, for they received the message with great eagerness and examined the Scriptures every day to see if what Paul said was true.",
+      theme: "word",
+      tags: ["testing", "truth", "scripture"]
+    },
+    "2 Timothy 2:15": {
+      text: "Do your best to present yourself to God as one approved, a worker who does not need to be ashamed and who correctly handles the word of truth.",
+      theme: "truth",
+      tags: ["study", "scripture", "truth"]
+    },
+    "Galatians 1:6-8": {
+      text: "I am astonished that you are so quickly deserting the one who called you to live in the grace of Christ and are turning to a different gospel— which is really no gospel at all... even if we or an angel from heaven should preach a gospel other than the one we preached to you, let them be under God’s curse!",
+      theme: "truth",
+      tags: ["false teaching", "gospel", "warning"]
+    }
+  }
+};
+
+// What does healthy desire even look like?
+let q144ans = {
+  "Healthy desire is rooted in God’s will and leads to life, not destruction": {
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "desire",
+      tags: ["delight", "desire", "heart"]
+    },
+    "Proverbs 11:23": {
+      text: "The desire of the righteous ends only in good, but the hope of the wicked only in wrath.",
+      theme: "goodness",
+      tags: ["righteousness", "desire", "outcome"]
+    },
+    "1 John 2:17": {
+      text: "The world and its desires pass away, but whoever does the will of God lives forever.",
+      theme: "eternal",
+      tags: ["worldly", "desire", "will of God"]
+    },
+    "Romans 8:5": {
+      text: "Those who live according to the flesh have their minds set on what the flesh desires; but those who live in accordance with the Spirit have their minds set on what the Spirit desires.",
+      theme: "spirit",
+      tags: ["mindset", "flesh", "spirit"]
+    }
+  },
+  "God shapes and purifies our desires as we seek Him": {
+    "Philippians 2:13": {
+      text: "For it is God who works in you to will and to act in order to fulfill his good purpose.",
+      theme: "guidance",
+      tags: ["purpose", "will", "God at work"]
+    },
+    "Psalm 119:36": {
+      text: "Turn my heart toward your statutes and not toward selfish gain.",
+      theme: "obedience",
+      tags: ["heart", "direction", "selfishness"]
+    },
+    "Ezekiel 36:26": {
+      text: "I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh.",
+      theme: "transformation",
+      tags: ["heart", "new", "spirit"]
+    },
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "spirit",
+      tags: ["walk", "flesh", "desire"]
+    }
+  },
+  "Godly desire is expressed in love, purpose, and longing for good": {
+    "1 Corinthians 14:1": {
+      text: "Follow the way of love and eagerly desire gifts of the Spirit, especially prophecy.",
+      theme: "love",
+      tags: ["desire", "spiritual gifts", "love"]
+    },
+    "1 Timothy 3:1": {
+      text: "Here is a trustworthy saying: Whoever aspires to be an overseer desires a noble task.",
+      theme: "purpose",
+      tags: ["leadership", "calling", "desire"]
+    },
+    "2 Corinthians 5:2": {
+      text: "Meanwhile we groan, longing to be clothed instead with our heavenly dwelling.",
+      theme: "hope",
+      tags: ["longing", "heaven", "desire"]
+    },
+    "Psalm 84:2": {
+      text: "My soul yearns, even faints, for the courts of the Lord; my heart and my flesh cry out for the living God.",
+      theme: "seek",
+      tags: ["yearning", "worship", "desire for God"]
+    }
+  },
+  "God warns against distorted and destructive desires": {
+    "James 1:14-15": {
+      text: "But each person is tempted when they are dragged away by their own evil desire and enticed. Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
+      theme: "temptation",
+      tags: ["sin", "desire", "warning"]
+    },
+    "Titus 2:12": {
+      text: "It teaches us to say ‘No’ to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "obedience",
+      tags: ["discipline", "passion", "self-control"]
+    },
+    "Galatians 5:24": {
+      text: "Those who belong to Christ Jesus have crucified the flesh with its passions and desires.",
+      theme: "submission",
+      tags: ["crucify", "desire", "flesh"]
+    },
+    "1 Peter 2:11": {
+      text: "Dear friends, I urge you, as foreigners and exiles, to abstain from sinful desires, which wage war against your soul.",
+      theme: "battle",
+      tags: ["soul", "desire", "war"]
+    }
+  }
+};
+
+// Is it wrong to be horny if I'm not married?
+let q145ans = {
+  "Desire itself is not sin, but we must choose what to do with it": {
+    "James 1:14-15": {
+      text: "But each person is tempted when they are dragged away by their own evil desire and enticed. Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
+      theme: "temptation",
+      tags: ["desire", "sin", "choice"]
+    },
+    "Song of Songs 2:7": {
+      text: "Daughters of Jerusalem, I charge you by the gazelles and by the does of the field: Do not arouse or awaken love until it so desires.",
+      theme: "boundaries",
+      tags: ["timing", "love", "self-control"]
+    },
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "spirit",
+      tags: ["flesh", "desire", "discipline"]
+    },
+    "1 Corinthians 6:12": {
+      text: "'I have the right to do anything,' you say—but not everything is beneficial. 'I have the right to do anything'—but I will not be mastered by anything.",
+      theme: "boundaries",
+      tags: ["freedom", "self-control", "desire"]
+    }
+  },
+  "God created sexual desire, but it is meant for covenant love": {
+    "Genesis 2:24": {
+      text: "That is why a man leaves his father and mother and is united to his wife, and they become one flesh.",
+      theme: "creation",
+      tags: ["marriage", "union", "desire"]
+    },
+    "1 Corinthians 7:9": {
+      text: "But if they cannot control themselves, they should marry, for it is better to marry than to burn with passion.",
+      theme: "obedience",
+      tags: ["passion", "marriage", "self-control"]
+    },
+    "Hebrews 13:4": {
+      text: "Marriage should be honored by all, and the marriage bed kept pure, for God will judge the adulterer and all the sexually immoral.",
+      theme: "submission",
+      tags: ["marriage", "purity", "honor"]
+    },
+    "Proverbs 5:18-19": {
+      text: "May your fountain be blessed, and may you rejoice in the wife of your youth. A loving doe, a graceful deer—may her breasts satisfy you always, may you ever be intoxicated with her love.",
+      theme: "joy",
+      tags: ["marriage", "desire", "blessing"]
+    }
+  },
+  "The body is sacred, and how we use it matters to God": {
+    "1 Thessalonians 4:3-5": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality; that each of you should learn to control your own body in a way that is holy and honorable, not in passionate lust like the pagans, who do not know God.",
+      theme: "holy",
+      tags: ["honor", "body", "control"]
+    },
+    "1 Corinthians 6:19-20": {
+      text: "Do you not know that your bodies are temples of the Holy Spirit, who is in you, whom you have received from God? You are not your own; you were bought at a price. Therefore honor God with your bodies.",
+      theme: "spirit",
+      tags: ["body", "value", "honor"]
+    },
+    "Romans 12:1": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship.",
+      theme: "obedience",
+      tags: ["sacrifice", "body", "worship"]
+    },
+    "Job 31:1": {
+      text: "I made a covenant with my eyes not to look lustfully at a young woman.",
+      theme: "boundaries",
+      tags: ["eyes", "desire", "discipline"]
+    }
+  },
+  "God meets us in desire—not with shame, but with guidance and love": {
+    "Hebrews 4:15-16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["temptation", "mercy", "Jesus"]
+    },
+    "Romans 8:1": {
+      text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
+      theme: "forgiveness",
+      tags: ["freedom", "grace", "shame"]
+    },
+    "Titus 2:11-12": {
+      text: "For the grace of God has appeared that offers salvation to all people. It teaches us to say ‘No’ to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "transformation",
+      tags: ["grace", "teaching", "self-control"]
+    },
+    "Psalm 139:23-24": {
+      text: "Search me, God, and know my heart; test me and know my anxious thoughts. See if there is any offensive way in me, and lead me in the way everlasting.",
+      theme: "seek",
+      tags: ["heart", "guidance", "desire"]
+    }
+  }
+};
+
+// Why do I feel guilty for wanting love and touch?
+let q146ans = {
+  "God created us for love, connection, and touch—it's part of being human": {
+    "Genesis 2:18": {
+      text: "The Lord God said, 'It is not good for the man to be alone. I will make a helper suitable for him.'",
+      theme: "creation",
+      tags: ["companionship", "design", "human need"]
+    },
+    "Mark 10:16": {
+      text: "And he took the children in his arms, placed his hands on them and blessed them.",
+      theme: "love",
+      tags: ["touch", "gentleness", "Jesus"]
+    },
+    "Romans 12:10": {
+      text: "Be devoted to one another in love. Honor one another above yourselves.",
+      theme: "love",
+      tags: ["connection", "care", "devotion"]
+    },
+    "1 Peter 5:14": {
+      text: "Greet one another with a kiss of love. Peace to all of you who are in Christ.",
+      theme: "peace",
+      tags: ["touch", "community", "affection"]
+    }
+  },
+  "Desire for love isn’t sin—but distorted or misplaced love can hurt us": {
+    "Jeremiah 2:13": {
+      text: "'My people have committed two sins: They have forsaken me, the spring of living water, and have dug their own cisterns, broken cisterns that cannot hold water.'",
+      theme: "fallenness",
+      tags: ["longing", "misplaced trust", "emptiness"]
+    },
+    "1 John 2:15-16": {
+      text: "Do not love the world or anything in the world. If anyone loves the world, love for the Father is not in them. For everything in the world—the lust of the flesh, the lust of the eyes, and the pride of life—comes not from the Father but from the world.",
+      theme: "temptation",
+      tags: ["lust", "desire", "worldly pull"]
+    },
+    "Proverbs 14:12": {
+      text: "There is a way that appears to be right, but in the end it leads to death.",
+      theme: "wisdom",
+      tags: ["discernment", "desire", "guidance"]
+    },
+    "Ephesians 5:2": {
+      text: "And walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      theme: "walk",
+      tags: ["sacrificial love", "Christ", "guidance"]
+    }
+  },
+  "God meets our desire with truth, not shame": {
+    "Psalm 34:5": {
+      text: "Those who look to him are radiant; their faces are never covered with shame.",
+      theme: "light",
+      tags: ["freedom", "identity", "confidence"]
+    },
+    "Isaiah 54:4-5": {
+      text: "'Do not be afraid; you will not be put to shame. Do not fear disgrace; you will not be humiliated. You will forget the shame of your youth and remember no more the reproach of your widowhood. For your Maker is your husband—the Lord Almighty is his name.'",
+      theme: "love",
+      tags: ["shame", "belonging", "God as lover"]
+    },
+    "Hebrews 4:15-16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "grace",
+      tags: ["empathy", "mercy", "honesty"]
+    },
+    "Romans 8:32": {
+      text: "He who did not spare his own Son, but gave him up for us all—how will he not also, along with him, graciously give us all things?",
+      theme: "love",
+      tags: ["generosity", "trust", "desire"]
+    }
+  },
+  "God can guide our desire into life-giving expressions of love": {
+    "2 Timothy 1:7": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.",
+      theme: "spirit",
+      tags: ["desire", "control", "direction"]
+    },
+    "Romans 5:5": {
+      text: "And hope does not put us to shame, because God’s love has been poured out into our hearts through the Holy Spirit, who has been given to us.",
+      theme: "hope",
+      tags: ["love", "spirit", "healing"]
+    },
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "growth",
+      tags: ["love", "touch", "healing"]
+    },
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "seek",
+      tags: ["desire", "joy", "trust"]
+    }
+  }
+};
+
+// Why does the church act like desire is only a man's problem?
+let q147ans = {
+  "Desire is a human issue—both men and women experience it": {
+    "Song of Songs 3:1": {
+      text: "All night long on my bed I looked for the one my heart loves; I looked for him but did not find him.",
+      theme: "desire",
+      tags: ["longing", "love", "female voice"]
+    },
+    "Genesis 3:16": {
+      text: "To the woman he said, 'I will make your pains in childbearing very severe; with painful labor you will give birth to children. Your desire will be for your husband, and he will rule over you.'",
+      theme: "fallenness",
+      tags: ["desire", "power dynamic", "consequence"]
+    },
+    "Proverbs 31:10-11": {
+      text: "A wife of noble character who can find? She is worth far more than rubies. Her husband has full confidence in her and lacks nothing of value.",
+      theme: "value",
+      tags: ["trust", "love", "partnership"]
+    },
+    "Luke 7:38": {
+      text: "As she stood behind him at his feet weeping, she began to wet his feet with her tears. Then she wiped them with her hair, kissed them and poured perfume on them.",
+      theme: "devotion",
+      tags: ["emotion", "touch", "intimacy"]
+    }
+  },
+  "Jesus welcomed women with honesty and dignity—including their longing": {
+    "John 4:17-18": {
+      text: "'I have no husband,' she replied. Jesus said to her, 'You are right when you say you have no husband. The fact is, you have had five husbands, and the man you now have is not your husband. What you have just said is quite true.'",
+      theme: "truth",
+      tags: ["honesty", "relationships", "woman"]
+    },
+    "Luke 10:39": {
+      text: "She had a sister called Mary, who sat at the Lord’s feet listening to what he said.",
+      theme: "seek",
+      tags: ["attention", "choice", "devotion"]
+    },
+    "Luke 8:1-3": {
+      text: "After this, Jesus traveled about from one town and village to another, proclaiming the good news of the kingdom of God. The Twelve were with him, and also some women who had been cured of evil spirits and diseases... These women were helping to support them out of their own means.",
+      theme: "presence",
+      tags: ["partnership", "women", "discipleship"]
+    }
+  },
+  "Scripture addresses purity and discipline for *all*, not just men": {
+    "1 Corinthians 6:18-20": {
+      text: "Flee from sexual immorality. All other sins a person commits are outside the body, but whoever sins sexually, sins against their own body. Do you not know that your bodies are temples of the Holy Spirit... Therefore honor God with your bodies.",
+      theme: "obedience",
+      tags: ["body", "honor", "self-control"]
+    },
+    "Romans 13:13-14": {
+      text: "Let us behave decently, as in the daytime, not in carousing and drunkenness, not in sexual immorality and debauchery... Rather, clothe yourselves with the Lord Jesus Christ, and do not think about how to gratify the desires of the flesh.",
+      theme: "battle",
+      tags: ["discipline", "temptation", "identity"]
+    },
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "walk",
+      tags: ["spirit", "desire", "guidance"]
+    },
+    "1 Thessalonians 4:3-5": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality; that each of you should learn to control your own body in a way that is holy and honorable, not in passionate lust like the pagans, who do not know God;",
+      theme: "holy",
+      tags: ["self-control", "honor", "calling"]
+    }
+  },
+  "God sees women’s desires—not to shame them, but to heal and direct them": {
+    "Isaiah 30:18": {
+      text: "Yet the Lord longs to be gracious to you; therefore he will rise up to show you compassion. For the Lord is a God of justice. Blessed are all who wait for him!",
+      theme: "grace",
+      tags: ["longing", "healing", "desire"]
+    },
+    "Psalm 145:19": {
+      text: "He fulfills the desires of those who fear him; he hears their cry and saves them.",
+      theme: "faithful",
+      tags: ["desire", "prayer", "response"]
+    },
+    "Proverbs 13:12": {
+      text: "Hope deferred makes the heart sick, but a longing fulfilled is a tree of life.",
+      theme: "hope",
+      tags: ["longing", "joy", "fulfillment"]
+    },
+    "Isaiah 58:11": {
+      text: "The Lord will guide you always; he will satisfy your needs in a sun-scorched land and will strengthen your frame. You will be like a well-watered garden, like a spring whose waters never fail.",
+      theme: "guidance",
+      tags: ["satisfaction", "healing", "nourishment"]
+    }
+  }
+};
+
+// If David and Solomon were sexually wild, why did God still use them?
+let q148ans = {
+  "God’s mercy and calling are greater than human failure": {
+    "2 Samuel 12:13": {
+      text: "Then David said to Nathan, 'I have sinned against the Lord.' Nathan replied, 'The Lord has taken away your sin. You are not going to die.'",
+      theme: "forgiveness",
+      tags: ["mercy", "repentance", "sin"]
+    },
+    "Romans 11:29": {
+      text: "For God’s gifts and his call are irrevocable.",
+      theme: "calling",
+      tags: ["purpose", "grace", "unchanging"]
+    },
+    "Psalm 51:10-12": {
+      text: "Create in me a pure heart, O God, and renew a steadfast spirit within me. Do not cast me from your presence or take your Holy Spirit from me. Restore to me the joy of your salvation and grant me a willing spirit, to sustain me.",
+      theme: "transformation",
+      tags: ["repentance", "renewal", "presence"]
+    },
+    "1 Kings 15:5": {
+      text: "For David had done what was right in the eyes of the Lord and had not failed to keep any of the Lord’s commands all the days of his life—except in the case of Uriah the Hittite.",
+      theme: "obedience",
+      tags: ["flawed", "faithful", "God’s view"]
+    }
+  },
+  "God disciplines, but still works through flawed people": {
+    "2 Samuel 12:10-14": {
+      text: "Now, therefore, the sword will never depart from your house, because you despised me and took the wife of Uriah the Hittite to be your own... But because by doing this you have shown utter contempt for the Lord, the son born to you will die.",
+      theme: "justice",
+      tags: ["consequence", "discipline", "loss"]
+    },
+    "1 Kings 11:4": {
+      text: "As Solomon grew old, his wives turned his heart after other gods, and his heart was not fully devoted to the Lord his God, as the heart of David his father had been.",
+      theme: "fallenness",
+      tags: ["idolatry", "influence", "drift"]
+    },
+    "1 Kings 11:11": {
+      text: "So the Lord said to Solomon, 'Since this is your attitude and you have not kept my covenant and my decrees, which I commanded you, I will most certainly tear the kingdom away from you and give it to one of your subordinates.'",
+      theme: "obedience",
+      tags: ["discipline", "division", "judgment"]
+    }
+  },
+  "God’s grace does not mean He approves of sin": {
+    "Romans 6:1-2": {
+      text: "What shall we say, then? Shall we go on sinning so that grace may increase? By no means! We are those who have died to sin; how can we live in it any longer?",
+      theme: "grace",
+      tags: ["repentance", "change", "grace misuse"]
+    },
+    "Hebrews 12:6": {
+      text: "Because the Lord disciplines the one he loves, and he chastens everyone he accepts as his son.",
+      theme: "growth",
+      tags: ["love", "correction", "discipline"]
+    },
+    "Proverbs 28:13": {
+      text: "Whoever conceals their sins does not prosper, but the one who confesses and renounces them finds mercy.",
+      theme: "humble",
+      tags: ["confession", "mercy", "healing"]
+    }
+  },
+  "Their stories point to a greater King—Jesus, the faithful one": {
+    "Luke 1:32-33": {
+      text: "He will be great and will be called the Son of the Most High. The Lord God will give him the throne of his father David... and his kingdom will never end.",
+      theme: "jesus",
+      tags: ["kingdom", "promise", "lineage"]
+    },
+    "Acts 13:22-23": {
+      text: "After removing Saul, he made David their king. God testified concerning him: ‘I have found David son of Jesse, a man after my own heart...’ From this man’s descendants God has brought to Israel the Savior Jesus, as he promised.",
+      theme: "savior",
+      tags: ["fulfillment", "lineage", "grace"]
+    },
+    "Revelation 5:5": {
+      text: "Then one of the elders said to me, 'Do not weep! See, the Lion of the tribe of Judah, the Root of David, has triumphed. He is able to open the scroll and its seven seals.'",
+      theme: "glory",
+      tags: ["Jesus", "victory", "David’s root"]
+    }
+  }
+};
+
+// Why are women judged more harshly than men when they mess up?
+let q149ans = {
+  "God sees beyond human bias and shows no partiality": {
+    "Romans 2:11": {
+      text: "For God does not show favoritism.",
+      theme: "justice",
+      tags: ["equality", "fairness", "God's view"]
+    },
+    "Galatians 3:28": {
+      text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.",
+      theme: "unity",
+      tags: ["value", "identity", "oneness"]
+    },
+    "1 Samuel 16:7": {
+      text: "But the Lord said to Samuel, 'Do not consider his appearance or his height, for I have rejected him. The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.'",
+      theme: "truth",
+      tags: ["heart", "judgment", "God's vision"]
+    }
+  },
+  "Jesus treated women with honor and dignity": {
+    "John 8:10-11": {
+      text: "Jesus straightened up and asked her, 'Woman, where are they? Has no one condemned you?' 'No one, sir,' she said. 'Then neither do I condemn you,' Jesus declared. 'Go now and leave your life of sin.'",
+      theme: "mercy",
+      tags: ["compassion", "grace", "sin"]
+    },
+    "Luke 7:44-47": {
+      text: "Then he turned toward the woman and said to Simon, 'Do you see this woman? I came into your house. You did not give me any water for my feet, but she wet my feet with her tears and wiped them with her hair... Therefore, I tell you, her many sins have been forgiven—as her great love has shown. But whoever has been forgiven little loves little.'",
+      theme: "forgiveness",
+      tags: ["honor", "love", "mercy"]
+    },
+    "Mark 14:6-9": {
+      text: "'Leave her alone,' said Jesus. 'Why are you bothering her? She has done a beautiful thing to me... Truly I tell you, wherever the gospel is preached throughout the world, what she has done will also be told, in memory of her.'",
+      theme: "glory",
+      tags: ["honor", "memory", "value"]
+    }
+  },
+  "God defends and uplifts the overlooked": {
+    "Isaiah 1:17": {
+      text: "Learn to do right; seek justice. Defend the oppressed. Take up the cause of the fatherless; plead the case of the widow.",
+      theme: "justice",
+      tags: ["advocacy", "care", "protection"]
+    },
+    "Proverbs 31:8-9": {
+      text: "Speak up for those who cannot speak for themselves, for the rights of all who are destitute. Speak up and judge fairly; defend the rights of the poor and needy.",
+      theme: "voice",
+      tags: ["defense", "equity", "compassion"]
+    },
+    "James 2:1": {
+      text: "My brothers and sisters, believers in our glorious Lord Jesus Christ must not show favoritism.",
+      theme: "humble",
+      tags: ["partiality", "justice", "community"]
+    }
+  },
+  "The world may judge unfairly, but God redeems completely": {
+    "Micah 7:8-9": {
+      text: "Do not gloat over me, my enemy! Though I have fallen, I will rise. Though I sit in darkness, the Lord will be my light... He will bring me out into the light; I will see his righteousness.",
+      theme: "hope",
+      tags: ["redemption", "fallenness", "light"]
+    },
+    "Psalm 103:10-12": {
+      text: "He does not treat us as our sins deserve or repay us according to our iniquities... as far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "grace",
+      tags: ["mercy", "forgiveness", "release"]
+    },
+    "Isaiah 61:7": {
+      text: "Instead of your shame you will receive a double portion, and instead of disgrace you will rejoice in your inheritance. And so you will inherit a double portion in your land, and everlasting joy will be yours.",
+      theme: "restoration",
+      tags: ["healing", "honor", "reward"]
+    }
+  }
+};
+
+// If desire is normal, why does it feel so dangerous?
+let q150ans = {
+  "God created desire, but it must be guided by His Spirit": {
+    "Galatians 5:16-17": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh. For the flesh desires what is contrary to the Spirit, and the Spirit what is contrary to the flesh. They are in conflict with each other, so that you are not to do whatever you want.",
+      theme: "battle",
+      tags: ["desire", "spirit", "flesh"]
+    },
+    "James 1:14-15": {
+      text: "But each person is tempted when they are dragged away by their own evil desire and enticed. Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
+      theme: "temptation",
+      tags: ["desire", "danger", "sin"]
+    },
+    "1 Corinthians 10:23": {
+      text: "'I have the right to do anything,' you say—but not everything is beneficial. 'I have the right to do anything'—but not everything is constructive.",
+      theme: "boundaries",
+      tags: ["freedom", "limits", "wisdom"]
+    }
+  },
+  "Desire becomes dangerous when misdirected or idolized": {
+    "Romans 1:24-25": {
+      text: "Therefore God gave them over in the sinful desires of their hearts... They exchanged the truth about God for a lie, and worshiped and served created things rather than the Creator—who is forever praised. Amen.",
+      theme: "fallenness",
+      tags: ["idolatry", "desire", "truth"]
+    },
+    "Ecclesiastes 2:10-11": {
+      text: "I denied myself nothing my eyes desired; I refused my heart no pleasure... Yet when I surveyed all that my hands had done... everything was meaningless, a chasing after the wind; nothing was gained under the sun.",
+      theme: "truth",
+      tags: ["pleasure", "emptiness", "reflection"]
+    },
+    "Matthew 6:21": {
+      text: "For where your treasure is, there your heart will be also.",
+      theme: "heart",
+      tags: ["desire", "worship", "priority"]
+    }
+  },
+  "God is not against desire—He wants to fulfill it rightly": {
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "delight",
+      tags: ["desire", "joy", "promise"]
+    },
+    "Proverbs 13:12": {
+      text: "Hope deferred makes the heart sick, but a longing fulfilled is a tree of life.",
+      theme: "hope",
+      tags: ["longing", "fulfillment", "life"]
+    },
+    "Isaiah 55:2": {
+      text: "Why spend money on what is not bread, and your labor on what does not satisfy? Listen, listen to me, and eat what is good, and you will delight in the richest of fare.",
+      theme: "satisfaction",
+      tags: ["desire", "fulfillment", "God's provision"]
+    }
+  },
+  "Desire points to something deeper—our longing for God": {
+    "Psalm 42:1-2": {
+      text: "As the deer pants for streams of water, so my soul pants for you, my God. My soul thirsts for God, for the living God. When can I go and meet with God?",
+      theme: "seek",
+      tags: ["longing", "presence", "intimacy"]
+    },
+    "John 4:13-14": {
+      text: "Jesus answered, 'Everyone who drinks this water will be thirsty again, but whoever drinks the water I give them will never thirst... Indeed, the water I give them will become in them a spring of water welling up to eternal life.'",
+      theme: "savior",
+      tags: ["thirst", "eternal life", "fulfillment"]
+    },
+    "Philippians 3:8": {
+      text: "What is more, I consider everything a loss because of the surpassing worth of knowing Christ Jesus my Lord... I consider them garbage, that I may gain Christ.",
+      theme: "glory",
+      tags: ["desire", "worth", "Christ"]
+    }
+  }
+};
+
+// Is flirting a sin or am I just curious and human?
+let q151ans = {
+  "God sees the heart behind our actions": {
+    "Proverbs 21:2": {
+      text: "A person may think their own ways are right, but the Lord weighs the heart.",
+      theme: "truth",
+      tags: ["intentions", "motives", "discernment"]
+    },
+    "1 Samuel 16:7": {
+      text: "But the Lord said to Samuel, 'Do not consider his appearance or his height... The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.'",
+      theme: "heart",
+      tags: ["appearance", "motives", "God’s view"]
+    }
+  },
+  "Curiosity is human—but needs wisdom and self-control": {
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "obedience",
+      tags: ["choices", "intentions", "daily life"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "boundaries",
+      tags: ["wisdom", "desire", "heart"]
+    },
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "growth",
+      tags: ["self-control", "Spirit", "character"]
+    }
+  },
+  "Flirting can turn harmful if it's misleading or selfish": {
+    "1 Thessalonians 4:3-6": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality... and that in this matter no one should wrong or take advantage of a brother or sister. The Lord will punish all those who commit such sins...",
+      theme: "boundaries",
+      tags: ["purity", "respect", "intentions"]
+    },
+    "Proverbs 7:21-23": {
+      text: "With persuasive words she led him astray; she seduced him with her smooth talk... little knowing it will cost him his life.",
+      theme: "temptation",
+      tags: ["seduction", "flirting", "danger"]
+    },
+    "Ephesians 5:3-4": {
+      text: "But among you there must not be even a hint of sexual immorality, or of any kind of impurity... Nor should there be obscenity, foolish talk or coarse joking, which are out of place, but rather thanksgiving.",
+      theme: "holy",
+      tags: ["purity", "speech", "respect"]
+    }
+  },
+  "God invites us to honest curiosity—submitted to Him": {
+    "Psalm 139:23-24": {
+      text: "Search me, God, and know my heart; test me and know my anxious thoughts. See if there is any offensive way in me, and lead me in the way everlasting.",
+      theme: "seek",
+      tags: ["curiosity", "heart", "guidance"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["curiosity", "decisions", "growth"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["curiosity", "renewal", "God’s will"]
+    }
+  }
+};
+
+// What if I'm scared that obeying God means I'll be lonely forever?
+let q152ans = {
+  "God is always with you, even when others are not": {
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+      theme: "presence",
+      tags: ["companionship", "comfort", "fear"]
+    },
+    "Psalm 139:7-10": {
+      text: "Where can I go from your Spirit? Where can I flee from your presence? If I go up to the heavens, you are there... even there your hand will guide me, your right hand will hold me fast.",
+      theme: "presence",
+      tags: ["never alone", "comfort", "God’s nearness"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["fear", "support", "companionship"]
+    }
+  },
+  "Obedience leads to deeper belonging—not isolation": {
+    "John 14:23": {
+      text: "Jesus replied, 'Anyone who loves me will obey my teaching. My Father will love them, and we will come to them and make our home with them.'",
+      theme: "obedience",
+      tags: ["closeness", "relationship", "presence"]
+    },
+    "Psalm 68:6": {
+      text: "God sets the lonely in families, he leads out the prisoners with singing; but the rebellious live in a sun-scorched land.",
+      theme: "faithful",
+      tags: ["loneliness", "belonging", "community"]
+    },
+    "Romans 8:15": {
+      text: "The Spirit you received does not make you slaves, so that you live in fear again; rather, the Spirit you received brought about your adoption to sonship. And by him we cry, 'Abba, Father.'",
+      theme: "identity",
+      tags: ["belonging", "family", "God as Father"]
+    }
+  },
+  "God knows your longings—and He honors those who trust Him": {
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "desire",
+      tags: ["longing", "trust", "joy"]
+    },
+    "Isaiah 30:18": {
+      text: "Yet the Lord longs to be gracious to you; therefore he will rise up to show you compassion. For the Lord is a God of justice. Blessed are all who wait for him!",
+      theme: "hope",
+      tags: ["waiting", "love", "desire"]
+    },
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["trust", "provision", "priority"]
+    }
+  },
+  "Even in loneliness, God brings purpose and joy": {
+    "2 Timothy 4:16-17": {
+      text: "At my first defense, no one came to my support, but everyone deserted me. But the Lord stood at my side and gave me strength, so that through me the message might be fully proclaimed...",
+      theme: "faithful",
+      tags: ["purpose", "strength", "calling"]
+    },
+    "Philippians 4:11-13": {
+      text: "I have learned to be content whatever the circumstances... I can do all this through him who gives me strength.",
+      theme: "growth",
+      tags: ["contentment", "strength", "joy"]
+    },
+    "1 Peter 4:13": {
+      text: "But rejoice inasmuch as you participate in the sufferings of Christ, so that you may be overjoyed when his glory is revealed.",
+      theme: "joy",
+      tags: ["endurance", "purpose", "reward"]
+    }
+  }
+};
+
+// Am I still a God-fearing Christian if I struggle with lust?
+let q153ans = {
+  "Struggling does not disqualify you—God sees your heart": {
+    "Romans 7:22-25": {
+      text: "For in my inner being I delight in God’s law; but I see another law at work in me, waging war against the law of my mind... Who will rescue me from this body that is subject to death? Thanks be to God, who delivers me through Jesus Christ our Lord!",
+      theme: "battle",
+      tags: ["inner conflict", "sin", "grace"]
+    },
+    "Psalm 103:13-14": {
+      text: "As a father has compassion on his children, so the Lord has compassion on those who fear him; for he knows how we are formed, he remembers that we are dust.",
+      theme: "mercy",
+      tags: ["compassion", "struggle", "weakness"]
+    },
+    "1 John 1:8-9": {
+      text: "If we claim to be without sin, we deceive ourselves and the truth is not in us. If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["confession", "grace", "cleansing"]
+    }
+  },
+  "Lust is a battle—but not your identity": {
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "walk",
+      tags: ["spirit", "desire", "discipline"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new life", "identity", "freedom"]
+    },
+    "Romans 6:12-14": {
+      text: "Therefore do not let sin reign in your mortal body so that you obey its evil desires... For sin shall no longer be your master, because you are not under the law, but under grace.",
+      theme: "obedience",
+      tags: ["freedom", "grace", "desire"]
+    }
+  },
+  "Your desire to fight it is a sign of faith—not failure": {
+    "Hebrews 12:4": {
+      text: "In your struggle against sin, you have not yet resisted to the point of shedding your blood.",
+      theme: "battle",
+      tags: ["effort", "perseverance", "resistance"]
+    },
+    "Philippians 2:13": {
+      text: "For it is God who works in you to will and to act in order to fulfill his good purpose.",
+      theme: "growth",
+      tags: ["help", "desire", "obedience"]
+    },
+    "James 4:7-8": {
+      text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you. Come near to God and he will come near to you.",
+      theme: "obedience",
+      tags: ["resistance", "temptation", "faithfulness"]
+    }
+  },
+  "Lust doesn’t make God leave—you’re still invited into holiness": {
+    "1 Thessalonians 4:3-5": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality... not in passionate lust like the pagans, who do not know God;",
+      theme: "holy",
+      tags: ["sanctification", "calling", "purpose"]
+    },
+    "2 Timothy 2:22": {
+      text: "Flee the evil desires of youth and pursue righteousness, faith, love and peace, along with those who call on the Lord out of a pure heart.",
+      theme: "growth",
+      tags: ["purity", "community", "pursuit"]
+    },
+    "Titus 2:11-12": {
+      text: "For the grace of God has appeared that offers salvation to all people. It teaches us to say ‘No’ to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "grace",
+      tags: ["discipline", "strength", "hope"]
+    }
+  }
+};
+
+// Is wanting sex the same as being unholy?
+let q154ans = {
+  "Desire was created by God—it’s not sinful by itself": {
+    "Genesis 1:27-28": {
+      text: "So God created mankind in his own image, in the image of God he created them; male and female he created them. God blessed them and said to them, 'Be fruitful and increase in number; fill the earth and subdue it.'",
+      theme: "creation",
+      tags: ["design", "blessing", "sexuality"]
+    },
+    "Song of Songs 7:10": {
+      text: "I belong to my beloved, and his desire is for me.",
+      theme: "desire",
+      tags: ["romance", "intimacy", "love"]
+    },
+    "Proverbs 5:18-19": {
+      text: "May your fountain be blessed, and may you rejoice in the wife of your youth... may her breasts satisfy you always, may you ever be intoxicated with her love.",
+      theme: "joy",
+      tags: ["pleasure", "marriage", "blessing"]
+    }
+  },
+  "God calls us to steward desire—not deny it": {
+    "1 Thessalonians 4:3-5": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality... not in passionate lust like the pagans, who do not know God;",
+      theme: "holy",
+      tags: ["boundaries", "self-control", "calling"]
+    },
+    "1 Corinthians 6:18-20": {
+      text: "Flee from sexual immorality... Do you not know that your bodies are temples of the Holy Spirit, who is in you...? You are not your own; you were bought at a price. Therefore honor God with your bodies.",
+      theme: "obedience",
+      tags: ["honor", "purity", "sacrifice"]
+    },
+    "Galatians 5:24": {
+      text: "Those who belong to Christ Jesus have crucified the flesh with its passions and desires.",
+      theme: "submission",
+      tags: ["discipline", "faith", "desire"]
+    }
+  },
+  "Jesus understands temptation—yet calls us to more": {
+    "Hebrews 4:15": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin.",
+      theme: "jesus",
+      tags: ["understanding", "temptation", "hope"]
+    },
+    "Matthew 5:27-28": {
+      text: "You have heard that it was said, ‘You shall not commit adultery.’ But I tell you that anyone who looks at a woman lustfully has already committed adultery with her in his heart.",
+      theme: "obedience",
+      tags: ["heart", "purity", "lust"]
+    },
+    "Romans 12:1": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship.",
+      theme: "submission",
+      tags: ["body", "worship", "holiness"]
+    }
+  },
+  "Desire becomes holy when aligned with God’s love": {
+    "1 Corinthians 13:4-7": {
+      text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud... It always protects, always trusts, always hopes, always perseveres.",
+      theme: "love",
+      tags: ["godly desire", "purity", "truth"]
+    },
+    "Ephesians 5:3": {
+      text: "But among you there must not be even a hint of sexual immorality, or of any kind of impurity, or of greed, because these are improper for God’s holy people.",
+      theme: "holy",
+      tags: ["purity", "boundaries", "identity"]
+    },
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure... think about such things.",
+      theme: "growth",
+      tags: ["mindset", "renewal", "focus"]
+    }
+  }
+};
+
+// Does God even care about how I feel or just what I do?
+let q155ans = {
+  "God knows your thoughts and feelings deeply": {
+    "Psalm 139:1-2": {
+      text: "You have searched me, Lord, and you know me. You know when I sit and when I rise; you perceive my thoughts from afar.",
+      theme: "understanding",
+      tags: ["awareness", "thoughts", "feelings"]
+    },
+    "Hebrews 4:13": {
+      text: "Nothing in all creation is hidden from God’s sight. Everything is uncovered and laid bare before the eyes of him to whom we must give account.",
+      theme: "truth",
+      tags: ["transparency", "heart", "intimacy"]
+    },
+    "Matthew 6:8": {
+      text: "Do not be like them, for your Father knows what you need before you ask him.",
+      theme: "faithful",
+      tags: ["care", "needs", "awareness"]
+    }
+  },
+  "God feels with you and comforts you": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "mercy",
+      tags: ["comfort", "pain", "presence"]
+    },
+    "Isaiah 63:9": {
+      text: "In all their distress he too was distressed, and the angel of his presence saved them. In his love and mercy he redeemed them; he lifted them up and carried them all the days of old.",
+      theme: "love",
+      tags: ["shared pain", "deliverance", "affection"]
+    },
+    "John 11:35": {
+      text: "Jesus wept.",
+      theme: "jesus",
+      tags: ["emotion", "grief", "compassion"]
+    }
+  },
+  "God wants relationship—not just performance": {
+    "Micah 6:6-8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "walk",
+      tags: ["relationship", "humility", "heart"]
+    },
+    "1 Samuel 16:7": {
+      text: "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.",
+      theme: "truth",
+      tags: ["heart", "motive", "value"]
+    },
+    "Hosea 6:6": {
+      text: "For I desire mercy, not sacrifice, and acknowledgment of God rather than burnt offerings.",
+      theme: "obedience",
+      tags: ["intimacy", "love", "priorities"]
+    }
+  },
+  "Jesus carried both your burdens and your joy": {
+    "Matthew 11:28-30": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest... For my yoke is easy and my burden is light.",
+      theme: "help",
+      tags: ["rest", "burden", "tenderness"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "peace",
+      tags: ["worry", "care", "relief"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
+      theme: "joy",
+      tags: ["delight", "affection", "joy"]
+    }
+  }
+};
+
+// Can I be sexually pure and still express desire?
+let q156ans = {
+  "Desire itself is not sin—it depends on the heart": {
+    "Song of Songs 8:4": {
+      text: "Daughters of Jerusalem, I charge you: Do not arouse or awaken love until it so desires.",
+      theme: "desire",
+      tags: ["timing", "love", "restraint"]
+    },
+    "James 1:14-15": {
+      text: "But each person is tempted when they are dragged away by their own evil desire and enticed. Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
+      theme: "temptation",
+      tags: ["desire", "progression", "guard your heart"]
+    },
+    "1 Corinthians 6:12": {
+      text: "I have the right to do anything,” you say—but not everything is beneficial. “I have the right to do anything”—but I will not be mastered by anything.",
+      theme: "boundaries",
+      tags: ["self-control", "freedom", "discipline"]
+    }
+  },
+  "Sexual purity includes honoring God with your body and thoughts": {
+    "1 Thessalonians 4:3-5": {
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality; that each of you should learn to control your own body in a way that is holy and honorable, not in passionate lust like the pagans, who do not know God.",
+      theme: "obedience",
+      tags: ["purity", "control", "honor"]
+    },
+    "Romans 12:1": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship.",
+      theme: "devotion",
+      tags: ["body", "sacrifice", "worship"]
+    },
+    "Galatians 5:24": {
+      text: "Those who belong to Christ Jesus have crucified the flesh with its passions and desires.",
+      theme: "transformation",
+      tags: ["self-denial", "identity", "submission"]
+    }
+  },
+  "God designed desire to lead to connection—not shame": {
+    "Genesis 2:25": {
+      text: "Adam and his wife were both naked, and they felt no shame.",
+      theme: "creation",
+      tags: ["design", "purity", "freedom"]
+    },
+    "Proverbs 5:18-19": {
+      text: "May your fountain be blessed, and may you rejoice in the wife of your youth... may her breasts satisfy you always, may you ever be intoxicated with her love.",
+      theme: "love",
+      tags: ["marriage", "pleasure", "intimacy"]
+    },
+    "1 Corinthians 7:36": {
+      text: "If anyone is worried that he might not be acting honorably toward the virgin he is engaged to, and if his passions are too strong and he feels he ought to marry, he should do as he wants. He is not sinning. They should get married.",
+      theme: "guidance",
+      tags: ["honor", "passion", "marriage"]
+    }
+  },
+  "Expressing desire with purity is possible through the Spirit": {
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "growth",
+      tags: ["fruit", "Spirit", "self-control"]
+    },
+    "2 Timothy 1:7": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.",
+      theme: "spirit",
+      tags: ["strength", "discipline", "love"]
+    },
+    "Psalm 119:9-10": {
+      text: "How can a young person stay on the path of purity? By living according to your word. I seek you with all my heart; do not let me stray from your commands.",
+      theme: "obedience",
+      tags: ["purity", "Word", "faithfulness"]
+    }
+  }
+};
+
+//Can I follow Jesus and still identify as LGBTQ+?
+let q157ans = {
+  "Jesus welcomes outsiders and sinners": {
+    "Luke 5:30–32": {
+      text: "Jesus answered them, 'It is not the healthy who need a doctor, but the sick. I have not come to call the righteous, but sinners to repentance.'",
+      theme: "mercy",
+      tags: ["repentance", "welcome", "outsiders", "sinners"]
+    },
+    "Luke 7:47–50": {
+      text: "Therefore, I tell you, her many sins have been forgiven—as her great love has shown. But whoever has been forgiven little loves little... Jesus said to the woman, 'Your faith has saved you; go in peace.'",
+      theme: "forgiveness",
+      tags: ["love", "faith", "peace", "sinners"]
+    },
+    "Matthew 11:28–30": {
+      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me... For my yoke is easy and my burden is light.",
+      theme: "rest",
+      tags: ["rest", "invitation", "burden", "comfort"]
+    },
+    "John 8:10–11": {
+      text: "Jesus straightened up and asked her, 'Woman, where are they? Has no one condemned you?' 'No one, sir,' she said. 'Then neither do I condemn you,' Jesus declared. 'Go now and leave your life of sin.'",
+      theme: "mercy",
+      tags: ["forgiveness", "compassion", "grace", "sin"]
+    },
+    "Matthew 9:12–13": {
+      text: "'It is not the healthy who need a doctor, but the sick. But go and learn what this means: I desire mercy, not sacrifice. For I have not come to call the righteous, but sinners.'",
+      theme: "mercy",
+      tags: ["mercy", "sinners", "call", "welcome"]
+    },
+    "Isaiah 56:3–5": {
+      text: "Let no foreigner who is bound to the Lord say, 'The Lord will surely exclude me from his people.' And let no eunuch complain, 'I am only a dry tree.' For this is what the Lord says: 'To the eunuchs who keep my Sabbaths... I will give them an everlasting name that will endure forever.'",
+      theme: "inclusion",
+      tags: ["foreigners", "eunuchs", "welcome", "promise"]
+    },
+    "Acts 8:36–38": {
+      text: "As they traveled along the road, they came to some water and the eunuch said, 'Look, here is water. What can stand in the way of my being baptized?'... And both Philip and the eunuch went down into the water and Philip baptized him.",
+      theme: "baptism",
+      tags: ["eunuch", "faith", "baptism", "acceptance"]
+    }
+  },
+
+  "God transforms identity over time": {
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "transformation",
+      tags: ["new", "identity", "change", "renewal"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
+      theme: "identity",
+      tags: ["identity", "christ", "new", "life"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      theme: "renewal",
+      tags: ["mind", "transformation", "change", "growth"]
+    },
+    "Colossians 3:9–10": {
+      text: "Do not lie to each other, since you have taken off your old self with its practices and have put on the new self, which is being renewed in knowledge in the image of its Creator.",
+      theme: "growth",
+      tags: ["renewal", "knowledge", "self", "image"]
+    },
+    "1 Corinthians 6:11": {
+      text: "And that is what some of you were. But you were washed, you were sanctified, you were justified in the name of the Lord Jesus Christ...",
+      theme: "forgiveness",
+      tags: ["washed", "justified", "changed", "past"]
+    },
+    "John 3:5–6": {
+      text: "Jesus answered, 'Very truly I tell you, no one can enter the kingdom of God unless they are born of water and the Spirit... Flesh gives birth to flesh, but the Spirit gives birth to spirit.'",
+      theme: "rebirth",
+      tags: ["born", "spirit", "transformation", "kingdom"]
+    },
+    "Ephesians 2:4–5": {
+      text: "But because of his great love for us, God, who is rich in mercy, made us alive with Christ even when we were dead in transgressions...",
+      theme: "mercy",
+      tags: ["alive", "mercy", "love", "rescue"]
+    }
+  },
+
+  "Following Jesus means a new identity in Christ is formed": {
+    "Luke 9:23–24": {
+      text: "Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me. For whoever wants to save their life will lose it...",
+      theme: "obedience",
+      tags: ["deny", "follow", "cross", "life"]
+    },
+    "Luke 14:33": {
+      text: "In the same way, those of you who do not give up everything you have cannot be my disciples.",
+      theme: "submission",
+      tags: ["surrender", "discipleship", "cost", "everything"]
+    },
+    "Matthew 10:38–39": {
+      text: "Whoever does not take up their cross and follow me is not worthy of me. Whoever finds their life will lose it...",
+      theme: "obedience",
+      tags: ["cross", "follow", "worthy", "life"]
+    },
+    "Matthew 16:24–26": {
+      text: "Whoever wants to be my disciple must deny themselves... What good will it be for someone to gain the whole world, yet forfeit their soul?",
+      theme: "submission",
+      tags: ["world", "soul", "deny", "follow"]
+    },
+    "Philippians 3:7–8": {
+      text: "But whatever were gains to me I now consider loss for the sake of Christ... I consider them garbage, that I may gain Christ.",
+      theme: "transformation",
+      tags: ["loss", "gain", "value", "christ"]
+    },
+    "Galatians 5:24": {
+      text: "Those who belong to Christ Jesus have crucified the flesh with its passions and desires.",
+      theme: "battle",
+      tags: ["flesh", "passion", "desire", "crucify"]
+    }
+  },
+  "Jesus redefines family and belonging": {
+  "Mark 3:33–35": {
+    text: "'Who are my mother and my brothers?' he asked. Then he looked at those seated in a circle around him and said, 'Here are my mother and my brothers! Whoever does God’s will is my brother and sister and mother.'",
+    theme: "belonging",
+    tags: ["family", "will", "community", "new"]
+  },
+  "Luke 14:26–27": {
+    text: "If anyone comes to me and does not hate father and mother, wife and children... yes, even their own life—such a person cannot be my disciple. And whoever does not carry their cross and follow me cannot be my disciple.",
+    theme: "obedience",
+    tags: ["follow", "cost", "family", "disciple"]
+  },
+  "Galatians 3:28": {
+    text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.",
+    theme: "unity",
+    tags: ["equality", "identity", "oneness", "belonging"]
+  }
+},
+"God shapes who we are, not what we feel": {
+  "Jeremiah 17:9–10": {
+    text: "The heart is deceitful above all things and beyond cure. Who can understand it? 'I the Lord search the heart and examine the mind...'",
+    theme: "truth",
+    tags: ["heart", "desire", "truth", "search"]
+  },
+  "Proverbs 3:5–6": {
+    text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him...",
+    theme: "guidance",
+    tags: ["trust", "understanding", "submit", "path"]
+  },
+  "Romans 8:5–6": {
+    text: "Those who live according to the flesh have their minds set on what the flesh desires... but the mind governed by the Spirit is life and peace.",
+    theme: "spirit",
+    tags: ["flesh", "spirit", "desire", "peace"]
+  },
+  "Psalm 139:13–16": {
+    text: "For you created my inmost being; you knit me together in my mother’s womb... all the days ordained for me were written in your book before one of them came to be.",
+    theme: "creation",
+    tags: ["identity", "design", "womb", "purpose"]
+  }
+},
+"Jesus responds to sincere questions, not just answers": {
+  "John 3:1–10": {
+    text: "Now there was a Pharisee named Nicodemus... He came to Jesus at night and said, 'Rabbi, we know that you are a teacher who has come from God.'... Jesus replied, 'Very truly I tell you, no one can see the kingdom of God unless they are born again.'",
+    theme: "understanding",
+    tags: ["question", "night", "search", "spiritual"]
+  },
+  "Mark 10:17–22": {
+    text: "As Jesus started on his way, a man ran up to him... 'Good teacher, what must I do to inherit eternal life?'... Jesus looked at him and loved him. 'One thing you lack... Then come, follow me.'",
+    theme: "guidance",
+    tags: ["honest", "lack", "follow", "love"]
+  },
+  "John 4:7–26": {
+    text: "Jesus meets a Samaritan woman at a well. She has had five husbands. Yet Jesus speaks with her, reveals himself as Messiah, and entrusts her with a message that changes her whole village.",
+    theme: "transformation",
+    tags: ["outsider", "woman", "question", "reveal"]
+  }
+},
+"God welcomes the sexual minority: eunuchs": {
+  explanation: "Eunuchs were biologically or socially outside sexual norms in biblical times—often infertile, castrated, or sexually ambiguous. Many scholars consider them a symbol for people whose bodies or desires set them apart. God still honors and includes them.",
+  "Isaiah 56:3–5": {
+    text: "Let no foreigner who is bound to the Lord say, 'The Lord will surely exclude me from his people.' And let no eunuch complain, 'I am only a dry tree.' For this is what the Lord says: 'To the eunuchs who keep my Sabbaths... I will give them an everlasting name that will endure forever.'",
+    theme: "inclusion",
+    tags: ["eunuchs", "foreigners", "welcome", "promise"]
+  },
+  "Acts 8:36–38": {
+    text: "As they traveled along the road, they came to some water and the eunuch said, 'Look, here is water. What can stand in the way of my being baptized?'... And both Philip and the eunuch went down into the water and Philip baptized him.",
+    theme: "baptism",
+    tags: ["eunuch", "faith", "baptism", "acceptance"]
+  },
+  "Matthew 19:12": {
+    text: "For there are eunuchs who were born that way, and there are eunuchs who have been made eunuchs by others—and there are those who choose to live like eunuchs for the sake of the kingdom of heaven. The one who can accept this should accept it.",
+    theme: "identity",
+    tags: ["eunuchs", "kingdom", "body", "calling"]
+  }
+}
+}
+
+// Can a Christian be influenced by demons?
+let q158ans = {
+  "Yes. Christians can be influenced—not possessed—but tempted, harassed, or deceived if they open doors through sin, fear, or ignorance.": {
+    "Ephesians 4:26-27": {
+      text: "Be angry and do not sin; do not let the sun go down on your anger, and give no opportunity to the devil.",
+      theme: "boundaries",
+      tags: ["influence", "open doors", "anger", "entry point"]
+    },
+    "2 Corinthians 11:3": {
+      text: "But I am afraid that as the serpent deceived Eve by his cunning, your thoughts will be led astray from a sincere and pure devotion to Christ.",
+      theme: "temptation",
+      tags: ["deception", "mind", "influence", "purity", "thought life"]
+    },
+    "Galatians 3:1": {
+      text: "O foolish Galatians! Who has bewitched you? It was before your eyes that Jesus Christ was publicly portrayed as crucified.",
+      theme: "truth",
+      tags: ["bewitched", "misled", "confusion", "deception"]
+    },
+    "James 3:15-16": {
+      text: "This is not the wisdom that comes down from above, but is earthly, unspiritual, demonic. For where jealousy and selfish ambition exist, there will be disorder and every vile practice.",
+      theme: "wisdom",
+      tags: ["demonic", "ambition", "disorder", "false wisdom"]
+    }
+  },
+
+  "Even believers can be attacked or tormented when they step outside God's covering or harbor sin, but Christ gives authority to resist.": {
+    "1 Peter 5:8-9": {
+      text: "Be sober-minded; be watchful. Your adversary the devil prowls around like a roaring lion, seeking someone to devour. Resist him, firm in your faith, knowing that the same kinds of suffering are being experienced by your brotherhood throughout the world.",
+      theme: "battle",
+      tags: ["attack", "spiritual warfare", "watchful", "resist", "lion"]
+    },
+    "2 Corinthians 2:10-11": {
+      text: "Anyone whom you forgive, I also forgive. Indeed, what I have forgiven, if I have forgiven anything, has been for your sake in the presence of Christ, so that we would not be outwitted by Satan; for we are not ignorant of his designs.",
+      theme: "forgiveness",
+      tags: ["outwitted", "strategy", "forgiveness", "reconciliation"]
+    },
+    "Acts 5:3": {
+      text: "But Peter said, 'Ananias, why has Satan filled your heart to lie to the Holy Spirit and to keep back for yourself part of the proceeds of the land?'",
+      theme: "truth",
+      tags: ["filled heart", "lie", "temptation", "Christian"]
+    }
+  },
+
+  "God equips believers with armor, but if ignored, they can become spiritually vulnerable. Influence isn’t always obvious—it can be subtle.": {
+    "Ephesians 6:11-12": {
+      text: "Put on the whole armor of God, that you may be able to stand against the schemes of the devil. For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places.",
+      theme: "protect",
+      tags: ["armor", "schemes", "spiritual war", "evil forces"]
+    },
+    "1 Timothy 4:1": {
+      text: "Now the Spirit expressly says that in later times some will depart from the faith by devoting themselves to deceitful spirits and teachings of demons,",
+      theme: "deception",
+      tags: ["false teaching", "spirits", "departing", "influence"]
+    },
+    "Matthew 16:23": {
+      text: "But he turned and said to Peter, 'Get behind me, Satan! You are a hindrance to me. For you are not setting your mind on the things of God, but on the things of man.'",
+      theme: "submission",
+      tags: ["spoken through", "mindset", "hindrance", "rebuke"]
+    }
+  },
+  
+  "Demons cannot possess a Christian, but they can exploit weak areas, lies we believe, or emotions we don't surrender to God.": {
+    "2 Timothy 2:25-26": {
+      text: "God may perhaps grant them repentance leading to a knowledge of the truth, and they may come to their senses and escape from the snare of the devil, after being captured by him to do his will.",
+      theme: "transformation",
+      tags: ["repentance", "snare", "captivity", "escape"]
+    },
+    "Luke 22:31-32": {
+      text: "Simon, Simon, behold, Satan demanded to have you, that he might sift you like wheat, but I have prayed for you that your faith may not fail. And when you have turned again, strengthen your brothers.",
+      theme: "help",
+      tags: ["sifting", "intercession", "testing", "restoration"]
+    },
+    "John 13:2": {
+      text: "During supper, when the devil had already put it into the heart of Judas Iscariot, Simon's son, to betray him,",
+      theme: "fallenness",
+      tags: ["influence", "thoughts", "betrayal", "entry"]
+    }
+  }
+};
+
+// What lies does the enemy try to tell me?
+let q159ans = {
+  "The enemy lies to make us doubt God's goodness and twist what God says. It's the same tactic from Eden: 'Did God really say?'": {
+    "Genesis 3:1": {
+      text: "Now the serpent was more crafty than any other beast of the field that the Lord God had made. He said to the woman, 'Did God actually say, \"You shall not eat of any tree in the garden?\"'",
+      theme: "fallenness",
+      tags: ["doubt", "twisting", "craftiness", "temptation"]
+    },
+    "John 8:44": {
+      text: "You are of your father the devil, and your will is to do your father's desires. He was a murderer from the beginning, and does not stand in the truth, because there is no truth in him. When he lies, he speaks out of his own character, for he is a liar and the father of lies.",
+      theme: "truth",
+      tags: ["lies", "nature", "identity", "deceiver"]
+    }
+  },
+
+  "The enemy accuses us constantly to make us feel unworthy, ashamed, or disqualified from God’s love.": {
+    "Revelation 12:10": {
+      text: "And I heard a loud voice in heaven, saying, 'Now the salvation and the power and the kingdom of our God and the authority of his Christ have come, for the accuser of our brothers has been thrown down, who accuses them day and night before our God.'",
+      theme: "salvation",
+      tags: ["accusation", "shame", "identity", "victory"]
+    },
+    "Zechariah 3:1": {
+      text: "Then he showed me Joshua the high priest standing before the angel of the Lord, and Satan standing at his right hand to accuse him.",
+      theme: "mercy",
+      tags: ["accusation", "judgment", "guilt", "spiritual battle"]
+    }
+  },
+
+  "The enemy lies by making sin look harmless or good—minimizing its danger and consequences.": {
+    "2 Corinthians 11:14": {
+      text: "And no wonder, for even Satan disguises himself as an angel of light.",
+      theme: "discernment",
+      tags: ["deception", "appearance", "misleading", "discernment"]
+    },
+    "Proverbs 14:12": {
+      text: "There is a way that seems right to a man, but its end is the way to death.",
+      theme: "wisdom",
+      tags: ["false path", "discernment", "consequence", "self-deception"]
+    }
+  },
+
+  "The enemy tries to convince us that God won’t forgive us, or that we’ve messed up too badly to come back.": {
+    "Psalm 103:10-12": {
+      text: "He does not deal with us according to our sins, nor repay us according to our iniquities. For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him; as far as the east is from the west, so far does he remove our transgressions from us.",
+      theme: "forgiveness",
+      tags: ["grace", "mercy", "cleansing", "guilt"]
+    },
+    "Micah 7:18-19": {
+      text: "Who is a God like you, pardoning iniquity and passing over transgression for the remnant of his inheritance? He does not retain his anger forever, because he delights in steadfast love. He will again have compassion on us; he will tread our iniquities underfoot. You will cast all our sins into the depths of the sea.",
+      theme: "grace",
+      tags: ["forgiveness", "compassion", "mercy", "love"]
+    }
+  },
+
+  "The enemy tells us we are alone, but God says He is always with us—never abandoning us in battle.": {
+    "Deuteronomy 31:6": {
+      text: "Be strong and courageous. Do not fear or be in dread of them, for it is the Lord your God who goes with you. He will not leave you or forsake you.",
+      theme: "presence",
+      tags: ["fear", "comfort", "never alone", "strength"]
+    },
+    "Isaiah 41:10": {
+      text: "Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you, I will uphold you with my righteous right hand.",
+      theme: "help",
+      tags: ["fear", "presence", "support", "identity"]
+    }
+  },
+
+  "The enemy says we must earn God's love, but Scripture shows that love was given while we were still sinners.": {
+    "Romans 5:8": {
+      text: "But God shows his love for us in that while we were still sinners, Christ died for us.",
+      theme: "love",
+      tags: ["grace", "performance", "acceptance", "identity"]
+    },
+    "Ephesians 2:8-9": {
+      text: "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast.",
+      theme: "grace",
+      tags: ["performance", "gift", "salvation", "faith"]
+    }
+  },
+
+  "The enemy wants us to believe we’re stuck or can’t change, but God promises transformation by His Spirit.": {
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come.",
+      theme: "transformation",
+      tags: ["identity", "new life", "freedom", "renewal"]
+    },
+    "Philippians 1:6": {
+      text: "And I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ.",
+      theme: "growth",
+      tags: ["process", "transformation", "hope", "assurance"]
+    }
+  },
+
+  "The enemy lies by making us feel hopeless and buried in despair, but God always provides a way of escape and renewal.": {
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you that is not common to man. God is faithful, and he will not let you be tempted beyond your ability, but with the temptation he will also provide the way of escape, that you may be able to endure it.",
+      theme: "guidance",
+      tags: ["temptation", "escape", "hope", "faithfulness"]
+    },
+    "Psalm 34:18": {
+      text: "The Lord is near to the brokenhearted and saves the crushed in spirit.",
+      theme: "mercy",
+      tags: ["despair", "comfort", "rescue", "presence"]
+    }
+  },
+
+  "The enemy wants us to question our identity, but God clearly names us: chosen, holy, loved, and His.": {
+    "1 Peter 2:9": {
+      text: "But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession, that you may proclaim the excellencies of him who called you out of darkness into his marvelous light.",
+      theme: "identity",
+      tags: ["chosen", "belonging", "value", "calling"]
+    },
+    "Romans 8:16-17": {
+      text: "The Spirit himself bears witness with our spirit that we are children of God, and if children, then heirs—heirs of God and fellow heirs with Christ, provided we suffer with him in order that we may also be glorified with him.",
+      theme: "family",
+      tags: ["identity", "inheritance", "belonging", "truth"]
+    }
+  }
+};
+
+// What does victory over darkness actually look like in everyday life?
+let q160ans = {
+
+  "Victory looks like walking in light and truth daily—not hiding, not being ruled by shame.": {
+    "1 John 1:7": {
+      text: "But if we walk in the light, as he is in the light, we have fellowship with one another, and the blood of Jesus his Son cleanses us from all sin.",
+      theme: "light",
+      tags: ["freedom", "cleansing", "fellowship", "truth"]
+    },
+    "Ephesians 5:8-9": {
+      text: "For at one time you were darkness, but now you are light in the Lord. Walk as children of light (for the fruit of light is found in all that is good and right and true).",
+      theme: "transformation",
+      tags: ["identity", "goodness", "truth", "light"]
+    }
+  },
+
+  "Victory shows up as peace, even in chaos—not absence of storms, but calm within them.": {
+    "John 14:27": {
+      text: "Peace I leave with you; my peace I give to you. Not as the world gives do I give to you. Let not your hearts be troubled, neither let them be afraid.",
+      theme: "peace",
+      tags: ["fear", "strength", "calm", "security"]
+    },
+    "Philippians 4:7": {
+      text: "And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["guarded", "unshaken", "faith", "trust"]
+    }
+  },
+
+  "Victory is when we’re no longer confused by lies but anchored in truth and spiritual discernment.": {
+    "Hebrews 5:14": {
+      text: "But solid food is for the mature, for those who have their powers of discernment trained by constant practice to distinguish good from evil.",
+      theme: "wisdom",
+      tags: ["discernment", "maturity", "clarity", "truth"]
+    },
+    "John 8:31-32": {
+      text: "So Jesus said to the Jews who had believed him, 'If you abide in my word, you are truly my disciples, and you will know the truth, and the truth will set you free.'",
+      theme: "truth",
+      tags: ["freedom", "abide", "clarity", "victory"]
+    }
+  },
+
+  "Victory looks like resisting temptation—not perfectly, but steadily and with strength from God.": {
+    "James 4:7": {
+      text: "Submit yourselves therefore to God. Resist the devil, and he will flee from you.",
+      theme: "battle",
+      tags: ["resistance", "strength", "authority", "warfare"]
+    },
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you that is not common to man. God is faithful, and he will not let you be tempted beyond your ability...",
+      theme: "guidance",
+      tags: ["temptation", "faithfulness", "overcoming", "victory"]
+    }
+  },
+
+  "Victory is knowing who you are in Christ and living like it—not fearfully, but boldly.": {
+    "Romans 8:37": {
+      text: "No, in all these things we are more than conquerors through him who loved us.",
+      theme: "authority",
+      tags: ["conqueror", "boldness", "security", "identity"]
+    },
+    "Galatians 2:20": {
+      text: "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me...",
+      theme: "identity",
+      tags: ["Christ in me", "strength", "new life", "boldness"]
+    }
+  },
+ 
+  "Victory shows up in unexplainable joy—even when life is hard, we’re not crushed.": {
+    "Nehemiah 8:10": {
+      text: "Then he said to them, 'Go your way. Eat the fat and drink sweet wine and send portions to anyone who has nothing ready... for the joy of the Lord is your strength.'",
+      theme: "strength",
+      tags: ["joy", "stability", "inner strength"]
+    },
+    "1 Peter 1:8": {
+      text: "Though you have not seen him, you love him. Though you do not now see him, you believe in him and rejoice with joy that is inexpressible and filled with glory.",
+      theme: "hope",
+      tags: ["joy", "faith", "love", "praise"]
+    }
+  },
+
+  "Victory bears fruit—it’s not just survival, but a changed life full of good things.": {
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control...",
+      theme: "growth",
+      tags: ["fruit", "transformation", "Spirit", "evidence"]
+    },
+    "John 15:5": {
+      text: "I am the vine; you are the branches. Whoever abides in me and I in him, he it is that bears much fruit...",
+      theme: "devotion",
+      tags: ["abide", "fruitfulness", "connection", "victory"]
+    }
+  },
+
+  "Victory means we don’t give up—darkness doesn’t win because we don’t stop trusting.": {
+    "2 Corinthians 4:8-9": {
+      text: "We are afflicted in every way, but not crushed; perplexed, but not driven to despair; persecuted, but not forsaken; struck down, but not destroyed;",
+      theme: "battle",
+      tags: ["perseverance", "faith", "spiritual warfare", "resilience"]
+    },
+    "Hebrews 10:39": {
+      text: "But we are not of those who shrink back and are destroyed, but of those who have faith and preserve their souls.",
+      theme: "faith",
+      tags: ["endurance", "boldness", "faith", "identity"]
+    }
+  },
+
+  "Victory means being Spirit-led—not just avoiding darkness, but being guided by light.": {
+    "Romans 8:14": {
+      text: "For all who are led by the Spirit of God are sons of God.",
+      theme: "guidance",
+      tags: ["Holy Spirit", "identity", "direction", "light"]
+    },
+    "Isaiah 30:21": {
+      text: "And your ears shall hear a word behind you, saying, 'This is the way, walk in it,' when you turn to the right or when you turn to the left.",
+      theme: "guidance",
+      tags: ["discernment", "clarity", "spiritual leading"]
+    }
+  }
+
+};
+
+// What weapons has God given me to fight spiritual darkness?
+let q161ans = {
+
+  "God gives us armor for defense and a sword for offense—truth, faith, salvation, the Word, and more.": {
+    "Ephesians 6:11": {
+      text: "Put on the whole armor of God, that you may be able to stand against the schemes of the devil.",
+      theme: "protect",
+      tags: ["armor", "resist", "spiritual battle", "stand firm"]
+    },
+    "Ephesians 6:17": {
+      text: "And take the helmet of salvation, and the sword of the Spirit, which is the word of God,",
+      theme: "word",
+      tags: ["weapon", "Spirit", "Bible", "truth"]
+    }
+  },
+
+  "The Word of God is a living weapon—it exposes darkness and strengthens us from within.": {
+    "Hebrews 4:12": {
+      text: "For the word of God is living and active, sharper than any two-edged sword, piercing to the division of soul and of spirit...",
+      theme: "truth",
+      tags: ["Bible", "weapon", "discernment", "spiritual warfare"]
+    },
+    "Matthew 4:4": {
+      text: "But he answered, 'It is written, Man shall not live by bread alone, but by every word that comes from the mouth of God.'",
+      theme: "word",
+      tags: ["Jesus", "resistance", "truth", "temptation"]
+    }
+  },
+
+  "Praise is a weapon that silences the enemy—it shifts the atmosphere and lifts our faith.": {
+    "2 Chronicles 20:22": {
+      text: "And when they began to sing and praise, the Lord set an ambush against the men... who had come against Judah, so that they were routed.",
+      theme: "battle",
+      tags: ["praise", "worship", "victory", "faith"]
+    },
+    "Psalm 8:2": {
+      text: "Out of the mouth of babies and infants, you have established strength because of your foes, to still the enemy and the avenger.",
+      theme: "power",
+      tags: ["praise", "strength", "enemy silenced"]
+    }
+  },
+
+  "Prayer, especially Spirit-led prayer, is constant communication that unleashes God’s power.": {
+    "Ephesians 6:18": {
+      text: "Praying at all times in the Spirit, with all prayer and supplication. To that end, keep alert with all perseverance...",
+      theme: "spirit",
+      tags: ["prayer", "alert", "power", "connection"]
+    },
+    "James 5:16": {
+      text: "The prayer of a righteous person has great power as it is working.",
+      theme: "power",
+      tags: ["prayer", "righteousness", "effectiveness"]
+    }
+  },
+ 
+  "Faith is a shield that blocks attacks—we don’t have to see to believe, we trust God is fighting for us.": {
+    "Ephesians 6:16": {
+      text: "In all circumstances take up the shield of faith, with which you can extinguish all the flaming darts of the evil one;",
+      theme: "faith",
+      tags: ["shield", "faith", "resistance", "protection"]
+    },
+    "1 John 5:4": {
+      text: "For everyone who has been born of God overcomes the world. And this is the victory that has overcome the world—our faith.",
+      theme: "victory",
+      tags: ["faith", "overcome", "confidence", "spiritual battle"]
+    }
+  },
+
+  "Peace is both a weapon and a guard—it anchors us in chaos and protects our mind and heart.": {
+    "Philippians 4:7": {
+      text: "And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["peace", "guard", "mind", "heart", "security"]
+    },
+    "Isaiah 26:3": {
+      text: "You keep him in perfect peace whose mind is stayed on you, because he trusts in you.",
+      theme: "protect",
+      tags: ["peace", "trust", "mind", "focus"]
+    }
+  },
+
+  "Fasting humbles us and sharpens our focus—it breaks strongholds and clears spiritual fog.": {
+    "Matthew 17:21 (KJV)": {
+      text: "Howbeit this kind goeth not out but by prayer and fasting.",
+      theme: "battle",
+      tags: ["fasting", "deliverance", "spiritual authority"]
+    },
+    "Joel 2:12": {
+      text: "'Yet even now,' declares the Lord, 'return to me with all your heart, with fasting, with weeping, and with mourning;'",
+      theme: "seek",
+      tags: ["repentance", "fasting", "return to God"]
+    }
+  },
+
+  "Community and godly counsel strengthen us—we're never meant to fight alone.": {
+    "Ecclesiastes 4:12": {
+      text: "And though a man might prevail against one who is alone, two will withstand him—a threefold cord is not quickly broken.",
+      theme: "friend",
+      tags: ["community", "support", "strength", "unity"]
+    },
+    "James 5:14": {
+      text: "Is anyone among you sick? Let him call for the elders of the church, and let them pray over him...",
+      theme: "help",
+      tags: ["church", "healing", "prayer", "unity"]
+    }
+  },
+  "The name of Jesus has authority over every dark power—when we call on Him, darkness has to back down.": {
+    "Philippians 2:10": {
+      text: "So that at the name of Jesus every knee should bow, in heaven and on earth and under the earth,",
+      theme: "authority",
+      tags: ["name of Jesus", "power", "spiritual realm", "bow"]
+    },
+    "Luke 10:17": {
+      text: "The seventy-two returned with joy, saying, 'Lord, even the demons are subject to us in your name!'",
+      theme: "victory",
+      tags: ["Jesus", "authority", "demons", "spiritual battle"]
+    }
+  },
+
+  "Discernment is a quiet but mighty weapon—it helps us detect deception before it takes root.": {
+    "Hebrews 5:14": {
+      text: "But solid food is for the mature, for those who have their powers of discernment trained by constant practice to distinguish good from evil.",
+      theme: "wisdom",
+      tags: ["discernment", "maturity", "good vs evil", "spiritual senses"]
+    },
+    "1 John 4:1": {
+      text: "Beloved, do not believe every spirit, but test the spirits to see whether they are from God...",
+      theme: "spirit",
+      tags: ["test spirits", "discern", "truth", "false teaching"]
+    }
+  },
+
+  "Confession breaks darkness by bringing hidden things into the light—it weakens shame and strengthens freedom.": {
+    "James 5:16": {
+      text: "Therefore, confess your sins to one another and pray for one another, that you may be healed...",
+      theme: "forgiveness",
+      tags: ["confession", "healing", "community", "freedom"]
+    },
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.",
+      theme: "grace",
+      tags: ["confession", "cleansing", "truth", "mercy"]
+    }
+  },
+
+  "Obedience may seem simple, but it disarms darkness and invites God’s power to work freely in us.": {
+    "James 4:7": {
+      text: "Submit yourselves therefore to God. Resist the devil, and he will flee from you.",
+      theme: "obedience",
+      tags: ["submit", "resist", "flee", "devil", "power"]
+    },
+    "John 14:23": {
+      text: "Jesus answered him, 'If anyone loves me, he will keep my word, and my Father will love him, and we will come to him and make our home with him.'",
+      theme: "walk",
+      tags: ["obedience", "love", "presence", "abide"]
+    }
+  }
+};
+
+// What is the difference between conviction and accusation?
+let q162ans = {
+
+  "Conviction comes from the Holy Spirit and leads us toward grace, while accusation comes from the enemy and pushes us into shame.": {
+    "John 16:8": {
+      text: "And when he comes, he will convict the world concerning sin and righteousness and judgment:",
+      theme: "spirit",
+      tags: ["conviction", "Holy Spirit", "truth", "direction"]
+    },
+    "Revelation 12:10": {
+      text: "And I heard a loud voice in heaven, saying, 'Now the salvation and the power and the kingdom of our God and the authority of his Christ have come, for the accuser of our brothers has been thrown down, who accuses them day and night before our God.'",
+      theme: "battle",
+      tags: ["accuser", "Satan", "shame", "constant lies"]
+    }
+  },
+
+  "Accusation beats you down with guilt and fear. Conviction is God’s invitation to repent and walk in freedom.": {
+    "Romans 8:1": {
+      text: "There is therefore now no condemnation for those who are in Christ Jesus.",
+      theme: "grace",
+      tags: ["no condemnation", "freedom", "Christ", "hope"]
+    },
+    "2 Corinthians 7:10": {
+      text: "For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death.",
+      theme: "repentance",
+      tags: ["godly sorrow", "repentance", "regret", "difference"]
+    }
+  },
+
+  "God corrects to restore; Satan accuses to destroy. Knowing the difference helps us run to God, not from Him.": {
+    "Proverbs 3:11-12": {
+      text: "My son, do not despise the Lord’s discipline or be weary of his reproof, for the Lord reproves him whom he loves, as a father the son in whom he delights.",
+      theme: "love",
+      tags: ["discipline", "correction", "love", "restoration"]
+    },
+    "Micah 7:8": {
+      text: "Rejoice not over me, O my enemy; when I fall, I shall rise; when I sit in darkness, the Lord will be a light to me.",
+      theme: "hope",
+      tags: ["restoration", "light", "fall", "rise", "enemy"]
+    }
+  },
+
+  "The enemy’s voice shames and hides; God’s voice uncovers with grace and healing.": {
+    "Genesis 3:10-11": {
+      text: "And he said, 'I heard the sound of you in the garden, and I was afraid, because I was naked, and I hid myself.' He said, 'Who told you that you were naked? Have you eaten of the tree of which I commanded you not to eat?'",
+      theme: "truth",
+      tags: ["shame", "hiding", "God's question", "truth", "nakedness"]
+    },
+    "Hebrews 4:13": {
+      text: "And no creature is hidden from his sight, but all are naked and exposed to the eyes of him to whom we must give account.",
+      theme: "truth",
+      tags: ["exposure", "honesty", "conviction", "accountability"]
+    }
+  },
+
+  "Conviction brings clarity. Accusation breeds confusion and despair. God is not the author of confusion.": {
+    "1 Corinthians 14:33": {
+      text: "For God is not a God of confusion but of peace. As in all the churches of the saints,",
+      theme: "peace",
+      tags: ["clarity", "peace", "confusion", "God's nature"]
+    },
+    "Psalm 32:5": {
+      text: "I acknowledged my sin to you, and I did not cover my iniquity; I said, 'I will confess my transgressions to the Lord,' and you forgave the iniquity of my sin. Selah",
+      theme: "forgiveness",
+      tags: ["confession", "relief", "freedom", "honesty", "forgiveness"]
+    }
+  },
+  
+  "Conviction shines light on the issue and leads you home. Accusation wraps it in darkness to keep you stuck.": {
+    "John 3:20-21": {
+      text: "For everyone who does wicked things hates the light and does not come to the light, lest his works should be exposed. But whoever does what is true comes to the light, so that it may be clearly seen that his works have been carried out in God.",
+      theme: "light",
+      tags: ["exposure", "light", "truth", "freedom", "conviction"]
+    },
+    "Ephesians 5:11": {
+      text: "Take no part in the unfruitful works of darkness, but instead expose them.",
+      theme: "battle",
+      tags: ["darkness", "expose", "truth", "spiritual attack"]
+    }
+  },
+
+  "God’s conviction always offers a way forward. Accusation just plays the same tape of failure.": {
+    "Isaiah 1:18": {
+      text: "'Come now, let us reason together, says the Lord: though your sins are like scarlet, they shall be as white as snow; though they are red like crimson, they shall become like wool.'",
+      theme: "forgiveness",
+      tags: ["hope", "restoration", "new start", "cleansing"]
+    },
+    "Lamentations 3:22-23": {
+      text: "The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.",
+      theme: "grace",
+      tags: ["faithfulness", "mercy", "newness", "fresh start"]
+    }
+  },
+
+  "Accusation wants you to hide from God. Conviction gently draws you back to Him.": {
+    "James 4:8": {
+      text: "Draw near to God, and he will draw near to you. Cleanse your hands, you sinners, and purify your hearts, you double-minded.",
+      theme: "seek",
+      tags: ["draw near", "repentance", "relationship", "cleansing"]
+    },
+    "Psalm 34:5": {
+      text: "Those who look to him are radiant, and their faces shall never be ashamed.",
+      theme: "hope",
+      tags: ["radiance", "no shame", "presence", "confidence"]
+    }
+  }
+
+};
+
+// How do I recognize the devil's voice vs God's voice?
+let q163ans = {
+
+  "God’s voice leads to peace, clarity, and life. The devil’s voice brings confusion, fear, and pressure.": {
+    "1 Corinthians 14:33": {
+      text: "For God is not a God of confusion but of peace.",
+      theme: "peace",
+      tags: ["clarity", "discernment", "truth"]
+    },
+    "James 3:17": {
+      text: "But the wisdom from above is first pure, then peaceable, gentle, open to reason, full of mercy and good fruits, impartial and sincere.",
+      theme: "wisdom",
+      tags: ["discernment", "fruit", "tone", "purity"]
+    }
+  },
+
+  "God corrects to restore; the enemy condemns to destroy.": {
+    "Romans 8:1": {
+      text: "There is therefore now no condemnation for those who are in Christ Jesus.",
+      theme: "grace",
+      tags: ["no shame", "freedom", "conviction", "discernment"]
+    },
+    "John 10:10": {
+      text: "The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.",
+      theme: "battle",
+      tags: ["enemy", "destruction", "purpose", "abundance"]
+    }
+  },
+
+  "The devil twists truth. God speaks truth plainly and faithfully.": {
+    "Genesis 3:1": {
+      text: "Now the serpent was more crafty than any other beast of the field that the Lord God had made. He said to the woman, 'Did God actually say, ‘You shall not eat of any tree in the garden’?'",
+      theme: "temptation",
+      tags: ["twisting", "lies", "manipulation"]
+    },
+    "John 8:44": {
+      text: "When he lies, he speaks out of his own character, for he is a liar and the father of lies.",
+      theme: "truth",
+      tags: ["deception", "Satan", "voice", "discernment"]
+    },
+    "John 10:27": {
+      text: "My sheep hear my voice, and I know them, and they follow me.",
+      theme: "guidance",
+      tags: ["recognizing", "relationship", "God’s voice"]
+    }
+  },
+
+  "God’s voice aligns with His Word. The enemy’s voice contradicts it or adds to it.": {
+    "2 Timothy 3:16": {
+      text: "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness.",
+      theme: "word",
+      tags: ["anchor", "discernment", "truth", "God’s character"]
+    },
+    "Galatians 1:8": {
+      text: "But even if we or an angel from heaven should preach to you a gospel contrary to the one we preached to you, let him be accursed.",
+      theme: "truth",
+      tags: ["false message", "deception", "plumbline"]
+    }
+  },
+  "God's voice bears the fruit of the Spirit — even in correction. The enemy's voice stirs fear, panic, or self-hate.": {
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.",
+      theme: "growth",
+      tags: ["fruit", "evidence", "God’s voice", "discernment"]
+    },
+    "2 Timothy 1:7": {
+      text: "For God gave us a spirit not of fear but of power and love and self-control.",
+      theme: "spirit",
+      tags: ["courage", "confidence", "identity", "fear"]
+    }
+  },
+
+  "God often whispers; the devil shouts. His voice draws you closer, not pressures you to panic.": {
+    "1 Kings 19:12": {
+      text: "And after the earthquake a fire, but the Lord was not in the fire. And after the fire the sound of a low whisper.",
+      theme: "presence",
+      tags: ["stillness", "quiet", "God’s voice", "trust"]
+    },
+    "Isaiah 30:21": {
+      text: "And your ears shall hear a word behind you, saying, 'This is the way, walk in it,' when you turn to the right or when you turn to the left.",
+      theme: "guidance",
+      tags: ["direction", "God’s presence", "voice"]
+    }
+  },
+
+  "God’s voice always leads to repentance and restoration. The enemy wants to trap you in regret.": {
+    "2 Corinthians 7:10": {
+      text: "For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death.",
+      theme: "forgiveness",
+      tags: ["conviction", "repentance", "restoration", "grace"]
+    },
+    "Revelation 12:10": {
+      text: "For the accuser of our brothers has been thrown down, who accuses them day and night before our God.",
+      theme: "battle",
+      tags: ["Satan", "accusation", "difference", "devil’s voice"]
+    }
+  }
+};
+
+// Question: As a believer, should I be afraid of hell and demons?
+let q164ans = {
+  "Fear has no place in the heart of someone who belongs to Christ—His perfect love drives it out.": {
+    "1 John 4:18": {
+      text: "There is no fear in love, but perfect love casts out fear. For fear has to do with punishment, and whoever fears has not been perfected in love.",
+      theme: "love",
+      tags: ["fear", "confidence", "punishment", "identity in Christ"]
+    },
+    "Romans 8:15": {
+      text: "For you did not receive the spirit of slavery to fall back into fear, but you have received the Spirit of adoption as sons, by whom we cry, 'Abba! Father!'",
+      theme: "spirit",
+      tags: ["adoption", "security", "freedom", "relationship"]
+    }
+  },
+
+  "Jesus already defeated death, hell, and the devil. As His follower, you stand in that victory.": {
+    "Hebrews 2:14-15": {
+      text: "Since therefore the children share in flesh and blood, he himself likewise partook of the same things, that through death he might destroy the one who has the power of death, that is, the devil, and deliver all those who through fear of death were subject to lifelong slavery.",
+      theme: "victory",
+      tags: ["deliverance", "Jesus", "fear of death", "freedom"]
+    },
+    "Colossians 2:15": {
+      text: "He disarmed the rulers and authorities and put them to open shame, by triumphing over them in him.",
+      theme: "authority",
+      tags: ["Satan", "victory", "cross", "confidence"]
+    }
+  },
+
+  "While hell is real and demons oppose God, fear is not our guide—truth and the Spirit are.": {
+    "2 Timothy 1:7": {
+      text: "For God gave us a spirit not of fear but of power and love and self-control.",
+      theme: "spirit",
+      tags: ["power", "courage", "peace", "fear"]
+    },
+    "John 16:13": {
+      text: "When the Spirit of truth comes, he will guide you into all the truth, for he will not speak on his own authority, but whatever he hears he will speak, and he will declare to you the things that are to come.",
+      theme: "guidance",
+      tags: ["Spirit", "truth", "discernment", "clarity"]
+    }
+  },
+ 
+  "Your name is written in heaven—not because of what you’ve done, but because of what Jesus has finished.": {
+    "Luke 10:19-20": {
+      text: "Behold, I have given you authority to tread on serpents and scorpions, and over all the power of the enemy, and nothing shall hurt you. Nevertheless, do not rejoice in this, that the spirits are subject to you, but rejoice that your names are written in heaven.",
+      theme: "authority",
+      tags: ["identity", "security", "Jesus", "enemy"]
+    }
+  },
+
+  "Demons tremble before God. You are His child, not their prey.": {
+    "James 2:19": {
+      text: "You believe that God is one; you do well. Even the demons believe—and shudder!",
+      theme: "power",
+      tags: ["fear of God", "truth", "evil", "confidence"]
+    },
+    "1 John 5:18": {
+      text: "We know that everyone who has been born of God does not keep on sinning, but he who was born of God protects him, and the evil one does not touch him.",
+      theme: "protection",
+      tags: ["safety", "evil one", "born of God", "holiness"]
+    }
+  },
+
+  "If Christ lives in you, there’s no room left for fear—His presence drives darkness away.": {
+    "John 1:5": {
+      text: "The light shines in the darkness, and the darkness has not overcome it.",
+      theme: "light",
+      tags: ["Jesus", "darkness", "fear", "truth"]
+    },
+    "1 John 4:4": {
+      text: "Little children, you are from God and have overcome them, for he who is in you is greater than he who is in the world.",
+      theme: "victory",
+      tags: ["Holy Spirit", "courage", "overcoming", "evil"]
+    }
+  }
+};
+
+// is alcoholism a sin?
+let q165ans = {
+  "Drunkenness is condemned in scripture and leads to destruction": {
+    "Proverbs 20:1": {
+      text: "Wine is a mocker and beer a brawler; whoever is led astray by them is not wise.",
+      theme: "wisdom",
+      tags: ["alcohol", "drunkenness", "warning", "foolishness"]
+    },
+    "Ephesians 5:18": {
+      text: "Do not get drunk on wine, which leads to debauchery. Instead, be filled with the Spirit/",
+      theme: "spirit",
+      tags: ["drunkenness", "self-control", "Holy Spirit", "discipline"]
+    },
+    "Galatians 5: 19-21": {
+      text: "The acts of the flesh are obvious: sexual immorality, impurity and debauchery: idolatry and witchcraft; hatred, discord... drunkenness, orgies, and the like. I warn you, as I did before, that those who live like this will not inherit the kingdom of God.",
+      theme: "battle",
+      tags: ["sin", "drunkenness", "flesh", "warning", "inheritance"]
+    },
+    "1 Corinthians 6:9-10": {
+      text: "Or do you not know that wrongdoers will not inherit the kingdom of God? Do not be decieved... nor drunkards... will inherit the kingdom of God.",
+      theme: "obedience",
+      tags: ["sin", "drunkenness", "repentance", "kingdom", "warning"]
+    }
+  },
+  "Freedom in Christ is not an excuse to indulge in the flesh": {
+    "1 Peter 4:3-4": {
+      text: "For you have spent enough time in the past doing what pagans choose to do- living in debauchery, lust, drunkenness... They are surprised that you do not join them in their reckless, wild living, and they heap abuse on you.",
+      theme: "transformation",
+      tags: ["past life", "drunkenness", "new life", "peer pressure"]
+    },
+    "Romans 13:13-14": {
+      text: "Let us behave decently, as in the daytime, not in carousing and drunkennesss... Rather clothe yourselves with the Lord Jesus Christ, and do not think about how to gratify the desires of the flesh.",
+      theme: "obedience",
+      tags: ["behavior", "drunkenness", "Jesus", "self-control"]
+    }
+  },
+  "God offers restoration and calls for sober-mindedness": {
+    "Titus 2:11-12": {
+      text: "For the grace of God has appeared that offers salvation to all people. It teaches us to say 'No' to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "grace",
+      tags: ["salvation", "self-control", "godliness", "discipline"]
+    },
+    "1 Thessalonians 5:6-8": {
+      text: "So then, let us not be like other, who are asleep, but let us be awake and sober... let us be sober, putting on faith and love as a breastplate, and the hope of salvation as a helmet",
+      theme: "armor",
+      tags: ["sober", "alert", "faith", "hope", "self-control"]
+    }
+  }
+}
+
+// Does God care about creativity and art?
+let q166ans = {
+  "God Himself is the first Creator, and His creation reveals His artistry": {
+    "Genesis 1:1": {
+      text: "In the beginning God created the heavens and the earth.",
+      theme: "creation",
+      tags: ["God", "origin", "design", "art"]
+    },
+    "Psalm 19:1": {
+      text: "The heavens declare the glory of God; the skies proclaim the work of his hands.",
+      theme: "glory",
+      tags: ["creation", "beauty", "art", "worship"]
+    },
+    "Romans 1:20": {
+      text: "For since the creation of the world God’s invisible qualities—his eternal power and divine nature—have been clearly seen, being understood from what has been made, so that people are without excuse.",
+      theme: "power",
+      tags: ["creation", "art", "divine", "evidence"]
+    },
+    "Psalm 104:24": {
+      text: "How many are your works, Lord! In wisdom you made them all; the earth is full of your creatures.",
+      theme: "wisdom",
+      tags: ["creation", "design", "diversity", "art"]
+    },
+    "Isaiah 40:26": {
+      text: "Lift up your eyes and look to the heavens: Who created all these? He who brings out the starry host one by one and calls forth each of them by name. Because of his great power and mighty strength, not one of them is missing.",
+      theme: "power",
+      tags: ["creation", "stars", "design", "art"]
+    },
+    "Revelation 4:11": {
+      text: "You are worthy, our Lord and God, to receive glory and honor and power, for you created all things, and by your will they were created and have their being.",
+      theme: "glory",
+      tags: ["creation", "worship", "art", "honor"]
+    }
+  },
+  "God equips people with artistic gifts to serve Him and others": {
+    "Exodus 31:3–5": {
+      text: "and I have filled him with the Spirit of God, with wisdom, with understanding, with knowledge and with all kinds of skills—to make artistic designs for work in gold, silver and bronze, to cut and set stones, to work in wood, and to engage in all kinds of crafts.",
+      theme: "spirit",
+      tags: ["art", "skill", "gifts", "service"]
+    },
+    "Exodus 35:35": {
+      text: "He has filled them with skill to do all kinds of work as engravers, designers, embroiderers in blue, purple and scarlet yarn and fine linen, and weavers—all of them skilled workers and designers.",
+      theme: "guidance",
+      tags: ["craftsmanship", "art", "tabernacle", "creativity"]
+    },
+    "1 Kings 7:14": {
+      text: "whose mother was a widow from the tribe of Naphtali—and whose father was a man of Tyre and a craftsman in bronze. Huram was filled with wisdom, with understanding and with knowledge to do all kinds of bronze work. He came to King Solomon and did all the work assigned to him.",
+      theme: "wisdom",
+      tags: ["skill", "art", "craft", "building"]
+    },
+    "1 Chronicles 15:16": {
+      text: "David told the leaders of the Levites to appoint their fellow Levites as musicians to make a joyful sound with musical instruments: lyres, harps and cymbals.",
+      theme: "worship",
+      tags: ["music", "creativity", "art", "praise"]
+    },
+    "2 Chronicles 2:13–14": {
+      text: "I am sending you Huram-Abi, a man of great skill, whose mother was from Dan and whose father was from Tyre. He is trained to work in gold and silver, bronze and iron, stone and wood, and with purple and blue and crimson yarn and fine linen. He is experienced in all kinds of engraving and can execute any design given to him. He will work with your skilled workers and with those of my lord, David your father.",
+      theme: "wisdom",
+      tags: ["skill", "design", "art", "temple"]
+    },
+    "Amos 6:5": {
+      text: "You strum away on your harps like David and improvise on musical instruments.",
+      theme: "praise",
+      tags: ["music", "creativity", "art", "expression"]
+    }
+  },
+  "God’s creativity is reflected in people themselves—His living artwork": {
+    "Psalm 139:13–14": {
+      text: "For you created my inmost being; you knit me together in my mother’s womb. I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
+      theme: "goodness",
+      tags: ["identity", "design", "art", "life"]
+    },
+    "Ephesians 2:10": {
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
+      theme: "transformation",
+      tags: ["identity", "purpose", "new creation", "design"]
+    },
+    "Isaiah 64:8": {
+      text: "Yet you, Lord, are our Father. We are the clay, you are the potter; we are all the work of your hand.",
+      theme: "submission",
+      tags: ["design", "clay", "potter", "art"]
+    },
+    "Job 10:8": {
+      text: "Your hands shaped me and made me. Will you now turn and destroy me?",
+      theme: "help",
+      tags: ["identity", "design", "creation", "art"]
+    },
+    "Song of Songs 2:12": {
+      text: "Flowers appear on the earth; the season of singing has come, the cooing of doves is heard in our land.",
+      theme: "creation",
+      tags: ["beauty", "seasons", "life", "art"]
+    },
+    "Isaiah 55:12": {
+      text: "You will go out in joy and be led forth in peace; the mountains and hills will burst into song before you, and all the trees of the field will clap their hands.",
+      theme: "joy",
+      tags: ["creation", "art", "expression", "worship"]
+    }
+  },
+  "Creativity becomes worship when done for God’s glory": {
+    "Colossians 3:23": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.",
+      theme: "obedience",
+      tags: ["work", "creativity", "service", "devotion"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["work", "worship", "art", "purpose"]
+    },
+    "Psalm 150:4": {
+      text: "Praise him with tambourine and dancing, praise him with the strings and pipe,",
+      theme: "praise",
+      tags: ["music", "dance", "art", "worship"]
+    },
+    "Exodus 28:2": {
+      text: "Make sacred garments for your brother Aaron to give him dignity and honor.",
+      theme: "holy",
+      tags: ["design", "garments", "art", "worship"]
+    },
+    "2 Samuel 6:14": {
+      text: "Wearing a linen ephod, David was dancing before the Lord with all his might,",
+      theme: "praise",
+      tags: ["dance", "worship", "creativity", "art"]
+    },
+    "Revelation 21:18–19": {
+      text: "The wall was made of jasper, and the city of pure gold, as pure as glass. The foundations of the city walls were decorated with every kind of precious stone.",
+      theme: "glory",
+      tags: ["beauty", "design", "heaven", "art"]
+    }
+  }
+};
+
+// What does God really think about my body and appearance—is it wrong to care about how I look?
+let q167ans = {
+  "Your body is God’s creation and carries His image": {
+    "Genesis 1:27": {
+      text: "So God created mankind in his own image, in the image of God he created them; male and female he created them.",
+      theme: "creation",
+      tags: ["identity", "worth", "image of God", "design"]
+    },
+    "Psalm 139:14": {
+      text: "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
+      theme: "creation",
+      tags: ["value", "identity", "body", "praise"]
+    },
+    "Isaiah 64:8": {
+      text: "Yet you, Lord, are our Father. We are the clay, you are the potter; we are all the work of your hand.",
+      theme: "creation",
+      tags: ["design", "identity", "body", "God’s work"]
+    },
+    "Job 10:11": {
+      text: "You clothed me with skin and flesh and knit me together with bones and sinews.",
+      theme: "creation",
+      tags: ["design", "body", "identity", "God’s hands"]
+    },
+    "1 Corinthians 6:19–20": {
+      text: "Do you not know that your bodies are temples of the Holy Spirit, who is in you, whom you have received from God? You are not your own; you were bought at a price. Therefore honor God with your bodies.",
+      theme: "holy",
+      tags: ["temple", "spirit", "value", "body"]
+    }
+  },
+
+  "God looks at the heart, not outward appearance": {
+    "1 Samuel 16:7": {
+      text: "But the Lord said to Samuel, 'Do not consider his appearance or his height, for I have rejected him. The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.'",
+      theme: "truth",
+      tags: ["appearance", "heart", "God’s view", "worth"]
+    },
+    "Proverbs 31:30": {
+      text: "Charm is deceptive, and beauty is fleeting; but a woman who fears the Lord is to be praised.",
+      theme: "wisdom",
+      tags: ["beauty", "fear of God", "value", "praise"]
+    },
+    "2 Corinthians 4:16": {
+      text: "Therefore we do not lose heart. Though outwardly we are wasting away, yet inwardly we are being renewed day by day.",
+      theme: "growth",
+      tags: ["eternal", "appearance", "renewal", "identity"]
+    },
+    "James 2:1": {
+      text: "My brothers and sisters, believers in our glorious Lord Jesus Christ must not show favoritism.",
+      theme: "justice",
+      tags: ["appearance", "favoritism", "worth", "identity"]
+    },
+    "Galatians 3:28": {
+      text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.",
+      theme: "unity",
+      tags: ["identity", "appearance", "worth", "equal"]
+    }
+  },
+
+  "Taking care of your body is not vanity, but stewardship": {
+    "Ephesians 5:29": {
+      text: "After all, no one ever hated their own body, but they feed and care for their body, just as Christ does the church—",
+      theme: "guidance",
+      tags: ["body care", "love", "Christ", "stewardship"]
+    },
+    "1 Timothy 4:8": {
+      text: "For physical training is of some value, but godliness has value for all things, holding promise for both the present life and the life to come.",
+      theme: "wisdom",
+      tags: ["training", "balance", "body", "godliness"]
+    },
+    "Romans 12:1": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship.",
+      theme: "obedience",
+      tags: ["sacrifice", "body", "worship", "holy"]
+    },
+    "3 John 1:2": {
+      text: "Dear friend, I pray that you may enjoy good health and that all may go well with you, even as your soul is getting along well.",
+      theme: "peace",
+      tags: ["health", "body", "care", "well-being"]
+    },
+    "Proverbs 3:7–8": {
+      text: "Do not be wise in your own eyes; fear the Lord and shun evil. This will bring health to your body and nourishment to your bones.",
+      theme: "wisdom",
+      tags: ["health", "body", "fear of God", "guidance"]
+    }
+  },
+
+  "True beauty is found in godly character": {
+    "1 Peter 3:3–4": {
+      text: "Your beauty should not come from outward adornment, such as elaborate hairstyles and the wearing of gold jewelry or fine clothes. Rather, it should be that of your inner self, the unfading beauty of a gentle and quiet spirit, which is of great worth in God’s sight.",
+      theme: "humble",
+      tags: ["beauty", "spirit", "worth", "gentleness"]
+    },
+    "Colossians 3:12": {
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience.",
+      theme: "transformation",
+      tags: ["character", "beauty", "virtue", "identity"]
+    },
+    "Isaiah 61:10": {
+      text: "I delight greatly in the Lord; my soul rejoices in my God. For he has clothed me with garments of salvation and arrayed me in a robe of his righteousness, as a bridegroom adorns his head like a priest, and as a bride adorns herself with her jewels.",
+      theme: "salvation",
+      tags: ["clothing", "righteousness", "identity", "beauty"]
+    },
+    "Song of Songs 4:7": {
+      text: "You are altogether beautiful, my darling; there is no flaw in you.",
+      theme: "love",
+      tags: ["beauty", "worth", "identity", "love"]
+    },
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["character", "virtue", "beauty", "walk with God"]
+    }
+  }
+};
+
+// Q168. If I have a disability or illness, can God still use me—and why would He allow it?
+let q168ans = {
+  "God’s power is shown through weakness, proving His grace is enough": {
+    "2 Corinthians 12:9": {
+      text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
+      theme: "grace",
+      tags: ["weakness", "strength", "purpose", "illness", "disability"]
+    },
+    "1 Corinthians 1:27": {
+      text: "But God chose the foolish things of the world to shame the wise; God chose the weak things of the world to shame the strong.",
+      theme: "power",
+      tags: ["weakness", "strength", "calling", "purpose", "identity"]
+    }
+  },
+
+  "Disability or hardship does not remove God’s calling or usefulness": {
+    "Exodus 4:11": {
+      text: "The Lord said to him, 'Who gave human beings their mouths? Who makes them deaf or mute? Who gives them sight or makes them blind? Is it not I, the Lord?'",
+      theme: "authority",
+      tags: ["Moses", "speech", "purpose", "disability", "God's plan"]
+    },
+    "John 9:3": {
+      text: "'Neither this man nor his parents sinned,' said Jesus, 'but this happened so that the works of God might be displayed in him.'",
+      theme: "glory",
+      tags: ["suffering", "healing", "purpose", "disability", "Jesus"]
+    }
+  },
+
+  "Suffering and limitation can display God’s glory and eternal hope": {
+    "Romans 8:18": {
+      text: "I consider that our present sufferings are not worth comparing with the glory that will be revealed in us.",
+      theme: "glory",
+      tags: ["suffering", "hope", "future", "purpose", "heaven"]
+    },
+    "2 Corinthians 4:16-17": {
+      text: "Therefore we do not lose heart. Though outwardly we are wasting away, yet inwardly we are being renewed day by day. For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all.",
+      theme: "hope",
+      tags: ["suffering", "purpose", "renewal", "eternal", "faith"]
+    },
+    "Revelation 21:4": {
+      text: "‘He will wipe every tear from their eyes. There will be no more death’ or mourning or crying or pain, for the old order of things has passed away.",
+      theme: "eternal",
+      tags: ["heaven", "healing", "hope", "suffering", "disability"]
+    }
+  },
+
+  "Every member of Christ’s body is needed, no matter their strength or weakness": {
+    "1 Corinthians 12:22": {
+      text: "On the contrary, those parts of the body that seem to be weaker are indispensable.",
+      theme: "body",
+      tags: ["church", "purpose", "weakness", "value", "identity"]
+    },
+    "Romans 12:4-5": {
+      text: "For just as each of us has one body with many members, and these members do not all have the same function, so in Christ we, though many, form one body, and each member belongs to all the others.",
+      theme: "unity",
+      tags: ["body", "purpose", "church", "function", "identity"]
+    }
+  },
+
+  "God comforts us in affliction so we can comfort others": {
+    "2 Corinthians 1:3-4": {
+      text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
+      theme: "comfort",
+      tags: ["suffering", "purpose", "healing", "ministry", "encouragement"]
+    },
+    "Isaiah 40:29": {
+      text: "He gives strength to the weary and increases the power of the weak.",
+      theme: "strength",
+      tags: ["comfort", "weakness", "renewal", "purpose", "God's care"]
+    }
+  },
+
+  "Even biblical heroes carried weakness or disability yet were used greatly": {
+    "Genesis 32:31": {
+      text: "The sun rose above him as he passed Peniel, and he was limping because of his hip.",
+      theme: "transformation",
+      tags: ["Jacob", "limp", "weakness", "purpose", "identity"]
+    },
+    "2 Samuel 9:13": {
+      text: "And Mephibosheth lived in Jerusalem, because he always ate at the king’s table; he was lame in both feet.",
+      theme: "mercy",
+      tags: ["David", "Mephibosheth", "disability", "kindness", "identity"]
+    },
+    "Galatians 4:13": {
+      text: "As you know, it was because of an illness that I first preached the gospel to you,",
+      theme: "purpose",
+      tags: ["Paul", "illness", "gospel", "ministry", "calling"]
+    }
+  },
+
+  "God can turn what looks like weakness into testimony and strength for others": {
+    "Philippians 1:12": {
+      text: "Now I want you to know, brothers and sisters, that what has happened to me has actually served to advance the gospel.",
+      theme: "growth",
+      tags: ["suffering", "testimony", "purpose", "Paul", "calling"]
+    },
+    "Psalm 73:26": {
+      text: "My flesh and my heart may fail, but God is the strength of my heart and my portion forever.",
+      theme: "strength",
+      tags: ["hope", "suffering", "weakness", "purpose", "faith"]
+    }
+  }
+};
+
+// Q169. What if I don’t like God’s plan for me—or I don't want to surrender my own dreams?
+let q169ans = {
+  "Remember that God’s plan is ultimately good, even if you see it now": {
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.",
+      theme: "hope",
+      tags: ["purpose", "future", "God's plan", "trust", "identity"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "purpose",
+      tags: ["calling", "trust", "future", "God's plan", "hope"]
+    },
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "delight",
+      tags: ["trust", "desire", "dreams", "purpose", "surrender"]
+    }
+  },
+
+  "Even Jesus wrestled with God’s plan, but surrendered in trust": {
+    "Luke 22:42": {
+      text: "“Father, if you are willing, take this cup from me; yet not my will, but yours be done.”",
+      theme: "submission",
+      tags: ["Jesus", "surrender", "fear", "obedience", "trust"]
+    },
+    "Hebrews 5:8": {
+      text: "Son though he was, he learned obedience from what he suffered.",
+      theme: "obedience",
+      tags: ["Jesus", "suffering", "trust", "obedience", "surrender"]
+    }
+  },
+
+  "I should remember God’s wisdom is higher than mine, so His plan can be trusted": {
+    "Isaiah 55:8-9": {
+      text: "“For my thoughts are not your thoughts, neither are your ways my ways,” declares the Lord. “As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.”",
+      theme: "wisdom",
+      tags: ["trust", "purpose", "future", "God's plan", "surrender"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "guidance",
+      tags: ["trust", "surrender", "obedience", "God's plan", "future"]
+    }
+  },
+
+  "Surrender leads to true life, not loss": {
+    "Matthew 16:24-25": {
+      text: "Then Jesus said to his disciples, “Whoever wants to be my disciple must deny themselves and take up their cross and follow me. For whoever wants to save their life will lose it, but whoever loses their life for me will find it.”",
+      theme: "surrender",
+      tags: ["discipleship", "trust", "purpose", "life", "obedience"]
+    },
+    "Romans 12:1-2": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship. Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "obedience",
+      tags: ["surrender", "worship", "purpose", "trust", "transformation"]
+    }
+  },
+
+  "Faith means walking even when I don’t see the full plan": {
+    "Hebrews 11:8": {
+      text: "By faith Abraham, when called to go to a place he would later receive as his inheritance, obeyed and went, even though he did not know where he was going.",
+      theme: "faith",
+      tags: ["Abraham", "trust", "future", "obedience", "calling"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["trust", "obedience", "future", "God's word", "purpose"]
+    }
+  },
+
+  "God can reshape my desires as I surrender to Him": {
+    "Ezekiel 36:26": {
+      text: "I will give you a new heart and put a new spirit in you; I will remove from you your heart of stone and give you a heart of flesh.",
+      theme: "transformation",
+      tags: ["heart", "desires", "purpose", "surrender", "renewal"]
+    },
+    "Philippians 2:13": {
+      text: "For it is God who works in you to will and to act in order to fulfill his good purpose.",
+      theme: "purpose",
+      tags: ["desires", "God's plan", "calling", "purpose", "obedience"]
+    }
+  }
+};
+
+// Q170. Is it wrong to want more than what I have—or is ambition okay in God’s eyes?
+let q170ans = {
+  "God calls us to contentment with what He’s given": {
+    "Philippians 4:11-12": {
+      text: "I am not saying this because I am in need, for I have learned to be content whatever the circumstances. I know what it is to be in need, and I know what it is to have plenty. I have learned the secret of being content in any and every situation, whether well fed or hungry, whether living in plenty or in want.",
+      theme: "contentment",
+      tags: ["contentment", "trust", "gratitude", "peace", "faith"]
+    },
+    "1 Timothy 6:6-7": {
+      text: "But godliness with contentment is great gain. For we brought nothing into the world, and we can take nothing out of it.",
+      theme: "contentment",
+      tags: ["contentment", "gratitude", "trust", "simplicity", "faith"]
+    },
+    "Hebrews 13:5": {
+      text: "Keep your lives free from the love of money and be content with what you have, because God has said, “Never will I leave you; never will I forsake you.”",
+      theme: "faithful",
+      tags: ["contentment", "trust", "money", "peace", "provision"]
+    }
+  },
+
+  "Ambition isn’t sinful—but selfish ambition is": {
+    "James 3:16": {
+      text: "For where you have envy and selfish ambition, there you find disorder and every evil practice.",
+      theme: "wisdom",
+      tags: ["selfishness", "envy", "ambition", "sin", "warning"]
+    },
+    "Philippians 2:3-4": {
+      text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves, not looking to your own interests but each of you to the interests of the others.",
+      theme: "humble",
+      tags: ["ambition", "humility", "service", "love", "others"]
+    },
+    "Galatians 5:26": {
+      text: "Let us not become conceited, provoking and envying each other.",
+      theme: "humble",
+      tags: ["envy", "conceit", "ambition", "warning", "unity"]
+    }
+  },
+
+  "It’s okay to desire growth—if it aligns with God’s will": {
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["priority", "desire", "ambition", "kingdom", "trust"]
+    },
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "delight",
+      tags: ["desire", "dreams", "ambition", "surrender", "trust"]
+    },
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "guidance",
+      tags: ["ambition", "plans", "purpose", "trust", "future"]
+    }
+  },
+
+  "Greed and discontent destroy, but godly desire builds": {
+    "Ecclesiastes 5:10": {
+      text: "Whoever loves money never has enough; whoever loves wealth is never satisfied with their income. This too is meaningless.",
+      theme: "slavery",
+      tags: ["greed", "discontent", "wealth", "warning", "emptiness"]
+    },
+    "Luke 12:15": {
+      text: "Then he said to them, “Watch out! Be on your guard against all kinds of greed; life does not consist in an abundance of possessions.”",
+      theme: "truth",
+      tags: ["greed", "warning", "possessions", "desire", "life"]
+    },
+    "Proverbs 23:4-5": {
+      text: "Do not wear yourself out to get rich; do not trust your own cleverness. Cast but a glance at riches, and they are gone, for they will surely sprout wings and fly off to the sky like an eagle.",
+      theme: "wisdom",
+      tags: ["greed", "money", "warning", "futility", "wealth"]
+    }
+  },
+
+  "True greatness is found in serving, not in chasing status": {
+    "Mark 10:43-45": {
+      text: "Not so with you. Instead, whoever wants to become great among you must be your servant, and whoever wants to be first must be slave of all. For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.”",
+      theme: "servant",
+      tags: ["ambition", "greatness", "humility", "service", "Jesus"]
+    },
+    "Jeremiah 9:23-24": {
+      text: "This is what the Lord says: “Let not the wise boast of their wisdom or the strong boast of their strength or the rich boast of their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord, who exercises kindness, justice and righteousness on earth, for in these I delight,” declares the Lord.",
+      theme: "boast",
+      tags: ["ambition", "wisdom", "riches", "identity", "truth"]
+    }
+  }
+};
+
+// Q171. Is wealth itself evil—and does God actually want us to live poor?
+let q171ans = {
+  "God never called money itself evil—it’s the craving, trust, and obsession with it that destroys faith. Contentment in Him is greater wealth than riches without Him.": {
+    "1 Timothy 6:9-10": {
+      text: "Those who want to get rich fall into temptation and a trap and into many foolish and harmful desires that plunge people into ruin and destruction. For the love of money is a root of all kinds of evil. Some people, eager for money, have wandered from the faith and pierced themselves with many griefs.",
+      theme: "temptation",
+      tags: ["money", "greed", "warning", "evil", "danger"]
+    },
+    "Hebrews 13:5": {
+      text: "Keep your lives free from the love of money and be content with what you have, because God has said, “Never will I leave you; never will I forsake you.”",
+      theme: "faithful",
+      tags: ["money", "contentment", "greed", "trust", "provision"]
+    },
+    "Matthew 6:24": {
+      text: "No one can serve two masters. Either you will hate the one and love the other, or you will be devoted to the one and despise the other. You cannot serve both God and money.",
+      theme: "authority",
+      tags: ["money", "idols", "loyalty", "choice", "faith"]
+    }
+  },
+
+  "God warns that riches can blind and deceive": {
+    "Mark 4:19": {
+      text: "But the worries of this life, the deceitfulness of wealth and the desires for other things come in and choke the word, making it unfruitful.",
+      theme: "fallenness",
+      tags: ["wealth", "distraction", "greed", "warning", "faith"]
+    },
+    "Proverbs 11:28": {
+      text: "Those who trust in their riches will fall, but the righteous will thrive like a green leaf.",
+      theme: "trust",
+      tags: ["wealth", "trust", "warning", "faith", "fall"]
+    },
+    "Revelation 3:17": {
+      text: "You say, ‘I am rich; I have acquired wealth and do not need a thing.’ But you do not realize that you are wretched, pitiful, poor, blind and naked.",
+      theme: "truth",
+      tags: ["wealth", "blindness", "warning", "pride", "judgment"]
+    }
+  },
+
+  "God sometimes blesses with wealth, not as a curse but as a responsibility. When surrendered to Him, it can serve justice, generosity, and salvation instead of greed.": {
+    "Deuteronomy 8:18": {
+      text: "But remember the Lord your God, for it is he who gives you the ability to produce wealth, and so confirms his covenant, which he swore to your ancestors, as it is today.",
+      theme: "provision",
+      tags: ["wealth", "gift", "stewardship", "provision", "covenant"]
+    },
+    "1 Chronicles 29:12": {
+      text: "Wealth and honor come from you; you are the ruler of all things. In your hands are strength and power to exalt and give strength to all.",
+      theme: "glory",
+      tags: ["wealth", "honor", "power", "gift", "provision"]
+    },
+    "Ecclesiastes 5:19": {
+      text: "Moreover, when God gives someone wealth and possessions, and the ability to enjoy them, to accept their lot and be happy in their toil—this is a gift of God.",
+      theme: "goodness",
+      tags: ["wealth", "gift", "joy", "contentment", "purpose"]
+    }
+  },
+
+  "God doesn’t glorify poverty for its own sake. What matters is trusting Him in both lack and plenty, finding strength in Christ instead of circumstances.": {
+    "Philippians 4:12-13": {
+      text: "I know what it is to be in need, and I know what it is to have plenty. I have learned the secret of being content in any and every situation, whether well fed or hungry, whether living in plenty or in want. I can do all this through him who gives me strength.",
+      theme: "strength",
+      tags: ["poverty", "wealth", "contentment", "faith", "trust"]
+    },
+    "2 Corinthians 8:9": {
+      text: "For you know the grace of our Lord Jesus Christ, that though he was rich, yet for your sake he became poor, so that you through his poverty might become rich.",
+      theme: "grace",
+      tags: ["poverty", "wealth", "Jesus", "sacrifice", "grace"]
+    },
+    "Proverbs 30:8-9": {
+      text: "Keep falsehood and lies far from me; give me neither poverty nor riches, but give me only my daily bread. Otherwise, I may have too much and disown you and say, ‘Who is the Lord?’ Or I may become poor and steal, and so dishonor the name of my God.",
+      theme: "wisdom",
+      tags: ["poverty", "wealth", "balance", "provision", "trust"]
+    }
+  },
+
+  "Whether rich or poor, God calls us to invest in eternity. True wealth is not in possessions but in Christ and the treasure stored in heaven.": {
+    "Matthew 6:19-21": {
+      text: "Do not store up for yourselves treasures on earth, where moths and vermin destroy, and where thieves break in and steal. But store up for yourselves treasures in heaven, where moths and vermin do not destroy, and where thieves do not break in and steal. For where your treasure is, there your heart will be also.",
+      theme: "eternal",
+      tags: ["treasure", "wealth", "eternity", "heart", "heaven"]
+    },
+    "Luke 12:33-34": {
+      text: "Sell your possessions and give to the poor. Provide purses for yourselves that will not wear out, a treasure in heaven that will never fail, where no thief comes near and no moth destroys. For where your treasure is, there your heart will be also.",
+      theme: "eternal",
+      tags: ["treasure", "wealth", "heaven", "generosity", "heart"]
+    },
+    "Colossians 3:2": {
+      text: "Set your minds on things above, not on earthly things.",
+      theme: "seek",
+      tags: ["wealth", "focus", "eternity", "heaven", "faith"]
+    }
+  },
+  "Jesus told the rich young ruler to sell and follow—not because money was evil, but because his heart clung to it above God.": {
+    "Matthew 19:21": {
+      text: "Jesus answered, “If you want to be perfect, go, sell your possessions and give to the poor, and you will have treasure in heaven. Then come, follow me.”",
+      theme: "obedience",
+      tags: ["wealth", "surrender", "heaven", "obedience", "treasure"]
+    }
+  },
+  "Job lost all wealth yet still worshiped. Poverty wasn’t holy in itself; Job’s faith was.": {
+  "Job 1:21": {
+      text: "“Naked I came from my mother’s womb, and naked I will depart. The Lord gave and the Lord has taken away; may the name of the Lord be praised.”",
+      theme: "trust",
+      tags: ["poverty", "loss", "faith", "trust", "worship"]
+    }
+  },
+  "Zacchaeus was wealthy but corrupt. After meeting Jesus, he used wealth for justice and generosity. God didn’t condemn his riches, but redirected his heart.": {
+    "Luke 19:8-9": {
+      text: "But Zacchaeus stood up and said to the Lord, “Look, Lord! Here and now I give half of my possessions to the poor, and if I have cheated anybody out of anything, I will pay back four times the amount.” Jesus said to him, “Today salvation has come to this house, because this man, too, is a son of Abraham.”",
+      theme: "transformation",
+      tags: ["wealth", "repentance", "generosity", "salvation", "change"]
+    }
+  }
+};
+
+// Q172. Is it wrong to want to be seen or admired?
+let q172ans = {
+  "God looks at the heart, not appearances": {
+    "1 Samuel 16:7": {
+      text: "But the Lord said to Samuel, “Do not consider his appearance or his height, for I have rejected him. The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.”",
+      theme: "truth",
+      tags: ["appearance", "heart", "identity", "value", "approval"]
+    },
+    "Proverbs 31:30": {
+      text: "Charm is deceptive, and beauty is fleeting; but a woman who fears the Lord is to be praised.",
+      theme: "fear",
+      tags: ["beauty", "vanity", "value", "praise", "fear of God"]
+    },
+    "Ecclesiastes 1:2": {
+      text: "“Meaningless! Meaningless!” says the Teacher. “Utterly meaningless! Everything is meaningless.”",
+      theme: "fallenness",
+      tags: ["vanity", "appearance", "emptiness", "worldliness", "futility"]
+    },
+    "1 Peter 3:3-4": {
+      text: "Your beauty should not come from outward adornment, such as elaborate hairstyles and the wearing of gold jewelry or fine clothes. Rather, it should be that of your inner self, the unfading beauty of a gentle and quiet spirit, which is of great worth in God’s sight.",
+      theme: "holy",
+      tags: ["beauty", "identity", "worth", "gentleness", "value"]
+    }
+  },
+
+  "Seeking praise from people is empty compared to God’s approval": {
+    "John 12:43": {
+      text: "For they loved human praise more than praise from God.",
+      theme: "obedience",
+      tags: ["praise", "approval", "idols", "fear of man", "faith"]
+    },
+    "Matthew 6:1": {
+      text: "Be careful not to practice your righteousness in front of others to be seen by them. If you do, you will have no reward from your Father in heaven.",
+      theme: "obedience",
+      tags: ["pride", "righteousness", "reward", "motives", "approval"]
+    },
+    "Galatians 1:10": {
+      text: "Am I now trying to win the approval of human beings, or of God? Or am I trying to please people? If I were still trying to please people, I would not be a servant of Christ.",
+      theme: "obedience",
+      tags: ["approval", "people-pleasing", "identity", "servanthood", "faith"]
+    },
+    "Matthew 23:5": {
+      text: "Everything they do is done for people to see: They make their phylacteries wide and the tassels on their garments long.",
+      theme: "hypocrisy",
+      tags: ["pride", "religious show", "appearance", "approval", "hypocrisy"]
+    },
+    "Jeremiah 17:5": {
+      text: "This is what the Lord says: “Cursed is the one who trusts in man, who draws strength from mere flesh and whose heart turns away from the Lord.”",
+      theme: "obedience",
+      tags: ["trust", "approval", "flesh", "idolatry", "weakness"]
+    }
+  },
+
+  "True honor comes from humility, not self-promotion": {
+    "Proverbs 27:2": {
+      text: "Let someone else praise you, and not your own mouth; an outsider, and not your own lips.",
+      theme: "humble",
+      tags: ["praise", "humility", "boasting", "honor", "reputation"]
+    },
+    "James 4:10": {
+      text: "Humble yourselves before the Lord, and he will lift you up.",
+      theme: "humble",
+      tags: ["humility", "exaltation", "honor", "pride", "submission"]
+    },
+    "Luke 14:11": {
+      text: "For all those who exalt themselves will be humbled, and those who humble themselves will be exalted.",
+      theme: "humble",
+      tags: ["humility", "honor", "exaltation", "pride", "reward"]
+    },
+    "Matthew 23:12": {
+      text: "For those who exalt themselves will be humbled, and those who humble themselves will be exalted.",
+      theme: "humble",
+      tags: ["humility", "honor", "pride", "reward", "servanthood"]
+    },
+    "Philippians 2:3": {
+      text: "Do nothing out of selfish ambition or vain conceit. Rather, in humility value others above yourselves.",
+      theme: "humble",
+      tags: ["humility", "selflessness", "ambition", "pride", "love"]
+    }
+  },
+
+  "Longing to be seen is fulfilled in God’s love": {
+    "Psalm 139:1-2": {
+      text: "You have searched me, Lord, and you know me. You know when I sit and when I rise; you perceive my thoughts from afar.",
+      theme: "presence",
+      tags: ["identity", "seen", "known", "love", "value"]
+    },
+    "Isaiah 49:16": {
+      text: "See, I have engraved you on the palms of my hands; your walls are ever before me.",
+      theme: "love",
+      tags: ["value", "identity", "seen", "beloved", "security"]
+    },
+    "Matthew 10:30-31": {
+      text: "And even the very hairs of your head are all numbered. So don’t be afraid; you are worth more than many sparrows.",
+      theme: "love",
+      tags: ["value", "identity", "security", "seen", "worth"]
+    },
+    "Zephaniah 3:17": {
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+      theme: "love",
+      tags: ["delight", "seen", "value", "identity", "joy"]
+    },
+    "Genesis 16:13": {
+      text: "She gave this name to the Lord who spoke to her: “You are the God who sees me,” for she said, “I have now seen the One who sees me.”",
+      theme: "presence",
+      tags: ["seen", "value", "identity", "love", "faith"]
+    }
+  }
+};
+
+// Q173. Is hell real — and what does the Bible actually say about it?
+let q173ans = {
+  "Jesus Himself taught that hell is real and eternal": {
+    "Matthew 25:46": {
+      text: "Then they will go away to eternal punishment, but the righteous to eternal life.",
+      theme: "justice",
+      tags: ["hell", "eternity", "punishment", "judgment", "heaven"]
+    },
+    "Mark 9:43": {
+      text: "If your hand causes you to stumble, cut it off. It is better for you to enter life maimed than with two hands to go into hell, where the fire never goes out.",
+      theme: "obedience",
+      tags: ["hell", "sin", "fire", "eternity", "warning"]
+    },
+    "Matthew 10:28": {
+      text: "Do not be afraid of those who kill the body but cannot kill the soul. Rather, be afraid of the One who can destroy both soul and body in hell.",
+      theme: "fear",
+      tags: ["hell", "soul", "fear of God", "eternity", "judgment"]
+    },
+    "Luke 16:23": {
+      text: "In Hades, where he was in torment, he looked up and saw Abraham far away, with Lazarus by his side.",
+      theme: "judgment",
+      tags: ["hell", "parable", "rich man", "torment", "separation"]
+    }
+  },
+
+  "Hell is described as separation from God’s presence": {
+    "2 Thessalonians 1:9": {
+      text: "They will be punished with everlasting destruction and shut out from the presence of the Lord and from the glory of his might.",
+      theme: "eternal",
+      tags: ["hell", "separation", "punishment", "presence", "glory"]
+    },
+    "Matthew 7:23": {
+      text: "Then I will tell them plainly, ‘I never knew you. Away from me, you evildoers!’",
+      theme: "judgment",
+      tags: ["separation", "hell", "rejection", "sin", "judgment"]
+    },
+    "Isaiah 59:2": {
+      text: "But your iniquities have separated you from your God; your sins have hidden his face from you, so that he will not hear.",
+      theme: "fallenness",
+      tags: ["sin", "separation", "judgment", "hell", "iniquity"]
+    },
+    "Luke 13:27-28": {
+      text: "But he will reply, ‘I don’t know you or where you come from. Away from me, all you evildoers!’ There will be weeping there, and gnashing of teeth, when you see Abraham, Isaac and Jacob and all the prophets in the kingdom of God, but you yourselves thrown out.",
+      theme: "judgment",
+      tags: ["hell", "separation", "weeping", "gnashing", "kingdom"]
+    }
+  },
+
+  "Hell is God’s justice against sin and evil": {
+    "Revelation 20:15": {
+      text: "Anyone whose name was not found written in the book of life was thrown into the lake of fire.",
+      theme: "justice",
+      tags: ["hell", "lake of fire", "judgment", "book of life", "eternity"]
+    },
+    "Romans 6:23": {
+      text: "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.",
+      theme: "salvation",
+      tags: ["sin", "death", "judgment", "hell", "life"]
+    },
+    "Revelation 21:8": {
+      text: "But the cowardly, the unbelieving, the vile, the murderers, the sexually immoral, those who practice magic arts, the idolaters and all liars—they will be consigned to the fiery lake of burning sulfur. This is the second death.",
+      theme: "justice",
+      tags: ["hell", "sin", "second death", "fire", "judgment"]
+    },
+    "Psalm 9:17": {
+      text: "The wicked go down to the realm of the dead, all the nations that forget God.",
+      theme: "justice",
+      tags: ["hell", "wicked", "judgment", "nations", "death"]
+    },
+    "Jude 1:7": {
+      text: "In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.",
+      theme: "judgment",
+      tags: ["hell", "Sodom", "judgment", "fire", "example"]
+    },
+    "Daniel 12:2": {
+      text: "Multitudes who sleep in the dust of the earth will awake: some to everlasting life, others to shame and everlasting contempt.",
+      theme: "eternal",
+      tags: ["resurrection", "judgment", "hell", "eternity", "contempt"]
+    },
+    "Isaiah 66:24": {
+      text: "And they will go out and look on the dead bodies of those who rebelled against me; the worms that eat them will not die, the fire that burns them will not be quenched, and they will be loathsome to all mankind.",
+      theme: "judgment",
+      tags: ["hell", "fire", "worms", "judgment", "eternity"]
+    }
+  },
+
+  "God does not desire anyone to perish — hell is avoidable through Christ": {
+    "John 3:16": {
+      text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+      theme: "salvation",
+      tags: ["love", "eternal life", "salvation", "hell", "faith"]
+    },
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "mercy",
+      tags: ["patience", "repentance", "salvation", "hell", "promise"]
+    },
+    "Ezekiel 33:11": {
+      text: "Say to them, ‘As surely as I live, declares the Sovereign Lord, I take no pleasure in the death of the wicked, but rather that they turn from their ways and live. Turn! Turn from your evil ways! Why will you die, people of Israel?’",
+      theme: "mercy",
+      tags: ["repentance", "salvation", "mercy", "hell", "judgment"]
+    },
+    "1 Timothy 2:4": {
+      text: "Who wants all people to be saved and to come to a knowledge of the truth.",
+      theme: "salvation",
+      tags: ["salvation", "truth", "mercy", "hell", "will of God"]
+    }
+  }
+};
+
+// Q174. Who lives in hell?
+let q174ans = {
+  "Hell is prepared for the devil and his angels, not for people — but those who follow Satan’s rebellion share his fate": {
+    "Matthew 25:41": {
+      text: "Then he will say to those on his left, ‘Depart from me, you who are cursed, into the eternal fire prepared for the devil and his angels.’",
+      theme: "judgment",
+      tags: ["hell", "devil", "angels", "curse", "fire"]
+    },
+    "Revelation 20:10": {
+      text: "And the devil, who deceived them, was thrown into the lake of burning sulfur, where the beast and the false prophet had been thrown. They will be tormented day and night for ever and ever.",
+      theme: "eternal",
+      tags: ["hell", "devil", "beast", "false prophet", "torment"]
+    }
+  },
+
+  "The wicked and unrepentant who reject God’s ways end up in destruction": {
+    "Psalm 9:17": {
+      text: "The wicked go down to the realm of the dead, all the nations that forget God.",
+      theme: "justice",
+      tags: ["hell", "wicked", "nations", "forget", "judgment"]
+    },
+    "Romans 2:8": {
+      text: "But for those who are self-seeking and who reject the truth and follow evil, there will be wrath and anger.",
+      theme: "justice",
+      tags: ["hell", "wrath", "anger", "truth", "evil"]
+    },
+    "Revelation 21:8": {
+      text: "But the cowardly, the unbelieving, the vile, the murderers, the sexually immoral, those who practice magic arts, the idolaters and all liars—they will be consigned to the fiery lake of burning sulfur. This is the second death.",
+      theme: "justice",
+      tags: ["hell", "sin", "liars", "immorality", "second death"]
+    }
+  },
+
+  "Those who choose sin over God’s gift of life are excluded from His kingdom": {
+    "Galatians 5:19-21": {
+      text: "The acts of the flesh are obvious: sexual immorality, impurity and debauchery; idolatry and witchcraft; hatred, discord, jealousy, fits of rage, selfish ambition, dissensions, factions and envy; drunkenness, orgies, and the like. I warn you, as I did before, that those who live like this will not inherit the kingdom of God.",
+      theme: "fallenness",
+      tags: ["hell", "sin", "flesh", "kingdom", "inheritance"]
+    },
+    "1 Corinthians 6:9-10": {
+      text: "Or do you not know that wrongdoers will not inherit the kingdom of God? Do not be deceived: Neither the sexually immoral nor idolaters nor adulterers nor men who have sex with men nor thieves nor the greedy nor drunkards nor slanderers nor swindlers will inherit the kingdom of God.",
+      theme: "justice",
+      tags: ["hell", "sin", "wrongdoers", "kingdom", "inheritance"]
+    },
+    "John 3:18": {
+      text: "Whoever believes in him is not condemned, but whoever does not believe stands condemned already because they have not believed in the name of God’s one and only Son.",
+      theme: "salvation",
+      tags: ["hell", "condemnation", "unbelief", "judgment", "faith"]
+    }
+  },
+
+  "Biblical stories show rebellion against God leads to judgment — a warning of hell’s reality": {
+    "Numbers 16:32-33": {
+      text: "and the earth opened its mouth and swallowed them and their households, and all those associated with Korah, together with their possessions. They went down alive into the realm of the dead, with everything they owned; the earth closed over them, and they perished and were gone from the community.",
+      theme: "judgment",
+      tags: ["hell", "rebellion", "death", "earth", "judgment"]
+    },
+    "Exodus 14:28": {
+      text: "The water flowed back and covered the chariots and horsemen—the entire army of Pharaoh that had followed the Israelites into the sea. Not one of them survived.",
+      theme: "justice",
+      tags: ["judgment", "death", "pharaoh", "army", "destruction"]
+    },
+    "Matthew 27:5": {
+      text: "So Judas threw the money into the temple and left. Then he went away and hanged himself.",
+      theme: "fallenness",
+      tags: ["judas", "betrayal", "despair", "death", "judgment"]
+    },
+    "Acts 5:5": {
+      text: "When Ananias heard this, he fell down and died. And great fear seized all who heard what had happened.",
+      theme: "justice",
+      tags: ["judgment", "ananias", "lying", "fear", "death"]
+    }
+  },
+
+  "Hell is the destiny of those who refuse God’s salvation in Christ": {
+    "2 Thessalonians 1:8-9": {
+      text: "He will punish those who do not know God and do not obey the gospel of our Lord Jesus. They will be punished with everlasting destruction and shut out from the presence of the Lord and from the glory of his might.",
+      theme: "eternal",
+      tags: ["hell", "destruction", "punishment", "gospel", "judgment"]
+    },
+    "Matthew 13:41-42": {
+      text: "The Son of Man will send out his angels, and they will weed out of his kingdom everything that causes sin and all who do evil. They will throw them into the blazing furnace, where there will be weeping and gnashing of teeth.",
+      theme: "judgment",
+      tags: ["hell", "angels", "evil", "weeping", "gnashing"]
+    },
+    "Jude 1:13": {
+      text: "They are wild waves of the sea, foaming up their shame; wandering stars, for whom blackest darkness has been reserved forever.",
+      theme: "judgment",
+      tags: ["hell", "darkness", "shame", "judgment", "forever"]
+    }
+  }
+};
+
+// Q175. Why would God send some people to hell if He loves them?
+let q175ans = {
+  "God desires all to be saved, but He honors human choice — hell is the result of rejecting Him": {
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "mercy",
+      tags: ["hell", "patience", "repentance", "perish", "love"]
+    },
+    "Ezekiel 33:11": {
+      text: "Say to them, ‘As surely as I live, declares the Sovereign Lord, I take no pleasure in the death of the wicked, but rather that they turn from their ways and live. Turn! Turn from your evil ways! Why will you die, people of Israel?’",
+      theme: "mercy",
+      tags: ["hell", "wicked", "turn", "live", "repentance"]
+    },
+    "John 3:19": {
+      text: "This is the verdict: Light has come into the world, but people loved darkness instead of light because their deeds were evil.",
+      theme: "light",
+      tags: ["hell", "light", "darkness", "judgment", "choice"]
+    }
+  },
+
+  "Hell exists because God is just — love does not cancel justice": {
+    "Romans 6:23": {
+      text: "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.",
+      theme: "justice",
+      tags: ["hell", "wages", "sin", "death", "life"]
+    },
+    "Romans 2:5": {
+      text: "But because of your stubbornness and your unrepentant heart, you are storing up wrath against yourself for the day of God’s wrath, when his righteous judgment will be revealed.",
+      theme: "justice",
+      tags: ["hell", "wrath", "judgment", "sin", "stubbornness"]
+    },
+    "Nahum 1:3": {
+      text: "The Lord is slow to anger but great in power; the Lord will not leave the guilty unpunished.",
+      theme: "justice",
+      tags: ["hell", "guilt", "punishment", "anger", "judgment"]
+    }
+  },
+
+  "God’s love provides a way out through Jesus — hell is for those who refuse it": {
+    "John 3:16": {
+      text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+      theme: "salvation",
+      tags: ["hell", "love", "eternal life", "jesus", "salvation"]
+    },
+    "John 5:24": {
+      text: "Very truly I tell you, whoever hears my word and believes him who sent me has eternal life and will not be judged but has crossed over from death to life.",
+      theme: "salvation",
+      tags: ["hell", "life", "death", "belief", "judgment"]
+    },
+    "1 Timothy 2:3-4": {
+      text: "This is good, and pleases God our Savior, who wants all people to be saved and to come to a knowledge of the truth.",
+      theme: "salvation",
+      tags: ["hell", "saved", "truth", "all people", "desire"]
+    }
+  },
+
+  "Those who reject God’s love choose separation from Him — and that is what hell is": {
+    "2 Thessalonians 1:9": {
+      text: "They will be punished with everlasting destruction and shut out from the presence of the Lord and from the glory of his might.",
+      theme: "eternal",
+      tags: ["hell", "destruction", "presence", "punishment", "glory"]
+    },
+    "Matthew 23:37": {
+      text: "Jerusalem, Jerusalem, you who kill the prophets and stone those sent to you, how often I have longed to gather your children together, as a hen gathers her chicks under her wings, and you were not willing.",
+      theme: "love",
+      tags: ["hell", "rejection", "gathering", "love", "choice"]
+    },
+    "Hosea 11:7": {
+      text: "My people are determined to turn from me. Even though they call me God Most High, I will by no means exalt them.",
+      theme: "fallenness",
+      tags: ["hell", "turning away", "rejection", "judgment", "sin"]
+    }
+  },
+
+  "At the cross, God’s love and justice meet — Jesus took the punishment we deserved so we wouldn’t have to face hell": {
+    "Romans 5:8-9": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us. Since we have now been justified by his blood, how much more shall we be saved from God’s wrath through him!",
+      theme: "salvation",
+      tags: ["hell", "wrath", "love", "cross", "blood"]
+    },
+    "Isaiah 53:5": {
+      text: "But he was pierced for our transgressions, he was crushed for our iniquities; the punishment that brought us peace was on him, and by his wounds we are healed.",
+      theme: "savior",
+      tags: ["hell", "punishment", "peace", "jesus", "healing"]
+    },
+    "1 John 4:9-10": {
+      text: "This is how God showed his love among us: He sent his one and only Son into the world that we might live through him. This is love: not that we loved God, but that he loved us and sent his Son as an atoning sacrifice for our sins.",
+      theme: "love",
+      tags: ["hell", "love", "atonement", "jesus", "sins"]
+    },
+    "Hebrews 9:27-28": {
+      text: "Just as people are destined to die once, and after that to face judgment, so Christ was sacrificed once to take away the sins of many; and he will appear a second time, not to bear sin, but to bring salvation to those who are waiting for him.",
+      theme: "salvation",
+      tags: ["hell", "judgment", "sacrifice", "salvation", "jesus"]
+    }
+  }
+};
+
+// Q176. How do we avoid going to hell?
+let q176ans = {
+  "We avoid hell not by being good enough, but by trusting Jesus who saves us": {
+    "John 14:6": {
+      text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'",
+      theme: "jesus",
+      tags: ["hell", "salvation", "jesus", "truth", "life"]
+    },
+    "Acts 4:12": {
+      text: "Salvation is found in no one else, for there is no other name under heaven given to mankind by which we must be saved.",
+      theme: "salvation",
+      tags: ["hell", "salvation", "jesus", "name", "saved"]
+    },
+    "Romans 10:9": {
+      text: "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved.",
+      theme: "faithful",
+      tags: ["hell", "salvation", "faith", "belief", "confession"]
+    }
+  },
+
+  "God’s grace is free — we avoid hell by accepting His gift, not earning it": {
+    "Ephesians 2:8-9": {
+      text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast.",
+      theme: "grace",
+      tags: ["hell", "grace", "faith", "gift", "works"]
+    },
+    "Titus 3:5": {
+      text: "He saved us, not because of righteous things we had done, but because of his mercy. He saved us through the washing of rebirth and renewal by the Holy Spirit.",
+      theme: "mercy",
+      tags: ["hell", "salvation", "mercy", "rebirth", "spirit"]
+    },
+    "Romans 3:23-24": {
+      text: "For all have sinned and fall short of the glory of God, and all are justified freely by his grace through the redemption that came by Christ Jesus.",
+      theme: "salvation",
+      tags: ["hell", "sin", "grace", "redemption", "jesus"]
+    }
+  },
+
+  "Turning from sin (repentance) shows we have truly accepted His gift": {
+    "Acts 3:19": {
+      text: "Repent, then, and turn to God, so that your sins may be wiped out, that times of refreshing may come from the Lord.",
+      theme: "repentance",
+      tags: ["hell", "repentance", "sins", "refreshing", "turn"]
+    },
+    "Matthew 4:17": {
+      text: "From that time on Jesus began to preach, 'Repent, for the kingdom of heaven has come near.'",
+      theme: "kingdom",
+      tags: ["hell", "repentance", "kingdom", "jesus", "heaven"]
+    },
+    "2 Corinthians 7:10": {
+      text: "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death.",
+      theme: "repentance",
+      tags: ["hell", "repentance", "salvation", "sorrow", "life"]
+    }
+  },
+
+  "Avoiding hell means walking with God daily, staying close to Him": {
+    "John 8:12": {
+      text: "When Jesus spoke again to the people, he said, 'I am the light of the world. Whoever follows me will never walk in darkness, but will have the light of life.'",
+      theme: "light",
+      tags: ["hell", "light", "life", "follow", "darkness"]
+    },
+    "Hebrews 12:14": {
+      text: "Make every effort to live in peace with everyone and to be holy; without holiness no one will see the Lord.",
+      theme: "holy",
+      tags: ["hell", "holiness", "peace", "lord", "effort"]
+    },
+    "Matthew 7:13-14": {
+      text: "Enter through the narrow gate. For wide is the gate and broad is the road that leads to destruction, and many enter through it. But small is the gate and narrow the road that leads to life, and only a few find it.",
+      theme: "obedience",
+      tags: ["hell", "gate", "life", "destruction", "obedience"]
+    }
+  },
+
+  "God patiently gives us chances to choose Him — but ignoring Him forever leads to hell": {
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "mercy",
+      tags: ["hell", "patience", "repentance", "love", "perish"]
+    },
+    "Hebrews 3:15": {
+      text: "As has just been said: 'Today, if you hear his voice, do not harden your hearts as you did in the rebellion.'",
+      theme: "obedience",
+      tags: ["hell", "today", "voice", "harden", "hearts"]
+    },
+    "Revelation 3:20": {
+      text: "Here I am! I stand at the door and knock. If anyone hears my voice and opens the door, I will come in and eat with that person, and they with me.",
+      theme: "jesus",
+      tags: ["hell", "jesus", "door", "voice", "fellowship"]
+    }
+  },
+
+  "Once we belong to Jesus, we don’t need to live in fear of hell — He keeps us secure": {
+    "John 10:28-29": {
+      text: "I give them eternal life, and they shall never perish; no one will snatch them out of my hand. My Father, who has given them to me, is greater than all; no one can snatch them out of my Father’s hand.",
+      theme: "eternal",
+      tags: ["hell", "eternal", "security", "jesus", "life"]
+    },
+    "Romans 8:38-39": {
+      text: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      theme: "love",
+      tags: ["hell", "love", "security", "jesus", "eternal"]
+    },
+    "Philippians 1:6": {
+      text: "Being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "faithful",
+      tags: ["hell", "security", "faithful", "completion", "jesus"]
+    },
+    "1 John 5:13": {
+      text: "I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life.",
+      theme: "eternal",
+      tags: ["hell", "eternal", "life", "assurance", "jesus"]
+    }
+  },
+  "God’s heart is that all people be saved — hell is not His desire": {
+    "1 Timothy 2:3-4": {
+      text: "This is good, and pleases God our Savior, who wants all people to be saved and to come to a knowledge of the truth.",
+      theme: "salvation",
+      tags: ["hell", "salvation", "all", "truth", "god"]
+    },
+    "Ezekiel 33:11": {
+      text: "Say to them, ‘As surely as I live, declares the Sovereign LORD, I take no pleasure in the death of the wicked, but rather that they turn from their ways and live. Turn! Turn from your evil ways! Why will you die, people of Israel?’",
+      theme: "mercy",
+      tags: ["hell", "repentance", "mercy", "turn", "life"]
+    },
+    "John 3:16-17": {
+      text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life. For God did not send his Son into the world to condemn the world, but to save the world through him.",
+      theme: "love",
+      tags: ["hell", "love", "salvation", "jesus", "world"]
+    },
+    "2 Chronicles 7:14": {
+      text: "If my people, who are called by my name, will humble themselves and pray and seek my face and turn from their wicked ways, then I will hear from heaven, and I will forgive their sin and will heal their land.",
+      theme: "humble",
+      tags: ["hell", "repentance", "humble", "forgiveness", "healing"]
+    }
+  }
+};
+
+// Q177. Why was hell created in the first place?
+let q177ans = {
+  "Hell was prepared for Satan and the fallen angels, not humans": {
+    "Matthew 25:41": {
+      text: "Then he will say to those on his left, ‘Depart from me, you who are cursed, into the eternal fire prepared for the devil and his angels.’",
+      theme: "judgment",
+      tags: ["hell", "devil", "angels", "fire", "curse"]
+    },
+    "2 Peter 2:4": {
+      text: "For if God did not spare angels when they sinned, but sent them to hell, putting them in chains of darkness to be held for judgment;",
+      theme: "justice",
+      tags: ["hell", "angels", "judgment", "darkness", "sin"]
+    },
+    "Jude 1:6": {
+      text: "And the angels who did not keep their positions of authority but abandoned their proper dwelling—these he has kept in darkness, bound with everlasting chains for judgment on the great Day.",
+      theme: "justice",
+      tags: ["hell", "angels", "judgment", "chains", "darkness"]
+    }
+  },
+
+  "Hell exists because God is holy and must punish rebellion": {
+    "Habakkuk 1:13": {
+      text: "Your eyes are too pure to look on evil; you cannot tolerate wrongdoing. Why then do you tolerate the treacherous? Why are you silent while the wicked swallow up those more righteous than themselves?",
+      theme: "holy",
+      tags: ["hell", "holy", "evil", "justice", "wrongdoing"]
+    },
+    "Romans 6:23": {
+      text: "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.",
+      theme: "salvation",
+      tags: ["hell", "sin", "death", "life", "salvation"]
+    }
+  },
+
+  "Hell reveals God’s justice against Satan and all unrepentant evil": {
+    "Revelation 20:10": {
+      text: "And the devil, who deceived them, was thrown into the lake of burning sulfur, where the beast and the false prophet had been thrown. They will be tormented day and night for ever and ever.",
+      theme: "justice",
+      tags: ["hell", "devil", "beast", "torment", "eternal"]
+    },
+    "Isaiah 14:12-15": {
+      text: "How you have fallen from heaven, morning star, son of the dawn! You have been cast down to the earth, you who once laid low the nations! ... But you are brought down to the realm of the dead, to the depths of the pit.",
+      theme: "fallenness",
+      tags: ["hell", "lucifer", "fall", "pride", "pit"]
+    }
+  },
+
+  "The Old Testament hinted at Sheol as the shadowy place of the dead": {
+    "Psalm 9:17": {
+      text: "The wicked go down to the realm of the dead, all the nations that forget God.",
+      theme: "judgment",
+      tags: ["sheol", "hell", "wicked", "nations", "death"]
+    },
+    "Proverbs 15:24": {
+      text: "The path of life leads upward for the prudent to keep them from going down to the realm of the dead.",
+      theme: "wisdom",
+      tags: ["sheol", "hell", "life", "death", "wisdom"]
+    },
+    "Job 21:13": {
+      text: "They spend their years in prosperity and go down to the grave in peace.",
+      theme: "fallenness",
+      tags: ["sheol", "grave", "prosperity", "death", "peace"]
+    },
+    "Daniel 12:2": {
+      text: "Multitudes who sleep in the dust of the earth will awake: some to everlasting life, others to shame and everlasting contempt.",
+      theme: "resurrection",
+      tags: ["sheol", "hell", "resurrection", "life", "judgment"]
+    }
+  },
+
+  "Jesus spoke of Gehenna to warn of the final judgment fire": {
+    "Matthew 10:28": {
+      text: "Do not be afraid of those who kill the body but cannot kill the soul. Rather, be afraid of the One who can destroy both soul and body in hell.",
+      theme: "fear",
+      tags: ["gehenna", "hell", "soul", "body", "fear"]
+    },
+    "Mark 9:43": {
+      text: "If your hand causes you to stumble, cut it off. It is better for you to enter life maimed than with two hands to go into hell, where the fire never goes out.",
+      theme: "obedience",
+      tags: ["gehenna", "hell", "fire", "life", "sin"]
+    },
+    "Matthew 5:29": {
+      text: "If your right eye causes you to stumble, gouge it out and throw it away. It is better for you to lose one part of your body than for your whole body to be thrown into hell.",
+      theme: "obedience",
+      tags: ["gehenna", "hell", "body", "sin", "judgment"]
+    },
+    "Luke 12:5": {
+      text: "But I will show you whom you should fear: Fear him who, after your body has been killed, has authority to throw you into hell. Yes, I tell you, fear him.",
+      theme: "authority",
+      tags: ["gehenna", "hell", "fear", "authority", "judgment"]
+    }
+  },
+
+  "But God does not want anyone to perish in hell—His desire is salvation": {
+    "2 Peter 3:9": {
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "mercy",
+      tags: ["hell", "salvation", "repentance", "patience", "mercy"]
+    },
+    "Ezekiel 18:23": {
+      text: "Do I take any pleasure in the death of the wicked? declares the Sovereign LORD. Rather, am I not pleased when they turn from their ways and live?",
+      theme: "mercy",
+      tags: ["hell", "life", "repentance", "mercy", "wicked"]
+    },
+    "John 3:16": {
+      text: "For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.",
+      theme: "salvation",
+      tags: ["hell", "love", "life", "perish", "salvation"]
+    },
+    "1 Timothy 2:3-4": {
+      text: "This is good, and pleases God our Savior, who wants all people to be saved and to come to a knowledge of the truth.",
+      theme: "salvation",
+      tags: ["hell", "truth", "salvation", "all", "God's will"]
+    }
+  }
+};
+
+// Is it wrong to listen to secular music as a Christian?
+let q178ans = {
+  "God calls us to fill our hearts and minds with what is pure and uplifting. What we consume shapes us—even music. It may not all be sinful, but we must discern whether it draws us closer to Christ or away from Him.": {
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "guidance",
+      tags: ["purity", "thoughts", "discernment"]
+    },
+    "Colossians 3:16": {
+      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.",
+      theme: "word",
+      tags: ["music", "worship", "focus"]
+    },
+    "Ephesians 5:19": {
+      text: "Speaking to one another with psalms, hymns, and songs from the Spirit. Sing and make music from your heart to the Lord.",
+      theme: "spirit",
+      tags: ["music", "praise", "joy"]
+    },
+    "Psalm 19:14": {
+      text: "May these words of my mouth and this meditation of my heart be pleasing in your sight, Lord, my Rock and my Redeemer.",
+      theme: "obedience",
+      tags: ["thoughts", "purity", "speech"]
+    },
+    "Psalm 101:3": {
+      text: "I will not look with approval on anything that is vile. I hate what faithless people do; I will have no part in it.",
+      theme: "holiness",
+      tags: ["purity", "discernment", "holiness"]
+    }
+  },
+  "Not everything in the world is evil, but not everything is beneficial. Christians are called to test what they allow into their lives and avoid what corrupts their spirit.": {
+    "1 Corinthians 10:23": {
+      text: "“I have the right to do anything,” you say—but not everything is beneficial. “I have the right to do anything”—but not everything is constructive.",
+      theme: "wisdom",
+      tags: ["freedom", "discernment", "beneficial"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["world", "renewal", "discernment"]
+    },
+    "1 Thessalonians 5:21-22": {
+      text: "But test them all; hold on to what is good, reject every kind of evil.",
+      theme: "truth",
+      tags: ["discernment", "testing", "good and evil"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "guidance",
+      tags: ["heart", "purity", "influence"]
+    },
+    "Psalm 119:37": {
+      text: "Turn my eyes away from worthless things; preserve my life according to your word.",
+      theme: "word",
+      tags: ["purity", "focus", "guidance"]
+    }
+  },
+  "Music has power—it can either glorify God or stir desires and attitudes that pull us from Him. We should avoid songs that cause us or others to stumble.": {
+    "Matthew 18:9": {
+      text: "And if your eye causes you to stumble, gouge it out and throw it away. It is better for you to enter life with one eye than to have two eyes and be thrown into the fire of hell.",
+      theme: "obedience",
+      tags: ["stumbling", "discipline", "holiness"]
+    },
+    "1 Corinthians 15:33": {
+      text: "Do not be misled: “Bad company corrupts good character.”",
+      theme: "walk",
+      tags: ["influence", "character", "warning"]
+    },
+    "James 4:4": {
+      text: "You adulterous people, don’t you know that friendship with the world means enmity against God? Therefore, anyone who chooses to be a friend of the world becomes an enemy of God.",
+      theme: "obedience",
+      tags: ["worldliness", "loyalty", "influence"]
+    },
+    "Proverbs 13:20": {
+      text: "Walk with the wise and become wise, for a companion of fools suffers harm.",
+      theme: "wisdom",
+      tags: ["influence", "companions", "wisdom"]
+    },
+    "Psalm 1:1-2": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night.",
+      theme: "obedience",
+      tags: ["companionship", "influence", "delight"]
+    }
+  },
+  "The heart behind your choice matters most. If music makes you forget God, it becomes an idol. But if your heart remains devoted to Christ, you can still enjoy beauty in creation without sinning.": {
+    "1 Samuel 16:23": {
+      text: "Whenever the spirit from God came on Saul, David would take up his lyre and play. Then relief would come to Saul; he would feel better, and the evil spirit would leave him.",
+      theme: "spirit",
+      tags: ["music", "healing", "peace"]
+    },
+    "Ecclesiastes 3:4": {
+      text: "a time to weep and a time to laugh, a time to mourn and a time to dance,",
+      theme: "season",
+      tags: ["joy", "dance", "expression"]
+    },
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "obedience",
+      tags: ["gratitude", "devotion", "actions"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["glory", "worship", "actions"]
+    },
+    "Psalm 150:6": {
+      text: "Let everything that has breath praise the Lord. Praise the Lord.",
+      theme: "praise",
+      tags: ["worship", "music", "praise"]
+    }
+  },
+  // Adding Old Testament warnings about songs/idolatry to q178
+  "Music has power—it can either glorify God or stir desires and attitudes that pull us from Him. We should avoid songs that cause us or others to stumble.": {
+    "Matthew 18:9": {
+      text: "And if your eye causes you to stumble, gouge it out and throw it away. It is better for you to enter life with one eye than to have two eyes and be thrown into the fire of hell.",
+      theme: "obedience",
+      tags: ["stumbling", "discipline", "holiness"]
+    },
+    "1 Corinthians 15:33": {
+      text: "Do not be misled: “Bad company corrupts good character.”",
+      theme: "walk",
+      tags: ["influence", "character", "warning"]
+    },
+    "James 4:4": {
+      text: "You adulterous people, don’t you know that friendship with the world means enmity against God? Therefore, anyone who chooses to be a friend of the world becomes an enemy of God.",
+      theme: "obedience",
+      tags: ["worldliness", "loyalty", "influence"]
+    },
+    "Proverbs 13:20": {
+      text: "Walk with the wise and become wise, for a companion of fools suffers harm.",
+      theme: "wisdom",
+      tags: ["influence", "companions", "wisdom"]
+    },
+    "Psalm 1:1-2": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night.",
+      theme: "obedience",
+      tags: ["companionship", "influence", "delight"]
+    },
+    "Exodus 32:18": {
+      text: "Moses replied: “It is not the sound of victory, it is not the sound of defeat; it is the sound of singing that I hear.”",
+      theme: "fallenness",
+      tags: ["idolatry", "singing", "rebellion"]
+    },
+    "Exodus 32:25": {
+      text: "Moses saw that the people were running wild and that Aaron had let them get out of control and so become a laughingstock to their enemies.",
+      theme: "fallenness",
+      tags: ["idolatry", "corruption", "disorder"]
+    },
+    "Amos 6:5-6": {
+      text: "You strum away on your harps like David and improvise on musical instruments. You drink wine by the bowlful and use the finest lotions, but you do not grieve over the ruin of Joseph.",
+      theme: "fallenness",
+      tags: ["luxury", "worldliness", "empty songs"]
+    },
+    "Isaiah 5:12": {
+      text: "They have harps and lyres at their banquets, pipes and timbrels and wine, but they have no regard for the deeds of the Lord, no respect for the work of his hands.",
+      theme: "fallenness",
+      tags: ["music", "distraction", "idolatry"]
+    }
+  },
+  // Adding Daniel 3 example to q178
+  "Music has power—it can either glorify God or stir desires and attitudes that pull us from Him. We should avoid songs that cause us or others to stumble.": {
+    "Matthew 18:9": {
+      text: "And if your eye causes you to stumble, gouge it out and throw it away. It is better for you to enter life with one eye than to have two eyes and be thrown into the fire of hell.",
+      theme: "obedience",
+      tags: ["stumbling", "discipline", "holiness"]
+    },
+    "1 Corinthians 15:33": {
+      text: "Do not be misled: “Bad company corrupts good character.”",
+      theme: "walk",
+      tags: ["influence", "character", "warning"]
+    },
+    "James 4:4": {
+      text: "You adulterous people, don’t you know that friendship with the world means enmity against God? Therefore, anyone who chooses to be a friend of the world becomes an enemy of God.",
+      theme: "obedience",
+      tags: ["worldliness", "loyalty", "influence"]
+    },
+    "Proverbs 13:20": {
+      text: "Walk with the wise and become wise, for a companion of fools suffers harm.",
+      theme: "wisdom",
+      tags: ["influence", "companions", "wisdom"]
+    },
+    "Psalm 1:1-2": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night.",
+      theme: "obedience",
+      tags: ["companionship", "influence", "delight"]
+    },
+    "Exodus 32:18": {
+      text: "Moses replied: “It is not the sound of victory, it is not the sound of defeat; it is the sound of singing that I hear.”",
+      theme: "fallenness",
+      tags: ["idolatry", "singing", "rebellion"]
+    },
+    "Exodus 32:25": {
+      text: "Moses saw that the people were running wild and that Aaron had let them get out of control and so become a laughingstock to their enemies.",
+      theme: "fallenness",
+      tags: ["idolatry", "corruption", "disorder"]
+    },
+    "Amos 6:5-6": {
+      text: "You strum away on your harps like David and improvise on musical instruments. You drink wine by the bowlful and use the finest lotions, but you do not grieve over the ruin of Joseph.",
+      theme: "fallenness",
+      tags: ["luxury", "worldliness", "empty songs"]
+    },
+    "Isaiah 5:12": {
+      text: "They have harps and lyres at their banquets, pipes and timbrels and wine, but they have no regard for the deeds of the Lord, no respect for the work of his hands.",
+      theme: "fallenness",
+      tags: ["music", "distraction", "idolatry"]
+    },
+    "Daniel 3:5": {
+      text: "As soon as you hear the sound of the horn, flute, zither, lyre, harp, pipe and all kinds of music, you must fall down and worship the image of gold that King Nebuchadnezzar has set up.",
+      theme: "idolatry",
+      tags: ["music", "control", "idolatry", "false worship"]
+    },
+    "Daniel 3:7": {
+      text: "Therefore, as soon as they heard the sound of the horn, flute, zither, lyre, harp and all kinds of music, all the nations and peoples of every language fell down and worshiped the image of gold that King Nebuchadnezzar had set up.",
+      theme: "idolatry",
+      tags: ["influence", "music", "idolatry", "crowd pressure"]
+    }
+  },
+
+};
+
+// q179 - Does everything I enjoy have to be explicitly ‘Christian’?
+let q179ans = {
+  "God created good things for us to enjoy, but He calls us to enjoy them with thankfulness, wisdom, and in ways that honor Him. Pleasure isn’t evil, but pleasure without God leaves us empty, and chasing it above Him is dangerous.": {
+    "1 Timothy 6:17": {
+      text: "Command those who are rich in this present world not to be arrogant nor to put their hope in wealth, which is so uncertain, but to put their hope in God, who richly provides us with everything for our enjoyment.",
+      theme: "goodness",
+      tags: ["enjoyment", "provision", "gratitude"]
+    },
+    "Ecclesiastes 3:12-13": {
+      text: "I know that there is nothing better for people than to be happy and to do good while they live. That each of them may eat and drink, and find satisfaction in all their toil—this is the gift of God.",
+      theme: "creation",
+      tags: ["joy", "gift", "satisfaction"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "obedience",
+      tags: ["glory", "daily life", "worship"]
+    },
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "devotion",
+      tags: ["thanksgiving", "daily life", "Jesus"]
+    },
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "walk",
+      tags: ["thoughts", "purity", "guidance"]
+    },
+    "Ecclesiastes 2:25": {
+      text: "For without him, who can eat or find enjoyment?",
+      theme: "creation",
+      tags: ["joy", "dependence", "emptiness without God"]
+    },
+    "John 10:10": {
+      text: "The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.",
+      theme: "life",
+      tags: ["abundance", "joy", "purpose"]
+    },
+    "Psalm 16:11": {
+      text: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.",
+      theme: "joy",
+      tags: ["pleasure", "eternal", "presence of God"]
+    },
+    "2 Timothy 3:4": {
+      text: "They will be lovers of themselves, lovers of money, boastful, proud, abusive, disobedient to their parents, ungrateful, unholy, without love, unforgiving, slanderous, without self-control, brutal, not lovers of the good, treacherous, rash, conceited, lovers of pleasure rather than lovers of God.",
+      theme: "temptation",
+      tags: ["warning", "pleasure", "idolatry", "love for God"]
+    },
+    "Galatians 5:19-21": {
+      text: "The acts of the flesh are obvious: sexual immorality, impurity and debauchery; idolatry and witchcraft; hatred, discord, jealousy, fits of rage, selfish ambition, dissensions, factions and envy; drunkenness, orgies, and the like. I warn you, as I did before, that those who live like this will not inherit the kingdom of God.",
+      theme: "battle",
+      tags: ["warning", "sin", "pleasure", "obedience"]
+    }
+  }
+};
+
+// q180 - If something isn’t a big sin, does it still matter to God?
+let q180ans = {
+  "God cares about even the small things because they reflect our heart and obedience. Each choice, no matter how minor, shapes our character and witness.": {
+    "Luke 16:10": {
+      text: "Whoever can be trusted with very little can also be trusted with much, and whoever is dishonest with very little will also be dishonest with much.",
+      theme: "obedience",
+      tags: ["faithfulness", "small things", "trustworthiness"]
+    },
+    "James 2:10": {
+      text: "For whoever keeps the whole law and yet stumbles at just one point is guilty of breaking all of it.",
+      theme: "obedience",
+      tags: ["sin", "accountability", "small sins matter"]
+    },
+    "Proverbs 6:16-19": {
+      text: "There are six things the LORD hates, seven that are detestable to him: haughty eyes, a lying tongue, hands that shed innocent blood, a heart that devises wicked schemes, feet that are quick to rush into evil, a false witness who pours out lies, and a person who stirs up conflict in the community.",
+      theme: "obedience",
+      tags: ["small sins", "heart matters", "God's standards"]
+    }
+  },
+  "Even our words matter, not just our deeds, because God examines the intentions behind them.": {
+    "Matthew 12:36": {
+      text: "But I tell you that everyone will have to give account on the day of judgment for every empty word they have spoken.",
+      theme: "accountability",
+      tags: ["speech", "small things matter", "obedience"]
+    },
+    "Proverbs 10:19": {
+      text: "Sin is not ended by multiplying words, but the prudent hold their tongues.",
+      theme: "wisdom",
+      tags: ["speech", "obedience", "small sins"]
+    }
+  },
+  "God calls us to holiness in every part of life, not just the obvious or public sins.": {
+    "1 Peter 1:15-16": {
+      text: "But just as he who called you is holy, so be holy in all you do; for it is written: 'Be holy, because I am holy.'",
+      theme: "holiness",
+      tags: ["obedience", "heart", "sanctification"]
+    },
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "devotion",
+      tags: ["daily life", "obedience", "attention to detail"]
+    },
+    "Romans 12:1": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship.",
+      theme: "devotion",
+      tags: ["holiness", "daily life", "obedience"]
+    }
+  },
+  "Small sins still have consequences, so God calls us to surrender all, not just the major faults.": {
+    "Galatians 6:7-8": {
+      text: "Do not be deceived: God cannot be mocked. A man reaps what he sows. Whoever sows to please their flesh, from the flesh will reap destruction; whoever sows to please the Spirit, from the Spirit will reap eternal life.",
+      theme: "consequences",
+      tags: ["obedience", "actions", "small choices"]
+    },
+    "Romans 14:12": {
+      text: "So then, each of us will give an account of ourselves to God.",
+      theme: "accountability",
+      tags: ["obedience", "responsibility", "small actions matter"]
+    },
+    "Ecclesiastes 12:13-14": {
+      text: "Now all has been heard; here is the conclusion of the matter: Fear God and keep his commandments, for this is the duty of all mankind. For God will bring every deed into judgment, including every hidden thing, whether good or evil.",
+      theme: "judgment",
+      tags: ["accountability", "obedience", "small sins matter"]
+    }
+  }
+};
+
+// q181 - Can something harmless (like music or fun) actually pull me away from God?
+let q181ans = {
+  "Even good or neutral things can become idols if they take God’s place in our hearts.": {
+    "Exodus 20:3": {
+      text: "You shall have no other gods before me.",
+      theme: "obedience",
+      tags: ["idolatry", "priorities", "heart"]
+    },
+    "Colossians 3:5": {
+      text: "Put to death, therefore, whatever belongs to your earthly nature: sexual immorality, impurity, lust, evil desires and greed, which is idolatry.",
+      theme: "obedience",
+      tags: ["idolatry", "desires", "priorities"]
+    },
+    "Matthew 6:24": {
+      text: "No one can serve two masters. Either you will hate the one and love the other, or you will be devoted to the one and despise the other. You cannot serve both God and money.",
+      theme: "devotion",
+      tags: ["idolatry", "heart", "priorities"]
+    },
+    "1 John 2:15-16": {
+      text: "Do not love the world or anything in the world. If anyone loves the world, love for the Father is not in them. For everything in the world—the lust of the flesh, the lust of the eyes, and the pride of life—comes not from the Father but from the world.",
+      theme: "love",
+      tags: ["worldly desires", "idolatry", "heart"]
+    }
+  },
+  "What we consume in thought, sight, and sound shapes our heart; even fun can lead us to sin if it entices wrong desires.": {
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "mind",
+      tags: ["thoughts", "influence", "choices"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["mind", "worldly influence", "obedience"]
+    },
+    "1 Corinthians 15:33": {
+      text: "Do not be misled: 'Bad company corrupts good character.'",
+      theme: "wisdom",
+      tags: ["influence", "choices", "heart"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "wisdom",
+      tags: ["heart", "thoughts", "discipline"]
+    },
+    "Psalm 101:3": {
+      text: "I will not look with approval on anything that is vile. I hate what faithless people do; I will have no part in it.",
+      theme: "devotion",
+      tags: ["guarding eyes", "discernment", "heart"]
+    }
+  },
+  "God calls us to self-control and discernment; enjoyment isn’t sinful, but lack of restraint can draw us away from Him.": {
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "spirit",
+      tags: ["self-control", "discipline", "joy"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "devotion",
+      tags: ["discipline", "pleasure", "obedience"]
+    },
+    "Proverbs 25:28": {
+      text: "Like a city whose walls are broken through is a person who lacks self-control.",
+      theme: "wisdom",
+      tags: ["self-control", "heart", "discipline"]
+    },
+    "Titus 2:11-12": {
+      text: "For the grace of God has appeared that offers salvation to all people. It teaches us to say “No” to ungodliness and worldly passions, and to live self-controlled, upright and godly lives in this present age.",
+      theme: "obedience",
+      tags: ["self-control", "worldly desires", "discipline"]
+    },
+    "1 Peter 5:8-9": {
+      text: "Be alert and of sober mind. Your enemy the devil prowls around like a roaring lion looking for someone to devour. Resist him, standing firm in the faith.",
+      theme: "battle",
+      tags: ["discipline", "resistance", "self-control"]
+    }
+  },
+  "God’s joy and delight are different from worldly pleasure; the heart that pursues Him finds true satisfaction.": {
+    "Psalm 16:11": {
+      text: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.",
+      theme: "joy",
+      tags: ["pleasure", "delight", "satisfaction"]
+    },
+    "John 10:10": {
+      text: "The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.",
+      theme: "life",
+      tags: ["pleasure", "joy", "abundance"]
+    },
+    "Ecclesiastes 2:11": {
+      text: "Yet when I surveyed all that my hands had done and what I had toiled to achieve, everything was meaningless, a chasing after the wind; nothing was gained under the sun.",
+      theme: "wisdom",
+      tags: ["pleasure", "emptiness", "discernment"]
+    },
+    "Psalm 119:36": {
+      text: "Turn my heart toward your statutes and not toward selfish gain.",
+      theme: "obedience",
+      tags: ["heart", "desires", "priorities"]
+    },
+    "Matthew 5:6": {
+      text: "Blessed are those who hunger and thirst for righteousness, for they will be filled.",
+      theme: "blessing",
+      tags: ["righteousness", "desire", "fulfillment"]
+    }
+  }
+};
+
+// q182 - How do I know if what I'm enjoying is sinful or not?
+let q182ans = {
+  "God gives us wisdom and discernment to evaluate our pleasures and actions.": {
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["discernment", "decision-making", "guidance"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["guidance", "decision-making", "discernment"]
+    },
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["Bible", "discernment", "direction"]
+    },
+    "Proverbs 2:6-7": {
+      text: "For the Lord gives wisdom; from his mouth come knowledge and understanding. He holds success in store for the upright, he is a shield to those whose walk is blameless.",
+      theme: "wisdom",
+      tags: ["discernment", "knowledge", "guidance"]
+    },
+    "Ecclesiastes 12:13": {
+      text: "Now all has been heard; here is the conclusion of the matter: Fear God and keep his commandments, for this is the duty of all mankind.",
+      theme: "obedience",
+      tags: ["discernment", "wisdom", "guidance"]
+    }
+  },
+  "The Holy Spirit helps us recognize sin and gives conviction.": {
+    "John 16:8": {
+      text: "When he comes, he will prove the world to be in the wrong about sin and righteousness and judgment.",
+      theme: "spirit",
+      tags: ["conviction", "Holy Spirit", "sin recognition"]
+    },
+    "Romans 8:14": {
+      text: "For those who are led by the Spirit of God are the children of God.",
+      theme: "spirit",
+      tags: ["guidance", "Holy Spirit", "discernment"]
+    },
+    "Galatians 5:16": {
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      theme: "obedience",
+      tags: ["self-control", "Spirit-led", "discernment"]
+    },
+    "1 John 2:27": {
+      text: "As for you, the anointing you received from him remains in you, and you do not need anyone to teach you. But as his anointing teaches you about all things and as that anointing is real, not counterfeit—just as it has taught you, remain in him.",
+      theme: "spirit",
+      tags: ["Holy Spirit", "guidance", "discernment"]
+    },
+    "Acts 13:2": {
+      text: "While they were worshiping the Lord and fasting, the Holy Spirit said, 'Set apart for me Barnabas and Saul for the work to which I have called them.'",
+      theme: "spirit",
+      tags: ["Holy Spirit", "guidance", "discernment"]
+    }
+  },
+  "God’s Word sets boundaries and shows what is holy, right, and pleasing.": {
+    "1 Thessalonians 5:21-22": {
+      text: "Test everything; hold on to the good. Avoid every kind of evil.",
+      theme: "obedience",
+      tags: ["discernment", "morality", "Bible"]
+    },
+    "Psalm 119:9": {
+      text: "How can a young person stay on the path of purity? By living according to your word.",
+      theme: "obedience",
+      tags: ["purity", "discernment", "Bible"]
+    },
+    "Proverbs 4:27": {
+      text: "Do not turn to the right or the left; keep your foot from evil.",
+      theme: "obedience",
+      tags: ["discernment", "morality", "Bible"]
+    },
+    "Psalm 19:7-8": {
+      text: "The law of the Lord is perfect, refreshing the soul. The statutes of the Lord are trustworthy, making wise the simple. The precepts of the Lord are right, giving joy to the heart.",
+      theme: "truth",
+      tags: ["Bible", "morality", "discernment"]
+    },
+    "Isaiah 55:8-9": {
+      text: "'For my thoughts are not your thoughts, neither are your ways my ways,' declares the Lord. 'As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.'",
+      theme: "wisdom",
+      tags: ["discernment", "God's ways", "guidance"]
+    }
+  },
+  "Self-examination and conscience guided by God help identify subtle temptations.": {
+    "2 Corinthians 13:5": {
+      text: "Examine yourselves to see whether you are in the faith; test yourselves.",
+      theme: "faith",
+      tags: ["self-reflection", "discernment", "conscience"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["mindset", "discernment", "testing"]
+    },
+    "1 Corinthians 10:12-13": {
+      text: "So, if you think you are standing firm, be careful that you don’t fall! No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+      theme: "obedience",
+      tags: ["temptation", "discernment", "self-control"]
+    },
+    "Psalm 139:23-24": {
+      text: "Search me, God, and know my heart; test me and know my anxious thoughts. See if there is any offensive way in me, and lead me in the way everlasting.",
+      theme: "faith",
+      tags: ["self-examination", "conscience", "discernment"]
+    },
+    "Lamentations 3:40": {
+      text: "Let us examine our ways and test them, and let us return to the Lord.",
+      theme: "obedience",
+      tags: ["self-reflection", "discernment", "repentance"]
+    }
+  }
+};
+
+// q183 - How do I know which hobbies and pastimes lead me closer to God or away from Him?
+let q183ans = {
+  "God cares about how we spend our time and whether it honors Him.": {
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "obedience",
+      tags: ["time management", "hobbies", "honor", "gratitude"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["hobbies", "leisure", "glorify God"]
+    },
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and he will establish your plans.",
+      theme: "faithful",
+      tags: ["planning", "hobbies", "God's guidance"]
+    },
+    "Ephesians 5:15-16": {
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity, because the days are evil.",
+      theme: "wisdom",
+      tags: ["time management", "discernment", "hobbies"]
+    },
+    "Psalm 90:12": {
+      text: "Teach us to number our days, that we may gain a heart of wisdom.",
+      theme: "wisdom",
+      tags: ["time", "hobbies", "priorities"]
+    },
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "seek",
+      tags: ["priorities", "hobbies", "God's guidance"]
+    }
+  },
+  "Some activities can influence the heart positively or negatively.": {
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "purity",
+      tags: ["thoughts", "hobbies", "influence", "heart"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["hobbies", "worldly influence", "discernment"]
+    },
+    "1 Corinthians 15:33": {
+      text: "Do not be misled: 'Bad company corrupts good character.'",
+      theme: "obedience",
+      tags: ["influence", "companions", "hobbies"]
+    },
+    "Psalm 101:3": {
+      text: "I will not look with approval on anything that is vile. I hate what faithless people do; I will have no part in it.",
+      theme: "purity",
+      tags: ["hobbies", "discernment", "influence"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "guard",
+      tags: ["heart", "hobbies", "influence"]
+    },
+    "James 1:14-15": {
+      text: "But each person is tempted when they are dragged away by their own evil desire and enticed. Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
+      theme: "temptation",
+      tags: ["hobbies", "desires", "influence", "consequences"]
+    }
+  },
+  "God can use even ordinary or creative hobbies for His glory.": {
+    "Exodus 35:35": {
+      text: "He has filled them with skill to do all kinds of work as engravers, designers, embroiderers in blue, purple and scarlet yarn and fine linen, and weavers—all of them skilled workers and designers.",
+      theme: "creation",
+      tags: ["talent", "hobbies", "creativity", "skill"]
+    },
+    "Proverbs 22:29": {
+      text: "Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank.",
+      theme: "skill",
+      tags: ["hobbies", "skill development", "excellence"]
+    },
+    "Ecclesiastes 3:13": {
+      text: "That each of them may eat and drink, and find satisfaction in all their toil—this is the gift of God.",
+      theme: "goodness",
+      tags: ["hobbies", "enjoyment", "God's gift"]
+    },
+    "1 Chronicles 28:20": {
+      text: "Be strong and courageous, and do the work. Do not be afraid or discouraged, for the Lord God, my God, is with you.",
+      theme: "courage",
+      tags: ["hobbies", "work", "God's presence"]
+    },
+    "Psalm 33:3": {
+      text: "Sing to him a new song; play skillfully, and shout for joy.",
+      theme: "joy",
+      tags: ["music", "creative hobbies", "God's glory"]
+    },
+    "Matthew 25:21": {
+      text: "His master replied, ‘Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things. Come and share your master’s happiness!’",
+      theme: "faithful",
+      tags: ["hobbies", "faithfulness", "usefulness"]
+    }
+  }
+};
+
+// Can a hobby I love become an idol?
+let q184ans = {
+  "Loving something more than God makes it an idol": {
+    "Exodus 20:3": {
+      text: "You shall have no other gods before me.",
+      theme: "obedience",
+      tags: ["idolatry", "priorities", "faith", "worship"]
+    },
+    "Matthew 6:24": {
+      text: "No one can serve two masters. Either you will hate the one and love the other, or you will be devoted to the one and despise the other. You cannot serve both God and money.",
+      theme: "submission",
+      tags: ["idolatry", "heart", "priorities", "faith"]
+    },
+    "Colossians 3:5": {
+      text: "Put to death, therefore, whatever belongs to your earthly nature: sexual immorality, impurity, lust, evil desires and greed, which is idolatry.",
+      theme: "battle",
+      tags: ["idolatry", "desire", "obedience", "heart"]
+    },
+    "1 John 2:15–16": {
+      text: "Do not love the world or anything in the world. If anyone loves the world, love for the Father is not in them. For everything in the world—the lust of the flesh, the lust of the eyes, and the pride of life—comes not from the Father but from the world.",
+      theme: "love",
+      tags: ["idolatry", "worldliness", "heart", "faith"]
+    },
+    "Jonah 2:8": {
+      text: "Those who cling to worthless idols turn away from God’s love for them.",
+      theme: "faithful",
+      tags: ["idolatry", "love", "faith", "turning away"]
+    },
+    "Romans 1:25": {
+      text: "They exchanged the truth about God for a lie, and worshiped and served created things rather than the Creator—who is forever praised. Amen.",
+      theme: "truth",
+      tags: ["idolatry", "creation", "worship", "exchange"]
+    },
+    "Hebrews 12:1": {
+      text: "Therefore, since we are surrounded by such a great cloud of witnesses, let us throw off everything that hinders and the sin that so easily entangles. And let us run with perseverance the race marked out for us.",
+      theme: "battle",
+      tags: ["distractions", "focus", "race", "perseverance"]
+    },
+    "Ecclesiastes 2:10-11": {
+      text: "I denied myself nothing my eyes desired; I refused my heart no pleasure. My heart took delight in all my labor, and this was the reward for all my toil. Yet when I surveyed all that my hands had done and what I had toiled to achieve, everything was meaningless, a chasing after the wind; nothing was gained under the sun.",
+      theme: "vanity",
+      tags: ["pleasure", "hobbies", "idolatry", "emptiness"]
+    },
+    "Philippians 3:7-8": {
+      text: "But whatever were gains to me I now consider loss for the sake of Christ. What is more, I consider everything a loss because of the surpassing worth of knowing Christ Jesus my Lord, for whose sake I have lost all things. I consider them garbage, that I may gain Christ.",
+      theme: "submission",
+      tags: ["priorities", "Christ", "idolatry", "loss and gain"]
+    }
+  }
+};
+
+// What is idolatry?
+let q185ans = {
+  "Idolatry is worshiping anything other than the true God": {
+    "Exodus 20:4-5": {
+      text: "You shall not make for yourself an image in the form of anything in heaven above or on the earth beneath or in the waters below. You shall not bow down to them or worship them; for I, the Lord your God, am a jealous God...",
+      theme: "obedience",
+      tags: ["commandments", "idolatry", "worship", "jealous God"]
+    },
+    "Deuteronomy 11:16": {
+      text: "Be careful, or you will be enticed to turn away and worship other gods and bow down to them.",
+      theme: "obedience",
+      tags: ["warning", "idolatry", "faithfulness", "temptation"]
+    },
+    "1 Corinthians 10:14": {
+      text: "Therefore, my dear friends, flee from idolatry.",
+      theme: "battle",
+      tags: ["idolatry", "warning", "obedience", "faith"]
+    },
+    "Romans 1:25": {
+      text: "They exchanged the truth about God for a lie, and worshiped and served created things rather than the Creator—who is forever praised. Amen.",
+      theme: "truth",
+      tags: ["idolatry", "exchange", "creation", "lies"]
+    },
+    "1 John 5:21": {
+      text: "Dear children, keep yourselves from idols.",
+      theme: "obedience",
+      tags: ["idolatry", "warning", "faithfulness", "guarding heart"]
+    }
+  },
+  "Idolatry is loving or trusting something more than God": {
+    "Colossians 3:5": {
+      text: "Put to death, therefore, whatever belongs to your earthly nature: sexual immorality, impurity, lust, evil desires and greed, which is idolatry.",
+      theme: "battle",
+      tags: ["idolatry", "sin", "greed", "desire"]
+    },
+    "Ezekiel 14:3": {
+      text: "Son of man, these men have set up idols in their hearts and put wicked stumbling blocks before their faces. Should I let them inquire of me at all?",
+      theme: "heart",
+      tags: ["idolatry", "heart", "sin", "separation from God"]
+    },
+    "Matthew 6:24": {
+      text: "No one can serve two masters. Either you will hate the one and love the other, or you will be devoted to the one and despise the other. You cannot serve both God and money.",
+      theme: "submission",
+      tags: ["idolatry", "wealth", "devotion", "loyalty"]
+    },
+    "Philippians 3:19": {
+      text: "Their destiny is destruction, their god is their stomach, and their glory is in their shame. Their mind is set on earthly things.",
+      theme: "fallenness",
+      tags: ["idolatry", "desire", "worldliness", "warning"]
+    }
+  },
+  "Idolatry separates us from God's love and blessing": {
+    "Jeremiah 2:13": {
+      text: "My people have committed two sins: They have forsaken me, the spring of living water, and have dug their own cisterns, broken cisterns that cannot hold water.",
+      theme: "fallenness",
+      tags: ["idolatry", "sin", "brokenness", "turning away"]
+    },
+    "Jonah 2:8": {
+      text: "Those who cling to worthless idols turn away from God’s love for them.",
+      theme: "faithful",
+      tags: ["idolatry", "love", "turning away", "faith"]
+    },
+    "Psalm 115:4-8": {
+      text: "But their idols are silver and gold, made by human hands. They have mouths, but cannot speak, eyes, but cannot see... Those who make them will be like them, and so will all who trust in them.",
+      theme: "truth",
+      tags: ["idolatry", "false gods", "warning", "emptiness"]
+    }
+  }
+};
+
+
+// Why should I forgive those who wrong me?
+let q186ans = {
+  "We forgive because God forgave us first": {
+    "Ephesians 4:32": {
+      text: "Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.",
+      theme: "forgiveness",
+      tags: ["forgiveness", "compassion", "love", "example of Christ"]
+    },
+    "Colossians 3:13": {
+      text: "Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you.",
+      theme: "forgiveness",
+      tags: ["forgiveness", "grace", "love", "obedience"]
+    },
+    "Matthew 6:14-15": {
+      text: "For if you forgive other people when they sin against you, your heavenly Father will also forgive you. But if you do not forgive others their sins, your Father will not forgive your sins.",
+      theme: "mercy",
+      tags: ["forgiveness", "warning", "obedience", "grace"]
+    },
+    "Psalm 103:10-12": {
+      text: "He does not treat us as our sins deserve or repay us according to our iniquities. For as high as the heavens are above the earth, so great is his love for those who fear him; as far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "mercy",
+      tags: ["forgiveness", "grace", "love", "mercy"]
+    }
+  },
+  "Forgiveness sets us free from bitterness and revenge": {
+    "Romans 12:19": {
+      text: "Do not take revenge, my dear friends, but leave room for God’s wrath, for it is written: 'It is mine to avenge; I will repay,' says the Lord.",
+      theme: "justice",
+      tags: ["forgiveness", "justice", "trust", "vengeance"]
+    },
+    "Hebrews 12:15": {
+      text: "See to it that no one falls short of the grace of God and that no bitter root grows up to cause trouble and defile many.",
+      theme: "grace",
+      tags: ["bitterness", "forgiveness", "grace", "healing"]
+    },
+    "Proverbs 20:22": {
+      text: "Do not say, 'I’ll pay you back for this wrong!' Wait for the Lord, and he will avenge you.",
+      theme: "justice",
+      tags: ["revenge", "forgiveness", "trust", "patience"]
+    },
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "goodness",
+      tags: ["forgiveness", "Joseph", "providence", "trust"]
+    }
+  },
+  "Forgiving others reflects God’s heart and brings peace": {
+    "Mark 11:25": {
+      text: "And when you stand praying, if you hold anything against anyone, forgive them, so that your Father in heaven may forgive you your sins.",
+      theme: "prayer",
+      tags: ["forgiveness", "prayer", "peace", "obedience"]
+    },
+    "Luke 6:37": {
+      text: "Do not judge, and you will not be judged. Do not condemn, and you will not be condemned. Forgive, and you will be forgiven.",
+      theme: "mercy",
+      tags: ["forgiveness", "mercy", "grace", "obedience"]
+    },
+    "Matthew 18:21-22": {
+      text: "Then Peter came to Jesus and asked, 'Lord, how many times shall I forgive my brother or sister who sins against me? Up to seven times?' Jesus answered, 'I tell you, not seven times, but seventy-seven times.'",
+      theme: "mercy",
+      tags: ["forgiveness", "love", "grace", "patience"]
+    },
+    "Luke 23:34": {
+      text: "Jesus said, 'Father, forgive them, for they do not know what they are doing.' And they divided up his clothes by casting lots.",
+      theme: "mercy",
+      tags: ["Jesus", "forgiveness", "cross", "grace"]
+    },
+    "Acts 7:60": {
+      text: "Then he fell on his knees and cried out, 'Lord, do not hold this sin against them.' When he had said this, he fell asleep.",
+      theme: "mercy",
+      tags: ["Stephen", "forgiveness", "martyrdom", "grace"]
+    }
+  },
+  "Unforgiveness harms us more than others": {
+    "Job 5:2": {
+      text: "Resentment kills a fool, and envy slays the simple.",
+      theme: "fallenness",
+      tags: ["resentment", "forgiveness", "warning", "healing"]
+    },
+    "Matthew 18:32-35": {
+      text: "‘You wicked servant,’ he said, ‘I canceled all that debt of yours because you begged me to. Shouldn’t you have had mercy on your fellow servant just as I had on you?’ In anger his master handed him over to the jailers to be tortured, until he should pay back all he owed. This is how my heavenly Father will treat each of you unless you forgive your brother or sister from your heart.",
+      theme: "justice",
+      tags: ["forgiveness", "parable", "warning", "mercy"]
+    },
+    "Proverbs 14:30": {
+      text: "A heart at peace gives life to the body, but envy rots the bones.",
+      theme: "peace",
+      tags: ["forgiveness", "peace", "healing", "warning"]
+    }
+  }
+};
+
+// Question: Why does it seem like those who hurt me live happily while I still suffer? Where’s God’s justice?
+
+let q187ans = {
+  "God sees the injustice, even when it looks like He’s silent": {
+    "Habakkuk 1:2-3,5": {
+      text: "How long, LORD, must I call for help, but you do not listen? Or cry out to you, 'Violence!' but you do not save? Why do you make me look at injustice? Why do you tolerate wrongdoing? Destruction and violence are before me; there is strife, and conflict abounds. ... Look at the nations and watch—and be utterly amazed. For I am going to do something in your days that you would not believe, even if you were told.",
+      theme: "justice",
+      tags: ["injustice", "waiting", "hope"]
+    },
+    "Jeremiah 12:1-2,14-17": {
+      text: "You are always righteous, LORD, when I bring a case before you. Yet I would speak with you about your justice: Why does the way of the wicked prosper? Why do all the faithless live at ease? ... This is what the LORD says: 'As for all my wicked neighbors who seize the inheritance I gave my people Israel, I will uproot them from their lands... But if they learn well the ways of my people and swear by my name, saying, 'As surely as the LORD lives'—then they will be established among my people. But if any nation does not listen, I will completely uproot and destroy it,' declares the LORD.",
+      theme: "justice",
+      tags: ["wicked", "judgment", "promise"]
+    }
+  },
+
+  "The happiness of the wicked is temporary, not lasting": {
+    "Psalm 37:1-2,10-13": {
+      text: "Do not fret because of those who are evil or be envious of those who do wrong; for like the grass they will soon wither, like green plants they will soon die away. ... A little while, and the wicked will be no more; though you look for them, they will not be found. But the meek will inherit the land and enjoy peace and prosperity. The wicked plot against the righteous and gnash their teeth at them; but the Lord laughs at the wicked, for he knows their day is coming.",
+      theme: "justice",
+      tags: ["envy", "temporary", "wicked"]
+    },
+    "Psalm 73:3-5,16-19": {
+      text: "For I envied the arrogant when I saw the prosperity of the wicked. They have no struggles; their bodies are healthy and strong. They are free from common human burdens; they are not plagued by human ills. ... When I tried to understand all this, it troubled me deeply till I entered the sanctuary of God; then I understood their final destiny. Surely you place them on slippery ground; you cast them down to ruin. How suddenly are they destroyed, completely swept away by terrors!",
+      theme: "justice",
+      tags: ["envy", "wicked", "destiny"]
+    },
+    "Job 21:7,17-18,30": {
+      text: "Why do the wicked live on, growing old and increasing in power? ... Yet how often is the lamp of the wicked snuffed out? How often does calamity come upon them, the fate God allots in his anger? ... The wicked are spared from the day of calamity, that they are delivered from the day of wrath.",
+      theme: "justice",
+      tags: ["wicked", "judgment", "timing"]
+    }
+  },
+
+  "God promises His justice will come in His timing": {
+    "Romans 12:19": {
+      text: "Do not take revenge, my dear friends, but leave room for God's wrath, for it is written: 'It is mine to avenge; I will repay,' says the Lord.",
+      theme: "vengeance",
+      tags: ["revenge", "wrath", "justice"]
+    },
+    "2 Thessalonians 1:6-7": {
+      text: "God is just: He will pay back trouble to those who trouble you and give relief to you who are troubled, and to us as well. This will happen when the Lord Jesus is revealed from heaven in blazing fire with his powerful angels.",
+      theme: "justice",
+      tags: ["relief", "trouble", "future"]
+    },
+    "Galatians 6:7-9": {
+      text: "Do not be deceived: God cannot be mocked. A man reaps what he sows. Whoever sows to please their flesh, from the flesh will reap destruction; whoever sows to please the Spirit, from the Spirit will reap eternal life. Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "justice",
+      tags: ["sowing", "reaping", "patience"]
+    }
+  },
+
+  "Jesus taught that justice may come after death, not always in this life": {
+    "Luke 16:19-25": {
+      text: "There was a rich man who was dressed in purple and fine linen and lived in luxury every day. At his gate was laid a beggar named Lazarus, covered with sores and longing to eat what fell from the rich man’s table. ... The time came when the beggar died and the angels carried him to Abraham’s side. The rich man also died and was buried. In Hades, where he was in torment, he looked up and saw Abraham far away, with Lazarus by his side. So he called to him, 'Father Abraham, have pity on me... But Abraham replied, 'Son, remember that in your lifetime you received your good things, while Lazarus received bad things, but now he is comforted here and you are in agony.'",
+      theme: "justice",
+      tags: ["afterlife", "justice", "comfort"]
+    },
+    "Matthew 25:31-33,41": {
+      text: "When the Son of Man comes in his glory, and all the angels with him, he will sit on his glorious throne. All the nations will be gathered before him, and he will separate the people one from another as a shepherd separates the sheep from the goats. He will put the sheep on his right and the goats on his left. ... Then he will say to those on his left, 'Depart from me, you who are cursed, into the eternal fire prepared for the devil and his angels.'",
+      theme: "judgment",
+      tags: ["separation", "judgment", "eternal"]
+    }
+  },
+
+  "God cares for your pain in the waiting": {
+    "Psalm 34:18-19": {
+      text: "The LORD is close to the brokenhearted and saves those who are crushed in spirit. The righteous person may have many troubles, but the LORD delivers him from them all.",
+      theme: "comfort",
+      tags: ["brokenhearted", "comfort", "deliverance"]
+    },
+    "Revelation 21:4": {
+      text: "‘He will wipe every tear from their eyes. There will be no more death’ or mourning or crying or pain, for the old order of things has passed away.",
+      theme: "eternal",
+      tags: ["tears", "comfort", "hope"]
+    },
+    "1 Peter 5:10": {
+      text: "And the God of all grace, who called you to his eternal glory in Christ, after you have suffered a little while, will himself restore you and make you strong, firm and steadfast.",
+      theme: "hope",
+      tags: ["suffering", "restoration", "strength"]
+    }
+  }
+};
+
+// q188: Why should I keep following God if it only leads to suffering, and what if heaven isn’t even real?
+let q188ans = {
+  "Suffering is part of following Jesus—but it means we belong to Him": {
+    "John 15:18-19": {
+      text: "If the world hates you, know that it has hated me before it hated you. If you were of the world, the world would love you as its own; but because you are not of the world, but I chose you out of the world, therefore the world hates you.",
+      theme: "battle",
+      tags: ["suffering", "identity", "Jesus"]
+    },
+    "2 Timothy 3:12": {
+      text: "Indeed, all who desire to live a godly life in Christ Jesus will be persecuted.",
+      theme: "obedience",
+      tags: ["suffering", "discipleship", "faith"]
+    }
+  },
+
+  "Present suffering is temporary, but future glory is eternal": {
+    "Romans 8:18": {
+      text: "For I consider that the sufferings of this present time are not worth comparing with the glory that is to be revealed to us.",
+      theme: "hope",
+      tags: ["heaven", "glory", "suffering"]
+    },
+    "2 Corinthians 4:17-18": {
+      text: "For this light momentary affliction is preparing for us an eternal weight of glory beyond all comparison, as we look not to the things that are seen but to the things that are unseen. For the things that are seen are transient, but the things that are unseen are eternal.",
+      theme: "eternal",
+      tags: ["hope", "perspective", "faith"]
+    }
+  },
+
+  "Doubt about heaven is real—but God promises it is certain": {
+    "John 14:2-3": {
+      text: "In my Father's house are many rooms. If it were not so, would I have told you that I go to prepare a place for you? And if I go and prepare a place for you, I will come again and will take you to myself, that where I am you may be also.",
+      theme: "promise",
+      tags: ["heaven", "Jesus", "eternal life"]
+    },
+    "1 Peter 1:3-4": {
+      text: "Blessed be the God and Father of our Lord Jesus Christ! According to his great mercy, he has caused us to be born again to a living hope through the resurrection of Jesus Christ from the dead, to an inheritance that is imperishable, undefiled, and unfading, kept in heaven for you.",
+      theme: "hope",
+      tags: ["inheritance", "heaven", "assurance"]
+    }
+  },
+
+  "Even the righteous wrestled with suffering—yet God gave perspective": {
+    "Psalm 73:3-5,16-19": {
+      text: "For I was envious of the arrogant when I saw the prosperity of the wicked... they are not in trouble as others are... But when I thought how to understand this, it seemed to me a wearisome task, until I went into the sanctuary of God; then I discerned their end. Truly you set them in slippery places; you make them fall to ruin. How they are destroyed in a moment, swept away utterly by terrors!",
+      theme: "justice",
+      tags: ["envy", "wickedness", "justice", "eternity"]
+    },
+    "Job 23:2-3,10": {
+      text: "Today also my complaint is bitter; my hand is heavy on account of my groaning. Oh, that I knew where I might find him... But he knows the way that I take; when he has tried me, I shall come out as gold.",
+      theme: "growth",
+      tags: ["trials", "faith", "testing"]
+    },
+    "Habakkuk 1:2-3, 2:3-4": {
+      text: "O Lord, how long shall I cry for help, and you will not hear? Or cry to you 'Violence!' and you will not save? Why do you make me see iniquity...? ...For still the vision awaits its appointed time; it hastens to the end—it will not lie. If it seems slow, wait for it; it will surely come; it will not delay. Behold, his soul is puffed up; it is not upright within him, but the righteous shall live by his faith.",
+      theme: "faithful",
+      tags: ["justice", "waiting", "faith"]
+    }
+  },
+
+  "Jesus Himself suffered before entering glory": {
+    "Hebrews 12:2": {
+      text: "Looking to Jesus, the founder and perfecter of our faith, who for the joy that was set before him endured the cross, despising the shame, and is seated at the right hand of the throne of God.",
+      theme: "Jesus",
+      tags: ["suffering", "cross", "glory"]
+    },
+    "Luke 24:26": {
+      text: "Was it not necessary that the Christ should suffer these things and enter into his glory?",
+      theme: "salvation",
+      tags: ["Jesus", "suffering", "resurrection"]
+    }
+  },
+
+  "God uses suffering to refine us, not to waste us": {
+    "James 1:2-4": {
+      text: "Count it all joy, my brothers, when you meet trials of various kinds, for you know that the testing of your faith produces steadfastness. And let steadfastness have its full effect, that you may be perfect and complete, lacking in nothing.",
+      theme: "growth",
+      tags: ["trials", "faith", "perseverance"]
+    },
+    "1 Peter 1:6-7": {
+      text: "In this you rejoice, though now for a little while, if necessary, you have been grieved by various trials, so that the tested genuineness of your faith—more precious than gold that perishes though it is tested by fire—may be found to result in praise and glory and honor at the revelation of Jesus Christ.",
+      theme: "transformation",
+      tags: ["faith", "trials", "growth"]
+    }
+  },
+    "If Christ is not raised, faith is pointless—but He is risen": {
+    "1 Corinthians 15:17-19": {
+      text: "And if Christ has not been raised, your faith is futile; you are still in your sins. Then those also who have fallen asleep in Christ have perished. If in Christ we have hope in this life only, we are of all people most to be pitied.",
+      theme: "resurrection",
+      tags: ["faith", "heaven", "resurrection"]
+    },
+    "1 Corinthians 15:20": {
+      text: "But in fact Christ has been raised from the dead, the firstfruits of those who have fallen asleep.",
+      theme: "resurrection",
+      tags: ["Jesus", "hope", "eternal life"]
+    }
+  },
+
+  "God promises that our labor in Him is not wasted": {
+    "1 Corinthians 15:58": {
+      text: "Therefore, my beloved brothers, be steadfast, immovable, always abounding in the work of the Lord, knowing that in the Lord your labor is not in vain.",
+      theme: "hope",
+      tags: ["perseverance", "faith", "assurance"]
+    }
+  },
+    "The Old Testament also promises resurrection and eternal life": {
+    "Daniel 12:2": {
+      text: "And many of those who sleep in the dust of the earth shall awake, some to everlasting life, and some to shame and everlasting contempt.",
+      theme: "eternal",
+      tags: ["resurrection", "judgment", "hope"]
+    },
+    "Isaiah 25:8": {
+      text: "He will swallow up death forever; and the Lord God will wipe away tears from all faces, and the reproach of his people he will take away from all the earth, for the Lord has spoken.",
+      theme: "eternal",
+      tags: ["hope", "victory", "promise"]
+    }
+  },
+
+  "Even Job, in his suffering, trusted in seeing God after death": {
+    "Job 19:25-26": {
+      text: "For I know that my Redeemer lives, and at the last he will stand upon the earth. And after my skin has been thus destroyed, yet in my flesh I shall see God.",
+      theme: "hope",
+      tags: ["faith", "suffering", "resurrection"]
+    }
+  }
+
+};
+
+// q189 Why should I keep trying to do good when revenge feels good, skills feel useless, and life seems unfair?
+let q189ans = {
+  "God values faithfulness, not flashiness—your small acts matter more than you think.": {
+    "Matthew 25:23": {
+      text: "His master replied, ‘Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things. Come and share your master’s happiness!’",
+      theme: "faithful",
+      tags: ["faithfulness", "purpose", "reward"]
+    },
+    "Zechariah 4:10": {
+      text: "Who dares despise the day of small things, since the seven eyes of the Lord that range throughout the earth will rejoice when they see the chosen capstone in the hand of Zerubbabel?",
+      theme: "growth",
+      tags: ["small beginnings", "purpose", "God’s plan"]
+    },
+    "Mark 12:41-44": {
+      text: "Jesus sat down opposite the place where the offerings were put and watched the crowd putting their money into the temple treasury... But a poor widow came and put in two very small copper coins, worth only a few cents... Jesus said, 'This poor widow has put more into the treasury than all the others.'",
+      theme: "humble",
+      tags: ["faithfulness", "small acts", "value"]
+    }
+  },
+
+  "Revenge feels good for a moment, but God’s justice is lasting and complete.": {
+    "Romans 12:19": {
+      text: "Do not take revenge, my dear friends, but leave room for God’s wrath, for it is written: “It is mine to avenge; I will repay,” says the Lord.",
+      theme: "justice",
+      tags: ["revenge", "patience", "justice"]
+    },
+    "Psalm 73:3-5,16-19": {
+      text: "For I envied the arrogant when I saw the prosperity of the wicked... When I tried to understand all this, it troubled me deeply till I entered the sanctuary of God; then I understood their final destiny.",
+      theme: "eternal",
+      tags: ["justice", "wickedness", "perspective"]
+    },
+    "Proverbs 24:19-20": {
+      text: "Do not fret because of evildoers or be envious of the wicked, for the evildoer has no future hope, and the lamp of the wicked will be snuffed out.",
+      theme: "justice",
+      tags: ["wickedness", "revenge", "fate"]
+    }
+  },
+
+  "Even when the world feels unfair, God sees your unseen effort and will honor it.": {
+    "Galatians 6:9": {
+      text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
+      theme: "perseverance",
+      tags: ["goodness", "hope", "reward"]
+    },
+    "1 Corinthians 15:58": {
+      text: "Therefore, my dear brothers and sisters, stand firm. Let nothing move you. Always give yourselves fully to the work of the Lord, because you know that your labor in the Lord is not in vain.",
+      theme: "hope",
+      tags: ["work", "purpose", "steadfast"]
+    },
+    "Hebrews 6:10": {
+      text: "God is not unjust; he will not forget your work and the love you have shown him as you have helped his people and continue to help them.",
+      theme: "faithful",
+      tags: ["justice", "purpose", "reward"]
+    }
+  },
+
+  "Doing what feels good can trap you, but God’s way leads to true freedom.": {
+    "Galatians 5:1": {
+      text: "It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery.",
+      theme: "freedom",
+      tags: ["sin", "freedom", "temptation"]
+    },
+    "Romans 6:21-22": {
+      text: "What benefit did you reap at that time from the things you are now ashamed of? Those things result in death! But now that you have been set free from sin and have become slaves of God, the benefit you reap leads to holiness, and the result is eternal life.",
+      theme: "transformation",
+      tags: ["sin", "freedom", "life"]
+    },
+    "Proverbs 14:12": {
+      text: "There is a way that appears to be right, but in the end it leads to death.",
+      theme: "wisdom",
+      tags: ["sin", "deception", "choices"]
+    }
+  },
+
+  "God turns unfairness into training ground for greater things.": {
+    "Genesis 50:20": {
+      text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
+      theme: "purpose",
+      tags: ["suffering", "injustice", "God’s plan"]
+    },
+    "James 1:2-4": {
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+      theme: "growth",
+      tags: ["suffering", "faith", "maturity"]
+    },
+    "1 Peter 2:19-21": {
+      text: "For it is commendable if someone bears up under the pain of unjust suffering because they are conscious of God... To this you were called, because Christ suffered for you, leaving you an example, that you should follow in his steps.",
+      theme: "suffering",
+      tags: ["injustice", "Christ", "example"]
+    }
+  }
+};
+
+// Question: What happens after death—will there be a Judgment Day?
+let q190ans = {
+  "Death is not the end; all will be raised and judged by God.": {
+    "Hebrews 9:27": {
+      text: "And just as it is appointed for man to die once, and after that comes judgment,",
+      theme: "judgment",
+      tags: ["death", "judgment", "accountability"]
+    },
+    "John 5:28-29": {
+      text: "Do not marvel at this, for an hour is coming when all who are in the tombs will hear his voice and come out, those who have done good to the resurrection of life, and those who have done evil to the resurrection of judgment.",
+      theme: "resurrection",
+      tags: ["resurrection", "judgment", "eternity"]
+    },
+    "Acts 17:31": {
+      text: "Because he has fixed a day on which he will judge the world in righteousness by a man whom he has appointed; and of this he has given assurance to all by raising him from the dead.",
+      theme: "justice",
+      tags: ["judgment day", "righteousness", "Jesus"]
+    }
+  },
+
+  "Believers face no condemnation, but eternal life with God.": {
+    "Romans 8:1": {
+      text: "There is therefore now no condemnation for those who are in Christ Jesus.",
+      theme: "salvation",
+      tags: ["eternal life", "no condemnation", "grace"]
+    },
+    "2 Corinthians 5:10": {
+      text: "For we must all appear before the judgment seat of Christ, so that each one may receive what is due for what he has done in the body, whether good or evil.",
+      theme: "judgment",
+      tags: ["judgment seat", "rewards", "accountability"]
+    },
+    "1 Thessalonians 4:16-17": {
+      text: "For the Lord himself will descend from heaven with a cry of command, with the voice of an archangel, and with the sound of the trumpet of God. And the dead in Christ will rise first. Then we who are alive, who are left, will be caught up together with them in the clouds to meet the Lord in the air, and so we will always be with the Lord.",
+      theme: "resurrection",
+      tags: ["rapture", "eternity", "hope"]
+    }
+  },
+
+  "Judgment Day will reveal God’s justice—no deed is hidden.": {
+    "Ecclesiastes 12:14": {
+      text: "For God will bring every deed into judgment, with every secret thing, whether good or evil.",
+      theme: "justice",
+      tags: ["justice", "accountability", "hidden deeds"]
+    },
+    "Revelation 20:12": {
+      text: "And I saw the dead, great and small, standing before the throne, and books were opened. Then another book was opened, which is the book of life. And the dead were judged by what was written in the books, according to what they had done.",
+      theme: "judgment",
+      tags: ["judgment", "book of life", "eternity"]
+    },
+    "Romans 14:10-12": {
+      text: "For we will all stand before the judgment seat of God; for it is written, 'As I live, says the Lord, every knee shall bow to me, and every tongue shall confess to God.' So then each of us will give an account of himself to God.",
+      theme: "judgment",
+      tags: ["accountability", "justice", "every knee bow"]
+    }
+  },
+
+  "Eternal destinies are decided: life with God or separation from Him.": {
+    "Matthew 25:46": {
+      text: "And these will go away into eternal punishment, but the righteous into eternal life.",
+      theme: "eternal",
+      tags: ["heaven", "hell", "eternity"]
+    },
+    "Daniel 12:2": {
+      text: "And many of those who sleep in the dust of the earth shall awake, some to everlasting life, and some to shame and everlasting contempt.",
+      theme: "resurrection",
+      tags: ["resurrection", "eternity", "judgment"]
+    },
+    "Revelation 21:3-4": {
+      text: "And I heard a loud voice from the throne saying, 'Behold, the dwelling place of God is with man. He will dwell with them, and they will be his people, and God himself will be with them as their God. He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.'",
+      theme: "eternal",
+      tags: ["heaven", "hope", "eternity"]
+    }
+  }
+};
+
+// What does the Bible say about war and violence?
+let q191ans = {
+  "War is part of a fallen world, but God promises peace in the end.": {
+    "Ecclesiastes 3:8": {
+      text: "A time to love, and a time to hate; a time for war, and a time for peace.",
+      theme: "fallenness",
+      tags: ["war", "peace", "seasons", "life"]
+    },
+    "Isaiah 2:4": {
+      text: "He shall judge between the nations, and shall decide disputes for many peoples; and they shall beat their swords into plowshares, and their spears into pruning hooks; nation shall not lift up sword against nation, neither shall they learn war anymore.",
+      theme: "peace",
+      tags: ["peace", "hope", "future", "nations"]
+    }
+  },
+
+  "God is against unnecessary violence and bloodshed.": {
+    "Proverbs 3:31": {
+      text: "Do not envy a man of violence and do not choose any of his ways.",
+      theme: "righteousness",
+      tags: ["violence", "envy", "righteousness", "warning"]
+    },
+    "Psalm 11:5": {
+      text: "The LORD tests the righteous, but his soul hates the wicked and the one who loves violence.",
+      theme: "justice",
+      tags: ["violence", "judgment", "justice", "God"]
+    }
+  },
+
+  "Sometimes God allowed wars for justice, but His ultimate desire is peace.": {
+    "Deuteronomy 20:4": {
+      text: "For the LORD your God is he who goes with you to fight for you against your enemies, to give you the victory.",
+      theme: "battle",
+      tags: ["God", "battle", "victory", "justice"]
+    },
+    "Psalm 46:9": {
+      text: "He makes wars cease to the end of the earth; he breaks the bow and shatters the spear; he burns the chariots with fire.",
+      theme: "peace",
+      tags: ["peace", "nations", "power", "hope"]
+    }
+  },
+
+  "David’s battles show God can give victory, but also that peace is greater than war.": {
+    "1 Samuel 17:47": {
+      text: "And that all this assembly may know that the LORD saves not with sword and spear. For the battle is the LORD’s, and he will give you into our hand.",
+      theme: "battle",
+      tags: ["David", "Goliath", "faith", "victory"]
+    },
+    "1 Chronicles 22:8-9": {
+      text: "But the word of the LORD came to me, saying, ‘You have shed much blood and have waged great wars; you shall not build a house to my name… Behold, a son shall be born to you who shall be a man of rest. I will give him rest from all his surrounding enemies… his name shall be Solomon, and I will give peace and quiet to Israel in his days.’",
+      theme: "peace",
+      tags: ["David", "Solomon", "peace", "temple"]
+    }
+  },
+
+  "Gideon’s story shows God doesn’t need great armies to win a war—He fights for His people.": {
+    "Judges 7:7": {
+      text: "The LORD said to Gideon, 'With the 300 men who lapped I will save you and give the Midianites into your hand, and let all the others go every man to his home.'",
+      theme: "power",
+      tags: ["Gideon", "faith", "battle", "victory"]
+    }
+  },
+
+  "Jehoshaphat’s battle shows victory comes not from weapons but from worship.": {
+    "2 Chronicles 20:15": {
+      text: "And he said, 'Listen, all Judah and inhabitants of Jerusalem and King Jehoshaphat: Thus says the LORD to you, “Do not be afraid and do not be dismayed at this great horde, for the battle is not yours but God’s.”'",
+      theme: "faithful",
+      tags: ["Jehoshaphat", "faith", "victory", "worship"]
+    },
+    "2 Chronicles 20:22": {
+      text: "And when they began to sing and praise, the LORD set an ambush against the men of Ammon, Moab, and Mount Seir, who had come against Judah, so that they were routed.",
+      theme: "worship",
+      tags: ["worship", "victory", "battle", "faith"]
+    }
+  },
+
+  "The real battle we face is spiritual, not against people.": {
+    "Ephesians 6:12": {
+      text: "For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places.",
+      theme: "battle",
+      tags: ["spiritual", "battle", "evil", "faith"]
+    },
+    "2 Corinthians 10:4": {
+      text: "For the weapons of our warfare are not of the flesh but have divine power to destroy strongholds.",
+      theme: "spirit",
+      tags: ["weapons", "faith", "spiritual", "victory"]
+    }
+  },
+
+  "Christ calls His followers to choose peace whenever possible.": {
+    "Matthew 5:9": {
+      text: "Blessed are the peacemakers, for they shall be called sons of God.",
+      theme: "peace",
+      tags: ["peace", "peacemakers", "kingdom", "blessing"]
+    },
+    "Romans 12:18": {
+      text: "If possible, so far as it depends on you, live peaceably with all.",
+      theme: "peace",
+      tags: ["peace", "relationships", "harmony", "love"]
+    }
+  },
+    "In the end, God will bring a final war—but Christ will win and bring peace forever.": {
+    "Matthew 24:6-7": {
+      text: "And you will hear of wars and rumors of wars. See that you are not alarmed, for this must take place, but the end is not yet. For nation will rise against nation, and kingdom against kingdom, and there will be famines and earthquakes in various places.",
+      theme: "end-times",
+      tags: ["wars", "rumors", "end", "nations"]
+    },
+    "Ezekiel 38:22-23": {
+      text: "With pestilence and bloodshed I will enter into judgment with him, and I will rain upon him and his hordes and the many peoples who are with him torrential rains and hailstones, fire, and sulfur. So I will show my greatness and my holiness and make myself known in the eyes of many nations. Then they will know that I am the LORD.",
+      theme: "judgment",
+      tags: ["Gog", "Magog", "judgment", "nations"]
+    },
+    "Revelation 16:14": {
+      text: "For they are demonic spirits, performing signs, who go abroad to the kings of the whole world, to assemble them for battle on the great day of God the Almighty.",
+      theme: "battle",
+      tags: ["end-times", "Armageddon", "battle", "spirits"]
+    },
+    "Revelation 19:11": {
+      text: "Then I saw heaven opened, and behold, a white horse! The one sitting on it is called Faithful and True, and in righteousness he judges and makes war.",
+      theme: "Christ",
+      tags: ["Christ", "war", "judgment", "victory"]
+    },
+    "Revelation 20:9": {
+      text: "And they marched up over the broad plain of the earth and surrounded the camp of the saints and the beloved city, but fire came down from heaven and consumed them.",
+      theme: "victory",
+      tags: ["Satan", "battle", "end", "fire"]
+    }
+  }
+};
+
+// Question 192: Where is heaven?
+let q192ans = {
+  "Heaven is God's dwelling place, far above creation.": {
+    "Psalm 103:19": {
+      text: "The LORD has established his throne in the heavens, and his kingdom rules over all.",
+      theme: "heaven",
+      tags: ["God", "throne", "kingdom", "authority"]
+    },
+    "Isaiah 66:1": {
+      text: "Thus says the LORD: 'Heaven is my throne, and the earth is my footstool; what is the house that you would build for me, and what is the place of my rest?'",
+      theme: "heaven",
+      tags: ["throne", "earth", "God", "rule"]
+    }
+  },
+  "Heaven is beyond human reach now, but real and eternal.": {
+    "2 Corinthians 12:2": {
+      text: "I know a man in Christ who fourteen years ago was caught up to the third heaven—whether in the body or out of the body I do not know, God knows.",
+      theme: "eternal",
+      tags: ["Paul", "vision", "third-heaven", "spiritual"]
+    },
+    "John 14:2-3": {
+      text: "In my Father's house are many rooms. If it were not so, would I have told you that I go to prepare a place for you? And if I go and prepare a place for you, I will come again and will take you to myself, that where I am you may be also.",
+      theme: "eternal",
+      tags: ["Jesus", "promise", "dwelling", "future"]
+    }
+  },
+  "Heaven is where God's people will be with Him forever.": {
+    "Revelation 21:1-2": {
+      text: "Then I saw a new heaven and a new earth, for the first heaven and the first earth had passed away, and the sea was no more. And I saw the holy city, new Jerusalem, coming down out of heaven from God, prepared as a bride adorned for her husband.",
+      theme: "eternal",
+      tags: ["new-heaven", "new-earth", "Jerusalem", "future"]
+    },
+    "Philippians 3:20": {
+      text: "But our citizenship is in heaven, and from it we await a Savior, the Lord Jesus Christ.",
+      theme: "citizenship",
+      tags: ["citizenship", "future", "hope", "Jesus"]
+    }
+  },
+  "Heaven is unseen now but revealed by faith.": {
+    "Hebrews 11:16": {
+      text: "But as it is, they desire a better country, that is, a heavenly one. Therefore God is not ashamed to be called their God, for he has prepared for them a city.",
+      theme: "faith",
+      tags: ["faith", "heavenly", "city", "promise"]
+    },
+    "Colossians 3:1-2": {
+      text: "If then you have been raised with Christ, seek the things that are above, where Christ is, seated at the right hand of God. Set your minds on things that are above, not on things that are on earth.",
+      theme: "seek",
+      tags: ["Christ", "above", "mindset", "faith"]
+    }
+  }
+};
+
+// Question 193: Where is hell located?
+let q193ans = {
+  "Hell is a place of separation from God, not just physical location.": {
+    "2 Thessalonians 1:9": {
+      text: "They will suffer the punishment of eternal destruction, away from the presence of the Lord and from the glory of his might.",
+      theme: "eternal",
+      tags: ["separation", "judgment", "punishment", "God"]
+    },
+    "Matthew 25:41": {
+      text: "Then he will say to those on his left, 'Depart from me, you cursed, into the eternal fire prepared for the devil and his angels.'",
+      theme: "judgment",
+      tags: ["depart", "fire", "angels", "judgment"]
+    }
+  },
+  "Hell is described as a place of fire and darkness.": {
+    "Mark 9:47-48": {
+      text: "And if your eye causes you to sin, tear it out. It is better for you to enter the kingdom of God with one eye than with two eyes to be thrown into hell, ‘where their worm does not die and the fire is not quenched.’",
+      theme: "battle",
+      tags: ["sin", "hell", "fire", "warning"]
+    },
+    "Jude 1:7": {
+      text: "Just as Sodom and Gomorrah and the surrounding cities, which likewise indulged in sexual immorality and pursued unnatural desire, serve as an example by undergoing a punishment of eternal fire.",
+      theme: "judgment",
+      tags: ["fire", "Sodom", "punishment", "example"]
+    }
+  },
+  "Hell is described as the 'outer darkness' where there is no hope.": {
+    "Matthew 8:12": {
+      text: "While the sons of the kingdom will be thrown into the outer darkness. In that place there will be weeping and gnashing of teeth.",
+      theme: "judgment",
+      tags: ["darkness", "weeping", "gnashing", "warning"]
+    },
+    "Matthew 22:13": {
+      text: "Then the king said to the attendants, ‘Bind him hand and foot and cast him into the outer darkness. In that place there will be weeping and gnashing of teeth.’",
+      theme: "judgment",
+      tags: ["darkness", "banquet", "judgment", "weeping"]
+    }
+  },
+  "Hell is not hidden from God; it is under His authority.": {
+    "Revelation 20:14-15": {
+      text: "Then Death and Hades were thrown into the lake of fire. This is the second death, the lake of fire. And if anyone's name was not found written in the book of life, he was thrown into the lake of fire.",
+      theme: "authority",
+      tags: ["lake-of-fire", "Hades", "judgment", "authority"]
+    },
+    "Proverbs 15:11": {
+      text: "Sheol and Abaddon lie open before the LORD; how much more the hearts of the children of man!",
+      theme: "authority",
+      tags: ["Sheol", "Abaddon", "God", "knowledge"]
+    }
+  }
+};
+
+
+const questionMap = {
+  q1: q1ans,
+  q2: q2ans,
+  q3: q3ans,
+  q4: q4ans,
+  q5: q5ans,
+  q6: q6ans,
+  q7: q7ans,
+  q8: q8ans,
+  q9: q9ans,
+  q10: q10ans,
+  q11: q11ans,
+  q12: q12ans,
+  q13: q13ans,
+  q14: q14ans,
+  q15: q15ans,
+  q16: q16ans,
+  q17: q17ans,
+  q18: q18ans,
+  q19: q19ans,
+  q20: q20ans,
+  q21: q21ans,
+  q22: q22ans,
+  q23: q23ans,
+  q24: q24ans,
+  q25: q25ans,
+  q26: q26ans,
+  q27: q27ans,
+  q28: q28ans,
+  q29: q29ans,
+  q30: q30ans,
+  q31: q31ans,
+  q32: q32ans,
+  q33: q33ans,
+  q34: q34ans,
+  q35: q35ans,
+  q36: q36ans,
+  q37: q37ans,
+  q38: q38ans,
+  q39: q39ans,
+  q40: q40ans,
+  q41: q41ans,
+  q42: q42ans,
+  q43: q43ans,
+  q44: q44ans,
+  q45: q45ans,
+  q46: q46ans,
+  q47: q47ans,
+  q48: q48ans,
+  q49: q49ans,
+  q50: q50ans,
+  q51: q51ans,
+  q52: q52ans,
+  q53: q53ans,
+  q54: q54ans,
+  q55: q55ans,
+  q56: q56ans,
+  q57: q57ans,
+  q58: q58ans,
+  q59: q59ans,
+  q60: q60ans,
+  q61: q61ans,
+  q62: q62ans,
+  q63: q63ans,
+  q64: q64ans,
+  q65: q65ans,
+  q66: q66ans,
+  q67: q67ans,
+  q68: q68ans,
+  q69: q69ans,
+  q70: q70ans,
+  q71: q71ans,
+  q72: q72ans,
+  q73: q73ans,
+  q74: q74ans,
+  q75: q75ans,
+  q76: q76ans,
+  q77: q77ans,
+  q78: q78ans,
+  q79: q79ans,
+  q80: q80ans,
+  q81: q81ans,
+  q82: q82ans,
+  q83: q83ans,
+  q84: q84ans,
+  q85: q85ans,
+  q86: q86ans,
+  q87: q87ans,
+  q88: q88ans,
+  q89: q89ans,
+  q90: q90ans,
+  q91: q91ans,
+  q92: q92ans,
+  q93: q93ans,
+  q94: q94ans,
+  q95: q95ans,
+  q96: q96ans,
+  q97: q97ans,
+  q98: q98ans,
+  q99: q99ans,
+  q100: q100ans,
+  q101: q101ans,
+  q102: q102ans,
+  q103: q103ans,
+  q104: q104ans,
+  q105: q105ans,
+  q106: q106ans,
+  q107: q107ans,
+  q108: q108ans,
+  q109: q109ans,
+  q110: q110ans,
+  q111: q111ans,
+  q112: q112ans,
+  q113: q113ans,
+  q114: q114ans,
+  q115: q115ans,
+  q116: q116ans,
+  q117: q117ans,
+  q118: q118ans,
+  q119: q119ans,
+  q120: q120ans,
+  q121: q121ans,
+  q122: q122ans,
+  q123: q123ans,
+  q124: q124ans,
+  q125: q125ans,
+  q126: q126ans,
+  q127: q127ans,
+  q128: q128ans,
+  q129: q129ans,
+  q130: q130ans,
+  q131: q131ans,
+  q132: q132ans,
+  q133: q133ans,
+  q134: q134ans,
+  q135: q135ans,
+  q136: q136ans,
+  q137: q137ans,
+  q138: q138ans,
+  q139: q139ans,
+  q140: q140ans,
+  q141: q141ans,
+  q142: q142ans,
+  q143: q143ans,
+  q144: q144ans,
+  q145: q145ans,
+  q146: q146ans,
+  q147: q147ans,
+  q148: q148ans,
+  q149: q149ans,
+  q150: q150ans,
+  q151: q151ans,
+  q152: q152ans,
+  q153: q153ans,
+  q154: q154ans,
+  q155: q155ans,
+  q156: q156ans,
+  q157: q157ans,
+  q158: q158ans,
+  q159: q159ans,
+  q160: q160ans,
+  q161: q161ans,
+  q162: q162ans,
+  q163: q163ans,
+  q164: q164ans,
+  q165: q165ans,
+  q166: q166ans,
+  q167: q167ans,
+  q168: q168ans,
+  q169: q169ans,
+  q170: q170ans,
+  q171: q171ans,
+  q172: q172ans,
+  q173: q173ans,
+  q174: q174ans,
+  q175: q175ans,
+  q176: q176ans,
+  q177: q177ans,
+  q178: q178ans,
+  q179: q179ans,
+  q180: q180ans,
+  q181: q181ans,
+  q182: q182ans,
+  q183: q183ans,
+  q184: q184ans,
+  q185: q185ans,
+  q186: q186ans,
+  q187: q187ans,
+  q188: q188ans,
+  q189: q189ans,
+  q190: q190ans,
+  q191: q191ans,
+  q192: q192ans,
+  q193: q193ans
+};
+
+
+module.exports = questionMap;
