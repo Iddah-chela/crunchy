@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', () => {
     ageSelect.value = storedAge;
 
     // ✅ Listen for age changes
-    ageSelect.addEventListener("change", (e) => {
+    storedAge.addEventListener("change", (e) => {
       const newAge = parseInt(e.target.value);
       storage.setItem("selectedAge", newAge);
       filterQuestionsByAge(newAge);
@@ -266,7 +266,7 @@ function filterQuestionsByAge(optionalAge) {
   
   const allBlocks = document.querySelectorAll(".category-block");
   const selectedAge = optionalAge;
-  storage.setItem("selectedAge", selectedAge); // 👈 this line saves age
+   // 👈 this line saves age
 
   allBlocks.forEach(block => {
     const group = block.querySelector(".question-group");

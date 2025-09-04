@@ -61,7 +61,7 @@ function applyAnimatedOverlay(theme) {
    case "ocean-depths-theme":
       assetUrl = "backgrounds/ocean.jpeg"; // your sideways scrolling ocean texture
       overlay.style.background = `#001f3f url('${assetUrl}') repeat-x`;
-      overlay.style.backgroundSize = "cover";
+      overlay.style.backgroundSize = "auto";
       overlay.style.opacity = "0.3";
       overlay.style.animation = "oceanScroll 30s linear infinite";
       return;

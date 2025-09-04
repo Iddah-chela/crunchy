@@ -135,7 +135,6 @@
   --accent: #518ee9;
   --verse-color: #14173a;
 
-
   --accent1: #0a0a1b;
   --accent2: #020825;
   --accent3: #1f2702;
@@ -242,16 +241,16 @@
 }
 
 :root.choco-theme {
-  --bg-color: #4e443a;
-  --text-color: #f4eee7;
-  --button-bg: #7b6552;
-  --button-text: #fff6e9;
-  --accent: #e3c49a;
+  --bg-color: #2b1d0e;
+  --text-color: #f5e6d3;
+  --button-bg: #854324;
+  --button-text: #fae4c7;
+  --accent: #d2691e;
   --verse-color: #ffffff;
 
-  --accent1: #554b40;
-  --accent2: #74624f;
-  --accent3: #685746;
+  --accent1: #3a322b;
+  --accent2: #42372c;
+  --accent3: #3d3329;
   --accent4: #75403d;
   --accent5: #796040;
   --accent6: #695949;
@@ -274,7 +273,7 @@
   --text-color: #2f1b00;
   --button-bg: #fff7d6;
   --button-text: #2f1b00;
-  --accent: #fdf256;
+  --accent: #ffdf6c;
   --verse-color: #303313;
 
 /* ✨ Category backgrounds with golden harmony */
@@ -389,6 +388,7 @@ h1, h2, h3 {
 
 .floating-asset {
   will-change: transform;
+  
 }
 
 @keyframes fall {
@@ -752,10 +752,10 @@ a {
 #favoritelist li {
   margin-bottom: 15px;
   padding: 15px;
-  color: var(--text-color);
-  background: var(--bg-color);
+  color: var(--verse-color);
+  background: var(--accent);
   border-radius: var(--border-radius);
-  box-shadow: 0 2px 5px var(--accent);
+  
 }
 
 .btn-container {
@@ -769,6 +769,7 @@ a {
 #overlay {
   position: fixed;
   inset: 0;
+  background-color: rgba(255, 255, 255, 0.6);
   background: rgb(from var(--bg-color) r g b / 0.6);
   backdrop-filter: blur(4px);
   z-index: 9998;

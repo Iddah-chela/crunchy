@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       chatView.style.display = "flex";
 
       // Set username dynamically
+      
       chatUsername.textContent = "Chat with " + card.querySelector(".chat-user").textContent;
     });
   });
