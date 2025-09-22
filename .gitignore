@@ -2,7 +2,7 @@
 .gradle/
 build/
 .env
-node_modules/git add .gitignore
+node_modules/
 # Local configuration file (sdk path, etc)
 local.properties
 
@@ -33,3 +33,4 @@ google-services.json
 
 # Android Profiling
 *.hprof
+node_modules
