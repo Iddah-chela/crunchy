@@ -36,12 +36,21 @@ db.serialize(() => {
 
 // Get all questions
 router.get("/questions", (req, res) => {
+  const minAge = req.query.minAge || 0;
+  const maxAge = req.query.maxAge || 120;
+
   db.all(
     "SELECT q.id, q.title, q.body, q.created_at, u.username FROM community_questions q JOIN users u ON q.user_id = u.id ORDER BY q.created_at DESC",
     [],
     (err, rows) => {
       if (err) return res.status(500).json({ error: err.message });
-      res.json(rows);
+      const filtered = rows.filter(row => {
+        const birthDate = new Date(row.birthday);
+        const diff = Date.now() - birthDate.getTime();
+        const age = new Date(diff).getUTCFullYear() - 1970;
+        return age >= minAge && age <=maxAge;
+      });
+      res.json(filtered);
     }
   );
 });
@@ -60,6 +69,33 @@ router.post("/questions", (req, res) => {
       res.json({ id: this.lastID, user_id, title, body });
     }
   );
+});
+
+//edit posts as poster
+router.put("/questions/:id", (req, res) => {
+  const {content} = req.body;
+  db.get("SELECT * FROM questions WHERE id = ?", [req.params,id], (err, post) => {
+    if (!post) return res.status(404).json({ error: "Not found "});
+    if (post.user_id !== req.session.userId) return res.status(403).json({ error: "Not yours" });
+    
+    db.run("UPDATE questions SET body = ? WHERE id = ?", [content, req.params.id], function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ success: true });
+    })
+  })
+})
+
+//delete post
+router.delete("/questions/:id", (req, res) => {
+  db.get("SELECT * FROM questions WHERE id = ?", [req.params.id], (err, post) => {
+    if (!post) return res.status(404).json ({ error: "Not found" });
+    if (post.user_id !== req.session.userId) return res.status(404).json({ error: "Not yours" });
+
+    db.run("DELETE FROM questions WHERE id = ?", [req.params.id], function (err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({ success: true });
+    });
+  });
 });
 
 // ================= RESPONSES ==================

@@ -221,7 +221,7 @@ Object.keys(categoryAccents).forEach(category => {
             color-mix(in srgb, ${accent} ${baseStart}%, #fff) 0%,
             color-mix(in srgb, ${accent} ${baseEnd}%, #fff) 100%
             )`;
-            btn.style.boxShadow = `none`;
+            btn.style.boxShadow = `0 2px 4px rgba(0,0,0,0.1)`;
         });
     });
 });

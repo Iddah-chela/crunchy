@@ -1,7 +1,7 @@
 {
   "name": "randomverse",
   "version": "1.0.0",
-  "description": "",
+  "description": "First project",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
     "sqlite3": "^5.1.7"
   },
   "devDependencies": {

@@ -26,10 +26,20 @@ require("dotenv").config({ path: __dirname + "/.env" });
 
 
 const app = express();
+
+const session = require("express-session");
+
+app.use(session({
+  secret: "Itsasecretssshhhhh",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false } //only true if using https
+}))
 const communityRoutes = require("./routes/commune");
 app.use("/commune", communityRoutes);
 
 const chatRoutes = require("./routes/chat");
+const { error } = require('console');
 app.use("/chat", chatRoutes);
 
 //serve static frontend files
@@ -206,7 +216,20 @@ app.post("/login", (req, res) => {
     //success
     res.json({ msg: "Login safi, karibu tena 🎉", user: row });
   });
+  req.session.userId = user.id; //remember logged in user
+  res.json({ success: true })
 });
+
+app.get("/me", (req, res) => {
+  if (!req.session || !req.session.userId) {
+    return res.status(401).json({ errror: "Not logged  in" });
+  }
+
+  db.get("SELECT id, username, age FROM users WHERE id = ?", [req.session.userId], (err, row) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(row);
+  })
+})
 
 
 //start server
