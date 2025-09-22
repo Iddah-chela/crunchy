@@ -1,7 +1,8 @@
 # Gradle files
 .gradle/
 build/
-
+.env
+node_modules/git add .gitignore
 # Local configuration file (sdk path, etc)
 local.properties
 
