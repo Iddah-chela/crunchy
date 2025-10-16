@@ -1,3 +1,4 @@
+import { startCiscoVibe } from './auth.js';
 const form = document.getElementById("loginForm");
 const msg = document.getElementById("msg");
 
@@ -13,7 +14,8 @@ form.addEventListener("submit", async (e) => {
     const res = await fetch("/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      credentials: "include"
     });
 
     const data = await res.json();
@@ -32,8 +34,10 @@ form.addEventListener("submit", async (e) => {
       age: data.user.age
     }));
 
-    // Optional redirect
-    window.location.href = "/home.html";
+    //trigger animation
+    startCiscoVibe();
+
+    
   } catch (err) {
     console.error(err);
     msg.textContent = "Network imechoka 😅";

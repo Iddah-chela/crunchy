@@ -7,8 +7,7 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <div class="animated-overlay"></div>
-  <div id="topbar-container"></div>
+ 
   <main class="profile-page">
     <div id="profile-infos">
     <div class="profile-header">
@@ -20,7 +19,7 @@
     </div>
 
     <div class="profile-stats">
-      <p><strong>Age:</strong> <span id="age">18</span></p>
+      <p><strong>Age:</strong> <span id="age"  onchange="filterQuestionsByAge()">18</span></p>
       <p><strong>Joined:</strong> <span id="profileJoined">August 2025</span></p>
     </div>
 
@@ -41,15 +40,20 @@
   <label>Password (new):</label>
   <input class="auth-input" type="password" id="password"><br>
 
+  <label>Profile Picture:</label>
+<input class="auth-input" type="file" id="profilePic" accept="image/*"><br>
+<img id="previewPic" src="images/default-avatar.png" alt="Preview" style="width:80px;height:80px;border-radius:50%;">
+
+
   <button class="auth-btn" type="submit">Update</button>
 </form>
 <p id="msg"></p>
 
 
   </main>
+
   
 <script src="js/profile.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/topbar.js"></script>
+
 </body>
 </html>

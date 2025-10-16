@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Fruit Defense</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html,body { height: 100%; margin: 0; background: #0b1220; color: #fff; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; }
+    #game { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+    .instructions { position: absolute; left: 16px; top: 8px; z-index: 10; background: rgba(0,0,0,0.35); padding:6px 10px; border-radius:8px; font-size:13px; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.min.js"></script>
+</head>
+<body>
+  <div class="instructions">
+    <b>Fruit Defense</b> — Move: ← → or A/D · Jump: SPACE · Throw fruit: J · Use special: K · Pause: P<br/>
+    Collect fruits, throw them to stop enemies, rescue the NPC!
+  </div>
+  <div id="game"></div>
+  <script src="js/fruit.js"></script>
+</body>
+</html>

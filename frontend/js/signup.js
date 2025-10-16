@@ -1,3 +1,5 @@
+import { startCiscoVibe } from './auth.js';
+
 // Hii script ndio inabonga na backend
 const form = document.getElementById("signupForm");
 const msg = document.getElementById("msg");
@@ -42,8 +44,9 @@ form.addEventListener("submit", async (e) => {
       // password haipaswi kuhifadhiwa hapa IRL, lakini tuta-fix tukianza auth proper
     }));
 
-    // Optional: redirect to your app’s home
-    window.location.href = "/community.html";
+    // play animation
+    startCiscoVibe();
+    
   } catch (err) {
     console.error(err);
     msg.textContent = "Network drama 😭";

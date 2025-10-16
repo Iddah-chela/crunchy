@@ -7,8 +7,10 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
+  <div class="animated-overlay"></div>
   <div id="app">
-    
+    <div id="topbar-container"></div>
     <!-- 👋 Welcome -->
     <section class="hero">
       <h2 id="welcomeText">👋 Welcome back!</h2>
@@ -17,21 +19,35 @@
 
     <!-- 🟣 Main Navigation Cards -->
     <section class="main-cards">
-      <div class="card game-card" data-link="index.html">
-        <h3>QnA</h3>
-        <p id="qnaInfo">Loading...</p>
+      <div class="card" data-link="index.html">
+      <div class="box">
+        <h3 class="intro">QnA</h3>
+        <p class="form" id="qnaInfo">Loading...</p>
+      </div>
+      </div>
+      <div class="card" data-link="bible.html">
+      <div class="box">
+        <h3 class="intro">Bible</h3>
+        <p class="form" id="bibleInfo">Loading...</p>
+      </div>
       </div>
       <div class="card" data-link="prayer.html">
-        <h3>Prayer</h3>
-        <p id="prayerInfo">Loading...</p>
+      <div class="box">
+        <h3 class="intro">Prayer</h3>
+        <p class="form" id="prayerInfo">Loading...</p>
+      </div>
       </div>
       <div class="card" data-link="game.html">
-        <h3>Games</h3>
-        <p id="gamesInfo">Loading...</p>
+      <div class="box">
+        <h3 class="intro">Games</h3>
+        <p class="form" id="gamesInfo">Loading...</p>
+      </div>
       </div>
       <div class="card" data-link="community.html">
-        <h3>Community</h3>
-        <p id="communityInfo">Loading...</p>
+      <div class="box">
+        <h3 class="intro">Community</h3>
+        <p class="form" id="communityInfo">Loading...</p>
+      </div>
       </div>
     </section>
 
@@ -41,13 +57,13 @@
       <div id="highlightFeed" class="highlight-strip"></div>
     </section>
 
-    <!-- 👶 Baby AI bubble -->
-    <div class="baby-ai-bubble innerbtn">
-      <img src="/backgrounds/purple (1).png" alt="AI"/>
-    </div>
+    
 
   </div>
 
+  <script src="js/topbar.js" defer></script>
+  <script src="js/topbar-loader.js"></script>
   <script src="js/home.js"></script>
+  
 </body>
 </html>

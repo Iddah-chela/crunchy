@@ -44,14 +44,9 @@ let q1ans = {
       tags: ["creation", "Jesus", "power"]
     },
     "Colossians 1:16-17": {
-      text: "For by him, all things were created, in heaven and on earth, visible and invisible... all things were created through him and for him. And he is before all things, and in him all things hold together.",
+      text: "For by him, all things were created, in heaven and on earth. He made the things we can see and the things we can't see - such as thrones, kingdoms, rulers and authorities in the unseen world. All things were created through him and for him. And he is before all things, and in him all things hold together.",
       theme: "creation",
       tags: ["Jesus", "power", "sustainer"]
-    },
-    "Hebrews 1:3": {
-      text: "He is the radiance of the glory of God... and he upholds the universe by the word of his power.",
-      theme: "creation",
-      tags: ["Jesus", "power", "glory"]
     },
     "Proverbs 3:19": {
       text: "The Lord, by wisdom founded the Earth, by understanding established the heavens.",
@@ -97,7 +92,7 @@ let q1ans = {
       tags: ["guidance", "fear", "faith"]
     },
     "John 14:16-17": {
-      text: "And I will ask the Father, and he will give you another helper, to be with you forever, even the Spirit of truth... You know him, for he dwells with you and will be in you.",
+      text: "And I will ask the Father, and he will give you another helper, to be with you forever. He is the Holy Spirit, who leads to all truth. The world cannot receive him, because it isn't looking for him and doesn't recognize him. But you know him, for he dwells with you and will be in you.",
       theme: "presence",
       tags: ["Spirit", "guidance", "truth"]
     },
@@ -126,12 +121,12 @@ let q1ans = {
   },
   "God is Everlasting": {
     "Romans 11:33-36": {
-      text: "Oh, the depth of the riches and wisdom and knowledge of God! ...For from him and through him and to him are all things. To him be glory forever. Amen.",
+      text: "Oh, how great are the riches and wisdom and knowledge of God! ...For from him and through him and to him are all things. To him be glory forever. Amen.",
       theme: "eternal",
       tags: ["wisdom", "glory", "eternal"]
     },
     "Isaiah 40:28-29": {
-      text: "Have you not known? Have you not heard? The Lord is the everlasting God... He gives power to the faint, and to those who have no might, he increases strength.",
+      text: "Have you not known? Have you not heard? The Lord is the everlasting God, the Creator of all the Earth. He never grows weak or weary. No one can measure the depths of his understanding. He gives power to the weak, and to those who have no might, he increases strength.",
       theme: "eternal",
       tags: ["everlasting", "strength", "creation"]
     },
@@ -153,12 +148,12 @@ let q1ans = {
   },
   "God is our Savior": {
     "Isaiah 43:10-11": {
-      text: "'You are my witnesses', says the Lord... 'I am the Lord, and besides me, there is no savior.'",
+      text: "'You are my witnesses', says the Lord. 'You are my servant. You have been chosen to know me, believe in me, and underestand that I alone am God. There is no other God - there never has been and there never will be. I am the Lord, and besides me, there is no savior.'",
       theme: "savior",
       tags: ["witness", "truth", "salvation"]
     },
     "Titus 3:4-6": {
-      text: "But when the goodness and loving kindness of God our Savior appeared... he saved us... according to his own mercy.",
+      text: "But when the goodness and loving kindness of God our Savior appeared, he saved us, not because of the righteous things we had done, but because of his own mercy. He washed away our sins, giving us a new birth and new life through the Holy Spirit. He generously poured out the Spirit upon us through Jesus Christ our Savior.",
       theme: "savior",
       tags: ["mercy", "salvation", "grace"]
     }
@@ -201,7 +196,7 @@ let q1ans = {
   },
   "God is a Friend": {
     "John 15:15": {
-      text: "I no longer call you servants... instead, I have called you friends.",
+      text: "I no longer call you servants, because a master doesn't confide in his servants. Instead, I have called you friends, since I have told you everything the Father told me.",
       theme: "friend",
       tags: ["relationship", "closeness", "love"]
     },
@@ -211,7 +206,7 @@ let q1ans = {
       tags: ["faithful", "love", "relationship"]
     },
     "James 2:23": {
-      text: "Abraham believed God... and he was called God's friend.",
+      text: "Abraham believed God and God counted him as righteous because of his faith and he was called God's friend.",
       theme: "friend",
       tags: ["faith", "relationship", "trust"]
     }
@@ -256,7 +251,7 @@ let q2ans = {
       tags: ["grace", "growth", "devotion", "knowledge"]
     },
     "Jeremiah 9:23-24": {
-      text: "'Let not the wise boast in their wisdom... but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises kindness, justice and righteousness on earth, for in these I delight,' declares the Lord.",
+      text: "'Let not the wise boast in their wisdom, or the powerful boast in their power, or the rich boast in their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises kindness, justice and righteousness on earth, for in these I delight,' declares the Lord.",
       theme: "understanding",
       tags: ["justice", "wisdom", "righteousness", "truth"]
     },
@@ -278,7 +273,7 @@ let q2ans = {
       tags: ["obedience", "holiness", "transformation", "relationship"]
     }
   },
-  "Seek Him": {
+  "We know him more by seeking him": {
     "Proverbs 8:17": {
       text: "I love those who love me and those who seek me shall find me.",
       theme: "seek",
@@ -311,14 +306,14 @@ let q2ans = {
 
 // What's my purpose on Earth?
 let q3ans = {
-  "Love others": {
+  "To Love others": {
     "1 John 4:7": {
       text: "Dear friends, let us love one another, for love comes from God. Everyone who loves has been born of God and knows God.",
       theme: "love",
       tags: ["love", "born again", "relationship", "command"]
     },
     "Micah 6:8": {
-      text: "What does the Lord require of you? To act justly, love mercy, and walk humbly with your God.",
+      text: "He has told you, Oh people, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?",
       theme: "humble",
       tags: ["justice", "mercy", "humility", "obedience"]
     },
@@ -333,7 +328,7 @@ let q3ans = {
       tags: ["law", "love", "righteousness", "obedience"]
     }
   },
-  "Follow His Word": {
+  "To Follow His Word": {
     "Psalms 1:1-2": {
       text: "Blessed is the one who does not walk in step with the wicked or stand in the way sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night.",
       theme: "seek",
@@ -350,7 +345,7 @@ let q3ans = {
       tags: ["obedience", "word", "truth", "discipleship"]
     }
   },
-  "Spiritual Growth": {
+  "To Grow in Spirit": {
     "2 Peter 1:5-8": {
       text: "Make every effort to add to your faith goodness; and to goodness, knowledge; and to knowledge, self-control; and to self-control, perseverance; and to perseverance, godliness; and to godliness, mutual affection; and to mutual affection, love.",
       theme: "growth",
@@ -367,7 +362,7 @@ let q3ans = {
       tags: ["faith", "growth", "thankfulness", "rooted"]
     }
   },
-  "Do good with your gifts": {
+  "To do good with your gifts": {
     "Ephesians 2:10": {
       text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
       theme: "walk",
@@ -384,7 +379,7 @@ let q3ans = {
       tags: ["light", "witness", "glory", "example"]
     }
   },
-  "Glorify God": {
+  "To glorify God": {
     "1 Corinthians 10:31": {
       text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
       theme: "glory",
@@ -422,7 +417,7 @@ let q4ans = {
       tags: ["humility", "submission", "servanthood"]
     },
     "Hebrews 1:3": {
-      text: "He is the radiance of the glory of God and the exact imprint of His nature, and he upholds the universe by the word of his power.",
+      text: "The Son radiates God's own glory and expresses the very character of God, and he sustains everything by the mighty power of his command. When he had cleansed us from our sins, he sat down in the place of honor at the right hand of the majestic God in heaven.",
       theme: "power",
       tags: ["divinity", "power", "sustainer"]
     },
@@ -469,7 +464,7 @@ let q4ans = {
       tags: ["sacrifice", "love", "shepherd"]
     },
     "Isaiah 53:5": {
-      text: "But he was pierced for our transgressions, and by his wounds we are healed.",
+      text: "But he was pierced for our transgressions, crushed for our sins. He was beaten so we could be whole, and by his wounds we are healed.",
       theme: "salvation",
       tags: ["atonement", "healing", "cross"]
     },
@@ -479,7 +474,7 @@ let q4ans = {
       tags: ["grace", "love", "redemption"]
     },
     "Hebrews 9:28": {
-      text: "Christ was offered once to bear the sins of many.",
+      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time, not to deal with our sins but to bring salvation to those who are eagerly waiting for him.",
       theme: "salvation",
       tags: ["sacrifice", "salvation", "once for all"]
     },
@@ -491,7 +486,7 @@ let q4ans = {
   },
   "Jesus is a King": {
     "Philippians 2:9-11": {
-      text: "God has highly exalted him... that at the name of Jesus every knee should bow.",
+      text: "God has highly exalted him and gave him the name above all other names, that at the name of Jesus every knee should bow, in heaven and on earth and under the earth, and every tongue confess that Jesus Christ is Lord, to the glory of God the Father.",
       theme: "authority",
       tags: ["lordship", "exaltation", "worship"]
     },
@@ -572,7 +567,7 @@ let q5ans = {
       tags: ["battle", "peace", "trust", "protection"]
     },
     "Psalms 31:19-20": {
-      text: "How abundant are the good things that you have stored up for those who fear you... In the shelter of your presence you hide them from all human intrigues.",
+      text: "How abundant are the good things that you have stored up for those who fear you. You lavish it on those who come to you for protection, blessing them before the world. In the shelter of your presence you hide them from those who conspire against them. You shelter them in your presence, far from accusing tongues",
       theme: "presence",
       tags: ["shelter", "reward", "fear", "presence"]
     },
@@ -644,7 +639,7 @@ let q5ans = {
 
   "God Forgives": {
     "Isaiah 1:18": {
-      text: "'Come now, let us settle the matter,' says the Lord. 'Though your sins are like scarlet, they shall be as white as snow...'",
+      text: "'Come now, let us settle the matter,' says the Lord. 'Though your sins are like scarlet, they shall be as white as snow, though they are red lole crimson, I will make them as white as wool. If you will only obey me, you will have plenty to eat.'",
       theme: "forgiveness",
       tags: ["grace", "cleansing", "repentance", "mercy"]
     },
@@ -654,7 +649,7 @@ let q5ans = {
       tags: ["cleansing", "forgiveness", "freedom"]
     },
     "Micah 7:18-19": {
-      text: "You do not stay angry forever but delight to show mercy. You will again have compassion on us; you will tread our sins underfoot...",
+      text: "You do not stay angry forever but delight to show mercy. You will again have compassion on us; you will tread our sins underfoot and throw them into the depths of the ocean.",
       theme: "mercy",
       tags: ["mercy", "forgiveness", "compassion"]
     },
@@ -682,7 +677,7 @@ let q5ans = {
       tags: ["goodness", "purpose", "calling", "hope"]
     },
     "Isaiah 55:11": {
-      text: "So is my word that goes out from my mouth: It will not return to me empty, but will accomplish what I desire...",
+      text: "So is my word that goes out from my mouth: It will not return to me empty, but will accomplish what I desire and it will prosper wherever I send it.",
       theme: "power",
       tags: ["word", "promise", "power", "purpose"]
     }
@@ -708,19 +703,19 @@ let q6ans = {
       tags: ["conscience", "neglect", "responsibility", "obedience"]
     }
   },
-  "Sin separates us from God": {
+  "Sin is what separates us from God": {
     "Isaiah 59:2": {
       text: "But your iniquities have separated you from your God. Your sins have hidden his face so that he will not hear.",
       theme: "fallenness",
       tags: ["separation", "distance", "broken relationship"]
     },
     "Galatians 5:19-21": {
-      text: "Now the works of the flesh are evident: sexual immorality, impurity... those who do such things will not inherit the kingdom of God.",
+      text: "Now the works of the flesh are evident: sexual immorality, impurity, lust, idolatry, sorcery, hostility, quarreling, jealousy, outbursts of anger, selfish ambition, dissension, division, envy, drunkenness, wild parties and other sins like these. Let me tell you again, as I have before, that those who do such things will not inherit the kingdom of God.",
       theme: "temptation",
       tags: ["flesh", "immorality", "kingdom", "temptation"]
     },
     "Ephesians 4:18": {
-      text: "They are darkened in their understanding and separated from the life of God because of the ignorance that is in them...",
+      text: "They are darkened in their understanding and separated from the life of God because of the ignorance that is in them and their hearts hardened against him.",
       theme: "fallenness",
       tags: ["ignorance", "darkness", "separation", "understanding"]
     }
@@ -737,12 +732,12 @@ let q6ans = {
       tags: ["temptation", "battle", "desire", "self-control"]
     },
     "Hebrews 11:6": {
-      text: "And without faith it is impossible to please God...",
+      text: "And without faith it is impossible to please God. Anyone who wants to come to him must believe that God exists and that he rewards those who sincerely seek him.",
       theme: "faithful",
       tags: ["faith", "pleasing God", "trust"]
     }
   },
-  "Sin leads to death": {
+  "Sin is what leads to death": {
     "Proverbs 14:12": {
       text: "There is a way that appears to be right, but in the end it leads to death.",
       theme: "slavery ",
@@ -759,7 +754,7 @@ let q6ans = {
       tags: ["desire", "sin", "consequences", "death"]
     }
   },
-  "Sin can enslave you": {
+  "Sin can enslave you and lead you astray": {
     "John 8:34": {
       text: "Truly, truly I say to you, everyone who practices sin is a slave to sin.",
       theme: "slavery",
@@ -795,11 +790,11 @@ let q6ans = {
   }
 };
 
-// Why do I still sin even though I love God?
+// What should I do when I've sinned even thhough I love God?
 let q7ans = {
-  "When we love God we are still being transformed, not instantly made perfect": {
+  "Remember that when we love God we are still being transformed, not instantly made perfect. So confess your sins and keep living your life for God.": {
     "Romans 7:19-25": {
-      text: "I do not do the good I want to do, but the evil I do not want to do—this I keep on doing... Who will rescue me from this body that is subject to death? Thanks be to God, who delivers me through Jesus Christ our Lord.",
+      text: "I do not do the good I want to do, but the evil I do not want to do—this I keep on doing.But if I do what I don't want to do, I'm not really the one who's doing wrong, it it sin living in me that does it... Who will rescue me from this body that is subject to death? Thanks be to God, who delivers me through Jesus Christ our Lord.",
       theme: "transformation",
       tags: ["struggle", "weakness", "grace", "sin", "deliverance"]
     },
@@ -814,9 +809,9 @@ let q7ans = {
       tags: ["growth", "image of Christ", "process", "glory"]
     },
     "Romans 12:2": {
-      text: "Do not be conformed to this world, but be transformed by the renewing of your mind.",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
-      tags: ["mind", "renewal", "obedience", "change"]
+      tags: ["renewal", "mind", "will of God", "transformation"]
     },
     "Philippians 1:6": {
       text: "He who began a good work in you will carry it on to completion.",
@@ -829,7 +824,7 @@ let q7ans = {
       tags: ["new life", "spirit", "change", "heart"]
     },
     "1 John 1:8-9": {
-      text: "If we say we have no sin, we deceive ourselves... but if we confess our sins, he is faithful and just to forgive us.",
+      text: "If we say we have no sin, we deceive ourselves and are not living in the truth, but if we confess our sins, he is faithful and just to forgive us.",
       theme: "forgiveness",
       tags: ["confession", "forgiveness", "grace", "justice"]
     },
@@ -839,20 +834,20 @@ let q7ans = {
       tags: ["new creation", "identity", "freedom"]
     },
     "Titus 2:11-12": {
-      text: "For the grace of God has appeared that offers salvation... teaching us to say 'No' to ungodliness and worldly passions...",
+      text: "For the grace of God has appeared that offers salvation to all people. And we are instructed to turn from godless living and sinful pleasures. We should live in this evil world with wisdom, righteousness and devotion to God.",
       theme: "transformation",
       tags: ["teaching", "grace", "self-control", "salvation"]
     },
     "1 Peter 1:14-16": {
-      text: "As obedient children, do not conform to the evil desires you had when you lived in ignorance... Be holy, because I am holy.",
+      text: "As obedient children, do not conform to the evil desires you had when you lived in ignorance. You didn't know any better then. But now you must be holy in everything you do just as God who chose you is holy. For the scriptures say, 'Be holy, because I am holy.'",
       theme: "transformation",
       tags: ["obedience", "holiness", "growth", "desire"]
     }
   },
 
-  "The flesh is weak, but the spirit still dwells in you and guides you": {
+  "Remember that while the flesh is weak, the spirit still dwells in you and guides you": {
     "Galatians 5:17": {
-      text: "The flesh desires what is contrary to the Spirit... they are in conflict with each other, so you are not to do whatever you want.",
+      text: "The flesh desires what is contrary to the Spirit, and the Spirit desires what is contrary to the flesh. They are in conflict with each other, so you are not to do whatever you want.",
       theme: "battle",
       tags: ["flesh", "spirit", "conflict", "self-control"]
     },
@@ -862,18 +857,18 @@ let q7ans = {
       tags: ["flesh", "discipline", "repentance", "temptation"]
     },
     "James 1:14-15": {
-      text: "Each person is tempted when they are dragged away... then desire when it has conceived, gives birth to sin.",
+      text: "Each person is tempted when they are dragged away. Then desire when it has conceived, gives birth to sin. And when sin is allowed to grow, it gives birth to death.",
       theme: "battle",
       tags: ["temptation", "desire", "sin", "consequences"]
     },
-    "Hebrews 4:15-16": {
-      text: "For we do not have a high priest who is unable to empathize with your weakness... let us then approach God's throne of grace with confidence.",
+    "Hebrews 4:15–16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence so that we may receive mercy and find grace to help us in our time of need.",
       theme: "mercy",
       tags: ["weakness", "grace", "mercy", "confidence"]
     },
-    "Romans 8:5-9": {
-      text: "Those who live according to the flesh set their minds on the flesh, but those who live according to the Spirit set their minds on the Spirit.",
-      theme: "temptation",
+    "Romans 8:5–6": {
+    text: "Those who live according to the flesh have their minds set on what the flesh desires but those who live in accordance with the spirit have their minds set on that the spirit desires. The mind of a sinful person is death, but the mind governed by the Spirit is life and peace.",
+    theme: "temptation",
       tags: ["mind", "spirit", "life", "obedience"]
     },
     "1 Corinthians 10:13": {
@@ -882,28 +877,28 @@ let q7ans = {
       tags: ["temptation", "faithful", "help", "escape"]
     },
     "Ephesians 6:12-13": {
-      text: "Our struggle is not against flesh and blood... put on the full armor of God.",
+      text: "Our struggle is not against flesh and blood, but against evil rulers and authorities of the unseen world, against mighty powers in this dark world and evil spirits in the heavenly places. Therefore, put on the full armor of God so you will be able to resist the enemy in the time of evil. Then after the battle, you will still be standing firm.",
       theme: "battle",
       tags: ["struggle", "spiritual warfare", "armor", "strength"]
     },
     "Romans 6:6-7": {
-      text: "For we know that our old self was crucified with him so that the body ruled by sin might be done away with...",
+      text: "We know that our old sinful selves were crucified with Christ so that sin might lose its power in our lives. We are no longer slaves to sin. For when we died with Christ we were set free from the power of sin.",
       theme: "transformation",
       tags: ["old self", "freedom", "sin", "identity"]
     },
     "Galatians 2:20": {
-      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
       theme: "transformation",
       tags: ["identity", "Christ in me", "death to self"]
     },
     "1 Peter 5:8-9": {
-      text: "Be alert and of sober mind. Your enemy the devil prowls around like a roaring lion... Resist him, standing firm in the faith.",
+      text: "Be alert and of sober mind. Your enemy the devil prowls around like a roaring lion, looking for someone to devour. Resist him, standing firm in your faith. Remember that your Christian brothers and sisters all over the world are going through the same kind of suffering you are.",
       theme: "battle",
       tags: ["enemy", "resist", "faith", "alertness"]
     }
   },
 
-  "God's grace still covers our weaknesses": {
+  "Remember that God's grace still covers our weaknesses": {
     "2 Timothy 2:13": {
       text: "If we are faithless, he remains faithful, for he cannot deny himself.",
       theme: "grace",
@@ -920,7 +915,7 @@ let q7ans = {
       tags: ["abundance", "grace", "forgiveness", "hope"]
     },
     "Psalms 103:10-12": {
-      text: "He does not treat us as our sins deserve... as far as the east is from the west, so far has he removed our transgressions.",
+      text: "He does not treat us as our sins deserve. For his unfailing love toward those who fear him is as great as the height of the heavens above the Earth. As far as the east is from the west, so far has he removed our transgressions.",
       theme: "forgiveness",
       tags: ["mercy", "distance", "cleansing", "grace"]
     },
@@ -946,7 +941,7 @@ let q7ans = {
 let q8ans = {
   "Creation shows His reality and power": {
     "Romans 1:20": {
-      text: "Since the creation of the world, God’s invisible qualities… have been clearly seen, being understood from what has been made.",
+      text: "For ever since the world was created, people have seen the Earth and sky. Through everything God made, they can clearly see his invisible qualities-his eternal power and divine nature. So they have no excuse for not knowing God.",
       theme: "power",
       tags: ["creation", "evidence", "nature", "truth", "invisible"]
     },
@@ -966,12 +961,12 @@ let q8ans = {
       tags: ["creation", "stars", "glory", "faithful"]
     },
     "Acts 14:17": {
-      text: "He has not left himself without testimony, He shows kindness by giving you rain and crops in their seasons...",
+      text: "He has not left himself without testimony. For example, He shows kindness by giving you rain and crops in their seasons and giving you food and joyful hearts.",
       theme: "faithful",
       tags: ["provision", "testimony", "seasons", "kindness", "nature"]
     },
     "Job 12:7-10": {
-      text: "Ask the animals, and they will teach you… in His hand is the life of every creature and the breath of all mankind.",
+      text: "Ask the animals, and they will teach you, ask the birds of the sky and they will tell you. Speak to the Earth and it will instruct you. Let the fish in the sea speak to you ... For the life of the every living thing is in his hand, and the breath of every human being.",
       theme: "power",
       tags: ["life", "creation", "animals", "evidence", "breath"]
     }
@@ -984,7 +979,7 @@ let q8ans = {
       tags: ["seek", "relationship", "heart", "truth"]
     },
     "John 14:21": {
-      text: "Whoever loves me… I too will love them and show myself to them.",
+      text: "Those who accept my commandments and obey them are the ones who love me. And because they love me, my Father will love them. And I will love them and reveall myself to each one of them.",
       theme: "presence",
       tags: ["love", "obedience", "truth", "personal"]
     },
@@ -999,7 +994,7 @@ let q8ans = {
       tags: ["persistence", "know God", "guidance", "hope"]
     },
     "Revelation 3:20": {
-      text: "Here I am! I stand at the door and knock. If anyone hears my voice and opens the door, I will come in...",
+      text: "Here I am! I stand at the door and knock. If anyone hears my voice and opens the door, I will come in and we will share a meal together as friends.",
       theme: "presence",
       tags: ["invitation", "relationship", "choice", "presence"]
     }
@@ -1045,7 +1040,7 @@ let q8ans = {
       tags: ["hearing", "scripture", "growth", "faith"]
     },
     "1 Peter 1:8-9": {
-      text: "Though you have not seen Him, you love him... you are receiving the end result of your faith: the salvation of your souls.",
+      text: "Though you have not seen Him, you love him. Though you do not see him now, you trust him: and you rejoice with a glorious, inexpressible joy. You are receiving the end result of your faith: the salvation of your souls.",
       theme: "faithful",
       tags: ["salvation", "faith", "love", "hope"]
     },
@@ -1058,7 +1053,7 @@ let q8ans = {
 
   "God confirms his truth through fulfilled prophecies": {
     "Isaiah 46:9-10": {
-      text: "…I am God, there is none like me. I make known the end from the beginning, from ancient times, what is still to come...",
+      text: "Remember the things I have done in the past for I alone am God, there is none like me. I make known the end from the beginning, from ancient times, what is still to come. Everything I plan will come to pass.",
       theme: "truth",
       tags: ["prophecy", "sovereignty", "eternal", "truth"]
     },
@@ -1068,7 +1063,7 @@ let q8ans = {
       tags: ["fulfillment", "scripture", "Jesus", "prophecy"]
     },
     "Micah 5:2": {
-      text: "But you, Bethlehem… out of you will come one who will be ruler over Israel.",
+      text: "But you, Bethlehem, are only a small village among the people of Judah. Yet out of you will come one who will be ruler over Israel, one whose origins are from a distant past.",
       theme: "truth",
       tags: ["birthplace", "Messiah", "prophecy", "truth"]
     }
@@ -1112,7 +1107,7 @@ let q9ans = {
 
   "For Comfort and Peace": {
     "Matthew 11:28": {
-      text: "Come to me, all who labor and are heavy laden, and I will give you rest.",
+      text: "Jesus said 'Come to me, all who labor and are heavy laden, and I will give you rest.'",
       theme: "peace",
       tags: ["rest", "comfort", "peace"]
     },
@@ -1165,9 +1160,9 @@ let q9ans = {
       tags: ["guidance", "light", "wisdom"]
     },
     "Romans 12:2": {
-      text: "Do not be conformed to this world, but be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect.",
-      theme: "word",
-      tags: ["transformation", "discernment", "renewal"]
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "mind", "will of God", "transformation"]
     },
     "Colossians 3:23": {
       text: "Whatever you do, do with all your heart, as for the Lord and not for human masters.",
@@ -1206,7 +1201,7 @@ let q9ans = {
 
   "To Inspire Daily Living": {
     "Micah 6:8": {
-      text: "He has told you, Oh man, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?",
+      text: "He has told you, Oh people, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?",
       theme: "truth",
       tags: ["justice", "humble", "kindness"]
     },
@@ -1245,7 +1240,7 @@ let q9ans = {
 
 // How do I forgive others?
 let q10ans = {
-  "God forgave you first": {
+  "Remember that God forgave you first": {
     "Ephesians 4:32": {
       text: "Be kind and compassionate to one another, forgiving each other, just as in Christ, God forgave you.",
       theme: "grace",
@@ -1313,7 +1308,7 @@ let q10ans = {
       tags: ["transformation", "forgiveness", "mercy"]
     }
   },
-  "Forgiveness brings freedom": {
+  "Remember: Forgiveness brings freedom": {
     "Luke 6:37": {
       text: "Do not judge, and you will not be judged. Do not condemn, and you will not be condemned. Forgive, and you will be forgiven.",
       theme: "forgiveness",
@@ -1329,17 +1324,12 @@ let q10ans = {
       theme: "mercy",
       tags: ["mercy", "justice", "forgiveness"]
     },
-    "2 Corinthians 3:17": {
-      text: "Where the Spirit of the Lord is, there is freedom.",
-      theme: "hope",
-      tags: ["hope", "freedom", "spirit"]
-    }
   },
-  "God erases our sins": {
-    "Psalm 103:10-12": {
-      text: "He does not treat us as our sins deserve or repay us according to our iniquities... As far as the east is from the west, so far has he removed our transgressions from us.",
-      theme: "grace",
-      tags: ["grace", "forgiveness", "mercy"]
+  "Remember God erases our sins": {
+    "Psalms 103:10-12": {
+      text: "He does not treat us as our sins deserve. For his unfailing love toward those who fear him is as great as the height of the heavens above the Earth. As far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "forgiveness",
+      tags: ["mercy", "distance", "cleansing", "grace"]
     },
     "Isaiah 43:25": {
       text: "I, even I, am he who blots out your transgressions, for my own sake, and remembers your sins no more.",
@@ -1357,7 +1347,7 @@ let q10ans = {
       tags: ["mercy", "forgiveness", "new life"]
     }
   },
-  "Restore the broken": {
+  "Remember you are here to restore the broken": {
     "2 Corinthians 2:7": {
       text: "Now instead, you ought to forgive and comfort him, so that he will not be overwhelmed by excessive sorrow.",
       theme: "friend",
@@ -1402,9 +1392,9 @@ let q11ans = {
       tags: ["identity", "character", "transformation"]
     },
     "Galatians 2:20": {
-      text: "It is no longer I who live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God...",
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
       theme: "transformation",
-      tags: ["faith", "Christ in me", "transformation"]
+      tags: ["identity", "Christ in me", "death to self"]
     },
     "1 John 2:6": {
       text: "Whoever claims to live in him must live as Jesus did.",
@@ -1412,7 +1402,7 @@ let q11ans = {
       tags: ["example", "obedience", "Christlikeness"]
     },
     "Ephesians 5:1-2": {
-      text: "Follow God’s example, therefore, as dearly loved children and walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      text: "Follow God’s example, therefore, in everything you do, for you are his dear children. Live a life filled with love, just as Christ loved us and gave himself up for us as a sacrifice, a pleasing aroma to God.",
       theme: "love",
       tags: ["love", "sacrifice", "walk"]
     },
@@ -1429,12 +1419,12 @@ let q11ans = {
   },
   "Stay rooted in the Word": {
     "Psalms 1:2-3": {
-      text: "They delight in the law of the Lord... They are like trees planted along the riverbank, bearing fruit each season.",
+      text: "They delight in the law of the Lord, meditating on it day and night. They are like trees planted along the riverbank, bearing fruit each season. Their leaves never wither and they prosper in all they do.",
       theme: "word",
       tags: ["word", "rooted", "fruitful"]
     },
     "2 Timothy 3:16-17": {
-      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness...",
+      text: "All Scripture is God-breathed and is useful for teaching what is true and to make us realize what is wrong in our lives. It corrects us when we are wrong and teaches us to do what is right. God uses it to prepare and equip his people to do every good work.",
       theme: "word",
       tags: ["scripture", "teaching", "righteousness"]
     },
@@ -1498,12 +1488,12 @@ let q11ans = {
   },
   "Be transformed, not conformed": {
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
-      tags: ["renewal", "mind", "transformation"]
+      tags: ["renewal", "mind", "will of God", "transformation"]
     },
     "Ephesians 4:22-24": {
-      text: "Put off your old self... be made new in the attitude of your minds; and put on the new self, created to be like God...",
+      text: "Throw off your old sinful nature and your former way of life, which is corrupted by lust and deception, instead let the Spirit renew your thoughts and attitudes. Put on your new nature created to be like God-truly righteous and holy.",
       theme: "transformation",
       tags: ["new self", "identity", "transformation"]
     },
@@ -1513,7 +1503,7 @@ let q11ans = {
       tags: ["grace", "discipline", "transformation"]
     },
     "2 Corinthians 3:18": {
-      text: "And we all... are being transformed into his image with ever-increasing glory, which comes from the Lord, who is the Spirit.",
+      text: "And we all who have had that veil removed can see and reflect the glory of the Lord. We are being transformed into His image with ever-increasing glory, which comes from the Lord, who is the Spirit.",
       theme: "transformation",
       tags: ["image", "glory", "spirit"]
     },
@@ -1523,7 +1513,7 @@ let q11ans = {
       tags: ["process", "growth", "hope"]
     }
   },
-  "Obey God with love, not just rules": {
+  "Obey God with love, not just because of the rules": {
     "John 14:15": {
       text: "If you love me, keep my commands.",
       theme: "love",
@@ -1567,7 +1557,7 @@ let q11ans = {
       tags: ["identity", "light", "truth"]
     },
     "Ephesians 5:8-9": {
-      text: "For you were once darkness, but now you are light in the Lord. Live as children of light (for the fruit of the light consists in all goodness, righteousness and truth).",
+      text: "For you were once darkness, but now you are light in the Lord. Live as children of light! For the fruit of the light consists in all goodness, righteousness and truth.",
       theme: "light",
       tags: ["light", "goodness", "righteousness"]
     },
@@ -1579,7 +1569,7 @@ let q11ans = {
   }
 };
 
-// How do I live like a Christian?
+//## How do I live like a Christian?
 let q12ans = {
   "Let your life reflect Christ": {
     "Colossians 3:12": {
@@ -1588,9 +1578,9 @@ let q12ans = {
       tags: ["character", "love", "patience", "humility", "kindness"]
     },
     "Galatians 2:20": {
-      text: "It is no longer I who live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God...",
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
       theme: "transformation",
-      tags: ["identity", "faith", "Christ in me"]
+      tags: ["identity", "Christ in me", "death to self"]
     },
     "1 John 2:6": {
       text: "Whoever claims to live in him must live as Jesus did.",
@@ -1598,7 +1588,7 @@ let q12ans = {
       tags: ["example", "obedience", "Jesus"]
     },
     "Ephesians 5:1-2": {
-      text: "Follow God’s example, therefore, as dearly loved children and walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      text: "Follow God’s example, therefore, in everything you do, for you are his dear children. Live a life filled with love, just as Christ loved us and gave himself up for us as a sacrifice, a pleasing aroma to God.",
       theme: "love",
       tags: ["sacrifice", "love", "example", "obedience"]
     },
@@ -1615,12 +1605,12 @@ let q12ans = {
   },
   "Stay rooted in the Word": {
     "Psalms 1:2-3": {
-      text: "They delight in the law of the Lord... They are like trees planted along the riverbank, bearing fruit each season.",
+      text: "They delight in the law of the Lord, meditating on it day and night. They are like trees planted along the riverbank, bearing fruit each season. Their leaves never wither and they prosper in all they do.",
       theme: "word",
       tags: ["stability", "fruitfulness", "scripture"]
     },
     "2 Timothy 3:16-17": {
-      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness...",
+      text: "All Scripture is God-breathed and is useful for teaching what is true and to make us realize what is wrong in our lives. It corrects us when we are wrong and teaches us to do what is right. God uses it to prepare and equip his people to do every good work.",
       theme: "word",
       tags: ["scripture", "teaching", "righteousness"]
     },
@@ -1682,14 +1672,14 @@ let q12ans = {
       tags: ["freedom", "Spirit", "presence"]
     }
   },
-  "Be transformed, not conformed": {
+  "Be transformed in Christ, not conformed to this world": {
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
-      tags: ["renewal", "mind", "change"]
+      tags: ["renewal", "mind", "will of God", "transformation"]
     },
     "Ephesians 4:22-24": {
-      text: "Put off your old self... be made new in the attitude of your minds; and put on the new self, created to be like God...",
+      text: "Throw off your old sinful nature and your former way of life, which is corrupted by lust and deception, instead let the Spirit renew your thoughts and attitudes. Put on your new nature created to be like God-truly righteous and holy.",
       theme: "transformation",
       tags: ["new life", "mind", "change"]
     },
@@ -1731,7 +1721,7 @@ let q12ans = {
       tags: ["justice", "mercy", "humility"]
     },
     "Matthew 22:37-40": {
-      text: "‘Love the Lord your God with all your heart...’ This is the first and greatest commandment. And the second is like it: ‘Love your neighbor as yourself.’ All the Law and the Prophets hang on these two commandments.",
+      text: "‘Love the Lord your God with all your heart, all your soul and all your mind.’ This is the first and greatest commandment. And the second is like it: ‘Love your neighbor as yourself.’ All the Law and the Prophets hang on these two commandments.",
       theme: "love",
       tags: ["great command", "love", "relationship"]
     }
@@ -1789,7 +1779,7 @@ let q13ans = {
       tags: ["refuge", "strength", "help"]
     },
     "Isaiah 41:10": {
-      text: "So do not fear, for I am with you... I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      text: "So do not fear, for I am with you. Do not be discouraged for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
       theme: "fear",
       tags: ["fear", "strength", "presence"]
     }
@@ -1821,14 +1811,14 @@ let q13ans = {
       tags: ["heart", "wisdom", "intentions"]
     }
   },
-  "Resist and flee": {
+  "Resist and flee from temptation": {
     "James 4:7": {
       text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you.",
       theme: "battle",
       tags: ["submission", "resistance", "spiritual warfare"]
     },
     "1 Corinthians 6:18": {
-      text: "Flee from sexual immorality. All other sins a person commits are outside the body...",
+      text: "Flee from sexual immorality. All other sins a person commits are outside the body but this is a sin against your own body.",
       theme: "temptation",
       tags: ["flee", "sexual sin", "purity"]
     },
@@ -1854,10 +1844,10 @@ let q13ans = {
       theme: "transformation",
       tags: ["renewal", "discipline", "Christlikeness"]
     },
-    "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+    ":2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
-      tags: ["renewal", "mind", "transformation"]
+      tags: ["renewal", "mind", "will of God", "transformation"]
     },
     "Galatians 5:24": {
       text: "Those who belong to Christ Jesus have crucified the flesh with its passions and desires.",
@@ -1913,7 +1903,7 @@ let q14ans = {
       tags: ["courage", "God with us", "commands"]
     },
     "Deuteronomy 31:6": {
-      text: "Be strong and courageous. Do not be afraid or terrified... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      text: "Be strong and courageous. Do not be afraid or terrified, for the Lord your God goes with you; he will never leave you nor forsake you.",
       theme: "fear",
       tags: ["strength", "faithfulness", "security"]
     }
@@ -1925,7 +1915,7 @@ let q14ans = {
       tags: ["deliverance", "answered prayer", "relief"]
     },
     "Philippians 4:6-7": {
-      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. Then you will experience God's peace, which exceeds anything we can understand. His peace will guard your hearts and minds as you live in Christ Jesus.",
       theme: "peace",
       tags: ["prayer", "peace", "thanksgiving", "anxiety"]
     },
@@ -1954,17 +1944,17 @@ let q14ans = {
   },
   "Rest in God's presence and love": {
     "Psalms 23:4": {
-      text: "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me...",
+      text: "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me. Your rod and your staff protect and comfort me.",
       theme: "presence",
       tags: ["comfort", "guidance", "protection"]
     },
     "1 John 4:18": {
-      text: "There is no fear in love. But perfect love drives out fear, because fear has to do with punishment...",
+      text: "There is no fear in love. But perfect love drives out fear, because fear has to do with punishment and this shows that we have not fully experienced his perfect love.",
       theme: "presence",
       tags: ["God’s love", "security", "freedom from fear"]
     },
     "Psalms 91:4-5": {
-      text: "He will cover you with his feathers, and under his wings you will find refuge... You will not fear the terror of night, nor the arrow that flies by day.",
+      text: "He will cover you with his feathers, and under his wings you will find refuge. His faithful promises are your armor and protection. You will not fear the terror of night, nor the arrow that flies by day.",
       theme: "presence",
       tags: ["refuge", "peace", "spiritual shelter"]
     }
@@ -2072,7 +2062,7 @@ let q15ans = {
       tags: ["relationship", "mercy", "worship"]
     },
     "Isaiah 1:17": {
-      text: "Learn to do right; seek justice. Defend the oppressed. Take up the cause of the fatherless; plead the case of the widow.",
+      text: "Learn to do right; seek justice. Defend the oppressed. Take up the cause of the orphans; plead the case of the widow.",
       theme: "justice",
       tags: ["justice", "defend", "compassion"]
     },
@@ -2120,8 +2110,8 @@ let q16ans = {
   },
   "Pain reminds us we need God and leads us to trust Him": {
     "2 Corinthians 1:8-9": {
-      text: "We were under great pressure, far beyond our ability to endure, so that we despaired of life itself... But this happened that we might not rely on ourselves but on God, who raises the dead.",
-      theme: "trust",
+      text: "We think you ought to know, dear brothers and sisters about the trouble we went through in the province of Asia. We were under great pressure, far beyond our ability to endure, so that we despaired of life itself. In fact we expected to die. But this happened that we might not rely on ourselves but on God, who raises the dead.",
+      theme: "guidance",
       tags: ["dependence", "pressure", "resurrection"]
     },
     "Psalm 34:18": {
@@ -2152,7 +2142,7 @@ let q16ans = {
       tags: ["temptation", "weakness", "sinless"]
     },
     "Isaiah 53:3-4": {
-      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain. Like one from whom people hide their faces he was despised, and we held him in low esteem. Surely he took up our pain and bore our suffering...",
+      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain. Like one from whom people hide their faces he was despised, and we held him in low esteem. Yet it was our weaknesses he carried: it was our sorrows that weighed him down. And we thought his troubles were a punishment from God, a punishment for his own sins.",
       theme: "savior",
       tags: ["suffering", "rejection", "pain", "atonement"]
     },
@@ -2191,7 +2181,7 @@ let q16ans = {
   },
   "God promises to be with us in pain and restore us": {
     "Isaiah 43:2": {
-      text: "When you pass through the waters, I will be with you; and when you pass through the rivers, they will not sweep over you... the flames will not set you ablaze.",
+      text: "When you pass through the waters, I will be with you; and when you pass through the rivers of difficulty, they will not sweep over you. When you walk through the fire of oppresion, you will not be burned up, the flames will not set you ablaze.",
       theme: "protect",
       tags: ["presence", "fire", "trouble", "rescue"]
     },
@@ -2262,7 +2252,7 @@ let q17ans = {
       tags: ["love", "commands", "obedience", "devotion"]
     },
     "Deuteronomy 10:12-13": {
-      text: "What does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul... for your own good?",
+      text: "What does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul and that you must always obey the Lord's commands and decrees that I am giving you today for your own good?",
       theme: "obedience",
       tags: ["fear of God", "walk", "service", "wholeheartedness"]
     }
@@ -2329,7 +2319,7 @@ let q18ans = {
       tags: ["guidance", "light", "direction", "Scripture"]
     },
     "2 Timothy 3:16": {
-      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness.",
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness. It corrects us when we are wrong and teaches us to do what is right.",
       theme: "word",
       tags: ["teaching", "rebuke", "correction", "training"]
     },
@@ -2339,7 +2329,7 @@ let q18ans = {
       tags: ["joy", "commands", "clarity", "truth"]
     },
     "Joshua 1:8": {
-      text: "Keep this Book of the Law always on your lips; meditate on it day and night... then you will be prosperous and successful.",
+      text: "Keep this Book of the Law always on your lips; meditate on it day and night so you will be sure to obey everything written on it. Only then you will be prosperous and successful.",
       theme: "word",
       tags: ["meditation", "success", "law", "consistency"]
     },
@@ -2385,7 +2375,7 @@ let q18ans = {
 
   "Through prayer and seeking Him": {
     "James 1:5": {
-      text: "If any of you lacks wisdom, you should ask God... and it will be given to you.",
+      text: "If any of you lacks wisdom, you should ask God and it will be given to you. He will not rebuke you for asking.",
       theme: "wisdom",
       tags: ["asking", "wisdom", "prayer", "generosity of God"]
     },
@@ -2395,7 +2385,7 @@ let q18ans = {
       tags: ["calling", "answers", "mystery", "communication"]
     },
     "Proverbs 3:5-6": {
-      text: "Trust in the Lord with all your heart... and he will make your paths straight.",
+      text: "Trust in the Lord with all your heart, lean not on your own understanding, in all your ways acknowledge Him, and he will make your paths straight.",
       theme: "seek",
       tags: ["trust", "straight path", "submission", "direction"]
     },
@@ -2418,12 +2408,12 @@ let q18ans = {
       tags: ["instruction", "counsel", "love", "watchfulness"]
     },
     "Exodus 13:21": {
-      text: "By day the Lord went ahead of them in a pillar of cloud... by night in a pillar of fire to give them light.",
+      text: "By day the Lord went ahead of them in a pillar of cloud, by night in a pillar of fire to give them light. This allowed them to travel by day or by night.",
       theme: "presence",
       tags: ["leading", "cloud", "fire", "protection"]
     },
     "Isaiah 58:11": {
-      text: "The Lord will guide you always... you will be like a well-watered garden.",
+      text: "The Lord will guide you always giving you water when you are dry and restoring your strength. You will be like a well-watered garden, like and ever-flowing spring.",
       theme: "presence",
       tags: ["provision", "guidance", "refreshment", "fruitfulness"]
     },
@@ -2433,7 +2423,7 @@ let q18ans = {
       tags: ["guidance", "righteousness", "honor", "path"]
     },
     "Deuteronomy 31:8": {
-      text: "The Lord himself goes before you and will be with you... he will never leave you nor forsake you.",
+      text: "It is the Lord who goes before you. He will be with you, he will not leave you nor forsake you. Do not fear or be dismayed.",
       theme: "protect",
       tags: ["presence", "faithfulness", "companionship", "assurance"]
     }
@@ -2446,7 +2436,7 @@ let q18ans = {
       tags: ["guidance", "advisers", "victory", "counsel"]
     },
     "Proverbs 19:20-21": {
-      text: "Listen to advice and accept discipline... but it is the Lord’s purpose that prevails.",
+      text: "Listen to advice and accept discipline, so you will be wise the rest of your life. You can make many plans but it is the Lord’s purpose that prevails.",
       theme: "wisdom",
       tags: ["advice", "discipline", "listening", "purpose"]
     },
@@ -2482,7 +2472,7 @@ let q19ans = {
       tags: ["eternity", "unchanging", "existence", "stability"]
     },
     "James 1:17": {
-      text: "Every good and perfect gift is from above... who does not change like shifting shadows.",
+      text: "Whatever is good and perfect comes down to us from God our Father, who created all the lights in the heavens. He never changes or casts a shiftiing shadow.",
       theme: "goodness",
       tags: ["gift", "unchanging", "goodness", "heavenly source"]
     }
@@ -2500,13 +2490,13 @@ let q19ans = {
       tags: ["equipping", "God’s will", "pleasing God", "inner work"]
     },
     "2 Corinthians 3:18": {
-      text: "We are being transformed into his image with ever-increasing glory, which comes from the Lord, who is the Spirit.",
+      text: "And we all who have had that veil removed can see and reflect the glory of the Lord. We are being transformed into His image with ever-increasing glory, which comes from the Lord, who is the Spirit.",
       theme: "transformation",
       tags: ["transformation", "image of Christ", "glory", "Spirit work"]
     },
     "Ephesians 2:10": {
       text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
-      theme: "purpose",
+      theme: "walk",
       tags: ["handiwork", "created for purpose", "good works", "destiny"]
     }
   },
@@ -2518,7 +2508,7 @@ let q19ans = {
       tags: ["ongoing work", "divine activity", "Jesus working", "Father’s will"]
     },
     "Acts 1:8": {
-      text: "You will receive power when the Holy Spirit comes on you; and you will be my witnesses...",
+      text: "You will receive power when the Holy Spirit comes on you; and you will be my witnesses, telling people about me everywhere-in Jerusalem, throughout Judea, in Samaria and to the ends of the Earth.",
       theme: "spirit",
       tags: ["Holy Spirit", "power", "witnessing", "mission"]
     },
@@ -2528,7 +2518,7 @@ let q19ans = {
       tags: ["diverse gifts", "unity", "God at work", "function"]
     },
     "Romans 8:28": {
-      text: "And we know that in all things God works for the good of those who love him...",
+      text: "And we know that in all things God works for the good of those who love him and are called according to His purpose for them.",
       theme: "goodness",
       tags: ["purpose", "God’s plan", "trust", "good outcomes"]
     }
@@ -2536,12 +2526,12 @@ let q19ans = {
 
   "God is present in the world today": {
     "Psalm 121:4": {
-      text: "Indeed, he who watches over Israel will neither slumber nor sleep.",
+      text: "Indeed, He who watches over Israel will neither slumber nor sleep.",
       theme: "presence",
       tags: ["watchfulness", "alertness", "constant care", "guardian"]
     },
     "Isaiah 41:10": {
-      text: "So do not fear, for I am with you... I will uphold you with my righteous right hand.",
+      text: "So do not fear, for I am with you, do not be dismayed for I am your God. I will strengthen you and help you. I will uphold you with my righteous right hand.",
       theme: "presence",
       tags: ["fear not", "upholding", "strength", "companionship"]
     },
@@ -2564,14 +2554,9 @@ let q19ans = {
       tags: ["prayer", "authority of Jesus", "glory", "asking in His name"]
     },
     "Ephesians 3:20": {
-      text: "Now to him who is able to do immeasurably more than all we ask or imagine, according to his power that is at work within us.",
+      text: "Now all glory to God, who is able to do immeasurably more than all we ask or imagine, according to his power that is at work within us.",
       theme: "power",
       tags: ["impossible", "abundance", "power within", "expectation"]
-    },
-    "James 5:16": {
-      text: "The prayer of a righteous person is powerful and effective.",
-      theme: "power",
-      tags: ["righteousness", "prayer", "effectiveness", "powerful results"]
     },
     "Mark 16:20": {
       text: "The disciples went out and preached everywhere, and the Lord worked with them and confirmed his word by the signs that accompanied it.",
@@ -2623,7 +2608,7 @@ let q20ans = {
       tags: ["promise", "hope", "faithful", "confidence"]
     },
     "2 Peter 3:9": {
-      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you...",
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you. He does not want anyone to be destroyed, but wants everyone to repent.",
       theme: "grace",
       tags: ["promise", "patience", "timing", "faith"]
     }
@@ -2631,7 +2616,7 @@ let q20ans = {
 
   "Know that God is our refuge and strength": {
     "Psalm 46:1-2": {
-      text: "God is our refuge and strength, an ever-present help in trouble. Therefore we will not fear, though the earth give way...",
+      text: "God is our refuge and strength, an ever-present help in trouble. Therefore we will not fear, though the earth give way and the mountains crumble into the sea.",
       theme: "protect",
       tags: ["refuge", "help", "strength", "fearless"]
     },
@@ -2659,7 +2644,7 @@ let q20ans = {
       tags: ["faith", "vision", "trust", "unseen"]
     },
     "Psalm 37:5": {
-      text: "Commit your way to the Lord; trust in him and he will do this:",
+      text: "Commit your way to the Lord; trust in him and he will help you. He will make your innocence radiate like the dawn, and the justice of your cause will shine like the noonday sun.",
       theme: "walk",
       tags: ["commitment", "trust", "path", "action"]
     },
@@ -2687,7 +2672,7 @@ let q20ans = {
       tags: ["trust", "refuge", "honesty", "prayer"]
     },
     "James 1:5-6": {
-      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. But when you ask, you must believe and not doubt...",
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. But when you ask, you must believe and not doubt. Do not waver for a person with divided loyalty is as unsettled as a wave of the sea that is blown and tossed by the wind.",
       theme: "wisdom",
       tags: ["wisdom", "prayer", "belief", "doubt"]
     },
@@ -2701,19 +2686,19 @@ let q20ans = {
 
 // Can I talk to God like a friend?
 let q21ans = {
-  "God welcomes intimacy": {
+  "God welcomes friendships with Him.": {
     "Exodus 33:11": {
       text: "The Lord would speak to Moses face to face, as one speaks to a friend.",
       theme: "presence",
       tags: ["face to face", "friendship", "conversation", "intimacy"]
     },
     "John 15:15": {
-      text: "I no longer call you servants... Instead, I have called you friends, for everything that I learned from my Father I have made known to you.",
+      text: "I no longer call you servants, because a master doesn't confide in his servants. Instead, I have called you friends, for everything that I learned from my Father I have made known to you.",
       theme: "friend",
       tags: ["friendship", "Jesus", "revealed", "relationship"]
     },
     "James 2:23": {
-      text: "Abraham believed God... and he was called God's friend.",
+      text: "Abraham believed God and God counted him as righteous because of his faith and he was called God's friend.",
       theme: "faithful",
       tags: ["belief", "friendship", "trust", "relationship"]
     },
@@ -2740,7 +2725,7 @@ let q21ans = {
       tags: ["prayer", "thanksgiving", "requests", "anxiety"]
     },
     "Lamentations 2:19": {
-      text: "Pour out your heart like water in the presence of the Lord. Lift up your hands to him for the lives of your children...",
+      text: "Pour out your heart like water in the presence of the Lord. Lift up your hands to him in prayer for the lives of your children.",
       theme: "presence",
       tags: ["cry out", "presence", "heart", "intercession"]
     }
@@ -2752,7 +2737,7 @@ let q21ans = {
       tags: ["knows me", "thoughts", "searched", "understanding"]
     },
     "Matthew 6:8": {
-      text: "Your Father knows what you need before you ask him.",
+      text: "Your Father knows what you need before you ask Him.",
       theme: "understanding",
       tags: ["knows your need", "before asking", "God’s knowledge"]
     },
@@ -2810,9 +2795,9 @@ let q22ans = {
       tags: ["sin", "fall short", "glory", "unworthiness"]
     }
   },
-  "God never leaves": {
+  "God never leaves, even if He feels far at the moment.": {
     "Deuteronomy 31:6": {
-      text: "Be strong and courageous... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      text: "Be strong and courageous. Do not be afraid or terrified, for the Lord your God goes with you; he will never leave you nor forsake you.",
       theme: "presence",
       tags: ["never leave", "courage", "with you", "comfort"]
     },
@@ -2822,41 +2807,41 @@ let q22ans = {
       tags: ["faithful", "never forsake", "trust", "reassurance"]
     },
     "Psalm 139:7-10": {
-      text: "Where can I go from your Spirit? Where can I flee from your presence?... even there your hand will guide me, your right hand will hold me fast.",
+      text: "Where can I go from your Spirit? Where can I flee from your presence? If I go up to heaven, you are there, if I go down to the grave you are there. If I ride the wings of the morning, if I dwell by the farthest oceans, even there your hand will guide me, your right hand will support me.",
       theme: "presence",
       tags: ["omnipresence", "guidance", "Spirit", "secure"]
     }
   },
-  "Seek Him sincerely": {
+  "Seek Him sincerely if you feel far from Him.": {
     "Jeremiah 29:13": {
       text: "You will seek me and find me when you seek me with all your heart.",
       theme: "seek",
       tags: ["seek", "find", "heart", "pursuit"]
     },
     "James 4:8": {
-      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
       theme: "transformation",
       tags: ["draw near", "purify", "repentance", "cleansing"]
     },
     "Psalm 63:1": {
-      text: "You, God, are my God, earnestly I seek you; I thirst for you... in a dry and parched land where there is no water.",
+      text: "You, God, are my God, earnestly I seek you; I thirst for you, my whole body longs for you in this dry and parched land where there is no water.",
       theme: "devotion",
       tags: ["thirst", "seek", "desire", "wilderness"]
     }
   },
   "God uses silence to grow us": {
     "Job 23:8-10": {
-      text: "But if I go to the east, he is not there... But he knows the way that I take; when he has tested me, I will come forth as gold.",
+      text: "But if I go to the east, he is not there, I go west, but I cannot find Him. I do not see Him in the North, for He is hidden. I look to the south, but he is concealed. But he knows the way that I take; when he has tested me, I will come forth as gold.",
       theme: "growth",
       tags: ["testing", "gold", "hidden", "faith journey"]
     },
     "Lamentations 3:25-26": {
-      text: "The Lord is good to those whose hope is in him... It is good to wait quietly for the salvation of the Lord.",
+      text: "The Lord is good to those whose hope is in him to those who search for Him. It is good to wait quietly for the salvation of the Lord.",
       theme: "hope",
       tags: ["waiting", "hope", "quiet", "trust"]
     },
     "Isaiah 30:20-21": {
-      text: "Though the Lord gives you the bread of adversity and the water of affliction, your teachers will be hidden no more... your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
+      text: "Though the Lord gives you the bread of adversity and the water of affliction, he will still be with you to teach you. You will see your teacher with your own eyes. Your ears will hear a voice behind you, saying, 'This is the way; walk in it.'",
       theme: "guidance",
       tags: ["adversity", "voice", "walk", "hidden teachers"]
     }
@@ -2867,17 +2852,17 @@ let q22ans = {
 let q23ans = {
   "The resurrection is witnessed": {
     "1 Corinthians 15:3-6": {
-      text: "Christ died for our sins... he was buried, that he was raised on the third day... and that he appeared to Cephas, and then to the Twelve. After that, he appeared to more than five hundred of the brothers and sisters at the same time.",
+      text: "Christ died for our sins, just as the Scriptures had said. He was buried, that he was raised on the third day, just as the Scriptures had said, and that he appeared to Cephas, and then to the Twelve. After that, he appeared to more than five hundred of the brothers and sisters at the same time.",
       theme: "resurrection",
       tags: ["resurrection", "witnesses", "testimony", "gospel"]
     },
     "Luke 24:6-7": {
-      text: "He is not here; he has risen! Remember how he told you... ‘The Son of Man must be delivered over to the hands of sinners, be crucified and on the third day be raised again.’",
+      text: "He is not here; he has risen! Remember what He told you back in Galilee, ‘The Son of Man must be delivered over to the hands of sinners, be crucified and on the third day be raised again.’",
       theme: "resurrection",
       tags: ["risen", "third day", "promise kept", "crucifixion"]
     },
     "John 20:27-29": {
-      text: "Then he said to Thomas, 'Put your finger here; see my hands... Stop doubting and believe.' Thomas said to him, 'My Lord and my God!'",
+      text: "Then he said to Thomas, 'Put your finger here; see my hands. Put your hand into the wound in my side. Stop doubting and believe.' Thomas said to him, 'My Lord and my God!' Then Jesus said to him 'You believe because you have seen me. Blessed are those who believe without seeing me.'",
       theme: "truth",
       tags: ["doubt", "belief", "wounds", "confession"]
     }
@@ -2889,7 +2874,7 @@ let q23ans = {
       tags: ["resurrection", "power", "Son of God", "lordship"]
     },
     "Philippians 2:8-11": {
-      text: "He humbled himself by becoming obedient to death—even death on a cross! Therefore God exalted him... that at the name of Jesus every knee should bow...",
+      text: "He humbled himself by becoming obedient to God—even died a criminal's death on a cross! Therefore God exalted him to the place of the highest honor and gave him the name above all other names. That at the name of Jesus every knee should bow, in heaven and on earth and under the earth, and ecery tongue confess that Jesus Christ is Lord, to the glory of God the Father.",
       theme: "glory",
       tags: ["humility", "obedience", "exaltation", "worship"]
     },
@@ -2899,9 +2884,9 @@ let q23ans = {
       tags: ["witness", "Messiah", "crucifixion", "lordship"]
     }
   },
-  "We are raised with Him": {
-    "Romans 6:4-5": {
-      text: "We were therefore buried with him through baptism into death... just as Christ was raised from the dead... we too may live a new life.",
+  "When Jesus was resurrected, we are raised with Him": {
+    "Romans 6:4-6": {
+      text: "We were therefore buried with him through baptism into death and just as Christ was raised from the dead by the glorious power of the Father, we too may live a new life.nSince we have been united with him in his death, we will also be raised to life as he was. We know that our old sinful selves were crucified with Christ so that sin may lose its power in our lives, we are no longer slaves to sin!",
       theme: "transformation",
       tags: ["baptism", "new life", "burial", "raised"]
     },
@@ -2911,7 +2896,7 @@ let q23ans = {
       tags: ["raised with Christ", "heavenly focus", "right hand", "new mindset"]
     },
     "Ephesians 2:4-6": {
-      text: "But because of his great love for us... God raised us up with Christ and seated us with him in the heavenly realms in Christ Jesus.",
+      text: "But because of his great love for us, that even though we were dead because of our sin, He gave us life when He raised Christ from the dead. God raised us up with Christ and seated us with him in the heavenly realms because we are united with Christ Jesus.",
       theme: "salvation",
       tags: ["raised", "seated with Christ", "heaven", "love"]
     }
@@ -2944,7 +2929,7 @@ let q24ans = {
       tags: ["greatest-command", "heart", "relationship", "others"]
     },
     "John 13:34-35": {
-      text: "A new command I give you: Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples...",
+      text: "A new command I give you: Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples.",
       theme: "love",
       tags: ["discipleship", "community", "love-in-action", "others"]
     },
@@ -2967,7 +2952,7 @@ let q24ans = {
       tags: ["repentance", "kingdom", "good-news", "gospel"]
     },
     "Luke 17:20-21": {
-      text: "‘The kingdom of God is not something that can be observed... because the kingdom of God is in your midst.’",
+      text: "The Pharisees asked Jesus, 'When will the Kingdom of God come?', Jesus replied, ‘The kingdom of God is not something that can be observed with visible signs, You won't be able to say, 'Here it is!' or 'Its over there!', because the kingdom of God is in your midst.’",
       theme: "truth",
       tags: ["kingdom", "presence", "mystery", "inner-life"]
     },
@@ -2977,7 +2962,7 @@ let q24ans = {
       tags: ["beatitudes", "humility", "blessing", "kingdom"]
     },
     "Matthew 13:31-32": {
-      text: "The kingdom of heaven is like a mustard seed... though it is the smallest of all seeds, yet when it grows, it is the largest of garden plants...",
+      text: "The kingdom of heaven is like a mustard seed planted in a field, though it is the smallest of all seeds, yet when it grows, it is the largest of garden plants; it grows into a tree, and birds come and make nests in its branches.",
       theme: "growth",
       tags: ["kingdom", "parable", "growth", "faith"]
     }
@@ -3054,7 +3039,7 @@ let q24ans = {
 
   "Live by faith, not fear": {
     "Matthew 10:28-31": {
-      text: "Do not be afraid of those who kill the body but cannot kill the soul... Even the very hairs of your head are all numbered. So don’t be afraid; you are worth more than many sparrows.",
+      text: "Do not be afraid of those who kill the body but cannot kill the soul. Fear only God who can destroy both body and soul in hell. What is the price of two sparrows-one copper coin? But not a single sparrow can fall into the ground without your Father knowing it. Even the very hairs of your head are all numbered. So don’t be afraid; you are worth more to God than a whole flock of sparrows.",
       theme: "trust",
       tags: ["fear", "value", "identity", "security"]
     },
@@ -3072,7 +3057,7 @@ let q24ans = {
 
   "Be ready for His return": {
     "Matthew 24:42-44": {
-      text: "Therefore keep watch, because you do not know on what day your Lord will come... the Son of Man will come at an hour when you do not expect him.",
+      text: "Therefore keep watch, because you do not know on what day your Lord will come. Understand this: if a homeowner knew exactly when a burglar was coming, he would keep watch and not permit his house to be broken into. You must also be ready all the time, the Son of Man will come at an hour when you do not expect him.",
       theme: "eternal",
       tags: ["return", "watchful", "preparedness", "judgment"]
     },
@@ -3093,12 +3078,12 @@ let q25ans = {
       tags: ["lamb", "sacrifice", "atonement", "sin"]
     },
     "Isaiah 53:7": {
-      text: "He was oppressed and afflicted, yet he did not open his mouth; he was led like a lamb to the slaughter...",
+      text: "He was oppressed and afflicted, yet he did not open his mouth; he was led like a lamb to the slaughter. As a sheep is silent before the shearers, he did not open his mouth.",
       theme: "submission",
       tags: ["lamb", "obedience", "suffering", "messiah"]
     },
     "1 Peter 1:18-19": {
-      text: "You were redeemed... with the precious blood of Christ, a lamb without blemish or defect.",
+      text: "For you know that God paid a ransom to save you from the empty life you inherited from your ancestors. And the ransom he paid was not mere gold or silver. It was the precious blood of Christ, the sinless, spotless Lamb of God.",
       theme: "salvation",
       tags: ["redeemed", "blood", "lamb", "pure"]
     }
@@ -3106,7 +3091,7 @@ let q25ans = {
 
   "He fulfilled the Passover symbol": {
     "Exodus 12:5-7": {
-      text: "The animals you choose must be year-old males without defect... Take some of the blood and put it on the sides and tops of the doorframes...",
+      text: "But the blood on your doorposts will serve as a sign, marking the houses where you are staying. When I see the blood, I will pass oveer you. This plague of death will not touch you when I strike the land of Egypt.",
       theme: "grace",
       tags: ["passover", "blood", "protection", "foreshadowing"]
     },
@@ -3124,12 +3109,12 @@ let q25ans = {
       tags: ["substitute", "grace", "sin", "cross"]
     },
     "Isaiah 53:5": {
-      text: "But he was pierced for our transgressions, he was crushed for our iniquities; the punishment that brought us peace was on him...",
+      text: "But he was pierced for our transgressions, he was crushed for our iniquities; the punishment that brought us peace was on him. He was whipped so we could be healed.",
       theme: "peace",
       tags: ["punishment", "healing", "substitute", "peace"]
     },
     "Hebrews 9:28": {
-      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time... to bring salvation to those who are waiting for him.",
+      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time, not to deal with our sins but to bring salvation to those who are eagerly waiting for him.",
       theme: "salvation",
       tags: ["judgment", "return", "sacrifice", "forgiveness"]
     }
@@ -3142,7 +3127,7 @@ let q25ans = {
       tags: ["worship", "honor", "praise", "lamb"]
     },
     "Revelation 7:17": {
-      text: "For the Lamb at the center of the throne will be their shepherd; he will lead them to springs of living water...",
+      text: "For the Lamb at the center of the throne will be their shepherd; he will lead them to springs of life-giving water. And God will wipe every tear from theiir eyes.",
       theme: "friend",
       tags: ["lamb", "shepherd", "guidance", "eternal"]
     }
@@ -3169,37 +3154,32 @@ let q26ans = {
     }
   },
 
-  "He suffered to save us": {
+  "He suffered to save us thus He understands our suffering.": {
     "Hebrews 2:17-18": {
-      text: "For this reason he had to be made like them, fully human in every way... Because he himself suffered when he was tempted, he is able to help those who are being tempted.",
+      text: "For this reason he had to be made like them, fully human in every way, so that he could be our merciful and faithful High Priest before God. Then He could offer a sacrifice that would take away the sins of the people. Because he himself suffered when he was tempted, he is able to help those who are being tempted.",
       theme: "help",
       tags: ["help", "humanity", "temptation", "suffering"]
     },
     "Philippians 2:6-8": {
-      text: "Though he was God... he humbled himself in obedience to God and died a criminal’s death on a cross.",
+      text: "Though he was God, He did not think of equality with God as something to cling to. Instead, he gave up his divine priviledges, he took the humble position of a slave and was born as a human being. When he appeared in human form, he humbled himself in obedience to God and died a criminal’s death on a cross.",
       theme: "humble",
       tags: ["humility", "obedience", "sacrifice", "cross"]
     },
     "1 Peter 2:24": {
-      text: "He himself bore our sins in his body on the cross, so that we might die to sins and live for righteousness...",
+      text: "He himself bore our sins in his body on the cross, so that we might die to sins and live for righteousness. By his wounds you are healed.",
       theme: "salvation",
       tags: ["sacrifice", "cross", "healing", "righteousness"]
     }
   },
 
-  "He calls you his friend": {
+  "He understands you and calls you his friend": {
     "John 15:15": {
-      text: "I no longer call you servants... Instead, I have called you friends, for everything that I learned from my Father I have made known to you.",
+      text: "I no longer call you servants, because a master doesn't confide in his servants. Instead, I have called you friends, since I have told you everything the Father told me.",
       theme: "friend",
       tags: ["friendship", "relationship", "intimacy", "trust"]
     },
-    "John 11:35": {
-      text: "Jesus wept.",
-      theme: "love",
-      tags: ["compassion", "grief", "love", "emotion"]
-    },
     "Romans 8:34": {
-      text: "Christ Jesus who died... is also interceding for us.",
+      text: "Who will condemn us? No one-for Christ Jesus who died for us and was raised to life for us, and he is sitting in the place of honor at God's right hand, is also interceding for us.",
       theme: "savior",
       tags: ["intercession", "advocate", "prayer", "ongoing-love"]
     }
@@ -3233,10 +3213,10 @@ let q27ans = {
       tags: ["sacrifice", "obedience", "worthiness", "cross"]
     },
     "Galatians 2:20": {
-      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
       theme: "transformation",
-      tags: ["identity", "submission", "new-life", "crucified-with-christ"]
-    }
+      tags: ["identity", "Christ in me", "death to self"]
+    },
   },
 
   "Obey His teachings": {
@@ -3246,7 +3226,7 @@ let q27ans = {
       tags: ["obedience", "love", "abide", "relationship"]
     },
     "1 John 2:3-4": {
-      text: "We know that we have come to know him if we keep his commands. Whoever says, 'I know him,' but does not do what he commands is a liar...",
+      text: "We know that we have come to know him if we keep his commands. Whoever says, 'I know him,' but does not do what he commands is a liar and is not living in the truth.",
       theme: "truth",
       tags: ["truth", "obedience", "integrity", "knowing-god"]
     },
@@ -3264,7 +3244,7 @@ let q27ans = {
       tags: ["example", "walk", "discipleship", "imitate-christ"]
     },
     "Ephesians 5:1-2": {
-      text: "Follow God’s example, therefore, as dearly loved children and walk in the way of love, just as Christ loved us and gave himself up for us...",
+      text: "Follow God’s example, therefore, in everything you do, for you are his dear children. Live a life filled with love, just as Christ loved us and gave himself up for us as a sacrifice, a pleasing aroma to God.",
       theme: "love",
       tags: ["love", "walk", "sacrifice", "imitate-god"]
     },
@@ -3282,12 +3262,12 @@ let q27ans = {
       tags: ["abide", "fruitfulness", "dependence", "relationship"]
     },
     "Colossians 2:6-7": {
-      text: "So then, just as you received Christ Jesus as Lord, continue to live your lives in him, rooted and built up in him...",
+      text: "So then, just as you received Christ Jesus as Lord, continue to live your lives in him, rooted and built up in him. Then your faith will grow strong in the truth you were taught and you will overflow with thankfulness.",
       theme: "walk",
       tags: ["rooted", "growth", "walk", "maturity"]
     },
-    "Psalm 1:2-3": {
-      text: "But whose delight is in the law of the Lord... That person is like a tree planted by streams of water, which yields its fruit in season...",
+    "Psalms 1:2-3": {
+      text: "They delight in the law of the Lord, meditating on it day and night. They are like trees planted along the riverbank, bearing fruit each season. Their leaves never wither and they prosper in all they do.",
       theme: "growth",
       tags: ["growth", "meditation", "fruit", "stability"]
     }
@@ -3305,7 +3285,7 @@ let q27ans = {
       tags: ["spirit", "walk", "obedience", "alignment"]
     },
     "John 16:13": {
-      text: "But when he, the Spirit of truth, comes, he will guide you into all the truth...",
+      text: "But when he, the Spirit of truth, comes, he will guide you into all the truth. He will not speak on his own but will tell you what he has heard. He will tell you about the future.",
       theme: "spirit",
       tags: ["truth", "guidance", "spirit", "direction"]
     }
@@ -3314,7 +3294,7 @@ let q27ans = {
 
 // What is God's plan for my life?
 let q28ans = {
-  "God has a purpose for you": {
+  "God has a purpose for you: to do good works and to prosper.": {
     "Jeremiah 29:11": {
       text: "'For I know the plans I have for you,' declares the Lord, 'plans to prosper you and not to harm you, plans to give you hope and a future.'",
       theme: "hope",
@@ -3331,7 +3311,7 @@ let q28ans = {
       tags: ["plans", "purpose", "sovereignty", "God's-will"]
     },
     "Isaiah 46:10": {
-      text: "I make known the end from the beginning... My purpose will stand, and I will do all that I please.",
+      text: "I make known the end from the beginning. My purpose will stand, and I will do all that I please.",
       theme: "authority",
       tags: ["control", "sovereignty", "God's-will", "purpose"]
     }
@@ -3344,7 +3324,7 @@ let q28ans = {
       tags: ["justice", "mercy", "humility", "calling"]
     },
     "Deuteronomy 10:12": {
-      text: "What does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul...",
+      text: "What does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul.",
       theme: "obedience",
       tags: ["service", "fear", "love", "loyalty"]
     },
@@ -3355,7 +3335,7 @@ let q28ans = {
     }
   },
 
-  "Trust and walk with Him daily": {
+  "For you to trust and walk with Him daily": {
     "Proverbs 3:5-6": {
       text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
       theme: "submission",
@@ -3385,12 +3365,12 @@ let q28ans = {
       tags: ["purpose", "good", "trust", "calling"]
     },
     "James 1:2-4": {
-      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance.",
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. So let it grow, for when perserverance is fully developed, you will be perfect and needing nothing.",
       theme: "growth",
       tags: ["testing", "joy", "faith", "perseverance"]
     },
     "1 Peter 1:6-7": {
-      text: "You may have had to suffer grief... These have come so that the proven genuineness of your faith... may result in praise, glory and honor when Jesus Christ is revealed.",
+      text: "So be glad, there is wonderful joy ahead, even though you may have had to suffer grief for a little while. These have come so that the proven genuineness of your faith. It is being tested as fire tests and purifies gold-though your faith is far more precious than mere gold. So when your faith remains strong through many trials, it will result in praise, glory and honor when Jesus Christ is revealed to the whole world.",
       theme: "glory",
       tags: ["suffering", "faith", "praise", "proven"]
     },
@@ -3402,6 +3382,7 @@ let q28ans = {
   }
 };
 
+//How can I make a difference?
 let q29ans = {
   "God uses the willing": {
     "1 Corinthians 1:27": {
@@ -3415,7 +3396,7 @@ let q29ans = {
       tags: ["willingness", "calling", "purpose"]
     },
     "Exodus 4:11-12": {
-      text: "The Lord said to him, 'Who gave human beings their mouths?... Now go; I will help you speak and will teach you what to say.'",
+      text: "The Lord said to him, 'Who gave human beings their mouths? Who decides whether a persons speaks or does not speak, hear or do not hear, see or do not see? Is it not I, the Lord? Now go; I will help you speak and will instruct you on what to say.'",
       theme: "help",
       tags: ["equipped", "purpose", "calling"]
     },
@@ -3428,7 +3409,7 @@ let q29ans = {
 
   "Let your light shine": {
     "Matthew 5:14-16": {
-      text: "You are the light of the world... let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      text: "You are the light of the world-like a city on a hilltop that cannot be hidden. No one lights a lamp and then puts it under a basket. Instead, a lamp is placed on a stand where it gives light to everyone in the house. In the same way, let your good deeds shine out for all to see, so that everyone will glorify your Father in heaven.",
       theme: "light",
       tags: ["influence", "testimony", "witness", "glory"]
     },
@@ -3443,13 +3424,13 @@ let q29ans = {
       tags: ["purpose", "created", "works", "calling"]
     },
     "1 Peter 2:9": {
-      text: "But you are a chosen people... that you may declare the praises of him who called you out of darkness into his wonderful light.",
+      text: "But you are a chosen people. You are royal priests, a holy nation, God's very own possesion. That you may declare the praises of him who called you out of darkness into his wonderful light.",
       theme: "light",
       tags: ["identity", "witness", "praise", "calling"]
     }
   },
 
-  "Strength comes from God": {
+  "Using strength that comes from God": {
     "2 Corinthians 12:9": {
       text: "But he said to me, 'My grace is sufficient for you, for my power is made perfect in weakness.' Therefore I will boast all the more gladly about my weaknesses, so that Christ’s power may rest on me.",
       theme: "grace",
@@ -3472,9 +3453,9 @@ let q29ans = {
     }
   },
 
-  "Faithfulness matters": {
+  "By being faithful to God.": {
     "Luke 16:10": {
-      text: "Whoever can be trusted with very little can also be trusted with much...",
+      text: "Whoever can be trusted with very little can also be trusted with much. But if you are dishonest in little things, you won't be honest with greater responsibillities.",
       theme: "faithful",
       tags: ["stewardship", "consistency", "trust"]
     },
@@ -3484,7 +3465,7 @@ let q29ans = {
       tags: ["perseverance", "reward", "faithfulness"]
     },
     "Matthew 25:21": {
-      text: "'Well done, good and faithful servant! You have been faithful with a few things... Come and share your master’s happiness!'",
+      text: "'Well done, good and faithful servant! You have been faithful with a few things so now I give you many more responsibilities. Come and share your master’s happiness!'",
       theme: "faithful",
       tags: ["reward", "obedience", "trust"]
     },
@@ -3496,6 +3477,7 @@ let q29ans = {
   }
 };
 
+//What happens when I sin?
 let q30ans = {
   "Sin separates us from God": {
     "Isaiah 59:2": {
@@ -3505,16 +3487,16 @@ let q30ans = {
     },
     "Romans 6:23": {
       text: "For the wages of sin is death, but the gift of God is eternal life in Christ Jesus our Lord.",
-      theme: "death",
+      theme: "fallenness",
       tags: ["consequence", "eternal", "gift"]
     },
     "Genesis 3:23-24": {
-      text: "So the Lord God banished him from the Garden of Eden... to guard the way to the tree of life.",
+      text: "So the Lord God banished them from the Garden of Eden and he sent Adam to cultivate the ground from which he had been made. After sending them out, the Lord God stationed mighty cherubim to the East of the garden of Eden. And he placed a flaming sword that flashed back and forth to guard the way to the tree of life.",
       theme: "fallenness",
       tags: ["banishment", "separation", "justice"]
     },
     "Micah 3:4": {
-      text: "Then they will cry out to the Lord, but he will not answer them... because of the evil they have done.",
+      text: "Then they will cry out to the Lord, but he will not answer them because of the evil they have done, he won't even look their way.",
       theme: "justice",
       tags: ["judgment", "rebellion", "accountability"]
     },
@@ -3532,17 +3514,17 @@ let q30ans = {
       tags: ["bondage", "powerlessness", "sin_nature"]
     },
     "Romans 7:18-19": {
-      text: "For I know that good itself does not dwell in me... the evil I do not want to do—this I keep on doing.",
+      text: "For I know that good itself does not dwell in me, this is my sinful nature. I want to do what is right but I can't. I want to do what is good, but I don't. The evil I do not want to do—this I keep on doing.",
       theme: "slavery",
       tags: ["struggle", "weakness", "flesh"]
     },
     "Romans 6:16": {
-      text: "You are slaves of the one you obey... to sin, which leads to death, or to obedience, which leads to righteousness?",
+      text: "Don't you realize that you become the slave of whatever you choose to obey? You can be a slave to sin, which leads to death, or you can choose to obey God, which leads to righteous living.",
       theme: "obedience",
       tags: ["choice", "mastery", "bondage"]
     },
     "Titus 3:3": {
-      text: "We too were foolish, disobedient, deceived and enslaved by all kinds of passions and pleasures...",
+      text: "We too were foolish, disobedient, deceived and enslaved by all kinds of passions and pleasures. Our lives were full of evil and envy.",
       theme: "fallenness",
       tags: ["flesh", "past_life", "redemption"]
     },
@@ -3555,12 +3537,12 @@ let q30ans = {
 
   "God disciplines us": {
     "Hebrews 12:6": {
-      text: "Because the Lord disciplines the one he loves, and he chastens everyone he accepts as his son.",
+      text: "Because the Lord disciplines the one he loves, and he punishes everyone he accepts as his child.",
       theme: "growth",
       tags: ["correction", "fatherhood", "love"]
     },
     "Proverbs 3:11-12": {
-      text: "Do not despise the Lord’s discipline... because the Lord disciplines those he loves...",
+      text: "Do not despise the Lord’s discipline and don't be upset when he corrects you. Because the Lord disciplines those he loves just as a father corrects a child in whom he delights.",
       theme: "love",
       tags: ["training", "instruction", "comfort"]
     },
@@ -3588,12 +3570,12 @@ let q30ans = {
       tags: ["confession", "cleansing", "justice"]
     },
     "Isaiah 1:18": {
-      text: "'Though your sins are like scarlet... they shall be as white as snow... like wool.'",
+      text: "'Come now, let us settle the matter,' says the Lord. 'Though your sins are like scarlet, they shall be as white as snow, though they are red lole crimson, I will make them as white as wool. If you will only obey me, you will have plenty to eat.'",
       theme: "grace",
       tags: ["cleansing", "mercy", "hope"]
     },
-    "Psalm 32:5": {
-      text: "Then I acknowledged my sin... and you forgave the guilt of my sin.",
+    "Psalms 32:5": {
+      text: "Finally I confessed all my sins to you and stopped trying to hide my guilt. I said to myself, 'I will confess my rebellion to the LORD.' and you forgave me! All my guilt is gone.",
       theme: "mercy",
       tags: ["release", "honesty", "freedom"]
     },
@@ -3602,7 +3584,7 @@ let q30ans = {
       theme: "mercy",
       tags: ["forgetting", "restoration", "forgiveness"]
     },
-    "Psalm 103:12": {
+    "Psalms 103:12": {
       text: "As far as the east is from the west, so far has he removed our transgressions from us.",
       theme: "forgiveness",
       tags: ["cleansing", "freedom", "grace"]
@@ -3619,12 +3601,12 @@ let q30ans = {
 let q31ans = {
   "God’s love is greater than your failure": {
     "Romans 8:38-39": {
-      text: "For I am convinced that neither death nor life... nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      text: "For I am convinced that nothing can ever separate us from God's love. Neither death nor life, neither angels nor demons, neither our fears for today nor our worries about tomorrow-not even the powers of hell can separate us from God's love. No power in the sky above or in the earth below nor anything else in all creation, will be able to separate us from the love of God that is revealed in Christ Jesus our Lord.",
       theme: "love",
       tags: ["God's love", "security", "assurance", "unshakable"]
     },
-    "Psalm 103:10-12": {
-      text: "He does not treat us as our sins deserve... As far as the east is from the west, so far has he removed our transgressions from us.",
+    "Psalms 103:10-12": {
+      text: "He does not treat us as our sins deserve, for his unfailing love toward those who fear him is as great as the height of the heavens above the earth. As far as the east is from the west, so far has he removed our transgressions from us.",
       theme: "mercy",
       tags: ["forgiveness", "mercy", "freedom", "grace"]
     },
@@ -3634,7 +3616,7 @@ let q31ans = {
       tags: ["cleansing", "new start", "forgiveness"]
     },
     "Zephaniah 3:17": {
-      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you with gladness. With his love, he will calm all you fears, he will rejoice over you with singing.",
       theme: "love",
       tags: ["joy", "God delights", "restoration", "presence"]
     }
@@ -3662,16 +3644,16 @@ let q31ans = {
       tags: ["repentance", "worship", "honesty"]
     },
     "Isaiah 61:1": {
-      text: "The Spirit of the Sovereign Lord is on me... to bind up the brokenhearted, to proclaim freedom for the captives and release from darkness for the prisoners.",
-      theme: "freedom",
+      text: "The Spirit of the Sovereign Lord is on me, because the Lord has anointed me to proclaim good news to the poor. He has sent me to bind up the brokenhearted, to proclaim freedom for the captives and release from darkness for the prisoners.",
+      theme: "transformation",
       tags: ["healing", "freedom", "restoration"]
     }
   },
 
   "God can still restore you": {
     "Joel 2:25": {
-      text: "I will repay you for the years the locusts have eaten...",
-      theme: "restoration",
+      text: "I will restore to you the years that the swarming locust has eaten, the hopper, the destroyer, and the cutter, my great army, which I sent among you.",
+      theme: "transformation",
       tags: ["recovery", "healing", "hope"]
     },
     "2 Corinthians 5:17": {
@@ -3685,7 +3667,7 @@ let q31ans = {
       tags: ["hope", "grace", "restoration"]
     },
     "Lamentations 3:22-23": {
-      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning...",
+      text: "The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.",
       theme: "faithful",
       tags: ["new beginnings", "mercy", "God's love"]
     },
@@ -3703,7 +3685,7 @@ let q31ans = {
       tags: ["boldness", "prayer", "restoration"]
     },
     "James 4:8": {
-      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
       theme: "submission",
       tags: ["repentance", "closeness", "devotion"]
     },
@@ -3718,7 +3700,7 @@ let q31ans = {
       tags: ["return", "forgiveness", "healing"]
     },
     "Isaiah 55:7": {
-      text: "Let the wicked forsake their ways and the unrighteous their thoughts. Let them turn to the Lord... for he will freely pardon.",
+      text: "Let the wicked forsake their ways and the unrighteous their thoughts. Let them turn to the Lord that he may have mercy on them. Yes, turn to our God and he will freely pardon.",
       theme: "grace",
       tags: ["repentance", "mercy", "forgiveness"]
     }
@@ -3739,13 +3721,13 @@ let q32ans = {
       tags: ["born sinful", "inward condition", "nature", "human weakness"]
     },
     "Ephesians 2:3": {
-      text: "All of us also lived among them at one time, gratifying the cravings of our flesh and following its desires and thoughts...",
+      text: "All of us also lived among them at one time, gratifying the cravings of our flesh and following its desires and thoughts. Like the rest we were by nature objects of wrath.",
       theme: "slavery",
       tags: ["flesh", "desires", "sinful nature", "wrath", "enslaved"]
     },
     // New
     "Genesis 8:21": {
-      text: "The Lord said in his heart: 'Never again will I curse the ground... even though every inclination of the human heart is evil from childhood.'",
+      text: "The Lord said in his heart: 'Never again will I curse the ground because of people even though every inclination of the human heart is evil from childhood.'",
       theme: "fallenness",
       tags: ["evil heart", "childhood", "sinful inclination", "human nature"]
     }
@@ -3758,7 +3740,7 @@ let q32ans = {
       tags: ["lawlessness", "rebellion", "command", "disobedience"]
     },
     "Isaiah 53:6": {
-      text: "We all, like sheep, have gone astray, each of us has turned to our own way...",
+      text: "We all, like sheep, have gone astray. We have left God's path to follow our own. Yet the LORD laid on him the sins of us all.",
       theme: "fallenness",
       tags: ["wandering", "disobedience", "straying", "stubbornness"]
     },
@@ -3777,23 +3759,23 @@ let q32ans = {
 
   "Sin comes from our desires": {
     "James 1:14-15": {
-      text: "But each person is tempted when they are dragged away by their own evil desire and enticed...",
+      text: "Each person is tempted when they are dragged away. Then desire when it has conceived, gives birth to sin. And when sin is allowed to grow, it gives birth to death.",
       theme: "temptation",
       tags: ["desire", "temptation", "enticed", "sin process", "heart"]
     },
     "Galatians 5:17": {
-      text: "For the flesh desires what is contrary to the Spirit, and the Spirit what is contrary to the flesh...",
+      text: "The flesh desires what is contrary to the Spirit, and the Spirit desires what is contrary to the flesh. They are in conflict with each other, so you are not to do whatever you want.",
       theme: "battle",
       tags: ["flesh vs spirit", "inner conflict", "battle", "desires"]
     },
     "Mark 7:21-23": {
-      text: "For it is from within, out of a person’s heart, that evil thoughts come... All these evils come from inside and defile a person.",
-      theme: "heart",
+      text: "For it is from within, out of a person’s heart, that evil thoughts come, sexual immorality, theft, murder, adultery, greed, malice, deceit, lewdness, envy, slander, arrogance and folly. All these evils come from inside and defile a person.",
+      theme: "spirit",
       tags: ["evil within", "defilement", "heart condition", "thoughts", "sins"]
     },
     // New
     "Romans 7:23": {
-      text: "But I see another law at work in me, waging war against the law of my mind and making me a prisoner of the law of sin...",
+      text: "But I see another law at work in me, waging war against the law of my mind and making me a prisoner of the law of sin at work within me.",
       theme: "slavery",
       tags: ["war within", "mind vs flesh", "law of sin", "inner conflict"]
     }
@@ -3806,9 +3788,9 @@ let q32ans = {
       tags: ["worldly desires", "lust", "pride", "corruption", "external influence"]
     },
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
-      tags: ["worldly influence", "nonconformity", "mind renewal", "resistance"]
+      tags: ["renewal", "mind", "will of God", "transformation"]
     },
     "Proverbs 1:10": {
       text: "My son, if sinful men entice you, do not give in to them.",
@@ -3828,17 +3810,17 @@ let q32ans = {
 let q33ans = {
   "God's forgiveness is greater than our sin": {
     "Isaiah 1:18": {
-      text: "'Come now, let us settle the matter,' says the Lord. 'Though your sins are like scarlet, they shall be as white as snow...'",
+      text: "'Come now, let us settle the matter,' says the Lord. 'Though your sins are like scarlet, they shall be as white as snow, though they are red lole crimson, I will make them as white as wool. If you will only obey me, you will have plenty to eat.'",
       theme: "forgiveness",
       tags: ["scarlet", "cleansing", "mercy", "repentance", "new start"]
     },
-    "Psalm 103:11-12": {
-      text: "For as high as the heavens are above the earth, so great is his love for those who fear him... as far as the east is from the west, so far has he removed our transgressions from us.",
+    "Psalms 103:10-12": {
+      text: "He does not treat us as our sins deserve, for his unfailing love toward those who fear him is as great as the height of the heavens above the earth. As far as the east is from the west, so far has he removed our transgressions from us.",
       theme: "mercy",
       tags: ["distance", "sin removed", "faithful love", "compassion", "grace"]
     },
     "Micah 7:18-19": {
-      text: "You do not stay angry forever but delight to show mercy. You will again have compassion on us; you will tread our sins underfoot...",
+      text: "You do not stay angry forever but delight to show mercy. You will again have compassion on us; you will tread our sins underfoot and throw them into the depths of the ocean.",
       theme: "mercy",
       tags: ["anger", "compassion", "forgiveness", "cast away sin", "loving God"]
     },
@@ -3862,7 +3844,7 @@ let q33ans = {
       tags: ["once for all", "perfected", "sanctification", "jesus offering"]
     },
     "Colossians 2:13-14": {
-      text: "He forgave us all our sins, having canceled the charge of our legal indebtedness... he has taken it away, nailing it to the cross.",
+      text: "You were dead because of your sins and because your sinful nature was not yet cut away. Then God made you alive with Christ for He forgave us all our sins. He cancelled the record of the charges against and took it away, nailing it to the cross.",
       theme: "salvation",
       tags: ["debt cancelled", "cross", "legal record", "full forgiveness"]
     },
@@ -3886,13 +3868,13 @@ let q33ans = {
       tags: ["repentance", "refreshing", "new start", "cleansing"]
     },
     "Isaiah 55:7": {
-      text: "Let the wicked forsake their ways and the unrighteous their thoughts. Let them turn to the Lord... and he will freely pardon.",
+      text: "Let the wicked forsake their ways and the unrighteous their thoughts. Let them turn to the Lord that he may have mercy on them. Yes, turn to our God and he will freely pardon.",
       theme: "grace",
       tags: ["turn to God", "free pardon", "forsake", "grace", "mercy"]
     },
     // New verse
     "Luke 15:20": {
-      text: "But while he was still a long way off, his father saw him and was filled with compassion for him... he ran to his son, threw his arms around him and kissed him.",
+      text: "But while he was still a long way off, his father saw him and was filled with compassion for him. He ran to his son, threw his arms around him and kissed him.",
       theme: "love",
       tags: ["prodigal son", "return", "welcome", "compassion", "forgiveness"]
     }
@@ -3905,7 +3887,7 @@ let q33ans = {
       tags: ["forgiveness at the cross", "ignorance", "mercy", "jesus heart"]
     },
     "1 Timothy 1:15-16": {
-      text: "Christ Jesus came into the world to save sinners—of whom I am the worst. But for that very reason I was shown mercy...",
+      text: "Christ Jesus came into the world to save sinners—of whom I am the worst. But for that very reason I was shown mercy so that Christ Jesus could use me as a prime example of his great patience even with the worst sinners. Then others will realize that they, too, can believe in him and receive eternal life.",
       theme: "grace",
       tags: ["paul", "worst sinner", "testimony", "grace", "god’s patience"]
     },
@@ -3921,12 +3903,12 @@ let q33ans = {
 let q34ans = {
   "Scripture is inspired by God": {
     "2 Timothy 3:16": {
-      text: "All Scripture is God‑breathed and is useful for teaching, rebuking, correcting and training in righteousness.",
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness. It corrects us when we are wrong and teaches us to do what is right.",
       theme: "word",
       tags: ["inspired", "God‑breathed", "authority", "useful", "righteousness"]
     },
     "2 Peter 1:20-21": {
-      text: "Above all, you must understand that no prophecy of Scripture came about by the prophet’s own interpretation... men spoke from God as they were carried along by the Holy Spirit.",
+      text: "Above all, you must understand that no prophecy of Scripture came about by the prophet’s own interpretation or from human initiative. No, those prophets were moved by the Holy Spirit, and they spoke from God.",
       theme: "spirit",
       tags: ["prophecy", "Holy Spirit", "divine origin", "truth", "revelation"]
     },
@@ -3939,7 +3921,7 @@ let q34ans = {
 
   "The Bible reliably guides our lives": {
     "Psalm 19:7-8": {
-      text: "The law of the Lord is perfect, refreshing the soul... the statutes of the Lord are trustworthy, making wise the simple.",
+      text: "The law of the Lord is perfect, refreshing the soul. The decrees of the LORD are trustworthy, making wise the simple. The commandments of the LORD are right, bringing joy to the heart. The commands of the LORD are clear, giving insight for living.",
       theme: "wisdom",
       tags: ["law", "perfect", "trustworthy", "wisdom", "soul"]
     },
@@ -3952,7 +3934,7 @@ let q34ans = {
 
   "Jesus affirmed Scripture’s authority": {
     "Matthew 5:17-18": {
-      text: "Do not think that I have come to abolish the Law or the Prophets... until heaven and earth disappear, not the smallest letter... will by any means disappear from the Law until everything is accomplished.",
+      text: "Do not think that I have come to abolish the Law or the Prophets. No, I came to accomplish their purpose. I tell you the truth, until heaven and earth disappear, not even the smallest detail of God's law will by any means disappear until everything is accomplished.",
       theme: "jesus",
       tags: ["law", "fulfillment", "authority", "eternal", "Christ"]
     },
@@ -3986,7 +3968,7 @@ let q34ans = {
 let q35ans = {
   "It helps us know God": {
     "Jeremiah 9:23-24": {
-      text: "'Let not the wise boast of their wisdom... but let the one who boasts boast about this: that they have the understanding to know me...'",
+      text: "'Let not the wise boast in their wisdom, or the powerful boast in their power, or the rich boast in their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises kindness, justice and righteousness on earth, for in these I delight,' declares the Lord.",
       theme: "understanding",
       tags: ["know God", "wisdom", "understanding", "truth", "boast in the Lord"]
     },
@@ -4017,7 +3999,7 @@ let q35ans = {
       tags: ["faith", "hearing", "Christ", "message", "growth"]
     },
     "Colossians 3:16": {
-      text: "Let the message of Christ dwell among you richly... teaching and admonishing one another with all wisdom through psalms, hymns, and songs from the Spirit...",
+      text: "Let the message of Christ dwell among you richly and fill your lives. Then you will go teaching and admonishing one another with all wisdom through psalms, hymns, and songs from the Spirit with thankful hearts.",
       theme: "growth",
       tags: ["message", "wisdom", "Christ", "songs", "Spirit"]
     }
@@ -4025,12 +4007,12 @@ let q35ans = {
 
   "It renews our mind and transforms us": {
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["mind", "renewal", "transformation", "world", "discernment"]
     },
-    "Psalm 1:2-3": {
-      text: "But whose delight is in the law of the Lord... That person is like a tree planted by streams of water... whatever they do prospers.",
+    "Psalms 1:2-3": {
+      text: "They delight in the law of the Lord, meditating on it day and night. They are like trees planted along the riverbank, bearing fruit each season. Their leaves never wither and they prosper in all they do.",
       theme: "growth",
       tags: ["delight", "law", "fruitful", "planted", "stability"]
     }
@@ -4038,12 +4020,12 @@ let q35ans = {
 
   "It brings hope and encouragement": {
     "Romans 15:4": {
-      text: "For everything that was written in the past was written to teach us, so that... we might have hope.",
+      text: "For everything that was written in the past was written to teach us, and the Scriptures give us hope and encouragement as we wait patiently for God's promises to be fulfilled.",
       theme: "hope",
       tags: ["written", "teach", "encouragement", "hope", "Scripture"]
     },
     "Joshua 1:8": {
-      text: "Keep this Book of the Law always on your lips... Then you will be prosperous and successful.",
+      text: "Keep this Book of the Law always on your lips. Meditate on it day and night so you will be sure to obey everything written on it. Then you will be prosperous and successful.",
       theme: "obedience",
       tags: ["success", "meditate", "law", "courage", "prosperity"]
     }
@@ -4059,12 +4041,12 @@ let q36ans = {
       tags: ["prayer", "illumination", "scripture"]
     },
     "James 1:5": {
-      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. He will not rebuke you for asking.",
       theme: "wisdom",
       tags: ["ask", "learning", "growth"]
     },
     "John 14:26": {
-      text: "But the Advocate, the Holy Spirit... will teach you all things and will remind you of everything I have said to you.",
+      text: "But the Advocate, the Holy Spirit, will teach you all things and will remind you of everything I have said to you.",
       theme: "spirit",
       tags: ["teaching", "reminder", "guide"]
     }
@@ -4072,7 +4054,7 @@ let q36ans = {
 
   "Read with intention and humility": {
     "2 Timothy 2:15": {
-      text: "Do your best to present yourself to God as one approved... who correctly handles the word of truth.",
+      text: "Do your best to present yourself to God as one approved. Be a good worker, one who does not need to be ashamed, who correctly handles the word of truth.",
       theme: "obedience",
       tags: ["study", "truth", "approval"]
     },
@@ -4081,8 +4063,8 @@ let q36ans = {
       theme: "submission",
       tags: ["humility", "reverence", "attitude"]
     },
-    "Psalm 1:2": {
-      text: "But whose delight is in the law of the Lord, and who meditates on his law day and night.",
+    "Psalm 1:1-2": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night.",
       theme: "devotion",
       tags: ["meditation", "delight", "daily"]
     }
@@ -4090,7 +4072,7 @@ let q36ans = {
 
   "Let the Bible change you": {
     "Hebrews 4:12": {
-      text: "For the word of God is alive and active. Sharper than any double-edged sword... it judges the thoughts and attitudes of the heart.",
+      text: "For the word of God is alive and active. Sharper than any double-edged sword cutting between soul and spirit, between joint and marrow. It jexposes the innermost thoughts and attitudes of the heart.",
       theme: "transformation",
       tags: ["active", "heart", "conviction"]
     },
@@ -4100,20 +4082,20 @@ let q36ans = {
       tags: ["action", "doers", "response"]
     },
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["renewal", "mind", "growth"]
     }
   },
 
-  "Keep going even when it's hard": {
+  "Be sure to practice what you read": {
     "2 Timothy 3:16-17": {
-      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness...",
+      text: "All Scripture is God-breathed and is useful for teaching what is true and to make us realize what is wrong in our lives. It corrects us when we are wrong and teaches us to do what is right. God uses it to prepare and equip his people to do every good work.",
       theme: "word",
       tags: ["correction", "training", "scripture"]
     },
     "Joshua 1:8": {
-      text: "Keep this Book of the Law always on your lips; meditate on it day and night... Then you will be prosperous and successful.",
+      text: "Keep this Book of the Law always on your lips. Meditate on it day and night so you will be sure to obey everything written on it. Then you will be prosperous and successful.",
       theme: "guidance",
       tags: ["consistency", "success", "discipline"]
     },
@@ -4130,12 +4112,12 @@ let q36ans = {
 let q37ans = {
   "The Bible reveals God’s plan of salvation": {
     "John 3:16": {
-      text: "For God so loved the world that he gave his one and only Son... that whoever believes in him shall not perish but have eternal life.",
+      text: "For God so loved the world that he gave his one and only Son that whoever believes in him shall not perish but have eternal life.",
       theme: "eternal",
       tags: ["gospel", "God’s love", "Jesus", "eternal life", "belief"]
     },
-    "1 Corinthians 15:3-5": {
-      text: "Christ died for our sins… he was raised on the third day according to the Scriptures.",
+    "1 Corinthians 15:3-6": {
+      text: "Christ died for our sins, just as the Scriptures had said. He was buried, that he was raised on the third day, just as the Scriptures had said, and that he appeared to Cephas, and then to the Twelve. After that, he appeared to more than five hundred of the brothers and sisters at the same time.",
       theme: "resurrection",
       tags: ["death", "resurrection", "gospel", "historical"]
     },
@@ -4145,7 +4127,7 @@ let q37ans = {
       tags: ["confession", "faith", "salvation", "resurrection"]
     },
     "Ephesians 2:8-9": {
-      text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God...",
+      text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God. Salvation is not a reward for the good things you have done, so none of us can boast about it.",
       theme: "grace",
       tags: ["grace", "faith", "gift", "salvation", "not works"]
     }
@@ -4153,7 +4135,7 @@ let q37ans = {
 
   "It tells one unified story: creation, fall, redemption": {
     "Genesis 1:27": {
-      text: "So God created mankind in his own image...",
+      text: "So God created human beings in his own image. In the image of God he created them, male and female he created them.",
       theme: "creation",
       tags: ["creation", "image of God", "humanity", "beginning"]
     },
@@ -4163,12 +4145,12 @@ let q37ans = {
       tags: ["sin", "death", "inheritance", "fall"]
     },
     "Matthew 5:17-18": {
-      text: "Do not think that I have come to abolish the Law… I have not come to abolish them but to fulfill them.",
+      text: "Do not think that I have come to abolish the Law or the Prophets. No, I came to accomplish their purpose. I tell you the truth, until heaven and earth disappear, not even the smallest detail of God's law will by any means disappear until everything is accomplished.",
       theme: "jesus",
       tags: ["law", "fulfillment", "messiah", "continuity"]
     },
     "Isaiah 53:5": {
-      text: "But he was pierced for our transgressions... and by his wounds we are healed.",
+      text: "But he was pierced for our transgressions, crushed for our sins. He was beaten so we could be whole, and by his wounds we are healed.",
       theme: "savior",
       tags: ["atonement", "healing", "suffering", "substitution"]
     }
@@ -4181,40 +4163,40 @@ let q37ans = {
       tags: ["light", "path", "guidance", "daily life"]
     },
     "James 1:22": {
-      text: "Do not merely listen to the word… Do what it says.",
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
       theme: "obedience",
       tags: ["action", "obedience", "doer", "application"]
     },
     "Micah 6:8": {
-      text: "He has shown you... what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
       theme: "justice",
       tags: ["justice", "mercy", "humility", "lifestyle"]
     },
     "Colossians 3:12-14": {
-      text: "Clothe yourselves with compassion, kindness, humility, gentleness and patience. And over all these virtues put on love...",
+      text: "Clothe yourselves with compassion, kindness, humility, gentleness and patience. Make allowance for each other's faults and forgive anyone who offends you. Remember the Lord forgave you, so you must forgive others. And over all these virtues put on love, which binds us all together in perfect harmony.",
       theme: "love",
       tags: ["compassion", "virtues", "community", "love"]
     }
   },
 
-  "It shapes our character and hope": {
+  "It shapes our character and gives us hope": {
     "Romans 12:2": {
-      text: "Do not conform… be transformed by the renewing of your mind.",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["renewal", "mind", "transformation", "discernment"]
     },
     "Romans 15:4": {
-      text: "Everything written… so that through endurance and encouragement we might have hope.",
+      text: "Everything written in Scripture long ago is to teach us. And the Scriptures give us hope and encouragement as we wait patiently for God's promises to be fulfilled.",
       theme: "hope",
       tags: ["endurance", "encouragement", "hope", "Scripture"]
     },
     "Philippians 4:8": {
-      text: "Whatever is true, whatever is noble... think about such things.",
+      text: "Finally, brothers, whatever is true, whatever is honorable, whatever is just, whatever is pure, whatever is lovely, whatever is commendable, if there is any excellence, if there is anything worthy of praise, think about these things.",
       theme: "understanding",
       tags: ["thoughts", "focus", "virtue", "mindset"]
     },
     "James 3:13": {
-      text: "Who is wise and understanding among you? Let them show it by their good life by deeds done in humility...",
+      text: "Who is wise and understanding among you? Let them show it by their good life by deeds done in the humility that come from wisdom.",
       theme: "wisdom",
       tags: ["wisdom", "deeds", "humility", "character"]
     }
@@ -4238,12 +4220,12 @@ let q38ans = {
 
   "Seek wisdom and understanding actively": {
     "Proverbs 2:1-5": {
-      text: "My son, if you receive my words and treasure up my commandments... if you call out for insight... then you will understand the fear of the Lord and find the knowledge of God.",
+      text: "My child, listen to my words and treasure up my commandments. Tune your ears to wisdom and concentrate on understanding. Call out for insight and ask for understanding. Search for them as you would for silver seek them like hidden treasures, then you will understand the fear of the Lord and find the knowledge of God.",
       theme: "wisdom",
       tags: ["seek_insight", "treasure", "understanding", "fear of Lord"]
     },
     "James 1:5": {
-      text: "If any of you lacks wisdom, you should ask God... and it will be given to you.",
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. He will not rebuke you for asking.",
       theme: "wisdom",
       tags: ["ask", "wisdom", "God gives"]
     }
@@ -4277,7 +4259,7 @@ let q38ans = {
 
   "Stay spiritually alert and prayerful": {
     "Philippians 4:6-7": {
-      text: "Do not be anxious... but in every situation, by prayer... present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. Then you will experience God's peace, which exceeds anything we can understand. His peace will guard your hearts and minds as you live in Christ Jesus.",
       theme: "peace",
       tags: ["pray", "anxiety", "peace", "guarded hearts"]
     },
@@ -4303,12 +4285,14 @@ let q38ans = {
   
   "Quiet your anger so you can think": {
     "Proverbs 29:11": {
-      text: ""
+      text: "Fools vent their anger but the wise quietly hold it back.",
+      theme: "wisdom",
+      tags: ["discipline", "wisdom", "anger"]
     }
   }
 };
 
-//Does God care about my career or studies?
+//What does God say about my career or studies?
 let q39ans = {
   "God cares about your work": {
     "Colossians 3:23": {
@@ -4430,7 +4414,7 @@ let q40ans = {
       tags: ["listen", "follow", "voice", "know"]
     },
     "Exodus 13:21": {
-      text: "By day the Lord went ahead of them in a pillar of cloud to guide them on their way and by night in a pillar of fire to give them light...",
+      text: "By day the Lord went ahead of them in a pillar of cloud, by night in a pillar of fire to give them light. This allowed them to travel by day or by night.",
       theme: "presence",
       tags: ["light", "guide", "cloud", "fire"]
     }
@@ -4453,7 +4437,7 @@ let q40ans = {
       tags: ["steps", "delight", "firm", "uphold"]
     },
     "Isaiah 42:16": {
-      text: "I will lead the blind by ways they have not known, along unfamiliar paths I will guide them...",
+      text: "I will lead the blind by ways they have not known, along unfamiliar paths I will guide them. I will brighten the darkness before them and smooth out the road ahead of them. Yes I will indeed do these things, I will not forsake them.",
       theme: "guidance",
       tags: ["lead", "paths", "unknown", "trust"]
     }
@@ -4461,7 +4445,7 @@ let q40ans = {
 
   "Be still and wait on Him": {
     "Psalm 46:10": {
-      text: "Be still, and know that I am God...",
+      text: "He causes wars to end throughout the earth. He breaks the bow and snaps the spear, he burns the shields with fire. 'Be still and know that I am God! I will be honored by every nation. I will be honored throughout the world.'",
       theme: "trust",
       tags: ["stillness", "know", "trust", "peace"]
     },
@@ -4471,7 +4455,7 @@ let q40ans = {
       tags: ["wait", "hope", "quiet", "seek"]
     },
     "Isaiah 40:31": {
-      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles...",
+      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles. They will run and not grow weary. They will walk and not faint.",
       theme: "hope",
       tags: ["wait", "hope", "renew", "strength"]
     }
@@ -4584,12 +4568,12 @@ let q41ans = {
       tags: ["surprise", "wonder", "faith", "waiting"]
     },
     "2 Corinthians 4:17-18": {
-      text: "For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all... So we fix our eyes not on what is seen, but on what is unseen.",
+      text: "For our light and momentary troubles are achieving for us an eternal glory that far outweighs them all. So we don't look at the troubles we can see now, rather we fix our gaze on things that cannot be seen. For the things we see now will soon be gone, but the things we cannot see will last forever.",
       theme: "eternal",
       tags: ["unseen", "eternal", "hope", "faith"]
     },
     "Job 23:8-10": {
-      text: "But if I go to the east, he is not there... But he knows the way that I take; when he has tested me, I will come forth as gold.",
+      text: "But if I go to the east, he is not there, I go west, but I cannot find Him. I do not see Him in the North, for He is hidden. I look to the south, but he is concealed. But he knows the way that I take; when he has tested me, I will come forth as gold.",
       theme: "devotion",
       tags: ["testing", "unknown", "gold", "process"]
     }
@@ -4646,7 +4630,7 @@ let q42ans = {
 
   "To bring peace and reconciliation": {
     "Colossians 1:19-20": {
-      text: "For God was pleased to have all his fullness dwell in him, and through him to reconcile to himself all things... by making peace through his blood, shed on the cross.",
+      text: "For God was pleased to have all his fullness dwell in him, and through him to reconcile to himself all things. He made peace with everything in heaven and on earth by means of Christ's blood on the cross.",
       theme: "peace",
       tags: ["reconciliation", "blood", "peace", "cross", "restoration"]
     },
@@ -4669,9 +4653,9 @@ let q42ans = {
 
   "Because He loves us": {
     "Galatians 2:20": {
-      text: "The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
       theme: "love",
-      tags: ["faith", "sacrifice", "personal", "Jesus", "gift"]
+      tags: ["identity", "Christ in me", "death to self"]
     },
     "John 15:13": {
       text: "Greater love has no one than this: to lay down one’s life for one’s friends.",
@@ -4679,12 +4663,12 @@ let q42ans = {
       tags: ["sacrifice", "friends", "Jesus", "cross", "example"]
     },
     "Ephesians 5:2": {
-      text: "Walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      text: "Walk in the way of love, just as Christ loved us and gave himself up for us as a sacrifice, and a pleasing aroma to God",
       theme: "love",
       tags: ["sacrifice", "example", "love", "obedience", "Christ"]
     },
     "Revelation 1:5": {
-      text: "To him who loves us and has freed us from our sins by his blood—",
+      text: "All glory to him who loves us and has freed us from our sins by shedding his blood for us.",
       theme: "salvation",
       tags: ["freedom", "love", "blood", "Jesus", "rescue"]
     }
@@ -4718,7 +4702,7 @@ let q43ans = {
       tags: ["faith", "gift", "saved", "not by works"]
     },
     "John 3:16-17": {
-      text: "For God so loved the world that he gave his one and only Son... For God did not send his Son into the world to condemn the world, but to save the world through him.",
+      text: "For God so loved the world that he gave his one and only Son such that whoever believes in him shall not perish but have everlasting life. For God did not send his Son into the world to condemn the world, but to save the world through him.",
       theme: "savior",
       tags: ["love", "saved", "gift", "mercy"]
     },
@@ -4729,7 +4713,7 @@ let q43ans = {
     }
   },
 
-  "Jesus paid the price for our sins": {
+  "It means Jesus has paid the price for our sins": {
     "Romans 5:8": {
       text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
       theme: "love",
@@ -4741,13 +4725,13 @@ let q43ans = {
       tags: ["cross", "healing", "righteousness"]
     },
     "Hebrews 9:28": {
-      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time... to bring salvation to those who are waiting for him.",
+      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time, not to deal with our sins but to bring salvation to those who are eagerly waiting for him.",
       theme: "salvation",
       tags: ["sacrifice", "waiting", "return"]
     }
   },
 
-  "We are made new in Him": {
+  "It means we are made new in Him": {
     "2 Corinthians 5:17": {
       text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
       theme: "transformation",
@@ -4780,7 +4764,7 @@ let q44ans = {
       tags: ["gift", "eternal", "believe"]
     },
     "1 John 4:9-10": {
-      text: "This is how God showed his love among us: He sent his one and only Son into the world that we might live through him... not that we loved God, but that he loved us and sent his Son as an atoning sacrifice for our sins.",
+      text: "This is how God showed his love among us: He sent his one and only Son into the world that we might have eternal life through him. This is real love-not that we loved God, but that he loved us and sent his Son as an atoning sacrifice for our sins.",
       theme: "love",
       tags: ["sacrifice", "atonement", "life"]
     }
@@ -4805,7 +4789,7 @@ let q44ans = {
   },
 
   "God loves us like a perfect Father": {
-    "Psalm 103:13": {
+    "Psalms 103:13": {
       text: "As a father has compassion on his children, so the Lord has compassion on those who fear him;",
       theme: "mercy",
       tags: ["father", "mercy", "kindness"]
@@ -4816,7 +4800,7 @@ let q44ans = {
       tags: ["giver", "father", "generosity"]
     },
     "Zephaniah 3:17": {
-      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you with gladness. With his love, he will calm all you fears, he will rejoice over you with singing.",
       theme: "love",
       tags: ["delight", "presence", "love"]
     }
@@ -4829,7 +4813,7 @@ let q44ans = {
       tags: ["presence", "strength", "support"]
     },
     "Psalm 23:1-3": {
-      text: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures... he refreshes my soul. He guides me along the right paths for his name’s sake.",
+      text: "The Lord is my shepherd, I lack nothing. He makes me lie down in green pastures, he leads me besides peaceful streams. He refreshes my soul. He guides me along the right paths for his name’s sake.",
       theme: "guidance",
       tags: ["care", "rest", "guidance"]
     }
@@ -4840,7 +4824,7 @@ let q44ans = {
 let q45ans = {
   "God wants a personal relationship with us": {
     "Jeremiah 9:23-24": {
-      text: "'Let not the wise boast of their wisdom or the strong boast of their strength... but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord...'",
+      text: "'Let not the wise boast in their wisdom, or the powerful boast in their power, or the rich boast in their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises kindness, justice and righteousness on earth, for in these I delight,' declares the Lord.",
       theme: "understanding",
       tags: ["relationship", "understanding", "boast in God"]
     },
@@ -4863,7 +4847,7 @@ let q45ans = {
       tags: ["Jesus", "relationship", "access"]
     },
     "Hebrews 10:22": {
-      text: "Let us draw near to God with a sincere heart and with the full assurance that faith brings...",
+      text: "Let us draw near to God with a sincere heart and with the full assurance that faith brings. For out guilty consciences have been sprinkled with Christ's blood to make us clean, and our bodies have been washed with pure water.",
       theme: "faithful",
       tags: ["draw near", "confidence", "heart"]
     },
@@ -4876,7 +4860,7 @@ let q45ans = {
 
   "God speaks and listens personally": {
     "James 4:8": {
-      text: "Come near to God and he will come near to you...",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
       theme: "submission",
       tags: ["closeness", "presence", "relationship"]
     },
@@ -4894,17 +4878,17 @@ let q45ans = {
 
   "We can know Him more each day": {
     "Philippians 3:10": {
-      text: "I want to know Christ—yes, to know the power of his resurrection and participation in his sufferings...",
+      text: "I want to know Christ—yes, to know the power of his resurrection and participation in his sufferings, becoming like him in his death.",
       theme: "growth",
       tags: ["know", "power", "deep relationship"]
     },
-    "Colossians 1:10": {
-      text: "…growing in the knowledge of God, being strengthened with all power according to his glorious might...",
+    "Colossians 1:10-11": {
+      text: "Then the way you live will always honor and please the Lord, and your lives will produce every kind of good fruit. All the while, growing in the knowledge of God, being strengthened with all power according to his glorious might so you will have all the endurance and patience you need and be filled with joy.",
       theme: "understanding",
       tags: ["growth", "knowledge", "strength"]
     },
     "2 Peter 3:18": {
-      text: "But grow in the grace and knowledge of our Lord and Savior Jesus Christ...",
+      text: "But you must grow in the grace and knowledge of our Lord and Savior Jesus Christ. All glory be to him, both now and forever, amen.",
       theme: "grace",
       tags: ["growth", "knowledge", "Jesus"]
     }
@@ -4969,12 +4953,12 @@ let q46ans = {
 
   "Jesus gave us a model of prayer": {
     "Matthew 6:9-13": {
-      text: "'This, then, is how you should pray: Our Father in heaven, hallowed be your name...'",
+      text: "'This, then, is how you should pray: Our Father in heaven, hallowed be your name, may your kingdom come, may your will be done on earth as it is in heaven. Give us this day our daily bread and forgive us our sins as we forgive those who sin against us. Lead us not to temptation, but deliver us from evil.'",
       theme: "guidance",
       tags: ["model", "structure", "humility"]
     },
     "Luke 11:1": {
-      text: "One day Jesus was praying in a certain place. When he finished, one of his disciples said to him, 'Lord, teach us to pray...'",
+      text: "One day Jesus was praying in a certain place. When he finished, one of his disciples said to him, 'Lord, teach us to pray.' Jesus said, 'This is how you should pray: Father, may your name be kept holy. May your kingdom come soon. Give us each day the food we need, and forgive us our sins as we forgive those who sin against us. And don't let us yield to temptation.",
       theme: "growth",
       tags: ["teach", "desire", "discipleship"]
     }
@@ -4985,7 +4969,7 @@ let q46ans = {
 let q47ans = {
   "God listens to the prayers of the righteous": {
     "1 Peter 3:12": {
-      text: "For the eyes of the Lord are on the righteous and his ears are attentive to their prayer...",
+      text: "For the eyes of the Lord are on the righteous and his ears are attentive to their prayer. But the Lord turns his face against those who do evil.",
       theme: "faithful",
       tags: ["righteous", "attentive", "listen"]
     },
@@ -5031,15 +5015,15 @@ let q47ans = {
       tags: ["repentance", "heart", "barrier"]
     },
     "Micah 3:4": {
-      text: "Then they will cry out to the Lord, but he will not answer them... because of the evil they have done.",
+      text: "Then you will cry out to the Lord, but he will not answer you. Do you really expect him to answer? After all the evil you have done, he won't even look at you.",
       theme: "justice",
       tags: ["disobedience", "silence", "judgment"]
     }
   },
 
-  "God responds in His time and way": {
+  "God listens and responds in His time and way": {
     "Ecclesiastes 3:11": {
-      text: "He has made everything beautiful in its time...",
+      text: "He has made everything beautiful in its time. Also, he has set eternity in the human heart; yet no one can fathom what God has done from beginning to end.",
       theme: "wisdom",
       tags: ["timing", "patience", "beauty"]
     },
@@ -5070,7 +5054,7 @@ let q48ans = {
       tags: ["advocate", "remind", "teach"]
     },
     "Jude 1:20": {
-      text: "But you, dear friends, by building yourselves up in your most holy faith and praying in the Holy Spirit...",
+      text: "But you, dear friends, by building yourselves up in your most holy faith and praying in the Holy Spirit.",
       theme: "faithful",
       tags: ["faith", "build", "spirit-led"]
     }
@@ -5088,7 +5072,7 @@ let q48ans = {
       tags: ["needs", "before", "intimacy"]
     },
     "1 Samuel 16:7": {
-      text: "The Lord does not look at the things people look at... the Lord looks at the heart.",
+      text: "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.",
       theme: "truth",
       tags: ["heart", "inside", "truth"]
     }
@@ -5122,12 +5106,12 @@ let q49ans = {
       tags: ["nature", "identity", "relationship"]
     },
     "1 John 4:16": {
-      text: "And so we know and rely on the love God has for us. God is love. Whoever lives in love lives in God, and God in them.",
+      text: "And so we know and rely on the love God has for us. God is love. Whoever lives in love, lives in God, and God in them.",
       theme: "presence",
       tags: ["union", "abide", "trust"]
     },
     "Exodus 34:6": {
-      text: "The Lord, the Lord, the compassionate and gracious God, slow to anger, abounding in love and faithfulness...",
+      text: "And he passed in front of Moses, proclaiming, 'The Lord, the Lord, the compassionate and gracious God, slow to anger, abounding in love and faithfulness.'",
       theme: "faithful",
       tags: ["compassion", "grace", "abundant"]
     }
@@ -5153,12 +5137,12 @@ let q49ans = {
 
   "Love is how we treat others": {
     "1 Corinthians 13:4-7": {
-      text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud... It always protects, always trusts, always hopes, always perseveres.",
+      text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. Love does not delight in evil but rejoices with the truth. It always protects, always trusts, always hopes, always perseveres.",
       theme: "love",
       tags: ["kindness", "humility", "endurance"]
     },
     "John 13:34-35": {
-      text: "A new command I give you: Love one another. As I have loved you, so you must love one another... By this everyone will know that you are my disciples.",
+      text: "A new command I give you: Love one another. As I have loved you, so you must love one another. By this everyone will know that you are my disciples.",
       theme: "walk",
       tags: ["example", "witness", "discipleship"]
     },
@@ -5171,17 +5155,17 @@ let q49ans = {
 
   "God's love changes us": {
     "Ephesians 3:17-19": {
-      text: "And I pray that you... may have power... to grasp how wide and long and high and deep is the love of Christ... that you may be filled to the measure of all the fullness of God.",
+      text: "And I pray that you, being rooted and established in love, may have power, together with all the saints to grasp how wide and long and high and deep is the love of Christ and to know tha his love surpasses knowledge, that you may be filled to the measure of all the fullness of God.",
       theme: "transformation",
       tags: ["depth", "filling", "knowledge"]
     },
     "2 Corinthians 5:14-15": {
-      text: "For Christ’s love compels us... that those who live should no longer live for themselves but for him who died for them and was raised again.",
+      text: "For Christ’s love compels us because we are convinced that one died for all, and therefore all died. And he died for all that those who live should no longer live for themselves but for him who died for them and was raised again.",
       theme: "devotion",
       tags: ["motivation", "live for Christ", "compel"]
     },
     "Zephaniah 3:17": {
-      text: "The Lord your God is with you... He will take great delight in you; in his love he will no longer rebuke you, but will rejoice over you with singing.",
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you with gladness. With his love, he will calm all you fears, he will rejoice over you with singing.",
       theme: "love",
       tags: ["delight", "affection", "song"]
     }
@@ -5192,7 +5176,7 @@ let q49ans = {
 let q50ans = {
   "Respond with love and patience": {
     "Romans 12:17-18": {
-      text: "Do not repay anyone evil for evil... If it is possible, as far as it depends on you, live at peace with everyone.",
+      text: "Do not repay anyone evil for evil. Be caareful to do what is right in the eyes of everybody. If it is possible, as far as it depends on you, live at peace with everyone.",
       theme: "peace",
       tags: ["forgiveness", "restraint", "peacemaking"]
     },
@@ -5202,7 +5186,7 @@ let q50ans = {
       tags: ["patience", "mercy", "grace"]
     },
     "Colossians 3:13": {
-      text: "Bear with each other and forgive one another if any of you has a grievance... Forgive as the Lord forgave you.",
+      text: "Bear with each other and forgive one another if any of you has a grievance against another, forgive as the Lord forgave you.",
       theme: "forgiveness",
       tags: ["endure", "grace", "kindness"]
     }
@@ -5220,7 +5204,7 @@ let q50ans = {
       tags: ["patience", "reliance", "justice"]
     },
     "1 Peter 3:9": {
-      text: "Do not repay evil with evil or insult with insult. On the contrary, repay evil with blessing...",
+      text: "Do not repay evil with evil or insult with insult. On the contrary, repay evil with blessing because to this you were called so that you may inherit a blessing.",
       theme: "goodness",
       tags: ["blessing", "grace", "strength"]
     }
@@ -5233,7 +5217,7 @@ let q50ans = {
       tags: ["prayer", "mercy", "enemy-love"]
     },
     "Galatians 5:22-23": {
-      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control...",
+      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.",
       theme: "spirit",
       tags: ["fruit", "character", "response"]
     },
@@ -5277,22 +5261,22 @@ let q51ans = {
 
   "Marriage reflects God's love and design": {
     "Ephesians 5:21-25": {
-      text: "Submit to one another out of reverence for Christ. Wives, submit yourselves to your own husbands as you do to the Lord... Husbands, love your wives, just as Christ loved the church and gave himself up for her.",
+      text: "Submit to one another out of reverence for Christ. Wives, submit yourselves to your own husbands as to the Lord. Husbands, love your wives, just as Christ loved the church and gave himself up for her.",
       theme: "love",
       tags: ["marriage", "mutual respect", "sacrifice", "commitment"]
     },
     "Genesis 2:18": {
       text: "The Lord God said, 'It is not good for the man to be alone. I will make a helper suitable for him.'",
-      theme: "relationship",
+      theme: "love",
       tags: ["partnership", "design", "relationship"]
     },
     "Ecclesiastes 4:9-10": {
       text: "Two are better than one, because they have a good return for their labor: If either of them falls down, one can help the other up.",
-      theme: "relationship",
+      theme: "friend",
       tags: ["teamwork", "companionship", "encouragement"]
     },
     "Malachi 2:14-15": {
-      text: "The Lord is the witness between you and the wife of your youth... Has not the one God made you? You belong to him in body and spirit. And what does the one God seek? Godly offspring.",
+      text: "You cry out'Why doesn't the Lord accept my worship?', its because the Lord is the witness between you and the wife of your youth. But you have been unfaithful to her, though she remained a faithful partner, the wife of your marriage vows. Has not the one God made you one with your wife? You belong to him in body and spirit. And what does the one God seek? Godly offspring. So guard your heart and remain loyal to the wife of your youth.",
       theme: "faithful",
       tags: ["marriage covenant", "loyalty", "purpose"]
     }
@@ -5322,22 +5306,22 @@ let q51ans = {
   }
 };
 
-// What if I feel broken inside?
+// What should I do when I feel broken inside?
 let q52ans = {
-  "God is close to the brokenhearted": {
+  "Be glad and remember God is close to the brokenhearted": {
     "Psalm 34:18": {
       text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
       theme: "mercy",
       tags: ["comfort", "presence", "rescue"]
     },
     "Isaiah 57:15": {
-      text: "I live in a high and holy place, but also with the one who is contrite and lowly in spirit...",
+      text: "The Holy One says, 'I live in a high and holy place with the one who is contrite and lowly in spirit. I restore the crushed spirit of the humble and revive the courage of those with repentant hearts.'",
       theme: "presence",
       tags: ["humility", "comfort", "restoration"]
     }
   },
 
-  "God heals the broken": {
+  "Know that God heals the broken": {
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
       theme: "hope",
@@ -5350,28 +5334,28 @@ let q52ans = {
     }
   },
 
-  "Jesus welcomes our weakness": {
+  "Remember that Jesus welcomes our weakness": {
     "Matthew 11:28-29": {
-      text: "Come to me, all you who are weary and burdened, and I will give you rest...",
+      text: "Jesus said, 'Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you. Let me teach you, because I am humble and gentle at heart, and you will find rest for your souls.",
       theme: "peace",
       tags: ["peace", "invitation", "gentleness"]
     },
-    "Hebrews 4:15-16": {
-      text: "For we do not have a high priest who is unable to empathize with our weaknesses... Let us then approach God’s throne of grace with confidence...",
+    "Hebrews 4:15–16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence so that we may receive mercy and find grace to help us in our time of need.",
       theme: "grace",
       tags: ["empathy", "strength", "access"]
     }
   },
 
-  "God can bring beauty from brokenness": {
+  "Allow God to bring beauty from the brokenness": {
     "Isaiah 61:1-3": {
-      text: "He has sent me to bind up the brokenhearted… to comfort all who mourn… to give them beauty for ashes.",
+      text: "The Spirit of the Sovereign Lord is on me, because the Lord has anointed me to proclaim good news to the poor. He has sent me to bind up the brokenhearted, to proclaim freedom for the captives and release from darkness for the prisoners. He has sent me to tell those who mourn that the time of the Lord's favor has come and with it, the day of God's anger against their enemies. And provide for those who grieve in Zion—to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair. They will be called oaks of righteousness, a planting of the Lord for the display of his splendor.",
       theme: "transformation",
       tags: ["beauty", "hope", "joy"]
     },
     "2 Corinthians 4:7-9": {
-      text: "But we have this treasure in jars of clay to show that this all-surpassing power is from God... struck down, but not destroyed.",
-      theme: "strength",
+      text: "But we have this treasure in jars of clay to show that this all-surpassing power is from God not from us. We are pressed on every side by troubles, but not crushed, perplexed but not in despair, persecuted but not abandoned, struck down, but not destroyed.",
+      theme: "power",
       tags: ["vulnerability", "endurance", "hope"]
     }
   }
@@ -5381,20 +5365,20 @@ let q52ans = {
 let q53ans = {
   "God’s timing is not ours": {
     "2 Peter 3:8-9": {
-      text: "With the Lord a day is like a thousand years... The Lord is not slow in keeping his promise... but is patient with you...",
-      theme: "patience",
+      text: "But do not forget this one thing, dear friends: With the Lord a day is like a thousand years, and a thousand years are like a day. The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "mercy",
       tags: ["timing", "promise", "mercy"]
     },
     "Ecclesiastes 3:11": {
-      text: "He has made everything beautiful in its time. He has also set eternity in the human heart...",
+      text: "He has made everything beautiful in its time. Also, he has set eternity in the human heart; yet no one can fathom what God has done from beginning to end.",
       theme: "transformation",
       tags: ["timing", "purpose", "beauty"]
     }
   },
 
-  "God is working in the waiting": {
+  "God is working in the waiting time": {
     "Isaiah 64:4": {
-      text: "Since ancient times no one has heard... any God besides you, who acts on behalf of those who wait for him.",
+      text: "Since ancient times no one has heard or seen any God besides you, who acts on behalf of those who wait for him.",
       theme: "faithful",
       tags: ["waiting", "trust", "active"]
     },
@@ -5407,13 +5391,13 @@ let q53ans = {
 
   "Waiting builds us": {
     "James 1:2-4": {
-      text: "Consider it pure joy... when you face trials... so that you may be mature and complete, not lacking anything.",
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. So let it grow, for when perserverance is fully developed, you will be perfect and needing nothing.",
       theme: "growth",
       tags: ["endurance", "maturity", "strength"]
     },
     "Psalm 27:14": {
       text: "Wait for the Lord; be strong and take heart and wait for the Lord.",
-      theme: "strength",
+      theme: "hope",
       tags: ["patience", "hope", "courage"]
     }
   },
@@ -5421,7 +5405,7 @@ let q53ans = {
   "Jesus delays with purpose": {
     "John 11:6": {
       text: "So when he heard that Lazarus was sick, he stayed where he was two more days.",
-      theme: "purpose",
+      theme: "trust",
       tags: ["trust", "timing", "miracle"]
     }
   }
@@ -5454,12 +5438,12 @@ let q54ans = {
       tags: ["renewal", "discernment", "growth"]
     },
     "1 Thessalonians 4:3": {
-      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality...",
+      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality.",
       theme: "holy",
       tags: ["purity", "sanctification", "obedience"]
     },
     "Ephesians 5:17-18": {
-      text: "Therefore do not be foolish, but understand what the Lord’s will is... be filled with the Spirit.",
+      text: "Therefore do not be foolish, but understand what the Lord’s will is. Don't be drunk with wine because that will ruin your life, instead be filled with the Spirit.",
       theme: "spirit",
       tags: ["wisdom", "discernment", "obedience"]
     }
@@ -5467,7 +5451,7 @@ let q54ans = {
 
   "God will guide us in His will": {
     "Psalm 25:4-5": {
-      text: "Show me your ways, Lord, teach me your paths. Guide me in your truth and teach me, for you are God my Savior...",
+      text: "Show me your ways, Lord, teach me your paths. Guide me in your truth and teach me, for you are God my Savior, and my hope is in you all day long.",
       theme: "guidance",
       tags: ["truth", "teach", "paths"]
     },
@@ -5493,8 +5477,8 @@ let q55ans = {
       tags: ["redeem", "purpose", "goodness"]
     },
     "Joel 2:25": {
-      text: "'I will repay you for the years the locusts have eaten...' declares the Lord.",
-      theme: "restoration",
+      text: "I will restore to you the years that the swarming locust has eaten, the hopper, the destroyer, and the cutter, my great army, which I sent among you.', declares the Lord.",
+      theme: "hope",
       tags: ["restore", "healing", "hope"]
     },
     "Genesis 50:20": {
@@ -5581,7 +5565,7 @@ let q56ans = {
 
   "God can reignite your desire": {
     "Psalm 51:10-12": {
-      text: "Create in me a pure heart, O God, and renew a steadfast spirit within me... Restore to me the joy of your salvation and grant me a willing spirit, to sustain me.",
+      text: "Create in me a pure heart, O God, and renew a steadfast spirit within me. Do not cast me from your presence or take your Holy Spirit from me. Restore to me the joy of your salvation and grant me a willing spirit, to sustain me.",
       theme: "transformation",
       tags: ["renewal", "desire", "joy"]
     },
@@ -5591,8 +5575,8 @@ let q56ans = {
       tags: ["desire", "action", "purpose"]
     },
     "Isaiah 40:31": {
-      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary...",
-      theme: "strength",
+      text: "But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.",
+      theme: "hope",
       tags: ["hope", "renewal", "endurance"]
     }
   },
@@ -5620,8 +5604,8 @@ let q56ans = {
 let q57ans = {
   "Stay connected through prayer and listening": {
     "James 4:8": {
-      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
-      theme: "submission",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
+      theme:  "submission",
       tags: ["draw_near", "repentance", "relationship"]
     },
     "Psalm 5:3": {
@@ -5643,12 +5627,12 @@ let q57ans = {
       tags: ["direction", "truth", "guidance"]
     },
     "Joshua 1:8": {
-      text: "Keep this Book of the Law always on your lips; meditate on it day and night... Then you will be prosperous and successful.",
+      text: "Keep this Book of the Law always on your lips. Meditate on it day and night so you will be sure to obey everything written on it. Then you will be prosperous and successful.",
       theme: "obedience",
       tags: ["meditation", "discipline", "prosperity"]
     },
     "Colossians 3:16": {
-      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom...",
+      text: "Let the message of Christ dwell among you richly and fill your lives. Then you will go teaching and admonishing one another with all wisdom through psalms, hymns, and songs from the Spirit with thankful hearts.",
       theme: "wisdom",
       tags: ["scripture", "community", "growth"]
     }
@@ -5656,7 +5640,7 @@ let q57ans = {
 
   "Stay close through trust and obedience": {
     "Proverbs 3:5-6": {
-      text: "Trust in the Lord with all your heart and lean not on your own understanding... and he will make your paths straight.",
+      text: "Trust in the Lord with all your heart and lean not on your own understanding in all your ways acknowledge him and he will make your paths straight.",
       theme: "trust",
       tags: ["direction", "dependence", "trust"]
     },
@@ -5666,7 +5650,7 @@ let q57ans = {
       tags: ["love", "remain", "follow"]
     },
     "Deuteronomy 10:12": {
-      text: "And now, Israel, what does the Lord your God ask of you but to fear the Lord... to walk in obedience to him, to love him, to serve... with all your heart and soul.",
+      text: "And now, Israel, what does the Lord your God ask of you but to fear the Lord your God, to walk in obedience to him, to love him, to serve the Lord your God with all your heart and with all your soul,",
       theme: "walk",
       tags: ["serve", "devotion", "wholehearted"]
     }
@@ -5674,7 +5658,7 @@ let q57ans = {
 
   "Stay close by remembering He stays close too": {
     "Deuteronomy 31:6": {
-      text: "Be strong and courageous. Do not be afraid or terrified... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      text: "Be strong and courageous. Do not be afraid or terrified, for the Lord your God goes with you; he will never leave you nor forsake you.",
       theme: "presence",
       tags: ["never_alone", "courage", "faithfulness"]
     },
@@ -5684,7 +5668,7 @@ let q57ans = {
       tags: ["always", "comfort", "promise"]
     },
     "Romans 8:38-39": {
-      text: "For I am convinced that neither death nor life... nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      text: "For I am convinced that nothing can ever separate us from God's love. Neither death nor life, neither angels nor demons, neither our fears for today nor our worries about tomorrow-not even the powers of hell can separate us from God's love. No power in the sky above or in the earth below nor anything else in all creation, will be able to separate us from the love of God that is revealed in Christ Jesus our Lord.",
       theme: "love",
       tags: ["inseparable", "confidence", "security"]
     }
@@ -5700,7 +5684,7 @@ let q58ans = {
       tags: ["way", "truth", "life", "exclusive"]
     },
     "John 3:16": {
-      text: "For God so loved the world that he gave his one and only Son... that whoever believes in him shall not perish but have eternal life.",
+      text: "For God so loved the world that he gave his one and only Son that whoever believes in him shall not perish but have eternal life.",
       theme: "savior",
       tags: ["believe", "eternal", "gift"]
     },
@@ -5737,7 +5721,7 @@ let q58ans = {
     },
     "Revelation 20:15": {
       text: "Anyone whose name was not found written in the book of life was thrown into the lake of fire.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["judgment", "book_of_life", "lake_of_fire"]
     }
   },
@@ -5766,7 +5750,7 @@ let q59ans = {
     },
     "Romans 8:28": {
       text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
-      theme: "purpose",
+      theme: "love",
       tags: ["purpose", "good", "called", "love"]
     },
     "Ephesians 2:10": {
@@ -5787,20 +5771,20 @@ let q59ans = {
       tags: ["strength", "fear", "presence", "help"]
     },
     "2 Corinthians 1:3-4": {
-      text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles...",
+      text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
       theme: "mercy",
       tags: ["comfort", "trouble", "compassion", "healing"]
     }
   },
   "You are not forgotten": {
     "Isaiah 49:15-16": {
-      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands...",
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands; your walls are ever before me.",
       theme: "love",
       tags: ["memory", "compassion", "engraved", "identity"]
     },
     "Luke 12:6-7": {
       text: "Are not five sparrows sold for two pennies? Yet not one of them is forgotten by God... you are worth more than many sparrows.",
-      theme: "value",
+      theme: "creation",
       tags: ["worth", "identity", "care", "remembered"]
     },
     "Psalm 139:1-4": {
@@ -5812,16 +5796,16 @@ let q59ans = {
   "God can lift you up again": {
     "Psalm 40:1-3": {
       text: "I waited patiently for the Lord; he turned to me and heard my cry. He lifted me out of the slimy pit, out of the mud and mire...",
-      theme: "rescue",
+      theme: "protect",
       tags: ["deliverance", "hope", "lifted", "new song"]
     },
     "Lamentations 3:22-23": {
-      text: "Because of the Lord’s great love we are not consumed, for his compassions never fail. They are new every morning...",
+      text: "The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness.",
       theme: "love",
       tags: ["compassion", "new start", "hope", "faithful"]
     },
     "Isaiah 61:3": {
-      text: "…to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair.",
+      text: "And provide for those who grieve in Zion—to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair. They will be called oaks of righteousness, a planting of the Lord for the display of his splendor.",
       theme: "transformation",
       tags: ["beauty", "joy", "mourning", "healing"]
     }
@@ -5872,8 +5856,8 @@ let q60ans = {
       theme: "trust",
       tags: ["prayer", "trust", "honesty", "refuge"]
     },
-    "Hebrews 4:15-16": {
-      text: "For we do not have a high priest who is unable to empathize with our weaknesses... Let us then approach God’s throne of grace with confidence, so that we may receive mercy and find grace to help us in our time of need.",
+    "Hebrews 4:15–16": {
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence so that we may receive mercy and find grace to help us in our time of need.",
       theme: "mercy",
       tags: ["honesty", "weakness", "grace", "help"]
     },
@@ -5884,14 +5868,14 @@ let q60ans = {
     },
     "Job 30:27": {
       text: "The churning inside me never stops; days of suffering confront me.",
-      theme: "honesty",
+      theme: "battle",
       tags: ["Job", "inner turmoil", "suffering", "confession"]
     }
   },
 
   "Let God’s peace hold you when everything else can’t": {
     "Philippians 4:6-7": {
-      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. Then you will experience God's peace, which exceeds anything we can understand. His peace will guard your hearts and minds as you live in Christ Jesus.",
       theme: "peace",
       tags: ["peace", "prayer", "anxiety", "thanksgiving"]
     },
@@ -5963,13 +5947,19 @@ let q60ans = {
 };
 
 // Why does God allow bad things to happen to good people? 
-let q61ans = { "You’re not alone — the faithful suffered too": { "Job 1:1-22": { text: "Job was blameless and upright, one who feared God and turned away from evil. Yet he lost his property, his children, and his health, but did not sin or charge God with wrong.", theme: "faithful", tags: ["Job", "suffering", "test", "faith", "loss"] }, "1 Peter 4:12-13": { text: "Beloved, do not be surprised at the fiery trial when it comes upon you to test you, as though something strange were happening to you. But rejoice insofar as you share Christ’s sufferings, that you may also rejoice and be glad when his glory is revealed.", theme: "devotion", tags: ["suffering", "Christ", "trials", "rejoice", "faith"] }, "Job 19:25": { text: "For I know that my Redeemer lives, and at the last he will stand upon the earth. And after my skin has been thus destroyed, yet in my flesh I shall see God.", theme: "hope", tags: ["redeemer", "hope", "suffering", "faithful", "Job"] } },
+let q61ans = { 
+  "You’re not alone — the faithful suffered too": { 
+    "Job 1:1-22": { 
+      text: "Job was blameless and upright, one who feared God and turned away from evil. Yet he lost his property, his children, and his health, but did not sin or charge God with wrong.", 
+      theme: "faithful", 
+      tags: ["Job", "suffering", "test", "faith", "loss"] 
+    }, "1 Peter 4:12-13": { text: "Beloved, do not be surprised at the fiery trial when it comes upon you to test you, as though something strange were happening to you. But rejoice insofar as you share Christ’s sufferings, that you may also rejoice and be glad when his glory is revealed.", theme: "devotion", tags: ["suffering", "Christ", "trials", "rejoice", "faith"] }, "Job 19:25": { text: "For I know that my Redeemer lives, and at the last he will stand upon the earth. And after my skin has been thus destroyed, yet in my flesh I shall see God.", theme: "hope", tags: ["redeemer", "hope", "suffering", "faithful", "Job"] } },
 
 "God sees what we don’t yet understand": { "Isaiah 55:8-9": { text: "For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord. For as the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.", theme: "understanding", tags: ["God's ways", "thoughts", "mystery", "justice", "perspective"] }, "Job 38:1-4": { text: "Then the Lord answered Job out of the whirlwind and said: 'Who is this that darkens counsel by words without knowledge? Where were you when I laid the foundation of the earth? Tell me, if you have understanding.'", theme: "glory", tags: ["Job", "God’s wisdom", "power", "creation", "perspective"] } },
 
 "God uses suffering to shape and refine": { "Romans 8:28": { text: "And we know that for those who love God all things work together for good, for those who are called according to his purpose.", theme: "purpose", tags: ["Romans", "suffering", "good", "purpose", "God works"] }, "James 1:2-4": { text: "Count it all joy, my brothers, when you meet trials of various kinds, for you know that the testing of your faith produces steadfastness. And let steadfastness have its full effect, that you may be perfect and complete, lacking in nothing.", theme: "growth", tags: ["trials", "perseverance", "faith", "mature", "character"] }, "2 Corinthians 1:3-4": { text: "Blessed be the God and Father of our Lord Jesus Christ, the Father of mercies and God of all comfort, who comforts us in all our affliction, so that we may be able to comfort those who are in any affliction.", theme: "mercy", tags: ["comfort", "suffering", "ministry", "empathy", "mercy"] } },
 
-"Even Jesus, the righteous, suffered pain": { "Isaiah 53:3-5": { text: "He was despised and rejected by men; a man of sorrows, and acquainted with grief... He was pierced for our transgressions; he was crushed for our iniquities; upon him was the chastisement that brought us peace, and with his wounds we are healed.", theme: "savior", tags: ["Jesus", "suffering", "redemption", "grief", "healing"] }, "1 Peter 2:21-23": { text: "For to this you have been called, because Christ also suffered for you, leaving you an example, so that you might follow in his steps. He committed no sin, neither was deceit found in his mouth. When he was reviled, he did not revile in return... but continued entrusting himself to him who judges justly.", theme: "jesus", tags: ["suffering", "Christ", "example", "justice", "entrust"] } },
+"Even Jesus, the righteous, suffered pain": { "Isaiah 53:3-5": { text: "He was despised and rejected by men; a man of sorrows, and acquainted with grief. We turned our backs on him and looked the other way. He was despised and we did not care. Yet it was our weaknesses he carried, it was our sorrows that weighed him down. And we thought his troubles were a punishment from God, a punishment for his own sins! He was pierced for our transgressions; he was crushed for our iniquities; upon him was the chastisement that brought us peace, and with his wounds we are healed.", theme: "savior", tags: ["Jesus", "suffering", "redemption", "grief", "healing"] }, "1 Peter 2:21-23": { text: "For to this you have been called, because Christ also suffered for you, leaving you an example, so that you might follow in his steps. He committed no sin, neither was deceit found in his mouth. When he was reviled, he did not revile in return... but continued entrusting himself to him who judges justly.", theme: "jesus", tags: ["suffering", "Christ", "example", "justice", "entrust"] } },
 
 "God’s kindness isn’t canceled by hardship": { "Matthew 5:45": { text: "For he makes his sun rise on the evil and on the good, and sends rain on the just and on the unjust.", theme: "goodness", tags: ["Jesus", "goodness", "sin", "common grace", "suffering"] }, "Revelation 21:4": { text: "He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.", theme: "eternal", tags: ["future", "healing", "rest", "gain", "eternity"] } },
 
@@ -5981,7 +5971,7 @@ let q61ans = { "You’re not alone — the faithful suffered too": { "Job 1:1-22
 let q62ans = {
   "People may fail you, but God won’t": {
     "Deuteronomy 31:6": {
-      text: "Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.",
+      text: "Be strong and courageous. Do not be afraid or terrified, for the Lord your God goes with you; he will never leave you nor forsake you.",
       theme: "faithful",
       tags: ["never leave", "God stays", "faithful", "forsake"]
     },
@@ -6010,7 +6000,7 @@ let q62ans = {
     },
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
-      theme: "healing",
+      theme: "hope",
       tags: ["healing", "wounds", "comfort", "care"]
     },
     "Psalm 62:8": {
@@ -6033,7 +6023,7 @@ let q62ans = {
     },
     "Romans 12:15": {
       text: "Rejoice with those who rejoice; mourn with those who mourn.",
-      theme: "compassion",
+      theme: "friend",
       tags: ["mourn", "rejoice", "safe space", "empathy"]
     },
     "Ecclesiastes 4:9-10": {
@@ -6107,7 +6097,7 @@ let q63ans = {
   "Healing & restoration happen in grace": {
     "1 Peter 5:10": {
       text: "And the God of all grace, who called you to his eternal glory in Christ, after you have suffered a little while, will himself restore you and make you strong, firm and steadfast.",
-      theme: "restoration",
+      theme: "grace",
       tags: ["grace", "restore", "strength", "suffering", "steadfast"]
     },
     "Psalm 40:2–3": {
@@ -6152,7 +6142,7 @@ let q64ans = {
     },
     "Psalm 38:8-9": {
       text: "I am feeble and utterly crushed; I groan in anguish of heart. All my longings lie open before you, Lord; my sighing is not hidden from you.",
-      theme: "honesty",
+      theme: "truth",
       tags: ["mental pain", "groaning", "God sees", "depression"]
     },
     "Proverbs 12:25": {
@@ -6187,7 +6177,7 @@ let q64ans = {
       tags: ["mental health", "brokenhearted", "God is near", "inner pain"]
     },
     "Matthew 11:28-30": {
-      text: "Come to me, all you who are weary and burdened, and I will give you rest... For my yoke is easy and my burden is light.",
+      text: "Jesus said 'Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you. Let me teach you, because I am humble and gentle at heart, and you will find rest for your souls. For my yoke is easy and the burden I give you is light.",
       theme: "help",
       tags: ["burden", "rest", "emotional exhaustion", "relief"]
     }
@@ -6195,7 +6185,7 @@ let q64ans = {
 
   "God offers peace and protection for your mind": {
     "Philippians 4:6-7": {
-      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. Then you will experience God's peace, which exceeds anything we can understand. His peace will guard your hearts and minds as you live in Christ Jesus.",
       theme: "peace",
       tags: ["anxiety", "mental health", "prayer", "peace of God"]
     },
@@ -6222,10 +6212,10 @@ let q65ans = {
       tags: ["identity", "renewal", "Christ", "new life"]
     },
     "Galatians 2:20": {
-      text: "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me...",
-      theme: "identity",
-      tags: ["Christ lives in me", "surrender", "new self", "faith"]
-    }
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
+      theme: "transformation",
+      tags: ["identity", "Christ in me", "death to self"]
+    },
   },
 
   "You are God’s handiwork with purpose": {
@@ -6244,7 +6234,7 @@ let q65ans = {
   "You are chosen, loved, and set apart": {
     "1 Peter 2:9": {
       text: "But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession...",
-      theme: "identity",
+      theme: "eternal",
       tags: ["chosen", "royal", "set apart", "God’s possession"]
     },
     "Ephesians 1:4–6": {
@@ -6260,14 +6250,14 @@ let q65ans = {
       theme: "salvation",
       tags: ["child of God", "faith", "belonging", "identity"]
     },
-    "Romans 8:16–17": {
-      text: "The Spirit himself testifies with our spirit that we are God’s children. Now if we are children, then we are heirs—heirs of God and co-heirs with Christ...",
-      theme: "inheritance",
+    "Romans 8:16-17": {
+      text: "The Spirit himself bears witness with our spirit that we are children of God, and if children, then heirs—heirs of God and fellow heirs with Christ, provided we suffer with him in order that we may also be glorified with him.",
+      theme: "spirit",
       tags: ["children of God", "heirs", "Holy Spirit", "belonging"]
     },
     "Ephesians 2:19": {
       text: "Consequently, you are no longer foreigners and strangers, but fellow citizens with God’s people and also members of his household.",
-      theme: "belonging",
+      theme: "presence",
       tags: ["citizen", "God’s household", "identity", "unity"]
     }
   },
@@ -6285,14 +6275,14 @@ let q65ans = {
     },
     "Isaiah 43:1": {
       text: "Fear not, for I have redeemed you; I have called you by name; you are mine.",
-      theme: "identity",
+      theme: "authority",
       tags: ["redeemed", "personal", "God’s", "fear not"]
     }
   },
 
   "You are salt, light, and a temple of the Spirit": {
     "Matthew 5:13–14": {
-      text: "You are the salt of the earth… You are the light of the world. A town built on a hill cannot be hidden.",
+      text: "You are the salt of the earth, but what good is salt if it has lost its flavor? Can you make it salty again? It will be thrown out and trampled underfoot as worthless. You are the light of the world. Like a town built on a hill that cannot be hidden.",
       theme: "light",
       tags: ["influence", "identity", "witness", "purpose"]
     },
@@ -6306,12 +6296,12 @@ let q65ans = {
   "You are secure and victorious in Christ": {
     "Romans 8:37": {
       text: "No, in all these things we are more than conquerors through him who loved us.",
-      theme: "victory",
+      theme: "love",
       tags: ["conqueror", "love", "strength", "security"]
     },
     "Colossians 3:3": {
       text: "For you died, and your life is now hidden with Christ in God.",
-      theme: "security",
+      theme: "eternal",
       tags: ["hidden", "safe in Christ", "eternal life", "identity"]
     }
   },
@@ -6350,7 +6340,7 @@ let q66ans = {
 
   "Serve faithfully and gifts will become clear": {
     "Colossians 3:23-24": {
-      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters. It is the Lord Christ you are serving.",
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.",
       theme: "obedience",
       tags: ["service", "heart", "faithfulness", "discover gifts"]
     },
@@ -6411,7 +6401,7 @@ let q66ans = {
   },
 
   "You were created on purpose, for a purpose": {
-    "Ephesians 2:10": {
+    ":10": {
       text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
       theme: "purpose",
       tags: ["creation", "good works", "identity", "prepared path"]
@@ -6500,7 +6490,7 @@ let q67ans = {
       tags: ["hidden with Christ", "identity", "security", "eternal"]
     },
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind.",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["renew mind", "non-conformity", "identity", "Christ-likeness"]
     },
@@ -6544,7 +6534,7 @@ let q68ans = {
 
   "Let God renew your thinking": {
     "Romans 12:1-2": {
-      text: "Offer your bodies as a living sacrifice... Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is.",
+      text: "And so dear brothers and sisters, I plead with you to give your bodies to God because of all He has done for you. Let them be a living and holy sacrifice, the kind he will find acceptable. This is truly the way to worship him. Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is-his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["sacrifice", "renew mind", "God’s will", "purpose"]
     },
@@ -6575,7 +6565,7 @@ let q68ans = {
       tags: ["faithfulness", "growth", "trust", "purpose"]
     },
     "Colossians 3:23-24": {
-      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters...",
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.",
       theme: "obedience",
       tags: ["work", "faithful", "Lord", "reward", "purpose"]
     }
@@ -6667,7 +6657,7 @@ let q69ans = {
   "Build your life on God, not the world": {
     "Matthew 6:21": {
       text: "For where your treasure is, there your heart will be also.",
-      theme: "treasure",
+      theme: "walk",
       tags: ["heart", "values", "priority", "meaning"]
     },
     "Matthew 6:33": {
@@ -6705,7 +6695,7 @@ let q69ans = {
 
   "Renew your mind to know God's will": {
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["renew mind", "God’s will", "purpose", "discern"]
     }
@@ -6719,14 +6709,14 @@ let q69ans = {
     },
     "Proverbs 19:21": {
       text: "Many are the plans in a person’s heart, but it is the Lord’s purpose that prevails.",
-      theme: "purpose",
+      theme: "trust",
       tags: ["plans", "purpose", "God’s will", "trust"]
     }
   },
 
   "Serve your neighbors and walk humbly": {
     "Micah 6:8": {
-      text: "He has shown you... act justly and love mercy and walk humbly with your God.",
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
       theme: "obedience",
       tags: ["justice", "mercy", "humility", "walk"]
     }
@@ -6771,8 +6761,8 @@ let q70ans = {
       theme: "forgiveness",
       tags: ["confession", "cleansing", "faithful", "grace"]
     },
-    "Psalm 103:10-12": {
-      text: "He does not treat us as our sins deserve or repay us according to our iniquities... as far as the east is from the west, so far has he removed our transgressions from us.",
+    "Psalms 103:10-12": {
+      text: "He does not treat us as our sins deserve, for his unfailing love toward those who fear him is as great as the height of the heavens above the earth. As far as the east is from the west, so far has he removed our transgressions from us.",
       theme: "mercy",
       tags: ["distance", "undeserved", "removed sins", "grace"]
     },
@@ -6986,7 +6976,7 @@ let q72ans = {
     tags: ["peace", "effort", "responsibility", "boundaries"]
   },
   "Romans 12:19": {
-    text: "Do not take revenge, my dear friends, but leave room for God's wrath...",
+    text: "Do not take revenge, my dear friends, but leave room for God's wrath, for it is written: 'It is mine to avenge, I will repay', says the Lord.",
     theme: "justice",
     tags: ["revenge", "wrath", "patience", "trust"]
   },
@@ -7135,12 +7125,12 @@ let q74ans = {
       tags: ["peace", "effort", "relationships", "boundaries"]
     },
     "1 Peter 3:9": {
-      text: "Do not repay evil with evil or insult with insult. On the contrary, repay evil with blessing...",
+      text: "Do not repay evil with evil or insult with insult. On the contrary, repay evil with blessing because to this you were called so that you may inherit a blessing.",
       theme: "humble",
       tags: ["blessing", "honor", "conflict", "grace"]
     },
     "Romans 12:19–20": {
-      text: "Do not take revenge... ‘If your enemy is hungry, feed him; if he is thirsty, give him something to drink.’",
+      text: "Do not take revenge, my friends, but leave room for God's wrath, for it is written, 'It is mine to avenge, I will repay', says the Lord. On the contrary: ‘If your enemy is hungry, feed him; if he is thirsty, give him something to drink.’",
       theme: "mercy",
       tags: ["revenge", "kindness", "honor", "enemy love"]
     },
@@ -7250,8 +7240,8 @@ let q75ans = {
       theme: "devotion",
       tags: ["prayer", "joy", "gratitude", "God’s will", "everyday faith"]
     },
-    "Philippians 4:6–7": {
-      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God...",
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. Then you will experience God's peace, which exceeds anything we can understand. His peace will guard your hearts and minds as you live in Christ Jesus.",
       theme: "peace",
       tags: ["prayer", "trust", "daily situations", "faith vs worry"]
     },
@@ -7282,7 +7272,7 @@ let q75ans = {
       tags: ["obedience", "walk", "commandments", "blessing", "daily"]
     },
     "Romans 12:1": {
-      text: "I appeal to you therefore, brothers, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship.",
+      text: "I appeal to you therefore, brothers and sisters, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship.",
       theme: "submission",
       tags: ["sacrifice", "daily", "worship", "obedience", "body"]
     }
@@ -7291,7 +7281,7 @@ let q75ans = {
   "Living with Vision Beyond Sight": {
     "1 Peter 1:8-9": {
       text: "Though you have not seen Him, you love Him. Though you do not now see Him, you believe in Him and rejoice with joy that is inexpressible and filled with glory, obtaining the outcome of your faith, the salvation of your souls.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["unseen", "believe", "faith", "joy", "salvation"]
     },
     "Philippians 3:13-14": {
@@ -7303,7 +7293,7 @@ let q75ans = {
 
   "Faith at Work in Real Life": {
     "James 1:22": {
-      text: "But be doers of the word, and not hearers only, deceiving yourselves.",
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
       theme: "obedience",
       tags: ["action", "word", "faith", "daily", "doer"]
     },
@@ -7317,7 +7307,7 @@ let q75ans = {
   "Speaking and Thinking in Faith": {
     "2 Corinthians 4:13": {
       text: "Since we have the same spirit of faith according to what has been written, 'I believed, and so I spoke,' we also believe, and so we also speak.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["speak", "faith", "believe", "daily", "voice"]
     },
     "Philippians 4:8": {
@@ -7330,7 +7320,7 @@ let q75ans = {
   "Relying on God's Strength": {
     "Isaiah 40:31": {
       text: "But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.",
-      theme: "strength",
+      theme: "walk",
       tags: ["strength", "faith", "wait", "daily", "walk"]
     },
     "Psalm 73:26": {
@@ -7370,7 +7360,7 @@ let q76ans = {
   "Speak with boldness and trust God to work": {
     "Acts 28:31": {
       text: "He proclaimed the kingdom of God and taught about the Lord Jesus Christ—with all boldness and without hindrance!",
-      theme: "boldness",
+      theme: "jesus",
       tags: ["proclaim", "teach", "kingdom", "free"]
     },
     "Ephesians 3:12": {
@@ -7416,7 +7406,7 @@ let q76ans = {
     },
     "1 Peter 3:15": {
       text: "But in your hearts honor Christ the Lord as holy, always being prepared to make a defense to anyone who asks you for a reason for the hope that is in you; yet do it with gentleness and respect.",
-      theme: "respect",
+      theme: "jesus",
       tags: ["hope", "gentleness", "respect", "defense"]
     },
     "Proverbs 15:23": {
@@ -7428,12 +7418,12 @@ let q76ans = {
 
   "Live out what you share": {
     "Matthew 5:14-16": {
-      text: "You are the light of the world... let your light shine before others, so that they may see your good works and give glory to your Father in heaven.",
+      text: "You are the light of the world-like a city on a hilltop that cannot be hidden. No one lights a lamp and then puts it under a basket. Instead, a lamp is placed on a stand where it gives light to everyone in the house. In the same way, let your good deeds shine out for all to see, so that everyone will glorify your Father in heaven.",
       theme: "light",
       tags: ["light", "shine", "works", "glory"]
     },
     "James 1:22": {
-      text: "But be doers of the word, and not hearers only, deceiving yourselves.",
+      text: "Do not merely listen to the word, and so deceive yourselves. Do what it says.",
       theme: "obedience",
       tags: ["doer", "word", "action", "truth"]
     },
@@ -7535,12 +7525,12 @@ let q77ans = {
   "You’re not the first to feel afraid—others did too, but God used them": {
     "Acts 18:9–10": {
       text: "Do not be afraid; keep on speaking, do not be silent. For I am with you, and no one is going to attack and harm you...",
-      theme: "courage",
+      theme: "presence",
       tags: ["boldness", "calling", "presence", "protection"]
     },
     "Joshua 1:9": {
-      text: "Be strong and courageous. Do not be afraid... for the Lord your God will be with you wherever you go.",
-      theme: "courage",
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+      theme: "fear",
       tags: ["strength", "fear", "boldness", "mission"]
     },
     "Luke 12:12": {
@@ -7597,7 +7587,7 @@ let q78ans = {
   "Let your behavior speak louder than words": {
     "1 Peter 2:12": {
       text: "Live such good lives among the pagans that, though they accuse you of doing wrong, they may see your good deeds and glorify God on the day he visits us.",
-      theme: "witness",
+      theme: "goodness",
       tags: ["lifestyle", "good", "example", "behavior"]
     },
     "Titus 2:7-8": {
@@ -7607,7 +7597,7 @@ let q78ans = {
     },
     "Matthew 7:16": {
       text: "By their fruit you will recognize them. Do people pick grapes from thornbushes, or figs from thistles?",
-      theme: "fruit",
+      theme: "truth",
       tags: ["fruit", "character", "recognition", "discernment"]
     }
   },
@@ -7705,7 +7695,7 @@ let q79ans = {
     },
     "Matthew 10:22": {
       text: "You will be hated by everyone because of me, but the one who stands firm to the end will be saved.",
-      theme: "endurance",
+      theme: "faithful",
       tags: ["persecution", "faith", "salvation"]
     },
     "Isaiah 7:9": {
@@ -7718,17 +7708,17 @@ let q79ans = {
   "You should be bold and unashamed of your faith.": {
     "Romans 1:16": {
       text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes...",
-      theme: "boldness",
+      theme: "salvation",
       tags: ["unashamed", "gospel", "salvation"]
     },
     "2 Timothy 1:8": {
       text: "So do not be ashamed of the testimony about our Lord or of me his prisoner. Rather, join me in suffering for the gospel, by the power of God.",
-      theme: "boldness",
+      theme: "salvation",
       tags: ["suffering", "gospel", "courage"]
     },
     "Acts 4:20": {
       text: "As for us, we cannot help speaking about what we have seen and heard.",
-      theme: "boldness",
+      theme: "salvation",
       tags: ["witness", "truth", "speech"]
     },
     "Acts 5:29": {
@@ -7755,15 +7745,15 @@ let q79ans = {
       tags: ["persecution", "godly", "faith"]
     },
     "Matthew 5:10–12": {
-      text: "Blessed are those who are persecuted because of righteousness, for theirs is the kingdom of heaven...",
-      theme: "reward",
+      text: "Blessed are those who are persecuted because of righteousness, for theirs is the kingdom of heaven. God blesses you when people mock you and persecute you and say all sorts of evil things against you because you are my followers. Be happy and be glad! For a great reward awaits you in heaven. And remember, the ancient prophets were persecuted in the same way.",
+      theme: "obedience",
       tags: ["persecution", "kingdom", "joy"]
     }
   },
 
   "You should resist the pressure to conform and keep living differently.": {
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you'll be able to test and approve what God's will is—his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["nonconformity", "renewal", "mind"]
     },
@@ -7797,7 +7787,7 @@ let q79ans = {
     },
     "2 Timothy 2:12": {
       text: "If we endure, we will also reign with him. If we disown him, he will also disown us.",
-      theme: "reward",
+      theme: "faithful",
       tags: ["endurance", "reign", "faithfulness"]
     },
     "Hebrews 12:3": {
@@ -7806,15 +7796,15 @@ let q79ans = {
       tags: ["endurance", "Jesus", "hope"]
     },
     "James 1:12": {
-      text: "Blessed is the one who perseveres under trial because... that person will receive the crown of life...",
-      theme: "reward",
+      text: "Blessed is the one who perseveres under trial and temptation. Afterward that person will receive the crown of life that God has promised to those who love him.",
+      theme: "faithful",
       tags: ["trial", "perseverance", "crown"]
     }
   },
 
   "You should be a light and keep shining, no matter how dark it feels.": {
-    "Matthew 5:14–16": {
-      text: "You are the light of the world… let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+    "Matthew 5:14-16": {
+      text: "You are the light of the world-like a city on a hilltop that cannot be hidden. No one lights a lamp and then puts it under a basket. Instead, a lamp is placed on a stand where it gives light to everyone in the house. In the same way, let your good deeds shine out for all to see, so that everyone will glorify your Father in heaven.",
       theme: "light",
       tags: ["light", "witness", "glorify"]
     },
@@ -7855,7 +7845,7 @@ const q80ans = {
     },
     "Genesis 2:24": {
       text: "That is why a man leaves his father and mother and is united to his wife, and they become one flesh.",
-      theme: "relationship",
+      theme: "creation",
       tags: ["creation", "obedience", "identity", "relationship"]
     },
     "Matthew 19:4–5": {
@@ -7888,7 +7878,7 @@ const q80ans = {
     },
     "Leviticus 18:22": {
       text: "Do not have sexual relations with a man as one does with a woman; that is detestable.",
-      theme: "law",
+      theme: "obedience",
       tags: ["obedience", "truth", "law", "fallenness", "boundaries", "sexual sin", "Leviticus", "purity"]
     },
     "1 Corinthians 6:9–11": {
@@ -7916,7 +7906,7 @@ const q80ans = {
   "Following Jesus means surrendering identity, not shaping it": {
     "Luke 9:23": {
       text: "Then he said to them all: 'Whoever wants to be my disciple must deny themselves and take up their cross daily and follow me.'",
-      theme: "discipleship",
+      theme: "obedience",
       tags: ["obedience", "submission", "discipleship", "identity"]
     },
     "Galatians 2:20": {
@@ -7929,8 +7919,8 @@ const q80ans = {
       theme: "submission",
       tags: ["obedience", "submission", "identity", "truth"]
     },
-    "Romans 12:1–2": {
-      text: "Therefore, I urge you, brothers and sisters, in view of God’s mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship. Do not conform to the pattern of this world, but be transformed by the renewing of your mind.",
+    "Romans 12:1-2": {
+      text: "And so dear brothers and sisters, I plead with you to give your bodies to God because of all He has done for you. Let them be a living and holy sacrifice, the kind he will find acceptable. This is truly the way to worship him. Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is-his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["transformation", "obedience", "identity", "truth"]
     },
@@ -7964,7 +7954,7 @@ const q80ans = {
     },
     "Galatians 3:28": {
       text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.",
-      theme: "unity",
+      theme: "truth",
       tags: ["identity", "unity", "truth", "grace"]
     }
   },
@@ -8002,7 +7992,7 @@ const q80ans = {
   },
   "Galatians 2:20": {
     text: "I have been crucified with Christ and I no longer live, but Christ lives in me. The life I now live in the body, I live by faith in the Son of God, who loved me and gave himself for me.",
-    theme: "identity",
+    theme: "love",
     tags: ["faith", "life in Christ", "love", "sacrifice", "identity"]
   }
 }
@@ -8122,7 +8112,7 @@ let q81ans = {
   },
   "God helps by giving rest and compassion to the brokenhearted": {
     "Matthew 11:28-30": {
-      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls.",
+      text: "Jesus said 'Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you. Let me teach you, because I am humble and gentle at heart, and you will find rest for your souls. For my yoke is easy and the burden I give you is light.",
       theme: "peace",
       tags: ["rest", "burden", "Jesus"]
     },
@@ -8144,7 +8134,7 @@ let q81ans = {
   },
   "God helps by promising salvation and protecting those who trust Him": {
     "Romans 8:38-39": {
-      text: "For I am convinced that neither death nor life... will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      text: "For I am convinced that nothing can ever separate us from God's love. Neither death nor life, neither angels nor demons, neither our fears for today nor our worries about tomorrow-not even the powers of hell can separate us from God's love. No power in the sky above or in the earth below nor anything else in all creation, will be able to separate us from the love of God that is revealed in Christ Jesus our Lord.",
       theme: "salvation",
       tags: ["love", "security", "assurance"]
     },
@@ -8202,7 +8192,7 @@ let q82ans = {
     },
     "Philippians 4:8": {
       text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
-      theme: "pure",
+      theme: "goodness",
       tags: ["thoughts", "focus", "purity"]
     },
     "Colossians 3:2": {
@@ -8225,7 +8215,7 @@ let q82ans = {
     },
     "Matthew 26:41": {
       text: "Watch and pray so that you will not fall into temptation. The spirit is willing, but the flesh is weak.",
-      theme: "pray",
+      theme: "temptation",
       tags: ["watch", "pray", "temptation"]
     }
   },
@@ -8279,7 +8269,7 @@ let q82ans = {
     },
     "Psalm 119:9": {
       text: "How can a young person stay on the path of purity? By living according to your word.",
-      theme: "pure",
+      theme: "word",
       tags: ["purity", "word", "path"]
     },
     "Ephesians 3:16": {
@@ -8295,7 +8285,7 @@ let q83ans = {
   "God listens even when you're frustrated, confused, or accusing Him": {
     "Habakkuk 1:2–4": {
       text: "How long, Lord, must I call for help, but you do not listen? Or cry out to you, ‘Violence!’ but you do not save? Why do you make me look at injustice? Why do you tolerate wrongdoing? Destruction and violence are before me; there is strife, and conflict abounds. Therefore the law is paralyzed, and justice never prevails.",
-      theme: "honest",
+      theme: "faithful",
       tags: ["complaint", "violence", "waiting", "confusion"]
     },
     "Habakkuk 2:1–4": {
@@ -8388,26 +8378,26 @@ let q83ans = {
   },
 
   "God responds with compassion and mercy even when we express anger": {
-    "Psalm 103:8": {
+    "Psalms 103:8": {
       text: "The Lord is compassionate and gracious, slow to anger, abounding in love.",
       theme: "mercy",
       tags: ["merciful", "gracious", "slow"]
     },
-    "Psalm 103:9": {
+    "Psalms 103:9": {
       text: "He will not always accuse, nor will he harbor his anger forever.",
       theme: "mercy",
       tags: ["patience", "judgment", "love"]
     },
     "Isaiah 54:7": {
       text: "For a brief moment I abandoned you, but with deep compassion I will bring you back.",
-      theme: "compassion",
+      theme: "love",
       tags: ["abandon", "return", "compassion"]
     }
   },
 
   "God responds by guiding us into wisdom and perspective when we feel lost": {
     "Isaiah 55:8-9": {
-      text: "For my thoughts are not your thoughts, neither are your ways my ways... As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
       theme: "wisdom",
       tags: ["thoughts", "ways", "perspective"]
     },
@@ -8443,7 +8433,7 @@ let q83ans = {
 
   "God responds by not withholding salvation, no matter our anger": {
     "Romans 8:38-39": {
-      text: "For I am convinced that neither death nor life, neither angels nor demons... nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      text: "For I am convinced that nothing can ever separate us from God's love. Neither death nor life, neither angels nor demons, neither our fears for today nor our worries about tomorrow-not even the powers of hell can separate us from God's love. No power in the sky above or in the earth below nor anything else in all creation, will be able to separate us from the love of God that is revealed in Christ Jesus our Lord.",
       theme: "salvation",
       tags: ["love", "security", "assurance"]
     },
@@ -8474,7 +8464,7 @@ theme: "justice",
 tags: ["nation", "God", "partiality", "accept"]
 },
 "Deuteronomy 10:17": {
-text: "For the Lord your God is God of gods and Lord of lords... he is impartial and does not accept bribes.",
+text: "For the Lord your God is God of gods and Lord of lords, the great God, mighty and awesome. He is impartial and does not accept bribes.",
 theme: "justice",
 tags: ["impartiality", "bribe", "honor", "God"]
 },
@@ -8488,12 +8478,12 @@ tags: ["repay", "sin", "partiality", "fair"]
 "God’s design is unity in diversity—no division by ethnicity or status": {
 "Galatians 3:28": {
 text: "There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.",
-theme: "unity",
+theme: "spirit",
 tags: ["one", "identity", "diversity", "Christ"]
 },
 "1 Corinthians 12:13": {
 text: "For we were all baptized by one Spirit so as to form one body... whether Jews or Gentiles, slave or free—and we were all given the one Spirit.",
-theme: "unity",
+theme: "spirit",
 tags: ["body", "Spirit", "diversity", "baptism"]
 },
 "Acts 17:26": {
@@ -8516,12 +8506,12 @@ tags: ["foreigner", "fatherless", "justice", "widow"]
 },
 "Leviticus 19:34": {
 text: "The foreigner residing among you must be treated as your native-born. Love them as yourself.",
-theme: "loving",
+theme: "love",
 tags: ["foreigner", "love", "equal", "justice"]
 },
 "Isaiah 1:17": {
-text: "Learn to do right; seek justice. Defend the oppressed, take up the cause of the fatherless... plead the widow’s case.",
-theme: "justice",
+      text: "Learn to do right; seek justice. Defend the oppressed. Take up the cause of the orphans; plead the case of the widow.",
+      theme: "justice",
 tags: ["seek", "defend", "widow", "fatherless"]
 },
 "Psalm 82:3": {
@@ -8591,7 +8581,7 @@ tags: ["Gentile", "healing", "widow", "grace"]
 },
 "Matthew 8:10–12": {
 text: "When Jesus heard this, he was amazed and said to those following him, \"Truly I tell you, I have not found anyone in Israel with such great faith. I say to you that many will come from the east and the west and will take their places at the feast with Abraham, Isaac and Jacob in the kingdom of heaven. But the subjects of the kingdom will be thrown outside, into the darkness, where there will be weeping and gnashing of teeth.\"",
-theme: "faith",
+theme: "faithful",
 tags: ["faith", "Gentile", "kingdom", "unexpected"]
 },
 "Matthew 23:12": {
@@ -8608,7 +8598,7 @@ let q85ans = {
   "You are deeply seen and loved by God": {
     "Luke 12:6-7": {
       text: "Are not five sparrows sold for two pennies? Yet not one of them is forgotten by God. Indeed, the very hairs of your head are all numbered. Don’t be afraid; you are worth more than many sparrows.",
-      theme: "value",
+      theme: "creation",
       tags: ["worth", "God sees", "you matter", "personal attention"]
     },
     "Psalm 139:13-16": {
@@ -8650,7 +8640,7 @@ let q85ans = {
       tags: ["you are loved", "sacrifice", "worth"]
     },
     "Isaiah 49:15-16": {
-      text: "Can a mother forget the baby at her breast...? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands...",
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands; your walls are ever before me.",
       theme: "faithful",
       tags: ["God remembers", "you are not forgotten", "deep love"]
     }
@@ -8673,7 +8663,7 @@ let q85ans = {
       tags: ["belonging", "value", "child of God"]
     },
     "Romans 8:16-17": {
-      text: "The Spirit himself testifies with our spirit that we are God’s children. Now if we are children, then we are heirs—heirs of God and co-heirs with Christ...",
+      text: "The Spirit himself bears witness with our spirit that we are children of God, and if children, then heirs—heirs of God and fellow heirs with Christ, provided we suffer with him in order that we may also be glorified with him.",
       theme: "glory",
       tags: ["inheritance", "child of God", "dignity"]
     },
@@ -8774,13 +8764,13 @@ let q86ans = {
 
   "Worship and thanksgiving realign your heart": {
     "Philippians 4:6-7": {
-      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. Then you will experience God's peace, which exceeds anything we can understand. His peace will guard your hearts and minds as you live in Christ Jesus.",
       theme: "peace",
       tags: ["gratitude", "prayer", "emotional reset", "calm"]
     },
     "Psalm 34:1-3": {
       text: "I will bless the Lord at all times; his praise shall continually be in my mouth... Oh, magnify the Lord with me, and let us exalt his name together!",
-      theme: "praise",
+      theme: "peace",
       tags: ["worship", "joy", "magnify", "shift perspective"]
     }
   }
@@ -8797,8 +8787,8 @@ let q87ans = {
       tags: ["process of healing", "suffering has purpose", "character building"]
     },
     "James 1:2-4": {
-      text: "Consider it pure joy... whenever you face trials... because... the testing of your faith produces perseverance. Let perseverance finish its work so you may be mature and complete...",
-      theme: "growth",
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. So let it grow, for when perserverance is fully developed, you will be perfect and needing nothing.",
+      theme:  "growth",
       tags: ["perseverance", "pain has purpose", "spiritual maturity"]
     },
     "2 Corinthians 4:16-18": {
@@ -8820,7 +8810,7 @@ let q87ans = {
       tags: ["God's timing", "seasons", "healing delay", "purpose in timing"]
     },
     "2 Peter 3:9": {
-      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient...",
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
       theme: "faithful",
       tags: ["God is not late", "God’s patience", "faith in delay"]
     },
@@ -8848,7 +8838,7 @@ let q87ans = {
       tags: ["quiet waiting", "God's goodness", "hope in delay"]
     },
     "Isaiah 40:31": {
-      text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles... run and not grow weary... walk and not be faint.",
+      text: "But they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint.",
       theme: "strength",
       tags: ["renewal", "trust in God", "waiting reward", "strength returns"]
     },
@@ -8862,12 +8852,12 @@ let q87ans = {
   "Know that God is healing you, even when you can’t see it": {
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
-      theme: "healing",
+      theme: "love",
       tags: ["emotional healing", "God cares", "personal restoration"]
     },
     "Jeremiah 17:14": {
       text: "Heal me, Lord, and I will be healed; save me and I will be saved…",
-      theme: "healing",
+      theme: "salvation",
       tags: ["personal prayer", "restoration request", "faith in healing"]
     }
   },
@@ -8965,7 +8955,7 @@ let q89ans = {
 
   "Learn to be content in every season": {
     "Philippians 4:11–12": {
-      text: "I have learned to be content whatever the circumstances... I have learned the secret of being content in any and every situation.",
+      text: "I have learned to be content whatever the circumstances. I know how to live on almost nothing or with everything. I have learned the secret of being content in any and every situation, whether it is with a full stomach or empty.",
       theme: "peace",
       tags: ["contentment", "seasons", "joy", "inner strength"]
     }
@@ -8981,10 +8971,10 @@ let q89ans = {
 
   "Your identity is rooted in Christ alone": {
     "Galatians 2:20": {
-      text: "I have been crucified with Christ and I no longer live, but Christ lives in me... I live by faith in the Son of God, who loved me and gave himself for me.",
-      theme: "faith",
-      tags: ["identity", "Christ", "faith", "self-worth"]
-    }
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
+      theme: "transformation",
+      tags: ["identity", "Christ in me", "death to self"]
+    },
   },
 
   "Seek God’s approval, not people’s praise": {
@@ -9004,8 +8994,8 @@ let q89ans = {
   },
 
   "Do your best for God—not to impress people": {
-    "Colossians 3:23–24": {
-      text: "Whatever you do, work at it with all your heart, as working for the Lord... It is the Lord Christ you are serving.",
+    "Colossians 3:23-24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.",
       theme: "obedience",
       tags: ["excellence", "purpose", "work ethic", "motives"]
     }
@@ -9014,7 +9004,7 @@ let q89ans = {
   "God has prepared good things uniquely for you": {
     "Ephesians 2:10": {
       text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
-      theme: "purpose",
+      theme: "jesus",
       tags: ["calling", "purpose", "God's plan", "identity"]
     }
   },
@@ -9117,7 +9107,7 @@ let q91ans = {
     },
     "1 Corinthians 1:29": {
       text: "so that no one may boast before him.",
-      theme: "humility",
+      theme: "humble",
       tags: ["glory", "boasting", "humble", "dependence"]
     },
     "Luke 1:52": {
@@ -9223,8 +9213,8 @@ let q92ans = {
   },
 
   "The right path produces fruit and peace": {
-    "Psalm 1:1–3": {
-      text: "Blessed is the one who does not walk in step with the wicked… but whose delight is in the law of the Lord… That person is like a tree planted by streams of water, which yields its fruit in season…",
+    "Psalms 1:1–3": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night. That person is like a tree planted by streams of water, which yields its fruit in season and whose leaf does not wither—whatever they do prospers.",
       theme: "growth",
       tags: ["fruit", "righteousness", "delight", "law", "blessing"]
     },
@@ -9496,7 +9486,7 @@ let q95ans = {
     },
     "1 Thessalonians 5:11": {
       text: "Therefore encourage one another and build each other up, just as in fact you are doing.",
-      theme: "encouragement",
+      theme: "friend",
       tags: ["friendship", "unity", "support"]
     },
     "Proverbs 27:17": {
@@ -9505,7 +9495,7 @@ let q95ans = {
       tags: ["friendship", "wisdom", "discipleship"]
     },
     "Colossians 3:16": {
-      text: "Let the message of Christ dwell among you richly... teaching and admonishing one another with all wisdom...",
+      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.",
       theme: "wisdom",
       tags: ["truth", "teaching", "mutual growth"]
     }
@@ -9546,16 +9536,23 @@ let q95ans = {
       tags: ["sexuality", "respect", "God's temple"]
     },
     "Malachi 2:15": {
-      text: "Has not the one God made you? You belong to him in body and spirit... So be on your guard, and do not be unfaithful to the wife of your youth.",
+      text: "Didn't the Lord make you one with your wife? In body and spirit. And what does he want? Godly children from your union. So be on your guard, and do not be unfaithful to the wife of your youth.",
       theme: "faithful",
       tags: ["marriage", "loyalty", "legacy"]
     },
     "1 Thessalonians 4:3–5": {
-      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality...",
+      text: "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each of you know how to control your own body in holiness and honor-not in lustful passions like the pagans who do not know God do.",
       theme: "holy",
       tags: ["purity", "self-control", "obedience"]
+    },
+    "Malachi 2:14-15": {
+      text: "You cry out'Why doesn't the Lord accept my worship?', its because the Lord is the witness between you and the wife of your youth. But you have been unfaithful to her, though she remained a faithful partner, the wife of your marriage vows. Has not the one God made you one with your wife? You belong to him in body and spirit. And what does the one God seek? Godly offspring. So guard your heart and remain loyal to the wife of your youth.",
+      theme: "faithful",
+      tags: ["marriage covenant", "loyalty", "purpose"]
     }
   },
+
+  
 
   "Godly relationships include family responsibility and care": {
     "1 Timothy 5:8": {
@@ -9574,7 +9571,7 @@ let q95ans = {
       tags: ["family", "instruction", "parenting"]
     },
     "Colossians 3:18–21": {
-      text: "Wives, submit yourselves to your husbands... Children, obey your parents... Fathers, do not embitter your children...",
+      text: "Wives, submit yourselves to your husbands as is fitting to the Lord. Husbands, love your wives and do not be harsh with them. Children, obey your parents in everything for this pleases the Lord. Fathers, do not embitter your children or they will become discouraged.",
       theme: "obedience",
       tags: ["family", "roles", "peace"]
     }
@@ -9685,7 +9682,7 @@ let q96ans = {
     },
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
-      theme: "healing",
+      theme: "love",
       tags: ["emotional pain", "restoration", "God’s care"]
     }
   },
@@ -9819,7 +9816,7 @@ let q97ans = {
   },
   "Draw near to God in your loneliness": {
     "James 4:8": {
-      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
       theme: "seek",
       tags: ["seek", "return", "repentance"]
     },
@@ -9854,7 +9851,7 @@ let q97ans = {
   "Let God heal your heart and comfort your pain": {
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
-      theme: "healing",
+      theme: "love",
       tags: ["healing", "comfort", "brokenness"]
     },
     "Lamentations 3:31–32": {
@@ -9981,7 +9978,7 @@ let q99ans = {
     },
     "Luke 6:22–23": {
       text: "Blessed are you when people hate you, when they exclude you and insult you and reject your name as evil because of the Son of Man… Rejoice in that day and leap for joy, because great is your reward in heaven.",
-      theme: "blessing",
+      theme: "word",
       tags: ["insult", "rejection", "reward"]
     },
     "2 Chronicles 36:16": {
@@ -10018,13 +10015,13 @@ let q99ans = {
       tags: ["mockery", "unbelief", "rejection"]
     },
     "Isaiah 53:3": {
-      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain…",
+      text: "He was despised and rejected by mankind, a man of suffering, and familiar with pain. Like one from whom people hide their faces he was despised, and we held him in low esteem.",
       theme: "jesus",
       tags: ["rejection", "pain", "prophecy"]
     },
-    "Matthew 5:11–12": {
-      text: "Blessed are you when people insult you… Rejoice and be glad, because great is your reward in heaven. For in the same way they persecuted the prophets…",
-      theme: "blessing",
+    "Matthew 5:11-12": {
+      text: "Blessed are you when people insult you, persecute you and falsely say all kinds of evil against you because of me. Rejoice and be glad, because great is your reward in heaven, for in the same way they persecuted the prophets who were before you.",
+      theme: "word",
       tags: ["insult", "reward", "persecution"]
     }
   },
@@ -10032,7 +10029,7 @@ let q99ans = {
   "Don’t be ashamed of your faith — be bold and confident": {
     "Romans 1:16": {
       text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation…",
-      theme: "boldness",
+      theme: "faithful",
       tags: ["faith", "confidence", "salvation"]
     },
     "2 Timothy 1:12": {
@@ -10114,7 +10111,7 @@ let q99ans = {
     },
     "Matthew 6:4": {
       text: "...your Father, who sees what is done in secret, will reward you.",
-      theme: "reward",
+      theme: "faithful",
       tags: ["reward", "faithfulness", "secrecy"]
     }
   },
@@ -10127,7 +10124,7 @@ let q99ans = {
     },
     "Acts 5:41": {
       text: "The apostles left the Sanhedrin, rejoicing because they had been counted worthy of suffering disgrace for the Name.",
-      theme: "rejoicing",
+      theme: "faithful",
       tags: ["joy", "disgrace", "faith"]
     },
     "Philippians 1:29–30": {
@@ -10166,7 +10163,7 @@ let q100ans = {
     },
     "Romans 1:16": {
       text: "For I am not ashamed of the gospel, because it is the power of God that brings salvation to everyone who believes: first to the Jew, then to the Gentile.",
-      theme: "boldness",
+      theme: "faithful",
       tags: ["faith", "identity", "confidence", "gospel", "school", "work"]
     }
   },
@@ -10217,7 +10214,7 @@ let q100ans = {
     },
     "Esther 4:14": {
       text: "For if you remain silent at this time, relief and deliverance for the Jews will arise from another place, but you and your father’s family will perish. And who knows but that you have come to your royal position for such a time as this?",
-      theme: "courage",
+      theme: "wisdom",
       tags: ["calling", "courage", "purpose", "God's timing", "leadership"]
     },
     "Matthew 5:16": {
@@ -10272,7 +10269,7 @@ let q101ans = {
     },
     "2 Corinthians 7:10": {
       text: "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death.",
-      theme: "repentance",
+      theme: "salvation",
       tags: ["repentance", "conviction", "godly sorrow", "salvation"]
     },
     "John 3:17": {
@@ -10306,12 +10303,12 @@ let q101ans = {
     },
     "Romans 7:15": {
       text: "I do not understand what I do. For what I want to do I do not do, but what I hate I do.",
-      theme: "struggle",
+      theme: "battle",
       tags: ["sin", "inner battle", "conflict", "Paul"]
     },
     "Romans 7:19": {
       text: "For I do not do the good I want to do, but the evil I do not want to do—this I keep on doing.",
-      theme: "struggle",
+      theme: "battle",
       tags: ["weakness", "sin", "discipline", "realness"]
     },
     "Proverbs 24:16": {
@@ -10321,8 +10318,8 @@ let q101ans = {
     }
   },
   "Don't hide your light just because you're not perfect": {
-    "Matthew 5:14–16": {
-      text: "You are the light of the world... let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+    "Matthew 5:14-16": {
+      text: "You are the light of the world-like a city on a hilltop that cannot be hidden. No one lights a lamp and then puts it under a basket. Instead, a lamp is placed on a stand where it gives light to everyone in the house. In the same way, let your good deeds shine out for all to see, so that everyone will glorify your Father in heaven.",
       theme: "light",
       tags: ["testimony", "witness", "identity", "shine", "faith"]
     },
@@ -10332,10 +10329,10 @@ let q101ans = {
       tags: ["weakness", "glory", "God’s power", "vessel"]
     },
     "Galatians 2:20": {
-      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
-      theme: "identity",
-      tags: ["union with Christ", "life", "faith", "transformation"]
-    }
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
+      theme: "jesus",
+      tags: ["identity", "Christ in me", "death to self"]
+    },
   }
 };
 
@@ -10353,8 +10350,8 @@ let q102ans = {
       tags: ["law", "grace", "truth", "Jesus", "Moses", "gospel"]
     },
     "Hebrews 4:15–16": {
-      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence...",
-      theme: "savior",
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence so that we may receive mercy and find grace to help us in our time of need.",
+      theme: "jesus",
       tags: ["Jesus", "grace", "truth", "temptation", "empathy", "confidence"]
     }
   },
@@ -10475,11 +10472,11 @@ let q103ans = {
   "Let your actions speak for your faith": {
     "1 Peter 2:12": {
       text: "Live such good lives among the pagans that they may see your good deeds and glorify God on the day he visits.",
-      theme: "witness",
+      theme: "goodness",
       tags: ["behavior", "good", "deeds", "God", "example"]
     },
     "Matthew 5:14-16": {
-      text: "You are the light of the world. A city set on a hill cannot be hidden... let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      text: "You are the light of the world-like a city on a hilltop that cannot be hidden. No one lights a lamp and then puts it under a basket. Instead, a lamp is placed on a stand where it gives light to everyone in the house. In the same way, let your good deeds shine out for all to see, so that everyone will glorify your Father in heaven.",
       theme: "light",
       tags: ["light", "goodworks", "visibility", "glorify"]
     },
@@ -10515,8 +10512,8 @@ let q103ans = {
       tags: ["humility", "Christ", "relationships", "mindset"]
     },
     "Galatians 5:22-23": {
-      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self‑control...",
-      theme: "fruit",
+      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.",
+      theme: "spirit",
       tags: ["Spirit", "kindness", "character", "gentleness"]
     },
     "Colossians 3:12": {
@@ -10624,7 +10621,7 @@ let q104ans = {
 
   "We can approach God with confidence, even in our weakness": {
     "Hebrews 4:15–16": {
-      text: "For we do not have a high priest... who is unable to sympathize with our weaknesses... Let us then with confidence draw near to the throne of grace, that we may receive mercy and find grace to help in time of need.",
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin. Let us then approach God's throne of grace with confidence so that we may receive mercy and find grace to help us in our time of need.",
       theme: "help",
       tags: ["weakness", "mercy", "grace", "confidence"]
     },
@@ -10643,12 +10640,12 @@ let q104ans = {
   "Healing flows through confession and community": {
     "James 5:16": {
       text: "Therefore confess your sins to one another and pray for one another, that you may be healed. The prayer of a righteous person has great power as it is working.",
-      theme: "healing",
+      theme: "salvation",
       tags: ["confess", "pray", "community", "power"]
     },
     "Galatians 6:1": {
       text: "Brothers, if someone is caught in a sin, you who are spiritual should restore him gently, keeping watch on yourself, so that you also may not be tempted.",
-      theme: "healing",
+      theme: "salvation",
       tags: ["restore", "gentleness", "sin", "community"]
     },
     "1 John 1:9": {
@@ -10660,12 +10657,12 @@ let q104ans = {
 
   "God calls us to ongoing purity and transformation": {
     "1 Thessalonians 4:3–5": {
-      text: "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each of you know how to control your own body in holiness and honor.",
+      text: "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each of you know how to control your own body in holiness and honor-not in lustful passions like the pagans who do not know God do.",
       theme: "obedience",
       tags: ["sanctification", "control", "holiness", "honor"]
     },
     "Ephesians 5:3": {
-      text: "But immorality and impurity or greed must not even be named among you, as is proper among saints.",
+      text: "But among you there must not be even a hint of sexual immorality, or of any kind of impurity, or of greed, because these are improper for God’s holy people.",
       theme: "obedience",
       tags: ["purity", "immorality", "impurity", "holy"]
     }
@@ -10751,12 +10748,12 @@ let q105ans = {
   "Even in failure, God invites us to return and restores what was lost": {
     "Joel 2:12–13": {
       text: "'Yet even now,' declares the Lord, 'return to me with all your heart, with fasting, with weeping, and with mourning; and rend your hearts and not your garments.' Return to the Lord your God, for he is gracious and merciful, slow to anger, and abounding in steadfast love; and he relents over disaster.",
-      theme: "restoration",
+      theme: "grace",
       tags: ["return", "grace", "mercy", "love"]
     },
     "Joel 2:25": {
       text: "I will restore to you the years that the swarming locust has eaten, the hopper, the destroyer, and the cutter, my great army, which I sent among you.",
-      theme: "restoration",
+      theme: "grace",
       tags: ["restore", "loss", "healing", "hope"]
     },
     "Psalm 51:1–3": {
@@ -10783,7 +10780,7 @@ let q105ans = {
   "Healing begins through confession, honesty, and prayer": {
     "James 5:16": {
       text: "Therefore, confess your sins to one another and pray for one another, that you may be healed. The prayer of a righteous person has great power as it is working.",
-      theme: "healing",
+      theme: "power",
       tags: ["confess", "pray", "community", "power"]
     },
     "Proverbs 28:13": {
@@ -10890,7 +10887,7 @@ tags: ["bishop", "leader", "church", "roles"]
   "God raised women to lead, judge, and teach in both Old and New Testaments": {
     "Judges 4:4–5": {
       text: "Now Deborah, a prophetess, the wife of Lapidoth, was judging Israel at that time. And she would sit under the palm tree of Deborah between Ramah and Bethel in the mountains of Ephraim. And the children of Israel came up to her for judgment.",
-      theme: "leadership",
+      theme: "wisdom",
       tags: ["prophetess", "judge", "wisdom"]
     },
     "Acts 18:26": {
@@ -10900,12 +10897,12 @@ tags: ["bishop", "leader", "church", "roles"]
     },
     "Romans 16:1": {
       text: "I commend to you Phoebe our sister, who is a servant of the church in Cenchrea.",
-      theme: "service",
+      theme: "wisdom",
       tags: ["servant", "deacon", "commendation"]
     },
     "Romans 16:7": {
       text: "Greet Andronicus and Junia, my countrymen and my fellow prisoners, who are of note among the apostles, who also were in Christ before me.",
-      theme: "leadership",
+      theme: "wisdom",
       tags: ["apostle", "honor", "women", "controversial identity"]
     }
   },
@@ -10947,11 +10944,11 @@ let q107ans = {
     },
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
-      theme: "healing",
+      theme: "help",
       tags: ["comfort", "healing", "broken", "grief"]
     },
     "Isaiah 49:15-16": {
-      text: "Can a woman forget her nursing child, that she should have no compassion on the son of her womb? Even these may forget, yet I will not forget you. Behold, I have engraved you on the palms of my hands; your walls are continually before me.",
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands; your walls are ever before me.",
       theme: "love",
       tags: ["never", "alone", "forgotten", "love", "value"]
     },
@@ -10965,8 +10962,8 @@ let q107ans = {
       theme: "hope",
       tags: ["future", "purpose", "plans", "life"]
     },
-    "Romans 8:38–39": {
-      text: "For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers... will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+    "Romans 8:38-39": {
+      text: "For I am convinced that nothing can ever separate us from God's love. Neither death nor life, neither angels nor demons, neither our fears for today nor our worries about tomorrow-not even the powers of hell can separate us from God's love. No power in the sky above or in the earth below nor anything else in all creation, will be able to separate us from the love of God that is revealed in Christ Jesus our Lord.",
       theme: "love",
       tags: ["inseparable", "security", "Jesus", "presence"]
     },
@@ -10977,7 +10974,7 @@ let q107ans = {
     },
     "2 Corinthians 1:8–10": {
       text: "We were under great pressure, far beyond our ability to endure, so that we despaired of life itself... But this happened that we might not rely on ourselves but on God... He has delivered us from such a deadly peril, and he will deliver us again.",
-      theme: "deliverance",
+      theme: "salvation",
       tags: ["despair", "pressure", "rescue", "dependence"]
     }
   },
@@ -11025,7 +11022,7 @@ let q107ans = {
   "Life is still worth living": {
     "John 10:10": {
       text: "The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.",
-      theme: "life",
+      theme: "fallenness",
       tags: ["purpose", "life", "enemy", "abundance"]
     },
     "Romans 5:3-5": {
@@ -11051,7 +11048,7 @@ let q107ans = {
   "God didn’t agree with Jonah’s anger or despair—He answered with a question and care": {
     "Jonah 4:3": {
       text: "Now, O Lord, take away my life, for it is better for me to die than to live.",
-      theme: "emotion",
+      theme: "help",
       tags: ["jonah", "anger", "hopelessness", "despair", "emotions", "god-responds", "compassion"]
     }
   },
@@ -11094,21 +11091,21 @@ let q107ans = {
   "Ahithophel ended his life after being rejected—his story shows the weight of pride and disappointment": {
     "2 Samuel 17:23": {
       text: "When Ahithophel saw that his counsel was not followed, he saddled his donkey and went home to his city... Then he put his house in order and hanged himself, and he died.",
-      theme: "emotion",
+      theme: "fallenness",
       tags: ["rejection", "shame", "recorded", "death"]
     }
   },
   "Even Moses felt so overwhelmed he asked God to end his life—but God didn’t abandon him": {
     "Numbers 11:15": {
       text: "If you will treat me like this, kill me at once, if I find favor in your sight, that I may not see my wretchedness.",
-      theme: "emotion",
+      theme: "fallenness",
       tags: ["moses", "overwhelmed", "leadership", "burden"]
     }
   },
   "Jonah wanted to die after things didn’t go his way—but God still engaged him in conversation": {
     "Jonah 4:3": {
       text: "Therefore now, O Lord, please take my life from me, for it is better for me to die than to live.",
-      theme: "emotion",
+      theme: "fallenness",
       tags: ["anger", "jonah", "complaint", "despair"]
     }
   },
@@ -11122,21 +11119,21 @@ let q107ans = {
   "Some psalms describe deep depression and a soul near death—but they bring that darkness to God": {
     "Psalm 88:3-6": {
       text: "For my soul is full of troubles, and my life draws near to Sheol. I am counted among those who go down to the pit... You have put me in the depths of the pit, in the regions dark and deep.",
-      theme: "darkness",
+      theme: "help",
       tags: ["depression", "sheol", "cry", "trouble", "depth"]
     }
   },
   "Even faithful people asked how long they’d be stuck in sorrow—God welcomes our honest cries": {
     "Psalm 13:1-2": {
       text: "How long, O Lord? Will you forget me forever? How long will you hide your face from me? How long must I take counsel in my soul and have sorrow in my heart all the day?",
-      theme: "lament",
+      theme: "help",
       tags: ["forgotten", "longing", "pain", "questions"]
     }
   },
   "Judas’s end was full of regret and horror—a tragic warning about sin and shame": {
     "Acts 1:18": {
       text: "Now this man acquired a field with the reward of his wickedness, and falling headlong he burst open in the middle and all his bowels gushed out.",
-      theme: "judgment",
+      theme: "fallenness",
       tags: ["judas", "death", "betrayal", "consequence"]
     }
   },
@@ -11184,7 +11181,7 @@ let q108ans = {
       tags: ["greatness", "servanthood", "humility", "exaltation"]
     },
     "Colossians 3:12-13": {
-      text: "Therefore, as God’s chosen people... clothe yourselves with compassion, kindness, humility, gentleness and patience. Bear with each other and forgive one another... Forgive as the Lord forgave you.",
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience. Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you.",
       theme: "humble",
       tags: ["forgiveness", "humility", "character", "identity"]
     },
@@ -11198,7 +11195,7 @@ let q108ans = {
   "Judging or looking down on others invites judgment on ourselves": {
     "Matthew 7:1-5": {
       text: "Do not judge, or you too will be judged... You hypocrite, first take the plank out of your own eye, and then you will see clearly to remove the speck from your brother’s eye.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["judging", "hypocrisy", "self-reflection"]
     },
     "Luke 6:37": {
@@ -11208,12 +11205,12 @@ let q108ans = {
     },
     "Romans 14:10-13": {
       text: "You, then, why do you judge your brother or sister? Or why do you treat them with contempt? For we will all stand before God’s judgment seat... Let us stop passing judgment on one another.",
-      theme: "unity",
+      theme: "truth",
       tags: ["judgment", "accountability", "brotherhood", "respect"]
     },
     "Proverbs 16:5": {
       text: "The Lord detests all the proud of heart. Be sure of this: They will not go unpunished.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["pride", "detestable", "consequences"]
     }
   },
@@ -11287,7 +11284,7 @@ let q109ans = {
       tags: ["glory", "image", "spirit", "transformation"]
     },
     "Ephesians 4:22-24": {
-      text: "You were taught, with regard to your former way of life, to put off your old self, which is being corrupted by its deceitful desires; to be made new in the attitude of your minds; and to put on the new self, created to be like God in true righteousness and holiness.",
+      text: "Throw off your old sinful nature and your former way of life, which is corrupted by lust and deception, instead let the Spirit renew your thoughts and attitudes. Put on your new nature created to be like God-truly righteous and holy.",
       theme: "transformation",
       tags: ["new self", "renewal", "righteousness", "holiness"]
     }
@@ -11327,12 +11324,12 @@ let q109ans = {
   "Known by service to others": {
     "Mark 10:43-45": {
       text: "Not so with you. Instead, whoever wants to become great among you must be your servant, and whoever wants to be first must be slave of all. For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
-      theme: "serving",
+      theme: "jesus",
       tags: ["servant", "greatness", "Jesus", "example"]
     },
     "Galatians 5:13": {
       text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather, serve one another humbly in love.",
-      theme: "serving",
+      theme: "jesus",
       tags: ["freedom", "flesh", "love", "humility"]
     }
   },
@@ -11358,7 +11355,7 @@ let q109ans = {
   "Rooted in identity and calling": {
     "1 Peter 2:9": {
       text: "But you are a chosen people, a royal priesthood, a holy nation, God’s special possession, that you may declare the praises of him who called you out of darkness into his wonderful light.",
-      theme: "identity",
+      theme: "light",
       tags: ["chosen", "light", "calling", "worship"]
     },
     "Matthew 5:3-10": {
@@ -11485,7 +11482,7 @@ let q110ans = {
 
   "Living wisely includes watching your path": {
     "Ephesians 5:15-17": {
-      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity... Therefore do not be foolish, but understand what the Lord’s will is.",
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity in these evil days. Therefore do not be foolish, but understand what the Lord’s will is.",
       theme: "guidance",
       tags: ["time", "purpose", "watchfulness"]
     },
@@ -11756,7 +11753,7 @@ let q112ans = {
     },
     "Genesis 50:20": {
       text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
-      theme: "redemption",
+      theme: "goodness",
       tags: ["intention", "good", "purpose"]
     }
   },
@@ -11774,7 +11771,7 @@ let q112ans = {
     },
     "Job 42:2": {
       text: "I know that you can do all things; no purpose of yours can be thwarted.",
-      theme: "sovereignty",
+      theme: "power",
       tags: ["God’s purpose", "sovereignty", "unfail"]
     }
   },
@@ -11787,7 +11784,7 @@ let q112ans = {
     },
     "Galatians 6:9": {
       text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
-      theme: "perseverance",
+      theme: "goodness",
       tags: ["patience", "harvest", "purpose"]
     }
   },
@@ -11808,7 +11805,7 @@ let q112ans = {
   "Holding onto God's promises sustains through setbacks": {
     "Psalm 33:10-11": {
       text: "The Lord foils the plans of the nations; he thwarts the purposes of the peoples. But the plans of the Lord stand firm forever, the purposes of his heart through all generations.",
-      theme: "sovereignty",
+      theme: "authority",
       tags: ["God’s plan", "lasting", "authority"]
     },
     "Psalm 23:1-6": {
@@ -11834,7 +11831,7 @@ let q113ans = {
     },
     "Psalm 37:7": {
       text: "Be still before the Lord and wait patiently for him; do not fret when people succeed in their ways, when they carry out their wicked schemes.",
-      theme: "patience",
+      theme: "presence",
       tags: ["still", "patient", "fret not"]
     },
     "Psalm 27:14": {
@@ -11844,12 +11841,12 @@ let q113ans = {
     },
     "Micah 7:7": {
       text: "But as for me, I watch in hope for the Lord, I wait for God my Savior; my God will hear me.",
-      theme: "watching",
+      theme: "hope",
       tags: ["watch", "hope", "hear"]
     },
     "Psalm 130:5": {
       text: "I wait for the Lord, my whole being waits, and in his word I put my hope.",
-      theme: "identity",
+      theme: "hope",
       tags: ["wait", "hope", "word", "whole being"]
     }
   },
@@ -11857,27 +11854,27 @@ let q113ans = {
   "Renew strength and trust through active waiting": {
     "Isaiah 40:31": {
       text: "But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.",
-      theme: "renewal",
+      theme: "strength",
       tags: ["hope", "strength", "not weary"]
     },
     "Romans 8:25": {
       text: "But if we hope for what we do not yet have, we wait for it patiently.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["hope", "patient", "wait"]
     },
     "James 5:7-8": {
       text: "Be patient, then, brothers and sisters, until the Lord’s coming. See how the farmer waits for the land to yield its valuable crop. You too, be patient and stand firm, because the Lord’s coming is near.",
-      theme: "endurance",
+      theme: "patience",
       tags: ["patient", "farmer", "stand firm"]
     },
     "Hebrews 6:12": {
       text: "We do not want you to become lazy, but to imitate those who through faith and patience inherit what has been promised.",
-      theme: "endurance",
+      theme: "patience",
       tags: ["faith", "patience", "inherit promise"]
     },
     "Galatians 6:9": {
       text: "Let us not become weary in doing good, for at the proper time we will reap a harvest if we do not give up.",
-      theme: "perseverance",
+      theme: "patience",
       tags: ["weary", "harvest", "not give up"]
     }
   },
@@ -11885,17 +11882,17 @@ let q113ans = {
   "Trust God’s timeline and motive above delay": {
     "2 Peter 3:8-9": {
       text: "But do not forget this one thing, dear friends: With the Lord a day is like a thousand years, and a thousand years are like a day. The Lord is not slow in keeping his promise… but is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
-      theme: "timing",
+      theme: "mercy",
       tags: ["delay", "patience", "mercy"]
     },
     "Habakkuk 2:3": {
       text: "For the vision awaits its appointed time; it speaks of the end and will not prove false. Though it linger, wait for it; it will certainly come and will not delay.",
-      theme: "certainty",
+      theme: "trust",
       tags: ["vision", "appointed", "delay"]
     },
     "Ecclesiastes 3:11": {
       text: "He has made everything beautiful in its time. Also, he has set eternity in the human heart; yet no one can fathom what God has done from beginning to end.",
-      theme: "timing",
+      theme: "creation",
       tags: ["beautiful", "eternity", "time"]
     },
     "Isaiah 30:18": {
@@ -11908,7 +11905,7 @@ let q113ans = {
   "Use the waiting season to serve, reflect, and grow": {
     "James 1:2-4": {
       text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
-      theme: "maturity",
+      theme: "patience",
       tags: ["joy", "trials", "perseverance"]
     },
     "Romans 5:3-4": {
@@ -11918,7 +11915,7 @@ let q113ans = {
     },
     "1 Peter 5:10": {
       text: "And the God of all grace, who called you to his eternal glory in Christ, after you have suffered a little while, will himself restore you and make you strong, firm and steadfast.",
-      theme: "comfort",
+      theme: "grace",
       tags: ["restore", "grace", "strengthen"]
     }
   },
@@ -11931,12 +11928,12 @@ let q113ans = {
     },
     "Galatians 5:13": {
       text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather, serve one another humbly in love.",
-      theme: "service",
+      theme: "humble",
       tags: ["serve", "humble", "love"]
     },
     "Hebrews 10:36": {
       text: "You need to persevere so that when you have done the will of God, you will receive what he has promised.",
-      theme: "endurance",
+      theme: "patience",
       tags: ["endure", "promise", "God’s will"]
     }
   }
@@ -11971,7 +11968,7 @@ let q114ans = {
       tags: ["paths", "walk", "ancient"]
     },
     "Ephesians 5:15-17": {
-      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity… do not be foolish, but understand what the Lord’s will is.",
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity in these evil days. Therefore do not be foolish, but understand what the Lord’s will is.",
       theme: "obedience",
       tags: ["wise", "will", "live"]
     }
@@ -11980,21 +11977,21 @@ let q114ans = {
   "Pray and ask God for wisdom": {
     "James 1:5": {
       text: "If any of you lacks wisdom, let him ask God, who gives generously to all without finding fault, and it will be given to him.",
-      theme: "prayer",
+      theme: "wisdom",
       tags: ["ask", "wisdom", "generous"]
     },
     "Philippians 4:6-7": {
-      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God... will guard your hearts and your minds in Christ Jesus.",
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. Then you will experience God's peace, which exceeds anything we can understand. His peace will guard your hearts and minds as you live in Christ Jesus.",
       theme: "peace",
       tags: ["anxious", "petition", "guard", "peace"]
     },
     "1 John 5:14": {
       text: "This is the confidence we have in approaching God: that if we ask anything according to His will, He hears us.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["ask", "confidence", "will"]
     },
-    "Proverbs 2:1–5": {
-      text: "My child, if you accept my words and store up my commands... if you call out for insight and lift up your voice for understanding... then you will understand the fear of the Lord…",
+    "Proverbs 2:1-5": {
+      text: "My child, listen to my words and treasure up my commandments. Tune your ears to wisdom and concentrate on understanding. Call out for insight and ask for understanding. Search for them as you would for silver seek them like hidden treasures, then you will understand the fear of the Lord and find the knowledge of God.",
       theme: "wisdom",
       tags: ["insight", "fear", "understanding"]
     }
@@ -12002,7 +11999,7 @@ let q114ans = {
 
   "Follow the Spirit’s leading in your heart": {
     "Romans 8:14-15": {
-      text: "For those who are led by the Spirit of God are the children of God... you received the Spirit of adoption as sons, by whom we cry, 'Abba! Father!'",
+      text: "For those who are led by the Spirit of God are the children of God. The Spirit you received does not make you slaves, so that you live in fear again; rather, you received the Spirit of adoption as children, by whom we cry, 'Abba! Father!'",
       theme: "spirit",
       tags: ["led", "Spirit", "adoption", "faith"]
     },
@@ -12054,7 +12051,7 @@ let q114ans = {
     },
     "Proverbs 21:1": {
       text: "The king’s heart is in the hand of the Lord, and he directs it like a watercourse wherever he pleases.",
-      theme: "sovereignty",
+      theme: "jesus",
       tags: ["heart", "Lord", "direction"]
     },
     "Psalm 37:23": {
@@ -12081,12 +12078,12 @@ let q114ans = {
       tags: ["fear", "wisdom", "beginning"]
     },
     "Galatians 5:16-17": {
-      text: "But I say, walk by the Spirit, and you will not gratify the desires of the flesh.",
+      text: "So I say, walk by the Spirit, and you will not gratify the desires of the flesh. For the flesh desires what is contrary to the Spirit, and the Spirit what is contrary to the flesh.",
       theme: "temptation",
       tags: ["Spirit", "flesh", "desires"]
     },
     "1 Samuel 16:7": {
-      text: "For the Lord sees not as man sees: man looks on the outward appearance, but the Lord looks on the heart.",
+      text: "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.",
       theme: "truth",
       tags: ["heart", "appearances", "God sees"]
     }
@@ -12117,7 +12114,7 @@ let q114ans = {
       tags: ["hidden", "wisdom", "glory"]
     },
     "Isaiah 55:8-9": {
-      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord.",
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
       theme: "truth",
       tags: ["transcendence", "ways", "thoughts"]
     }
@@ -12178,7 +12175,7 @@ let q115ans = {
     },
     "Jeremiah 33:3": {
       text: "Call to me and I will answer you and tell you great and unsearchable things you do not know.",
-      theme: "prayer",
+      theme: "seek",
       tags: ["calling", "answers", "revelation"]
     }
   },
@@ -12242,7 +12239,7 @@ let q116ans = {
       tags: ["Jesus", "Scripture", "truth"]
     },
     "Colossians 3:16": {
-      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom...",
+      text: "Let the message of Christ dwell among you richly as you teach and admonish one another with all wisdom through psalms, hymns, and songs from the Spirit, singing to God with gratitude in your hearts.",
       theme: "growth",
       tags: ["teaching", "wisdom", "message"]
     },
@@ -12258,7 +12255,7 @@ let q116ans = {
     },
     "John 15:7": {
       text: "If you remain in me and my words remain in you, ask whatever you wish, and it will be done for you.",
-      theme: "relationship",
+      theme: "jesus",
       tags: ["Jesus", "prayer", "obedience"]
     }
   },
@@ -12266,7 +12263,7 @@ let q116ans = {
   "We draw near through prayer and presence": {
     "Mark 1:35": {
       text: "Very early in the morning, while it was still dark, Jesus got up, left the house and went off to a solitary place, where he prayed.",
-      theme: "devotion",
+      theme: "jesus",
       tags: ["prayer", "solitude", "Jesus"]
     },
     "Psalm 27:8": {
@@ -12290,7 +12287,7 @@ let q116ans = {
       tags: ["prayer", "honesty", "refuge"]
     },
     "James 4:8": {
-      text: "Come near to God and he will come near to you...",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
       theme: "seek",
       tags: ["presence", "relationship", "invitation"]
     }
@@ -12317,8 +12314,8 @@ let q116ans = {
       theme: "obedience",
       tags: ["discipleship", "teaching", "faithfulness"]
     },
-    "Romans 12:1–2": {
-      text: "Offer your bodies as a living sacrifice... Then you will be able to test and approve what God’s will is...",
+    "Romans 12:1-2": {
+      text: "And so dear brothers and sisters, I plead with you to give your bodies to God because of all He has done for you. Let them be a living and holy sacrifice, the kind he will find acceptable. This is truly the way to worship him. Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is-his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["worship", "renewal", "obedience"]
     },
@@ -12341,13 +12338,13 @@ let q116ans = {
       tags: ["example", "Jesus", "life"]
     },
     "Ephesians 5:2": {
-      text: "...walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      text: "Walk in the way of love, just as Christ loved us and gave himself up for us as a sacrifice, and a pleasing aroma to God",
       theme: "love",
       tags: ["walk", "sacrifice", "Jesus"]
     },
     "John 13:15": {
       text: "I have set you an example that you should do as I have done for you.",
-      theme: "example",
+      theme: "jesus",
       tags: ["Jesus", "service", "follow"]
     },
     "Galatians 5:25": {
@@ -12437,8 +12434,8 @@ let q117ans = {
       theme: "guidance",
       tags: ["wisdom", "time", "will of God"]
     },
-    "Colossians 3:23–24": {
-      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters... It is the Lord Christ you are serving.",
+    "Colossians 3:23-24": {
+      text: "Whatever you do, work at it with all your heart, as working for the Lord, not for human masters, since you know you will receive an inheritance from the Lord as a reward. It is the Lord Christ you are serving.",
       theme: "obedience",
       tags: ["work", "heart", "Lord"]
     },
@@ -12479,7 +12476,7 @@ let q117ans = {
     },
     "Ecclesiastes 9:10": {
       text: "Whatever your hand finds to do, do it with all your might, for in the realm of the dead, where you are going, there is neither working nor planning nor knowledge nor wisdom.",
-      theme: "purpose",
+      theme: "eternal",
       tags: ["effort", "finality", "urgency"]
     },
     "Proverbs 21:5": {
@@ -12488,8 +12485,8 @@ let q117ans = {
       tags: ["planning", "diligence", "poverty"]
     },
     "1 Corinthians 15:58": {
-      text: "Therefore, my dear brothers and sisters, stand firm. Let nothing move you. Always give yourselves fully to the work of the Lord... your labor in the Lord is not in vain.",
-      theme: "purpose",
+      text: "Therefore, my dear brothers and sisters, stand firm. Let nothing move you. Always give yourselves fully to the work of the Lord and your labor in the Lord is not in vain.",
+      theme: "eternal",
       tags: ["steadfast", "labor", "eternity"]
     },
     "Philippians 2:14–15": {
@@ -12546,7 +12543,7 @@ let q118ans = {
       tags: ["eternal","soul","priorities"]
     },
     "Jeremiah 9:23–24": {
-      text: "This is what the Lord says: ‘Let not the wise boast of their wisdom or the strong boast of their strength or the rich boast of their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises lovingkindness, justice and righteousness on the earth, for in these I delight,’ declares the Lord.",
+      text: "This is what the Lord says: ‘Let not the wise boast of their wisdom or the strong boast of their strength or the rich boast of their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord who exercises loving kindness, justice and righteousness on the earth, for in these I delight,’ declares the Lord.",
       theme: "truth",
       tags: ["boasting","wisdom","relationship"]
     },
@@ -12580,7 +12577,7 @@ let q118ans = {
   },
   "Success is becoming like Christ": {
     "Romans 8:29": {
-      text: "For those God foreknew he also predestined to be conformed to the image of his Son...",
+      text: "For those God foreknew he also predestined to be conformed to the image of his Son, that he might be the firstborn among many brothers and sisters.",
       theme: "transformation",
       tags: ["Christlike","identity","purpose"]
     },
@@ -12614,12 +12611,12 @@ let q118ans = {
   },
   "Success is peace, contentment, and wholeness": {
     "Philippians 4:11–13": {
-      text: "I have learned the secret of being content in any and every situation... I can do all this through him who gives me strength.",
+      text: "I have learned to be content whatever the circumstances. I know how to live on almost nothing or with everything. I have learned the secret of being content in any and every situation, whether it is with a full stomach or empty. For I can do all things through Christ who strengthens me.",
       theme: "peace",
       tags: ["contentment","strength","joy"]
     },
-    "Psalm 1:1–3": {
-      text: "Blessed is the one who does not walk in step with the wicked... That person is like a tree planted by streams of water, which yields its fruit in season and whose leaf does not wither—whatever they do prospers.",
+    "Psalms 1:1–3": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way that sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night. That person is like a tree planted by streams of water, which yields its fruit in season and whose leaf does not wither—whatever they do prospers.",
       theme: "growth",
       tags: ["blessing","stability","fruit"]
     },
@@ -12641,12 +12638,12 @@ let q118ans = {
       tags: ["small acts","reward","service"]
     },
     "1 Samuel 16:7": {
-      text: "The Lord does not look at the things people look at... the Lord looks at the heart.",
+      text: "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.",
       theme: "truth",
       tags: ["heart","perspective","value"]
     },
-    "Isaiah 55:8–9": {
-      text: "“For my thoughts are not your thoughts, neither are your ways my ways,” declares the Lord.",
+    "Isaiah 55:8-9": {
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
       theme: "truth",
       tags: ["God’s view","different","understanding"]
     }
@@ -12658,17 +12655,17 @@ let q119ans = {
   "He uses my pain to help others and bring healing": {
     "2 Corinthians 1:3–4": {
       text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
-      theme: "comfort",
+      theme: "help",
       tags: ["pain", "helping", "others"]
     },
     "Genesis 50:20": {
       text: "You intended to harm me, but God intended it for good to accomplish what is now being done, the saving of many lives.",
-      theme: "purpose",
+      theme: "goodness",
       tags: ["harm", "redemption", "God's plan"]
     },
     "Philippians 1:12": {
       text: "Now I want you to know, brothers and sisters, that what has happened to me has actually served to advance the gospel.",
-      theme: "purpose",
+      theme: "goodness",
       tags: ["setback", "ministry", "witness"]
     }
   },
@@ -12680,13 +12677,13 @@ let q119ans = {
       tags: ["pain", "trust", "purpose"]
     },
     "Isaiah 61:3": {
-      text: "And provide for those who grieve in Zion—to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair.",
+      text: "And provide for those who grieve in Zion—to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair. They will be called oaks of righteousness, a planting of the Lord for the display of his splendor.",
       theme: "transformation",
       tags: ["healing", "joy", "renewal"]
     },
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
-      theme: "healing",
+      theme: "growth",
       tags: ["broken", "comfort", "restoration"]
     },
     "Micah 7:8": {
@@ -12717,7 +12714,7 @@ let q119ans = {
   "He still calls and uses me despite my past": {
     "John 21:17": {
       text: "The third time he said to him, 'Simon son of John, do you love me?' Peter was hurt because Jesus asked him the third time, 'Do you love me?' He said, 'Lord, you know all things; you know that I love you.' Jesus said, 'Feed my sheep.'",
-      theme: "restoration",
+      theme: "love",
       tags: ["failure", "calling", "love"]
     },
     "1 Timothy 1:15–16": {
@@ -12754,8 +12751,8 @@ let q119ans = {
 // What should I do when God seems to delay or withhold an answer to my prayer.
 let q120ans = {
   "Trust that He has a reason beyond what I can see": {
-    "Isaiah 55:8–9": {
-      text: "For my thoughts are not your thoughts, neither are your ways my ways,” declares the Lord. “As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+    "Isaiah 55:8-9": {
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
       theme: "understanding",
       tags: ["trust", "unanswered prayer", "mystery"]
     },
@@ -12778,12 +12775,12 @@ let q120ans = {
   "Keep praying and do not lose heart": {
     "Luke 18:1": {
       text: "Then Jesus told his disciples a parable to show them that they should always pray and not give up.",
-      theme: "pray",
+      theme: "hope",
       tags: ["persistence", "hope", "unanswered prayer"]
     },
     "1 Thessalonians 5:17": {
       text: "Pray without ceasing.",
-      theme: "pray",
+      theme: "seek",
       tags: ["prayer", "discipline", "trust"]
     },
     "Psalm 5:3": {
@@ -12822,7 +12819,7 @@ let q120ans = {
     },
     "1 John 5:14": {
       text: "This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["confidence", "prayer", "God's will"]
     }
   },
@@ -12847,12 +12844,12 @@ let q120ans = {
   "Keep praying and waiting with trust": {
     "Psalm 27:14": {
       text: "Wait for the Lord; be strong and take heart and wait for the Lord.",
-      theme: "wait",
+      theme: "patience",
       tags: ["prayer", "trust", "patience"]
     },
     "Luke 18:1": {
       text: "Then Jesus told his disciples a parable to show them that they should always pray and not give up.",
-      theme: "prayer",
+      theme: "seek",
       tags: ["persistence", "trust", "timing"]
     },
     "Romans 12:12": {
@@ -12874,13 +12871,13 @@ let q120ans = {
 
   "Remember that God's timing is wiser than mine": {
     "2 Peter 3:8-9": {
-      text: "But do not forget this one thing, dear friends: With the Lord a day is like a thousand years, and a thousand years are like a day. The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you...",
-      theme: "timing",
+      text: "But do not forget this one thing, dear friends: With the Lord a day is like a thousand years, and a thousand years are like a day. The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
+      theme: "faithful",
       tags: ["trust", "delay", "faith"]
     },
     "Ecclesiastes 3:11": {
       text: "He has made everything beautiful in its time. He has also set eternity in the human heart; yet no one can fathom what God has done from beginning to end.",
-      theme: "timing",
+      theme: "faithful",
       tags: ["faith", "patience", "trust"]
     },
     "Isaiah 55:8-9": {
@@ -12898,7 +12895,7 @@ let q120ans = {
     },
     "John 11:5-6": {
       text: "Now Jesus loved Martha and her sister and Lazarus. So when he heard that Lazarus was sick, he stayed where he was two more days.",
-      theme: "timing",
+      theme: "trust",
       tags: ["love", "delay", "trust"]
     },
     "Psalm 66:18-20": {
@@ -12934,17 +12931,17 @@ let q120ans = {
   "Pour out your honest emotions to God": {
     "Psalm 13:1-2": {
       text: "How long, Lord? Will you forget me forever? How long will you hide your face from me? How long must I wrestle with my thoughts and day after day have sorrow in my heart?",
-      theme: "emotion",
+      theme: "strength",
       tags: ["honesty", "cry", "silence"]
     },
     "Habakkuk 1:2": {
       text: "How long, Lord, must I call for help, but you do not listen? Or cry out to you, 'Violence!' but you do not save?",
-      theme: "emotion",
+      theme: "strength",
       tags: ["waiting", "desperation", "prayer"]
     },
     "Job 30:20": {
       text: "I cry out to you, God, but you do not answer; I stand up, but you merely look at me.",
-      theme: "emotion",
+      theme: "strength",
       tags: ["honest", "silence", "pain"]
     }
   },
@@ -12962,16 +12959,16 @@ let q120ans = {
     },
     "Hebrews 11:1": {
       text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["trust", "delay", "unseen"]
     },
     "Mark 11:24": {
       text: "Therefore I tell you, whatever you ask for in prayer, believe that you have received it, and it will be yours.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["prayer", "belief", "trust"]
     },
     "Isaiah 49:15-16": {
-      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands...",
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands; your walls are ever before me.",
       theme: "love",
       tags: ["comfort", "reminder", "presence"]
     },
@@ -12988,17 +12985,17 @@ let q121ans = {
   "God invites us to ask for what we need and want": {
     "Matthew 7:7–11": {
       text: "Ask and it will be given to you; seek and you will find; knock and the door will be opened to you... your Father in heaven gives good gifts to those who ask him!",
-      theme: "prayer",
+      theme: "trust",
       tags: ["asking", "needs", "trust"]
     },
     "John 16:24": {
       text: "Until now you have not asked for anything in my name. Ask and you will receive, and your joy will be complete.",
-      theme: "joy",
+      theme: "trust",
       tags: ["asking", "prayer", "desire"]
     },
     "Mark 11:24": {
       text: "Therefore I tell you, whatever you ask for in prayer, believe that you have received it, and it will be yours.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["asking", "prayer", "belief"]
     },
     "Psalm 145:18–19": {
@@ -13020,7 +13017,7 @@ let q121ans = {
     },
     "James 4:3": {
       text: "When you ask, you do not receive, because you ask with wrong motives, that you may spend what you get on your pleasures.",
-      theme: "heart",
+      theme: "seek",
       tags: ["motive", "asking", "selfishness"]
     },
     "Romans 8:32": {
@@ -13042,7 +13039,7 @@ let q121ans = {
     },
     "Psalm 37:4": {
       text: "Take delight in the Lord, and he will give you the desires of your heart.",
-      theme: "desire",
+      theme: "trust",
       tags: ["delight", "trust", "joy"]
     },
     "Proverbs 16:3": {
@@ -13054,7 +13051,7 @@ let q121ans = {
   "We can still pray for God’s will even as we ask": {
     "1 John 5:14–15": {
       text: "This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us... we know that we have what we asked of him.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["will", "confidence", "prayer"]
     },
     "Matthew 6:9–10": {
@@ -13098,7 +13095,7 @@ let q122ans = {
   "Focus your heart and thoughts on Jesus, not distractions": {
     "Hebrews 12:1–2": {
       text: "Therefore, since we are surrounded by such a great cloud of witnesses, let us throw off everything that hinders... and let us run with perseverance the race marked out for us, fixing our eyes on Jesus, the pioneer and perfecter of faith.",
-      theme: "focus",
+      theme: "jesus",
       tags: ["distraction", "prayer", "Jesus"]
     },
     "2 Corinthians 10:5": {
@@ -13136,13 +13133,13 @@ let q122ans = {
       tags: ["prayer", "closeness", "truth"]
     },
     "James 4:8": {
-      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded.",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
       theme: "seek",
       tags: ["prayer", "nearness", "focus"]
     },
     "Hebrews 10:22": {
       text: "Let us draw near to God with a sincere heart and with the full assurance that faith brings, having our hearts sprinkled to cleanse us from a guilty conscience and having our bodies washed with pure water.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["prayer", "nearness", "assurance"]
     },
     "Matthew 6:6": {
@@ -13196,7 +13193,7 @@ let q123ans = {
   "God warns against deep partnerships that pull you away": {
     "2 Corinthians 6:14–15": {
       text: "Do not be unequally yoked with unbelievers. For what partnership has righteousness with lawlessness? Or what fellowship has light with darkness? What accord has Christ with Belial? Or what portion does a believer share with an unbeliever?",
-      theme: "boundaries",
+      theme: "understanding",
       tags: ["relationship", "friendship", "partnership"]
     },
     "Amos 3:3": {
@@ -13206,7 +13203,7 @@ let q123ans = {
     },
     "James 4:4": {
       text: "You adulterous people! Do you not know that friendship with the world is enmity with God? Therefore whoever wishes to be a friend of the world makes himself an enemy of God.",
-      theme: "friendship",
+      theme: "friend",
       tags: ["worldliness", "loyalty", "warning"]
     },
     "Deuteronomy 7:3–4": {
@@ -13232,8 +13229,8 @@ let q123ans = {
       theme: "growth",
       tags: ["company", "character", "influence"]
     },
-    "Psalm 1:1–2": {
-      text: "Blessed is the man who walks not in the counsel of the wicked... but his delight is in the law of the Lord, and on his law he meditates day and night.",
+    "Psalms 1:1-2": {
+      text: "Blessed is the one who does not walk in step with the wicked or stand in the way sinners take or sit in the company of mockers, but whose delight is in the law of the Lord, and who meditates on his law day and night.",
       theme: "devotion",
       tags: ["blessing", "influence", "habits"]
     },
@@ -13252,11 +13249,11 @@ let q123ans = {
   "You can love others without compromising your faith": {
     "John 17:15–18": {
       text: "I do not ask that you take them out of the world, but that you keep them from the evil one... I have sent them into the world.",
-      theme: "mission",
+      theme: "protect",
       tags: ["protection", "purpose", "separation"]
     },
-    "Matthew 5:14–16": {
-      text: "You are the light of the world. A city set on a hill cannot be hidden... let your light shine before others, so that they may see your good works and give glory to your Father.",
+    "Matthew 5:14-16": {
+      text: "You are the light of the world-like a city on a hilltop that cannot be hidden. No one lights a lamp and then puts it under a basket. Instead, a lamp is placed on a stand where it gives light to everyone in the house. In the same way, let your good deeds shine out for all to see, so that everyone will glorify your Father in heaven.",
       theme: "light",
       tags: ["witness", "example", "good works"]
     },
@@ -13272,7 +13269,7 @@ let q123ans = {
     },
     "1 Corinthians 5:9–10": {
       text: "I wrote to you not to associate with sexually immoral people—not at all meaning the people of this world who are immoral... you would have to leave the world.",
-      theme: "boundaries",
+      theme: "peace",
       tags: ["association", "witness", "balance"]
     },
     "Jude 1:22–23": {
@@ -13323,7 +13320,7 @@ let q123ans = {
   "Don’t let your closeness make you fall too": {
     "Romans 16:17–18": {
       text: "Watch out for those who cause divisions... for such persons do not serve our Lord Christ, but their own appetites...",
-      theme: "discernment",
+      theme: "jesus",
       tags: ["division", "warning", "loyalty"]
     },
     "Ephesians 5:7–11": {
@@ -13338,7 +13335,7 @@ let q123ans = {
     },
     "1 Corinthians 9:22–23": {
       text: "I have become all things to all people, that by all means I might save some... for the sake of the gospel.",
-      theme: "mission",
+      theme: "presence",
       tags: ["strategy", "sacrifice", "gospel"]
     }
   }
@@ -13366,7 +13363,7 @@ let q124ans = {
   "God renews our strength and leads gently": {
     "Matthew 11:28-30": {
       text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me, for I am gentle and humble in heart, and you will find rest for your souls. For my yoke is easy and my burden is light.",
-      theme: "rest",
+      theme: "jesus",
       tags: ["tired", "pressure", "gentleness", "Jesus"]
     },
     "Isaiah 40:29-31": {
@@ -13389,7 +13386,7 @@ let q124ans = {
       theme: "mercy",
       tags: ["gentleness", "compassion", "hope", "God’s heart"]
     },
-    "Psalm 103:13-14": {
+    "Psalms 103:13-14": {
       text: "As a father has compassion on his children, so the Lord has compassion on those who fear Him; for He knows how we are formed, He remembers that we are dust.",
       theme: "mercy",
       tags: ["compassion", "weakness", "human", "God understands"]
@@ -13439,7 +13436,7 @@ let q125ans = {
     },
     "Ephesians 2:10": {
       text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
-      theme: "purpose",
+      theme: "creation",
       tags: ["workmanship", "calling", "prepared"]
     },
     "Psalm 139:16": {
@@ -13508,7 +13505,7 @@ let q125ans = {
     },
     "1 Peter 1:6–7": {
       text: "In all this you greatly rejoice, though now for a little while you may have had to suffer grief in all kinds of trials. These have come so that the proven genuineness of your faith—of greater worth than gold...—may result in praise, glory and honor when Jesus Christ is revealed.",
-      theme: "testing",
+      theme: "faithful",
       tags: ["faith", "trials", "worth"]
     },
     "Romans 5:3–5": {
@@ -13518,7 +13515,7 @@ let q125ans = {
     },
     "Hebrews 12:10–11": {
       text: "They disciplined us for a little while as they thought best; but God disciplines us for our good, in order that we may share in his holiness. No discipline seems pleasant at the time... Later on, however, it produces a harvest of righteousness and peace for those who have been trained by it.",
-      theme: "discipline",
+      theme: "peace",
       tags: ["training", "righteousness", "peace"]
     }
   },
@@ -13534,9 +13531,9 @@ let q125ans = {
       theme: "presence",
       tags: ["joy", "path", "pleasure"]
     },
-    "Matthew 11:28–30": {
-      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me... you will find rest for your souls. For my yoke is easy and my burden is light.",
-      theme: "rest",
+    "Matthew 11:28-30": {
+      text: "Jesus said 'Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you. Let me teach you, because I am humble and gentle at heart, and you will find rest for your souls. For my yoke is easy and the burden I give you is light.",
+      theme: "peace",
       tags: ["yoke", "peace", "relief"]
     }
   },
@@ -13587,7 +13584,7 @@ let q125ans = {
     },
     "Psalm 37:4–5": {
       text: "Take delight in the Lord, and he will give you the desires of your heart. Commit your way to the Lord; trust in him and he will do this:",
-      theme: "desire",
+      theme: "trust",
       tags: ["delight", "trust", "fulfillment"]
     },
     "2 Timothy 4:7–8": {
@@ -13601,12 +13598,12 @@ let q125ans = {
       tags: ["generosity", "guidance", "refreshing"]
     },
     "Zephaniah 3:17": {
-      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you with gladness. With his love, he will calm all you fears, he will rejoice over you with singing.",
       theme: "love",
       tags: ["presence", "joy", "delight"]
     },
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is...",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
       theme: "transformation",
       tags: ["renewal", "will", "change"]
     }
@@ -13673,7 +13670,7 @@ let q126ans = {
   },
   "Put on Christlike character in how you relate to others": {
     "Colossians 3:12–14": {
-      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience. Bear with each other and forgive one another... And over all these virtues put on love, which binds them all together in perfect unity.",
+      text: "Therefore, as God’s chosen people, holy and dearly loved, clothe yourselves with compassion, kindness, humility, gentleness and patience. Bear with each other and forgive one another for whatever grievances you may have. Forgive as the Lord forgave you. And over all these virtues put on love, which binds them all together in perfect unity.",
       theme: "love",
       tags: ["character", "unity", "forgiveness"]
     }
@@ -13688,7 +13685,7 @@ let q126ans = {
   "Test what’s good, avoid all evil": {
     "1 Thessalonians 5:21–22": {
       text: "But test them all; hold on to what is good, reject every kind of evil.",
-      theme: "discernment",
+      theme: "goodness",
       tags: ["testing", "evil", "good"]
     }
   },
@@ -13772,7 +13769,7 @@ let q126ans = {
   "Hunger for righteousness in every choice": {
     "Matthew 5:6": {
       text: "Blessed are those who hunger and thirst for righteousness, for they will be filled.",
-      theme: "righteousness",
+      theme: "eternal",
       tags: ["desire", "priority", "filling"]
     }
   },
@@ -13867,12 +13864,12 @@ let q127ans = {
     },
     "2 Corinthians 11:14": {
       text: "And no wonder, for even Satan disguises himself as an angel of light.",
-      theme: "deception",
+      theme: "fallenness",
       tags: ["disguise", "enemy", "falsehood", "discernment"]
     },
     "Revelation 12:10-11": {
       text: "And I heard a loud voice in heaven, saying, 'Now the salvation and the power and the kingdom of our God and the authority of his Christ have come, for the accuser of our brothers has been thrown down, who accuses them day and night before our God. And they have conquered him by the blood of the Lamb and by the word of their testimony, for they loved not their lives even unto death.'",
-      theme: "victory",
+      theme: "light",
       tags: ["accuser", "devil", "blood of Jesus", "testimony", "overcome"]
     }
   },
@@ -13926,7 +13923,7 @@ let q127ans = {
     },
     "1 John 3:8": {
       text: "The reason the Son of God appeared was to destroy the works of the devil.",
-      theme: "purpose",
+      theme: "jesus",
       tags: ["Jesus", "devil", "mission", "freedom", "victory"]
     }
   }
@@ -13965,7 +13962,7 @@ let q128ans = {
   "One way to tell you're under attack is when you're tempted to doubt God's love, identity, or truth—just like Jesus was.": {
     "Matthew 4:3": {
       text: "And the tempter came and said to him, 'If you are the Son of God, command these stones to become loaves of bread.'",
-      theme: "identity",
+      theme: "jesus",
       tags: ["doubt", "Jesus", "temptation", "questioning", "value"]
     },
     "Genesis 3:1": {
@@ -13975,7 +13972,7 @@ let q128ans = {
     },
     "Ephesians 6:16": {
       text: "In all circumstances take up the shield of faith, with which you can extinguish all the flaming darts of the evil one.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["defense", "attack", "flaming darts", "protection"]
     }
   },
@@ -13983,7 +13980,7 @@ let q128ans = {
   "Spiritual attacks may come as unusual heaviness, hopelessness, isolation, or ongoing temptation. God's Word helps us expose them.": {
     "Psalm 42:11": {
       text: "Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him, my salvation and my God.",
-      theme: "emotion",
+      theme: "hope",
       tags: ["inner struggle", "discouragement", "heaviness", "hope"]
     },
     "2 Corinthians 10:5": {
@@ -13992,7 +13989,7 @@ let q128ans = {
       tags: ["thoughts", "mental attack", "captivity", "truth"]
     },
     "Isaiah 61:3": {
-      text: "To grant to those who mourn in Zion—to give them a beautiful headdress instead of ashes, the oil of gladness instead of mourning, the garment of praise instead of a faint spirit; that they may be called oaks of righteousness, the planting of the Lord, that he may be glorified.",
+      text: "And provide for those who grieve in Zion—to bestow on them a crown of beauty instead of ashes, the oil of joy instead of mourning, and a garment of praise instead of a spirit of despair. They will be called oaks of righteousness, a planting of the Lord for the display of his splendor.",
       theme: "transformation",
       tags: ["heaviness", "exchange", "glory", "spirit", "attack"]
     }
@@ -14001,7 +13998,7 @@ let q128ans = {
   "Spiritual attack often targets your calling, progress, or intimacy with God—especially when you're about to grow.": {
     "Luke 22:31-32": {
       text: "'Simon, Simon, behold, Satan demanded to have you, that he might sift you like wheat, but I have prayed for you that your faith may not fail. And when you have turned again, strengthen your brothers.'",
-      theme: "purpose",
+      theme: "growth",
       tags: ["calling", "prayer", "warning", "targeted", "growth"]
     },
     "Daniel 10:12-13": {
@@ -14040,7 +14037,7 @@ let q129ans = {
   "God lets evil exist to give humans the choice to love and obey freely—real love needs freedom, and freedom includes risk.": {
     "Deuteronomy 30:19": {
       text: "I call heaven and earth to witness against you today, that I have set before you life and death, blessing and curse. Therefore choose life, that you and your offspring may live,",
-      theme: "choice",
+      theme: "obedience",
       tags: ["free will", "test", "life", "love", "obedience"]
     },
     "Genesis 2:16-17": {
@@ -14063,7 +14060,7 @@ let q129ans = {
     },
     "Colossians 2:15": {
       text: "He disarmed the rulers and authorities and put them to open shame, by triumphing over them in him.",
-      theme: "victory",
+      theme: "justice",
       tags: ["disarm", "shame", "devil defeated", "cross", "justice"]
     },
     "Revelation 20:10": {
@@ -14156,7 +14153,7 @@ let q130ans = {
       theme: "faithful",
       tags: ["love", "mercy", "hope"]
     },
-    "Psalm 103:10–13": {
+    "Psalms 103:10–13": {
       text: "He does not treat us as our sins deserve or repay us according to our iniquities. For as high as the heavens are above the earth, so great is his love for those who fear him; as far as the east is from the west, so far has he removed our transgressions from us. As a father has compassion on his children, so the Lord has compassion on those who fear him.",
       theme: "forgiveness",
       tags: ["mercy", "compassion", "grace"]
@@ -14452,7 +14449,7 @@ let q131ans = {
   "God promises to fight for you and lead you.": {
     "Joshua 1:9": {
       text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
-      theme: "courage",
+      theme: "presence",
       tags: ["presence", "promise", "strength"]
     },
     "Exodus 14:14": {
@@ -14473,22 +14470,22 @@ let q132ans = {
   "Thankfulness grows when I remember God’s goodness and faithful love": {
     "Psalm 107:1": {
       text: "Give thanks to the Lord, for he is good; his love endures forever.",
-      theme: "gratitude",
+      theme: "goodness",
       tags: ["goodness", "love", "praise"]
     },
     "Psalm 100:4": {
       text: "Enter his gates with thanksgiving and his courts with praise; give thanks to him and praise his name.",
-      theme: "gratitude",
+      theme: "goodness",
       tags: ["worship", "joy", "praise"]
     },
-    "Psalm 103:2": {
-      text: "Praise the Lord, my soul, and forget not all his benefits—",
-      theme: "gratitude",
+    "Psalms 103:2": {
+      text: "Praise the Lord, my soul, and forget not all his benefits.",
+      theme: "goodness",
       tags: ["remember", "blessings"]
     },
     "Psalm 9:1": {
       text: "I will give thanks to you, Lord, with all my heart; I will tell of all your wonderful deeds.",
-      theme: "praise",
+      theme: "love",
       tags: ["testimony", "gratitude", "worship"]
     },
     "James 1:17": {
@@ -14498,30 +14495,30 @@ let q132ans = {
     },
     "Psalm 136:1": {
       text: "Give thanks to the Lord, for he is good. His love endures forever.",
-      theme: "gratitude",
+      theme: "goodness",
       tags: ["goodness", "endures", "praise"]
     },
     "Psalm 145:8": {
       text: "The Lord is gracious and compassionate, slow to anger and rich in love.",
-      theme: "gratitude",
+      theme: "mercy",
       tags: ["compassion", "mercy", "faithful"]
     }
   },
 
   "Thankfulness grows when I stay rooted in Christ and community": {
     "Colossians 3:15–17": {
-      text: "Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful. Let the message of Christ dwell among you richly... And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      text: "Let the peace of Christ rule in your hearts, since as members of one body you were called to peace. And be thankful. Let the message of Christ dwell among you richly as you teach and admonish each other with all wisdom and as you sing psalms, hymns and spiritual songs with gratitude in your hearts to God. And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
       theme: "peace",
       tags: ["unity", "gratitude", "worship"]
     },
     "Colossians 3:17": {
-      text: "And whatever you do... do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
-      theme: "gratitude",
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "devotion",
       tags: ["action", "purpose", "thankfulness"]
     },
     "Ephesians 5:20": {
       text: "Always giving thanks to God the Father for everything, in the name of our Lord Jesus Christ.",
-      theme: "gratitude",
+      theme: "devotion",
       tags: ["discipline", "everyday", "habit"]
     },
     "Colossians 2:6–7": {
@@ -14646,22 +14643,22 @@ let q133ans = {
 
   "Joy flows from salvation, faith, and transformation": {
     "Isaiah 61:10": {
-      text: "I delight greatly in the Lord; my soul rejoices in my God. For he has clothed me with garments of salvation and arrayed me in a robe of his righteousness...",
+      text: "I delight greatly in the Lord; my soul rejoices in my God. For he has clothed me with garments of salvation and arrayed me in a robe of his righteousness as a bridegroom adorns himself with his suit, and as a bride adorns herself with her jewels.",
       theme: "salvation",
       tags: ["delight", "rejoicing", "righteousness"]
     },
     "1 Peter 1:8–9": {
       text: "Though you have not seen him, you love him... you believe in him and are filled with an inexpressible and glorious joy, for you are receiving... the salvation of your souls.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["joy", "faith", "salvation"]
     },
     "Isaiah 12:2–3": {
-      text: "Surely God is my salvation; I will trust and not be afraid... With joy you will draw water from the wells of salvation.",
+      text: "Surely God is my salvation; I will trust and not be afraid. The Lord God is my strength and my song, he has given me victory. With joy you will draw water from the wells of salvation.",
       theme: "salvation",
       tags: ["trust", "joy", "salvation"]
     },
     "Galatians 5:22": {
-      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness.",
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control.",
       theme: "growth",
       tags: ["Spirit", "fruit", "joy"]
     },
@@ -14680,12 +14677,12 @@ let q133ans = {
   "Joy is expressed through praise and celebration": {
     "Psalm 33:1": {
       text: "Sing joyfully to the Lord, you righteous; it is fitting for the upright to praise him.",
-      theme: "praise",
+      theme: "trust",
       tags: ["joy", "upright", "sing"]
     },
     "Psalm 71:23": {
       text: "My lips will shout for joy when I sing praise to you—I whom you have delivered.",
-      theme: "praise",
+      theme: "devotion",
       tags: ["joy", "praise", "deliverance"]
     },
     "Psalm 100:1–2": {
@@ -14705,7 +14702,7 @@ let q133ans = {
     },
     "Philippians 4:4": {
       text: "Rejoice in the Lord always. I will say it again: Rejoice!",
-      theme: "joy",
+      theme: "presence",
       tags: ["command", "always", "rejoicing"]
     },
     "Luke 1:47": {
@@ -14717,7 +14714,7 @@ let q133ans = {
 
   "God Himself rejoices over His people": {
     "Zephaniah 3:17": {
-      text: "The Lord your God is with you... He will take great delight in you; in his love... he will rejoice over you with singing.",
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you with gladness. With his love, he will calm all you fears, he will rejoice over you with singing.",
       theme: "love",
       tags: ["rejoicing", "presence", "delight"]
     }
@@ -14799,7 +14796,7 @@ let q134ans = {
       tags: ["trust", "union", "abiding"]
     },
     "Zephaniah 3:17": {
-      text: "The Lord your God is with you... he will rejoice over you with singing.",
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you with gladness. With his love, he will calm all you fears, he will rejoice over you with singing.",
       theme: "love",
       tags: ["joy", "presence", "delight"]
     }
@@ -14860,7 +14857,7 @@ let q134ans = {
       tags: ["promise", "righteousness", "hope"]
     },
     "Hebrews 9:28": {
-      text: "He will appear a second time... to bring salvation to those who are waiting for him.",
+      text: "So Christ was sacrificed once to take away the sins of many; and he will appear a second time, not to deal with our sins but to bring salvation to those who are eagerly waiting for him.",
       theme: "eternal",
       tags: ["return", "salvation", "hope"]
     },
@@ -14869,8 +14866,8 @@ let q134ans = {
       theme: "eternal",
       tags: ["return", "truth", "expectation"]
     },
-    "1 Thessalonians 4:16–17": {
-      text: "The Lord himself will come down from heaven... and we will be with the Lord forever.",
+    "1 Thessalonians 4:16-17": {
+      text: "For the Lord himself will descend from heaven with a cry of command, with the voice of an archangel, and with the sound of the trumpet of God. And the dead in Christ will rise first. Then we who are alive, who are left, will be caught up together with them in the clouds to meet the Lord in the air, and so we will always be with the Lord.",
       theme: "eternal",
       tags: ["resurrection", "reunion", "forever"]
     },
@@ -14896,7 +14893,7 @@ let q134ans = {
 let q135ans = {
   "God's ways flip our expectations": {
     "Isaiah 55:8-9": {
-      text: "For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord. For as the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
       theme: "wisdom",
       tags: ["God's mind", "different", "surprising"]
     },
@@ -14954,7 +14951,7 @@ let q135ans = {
     },
     "John 11:35": {
       text: "Jesus wept.",
-      theme: "emotion",
+      theme: "mercy",
       tags: ["compassion", "grief", "God weeps"]
     },
     "Hosea 3:1-3": {
@@ -14970,17 +14967,17 @@ let q135ans = {
       tags: ["weak", "grace", "power"]
     },
     "James 1:2-4": {
-      text: "Count it all joy, my brothers, when you meet trials... for you know that the testing of your faith produces steadfastness.",
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. So let it grow, for when perserverance is fully developed, you will be perfect and needing nothing.",
       theme: "growth",
       tags: ["trial", "joy", "faith"]
     },
     "Hebrews 12:6": {
       text: "For the Lord disciplines the one he loves, and chastises every son whom he receives.",
-      theme: "discipline",
+      theme: "love",
       tags: ["love", "pain", "training"]
     },
     "Romans 12:20-21": {
-      text: "If your enemy is hungry, feed him; if he is thirsty, give him something to drink... Overcome evil with good.",
+      text: "If your enemy is hungry, feed him; if he is thirsty, give him something to drink, in doing this, you will heap burning coals in his head. Do not be overcome by evil but overcome evil with good.",
       theme: "mercy",
       tags: ["enemy", "good", "evil"]
     },
@@ -15022,12 +15019,12 @@ let q135ans = {
       tags: ["awe", "wonder", "value"]
     },
     "Isaiah 40:26": {
-      text: "Lift up your eyes... He who brings out their host by number, calling them all by name...",
+      text: "Lift up your eyes. Who created all the stars? He who brings out their host by number, calling them all by name. Because of his great power and incomparable strength, not a single one is missing.",
       theme: "creation",
       tags: ["stars", "God’s power", "awe"]
     },
     "2 Peter 3:9": {
-      text: "The Lord is not slow to fulfill his promise... but is patient toward you, not wishing that any should perish...",
+      text: "The Lord is not slow in keeping his promise, as some understand slowness. Instead he is patient with you, not wanting anyone to perish, but everyone to come to repentance.",
       theme: "mercy",
       tags: ["patience", "judgment", "grace"]
     }
@@ -15069,7 +15066,7 @@ let q135ans = {
       tags: ["future", "kingdom", "surprising"]
     },
     "Hebrews 4:15": {
-      text: "We do not have a high priest who is unable to sympathize with our weaknesses...",
+      text: "For we do not have a high priest who is unable to empathize with our weaknesses, but we have one who has been tempted in every way, just as we are—yet he did not sin.",
       theme: "jesus",
       tags: ["compassion", "weakness", "priest"]
     }
@@ -15080,7 +15077,7 @@ let q135ans = {
 let q136ans = {
   "God is unchanging and forever with you, even in fear or doubt": {
     "Deuteronomy 31:6": {
-      text: "Be strong and courageous. Do not be afraid or terrified... for the Lord your God goes with you; he will never leave you nor forsake you.",
+      text: "Be strong and courageous. Do not be afraid or terrified, for the Lord your God goes with you; he will never leave you nor forsake you.",
       theme: "faithful",
       tags: ["presence", "never alone", "courage"]
     },
@@ -15095,7 +15092,7 @@ let q136ans = {
       tags: ["unchanging", "trust", "secure"]
     },
     "Joshua 1:9": {
-      text: "Have I not commanded you? Be strong and courageous. Do not be afraid... for the Lord your God will be with you wherever you go.",
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
       theme: "presence",
       tags: ["courage", "not alone", "command"]
     },
@@ -15117,8 +15114,8 @@ let q136ans = {
       theme: "faithful",
       tags: ["generations", "steadfast", "foundation"]
     },
-    "Psalm 103:11-12": {
-      text: "For as high as the heavens are above the earth, so great is his love... as far as the east is from the west, so far has he removed our transgressions.",
+    "Psalms 103:11-12": {
+      text: "For as high as the heavens are above the earth, so great is his love toward those who fear him. As far as the east is from the west, so far has he removed our transgressions.",
       theme: "forgiveness",
       tags: ["love", "mercy", "cleansing"]
     }
@@ -15131,7 +15128,7 @@ let q136ans = {
       tags: ["plan", "hope", "future"]
     },
     "Romans 8:28": {
-      text: "And we know that in all things God works for the good of those who love him...",
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
       theme: "purpose",
       tags: ["all things", "trust", "good"]
     },
@@ -15159,7 +15156,7 @@ let q136ans = {
       tags: ["instruction", "loving counsel", "direction"]
     },
     "Isaiah 55:8-9": {
-      text: "For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord.",
+      text: "\"For my thoughts are not your thoughts, neither are your ways my ways,\" declares the Lord. \"As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.\"",
       theme: "wisdom",
       tags: ["higher ways", "God’s mind", "humility"]
     }
@@ -15167,8 +15164,8 @@ let q136ans = {
 
   "Trials refine faith—they’re not wasted": {
     "James 1:2-4": {
-      text: "Count it all joy... when you meet trials... that the testing of your faith produces steadfastness.",
-      theme: "growth",
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. So let it grow, for when perserverance is fully developed, you will be perfect and needing nothing.",
+      theme:  "growth",
       tags: ["trials", "joy", "perseverance"]
     },
     "1 Peter 1:6-7": {
@@ -15195,20 +15192,20 @@ let q136ans = {
       tags: ["new creation", "identity", "change"]
     },
     "Ephesians 2:10": {
-      text: "For we are his workmanship... created in Christ Jesus for good works...",
+      text: "For we are God’s handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.",
       theme: "purpose",
       tags: ["calling", "crafted", "good works"]
     },
     "Galatians 2:20": {
-      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
-      theme: "identity",
-      tags: ["Christ in me", "dead to old", "alive"]
-    }
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
+      theme: "jesus",
+      tags: ["identity", "Christ in me", "death to self"]
+    },
   },
 
   "God’s love poured into our hearts gives confidence, not fear": {
     "Romans 8:38-39": {
-      text: "Nothing... will be able to separate us from the love of God that is in Christ Jesus our Lord.",
+      text: "For I am convinced that nothing can ever separate us from God's love. Neither death nor life, neither angels nor demons, neither our fears for today nor our worries about tomorrow-not even the powers of hell can separate us from God's love. No power in the sky above or in the earth below nor anything else in all creation, will be able to separate us from the love of God that is revealed in Christ Jesus our Lord.",
       theme: "love",
       tags: ["inseparable", "Christ", "security"]
     },
@@ -15279,12 +15276,12 @@ let q137ans = {
   "God is close and caring in small needs and feelings": {
     "Psalm 34:18": {
       text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
-      theme: "comfort",
+      theme: "spirit",
       tags: ["feelings", "nearness", "rescue"]
     },
     "Matthew 10:29–31": {
       text: "Are not two sparrows sold for a penny? Yet not one of them will fall to the ground outside your Father’s care. And even the very hairs of your head are all numbered. So don’t be afraid; you are worth more than many sparrows.",
-      theme: "care",
+      theme: "love",
       tags: ["details", "worth", "presence"]
     },
     "Isaiah 40:11": {
@@ -15294,7 +15291,7 @@ let q137ans = {
     },
     "Philippians 4:19": {
       text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
-      theme: "provision",
+      theme: "protect",
       tags: ["needs", "riches", "trust"]
     },
     "Isaiah 41:10": {
@@ -15315,7 +15312,7 @@ let q138ans = {
     },
     "Acts 13:2-3": {
       text: "While they were worshipping the Lord and fasting, the Holy Spirit said, 'Set apart for me Barnabus and Saul for the work to which I have called them.' So after they had fasted and prayed, they placed their hands on them and sent them off.",
-      theme: "mission",
+      theme: "spirit",
       tags: ["Holy Spirit", "purpose", "calling", "ministry", "adventure"]
     },
     "Isiah 6:8": {
@@ -15388,7 +15385,7 @@ let q139ans = {
     },
     "Ephesians 6:19–20": {
       text: "Pray also for me, that whenever I speak, words may be given me so that I will fearlessly make known the mystery of the gospel, for which I am an ambassador in chains. Pray that I may declare it fearlessly, as I should.",
-      theme: "boldness",
+      theme: "love",
       tags: ["gospel", "fearless", "prayer"]
     },
     "Acts 28:31": {
@@ -15401,7 +15398,7 @@ let q139ans = {
   "Confidence in God's Power and Plans": {
     "Proverbs 28:1": {
       text: "The wicked flee though no one pursues, but the righteous are as bold as a lion.",
-      theme: "righteousness",
+      theme: "faithful",
       tags: ["boldness", "righteous", "fearlessness"]
     },
     "Romans 8:31": {
@@ -15429,7 +15426,7 @@ let q139ans = {
     },
     "Daniel 3:17–18": {
       text: "If we are thrown into the blazing furnace, the God we serve is able to deliver us from it, and he will deliver us from Your Majesty’s hand. But even if he does not, we want you to know, Your Majesty, that we will not serve your gods or worship the image of gold you have set up.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["courage", "devotion", "deliverance"]
     },
     "Psalm 27:1": {
@@ -15445,12 +15442,12 @@ let q140ans = {
   "God gives gifts so we can serve others for His glory": {
     "1 Peter 4:10": {
       text: "As each has received a gift, use it to serve one another, as faithful stewards of God’s varied grace.",
-      theme: "service",
+      theme: "help",
       tags: ["gift", "serve", "stewardship"]
     },
     "Romans 12:6-8": {
       text: "We have different gifts, according to the grace given to each of us. If your gift is prophesying, then prophesy in accordance with your faith; if it is serving, then serve; if it is teaching, then teach; if it is to encourage, then give encouragement; if it is giving, then give generously; if it is to lead, do it diligently; if it is to show mercy, do it cheerfully.",
-      theme: "gifts",
+      theme: "grace",
       tags: ["diversity", "use", "encouragement"]
     },
     "1 Corinthians 12:4-6": {
@@ -15460,14 +15457,14 @@ let q140ans = {
     },
     "Ephesians 4:11-13": {
       text: "And he gave the apostles, the prophets, the evangelists, the pastors and teachers, to equip the saints for the work of ministry, for building up the body of Christ, until we all attain unity in the faith and knowledge of the Son of God and become mature.",
-      theme: "equipping",
+      theme: "unity",
       tags: ["equip", "unity", "growth"]
     }
   },
   "When we give and encourage others, gifts come alive": {
     "1 Thessalonians 5:11": {
       text: "Therefore encourage one another and build each other up, just as in fact you are doing.",
-      theme: "encouragement",
+      theme: "unity",
       tags: ["encourage", "build up", "others"]
     },
     "Romans 15:2": {
@@ -15477,24 +15474,24 @@ let q140ans = {
     },
     "Hebrews 10:24": {
       text: "And let us consider how we may spur one another on toward love and good deeds.",
-      theme: "motivation",
+      theme: "love",
       tags: ["spur", "love", "good works"]
     }
   },
   "Generosity and using skills blesses others": {
     "Matthew 25:14-30": {
       text: "For it will be like a man going on a journey, who called his servants and entrusted to them his property... and he who had received the one talent went and hid his master’s money... Throw that worthless servant outside.",
-      theme: "responsibility",
+      theme: "faithful",
       tags: ["talents", "faithfulness", "accountability"]
     },
     "Acts 20:35": {
       text: "In everything I did, I showed you that by this kind of hard work we must help the weak, remembering the words the Lord Jesus himself said: 'It is more blessed to give than to receive.'",
-      theme: "generosity",
+      theme: "humble",
       tags: ["give", "serve", "humility"]
     },
     "Proverbs 22:9": {
       text: "The generous will themselves be blessed, for they share their food with the poor.",
-      theme: "kindness",
+      theme: "help",
       tags: ["generosity", "blessing", "help"]
     }
   },
@@ -15511,29 +15508,29 @@ let q140ans = {
     },
     "Psalm 139:14": {
       text: "I praise you because I am fearfully and wonderfully made; your works are wonderful, I know that full well.",
-      theme: "identity",
+      theme: "purpose",
       tags: ["creation", "purpose", "wonder"]
     },
     "2 Timothy 1:6": {
       text: "For this reason I remind you to fan into flame the gift of God, which is in you through the laying on of my hands.",
-      theme: "discipleship",
+      theme: "purpose",
       tags: ["rekindle", "gift", "steward"]
     },
     "1 Timothy 4:14": {
       text: "Do not neglect your gift, which was given you through prophecy when the body of elders laid their hands on you.",
-      theme: "stewardship",
+      theme: "purpose",
       tags: ["neglect", "use", "gift"]
     }
   },
   "Serving humbly reflects Christ’s heart": {
     "Mark 10:45": {
       text: "For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.",
-      theme: "service",
+      theme: "jesus",
       tags: ["serve", "Christ", "sacrifice"]
     },
     "Galatians 5:13": {
       text: "You, my brothers and sisters, were called to be free. But do not use your freedom to indulge the flesh; rather serve one another humbly in love.",
-      theme: "humility",
+      theme: "humble",
       tags: ["serve", "freedom", "love"]
     }
   }
@@ -15554,7 +15551,7 @@ let q141ans = {
     },
     "1 Thessalonians 2:13": {
       text: "And we also thank God continually because, when you received the word of God, which you heard from us, you accepted it not as a human word, but as it actually is, the word of God, which is indeed at work in you who believe.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["word", "receive", "believe"]
     },
     "Exodus 24:4": {
@@ -15804,7 +15801,7 @@ let q144ans = {
   "Healthy desire is rooted in God’s will and leads to life, not destruction": {
     "Psalm 37:4": {
       text: "Take delight in the Lord, and he will give you the desires of your heart.",
-      theme: "desire",
+      theme: "spirit",
       tags: ["delight", "desire", "heart"]
     },
     "Proverbs 11:23": {
@@ -15870,7 +15867,7 @@ let q144ans = {
   "God warns against distorted and destructive desires": {
     "James 1:14-15": {
       text: "But each person is tempted when they are dragged away by their own evil desire and enticed. Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
-      theme: "temptation",
+      theme: "fallenness",
       tags: ["sin", "desire", "warning"]
     },
     "Titus 2:12": {
@@ -15901,7 +15898,7 @@ let q145ans = {
     },
     "Song of Songs 2:7": {
       text: "Daughters of Jerusalem, I charge you by the gazelles and by the does of the field: Do not arouse or awaken love until it so desires.",
-      theme: "boundaries",
+      theme: "love",
       tags: ["timing", "love", "self-control"]
     },
     "Galatians 5:16": {
@@ -15933,7 +15930,7 @@ let q145ans = {
     },
     "Proverbs 5:18-19": {
       text: "May your fountain be blessed, and may you rejoice in the wife of your youth. A loving doe, a graceful deer—may her breasts satisfy you always, may you ever be intoxicated with her love.",
-      theme: "joy",
+      theme: "love",
       tags: ["marriage", "desire", "blessing"]
     }
   },
@@ -15955,7 +15952,7 @@ let q145ans = {
     },
     "Job 31:1": {
       text: "I made a covenant with my eyes not to look lustfully at a young woman.",
-      theme: "boundaries",
+      theme: "obedience",
       tags: ["eyes", "desire", "discipline"]
     }
   },
@@ -16024,7 +16021,7 @@ let q146ans = {
       tags: ["discernment", "desire", "guidance"]
     },
     "Ephesians 5:2": {
-      text: "And walk in the way of love, just as Christ loved us and gave himself up for us as a fragrant offering and sacrifice to God.",
+      text: "Walk in the way of love, just as Christ loved us and gave himself up for us as a sacrifice, and a pleasing aroma to God",
       theme: "walk",
       tags: ["sacrificial love", "Christ", "guidance"]
     }
@@ -16080,7 +16077,7 @@ let q147ans = {
   "Desire is a human issue—both men and women experience it": {
     "Song of Songs 3:1": {
       text: "All night long on my bed I looked for the one my heart loves; I looked for him but did not find him.",
-      theme: "desire",
+      theme: "love",
       tags: ["longing", "love", "female voice"]
     },
     "Genesis 3:16": {
@@ -16090,7 +16087,7 @@ let q147ans = {
     },
     "Proverbs 31:10-11": {
       text: "A wife of noble character who can find? She is worth far more than rubies. Her husband has full confidence in her and lacks nothing of value.",
-      theme: "value",
+      theme: "love",
       tags: ["trust", "love", "partnership"]
     },
     "Luke 7:38": {
@@ -16172,7 +16169,7 @@ let q148ans = {
     },
     "Romans 11:29": {
       text: "For God’s gifts and his call are irrevocable.",
-      theme: "calling",
+      theme: "purpose",
       tags: ["purpose", "grace", "unchanging"]
     },
     "Psalm 51:10-12": {
@@ -16228,7 +16225,7 @@ let q148ans = {
     },
     "Acts 13:22-23": {
       text: "After removing Saul, he made David their king. God testified concerning him: ‘I have found David son of Jesse, a man after my own heart...’ From this man’s descendants God has brought to Israel the Savior Jesus, as he promised.",
-      theme: "savior",
+      theme: "jesus",
       tags: ["fulfillment", "lineage", "grace"]
     },
     "Revelation 5:5": {
@@ -16283,7 +16280,7 @@ let q149ans = {
     },
     "Proverbs 31:8-9": {
       text: "Speak up for those who cannot speak for themselves, for the rights of all who are destitute. Speak up and judge fairly; defend the rights of the poor and needy.",
-      theme: "voice",
+      theme: "love",
       tags: ["defense", "equity", "compassion"]
     },
     "James 2:1": {
@@ -16292,20 +16289,21 @@ let q149ans = {
       tags: ["partiality", "justice", "community"]
     }
   },
+  
   "The world may judge unfairly, but God redeems completely": {
     "Micah 7:8-9": {
       text: "Do not gloat over me, my enemy! Though I have fallen, I will rise. Though I sit in darkness, the Lord will be my light... He will bring me out into the light; I will see his righteousness.",
       theme: "hope",
       tags: ["redemption", "fallenness", "light"]
     },
-    "Psalm 103:10-12": {
-      text: "He does not treat us as our sins deserve or repay us according to our iniquities... as far as the east is from the west, so far has he removed our transgressions from us.",
+    "Psalms 103:10-12": {
+      text: "He does not treat us as our sins deserve, for his unfailing love toward those who fear him is as great as the height of the heavens above the earth. As far as the east is from the west, so far has he removed our transgressions from us.",
       theme: "grace",
       tags: ["mercy", "forgiveness", "release"]
     },
     "Isaiah 61:7": {
       text: "Instead of your shame you will receive a double portion, and instead of disgrace you will rejoice in your inheritance. And so you will inherit a double portion in your land, and everlasting joy will be yours.",
-      theme: "restoration",
+      theme: "goodness",
       tags: ["healing", "honor", "reward"]
     }
   }
@@ -16321,12 +16319,12 @@ let q150ans = {
     },
     "James 1:14-15": {
       text: "But each person is tempted when they are dragged away by their own evil desire and enticed. Then, after desire has conceived, it gives birth to sin; and sin, when it is full-grown, gives birth to death.",
-      theme: "temptation",
+      theme: "battle",
       tags: ["desire", "danger", "sin"]
     },
     "1 Corinthians 10:23": {
       text: "'I have the right to do anything,' you say—but not everything is beneficial. 'I have the right to do anything'—but not everything is constructive.",
-      theme: "boundaries",
+      theme: "battle",
       tags: ["freedom", "limits", "wisdom"]
     }
   },
@@ -16343,14 +16341,14 @@ let q150ans = {
     },
     "Matthew 6:21": {
       text: "For where your treasure is, there your heart will be also.",
-      theme: "heart",
+      theme: "spirit",
       tags: ["desire", "worship", "priority"]
     }
   },
   "God is not against desire—He wants to fulfill it rightly": {
     "Psalm 37:4": {
       text: "Take delight in the Lord, and he will give you the desires of your heart.",
-      theme: "delight",
+      theme: "love",
       tags: ["desire", "joy", "promise"]
     },
     "Proverbs 13:12": {
@@ -16360,7 +16358,7 @@ let q150ans = {
     },
     "Isaiah 55:2": {
       text: "Why spend money on what is not bread, and your labor on what does not satisfy? Listen, listen to me, and eat what is good, and you will delight in the richest of fare.",
-      theme: "satisfaction",
+      theme: "protect",
       tags: ["desire", "fulfillment", "God's provision"]
     }
   },
@@ -16372,7 +16370,7 @@ let q150ans = {
     },
     "John 4:13-14": {
       text: "Jesus answered, 'Everyone who drinks this water will be thirsty again, but whoever drinks the water I give them will never thirst... Indeed, the water I give them will become in them a spring of water welling up to eternal life.'",
-      theme: "savior",
+      theme: "jesus",
       tags: ["thirst", "eternal life", "fulfillment"]
     },
     "Philippians 3:8": {
@@ -16392,8 +16390,8 @@ let q151ans = {
       tags: ["intentions", "motives", "discernment"]
     },
     "1 Samuel 16:7": {
-      text: "But the Lord said to Samuel, 'Do not consider his appearance or his height... The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.'",
-      theme: "heart",
+      text: "The Lord does not look at the things people look at. People look at the outward appearance, but the Lord looks at the heart.",
+      theme: "truth",
       tags: ["appearance", "motives", "God’s view"]
     }
   },
@@ -16405,7 +16403,7 @@ let q151ans = {
     },
     "Proverbs 4:23": {
       text: "Above all else, guard your heart, for everything you do flows from it.",
-      theme: "boundaries",
+      theme: "wisdom",
       tags: ["wisdom", "desire", "heart"]
     },
     "Galatians 5:22-23": {
@@ -16415,18 +16413,18 @@ let q151ans = {
     }
   },
   "Flirting can turn harmful if it's misleading or selfish": {
-    "1 Thessalonians 4:3-6": {
-      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality... and that in this matter no one should wrong or take advantage of a brother or sister. The Lord will punish all those who commit such sins...",
-      theme: "boundaries",
+    "1 Thessalonians 4:3–5": {
+      text: "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each of you know how to control your own body in holiness and honor-not in lustful passions like the pagans who do not know God do.",
+      theme: "love",
       tags: ["purity", "respect", "intentions"]
     },
     "Proverbs 7:21-23": {
       text: "With persuasive words she led him astray; she seduced him with her smooth talk... little knowing it will cost him his life.",
-      theme: "temptation",
+      theme: "fallenness",
       tags: ["seduction", "flirting", "danger"]
     },
     "Ephesians 5:3-4": {
-      text: "But among you there must not be even a hint of sexual immorality, or of any kind of impurity... Nor should there be obscenity, foolish talk or coarse joking, which are out of place, but rather thanksgiving.",
+      text: "But among you there must not be even a hint of sexual immorality, or of any kind of impurity, for such sins have no place among God's holy people. Nor should there be obscenity, foolish talk or coarse jokes, these are not for you. Instead let there be thankfulness to God.",
       theme: "holy",
       tags: ["purity", "speech", "respect"]
     }
@@ -16482,14 +16480,14 @@ let q152ans = {
     },
     "Romans 8:15": {
       text: "The Spirit you received does not make you slaves, so that you live in fear again; rather, the Spirit you received brought about your adoption to sonship. And by him we cry, 'Abba, Father.'",
-      theme: "identity",
+      theme: "spirit",
       tags: ["belonging", "family", "God as Father"]
     }
   },
   "God knows your longings—and He honors those who trust Him": {
     "Psalm 37:4": {
       text: "Take delight in the Lord, and he will give you the desires of your heart.",
-      theme: "desire",
+      theme: "trust",
       tags: ["longing", "trust", "joy"]
     },
     "Isaiah 30:18": {
@@ -16509,14 +16507,14 @@ let q152ans = {
       theme: "faithful",
       tags: ["purpose", "strength", "calling"]
     },
-    "Philippians 4:11-13": {
-      text: "I have learned to be content whatever the circumstances... I can do all this through him who gives me strength.",
+    "Philippians 4:11–13": {
+      text: "I have learned to be content whatever the circumstances. I know how to live on almost nothing or with everything. I have learned the secret of being content in any and every situation, whether it is with a full stomach or empty. For I can do all things through Christ who strengthens me.",
       theme: "growth",
       tags: ["contentment", "strength", "joy"]
     },
     "1 Peter 4:13": {
       text: "But rejoice inasmuch as you participate in the sufferings of Christ, so that you may be overjoyed when his glory is revealed.",
-      theme: "joy",
+      theme: "purpose",
       tags: ["endurance", "purpose", "reward"]
     }
   }
@@ -16530,7 +16528,7 @@ let q153ans = {
       theme: "battle",
       tags: ["inner conflict", "sin", "grace"]
     },
-    "Psalm 103:13-14": {
+    "Psalms 103:13-14": {
       text: "As a father has compassion on his children, so the Lord has compassion on those who fear him; for he knows how we are formed, he remembers that we are dust.",
       theme: "mercy",
       tags: ["compassion", "struggle", "weakness"]
@@ -16576,8 +16574,8 @@ let q153ans = {
     }
   },
   "Lust doesn’t make God leave—you’re still invited into holiness": {
-    "1 Thessalonians 4:3-5": {
-      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality... not in passionate lust like the pagans, who do not know God;",
+    "1 Thessalonians 4:3–5": {
+      text: "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each of you know how to control your own body in holiness and honor-not in lustful passions like the pagans who do not know God do.",
       theme: "holy",
       tags: ["sanctification", "calling", "purpose"]
     },
@@ -16604,7 +16602,7 @@ let q154ans = {
     },
     "Song of Songs 7:10": {
       text: "I belong to my beloved, and his desire is for me.",
-      theme: "desire",
+      theme: "love",
       tags: ["romance", "intimacy", "love"]
     },
     "Proverbs 5:18-19": {
@@ -16614,8 +16612,8 @@ let q154ans = {
     }
   },
   "God calls us to steward desire—not deny it": {
-    "1 Thessalonians 4:3-5": {
-      text: "It is God’s will that you should be sanctified: that you should avoid sexual immorality... not in passionate lust like the pagans, who do not know God;",
+    "1 Thessalonians 4:3–5": {
+      text: "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each of you know how to control your own body in holiness and honor-not in lustful passions like the pagans who do not know God do.",
       theme: "holy",
       tags: ["boundaries", "self-control", "calling"]
     },
@@ -16649,7 +16647,7 @@ let q154ans = {
   },
   "Desire becomes holy when aligned with God’s love": {
     "1 Corinthians 13:4-7": {
-      text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud... It always protects, always trusts, always hopes, always perseveres.",
+      text: "Love is patient, love is kind. It does not envy, it does not boast, it is not proud. It does not dishonor others, it is not self-seeking, it is not easily angered, it keeps no record of wrongs. Love does not delight in evil but rejoices with the truth. It always protects, always trusts, always hopes, always perseveres.",
       theme: "love",
       tags: ["godly desire", "purity", "truth"]
     },
@@ -16659,7 +16657,7 @@ let q154ans = {
       tags: ["purity", "boundaries", "identity"]
     },
     "Philippians 4:8": {
-      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure... think about such things.",
+      text: "Finally, brothers, whatever is true, whatever is honorable, whatever is just, whatever is pure, whatever is lovely, whatever is commendable, if there is any excellence, if there is anything worthy of praise, think about these things.",
       theme: "growth",
       tags: ["mindset", "renewal", "focus"]
     }
@@ -16703,7 +16701,7 @@ let q155ans = {
     }
   },
   "God wants relationship—not just performance": {
-    "Micah 6:6-8": {
+    "Micah 6:8": {
       text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
       theme: "walk",
       tags: ["relationship", "humility", "heart"]
@@ -16721,7 +16719,7 @@ let q155ans = {
   },
   "Jesus carried both your burdens and your joy": {
     "Matthew 11:28-30": {
-      text: "Come to me, all you who are weary and burdened, and I will give you rest... For my yoke is easy and my burden is light.",
+      text: "Jesus said 'Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you. Let me teach you, because I am humble and gentle at heart, and you will find rest for your souls. For my yoke is easy and the burden I give you is light.",
       theme: "help",
       tags: ["rest", "burden", "tenderness"]
     },
@@ -16731,8 +16729,8 @@ let q155ans = {
       tags: ["worry", "care", "relief"]
     },
     "Zephaniah 3:17": {
-      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you... he will rejoice over you with singing.",
-      theme: "joy",
+      text: "The Lord your God is with you, the Mighty Warrior who saves. He will take great delight in you with gladness. With his love, he will calm all you fears, he will rejoice over you with singing.",
+      theme: "salvation",
       tags: ["delight", "affection", "joy"]
     }
   }
@@ -16743,7 +16741,7 @@ let q156ans = {
   "Desire itself is not sin—it depends on the heart": {
     "Song of Songs 8:4": {
       text: "Daughters of Jerusalem, I charge you: Do not arouse or awaken love until it so desires.",
-      theme: "desire",
+      theme: "love",
       tags: ["timing", "love", "restraint"]
     },
     "James 1:14-15": {
@@ -16823,9 +16821,9 @@ let q157ans = {
       theme: "forgiveness",
       tags: ["love", "faith", "peace", "sinners"]
     },
-    "Matthew 11:28–30": {
-      text: "Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you and learn from me... For my yoke is easy and my burden is light.",
-      theme: "rest",
+    "Matthew 11:28-30": {
+      text: "Jesus said 'Come to me, all you who are weary and burdened, and I will give you rest. Take my yoke upon you. Let me teach you, because I am humble and gentle at heart, and you will find rest for your souls. For my yoke is easy and the burden I give you is light.",
+      theme: "hope",
       tags: ["rest", "invitation", "burden", "comfort"]
     },
     "John 8:10–11": {
@@ -16840,12 +16838,12 @@ let q157ans = {
     },
     "Isaiah 56:3–5": {
       text: "Let no foreigner who is bound to the Lord say, 'The Lord will surely exclude me from his people.' And let no eunuch complain, 'I am only a dry tree.' For this is what the Lord says: 'To the eunuchs who keep my Sabbaths... I will give them an everlasting name that will endure forever.'",
-      theme: "inclusion",
+      theme: "eternal",
       tags: ["foreigners", "eunuchs", "welcome", "promise"]
     },
     "Acts 8:36–38": {
       text: "As they traveled along the road, they came to some water and the eunuch said, 'Look, here is water. What can stand in the way of my being baptized?'... And both Philip and the eunuch went down into the water and Philip baptized him.",
-      theme: "baptism",
+      theme: "faithful",
       tags: ["eunuch", "faith", "baptism", "acceptance"]
     }
   },
@@ -16857,13 +16855,13 @@ let q157ans = {
       tags: ["new", "identity", "change", "renewal"]
     },
     "Galatians 2:20": {
-      text: "I have been crucified with Christ and I no longer live, but Christ lives in me...",
-      theme: "identity",
-      tags: ["identity", "christ", "new", "life"]
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
+      theme: "jesus",
+      tags: ["identity", "Christ in me", "death to self"]
     },
     "Romans 12:2": {
-      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind...",
-      theme: "renewal",
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
       tags: ["mind", "transformation", "change", "growth"]
     },
     "Colossians 3:9–10": {
@@ -16878,7 +16876,7 @@ let q157ans = {
     },
     "John 3:5–6": {
       text: "Jesus answered, 'Very truly I tell you, no one can enter the kingdom of God unless they are born of water and the Spirit... Flesh gives birth to flesh, but the Spirit gives birth to spirit.'",
-      theme: "rebirth",
+      theme: "spirit",
       tags: ["born", "spirit", "transformation", "kingdom"]
     },
     "Ephesians 2:4–5": {
@@ -16923,7 +16921,7 @@ let q157ans = {
   "Jesus redefines family and belonging": {
   "Mark 3:33–35": {
     text: "'Who are my mother and my brothers?' he asked. Then he looked at those seated in a circle around him and said, 'Here are my mother and my brothers! Whoever does God’s will is my brother and sister and mother.'",
-    theme: "belonging",
+    theme: "obedience",
     tags: ["family", "will", "community", "new"]
   },
   "Luke 14:26–27": {
@@ -16949,7 +16947,7 @@ let q157ans = {
     tags: ["trust", "understanding", "submit", "path"]
   },
   "Romans 8:5–6": {
-    text: "Those who live according to the flesh have their minds set on what the flesh desires... but the mind governed by the Spirit is life and peace.",
+    text: "Those who live according to the flesh have their minds set on what the flesh desires but those who live in accordance with the spirit have their minds set on that the spirit desires. The mind of a sinful person is death, but the mind governed by the Spirit is life and peace.",
     theme: "spirit",
     tags: ["flesh", "spirit", "desire", "peace"]
   },
@@ -16980,17 +16978,17 @@ let q157ans = {
   explanation: "Eunuchs were biologically or socially outside sexual norms in biblical times—often infertile, castrated, or sexually ambiguous. Many scholars consider them a symbol for people whose bodies or desires set them apart. God still honors and includes them.",
   "Isaiah 56:3–5": {
     text: "Let no foreigner who is bound to the Lord say, 'The Lord will surely exclude me from his people.' And let no eunuch complain, 'I am only a dry tree.' For this is what the Lord says: 'To the eunuchs who keep my Sabbaths... I will give them an everlasting name that will endure forever.'",
-    theme: "inclusion",
+    theme: "obedience",
     tags: ["eunuchs", "foreigners", "welcome", "promise"]
   },
   "Acts 8:36–38": {
     text: "As they traveled along the road, they came to some water and the eunuch said, 'Look, here is water. What can stand in the way of my being baptized?'... And both Philip and the eunuch went down into the water and Philip baptized him.",
-    theme: "baptism",
+    theme: "faithful",
     tags: ["eunuch", "faith", "baptism", "acceptance"]
   },
   "Matthew 19:12": {
     text: "For there are eunuchs who were born that way, and there are eunuchs who have been made eunuchs by others—and there are those who choose to live like eunuchs for the sake of the kingdom of heaven. The one who can accept this should accept it.",
-    theme: "identity",
+    theme: "purpose",
     tags: ["eunuchs", "kingdom", "body", "calling"]
   }
 }
@@ -17000,8 +16998,8 @@ let q157ans = {
 let q158ans = {
   "Yes. Christians can be influenced—not possessed—but tempted, harassed, or deceived if they open doors through sin, fear, or ignorance.": {
     "Ephesians 4:26-27": {
-      text: "Be angry and do not sin; do not let the sun go down on your anger, and give no opportunity to the devil.",
-      theme: "boundaries",
+      text: "Be angry and do not sin; do not let anger control you, do not let the sun go down while you are still angry, for anger gives a foothold to the devil.",
+      theme: "fear",
       tags: ["influence", "open doors", "anger", "entry point"]
     },
     "2 Corinthians 11:3": {
@@ -17047,7 +17045,7 @@ let q158ans = {
     },
     "1 Timothy 4:1": {
       text: "Now the Spirit expressly says that in later times some will depart from the faith by devoting themselves to deceitful spirits and teachings of demons,",
-      theme: "deception",
+      theme: "spirit",
       tags: ["false teaching", "spirits", "departing", "influence"]
     },
     "Matthew 16:23": {
@@ -17107,7 +17105,7 @@ let q159ans = {
   "The enemy lies by making sin look harmless or good—minimizing its danger and consequences.": {
     "2 Corinthians 11:14": {
       text: "And no wonder, for even Satan disguises himself as an angel of light.",
-      theme: "discernment",
+      theme: "temptation",
       tags: ["deception", "appearance", "misleading", "discernment"]
     },
     "Proverbs 14:12": {
@@ -17118,7 +17116,7 @@ let q159ans = {
   },
 
   "The enemy tries to convince us that God won’t forgive us, or that we’ve messed up too badly to come back.": {
-    "Psalm 103:10-12": {
+    "Psalms 103:10-12": {
       text: "He does not deal with us according to our sins, nor repay us according to our iniquities. For as high as the heavens are above the earth, so great is his steadfast love toward those who fear him; as far as the east is from the west, so far does he remove our transgressions from us.",
       theme: "forgiveness",
       tags: ["grace", "mercy", "cleansing", "guilt"]
@@ -17185,12 +17183,12 @@ let q159ans = {
   "The enemy wants us to question our identity, but God clearly names us: chosen, holy, loved, and His.": {
     "1 Peter 2:9": {
       text: "But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession, that you may proclaim the excellencies of him who called you out of darkness into his marvelous light.",
-      theme: "identity",
+      theme: "holy",
       tags: ["chosen", "belonging", "value", "calling"]
     },
     "Romans 8:16-17": {
       text: "The Spirit himself bears witness with our spirit that we are children of God, and if children, then heirs—heirs of God and fellow heirs with Christ, provided we suffer with him in order that we may also be glorified with him.",
-      theme: "family",
+      theme: "truth",
       tags: ["identity", "inheritance", "belonging", "truth"]
     }
   }
@@ -17258,10 +17256,10 @@ let q160ans = {
       tags: ["conqueror", "boldness", "security", "identity"]
     },
     "Galatians 2:20": {
-      text: "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me...",
-      theme: "identity",
-      tags: ["Christ in me", "strength", "new life", "boldness"]
-    }
+      text: "I have been crucified with Christ and I no longer live, but Christ lives in me. So I live in this earthly body by trusting in the Son of God, who loved me and gave his life for me.",
+      theme: "transformation",
+      tags: ["identity", "Christ in me", "death to self"]
+    },
   },
  
   "Victory shows up in unexplainable joy—even when life is hard, we’re not crushed.": {
@@ -17279,7 +17277,7 @@ let q160ans = {
 
   "Victory bears fruit—it’s not just survival, but a changed life full of good things.": {
     "Galatians 5:22-23": {
-      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control...",
+      text: "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law.",
       theme: "growth",
       tags: ["fruit", "transformation", "Spirit", "evidence"]
     },
@@ -17298,7 +17296,7 @@ let q160ans = {
     },
     "Hebrews 10:39": {
       text: "But we are not of those who shrink back and are destroyed, but of those who have faith and preserve their souls.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["endurance", "boldness", "faith", "identity"]
     }
   },
@@ -17336,7 +17334,7 @@ let q161ans = {
 
   "The Word of God is a living weapon—it exposes darkness and strengthens us from within.": {
     "Hebrews 4:12": {
-      text: "For the word of God is living and active, sharper than any two-edged sword, piercing to the division of soul and of spirit...",
+      text: "For the word of God is alive and active. Sharper than any double-edged sword, it penetrates even to dividing soul and spirit, joints and marrow; it judges the thoughts and attitudes of the heart.",
       theme: "truth",
       tags: ["Bible", "weapon", "discernment", "spiritual warfare"]
     },
@@ -17376,12 +17374,12 @@ let q161ans = {
   "Faith is a shield that blocks attacks—we don’t have to see to believe, we trust God is fighting for us.": {
     "Ephesians 6:16": {
       text: "In all circumstances take up the shield of faith, with which you can extinguish all the flaming darts of the evil one;",
-      theme: "faith",
+      theme: "faithful",
       tags: ["shield", "faith", "resistance", "protection"]
     },
     "1 John 5:4": {
       text: "For everyone who has been born of God overcomes the world. And this is the victory that has overcome the world—our faith.",
-      theme: "victory",
+      theme: "faithful",
       tags: ["faith", "overcome", "confidence", "spiritual battle"]
     }
   },
@@ -17432,7 +17430,7 @@ let q161ans = {
     },
     "Luke 10:17": {
       text: "The seventy-two returned with joy, saying, 'Lord, even the demons are subject to us in your name!'",
-      theme: "victory",
+      theme: "authority",
       tags: ["Jesus", "authority", "demons", "spiritual battle"]
     }
   },
@@ -17501,7 +17499,7 @@ let q162ans = {
     },
     "2 Corinthians 7:10": {
       text: "For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death.",
-      theme: "repentance",
+      theme: "salvation",
       tags: ["godly sorrow", "repentance", "regret", "difference"]
     }
   },
@@ -17573,7 +17571,7 @@ let q162ans = {
 
   "Accusation wants you to hide from God. Conviction gently draws you back to Him.": {
     "James 4:8": {
-      text: "Draw near to God, and he will draw near to you. Cleanse your hands, you sinners, and purify your hearts, you double-minded.",
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, for your loyalty is divided between God and the world.",
       theme: "seek",
       tags: ["draw near", "repentance", "relationship", "cleansing"]
     },
@@ -17703,7 +17701,7 @@ let q164ans = {
   "Jesus already defeated death, hell, and the devil. As His follower, you stand in that victory.": {
     "Hebrews 2:14-15": {
       text: "Since therefore the children share in flesh and blood, he himself likewise partook of the same things, that through death he might destroy the one who has the power of death, that is, the devil, and deliver all those who through fear of death were subject to lifelong slavery.",
-      theme: "victory",
+      theme: "jesus",
       tags: ["deliverance", "Jesus", "fear of death", "freedom"]
     },
     "Colossians 2:15": {
@@ -17742,7 +17740,7 @@ let q164ans = {
     },
     "1 John 5:18": {
       text: "We know that everyone who has been born of God does not keep on sinning, but he who was born of God protects him, and the evil one does not touch him.",
-      theme: "protection",
+      theme: "protect",
       tags: ["safety", "evil one", "born of God", "holiness"]
     }
   },
@@ -17755,7 +17753,7 @@ let q164ans = {
     },
     "1 John 4:4": {
       text: "Little children, you are from God and have overcome them, for he who is in you is greater than he who is in the world.",
-      theme: "victory",
+      theme: "spirit",
       tags: ["Holy Spirit", "courage", "overcoming", "evil"]
     }
   }
@@ -17805,7 +17803,7 @@ let q165ans = {
     },
     "1 Thessalonians 5:6-8": {
       text: "So then, let us not be like other, who are asleep, but let us be awake and sober... let us be sober, putting on faith and love as a breastplate, and the hope of salvation as a helmet",
-      theme: "armor",
+      theme: "faithful",
       tags: ["sober", "alert", "faith", "hope", "self-control"]
     }
   }
@@ -17863,7 +17861,7 @@ let q166ans = {
     },
     "1 Chronicles 15:16": {
       text: "David told the leaders of the Levites to appoint their fellow Levites as musicians to make a joyful sound with musical instruments: lyres, harps and cymbals.",
-      theme: "worship",
+      theme: "walk",
       tags: ["music", "creativity", "art", "praise"]
     },
     "2 Chronicles 2:13–14": {
@@ -17873,7 +17871,7 @@ let q166ans = {
     },
     "Amos 6:5": {
       text: "You strum away on your harps like David and improvise on musical instruments.",
-      theme: "praise",
+      theme: "walk",
       tags: ["music", "creativity", "art", "expression"]
     }
   },
@@ -17922,7 +17920,7 @@ let q166ans = {
     },
     "Psalm 150:4": {
       text: "Praise him with tambourine and dancing, praise him with the strings and pipe,",
-      theme: "praise",
+      theme: "walk",
       tags: ["music", "dance", "art", "worship"]
     },
     "Exodus 28:2": {
@@ -17932,7 +17930,7 @@ let q166ans = {
     },
     "2 Samuel 6:14": {
       text: "Wearing a linen ephod, David was dancing before the Lord with all his might,",
-      theme: "praise",
+      theme: "walk",
       tags: ["dance", "worship", "creativity", "art"]
     },
     "Revelation 21:18–19": {
@@ -18003,7 +18001,7 @@ let q167ans = {
 
   "Taking care of your body is not vanity, but stewardship": {
     "Ephesians 5:29": {
-      text: "After all, no one ever hated their own body, but they feed and care for their body, just as Christ does the church—",
+      text: "After all, no one ever hated their own body, but they feed and care for their body, just as Christ does the church.",
       theme: "guidance",
       tags: ["body care", "love", "Christ", "stewardship"]
     },
@@ -18120,7 +18118,7 @@ let q168ans = {
   "God comforts us in affliction so we can comfort others": {
     "2 Corinthians 1:3-4": {
       text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
-      theme: "comfort",
+      theme: "purpose",
       tags: ["suffering", "purpose", "healing", "ministry", "encouragement"]
     },
     "Isaiah 40:29": {
@@ -18177,7 +18175,7 @@ let q169ans = {
     },
     "Psalm 37:4": {
       text: "Take delight in the Lord, and he will give you the desires of your heart.",
-      theme: "delight",
+      theme: "trust",
       tags: ["trust", "desire", "dreams", "purpose", "surrender"]
     }
   },
@@ -18211,7 +18209,7 @@ let q169ans = {
   "Surrender leads to true life, not loss": {
     "Matthew 16:24-25": {
       text: "Then Jesus said to his disciples, “Whoever wants to be my disciple must deny themselves and take up their cross and follow me. For whoever wants to save their life will lose it, but whoever loses their life for me will find it.”",
-      theme: "surrender",
+      theme: "trust",
       tags: ["discipleship", "trust", "purpose", "life", "obedience"]
     },
     "Romans 12:1-2": {
@@ -18224,7 +18222,7 @@ let q169ans = {
   "Faith means walking even when I don’t see the full plan": {
     "Hebrews 11:8": {
       text: "By faith Abraham, when called to go to a place he would later receive as his inheritance, obeyed and went, even though he did not know where he was going.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["Abraham", "trust", "future", "obedience", "calling"]
     },
     "Psalm 119:105": {
@@ -18253,12 +18251,12 @@ let q170ans = {
   "God calls us to contentment with what He’s given": {
     "Philippians 4:11-12": {
       text: "I am not saying this because I am in need, for I have learned to be content whatever the circumstances. I know what it is to be in need, and I know what it is to have plenty. I have learned the secret of being content in any and every situation, whether well fed or hungry, whether living in plenty or in want.",
-      theme: "contentment",
+      theme: "gratitude",
       tags: ["contentment", "trust", "gratitude", "peace", "faith"]
     },
     "1 Timothy 6:6-7": {
       text: "But godliness with contentment is great gain. For we brought nothing into the world, and we can take nothing out of it.",
-      theme: "contentment",
+      theme: "gratitude",
       tags: ["contentment", "gratitude", "trust", "simplicity", "faith"]
     },
     "Hebrews 13:5": {
@@ -18294,7 +18292,7 @@ let q170ans = {
     },
     "Psalm 37:4": {
       text: "Take delight in the Lord, and he will give you the desires of your heart.",
-      theme: "delight",
+      theme: "trust",
       tags: ["desire", "dreams", "ambition", "surrender", "trust"]
     },
     "Proverbs 16:3": {
@@ -18325,12 +18323,12 @@ let q170ans = {
   "True greatness is found in serving, not in chasing status": {
     "Mark 10:43-45": {
       text: "Not so with you. Instead, whoever wants to become great among you must be your servant, and whoever wants to be first must be slave of all. For even the Son of Man did not come to be served, but to serve, and to give his life as a ransom for many.”",
-      theme: "servant",
+      theme: "humble",
       tags: ["ambition", "greatness", "humility", "service", "Jesus"]
     },
     "Jeremiah 9:23-24": {
       text: "This is what the Lord says: “Let not the wise boast of their wisdom or the strong boast of their strength or the rich boast of their riches, but let the one who boasts boast about this: that they have the understanding to know me, that I am the Lord, who exercises kindness, justice and righteousness on earth, for in these I delight,” declares the Lord.",
-      theme: "boast",
+      theme: "wisdom",
       tags: ["ambition", "wisdom", "riches", "identity", "truth"]
     }
   }
@@ -18377,7 +18375,7 @@ let q171ans = {
   "God sometimes blesses with wealth, not as a curse but as a responsibility. When surrendered to Him, it can serve justice, generosity, and salvation instead of greed.": {
     "Deuteronomy 8:18": {
       text: "But remember the Lord your God, for it is he who gives you the ability to produce wealth, and so confirms his covenant, which he swore to your ancestors, as it is today.",
-      theme: "provision",
+      theme: "trust",
       tags: ["wealth", "gift", "stewardship", "provision", "covenant"]
     },
     "1 Chronicles 29:12": {
@@ -18394,7 +18392,7 @@ let q171ans = {
 
   "God doesn’t glorify poverty for its own sake. What matters is trusting Him in both lack and plenty, finding strength in Christ instead of circumstances.": {
     "Philippians 4:12-13": {
-      text: "I know what it is to be in need, and I know what it is to have plenty. I have learned the secret of being content in any and every situation, whether well fed or hungry, whether living in plenty or in want. I can do all this through him who gives me strength.",
+      text: "I know what it is to be in need, and I know what it is to have plenty. I have learned the secret of being content in any and every situation, whether well fed or hungry, whether living in plenty or in want. I can do all this through Christ who gives me strength.",
       theme: "strength",
       tags: ["poverty", "wealth", "contentment", "faith", "trust"]
     },
@@ -18493,7 +18491,7 @@ let q172ans = {
     },
     "Matthew 23:5": {
       text: "Everything they do is done for people to see: They make their phylacteries wide and the tassels on their garments long.",
-      theme: "hypocrisy",
+      theme: "fallenness",
       tags: ["pride", "religious show", "appearance", "approval", "hypocrisy"]
     },
     "Jeremiah 17:5": {
@@ -18580,7 +18578,7 @@ let q173ans = {
     },
     "Luke 16:23": {
       text: "In Hades, where he was in torment, he looked up and saw Abraham far away, with Lazarus by his side.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["hell", "parable", "rich man", "torment", "separation"]
     }
   },
@@ -18593,7 +18591,7 @@ let q173ans = {
     },
     "Matthew 7:23": {
       text: "Then I will tell them plainly, ‘I never knew you. Away from me, you evildoers!’",
-      theme: "judgment",
+      theme: "justice",
       tags: ["separation", "hell", "rejection", "sin", "judgment"]
     },
     "Isaiah 59:2": {
@@ -18603,7 +18601,7 @@ let q173ans = {
     },
     "Luke 13:27-28": {
       text: "But he will reply, ‘I don’t know you or where you come from. Away from me, all you evildoers!’ There will be weeping there, and gnashing of teeth, when you see Abraham, Isaac and Jacob and all the prophets in the kingdom of God, but you yourselves thrown out.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["hell", "separation", "weeping", "gnashing", "kingdom"]
     }
   },
@@ -18631,7 +18629,7 @@ let q173ans = {
     },
     "Jude 1:7": {
       text: "In a similar way, Sodom and Gomorrah and the surrounding towns gave themselves up to sexual immorality and perversion. They serve as an example of those who suffer the punishment of eternal fire.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["hell", "Sodom", "judgment", "fire", "example"]
     },
     "Daniel 12:2": {
@@ -18641,7 +18639,7 @@ let q173ans = {
     },
     "Isaiah 66:24": {
       text: "And they will go out and look on the dead bodies of those who rebelled against me; the worms that eat them will not die, the fire that burns them will not be quenched, and they will be loathsome to all mankind.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["hell", "fire", "worms", "judgment", "eternity"]
     }
   },
@@ -18675,7 +18673,7 @@ let q174ans = {
   "Hell is prepared for the devil and his angels, not for people — but those who follow Satan’s rebellion share his fate": {
     "Matthew 25:41": {
       text: "Then he will say to those on his left, ‘Depart from me, you who are cursed, into the eternal fire prepared for the devil and his angels.’",
-      theme: "judgment",
+      theme: "justice",
       tags: ["hell", "devil", "angels", "curse", "fire"]
     },
     "Revelation 20:10": {
@@ -18724,7 +18722,7 @@ let q174ans = {
   "Biblical stories show rebellion against God leads to judgment — a warning of hell’s reality": {
     "Numbers 16:32-33": {
       text: "and the earth opened its mouth and swallowed them and their households, and all those associated with Korah, together with their possessions. They went down alive into the realm of the dead, with everything they owned; the earth closed over them, and they perished and were gone from the community.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["hell", "rebellion", "death", "earth", "judgment"]
     },
     "Exodus 14:28": {
@@ -18752,12 +18750,12 @@ let q174ans = {
     },
     "Matthew 13:41-42": {
       text: "The Son of Man will send out his angels, and they will weed out of his kingdom everything that causes sin and all who do evil. They will throw them into the blazing furnace, where there will be weeping and gnashing of teeth.",
-      theme: "judgment",
+      theme: "jesus",
       tags: ["hell", "angels", "evil", "weeping", "gnashing"]
     },
     "Jude 1:13": {
       text: "They are wild waves of the sea, foaming up their shame; wandering stars, for whom blackest darkness has been reserved forever.",
-      theme: "judgment",
+      theme: "eternal",
       tags: ["hell", "darkness", "shame", "judgment", "forever"]
     }
   }
@@ -18902,17 +18900,17 @@ let q176ans = {
   "Turning from sin (repentance) shows we have truly accepted His gift": {
     "Acts 3:19": {
       text: "Repent, then, and turn to God, so that your sins may be wiped out, that times of refreshing may come from the Lord.",
-      theme: "repentance",
+      theme: "forgiveness",
       tags: ["hell", "repentance", "sins", "refreshing", "turn"]
     },
     "Matthew 4:17": {
       text: "From that time on Jesus began to preach, 'Repent, for the kingdom of heaven has come near.'",
-      theme: "kingdom",
+      theme: "jesus",
       tags: ["hell", "repentance", "kingdom", "jesus", "heaven"]
     },
     "2 Corinthians 7:10": {
       text: "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death.",
-      theme: "repentance",
+      theme: "salvation",
       tags: ["hell", "repentance", "salvation", "sorrow", "life"]
     }
   },
@@ -19004,7 +19002,7 @@ let q177ans = {
   "Hell was prepared for Satan and the fallen angels, not humans": {
     "Matthew 25:41": {
       text: "Then he will say to those on his left, ‘Depart from me, you who are cursed, into the eternal fire prepared for the devil and his angels.’",
-      theme: "judgment",
+      theme: "justice",
       tags: ["hell", "devil", "angels", "fire", "curse"]
     },
     "2 Peter 2:4": {
@@ -19048,7 +19046,7 @@ let q177ans = {
   "The Old Testament hinted at Sheol as the shadowy place of the dead": {
     "Psalm 9:17": {
       text: "The wicked go down to the realm of the dead, all the nations that forget God.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["sheol", "hell", "wicked", "nations", "death"]
     },
     "Proverbs 15:24": {
@@ -19140,7 +19138,7 @@ let q178ans = {
     },
     "Psalm 101:3": {
       text: "I will not look with approval on anything that is vile. I hate what faithless people do; I will have no part in it.",
-      theme: "holiness",
+      theme: "holy",
       tags: ["purity", "discernment", "holiness"]
     }
   },
@@ -19206,7 +19204,7 @@ let q178ans = {
     },
     "Ecclesiastes 3:4": {
       text: "a time to weep and a time to laugh, a time to mourn and a time to dance,",
-      theme: "season",
+      theme: "truth",
       tags: ["joy", "dance", "expression"]
     },
     "Colossians 3:17": {
@@ -19221,7 +19219,7 @@ let q178ans = {
     },
     "Psalm 150:6": {
       text: "Let everything that has breath praise the Lord. Praise the Lord.",
-      theme: "praise",
+      theme: "light",
       tags: ["worship", "music", "praise"]
     }
   },
@@ -19322,12 +19320,12 @@ let q178ans = {
     },
     "Daniel 3:5": {
       text: "As soon as you hear the sound of the horn, flute, zither, lyre, harp, pipe and all kinds of music, you must fall down and worship the image of gold that King Nebuchadnezzar has set up.",
-      theme: "idolatry",
+      theme: "fallenness",
       tags: ["music", "control", "idolatry", "false worship"]
     },
     "Daniel 3:7": {
       text: "Therefore, as soon as they heard the sound of the horn, flute, zither, lyre, harp and all kinds of music, all the nations and peoples of every language fell down and worshiped the image of gold that King Nebuchadnezzar had set up.",
-      theme: "idolatry",
+      theme: "fallenness",
       tags: ["influence", "music", "idolatry", "crowd pressure"]
     }
   },
@@ -19369,12 +19367,12 @@ let q179ans = {
     },
     "John 10:10": {
       text: "The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.",
-      theme: "life",
+      theme: "purpose",
       tags: ["abundance", "joy", "purpose"]
     },
     "Psalm 16:11": {
       text: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.",
-      theme: "joy",
+      theme: "eternal",
       tags: ["pleasure", "eternal", "presence of God"]
     },
     "2 Timothy 3:4": {
@@ -19412,7 +19410,7 @@ let q180ans = {
   "Even our words matter, not just our deeds, because God examines the intentions behind them.": {
     "Matthew 12:36": {
       text: "But I tell you that everyone will have to give account on the day of judgment for every empty word they have spoken.",
-      theme: "accountability",
+      theme: "obedience",
       tags: ["speech", "small things matter", "obedience"]
     },
     "Proverbs 10:19": {
@@ -19424,7 +19422,7 @@ let q180ans = {
   "God calls us to holiness in every part of life, not just the obvious or public sins.": {
     "1 Peter 1:15-16": {
       text: "But just as he who called you is holy, so be holy in all you do; for it is written: 'Be holy, because I am holy.'",
-      theme: "holiness",
+      theme: "holy",
       tags: ["obedience", "heart", "sanctification"]
     },
     "Colossians 3:17": {
@@ -19441,12 +19439,12 @@ let q180ans = {
   "Small sins still have consequences, so God calls us to surrender all, not just the major faults.": {
     "Galatians 6:7-8": {
       text: "Do not be deceived: God cannot be mocked. A man reaps what he sows. Whoever sows to please their flesh, from the flesh will reap destruction; whoever sows to please the Spirit, from the Spirit will reap eternal life.",
-      theme: "consequences",
+      theme: "obedience",
       tags: ["obedience", "actions", "small choices"]
     },
     "Romans 14:12": {
       text: "So then, each of us will give an account of ourselves to God.",
-      theme: "accountability",
+      theme: "obedience",
       tags: ["obedience", "responsibility", "small actions matter"]
     },
     "Ecclesiastes 12:13-14": {
@@ -19484,7 +19482,7 @@ let q181ans = {
   "What we consume in thought, sight, and sound shapes our heart; even fun can lead us to sin if it entices wrong desires.": {
     "Philippians 4:8": {
       text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
-      theme: "mind",
+      theme: "light",
       tags: ["thoughts", "influence", "choices"]
     },
     "Romans 12:2": {
@@ -19543,7 +19541,7 @@ let q181ans = {
     },
     "John 10:10": {
       text: "The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.",
-      theme: "life",
+      theme: "wisdom",
       tags: ["pleasure", "joy", "abundance"]
     },
     "Ecclesiastes 2:11": {
@@ -19558,7 +19556,7 @@ let q181ans = {
     },
     "Matthew 5:6": {
       text: "Blessed are those who hunger and thirst for righteousness, for they will be filled.",
-      theme: "blessing",
+      theme: "goodness",
       tags: ["righteousness", "desire", "fulfillment"]
     }
   }
@@ -19650,7 +19648,7 @@ let q182ans = {
   "Self-examination and conscience guided by God help identify subtle temptations.": {
     "2 Corinthians 13:5": {
       text: "Examine yourselves to see whether you are in the faith; test yourselves.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["self-reflection", "discernment", "conscience"]
     },
     "Romans 12:2": {
@@ -19665,7 +19663,7 @@ let q182ans = {
     },
     "Psalm 139:23-24": {
       text: "Search me, God, and know my heart; test me and know my anxious thoughts. See if there is any offensive way in me, and lead me in the way everlasting.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["self-examination", "conscience", "discernment"]
     },
     "Lamentations 3:40": {
@@ -19694,8 +19692,8 @@ let q183ans = {
       theme: "faithful",
       tags: ["planning", "hobbies", "God's guidance"]
     },
-    "Ephesians 5:15-16": {
-      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity, because the days are evil.",
+    "Ephesians 5:15-17": {
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity, because the days are evil. Don't act thoughtlessly, but understand what the Lord wants you to do.",
       theme: "wisdom",
       tags: ["time management", "discernment", "hobbies"]
     },
@@ -19713,7 +19711,7 @@ let q183ans = {
   "Some activities can influence the heart positively or negatively.": {
     "Philippians 4:8": {
       text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
-      theme: "purity",
+      theme: "goodness",
       tags: ["thoughts", "hobbies", "influence", "heart"]
     },
     "Romans 12:2": {
@@ -19728,12 +19726,12 @@ let q183ans = {
     },
     "Psalm 101:3": {
       text: "I will not look with approval on anything that is vile. I hate what faithless people do; I will have no part in it.",
-      theme: "purity",
+      theme: "light",
       tags: ["hobbies", "discernment", "influence"]
     },
     "Proverbs 4:23": {
       text: "Above all else, guard your heart, for everything you do flows from it.",
-      theme: "guard",
+      theme: "spirit",
       tags: ["heart", "hobbies", "influence"]
     },
     "James 1:14-15": {
@@ -19750,7 +19748,7 @@ let q183ans = {
     },
     "Proverbs 22:29": {
       text: "Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank.",
-      theme: "skill",
+      theme: "walk",
       tags: ["hobbies", "skill development", "excellence"]
     },
     "Ecclesiastes 3:13": {
@@ -19765,7 +19763,7 @@ let q183ans = {
     },
     "Psalm 33:3": {
       text: "Sing to him a new song; play skillfully, and shout for joy.",
-      theme: "joy",
+      theme: "seek",
       tags: ["music", "creative hobbies", "God's glory"]
     },
     "Matthew 25:21": {
@@ -19816,7 +19814,7 @@ let q184ans = {
     },
     "Ecclesiastes 2:10-11": {
       text: "I denied myself nothing my eyes desired; I refused my heart no pleasure. My heart took delight in all my labor, and this was the reward for all my toil. Yet when I surveyed all that my hands had done and what I had toiled to achieve, everything was meaningless, a chasing after the wind; nothing was gained under the sun.",
-      theme: "vanity",
+      theme: "purpose",
       tags: ["pleasure", "hobbies", "idolatry", "emptiness"]
     },
     "Philippians 3:7-8": {
@@ -19864,7 +19862,7 @@ let q185ans = {
     },
     "Ezekiel 14:3": {
       text: "Son of man, these men have set up idols in their hearts and put wicked stumbling blocks before their faces. Should I let them inquire of me at all?",
-      theme: "heart",
+      theme: "jesus",
       tags: ["idolatry", "heart", "sin", "separation from God"]
     },
     "Matthew 6:24": {
@@ -19916,7 +19914,7 @@ let q186ans = {
       theme: "mercy",
       tags: ["forgiveness", "warning", "obedience", "grace"]
     },
-    "Psalm 103:10-12": {
+    "Psalms 103:10-12": {
       text: "He does not treat us as our sins deserve or repay us according to our iniquities. For as high as the heavens are above the earth, so great is his love for those who fear him; as far as the east is from the west, so far has he removed our transgressions from us.",
       theme: "mercy",
       tags: ["forgiveness", "grace", "love", "mercy"]
@@ -19947,7 +19945,7 @@ let q186ans = {
   "Forgiving others reflects God’s heart and brings peace": {
     "Mark 11:25": {
       text: "And when you stand praying, if you hold anything against anyone, forgive them, so that your Father in heaven may forgive you your sins.",
-      theme: "prayer",
+      theme: "forgiveness",
       tags: ["forgiveness", "prayer", "peace", "obedience"]
     },
     "Luke 6:37": {
@@ -20027,7 +20025,7 @@ let q187ans = {
   "God promises His justice will come in His timing": {
     "Romans 12:19": {
       text: "Do not take revenge, my dear friends, but leave room for God's wrath, for it is written: 'It is mine to avenge; I will repay,' says the Lord.",
-      theme: "vengeance",
+      theme: "justice",
       tags: ["revenge", "wrath", "justice"]
     },
     "2 Thessalonians 1:6-7": {
@@ -20050,7 +20048,7 @@ let q187ans = {
     },
     "Matthew 25:31-33,41": {
       text: "When the Son of Man comes in his glory, and all the angels with him, he will sit on his glorious throne. All the nations will be gathered before him, and he will separate the people one from another as a shepherd separates the sheep from the goats. He will put the sheep on his right and the goats on his left. ... Then he will say to those on his left, 'Depart from me, you who are cursed, into the eternal fire prepared for the devil and his angels.'",
-      theme: "judgment",
+      theme: "eternal",
       tags: ["separation", "judgment", "eternal"]
     }
   },
@@ -20058,7 +20056,7 @@ let q187ans = {
   "God cares for your pain in the waiting": {
     "Psalm 34:18-19": {
       text: "The LORD is close to the brokenhearted and saves those who are crushed in spirit. The righteous person may have many troubles, but the LORD delivers him from them all.",
-      theme: "comfort",
+      theme: "presence",
       tags: ["brokenhearted", "comfort", "deliverance"]
     },
     "Revelation 21:4": {
@@ -20105,7 +20103,7 @@ let q188ans = {
   "Doubt about heaven is real—but God promises it is certain": {
     "John 14:2-3": {
       text: "In my Father's house are many rooms. If it were not so, would I have told you that I go to prepare a place for you? And if I go and prepare a place for you, I will come again and will take you to myself, that where I am you may be also.",
-      theme: "promise",
+      theme: "jesus",
       tags: ["heaven", "Jesus", "eternal life"]
     },
     "1 Peter 1:3-4": {
@@ -20136,7 +20134,7 @@ let q188ans = {
   "Jesus Himself suffered before entering glory": {
     "Hebrews 12:2": {
       text: "Looking to Jesus, the founder and perfecter of our faith, who for the joy that was set before him endured the cross, despising the shame, and is seated at the right hand of the throne of God.",
-      theme: "Jesus",
+      theme: "jesus",
       tags: ["suffering", "cross", "glory"]
     },
     "Luke 24:26": {
@@ -20260,7 +20258,7 @@ let q189ans = {
   "Doing what feels good can trap you, but God’s way leads to true freedom.": {
     "Galatians 5:1": {
       text: "It is for freedom that Christ has set us free. Stand firm, then, and do not let yourselves be burdened again by a yoke of slavery.",
-      theme: "freedom",
+      theme: "temptation",
       tags: ["sin", "freedom", "temptation"]
     },
     "Romans 6:21-22": {
@@ -20288,7 +20286,7 @@ let q189ans = {
     },
     "1 Peter 2:19-21": {
       text: "For it is commendable if someone bears up under the pain of unjust suffering because they are conscious of God... To this you were called, because Christ suffered for you, leaving you an example, that you should follow in his steps.",
-      theme: "suffering",
+      theme: "jesus",
       tags: ["injustice", "Christ", "example"]
     }
   }
@@ -20299,7 +20297,7 @@ let q190ans = {
   "Death is not the end; all will be raised and judged by God.": {
     "Hebrews 9:27": {
       text: "And just as it is appointed for man to die once, and after that comes judgment,",
-      theme: "judgment",
+      theme: "justice",
       tags: ["death", "judgment", "accountability"]
     },
     "John 5:28-29": {
@@ -20322,7 +20320,7 @@ let q190ans = {
     },
     "2 Corinthians 5:10": {
       text: "For we must all appear before the judgment seat of Christ, so that each one may receive what is due for what he has done in the body, whether good or evil.",
-      theme: "judgment",
+      theme: "savior",
       tags: ["judgment seat", "rewards", "accountability"]
     },
     "1 Thessalonians 4:16-17": {
@@ -20340,12 +20338,12 @@ let q190ans = {
     },
     "Revelation 20:12": {
       text: "And I saw the dead, great and small, standing before the throne, and books were opened. Then another book was opened, which is the book of life. And the dead were judged by what was written in the books, according to what they had done.",
-      theme: "judgment",
+      theme: "eternal",
       tags: ["judgment", "book of life", "eternity"]
     },
     "Romans 14:10-12": {
       text: "For we will all stand before the judgment seat of God; for it is written, 'As I live, says the Lord, every knee shall bow to me, and every tongue shall confess to God.' So then each of us will give an account of himself to God.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["accountability", "justice", "every knee bow"]
     }
   },
@@ -20387,7 +20385,7 @@ let q191ans = {
   "God is against unnecessary violence and bloodshed.": {
     "Proverbs 3:31": {
       text: "Do not envy a man of violence and do not choose any of his ways.",
-      theme: "righteousness",
+      theme: "fallenness",
       tags: ["violence", "envy", "righteousness", "warning"]
     },
     "Psalm 11:5": {
@@ -20439,7 +20437,7 @@ let q191ans = {
     },
     "2 Chronicles 20:22": {
       text: "And when they began to sing and praise, the LORD set an ambush against the men of Ammon, Moab, and Mount Seir, who had come against Judah, so that they were routed.",
-      theme: "worship",
+      theme: "faithful",
       tags: ["worship", "victory", "battle", "faith"]
     }
   },
@@ -20459,7 +20457,7 @@ let q191ans = {
 
   "Christ calls His followers to choose peace whenever possible.": {
     "Matthew 5:9": {
-      text: "Blessed are the peacemakers, for they shall be called sons of God.",
+      text: "Blessed are the peacemakers, for they shall be called children of God.",
       theme: "peace",
       tags: ["peace", "peacemakers", "kingdom", "blessing"]
     },
@@ -20472,12 +20470,12 @@ let q191ans = {
     "In the end, God will bring a final war—but Christ will win and bring peace forever.": {
     "Matthew 24:6-7": {
       text: "And you will hear of wars and rumors of wars. See that you are not alarmed, for this must take place, but the end is not yet. For nation will rise against nation, and kingdom against kingdom, and there will be famines and earthquakes in various places.",
-      theme: "end-times",
+      theme: "justice",
       tags: ["wars", "rumors", "end", "nations"]
     },
     "Ezekiel 38:22-23": {
       text: "With pestilence and bloodshed I will enter into judgment with him, and I will rain upon him and his hordes and the many peoples who are with him torrential rains and hailstones, fire, and sulfur. So I will show my greatness and my holiness and make myself known in the eyes of many nations. Then they will know that I am the LORD.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["Gog", "Magog", "judgment", "nations"]
     },
     "Revelation 16:14": {
@@ -20487,12 +20485,12 @@ let q191ans = {
     },
     "Revelation 19:11": {
       text: "Then I saw heaven opened, and behold, a white horse! The one sitting on it is called Faithful and True, and in righteousness he judges and makes war.",
-      theme: "Christ",
+      theme: "savior",
       tags: ["Christ", "war", "judgment", "victory"]
     },
     "Revelation 20:9": {
       text: "And they marched up over the broad plain of the earth and surrounded the camp of the saints and the beloved city, but fire came down from heaven and consumed them.",
-      theme: "victory",
+      theme: "power",
       tags: ["Satan", "battle", "end", "fire"]
     }
   }
@@ -20501,14 +20499,14 @@ let q191ans = {
 // Question 192: Where is heaven?
 let q192ans = {
   "Heaven is God's dwelling place, far above creation.": {
-    "Psalm 103:19": {
+    "Psalms 103:19": {
       text: "The LORD has established his throne in the heavens, and his kingdom rules over all.",
-      theme: "heaven",
+      theme: "authority",
       tags: ["God", "throne", "kingdom", "authority"]
     },
     "Isaiah 66:1": {
       text: "Thus says the LORD: 'Heaven is my throne, and the earth is my footstool; what is the house that you would build for me, and what is the place of my rest?'",
-      theme: "heaven",
+      theme: "authority",
       tags: ["throne", "earth", "God", "rule"]
     }
   },
@@ -20532,14 +20530,14 @@ let q192ans = {
     },
     "Philippians 3:20": {
       text: "But our citizenship is in heaven, and from it we await a Savior, the Lord Jesus Christ.",
-      theme: "citizenship",
+      theme: "hope",
       tags: ["citizenship", "future", "hope", "Jesus"]
     }
   },
   "Heaven is unseen now but revealed by faith.": {
     "Hebrews 11:16": {
       text: "But as it is, they desire a better country, that is, a heavenly one. Therefore God is not ashamed to be called their God, for he has prepared for them a city.",
-      theme: "faith",
+      theme: "faithful",
       tags: ["faith", "heavenly", "city", "promise"]
     },
     "Colossians 3:1-2": {
@@ -20560,7 +20558,7 @@ let q193ans = {
     },
     "Matthew 25:41": {
       text: "Then he will say to those on his left, 'Depart from me, you cursed, into the eternal fire prepared for the devil and his angels.'",
-      theme: "judgment",
+      theme: "justice",
       tags: ["depart", "fire", "angels", "judgment"]
     }
   },
@@ -20572,19 +20570,19 @@ let q193ans = {
     },
     "Jude 1:7": {
       text: "Just as Sodom and Gomorrah and the surrounding cities, which likewise indulged in sexual immorality and pursued unnatural desire, serve as an example by undergoing a punishment of eternal fire.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["fire", "Sodom", "punishment", "example"]
     }
   },
   "Hell is described as the 'outer darkness' where there is no hope.": {
     "Matthew 8:12": {
       text: "While the sons of the kingdom will be thrown into the outer darkness. In that place there will be weeping and gnashing of teeth.",
-      theme: "judgment",
+      theme: "justice",
       tags: ["darkness", "weeping", "gnashing", "warning"]
     },
     "Matthew 22:13": {
       text: "Then the king said to the attendants, ‘Bind him hand and foot and cast him into the outer darkness. In that place there will be weeping and gnashing of teeth.’",
-      theme: "judgment",
+      theme: "justice",
       tags: ["darkness", "banquet", "judgment", "weeping"]
     }
   },
@@ -20601,6 +20599,52 @@ let q193ans = {
     }
   }
 };
+
+// How does God help those in the hospital or those who live in the streets and have no one?
+let q194ans = {
+  "God cares for the lonely and the afflicted": {
+    "Psalm 34:18": {
+      text: "The Lord is close to the brokenhearted and saves those who are crushed in spirit.",
+      theme: "hope",
+      tags: ["comfort", "brokenhearted", "hope"]
+    },
+    "Psalm 147:3": {
+      text: "He heals the brokenhearted and binds up their wounds.",
+      theme: "Healing and restoration",
+      tags: ["healing", "restoration", "care"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "Divine presence and strength",
+      tags: ["strength", "fear", "presence"]
+    }
+  },
+  "God provides through His people": {
+    "Matthew 25:35-36": {
+      text: "For I was hungry and you gave me something to eat, I was thirsty and you gave me something to drink, I was a stranger and you invited me in, I needed clothes and you clothed me, I was sick and you looked after me, I was in prison and you came to visit me.",
+      theme: "God’s care shown through compassion",
+      tags: ["compassion", "service", "care"]
+    },
+    "James 2:15-17": {
+      text: "Suppose a brother or a sister is without clothes and daily food. If one of you says to them, 'Go in peace; keep warm and well fed,' but does nothing about their physical needs, what good is it? In the same way, faith by itself, if it is not accompanied by action, is dead.",
+      theme: "Faith expressed through action",
+      tags: ["faith", "works", "compassion"]
+    }
+  },
+  "God offers hope and security to the forgotten": {
+    "Psalm 68:5-6": {
+      text: "A father to the fatherless, a defender of widows, is God in his holy dwelling. God sets the lonely in families; he leads out the prisoners with singing, but the rebellious live in a sun-scorched land.",
+      theme: "Hope for the lonely",
+      tags: ["loneliness", "family", "provision"]
+    },
+    "Philippians 4:19": {
+      text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
+      theme: "Provision and care",
+      tags: ["provision", "trust", "faithfulness"]
+    }
+  }
+};
+
 
 
 const questionMap = {

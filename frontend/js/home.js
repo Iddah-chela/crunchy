@@ -8,13 +8,10 @@ try {
   storage = sessionStorage;
 }
 
-// Baby AI bubble click → chat
-document.querySelector('.baby-ai-bubble').addEventListener('click', () => {
-  window.location.href = 'chat.html';
-});
+
 
 // Get username from login session
-const currentUser = JSON.parse(storage.getItem("user"));
+const currentUser = JSON.parse(localStorage.getItem("user"));
 
 // Verse of the day (temporary random verse array)
 const verses = [
@@ -28,6 +25,7 @@ document.getElementById("dailyVerse").textContent = verses[Math.floor(Math.rando
 // Update card info (dummy placeholders for now)
 document.getElementById("qnaInfo").textContent = "3 new questions waiting";
 document.getElementById("prayerInfo").textContent = "2 prayer requests need your amen";
+document.getElementById("bibleInfo").textContent = "Pick up where you left off!";
 document.getElementById("gamesInfo").textContent = "New trivia unlocked!";
 document.getElementById("communityInfo").textContent = "Eli W. asked: Why do I feel far from God?";
 
@@ -66,13 +64,13 @@ function getTimeGreeting() {
   return "Rest well, night owl 🌌";
 }
 
-function showGreeting(currentUser) {
+function showGreeting(username) {
   const greetingEl = document.getElementById("welcomeText");
   if(greetingEl) {
-    //maybe we'll get username with backend but till then,eautiful work really. . 
-    greetingEl.innerText = `${getTimeGreeting()}, ${currentUser}, Welcome back`;
+    //we'll get username with backend but till then, beautiful work really. . 
+   greetingEl.innerText = `${getTimeGreeting()}, ${username}, Welcome back`;
     }
 }
 
 // Call it once on load
-showGreeting(currentUser);
+showGreeting(currentUser.username);

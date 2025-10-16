@@ -43,15 +43,78 @@ function saveQuestions() {
   }
 }
 
+//so we're getting a verse from any qxans, in fact it'd be from whole bible but...
+function getVerseByIntent(intent, questionMap) {
+  //keywords leading to intents
+  const keyword = intent.replace("ask_for_","").replace("ask_about_","").toLowerCase();
+  const matches = [];
+
+  //get verses and push to matches
+  for (const qKey in questionMap) {
+    const questionObj = questionMap[qKey];
+
+    for (const motherKey in questionObj) {
+      const verses = questionObj[motherKey];
+
+      for (const verseRef in verses) {
+        const verse = verses[verseRef];
+        if (
+          verse.theme && verse.theme.toLowerCase() === keyword
+        ) {
+          //okay some new stuff here, learn about this matches thingy
+          matches.push({
+            intro: motherKey,
+            reference: verseRef,
+            text: verse.text,
+            theme: verse.theme,
+            tags: verse.tags
+          });
+        }
+      }
+    }
+  }
+
+  //shuffle using Fisher-Yates: which i think is someone's name, and probably just means randomize
+  for(let i = matches.length - 1; i>0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [matches[i], matches[j]] = [matches[j], matches[i]];
+    //okay weird way to randomize but as long as its working right
+  }
+
+  return matches.slice(0,3); //return top three matches
+}
+
+async function getIntentFromWit(text) {
+  const response = await fetch("https://api.wit.ai/message?v=20240515&q=" + encodeURIComponent(text), {
+    headers: {
+      Authorization: "Beare BN74P3DQIXTLCLXUES3Q27KSHXKAFV3G"
+    }
+  });
+
+  const data = await response.json();
+  const intent = data.intents?.[0]?.name;
+  console.log("Wit intent: ", intent);
+  return intent || null;
+}
+
 const draft = !currentUser || !navigator.onLine;
 // Add Question
-function addQuestion(text, image = null) {
+async function addQuestion(text, image = null) {
+  let aiReply;
+  const intent = await getIntentFromWit(text);
+  if (intent) {
+    const matches = getVerseByIntent(intent, questionMap);
+    if(matches.length) {
+      //weird way of saying innerhtml
+      aiReply = matches.map(m => `<strong>${m.reference}</strong>: ${m.text}`).join("<br></br>");
+    }
+  }
   const question = {
     id: Date.now(),
     text,
     author: currentUser ? currentUser.username : "Anonymous",
     image,
-    responses: [],
+    responses: aiReply ? [{ text: aiReply, author: 'Vale'}]: [],
     aiAnswered: false,
     draft
   };
@@ -65,7 +128,7 @@ function addQuestion(text, image = null) {
   }
 
   // NEW: push to backend
-  fetch("/community/questions", {
+  fetch("/commune/questions", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -110,7 +173,7 @@ function addResponse(questionId, parentResponse, text, image = null, replyingTo 
   if (draft) return;
 
   // NEW: push to backend
-  fetch(`/community/questions/${questionId}/responses`, {
+  fetch(`/commune/questions/${questionId}/responses`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -276,10 +339,41 @@ function renderQuestions(filter = "") {
       const meta = document.createElement('div');
       meta.className = 'meta';
 
+      // favorite button
+      const favBtn = document.createElement('button');
+      favBtn.textContent = q.favorited ? "★" : "☆";
+      favBtn.className = "favorite-btn";
+
+      favBtn.addEventListener('click', async (e) => {
+        e.stopPropagation(); // don’t trigger expand
+        if (!currentUser) {
+          alert("You must log in to favorite.");
+          return;
+        }
+
+        try {
+        const res = await fetch(`/commune/questions/${q.id}/favorite`, {
+          method: "POST",
+          //headers: { "Content-Type": "application/json" },
+          credentials: "include" // important if using session/cookies and same origin
+        });
+        
+        const data = await res.json();
+        favBtn.classList.toggle('favorited', data.favorited);
+        favBtn.textContent = data.favorited ? "★" : "☆"; // filled star if favorited
+        favBtn.setAttribute('aria-pressed', data.favorited ? 'true': 'false');
+       } catch(err){
+        console.error('Favorite failed cause:', err);
+       }
+      });
+
+
+
       const info = document.createElement('span');
       const total = countAllReplies(q.responses || []);
       info.textContent = `👤 ${q.author} · ${total} response${total !== 1 ? 's' : ''}`;
       meta.appendChild(info);
+      meta.appendChild(favBtn);
 
       const badge = document.createElement('span');
       badge.className = "tag-badge";
@@ -315,6 +409,10 @@ function renderQuestions(filter = "") {
         if (nowOpening) {
           openQuestionId = q.id;
           meta.style.display = "none";
+
+          //TODO: allow editing
+          
+          
 
           // Close at high right
           const closeBtn = document.createElement('button');
@@ -402,14 +500,15 @@ function loadFromBackend() {
         author: q.username,
         responses: [],   // load separately below
         aiAnswered: false,
-        draft: false
+        draft: false,
+        favorited: q.favorited || false
       }));
       saveQuestions();
       renderQuestions();
 
       // Optionally load responses per question
       questions.forEach(q => {
-        fetch(`/community/questions/${q.id}/responses`)
+        fetch(`/commune/questions/${q.id}/responses`)
           .then(r => r.json())
           .then(responses => {
             q.responses = responses.map(r => ({

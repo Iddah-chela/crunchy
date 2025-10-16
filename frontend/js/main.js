@@ -202,35 +202,49 @@ function buildTagScoresFromFavorites() {
 function showVersesByTag(tag) {
   const matches = [];
 
-  for (let qKey in questionMap) {
-  let qObj = questionMap[qKey];
+   fetch(`./questions/${q}`)
+    .then(res => res.json())
+    .then(rows => {
+      if (!rows || !rows.length) {
+        console.error("No answers found");
+        alert("Oops! That question doesn't have any verses yet.");
+        return;
+      }
+      
 
-  for (let answerType in qObj) {
-    let refs = qObj[answerType];
 
-    for (let refKey in refs) {
-      let refObj = refs[refKey];
+      for (let qKey in rows) {
+      let qObj = rows[qKey];
 
-      if (
-        refObj &&
-        Array.isArray(refObj.tags) &&
-        refObj.tags.includes(tag) &&
-        (!refObj.ageRange || (selectedAge >= refObj.ageRange[0] && selectedAge <= refObj.ageRange[1]))
-      ) {
-        matches.push({
-          text: refObj.text,
-          tags: refObj.tags,
-          theme: refObj.theme,
-          source: refObj.source || "", // Optional fallback
-          reference: refKey, // ← get "John 3 16"
-          category: answerType,        // ← get "heading"
-          questionId: qKey             // ← which question
-        });
+      for (let answerType in qObj) {
+        let refs = qObj[answerType];
+
+        for (let refKey in refs) {
+          let refObj = refs[refKey];
+
+          if (
+            refObj &&
+            Array.isArray(refObj.tags) &&
+            refObj.tags.includes(tag) &&
+            (!refObj.ageRange || (selectedAge >= refObj.ageRange[0] && selectedAge <= refObj.ageRange[1]))
+          ) {
+            matches.push({
+              text: refObj.text,
+              tags: refObj.tags,
+              theme: refObj.theme,
+              source: refObj.source || "", // Optional fallback
+              reference: refKey, // ← get "John 3 16"
+              category: answerType,        // ← get "heading"
+              questionId: qKey             // ← which question
+            });
+          }
+        }
       }
     }
-  }
-}
+    })
+    .catch(err => console.error(err));
 
+    
   if (!matches.length) {
     alert("No verses found for this tag in your selected age group. Try a different one?");
     return;
@@ -436,7 +450,17 @@ function showMoreLikeThis() {
   // Gather all verses with any matching tag
   let matchingVerses = [];
 
-  Object.entries(questionMap).forEach(([qId, categories]) => {
+  fetch(`./questions/${q}`)
+    .then(res => res.json())
+    .then(rows => {
+      if (!rows || !rows.length) {
+        console.error("No answers found");
+        alert("Oops! That question doesn't have any verses yet.");
+        return;
+      }
+
+
+  Object.entries(rows).forEach(([qId, categories]) => {
     Object.entries(categories).forEach(([title, verses]) => {
       Object.entries(verses).forEach(([verseRef, verseObj]) => {
         if (verseObj && Array.isArray(verseObj.tags)) {
@@ -452,8 +476,8 @@ function showMoreLikeThis() {
       });
     });
   });
-  
-  
+})
+  .catch(err => {console.error(err)});
 
   // Exclude current verse (optional)
   if (lastShownVerse) {

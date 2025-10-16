@@ -34,7 +34,7 @@
     id="questionSearch" 
     placeholder="Search questions..." 
     oninput="filterQuestions()" 
-    style="padding: 10px 40px 10px 15px; background: none; color: var(--text-color); width: 90%; border-radius: 10px; border: 1px solid #ccc;"
+    style="padding: 10px 40px 10px 15px; background: none; color: var(--text-color); width: 90%; border-radius: 10px; border: 1px solid var(--accent);"
   />
   <span 
     style="position: absolute; right: 5%; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #999;"
@@ -54,7 +54,7 @@
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-general')">
   <img src="backgrounds/creator (1).jpeg" alt="" />
-  <span>General</span></button>
+  <span>General Questions</span></button>
   <div class="question-group" id="category-general">
         
     <h3>General Questions</h3>
@@ -74,7 +74,7 @@
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-god')"> 
   <img src="backgrounds/creator.jpeg" alt="" /></vl>
-  <span>About God</span></button>
+  <span>Knowing God</span></button>
   <div class="question-group" id="category-god">
     <h3>Questions about God</h3>
     <small style="display:block; align-items:center;">Click to get an answer</small>
@@ -103,7 +103,7 @@
 
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-jesus')">
-   <img src="backgrounds/rise.jpeg" alt="" /> About Jesus</button>
+   <img src="backgrounds/rise.jpeg" alt="" /> Jesus and Salvation</button>
   <div class="question-group" id="category-jesus">
     <h3>Questions about Jesus</h3>  
     <small style="display:block; align-items:center;">Click to get an answer</small>   
@@ -121,14 +121,14 @@
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-sin')">
    <img src="backgrounds/hope.jpeg" alt="" /></vl>
-  <span>About Sin</span></button>
+  <span>Sin, Mistakes & Forgiveness</span></button>
   <div class="question-group" id="category-sin">
     <h3>Questions about sin</h3>
     <small style="display:block; align-items:center;">Click to get an answer</small>
     <button class="question-btn sin-btn" id="q6" onclick="randgen('q6')">What is sin?</button> 
     <button class="question-btn sin-btn" id="q30" onclick="randgen('q30')">What happens when I sin?</button>  
     <button class="question-btn sin-btn" id="q180" onclick="randgen('q180')">If something isn't a big sin, does it still matter to God?</button>
-    <button class="question-btn sin-btn" id="q7" onclick="randgen('q7')">Why do I still sin even though I love God?</button>  
+    <button class="question-btn sin-btn" id="q7" onclick="randgen('q7')">What should I do when I've sinned even though I love God?</button>  
     <button class="question-btn sin-btn" id="q31" onclick="randgen('q31')">What if I mess up too much?</button>  
     <button class="question-btn sin-btn" id="q185" onclick="randgen('q185')">What is idolatry?</button>
     <button class="question-btn sin-btn" id="q181" onclick="randgen('q181')">Can something harmless (like music or fun) actually pull me away from God?</button>
@@ -161,7 +161,7 @@
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-bible')">
    <img src="backgrounds/book.jpeg" alt="" /></vl>
-  <span>About the bible</span></button>
+  <span>The Bible and Truth</span></button>
   <div class="question-group" id="category-bible">
     <h3>Questions about the Bible</h3>
     <small style="display:block; align-items:center;">Click to get an answer</small>
@@ -184,7 +184,7 @@
     <h3>Questions about life</h3>
     <small style="display:block; align-items:center;">Click to get an answer</small>
     <button class="question-btn life-btn" id="q125" onclick="randgen('q125')">What kind of life is God planning for me?</button> 
-    <button class="question-btn life-btn" id="q39" onclick="randgen('q39')">Does God care about my career or studies?</button> 
+    <button class="question-btn life-btn" id="q39" onclick="randgen('q39')">What does God say about my career or studies?</button> 
     <button class="question-btn life-btn" id="q117" onclick="randgen('q117')">What does the Bible say about procrastination, laziness, or lack of motivation?</button>
     <button class="question-btn life-btn" id="q40" onclick="randgen('q40')">How do I know what to do next?</button> 
     <button class="question-btn life-btn" id="q189" onclick="randgen('q189')">Why should i keep trying to do good when revenge feels good, skills feel useless and life feels unfair?</button>
@@ -201,7 +201,7 @@
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-prayer')">
    <img src="backgrounds/pray.jpeg" alt="" /></vl>
-  <span>Prayer</span></button>
+  <span>Prayer & Talking to God</span></button>
   <div class="question-group" id="category-prayer">
     <h3>Questions about prayer</h3>
     <small style="display:block; align-items:center;">Click to get an answer</small>
@@ -265,7 +265,7 @@
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-hope')">
     <img src="backgrounds/hope (1).jpeg" alt="" />
-    <span>Joy & Discovery</span>
+    <span>Joy & Hope</span>
   </button>
   <div class="question-group" id="category-hope">
     <h3>Hope & Discovery</h3>
@@ -293,7 +293,7 @@
     <button class="question-btn struggles-btn" id="q11" onclick="randgen('q11')">How do I deal with doubt?</button>  
     <button class="question-btn struggles-btn" id="q22" onclick="randgen('q22')">Why do I feel far from God?</button> 
     <button class="question-btn struggles-btn" id="q188" onclick="randgen('q188')">Why should I keep following God if it only leads to suffering-and what if heaven isn't even real?</button> 
-    <button class="question-btn struggles-btn" id="q52" onclick="randgen('q52')">What if I feel broken inside?</button>  
+    <button class="question-btn struggles-btn" id="q52" onclick="randgen('q52')">What should I do when I feel broken inside?</button>  
     <button class="question-btn struggles-btn" id="q53" onclick="randgen('q53')">Why doesn't God fix things faster?</button>  
     <button class="question-btn struggles-btn" id="q16" onclick="randgen('q16')">Why does God allow pain?</button>  
   </div>
@@ -318,7 +318,7 @@
 <div class="category-block">
   <button class="category-btn" onclick="toggleCategory('category-growth')">
    <img src="backgrounds/good.jpeg" alt="" /></vl>
-  <span>Growth & Christian Living</span></button>
+  <span>Growth & Faith in Action</span></button>
   <div class="question-group" id="category-growth">
     <h3>Growing as a Christian</h3>
     <small style="display:block; align-items:center;">Click to get an answer</small>
@@ -337,7 +337,7 @@
  <div class="category-block">
         <button class="category-btn" onclick="toggleCategory('category-emotion')">
          <img src="backgrounds/creator.jpg" alt="" /></vl>
-        <span>Real-Life Struggles & Emotions</span></button>
+        <span>Struggles, Pain & Doubts</span></button>
         <div class="question-group" id="category-emotion">
           <h3>Real-Life Struggles & Emotions</h3>
           <small style="display:block; align-items:center;">Click to get an answer</small>
@@ -512,7 +512,7 @@
     <div id="overlay"></div>
     <div id="versedisplay"></div>  
      
-     
+     <div id="bottom-bar"></div>
 
 </div>         
   

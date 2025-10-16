@@ -1,3 +1,4 @@
+//const { response } = require("express");
 
 //themes with animated backgrounds 
 function applyAnimatedOverlay(theme) {
@@ -139,8 +140,6 @@ const categoryAccents = {
     war: '--accent10',
 }
 
-
-
 // This fetches the HTML and injects it into the page
 fetch('topbar.html')
   .then(response => response.text())
@@ -164,10 +163,23 @@ fetch('topbar.html')
       storage = window.sessionStorage;
     }
 
+    
+    const overlay = document.querySelectorAll(".animated-overlay");
+    const btn = document.getElementById("themeToggle")
+    function applyOverlay(disabled) {
+      if(disabled) {
+        document.body.classList.add('plain');
+        btn.textContent = "🌺";
+        overlay.forEach(el => el.style.display = 'none');
+      } else {
+        document.body.classList.remove('plain');
+        btn.textContent = "Remove animation";
+        overlay.forEach(el => el.style.display = 'block');
+      }
+    }
     document.getElementById("themeToggle").addEventListener("click", () => {
-      const overlay = document.querySelectorAll(".animated-overlay");
-      overlay.forEach(el => el.remove());
-      document.body.classList.add("plain");
+      const disabled = !document.body.classList.contains('plain');
+      applyOverlay(disabled);
     })
      // Theme handling
     const themeSwitcher = document.getElementById('themeSwitcher');
@@ -180,8 +192,8 @@ fetch('topbar.html')
 
     
 
-    const baseStart = 80;
-const baseEnd = 90;
+    const baseStart = 75;
+const baseEnd = 95;
 const hoverStart = baseStart + 10;
 const hoverEnd = baseEnd + 5;
 
@@ -193,7 +205,7 @@ Object.keys(categoryAccents).forEach(category => {
     // set category background (darker side of button gradient)
     const categoryEl = document.getElementById(`category-${category}`);
     if (categoryEl) {
-        categoryEl.style.background = `color-mix(in srgb, ${accent} ${baseEnd}%, #fff)`;
+        categoryEl.style.background = `color-mix(in srgb, ${accent} ${baseStart}%, #fff)`;
     }
 
     //apply gradient to all question buttons in this category
@@ -263,7 +275,7 @@ Object.keys(categoryAccents).forEach(category => {
       }
 
     
-      storage.setItem("theme", theme);
+      localStorage.setItem("theme", theme);
     });
     
     
@@ -296,6 +308,33 @@ Object.keys(categoryAccents).forEach(category => {
     console.error('Failed to load topbar:', error);
   });
 
+fetch('bottombar.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('bottom-bar').innerHTML = html;
+  })
+  .catch(err => {
+    console.error("Failed to load bottombar causse, ", err)
+  })
+
+
+  document.addEventListener("DOMContentLoaded", () => {
+  const themeSelect = document.getElementById("themeSwitcher");
+  const savedTheme = localStorage.getItem("theme") || "default";
+
+  // apply theme to body
+  document.body.className = savedTheme;
+
+  // if the current page *has* a selector, sync it
+  if (themeSelect) {
+    themeSelect.value = savedTheme;
+    themeSelect.addEventListener("change", () => {
+      const theme = themeSelect.value;
+      document.body.className = theme;
+      localStorage.setItem("theme", theme);
+    });
+  }
+});
 
 //play the music
 // At the bottom of main.js or topbar-loader.js

@@ -1,6 +1,24 @@
 //import express
 const express = require('express');
+const http = require("http");
+const { Server } = require("socket.io");
+const bodyParser = require("body-parser");
+const path = require("path");
+const multer = require("multer");
+const app = express();
 const cors = require('cors');
+const bcrypt = require('bcrypt');
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "*",//change to frontend origin
+    methods:["GET", "POST"]
+  }
+});
+
+app.use(bodyParser.json());
+
 
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("./randomverse.db", (err) => {
@@ -16,16 +34,22 @@ db.serialize(() => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       username TEXT UNIQUE,
       age INTEGER,
-      password TEXT
+      password TEXT,
+      profilePic TEXT
     )
   `);
+  
+
+
 
 });
-const path = require("path");
+
 require("dotenv").config({ path: __dirname + "/.env" });
 
-
-const app = express();
+//middleware to parse json and cors to speak to frontend
+app.use(express.json());       // to parse JSON request bodies
+app.use(express.urlencoded({ extended: true })); // if you ever send form data
+app.use(cors()); // to speak to frontend, donno how though
 
 const session = require("express-session");
 
@@ -34,24 +58,82 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false } //only true if using https
-}))
+}));
+app.use((req, res, next) => {
+  console.log("Session: ", req.session);
+  next();
+})
+const sharedSession = require("express-socket.io-session");
+
+// Share express session with Socket.IO
+io.use(sharedSession(session({
+  secret: "Itsasecretssshhhhh",
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
+}), {
+  autoSave: true
+}));
+
 const communityRoutes = require("./routes/commune");
 app.use("/commune", communityRoutes);
 
 const chatRoutes = require("./routes/chat");
-const { error } = require('console');
+
 app.use("/chat", chatRoutes);
 
 //serve static frontend files
 app.use(express.static(path.join(__dirname, "../frontend")));
 
-// Temporary "users DB" (baadaye itakuwa SQLite)
-let users = [];
+io.on("connection", (socket) => {
+  const userId = socket.handshake.session.userId;
+  const username = socket.handshake.session.username;
+
+  if (!userId) return socket.disconnect();
+
+  // Join a private room
+  socket.on("joinRoom", ({ userA, userB }) => {
+    const room = [userA, userB].sort().join("_");
+    socket.join(room);
+  });
+
+  // Send a message
+  socket.on("sendMessage", (msg) => {
+    const { receiverId, text } = msg;
+    const room = [userId, receiverId].sort().join("_");
+
+    // Save to DB
+    db.run(
+      "INSERT INTO messages (senderId, receiverId, text) VALUES (?, ?, ?)",
+      [userId, receiverId, text],
+      function (err) {
+        if (err) return console.error(err);
+
+        // Fetch sender info
+        db.get("SELECT username, profilePic FROM users WHERE id = ?", [userId], (err, senderInfo) => {
+          if (err) return console.error(err);
+
+          const savedMsg = {
+            id: this.lastID,
+            senderId: userId,
+            receiverId,
+            text,
+            senderUsername: senderInfo.username,
+            senderProfilePic: senderInfo.profilePic,
+            timestamp: new Date()
+          };
+
+          io.to(room).emit("newMessage", savedMsg);
+        });
+        console.log("Sending message from", userId, "to", receiverId, "text:", text);
+
+      }
+    );
+  });
+});
 
 
-//middleware to parse json and cors to speak to frontend
-app.use(express.json());
-app.use(cors());
+
 
 // get one question with explanations + verses
 // app.get("/questions/:qkey", (req, res) => {
@@ -132,9 +214,11 @@ app.get("/signup", (req, res) => {
 });
 
 // Create account (POST)
-app.post("/signup", (req, res) => {
+app.post("/signup", async (req, res) => {
   const { username, age, password } = req.body;
 
+  //hash password before putting in db like...
+  const hashedPassword = await bcrypt.hash(password,10);
   // validation ya mtaa
   if (!username || !age || !password) {
     return res.status(400).json({ error: "Ebu jaza boxes zote 😒" });
@@ -143,7 +227,7 @@ app.post("/signup", (req, res) => {
   // username unique kiasi
   // NOTE: password iko plain-text leo. Kesho: bcrypt.
  const sql = "INSERT INTO users (username, age, password) VALUES (?, ?, ?)";
-  db.run(sql, [username, age, password], function(err) {
+  db.run(sql, [username, age, hashedPassword], function(err) {
     if (err) {
       if (err.message.includes("UNIQUE")) {
         return res.status(400).json({ error: "Username imechukuliwa 😤" });
@@ -166,7 +250,7 @@ app.get("/users", (req, res) => {
 
 // Get one user profile (for viewing by others)
 app.get("/users/:id", (req, res) => {
-  const sql = "SELECT id, username, age FROM users WHERE id = ?";
+  const sql = "SELECT id, username, age, profilePic FROM users WHERE id = ?";
   db.get(sql, [req.params.id], (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!row) return res.status(404).json({ error: "User haonekani 😅" });
@@ -174,51 +258,46 @@ app.get("/users/:id", (req, res) => {
   });
 });
 
-// Update own profile
-app.put("/users/:id", (req, res) => {
-  const { username, age, password } = req.body;
-
-  const sql = `
-    UPDATE users
-    SET username = COALESCE(?, username),
-        age = COALESCE(?, age),
-        password = COALESCE(?, password)
-    WHERE id = ?
-  `;
-  db.run(sql, [username, age, password, req.params.id], function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-
-    if (this.changes === 0) {
-      return res.status(404).json({ error: "User haonekani 😅" });
-    }
-
-    res.json({ msg: "Profile imeboreshwa ✅" });
-  });
-});
 
 
 // Login (POST)
-app.post("/login", (req, res) => {
+// Login (POST)
+app.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   if (!username || !password) {
     return res.status(400).json({ error: "Weka credentials zote bana 😤" });
   }
 
-  // check if user exists
-  const sql = "SELECT id, username, age FROM users WHERE username = ? AND password = ?";
-  db.get(sql, [username, password], (err, row) => {
-    if (err) return res.status(500).json({ error: err.message });
-
-    if (!row) {
-      return res.status(401).json({ error: "Username au password si sahihi 👀" });
-    }
-    //success
-    res.json({ msg: "Login safi, karibu tena 🎉", user: row });
+  // Wrap db.get in a Promise so we can await bcrypt properly
+  const getUser = () => new Promise((resolve, reject) => {
+    const sql = "SELECT id, username, age, password FROM users WHERE username = ?";
+    db.get(sql, [username], (err, row) => {
+      if (err) return reject(err);
+      if (!row) return reject("Username au password si fiti 👀");
+      resolve(row);
+    });
   });
-  req.session.userId = user.id; //remember logged in user
-  res.json({ success: true })
+
+  try {
+    const user = await getUser();
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) return res.status(401).json({ error: "Password sio fiti 😬" });
+
+    // Success: set session
+    req.session.userId = user.id;
+    req.session.username = user.username;
+
+    res.json({
+      msg: "Login safi, karibu tena 🎉",
+      user: { id: user.id, username: user.username, age: user.age }
+    });
+  } catch (err) {
+    res.status(401).json({ error: err.toString() });
+  }
 });
+
 
 app.get("/me", (req, res) => {
   if (!req.session || !req.session.userId) {
@@ -231,8 +310,70 @@ app.get("/me", (req, res) => {
   })
 })
 
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).json({ error: "Logout haikufaulu 😬" });
+    }
+    res.clearCookie("connect.sid"); // default cookie name
+    res.json({ msg: "Logged out, tuonane tena 👋" });
+  });
+});
+
+
 
 //start server
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
+
+// storage config
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `user-${req.params.id}-${Date.now()}${ext}`);
+  }
+});
+const upload = multer({ storage });
+
+// Update user route
+app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
+  const { username, age, password } = req.body; // all strings!
+  const userId = req.params.id;
+
+  if (!username || !age) {
+    return res.status(400).json({ error: "Username and age required 😅" });
+  }
+
+  const params = [username, Number(age)];
+  let sql = "UPDATE users SET username=?, age=?";
+
+  if (password) {
+    const hashed = await bcrypt.hash(password, 10);
+    sql += ", password=?";
+    params.push(hashed);
+  }
+
+  if (req.file) {
+    const profilePicUrl = `/uploads/${req.file.filename}`;
+    sql += ", profilePic=?";
+    params.push(profilePicUrl);
+  }
+
+  sql += " WHERE id=?";
+  params.push(userId);
+
+  db.run(sql, params, function (err) {
+    if (err) return res.status(500).json({ error: err.message });
+
+    // Return profilePic URL if updated
+    const picUrl = req.file ? `/uploads/${req.file.filename}` : null;
+    res.json({ msg: "Profile updated 🎉", profilePicUrl: picUrl });
+  });
+});
+
+
+
+// Serve uploaded files
+app.use("/uploads", express.static("uploads"));

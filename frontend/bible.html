@@ -12,8 +12,8 @@
 <div id="app">          
 
 <div id="topbar-container"></div>
-  
-    <h1>📖 Bible Reader</h1>
+  <div id="bottom-bar"></div>
+    <h1 class="heading">📖 Bible Reader</h1>
 
     <!-- Book selector -->
     <div id="book-list" class="list"></div>
@@ -24,10 +24,12 @@
     <!-- Verses -->
     <div id="verse-list" class="verses"></div>
   </div>
-  <!-- 👶 Baby AI Floating Button -->
-  <div id="aibtn" class="baby-ai-bubble innerbtn">
-    <img src="backgrounds/purple (1).png" alt="" />
-  </div>
+  <div class="notes">
+  <button class="innerbtn" onclick="renderNotesPage()">📝 My Notes</button>
+  <button class="innerbtn baby-ai-bubble" onclick="renderHighlightsPage()">⭐ Favorites</button></div>
+  <div id="notes-page" style="display: none;"></div>
+  <div id="highlights-page" style="display: none;"></div>
+  
 
   <script src="js/topbar.js" defer></script>
   <script src="js/topbar-loader.js"></script>

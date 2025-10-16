@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="authy" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +7,39 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body class="auth-page">
-  <main class="auth-card">
+  <div class="container">
+    <canvas id="streaks"></canvas>
+    <canvas id="lens"></canvas>
+    <div class="portal" id="portal">
+      <div class="swirl"></div>
+      <svg class="liquid-border" viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="ringGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(120, 180, 255, 0.6)" />
+            <stop offset="100%" stop-color="rgba(60, 120, 255, 0.1)" />
+          </linearGradient>
+        </defs>
+        <circle cx="150" cy="150" r="140" stroke="url(#ringGradient)" stroke-width="30" fill="none" filter="url(#wobble)" />
+     
+      </svg>
+      
+  <div class="auth-card">
     <h1>Login</h1>
 
     <form id="loginForm">
       <input id="username" class="auth-input" type="text" placeholder="Username" required />
       <input id="password" class="auth-input" type="password" placeholder="Password" required />
-      <button type="submit" class="auth-btn">Login</button>
+      <button type="submit" id="auth-btn" class="auth-btn">Login</button>
     </form>
 
     <p id="msg"></p>
-    <p>Don’t have an account? <a href="signup.html">Sign up here</a></p>
-  </main>
+    <p>Don’t have an account? <a id="sign" href="signup.html">Sign up here</a></p>
+  </div>
 
-  <script src="js/login.js"></script>
+</div>
+<div class="home" id="home">Welcome back👋</div>
+</div>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/login.js"></script>
 </body>
 </html>

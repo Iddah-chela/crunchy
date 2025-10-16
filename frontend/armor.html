@@ -1,48 +1,663 @@
-
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Armor of God - Level 1</title>
-  <link rel="stylesheet" href="css/armor.css">
-  
+  <meta charset="utf-8" />
+  <title>Armor Game — Prototype</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <style>
+    html,body { margin:0; padding:0; height:100%; background:#111; color:#fff; font-family: Arial, sans-serif; }
+    #game-container { width:100%; height:100vh; overflow:hidden; }
+    /* Small hint at bottom for desktop users */
+    #hint { position: absolute; left:10px; bottom:6px; color:#ccc; font-size:12px; z-index: 10; }
+  </style>
+  <!-- Phaser CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.0/dist/phaser.js"></script>
 </head>
 <body>
-<a style="text-decoration: none; background-color:blue; padding:15px; border-radius: 10px; margin: 10px;"href="game.html">Back</a>
-  <div id="game">
-    <div id="player"></div>
-   <div id="npc-faith" class="npc" style="left: 300px; top: 200px;">
-  🙏
-  <div id="faithBubble" class="bubble">“Don't give up. You're doing well.”</div>
-</div>
-    <div class="enemy" id="enemy1">doubt</div>
-    <div id="goal">Goal</div>
-    <div id="npc" class="npc" title="Encourager">NPC</div>
-    <div id="book" title="Verse: ‘Faith comes by hearing…’">Book</div>
-    <div id="armor" title="Shield of Faith">Shield of faith</div>
-    <div id="prayerZone" title="Prayer Zone">Prayer zone</div>
-  </div>
+  <div id="game-container"></div>
+  <div id="hint">Move: arrows / WASD (or touch buttons). Fire (sword): SPACE. Pray: E (or PRAY button).</div>
 
-  <div id="stats">
-    <div>Life</div>
-    <div id="lifeBar"><div class="bar-fill" id="lifeFill"></div></div>
-    <div>Faith</div>
-    <div id="faithBar"><div class="bar-fill" id="faithFill"></div></div>
-    <div>Trust</div>
-    <div id="trustBar"><div class="bar-fill" id="trustFill"></div></div>
-    <div>Peace</div>
-    <div id="peaceBar"><div class="bar-fill" id="peaceFill"></div></div>
-  </div>
+<script>
+/* ---------- Armor Game Prototype (single-file vanilla Phaser 3) ----------
 
-  <div id="infoText">Hover over armor or items to learn more</div>
-  <div id="timer">Time Left: 300s</div>
- <div id="controls">
- <button id="btn-up">⬆️</button><br>
-<button id="btn-left">⬅️</button>
-<button id="btn-down">⬇️</button>
-<button id="btn-right">➡️</button>
-</div>
+   Features implemented:
+   - Player moves (keyboard + touch buttons) and can auto-walk right via button
+   - Enemies (types) chase player; each reduces a specific stat on hit
+   - Top HUD: Life (derived), Peace, Happiness, Joy, Truth (0-100)
+   - Armor pickups that protect specific stats for a timed duration
+   - Sword of the Spirit pickup and a beam that kills enemies (SPACE or FIRE button)
+   - Prayer spots that let player recover chosen stat by pressing E / PRAY
+   - Goal on the right: reaching it increases level and spawns a harder wave
+   - Global timer (5 minutes). When it ends: Game Over screen
+   - Explanations for armor show momentarily at bottom
+   - All graphics are placeholders (shapes) ready to be swapped with sprites in preload()
 
-  <script src="js/armor.js"></script>
+   Paste into armor.html and open in a browser (preferably via a local http server).
+-------------------------------------------------------------------------- */
 
+const WIDTH = 900;
+const HEIGHT = 600;
+
+const config = {
+  type: Phaser.AUTO,
+  parent: 'game-container',
+  width: WIDTH,
+  height: HEIGHT,
+  backgroundColor: '#222',
+  physics: {
+    default: 'arcade',
+    arcade: { debug: false }
+  },
+  scene: {
+    preload: preload,
+    create: create,
+    update: update
+  }
+};
+
+const game = new Phaser.Game(config);
+
+/* ---------- Global game state variables (scene will own them) ---------- */
+
+function preload() {
+  // Placeholder textures: draw simple colored shapes into textures so swapping to images later is easy
+  // Player
+  this.textures.generate('player-box', { data: ['0x000000'], pixelWidth: 32 });
+  // Enemies (types) - we'll generate several colored squares
+  this.textures.generate('enemy-lie',   { data: ['0xff4444'], pixelWidth: 32 }); // red
+  this.textures.generate('enemy-fear',  { data: ['0x4477ff'], pixelWidth: 32 }); // blue
+  this.textures.generate('enemy-doubt', { data: ['0x44ff99'], pixelWidth: 32 }); // green
+  this.textures.generate('enemy-hate',  { data: ['0xffaa33'], pixelWidth: 32 }); // orange
+  // Armor pickups
+  this.textures.generate('armor-truth', { data: ['0xffff66'], pixelWidth: 20 }); // yellow
+  this.textures.generate('armor-peace', { data: ['0x66ccff'], pixelWidth: 20 }); // light blue
+  this.textures.generate('armor-joy',   { data: ['0xff66ff'], pixelWidth: 20 }); // pink
+  this.textures.generate('armor-happy', { data: ['0x88ff88'], pixelWidth: 20 }); // pale green
+  this.textures.generate('armor-sword', { data: ['0xffffff'], pixelWidth: 20 }); // white for sword
+  // Beam
+  this.textures.generate('beam', { data: ['0xffffff'], pixelWidth: 6 });
+  // Goal
+  this.textures.generate('goal', { data: ['0xffffff'], pixelWidth: 32 });
+  // Prayer spot
+  this.textures.generate('prayer', { data: ['0xffffaa'], pixelWidth: 24 });
+
+  // Buttons (for mobile)
+  this.textures.generate('btn', { data: ['0x444444'], pixelWidth: 64 });
+}
+
+/* ---------- Helper: clamp ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+/* ---------- Game create ---------- */
+function create() {
+  const scene = this;
+
+  // Game variables
+  scene.level = 1;
+  scene.timeLeft = 300; // 5 minutes
+  scene.score = 0;
+
+  // Stats: each 0-100
+  scene.stats = {
+    peace: 100,
+    happiness: 100,
+    joy: 100,
+    truth: 100
+  };
+
+  // Life is derived from the other four stats (average)
+  scene.getLife = function() {
+    const {peace, happiness, joy, truth} = scene.stats;
+    const avg = Math.floor((peace + happiness + joy + truth) / 4);
+    return clamp(avg, 0, 100);
+  };
+
+  // Active armors: { type: {expiresAt, protects: ['truth'], label } }
+  scene.activeArmors = {};
+
+  // Sword ready?
+  scene.swordAvailable = false;
+  scene.swordUses = 0; // if sword is picked, uses++ or duration managed
+  scene.swordCooldown = false;
+
+  // Create world bounds a bit wider so camera can pan if we want (for now static)
+  this.cameras.main.setBackgroundColor('#222');
+
+  // Groups
+  scene.enemies = scene.physics.add.group();
+  scene.armors = scene.physics.add.group();
+  scene.beams = scene.physics.add.group();
+  scene.prayers = scene.physics.add.staticGroup();
+
+  // Player
+  scene.player = scene.physics.add.sprite(100, HEIGHT / 2, 'player-box');
+  scene.player.setOrigin(0.5, 0.5);
+  scene.player.setCollideWorldBounds(true);
+  scene.player.setDepth(2);
+
+  // Goal on right
+  scene.goal = scene.physics.add.staticSprite(WIDTH - 60, HEIGHT / 2, 'goal');
+  scene.goal.displayWidth = 40; scene.goal.displayHeight = 260;
+  scene.goal.body.setSize(40, 260);
+  scene.goal.setOrigin(0.5, 0.5);
+  scene.goal.tint = 0xffffff;
+
+  // Prayer spots (two spots)
+  const p1 = scene.prayers.create(300, HEIGHT - 140, 'prayer');
+  p1.setDisplaySize(48,48);
+  const p2 = scene.prayers.create(500, 120, 'prayer');
+  p2.setDisplaySize(48,48);
+
+  // UI container (phaser text + bars)
+  scene.ui = {};
+  scene.ui.levelText = scene.add.text(12, 8, 'Level: 1', { fontSize: '18px', fill: '#fff' }).setScrollFactor(0);
+  scene.ui.timeText = scene.add.text(12, 28, 'Time: 300', { fontSize: '16px', fill: '#fff' }).setScrollFactor(0);
+
+  // Bars: draw background + fill rectangle for each stat
+  const barX = 140, barY = 8, barW = 140, barH = 14, gap = 6;
+  scene.ui.barLabels = [];
+  scene.ui.barFills = [];
+
+  const labels = ['Life', 'Peace', 'Happiness', 'Joy', 'Truth'];
+  for (let i=0;i<labels.length;i++){
+    const y = barY + i*(barH + gap);
+    scene.ui.barLabels.push(scene.add.text(barX - 80, y - 2, labels[i], { fontSize: '13px', fill: '#fff' }).setScrollFactor(0));
+    // background rect
+    const bg = scene.add.rectangle(barX, y+6, barW, barH, 0x333333).setOrigin(0,0.5).setScrollFactor(0);
+    // fill rect (dynamic)
+    const fill = scene.add.rectangle(barX, y+6, barW, barH, 0x66cc66).setOrigin(0,0.5).setScrollFactor(0);
+    scene.ui.barFills.push(fill);
+  }
+
+  // Armor list & sword status
+  scene.ui.armorText = scene.add.text(12, 120, 'Armor: None', { fontSize: '14px', fill: '#fff' }).setScrollFactor(0);
+  scene.ui.swordText = scene.add.text(12, 140, 'Sword: None', { fontSize: '14px', fill: '#fff' }).setScrollFactor(0);
+  scene.ui.bottomExplain = scene.add.text(12, HEIGHT - 36, '', { fontSize: '16px', fill: '#ffffcc' }).setScrollFactor(0);
+
+  // Explanation timer handle
+  scene._explainTimer = null;
+
+  // Inputs
+  scene.cursors = scene.input.keyboard.createCursorKeys();
+  scene.keys = scene.input.keyboard.addKeys({
+    W: Phaser.Input.Keyboard.KeyCodes.W,
+    A: Phaser.Input.Keyboard.KeyCodes.A,
+    S: Phaser.Input.Keyboard.KeyCodes.S,
+    D: Phaser.Input.Keyboard.KeyCodes.D,
+    SPACE: Phaser.Input.Keyboard.KeyCodes.SPACE,
+    E: Phaser.Input.Keyboard.KeyCodes.E
+  });
+
+  // Movement flags (for mobile buttons)
+  scene.moveLeft = scene.moveRight = scene.moveUp = scene.moveDown = false;
+
+  // Overlap & collisions
+  scene.physics.add.overlap(scene.player, scene.enemies, onPlayerHitEnemy, null, scene);
+  scene.physics.add.overlap(scene.player, scene.armors, onPickupArmor, null, scene);
+  scene.physics.add.overlap(scene.beams, scene.enemies, onBeamHitEnemy, null, scene);
+  scene.physics.add.overlap(scene.player, scene.goal, onReachGoal, null, scene);
+  scene.physics.add.overlap(scene.player, scene.prayers, onAtPrayerSpot, null, scene);
+
+  // Spawn enemies every second for waves (a timed event per level)
+  scene.spawnEvent = null;
+  startLevel(scene, scene.level);
+
+  // Spawn some armor pickups occasionally
+  scene.time.addEvent({
+    delay: 7000,
+    loop: true,
+    callback: () => {
+      spawnArmor(scene);
+    }
+  });
+
+  // Timer event for countdown per second
+  scene.time.addEvent({
+    delay: 1000,
+    loop: true,
+    callback: () => {
+      scene.timeLeft--;
+      scene.ui.timeText.setText('Time: ' + scene.timeLeft);
+      if (scene.timeLeft <= 0) {
+        endGame(scene);
+      }
+    }
+  });
+
+  // Mobile UI: add simple onscreen buttons if touch device or narrow width
+  scene.isMobile = this.sys.game.device.os.android || this.sys.game.device.os.iOS || window.innerWidth < 700;
+  if (scene.isMobile) createMobileControls(scene);
+
+  // Show current armor icons list update every frame via registry-like function
+  scene.events.on('update', ()=> {
+    updateUIBars(scene);
+  });
+
+  // Set initial UI bars
+  updateUIBars(scene);
+
+  // Function definitions
+
+  function onPlayerHitEnemy(player, enemy) {
+    // If the enemy is already dead or flagged for removal, ignore
+    if (!enemy.active) return;
+
+    // If an armor is active that protects against this enemy type, ignore
+    const mapping = enemyTypeToStat(enemy.enemyType);
+    const protects = Object.values(scene.activeArmors).some(a => a && a.protects && a.protects.includes(mapping.stat));
+    if (protects) {
+      // optionally destroy enemy when blocked (or just ignore damage)
+      enemy.destroy();
+      showBottomText(scene, `Your armor protected you from ${enemy.enemyType}!`);
+      return;
+    }
+
+    // Otherwise, reduce stat
+    const stat = mapping.stat;
+    const damage = mapping.damage;
+    scene.stats[stat] = clamp(scene.stats[stat] - damage, 0, 100);
+    showBottomText(scene, `${enemy.enemyType} hit! -${damage} ${capitalize(stat)}`);
+    // enemy disappears on contact
+    enemy.destroy();
+
+    // recompute life
+    const life = scene.getLife();
+    // if life 0 -> game over
+    if (life <= 0) {
+      endGame(scene);
+    }
+  }
+
+  function onBeamHitEnemy(beam, enemy) {
+    // Beam kills enemy instantly
+    if (enemy.active) {
+      enemy.destroy();
+      // optionally increase score
+      scene.score += 1;
+    }
+  }
+
+  function onPickupArmor(player, armor) {
+    if (!armor.active) return;
+    const type = armor.pickType;
+    armor.destroy();
+
+    if (type === 'sword') {
+      scene.swordAvailable = true;
+      scene.swordUses += 1;
+      scene.ui.swordText.setText('Sword: READY (uses: ' + scene.swordUses + ')');
+      showBottomText(scene, 'Sword of the Spirit collected! Press SPACE or FIRE to use it. It destroys enemies.');
+      return;
+    }
+
+    // other armors protect a given stat. Each armor has a duration (10s)
+    const def = armorDefinitions[type];
+    if (!def) return;
+    const now = scene.time.now;
+    const expires = now + def.duration * 1000;
+
+    scene.activeArmors[type] = { expiresAt: expires, protects: def.protects, label: def.label };
+    showBottomText(scene, def.label);
+    updateArmorUI(scene);
+  }
+
+  function onReachGoal(player, goal) {
+    // increase level, reset player position slightly
+    scene.level++;
+    scene.ui.levelText.setText('Level: ' + scene.level);
+    showBottomText(scene, 'Level complete! Starting Level ' + scene.level);
+    // clear enemies & armors
+    scene.enemies.clear(true, true);
+    scene.armors.clear(true, true);
+    // reposition player
+    scene.player.setPosition(100, HEIGHT/2);
+    // restart spawn with increased intensity
+    startLevel(scene, scene.level);
+  }
+
+  function onAtPrayerSpot(player, prayer) {
+    // show prompt (bottom)
+    showBottomText(scene, 'Press E (or PRAY) to receive +stat here.');
+    // we won't auto-heal; player must press E or tap PRAY
+  }
+
+  // Helper for enemy spawn with types
+  function spawnEnemy(scene, x, y, enemyType) {
+    const e = scene.enemies.create(x, y, 'enemy-' + enemyType);
+    e.setOrigin(0.5, 0.5);
+    e.setDisplaySize(36,36);
+    e.enemyType = enemyType;
+    e.setDepth(1);
+    // speed is configured by type
+    const prop = enemyTypeProps(enemyType);
+    e.speed = prop.speed;
+    // set smaller hitbox
+    e.body.setSize(30,30);
+    return e;
+  }
+
+  // Spawn enemies around the edges
+  function spawnWave(scene, count) {
+    const spawnMargin = 30;
+    for (let i=0;i<count;i++){
+      const side = Phaser.Math.Between(0,3);
+      let x=0, y=0;
+      if (side===0) { x = Phaser.Math.Between(spawnMargin, WIDTH - spawnMargin); y = -40; }
+      else if (side===1) { x = Phaser.Math.Between(spawnMargin, WIDTH - spawnMargin); y = HEIGHT + 40; }
+      else if (side===2) { x = -40; y = Phaser.Math.Between(spawnMargin, HEIGHT - spawnMargin); }
+      else { x = WIDTH + 40; y = Phaser.Math.Between(spawnMargin, HEIGHT - spawnMargin); }
+
+      // pick type depending on level + randomness
+      const types = pickEnemyTypesForLevel(scene.level);
+      const type = types[Phaser.Math.Between(0, types.length-1)];
+      spawnEnemy(scene, x, y, type);
+    }
+  }
+
+  // Pick enemy types for a level (increase variety as level grows)
+  function pickEnemyTypesForLevel(level) {
+    const base = ['lie','fear'];
+    if (level >= 2) base.push('doubt');
+    if (level >= 3) base.push('hate');
+    // add duplicates to weight faster types slightly
+    return base;
+  }
+
+  // Start a level: cancel previous spawn events and add a timed repeating wave spawn
+  function startLevel(scene, level) {
+    if (scene.spawnEvent) scene.spawnEvent.remove();
+    // spawn waves: frequency increases with level
+    const repeatCount = 99999;
+    const delay = Math.max(900 - (level * 30), 300); // faster spawn as level increases
+    // spawn a wave of N enemies every `delay` ms
+    scene.spawnEvent = scene.time.addEvent({
+      delay: delay,
+      loop: true,
+      callback: () => {
+        const waveSize = 1 + Math.floor(level / 1.2); // increases slowly
+        spawnWave(scene, waveSize);
+      }
+    });
+  }
+
+  // Spawn armor (random types)
+  function spawnArmor(scene) {
+    const types = ['truth','peace','joy','happy','sword'];
+    const type = types[Phaser.Math.Between(0, types.length-1)];
+    const x = Phaser.Math.Between(150, WIDTH - 200);
+    const y = Phaser.Math.Between(80, HEIGHT - 80);
+    const key = (type === 'sword') ? 'armor-sword' : 'armor-' + (type === 'happy' ? 'happy' : type);
+    const a = scene.armors.create(x, y, key);
+    a.setDisplaySize(28,28);
+    a.pickType = (type === 'happy') ? 'happiness' : type; // map 'happy' to 'happiness'
+    // For consistency, unify naming:
+    if (type === 'truth') a.pickType = 'truth';
+    if (type === 'peace') a.pickType = 'peace';
+    if (type === 'joy') a.pickType = 'joy';
+    if (type === 'happy') a.pickType = 'happiness';
+    if (type === 'sword') a.pickType = 'sword';
+  }
+
+  // Armor definitions
+  const armorDefinitions = {
+    truth: { protects: ['truth'], duration: 10, label: 'Helmet of Truth — protects Truth stat for 10s' },
+    peace: { protects: ['peace'], duration: 10, label: 'Shield of Peace — protects Peace stat for 10s' },
+    joy:   { protects: ['joy'], duration: 10, label: 'Boots of Joy — protects Joy stat for 10s' },
+    happiness: { protects: ['happiness'], duration: 10, label: 'Breastplate of Happiness — protects Happiness for 10s' }
+  };
+
+  // enemyType -> stat mapping
+  function enemyTypeToStat(t) {
+    switch(t) {
+      case 'lie': return { stat: 'truth', damage: 18, label: 'Lie' };
+      case 'fear': return { stat: 'peace', damage: 12, label: 'Fear' };
+      case 'doubt': return { stat: 'joy', damage: 14, label: 'Doubt' };
+      case 'hate': return { stat: 'happiness', damage: 20, label: 'Hate' };
+      default: return { stat: 'peace', damage: 10, label: t };
+    }
+  }
+
+  function enemyTypeProps(t) {
+    switch(t) {
+      case 'lie': return { speed: 60 };
+      case 'fear': return { speed: 90 };
+      case 'doubt': return { speed: 45 };
+      case 'hate': return { speed: 75 };
+      default: return { speed: 60 };
+    }
+  }
+
+  // capitalise helper
+  function capitalize(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  // show bottom text explanation for a few seconds
+  function showBottomText(scene, text, duration=3000) {
+    scene.ui.bottomExplain.setText(text);
+    if (scene._explainTimer) scene._explainTimer.remove();
+    scene._explainTimer = scene.time.delayedCall(duration, ()=> scene.ui.bottomExplain.setText(''));
+  }
+
+  // destroy all enemies and stop spawn
+  function endGame(scene) {
+    scene.spawnEvent && scene.spawnEvent.remove();
+    scene.enemies.clear(true, true);
+    scene.armors.clear(true, true);
+    scene.beams.clear(true, true);
+    // show game over
+    scene.add.rectangle(WIDTH/2, HEIGHT/2, 520, 260, 0x000000, 0.75).setOrigin(0.5,0.5).setDepth(10);
+    scene.add.text(WIDTH/2 - 120, HEIGHT/2 - 50, '⏰ Time or Life ended!', { fontSize: '30px', fill: '#fff' }).setDepth(10);
+    scene.add.text(WIDTH/2 - 120, HEIGHT/2 - 10, 'Levels Cleared: ' + (scene.level - 1), { fontSize: '22px', fill: '#fff' }).setDepth(10);
+    scene.add.text(WIDTH/2 - 120, HEIGHT/2 + 30, 'Press SPACE to restart', { fontSize: '18px', fill: '#fff' }).setDepth(10);
+
+    scene.input.keyboard.once('keydown-SPACE', ()=> {
+      // restart full scene
+      scene.scene.restart();
+    });
+  }
+
+  function updateArmorUI(scene) {
+    const keys = Object.keys(scene.activeArmors).filter(k=>scene.activeArmors[k] && scene.activeArmors[k].expiresAt > scene.time.now);
+    if (keys.length === 0) scene.ui.armorText.setText('Armor: None');
+    else scene.ui.armorText.setText('Armor: ' + keys.map(k => scene.activeArmors[k].label || k).join(', '));
+  }
+
+  // Mobile controls creation
+  function createMobileControls(scene) {
+    // Left, Right, Up, Down rectangles
+    const size = 54;
+    const pad = 12;
+    const y = HEIGHT - size - 8;
+    const left = scene.add.image(64, y, 'btn').setInteractive().setAlpha(0.9).setDepth(20);
+    const right = scene.add.image(64 + (size+8)*1, y, 'btn').setInteractive().setAlpha(0.9).setDepth(20);
+    const up = scene.add.image(WIDTH - 160, y - 48, 'btn').setInteractive().setAlpha(0.9).setDepth(20);
+    const down = scene.add.image(WIDTH - 160, y + 48, 'btn').setInteractive().setAlpha(0.9).setDepth(20);
+    const fire = scene.add.image(WIDTH - 64, y, 'btn').setInteractive().setAlpha(0.9).setDepth(20);
+    const pray = scene.add.image(WIDTH - 64, y - 120, 'btn').setInteractive().setAlpha(0.9).setDepth(20);
+
+    // labels
+    scene.add.text(40, y-6, 'L', { fontSize: '20px' }).setDepth(21);
+    scene.add.text(94, y-6, 'R', { fontSize: '20px' }).setDepth(21);
+    scene.add.text(WIDTH - 176, y - 54, 'U', { fontSize: '20px' }).setDepth(21);
+    scene.add.text(WIDTH - 176, y + 36, 'D', { fontSize: '20px' }).setDepth(21);
+    scene.add.text(WIDTH - 84, y-6, 'FIRE', { fontSize: '12px' }).setDepth(21);
+    scene.add.text(WIDTH - 84, y - 126, 'PRAY', { fontSize: '12px' }).setDepth(21);
+
+    // pointer events
+    left.on('pointerdown', ()=> scene.moveLeft = true);
+    left.on('pointerup', ()=> scene.moveLeft = false);
+    left.on('pointerout', ()=> scene.moveLeft = false);
+
+    right.on('pointerdown', ()=> scene.moveRight = true);
+    right.on('pointerup', ()=> scene.moveRight = false);
+    right.on('pointerout', ()=> scene.moveRight = false);
+
+    up.on('pointerdown', ()=> scene.moveUp = true);
+    up.on('pointerup', ()=> scene.moveUp = false);
+    up.on('pointerout', ()=> scene.moveUp = false);
+
+    down.on('pointerdown', ()=> scene.moveDown = true);
+    down.on('pointerup', ()=> scene.moveDown = false);
+    down.on('pointerout', ()=> scene.moveDown = false);
+
+    fire.on('pointerdown', ()=> { if (scene.swordAvailable) fireSword(scene); });
+    pray.on('pointerdown', ()=> attemptPray(scene));
+  }
+
+  function attemptPray(scene){
+    // If overlapping a prayer spot, heal some stat (pick lowest stat)
+    const prayers = scene.physics.overlapCirc(scene.player.x, scene.player.y, 28, true, true);
+    // easiest: check for overlap with any prayer body by bounding box
+    let nearPrayer = false;
+    scene.prayers.getChildren().forEach(p => {
+      if (Phaser.Geom.Intersects.RectangleToRectangle(scene.player.getBounds(), p.getBounds())) nearPrayer = true;
+    });
+    if (!nearPrayer) { showBottomText(scene, 'Find a Prayer Spot to pray here'); return; }
+
+    // choose the lowest stat to boost
+    let lowest = 'peace';
+    let minVal = scene.stats[lowest];
+    ['happiness','joy','truth','peace'].forEach(s=>{
+      if (scene.stats[s] < minVal) { minVal = scene.stats[s]; lowest = s; }
+    });
+    // boost by 12, clamp
+    scene.stats[lowest] = clamp(scene.stats[lowest] + 12, 0, 100);
+    showBottomText(scene, `You prayed and gained +12 ${capitalize(lowest)}`);
+  }
+
+  function fireSword(scene) {
+    if (!scene.swordAvailable) return;
+    if (scene.swordCooldown) return;
+    if (scene.swordUses <= 0) return;
+    // Create a beam from player to right
+    const b = scene.physics.add.sprite(scene.player.x + 20, scene.player.y, 'beam');
+    b.setDisplaySize(20,8);
+    b.body.allowGravity = false;
+    b.setVelocityX(600);
+    scene.beams.add(b);
+    scene.swordUses--;
+    scene.ui.swordText.setText('Sword: READY (uses: ' + scene.swordUses + ')');
+    scene.swordCooldown = true;
+    scene.time.delayedCall(600, ()=> scene.swordCooldown = false);
+    // if uses drop to 0, mark not available
+    if (scene.swordUses <= 0) {
+      scene.swordAvailable = false;
+      scene.time.delayedCall(500, ()=> scene.ui.swordText.setText('Sword: None'));
+    }
+  }
+
+  // Update UI bars based on current stats
+  function updateUIBars(scene) {
+    const life = scene.getLife();
+    const values = [ life, scene.stats.peace, scene.stats.happiness, scene.stats.joy, scene.stats.truth ];
+    const colors = [0xff6666, 0x66ccff, 0xffcc66, 0xff66ff, 0xffff66];
+
+    for (let i=0;i<scene.ui.barFills.length;i++){
+      const fill = scene.ui.barFills[i];
+      const label = scene.ui.barLabels[i];
+      const val = values[i];
+      const fullW = 140;
+      const w = fullW * (val / 100);
+      fill.width = clamp(w, 0, fullW);
+      fill.setFillStyle(colors[i]);
+    }
+
+    // update bottom armor list
+    updateArmorUI(scene);
+
+    // remove expired armors regularly
+    const now = scene.time.now;
+    Object.keys(scene.activeArmors).forEach(k=>{
+      const a = scene.activeArmors[k];
+      if (a && a.expiresAt && a.expiresAt <= now) {
+        delete scene.activeArmors[k];
+        showBottomText(scene, `${a.label} expired`);
+      }
+    });
+  }
+
+  // enemy chasing logic (called in update)
+  scene.enemies.getChildren().forEach(e=> e.speed = e.speed || 60);
+}
+
+/* ---------- update() ---------- */
+function update(time, delta) {
+  const scene = this;
+
+  // Input & movement velocities
+  const speed = 160;
+  let vx = 0, vy = 0;
+
+  // Keyboard
+  if (scene.cursors.left.isDown || scene.keys.A.isDown) vx -= speed;
+  if (scene.cursors.right.isDown || scene.keys.D.isDown) vx += speed;
+  if (scene.cursors.up.isDown || scene.keys.W.isDown) vy -= speed;
+  if (scene.cursors.down.isDown || scene.keys.S.isDown) vy += speed;
+
+  // Mobile flags
+  if (scene.moveLeft) vx = -speed;
+  if (scene.moveRight) vx = speed;
+  if (scene.moveUp) vy = -speed;
+  if (scene.moveDown) vy = speed;
+
+  // apply movement
+  scene.player.body.setVelocity(vx, vy);
+
+  // If player not using input and you want auto-walk right, uncomment below:
+  // if (!vx && !vy) scene.player.body.setVelocityX(80);
+
+  // Shooting: SPACE to fire if sword available
+  if (Phaser.Input.Keyboard.JustDown(scene.keys.SPACE)) {
+    if (scene.swordAvailable) fireSword(scene);
+  }
+
+  // Pray: E
+  if (Phaser.Input.Keyboard.JustDown(scene.keys.E)) {
+    attemptPray(scene);
+  }
+
+  // Move enemies toward player using simple moveTo
+  scene.enemies.getChildren().forEach(e => {
+    if (!e.active) return;
+    scene.physics.moveToObject(e, scene.player, e.speed);
+  });
+
+  // Update active armor UI durations
+  updateActiveArmorDurations(scene);
+}
+
+/* ---------- Utility functions outside scene scope ---------- */
+
+// Called when scene variable is available in closure
+function updateActiveArmorDurations(scene) {
+  // compute remaining times and remove expired
+  const now = scene.time.now;
+  const active = Object.keys(scene.activeArmors);
+  if (active.length === 0) return;
+  const parts = active.map(k=>{
+    const ar = scene.activeArmors[k];
+    const remain = Math.max(0, Math.floor((ar.expiresAt - now)/1000));
+    return `${ar.label} (${remain}s)`;
+  });
+  scene.ui.armorText.setText('Armor: ' + parts.join(' | '));
+}
+
+/* ---------- helpers used earlier but defined here for scope ---------- */
+
+// mapping for enemyType->stat/damage (duplicate safe)
+function enemyTypeToStatExternal(t) {
+  switch(t) {
+    case 'lie': return { stat: 'truth', damage: 18, label: 'Lie' };
+    case 'fear': return { stat: 'peace', damage: 12, label: 'Fear' };
+    case 'doubt': return { stat: 'joy', damage: 14, label: 'Doubt' };
+    case 'hate': return { stat: 'happiness', damage: 20, label: 'Hate' };
+    default: return { stat: 'peace', damage: 10, label: t };
+  }
+}
+
+/* Because several functions inside create() referenced functions we defined later,
+   this single-file closure style works because they are invoked after create executes. */
+
+/* ---------- END of game code ---------- */
+</script>
 </body>
 </html>

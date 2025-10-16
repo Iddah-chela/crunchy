@@ -8,6 +8,19 @@ fetch("./bible/en_kjv.json")
   .then(res => res.json())
   .then(data => {
     bibleData = data;
+    //check saved location
+    const lastBook = localStorage.getItem("lastBook");
+    const lastChapter = localStorage.getItem("lastChapter");
+
+    if (lastBook && lastChapter !== null) {
+      const book = bibleData.find(b => b.name === lastBook);
+      if (book) {
+        renderVerses(book, parseInt(lastChapter)); //go straight to last read
+        return
+      }
+    }
+
+    //default to ot if no saved progress
     renderBookList("ot"); // show OT first
   });
 
@@ -127,6 +140,7 @@ function renderVerses(book, chapterIdx) {
   const verses = book.chapters[chapterIdx];
   verses.forEach((text, idx) => {
     const { cleaned, notes } = splitVerse(text);
+    const verseNum = idx + 1;
 
     const card = document.createElement("div");
     card.className = "question-card";
@@ -135,11 +149,52 @@ function renderVerses(book, chapterIdx) {
     verseText.innerHTML = `<b>${idx + 1}</b>. ${cleaned}`;
 
     card.appendChild(verseText);
-    verseList.appendChild(card);
 
     if (notes.length) {
       notesCollected.push(`v${idx + 1}: ${notes.join("; ")}`);
     }
+
+    //toolbar(hidden by default)
+    const toolbar = document.createElement("div");
+    toolbar.className = "verse-toolbar";
+    toolbar.style.display = "none";
+
+    const noteBtn = document.createElement("button");
+    noteBtn.textContent = "📝Note";
+    noteBtn.className = "innerbtn";
+    noteBtn.onclick = () => {
+      addNote(book, chapterIdx, verseNum);
+    }
+
+    const highlightBtn = document.createElement("button");
+    highlightBtn.textContent = "✨Highlight";
+    highlightBtn.className = "innerbtn";
+    highlightBtn.onclick = () => toggleHighlight(card, book, chapterIdx, verseNum);
+
+    const commBtn = document.createElement("button");
+    commBtn.textContent = "📖Commentary";
+   commBtn.className = "innerbtn";
+    commBtn.onclick = () => toggleCommentary(card, book, chapterIdx, verseNum);
+
+    toolbar.append(noteBtn, highlightBtn, commBtn);
+    card.appendChild(toolbar);
+
+    //clicking verse shows or hides toolbar
+    verseText.onclick = () => {
+      toolbar.style.display = toolbar.style.display === "none" ? "block": "none";
+    };
+
+    //append user notes if they exist
+    const noteKey = `note_${book.name}_${chapterIdx}_${verseNum}`;
+    const savedNote = localStorage.getItem(noteKey);
+    if (savedNote) {
+      const noteBox = document.createElement("div");
+      noteBox.className = "note-box";
+      noteBox.textContent = savedNote;
+      card.appendChild(noteBox);
+    }
+
+    verseList.appendChild(card);
   });
 
   // Notes box (hidden by default)
@@ -152,7 +207,7 @@ function renderVerses(book, chapterIdx) {
     verseList.appendChild(notesBox);
 
     const toggleBtn = document.createElement("button");
-    toggleBtn.className = "innerbtn";
+    toggleBtn.className = "innerbtn note";
     toggleBtn.textContent = showNotes ? "Hide Notes" : "Show Notes";
     toggleBtn.onclick = () => {
       showNotes = !showNotes;
@@ -163,18 +218,24 @@ function renderVerses(book, chapterIdx) {
   // Next chapter button
   if (chapterIdx < book.chapters.length - 1) {
     const nextBtn = document.createElement("button");
-    nextBtn.className = "innerbtn";
+    nextBtn.className = "innerbtn next";
     nextBtn.textContent = "➡️ Next Chapter";
-    nextBtn.onclick = () => renderVerses(book, chapterIdx + 1);
+    nextBtn.onclick = () => {
+      renderVerses(book, chapterIdx + 1);
+      window.scrollTo(0, 0);
+    }
     verseList.appendChild(nextBtn);
   }
 
   //previous caphter button
   if (chapterIdx > 0) {
     const previousBtn = document.createElement("button");
-    previousBtn.className = "innerbtn";
+    previousBtn.className = "innerbtn previous";
     previousBtn.textContent = "➡️ Previous Chapter";
-    previousBtn.onclick = () => renderVerses(book, chapterIdx - 1);
+    previousBtn.onclick = () => {
+      renderVerses(book, chapterIdx - 1);
+      window.scrollTo(0, 0);
+    }
     verseList.appendChild(previousBtn);
   }
 
@@ -183,6 +244,72 @@ function renderVerses(book, chapterIdx) {
   localStorage.setItem("lastChapter", chapterIdx);
 }
 
+function renderNotesPage() {
+  hideAll();
+  const notesPage = document.getElementById("notes-page");
+  notesPage.style.display = "block";
+  notesPage.innerHTML = "<h2>My Notes</h2>";
+
+  for(let key in localStorage) {
+    if (key.startsWith("note_")) {
+      const ref = key.replace("note_", "").split("_");
+      const [book, chapter, verse] = ref;
+      const note = localStorage.getItem(key);
+
+      const item = document.createElement("p");
+      item.innerHTML = `<b>${book} ${parseInt(chapter) + 1}:${verse}</b> - ${note}`;
+      notesPage.appendChild(item);
+    }
+  }
+}
+
+function renderHighlightsPage() {
+  hideAll();
+  const highlightsPage = document.getElementById("highlights-page");
+  highlightsPage.style.display = "block";
+  highlightsPage.innerHTML = "<h2>🌟Highlighted Verses</h2>";
+
+  for(let key in localStorage) {
+    if (key.startsWith("highlight_") && localStorage.getItem(key) === "true") {
+      const ref = key.replace("highlight_", "").split("_");
+      const [book, chapter, verse] = ref;
+      const highlight = localStorage.getItem(key);
+
+      const item = document.createElement("p");
+      item.innerHTML = `<b>${book} ${parseInt(chapter) + 1}:${verse}</b>`;
+      highlightsPage.appendChild(item);
+    }
+  }
+}
+
+function addNote(book, chapter, verse) {
+  const note = prompt("Write your note: ");
+  if (note) {
+    const key = `note_${book.name}_${chapter}_${verse}`;
+    localStorage.setItem(key, note);
+    renderVerses(book, chapter); //re-render so note appears
+  }
+}
+
+function toggleHighlight(card, book, chapter, verse) {
+  card.classList.toggle("highlight");
+  const key = `highlight_${book.name}_${chapter}_${verse}`;
+  localStorage.setItem(key, card.classList.contains("highlight"));
+}
+
+function toggleCommentary(card, book, chapter, verse) {
+  //placeholder - later fetch actual commentary
+  const commBox = card.querySelector(".commentary-box");
+  if (commBox) {
+    commBox.remove();
+    return;
+  }
+
+  const box = document.createElement("div");
+  box.className = "commentary-box";
+  box.textContent = "Commentary coming soon...";
+  card.appendChild(box);
+}
 
 // Helper: hide all sections
 function hideAll() {

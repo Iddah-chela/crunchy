@@ -10,19 +10,9 @@ try {
 
 
 window.addEventListener('DOMContentLoaded', () => {
-  const storedAge = user.age || 10;
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const storedAge = currentUser.age || 10;
   const ageSelect = document.getElementById("age");
-
-  if (ageSelect) {
-    ageSelect.value = storedAge;
-
-    // ✅ Listen for age changes
-    storedAge.addEventListener("change", (e) => {
-      const newAge = parseInt(e.target.value);
-      storage.setItem("selectedAge", newAge);
-      filterQuestionsByAge(newAge);
-    });
-  }
 
   filterQuestionsByAge(storedAge);
 });
@@ -262,45 +252,53 @@ let questions = [
 { id: "q193", text: "Where is hell?", category: "", ageRange: [10, 99] },
 ];
 
-function filterQuestionsByAge(optionalAge) {
+// function filterQuestionsByAge(optionalAge) {
   
-  const allBlocks = document.querySelectorAll(".category-block");
-  const selectedAge = optionalAge;
-   // 👈 this line saves age
+//   const allBlocks = document.querySelectorAll(".category-block");
+//   const selectedAge = optionalAge;
+//    // 👈 this line saves age
 
-  allBlocks.forEach(block => {
-    const group = block.querySelector(".question-group");
+//   allBlocks.forEach(block => {
+//     const group = block.querySelector(".question-group");
     
-    //if no buttons for that group, then it's an empty array
-    const buttons = group?.querySelectorAll(".question-btn") || [];
-    const categoryBtn = block.querySelector(".category-btn"); // 🔧 Get the toggle button
+//     //if no buttons for that group, then it's an empty array
+//     const buttons = group?.querySelectorAll(".question-btn") || [];
+//     const categoryBtn = block.querySelector(".category-btn"); // 🔧 Get the toggle button
 
-    let visibleCount = 0;
+//     let visibleCount = 0;
 
-    buttons.forEach(btn => {
-      const qid = btn.id;
-      //each question 
-      const question = questions.find(q => q.id === qid);
+//     buttons.forEach(btn => {
+//       const qid = btn.id;
+//       //each question 
+//       const question = questions.find(q => q.id === qid);
 
-      //sielewi mbona inasema block if button not there or age not there, tueke none
-      if (!question || isNaN(selectedAge)) {
-        btn.style.display = 'none';
-        visibleCount++;
-      } else if (selectedAge >= question.ageRange[0] && selectedAge <= question.ageRange[1]) {
-        btn.style.display = 'block';
-        visibleCount++;
-      } else {
-        btn.style.display = 'none';
-      }
-    });
+//       //sielewi mbona inasema block if button not there or age not there, tueke none
+//       if (!question || isNaN(selectedAge)) {
+//         btn.style.display = 'none';
+//         visibleCount++;
+//       } else if (selectedAge >= question.ageRange[0] && selectedAge <= question.ageRange[1]) {
+//         btn.style.display = 'block';
+//         visibleCount++;
+//       } else {
+//         btn.style.display = 'none';
+//       }
+//     });
 
-    if (visibleCount === 0) {
-      block.style.display = "none";          // 🔧 Hide the whole block (category)
-      if (categoryBtn) categoryBtn.style.display = "none";  // 🔧 Hide the category button too
-    } else {
-      block.style.display = "block";
-      if (categoryBtn) categoryBtn.style.display = "inline-block"; // 🔧 Show the category button
-      if (group) group.style.display = "none";              // Hide group by default
-    }
+//     if (visibleCount === 0) {
+//       block.style.display = "none";          // 🔧 Hide the whole block (category)
+//       if (categoryBtn) categoryBtn.style.display = "none";  // 🔧 Hide the category button too
+//     } else {
+//       block.style.display = "block";
+//       if (categoryBtn) categoryBtn.style.display = "inline-block"; // 🔧 Show the category button
+//       if (group) group.style.display = "none";              // Hide group by default
+//     }
+//   });
+// }s
+function filterQuestionsByAge(age) {
+  // assuming questions is your big array of { question, ageRange, category, ... }
+  return questions.filter(q => {
+    return age >= q.ageRange[0] && age <= q.ageRange[1];
   });
 }
+
+
