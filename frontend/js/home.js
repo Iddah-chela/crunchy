@@ -78,7 +78,7 @@ document.getElementById("dailyVerse").textContent = verses[Math.floor(Math.rando
 // Update card info (dummy placeholders for now)
 document.getElementById("prayerInfo").textContent = "Generate uplifting prayers!";
 document.getElementById("bibleInfo").textContent = "Pick up where you left off!";
-document.getElementById("gamesInfo").textContent = "Beat the high score!";
+document.getElementById("notesInfo").textContent = "Write some notes!";
 
 // Make cards clickable
 document.querySelectorAll(".card").forEach(card => {
