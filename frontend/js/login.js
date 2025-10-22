@@ -34,6 +34,8 @@ form.addEventListener("submit", async (e) => {
       age: data.user.age
     }));
 
+    localStorage.setItem("hasSignedUp", "true");
+
     //trigger animation
     startCiscoVibe();
 
@@ -43,3 +45,4 @@ form.addEventListener("submit", async (e) => {
     msg.textContent = "Network imechoka 😅";
   }
 });
+

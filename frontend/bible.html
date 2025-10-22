@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Bible Reader</title>
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -13,7 +14,7 @@
 
 <div id="topbar-container"></div>
   <div id="bottom-bar"></div>
-    <h1 class="heading">📖 Bible Reader</h1>
+    <h1 class="heading">📖 Bible</h1>
 
     <!-- Book selector -->
     <div id="book-list" class="list"></div>
@@ -25,8 +26,9 @@
     <div id="verse-list" class="verses"></div>
   </div>
   <div class="notes">
-  <button class="innerbtn" onclick="renderNotesPage()">📝 My Notes</button>
-  <button class="innerbtn baby-ai-bubble" onclick="renderHighlightsPage()">⭐ Favorites</button></div>
+   <button id="menuToggleBtn" class="innerbtn nav-btn">…</button>
+  <button id="notesPageBtn" class="innerbtn">📝 My Notes</button>
+  <button id="highlightPageBtn" class="innerbtn">⭐ Favorites</button></div>
   <div id="notes-page" style="display: none;"></div>
   <div id="highlights-page" style="display: none;"></div>
   

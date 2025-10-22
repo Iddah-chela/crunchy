@@ -5,34 +5,125 @@ const chatWindow = document.getElementById('chat-window');
 const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
 let userName = null;
+let conversationMemory = []; // Track verses shared in this session
+let questionMap = null; // Will load the main verse database
 
-// Add message to chat
-function addMessage(content, type = 'user') {
+// Load questionMap data
+async function loadQuestionMap() {
+  try {
+    const response = await fetch('../backend/models/questionMap.js');
+    const script = await response.text();
+
+    // Extract the questionMap object from the script
+    const questionMapMatch = script.match(/let questionMap = ({[\s\S]*?});/);
+    if (questionMapMatch) {
+      questionMap = eval('(' + questionMapMatch[1] + ')');
+      console.log('✅ Loaded questionMap for AI chat');
+    }
+  } catch (err) {
+    console.warn('Could not load questionMap:', err);
+    // Fallback to aiMemory
+  }
+}
+
+// Add message to chat with optional verse suggestion buttons
+function addMessage(content, type = 'user', verseData = null) {
   const bubble = document.createElement('div');
   bubble.classList.add('bubble', type === 'user' ? 'user-bubble' : 'ai-bubble');
-  bubble.textContent = content;
+
+  // Add main content
+  const contentDiv = document.createElement('div');
+  contentDiv.textContent = content;
+  bubble.appendChild(contentDiv);
+
+  // Add verse suggestion buttons if verse data provided
+  if (verseData && type === 'ai') {
+    const buttonContainer = document.createElement('div');
+    buttonContainer.className = 'verse-buttons';
+    buttonContainer.style.marginTop = '8px';
+
+    const moreBtn = document.createElement('button');
+    moreBtn.className = 'verse-btn';
+    moreBtn.textContent = 'More like this';
+    moreBtn.onclick = () => suggestMoreVerses(verseData.theme);
+
+    const differentBtn = document.createElement('button');
+    differentBtn.className = 'verse-btn';
+    differentBtn.textContent = 'Different verse';
+    differentBtn.onclick = () => suggestDifferentVerse(verseData.theme);
+
+    buttonContainer.appendChild(moreBtn);
+    buttonContainer.appendChild(differentBtn);
+    bubble.appendChild(buttonContainer);
+  }
+
   chatWindow.appendChild(bubble);
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
 const replyTemplates = [
-  (verse) => `Here's something that you might like: "${verse.text}" – ${verse.book} ${verse.chapter}:${verse.verse}`,
-  (verse) => `God's Word says: "${verse.text}" – ${verse.book} ${verse.chapter}:${verse.verse}. Hold on to that.`,
-  (verse) => `That's interesting 💭 But listen to this: ${verse.book} ${verse.chapter}:${verse.verse} says "${verse.text}"`,
-  (verse) => `Let me remind you of this truth: "${verse.text}" (${verse.book} ${verse.chapter}:${verse.verse})`,
-  (verse) => `Look at what God says: "${verse.text}" – ${verse.book} ${verse.chapter}:${verse.verse}`,
-  (verse) => `"${verse.text}" – That’s straight from ${verse.book} ${verse.chapter}:${verse.verse}. Let that sink in 💙`,
-  (verse) => `Vale's favorite verse for that is: "${verse.text}" – ${verse.book} ${verse.chapter}:${verse.verse}`,
-  (verse) => `Here’s a light for your heart: ${verse.book} ${verse.chapter}:${verse.verse} – "${verse.text}"`,
+  (verse) => `Here's something that you might like: "${verse.text}" – ${verse.ref}`,
+  (verse) => `God's Word says: "${verse.text}" – ${verse.ref}. Hold on to that.`,
+  (verse) => `That's interesting 💭 But listen to this: ${verse.ref} says "${verse.text}"`,
+  (verse) => `Let me remind you of this truth: "${verse.text}" (${verse.ref})`,
+  (verse) => `Look at what God says: ${verse.ref} – "${verse.text}"`,
+  (verse) => `"${verse.text}" – That’s straight from ${verse.ref}. Let that sink in 💙`,
+  (verse) => `Vale's favorite verse for that is: "${verse.text}" – ${verse.ref}`,
+  (verse) => `Here’s a light for your heart: ${verse.ref} – "${verse.text}"`,
 ];
 
-// Search for response
-let lastEmotion = null;
+// Verse suggestion functions
+function suggestMoreVerses(theme) {
+  if (!questionMap) {
+    addMessage("I'd love to share more verses, but I'm still loading my knowledge base. Try again in a moment!", 'ai');
+    return;
+  }
 
+  // Find all verses with this theme from questionMap
+  const themeVerses = [];
+  for (const [questionKey, questionData] of Object.entries(questionMap)) {
+    for (const [answerKey, answerData] of Object.entries(questionData)) {
+      if (answerData.theme === theme) {
+        for (const [verseRef, verseData] of Object.entries(answerData)) {
+          if (verseData.text && verseData.ref) {
+            themeVerses.push({
+              ref: verseRef,
+              text: verseData.text,
+              theme: theme,
+              tags: verseData.tags || []
+            });
+          }
+        }
+      }
+    }
+  }
 
+  if (themeVerses.length === 0) {
+    addMessage(`I don't have more verses on ${theme} right now, but I can suggest something related!`, 'ai');
+    return;
+  }
+
+  // Filter out verses already shared in this conversation
+  const newVerses = themeVerses.filter(v => !conversationMemory.includes(v.ref));
+  const verse = newVerses.length > 0 ?
+    newVerses[Math.floor(Math.random() * newVerses.length)] :
+    themeVerses[Math.floor(Math.random() * themeVerses.length)];
+
+  conversationMemory.push(verse.ref);
+  const template = replyTemplates[Math.floor(Math.random() * replyTemplates.length)];
+  const response = template(verse);
+
+  addMessage(response, 'ai', verse);
+}
+
+function suggestDifferentVerse(theme) {
+  suggestMoreVerses(theme); // Same function, just different button text
+}
+
+// Enhanced AI response function
 function getAIResponse(message) {
   const lowerMsg = message.toLowerCase();
-  
+
   // Check chatMemory first
   for (let memory of chatMemory) {
     for (let tag of memory.tags) {
@@ -97,25 +188,60 @@ function getAIResponse(message) {
     return greetings[Math.floor(Math.random() * greetings.length)];
   }
 
-  // 📖 Search for verses by tags
-  const matched = aiMemory.filter(memory =>
+  // 📖 Search for verses by tags (enhanced with questionMap integration)
+  let matched = aiMemory.filter(memory =>
     memory.tags.some(tag => lowerMsg.includes(tag))
   );
 
+  // Also search questionMap if loaded
+  if (questionMap) {
+    for (const [questionKey, questionData] of Object.entries(questionMap)) {
+      for (const [answerKey, answerData] of Object.entries(questionData)) {
+        if (answerData.tags && answerData.tags.some(tag => lowerMsg.includes(tag))) {
+          // Convert questionMap format to aiMemory format
+          for (const [verseRef, verseData] of Object.entries(answerData)) {
+            if (verseData.text && verseData.ref) {
+              matched.push({
+                theme: answerData.theme,
+                tags: answerData.tags,
+                verse: {
+                  ref: verseRef,
+                  text: verseData.text
+                }
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+
   if (matched.length > 0) {
     const memory = matched[Math.floor(Math.random() * matched.length)];
+    const verse = memory.verse || memory; // Handle both formats
     const template = replyTemplates[Math.floor(Math.random() * replyTemplates.length)];
 
+    // Track this verse in conversation memory
+    const verseRef = verse.ref || `${verse.book} ${verse.chapter}:${verse.verse}`;
+    conversationMemory.push(verseRef);
+
     const mixedReplies = [
-      `${template(memory)} Also... do you want to talk more about that?`,
-      `${template(memory)} 💭 Want to add more verses about this later?`,
-      `${template(memory)} I'm here if you want to just chat too.`,
+      `${template(verse)} Also... do you want to talk more about that?`,
+      `${template(verse)} 💭 Want to add more verses about this later?`,
+      `${template(verse)} I'm here if you want to just chat too.`,
     ];
 
     const chance = Math.random();
-    lastEmotion = memory.theme;
 
-    if (chance < 0.3) return template(memory); // Verse only
+    if (chance < 0.3) {
+      // Return verse with button data for suggestions
+      const verseData = {
+        ref: verseRef,
+        text: verse.text,
+        theme: memory.theme
+      };
+      return { text: template(verse), verseData };
+    }
     if (chance < 0.6) return mixedReplies[Math.floor(Math.random() * mixedReplies.length)]; // Mix
     return `That sounds nice. Want to talk about it more ${userName ? ' ' + userName : ''}? 💬`; // No verse
   }
@@ -140,8 +266,22 @@ function handleSend() {
   chatInput.value = '';
 
   const aiReply = getAIResponse(userInput);
-  setTimeout(() => addMessage(aiReply, 'ai'), 600); // slight delay for realism
+
+  setTimeout(() => {
+    if (typeof aiReply === 'object' && aiReply.text && aiReply.verseData) {
+      // Handle verse response with buttons
+      addMessage(aiReply.text, 'ai', aiReply.verseData);
+    } else {
+      // Handle regular text response
+      addMessage(aiReply, 'ai');
+    }
+  }, 600); // slight delay for realism
 }
+
+// Initialize the chat
+document.addEventListener('DOMContentLoaded', () => {
+  loadQuestionMap(); // Load the main verse database
+});
 
 // Event listeners
 sendBtn.addEventListener('click', handleSend);

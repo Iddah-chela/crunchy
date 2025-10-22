@@ -14,7 +14,7 @@
         {
             "type": "msedge",
             "request": "launch",
-            "name": "Open index.html",
+            "name": "Open home.html",
             "file": "c:\\Users\\Hp\\Documents\\randomverse (5)\\frontend\\home.html"
         }
     ]

@@ -1,15 +1,41 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
+const crypto = require("crypto");
 
 const router = express.Router();
 
-// db file for messages
-const dbPath = path.join(__dirname, "../randomverse.db");
-const db = new sqlite3.Database(dbPath);
+// Simple encryption/decryption for messages
+const ENCRYPTION_KEY = process.env.MESSAGE_KEY || "your-32-char-secret-key-here!!"; // Must be 32 chars
+const IV_LENGTH = 16;
 
-// create messages table if it doesn't exist
+function encrypt(text) {
+  const iv = crypto.randomBytes(IV_LENGTH);
+  const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
+  let encrypted = cipher.update(text);
+  encrypted = Buffer.concat([encrypted, cipher.final()]);
+  return iv.toString('hex') + ':' + encrypted.toString('hex');
+}
+
+function decrypt(text) {
+  const parts = text.split(':');
+  const iv = Buffer.from(parts.shift(), 'hex');
+  const encryptedText = Buffer.from(parts.join(':'), 'hex');
+  const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
+  let decrypted = decipher.update(encryptedText);
+  decrypted = Buffer.concat([decrypted, decipher.final()]);
+  return decrypted.toString();
+}
+
+const dbPath = path.join(process.cwd(), "randomverse.db");
+const db = new sqlite3.Database(dbPath, (err) => {
+  if (err) console.error("❌ Chat route DB error:", err.message);
+  else console.log("✅ Chat route connected to DB at:", dbPath);
+});
+
+// Create tables
 db.serialize(() => {
+  // Messages table with encrypted text
   db.run(`
     CREATE TABLE IF NOT EXISTS messages 
     (
@@ -21,10 +47,102 @@ db.serialize(() => {
       FOREIGN KEY(senderId) REFERENCES users(id),
       FOREIGN KEY(receiverId) REFERENCES users(id)
     )
-  `);
+  `, (err) => {
+    if (err) console.error("Error creating messages table:", err);
+    else console.log("✅ Messages table ready");
+  });
+
+  // Friendships table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS friendships (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      userId INTEGER NOT NULL,
+      friendId INTEGER NOT NULL,
+      status TEXT DEFAULT 'pending',
+      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY(userId) REFERENCES users(id),
+      FOREIGN KEY(friendId) REFERENCES users(id),
+      UNIQUE(userId, friendId)
+    )
+  `, (err) => {
+    if (err) console.error("Error creating friendships table:", err);
+    else console.log("✅ Friendships table ready");
+  });
 });
 
-// Get message thread between two users
+// Get friends list
+router.get("/friends", (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) return res.status(401).json({ error: "Not logged in" });
+
+  const sql = `
+    SELECT u.id, u.username, u.profilePic, f.status
+    FROM friendships f
+    JOIN users u ON (f.friendId = u.id OR f.userId = u.id)
+    WHERE (f.userId = ? OR f.friendId = ?) 
+      AND u.id != ?
+      AND f.status = 'accepted'
+  `;
+
+  db.all(sql, [userId, userId, userId], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// Send friend request
+router.post("/friend-request", (req, res) => {
+  const userId = req.session.userId;
+  const { friendId } = req.body;
+
+  if (!userId) return res.status(401).json({ error: "Not logged in" });
+  if (!friendId) return res.status(400).json({ error: "friendId required" });
+
+  const sql = `INSERT INTO friendships (userId, friendId, status) VALUES (?, ?, 'pending')`;
+  db.run(sql, [userId, friendId], function(err) {
+    if (err) {
+      if (err.message.includes("UNIQUE")) {
+        return res.status(400).json({ error: "Request already sent" });
+      }
+      return res.status(500).json({ error: err.message });
+    }
+    res.json({ msg: "Friend request sent! 🤝", id: this.lastID });
+  });
+});
+
+// Accept friend request
+router.post("/friend-accept/:friendshipId", (req, res) => {
+  const userId = req.session.userId;
+  const friendshipId = req.params.friendshipId;
+
+  if (!userId) return res.status(401).json({ error: "Not logged in" });
+
+  const sql = `UPDATE friendships SET status = 'accepted' WHERE id = ? AND friendId = ?`;
+  db.run(sql, [friendshipId, userId], function(err) {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ msg: "Friend request accepted! 🎉" });
+  });
+});
+
+// Get pending friend requests
+router.get("/friend-requests", (req, res) => {
+  const userId = req.session.userId;
+  if (!userId) return res.status(401).json({ error: "Not logged in" });
+
+  const sql = `
+    SELECT f.id, u.id as userId, u.username, u.profilePic
+    FROM friendships f
+    JOIN users u ON f.userId = u.id
+    WHERE f.friendId = ? AND f.status = 'pending'
+  `;
+
+  db.all(sql, [userId], (err, rows) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(rows);
+  });
+});
+
+// Get message thread between two users (with decryption)
 router.get("/thread/:otherUserId", (req, res) => {
   const currentUser = req.session.userId;
   const otherUser = Number(req.params.otherUserId);
@@ -33,22 +151,42 @@ router.get("/thread/:otherUserId", (req, res) => {
     return res.status(400).json({ error: "Invalid IDs" });
   }
 
-  const sql = `
-    SELECT m.id, m.senderId, m.receiverId, m.text, m.timestamp,
-           u.username AS senderUsername, u.profilePic AS senderProfilePic
-    FROM messages m
-    JOIN users u ON m.senderId = u.id
-    WHERE (m.senderId = ? AND m.receiverId = ?) OR (m.senderId = ? AND m.receiverId = ?)
-    ORDER BY m.timestamp ASC
+  // First check if they're friends
+  const friendCheck = `
+    SELECT * FROM friendships 
+    WHERE ((userId = ? AND friendId = ?) OR (userId = ? AND friendId = ?))
+      AND status = 'accepted'
   `;
-  
-  db.all(sql, [currentUser, otherUser, otherUser, currentUser], (err, rows) => {
-    if (err) {
-      console.error("Error fetching thread:", err);
-      return res.status(500).json({ error: err.message });
-    }
-    res.json(rows);
+
+  db.get(friendCheck, [currentUser, otherUser, otherUser, currentUser], (err, friendship) => {
+    if (err) return res.status(500).json({ error: err.message });
+    if (!friendship) return res.status(403).json({ error: "Not friends with this user" });
+
+    const sql = `
+      SELECT m.id, m.senderId, m.receiverId, m.text, m.timestamp,
+             u.username AS senderUsername, u.profilePic AS senderProfilePic
+      FROM messages m
+      JOIN users u ON m.senderId = u.id
+      WHERE (m.senderId = ? AND m.receiverId = ?) OR (m.senderId = ? AND m.receiverId = ?)
+      ORDER BY m.timestamp ASC
+    `;
+    
+    db.all(sql, [currentUser, otherUser, otherUser, currentUser], (err, rows) => {
+      if (err) {
+        console.error("Error fetching thread:", err);
+        return res.status(500).json({ error: err.message });
+      }
+
+      // Decrypt messages before sending
+      const decryptedRows = rows.map(row => ({
+        ...row,
+        text: decrypt(row.text)
+      }));
+
+      res.json(decryptedRows);
+    });
   });
 });
 
 module.exports = router;
+module.exports.encrypt = encrypt; // Export for use in server.js

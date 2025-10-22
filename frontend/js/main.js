@@ -5,7 +5,14 @@ let lastShownTags = [];
 let lastShownId = null;
 let lastShownVerse = null;
 
-
+let storage;
+try {
+  localStorage.setItem("test", "test");
+  localStorage.removeItem("test");
+  storage = localStorage;
+} catch (err) {
+  storage = sessionStorage;
+}
 
 // Grab all the question buttons and convert to array of objects
 const questionButtons = Array.from(document.querySelectorAll(".question-btn"))
@@ -150,6 +157,7 @@ function addButtonsToLi(li, entry) {
       if (stored) {
         let arr = JSON.parse(stored);
         let updated = arr.map(fav =>
+          //^^walai sijui nini inaendelea hapa
           fav.text === entry.text ? { ...fav, notes: input.value } : fav
         );
         storage.setItem("favorites", JSON.stringify(updated));
@@ -193,79 +201,161 @@ function buildTagScoresFromFavorites() {
   } catch (err) {
     console.warn("Couldn't read favorites for tag scoring:", err);
   }
-
-  console.log(tagScores);
-  console.table(tagScores);
   return tagScores;
 }
+// ------ Verses cache & loader ------
 
-function showVersesByTag(tag) {
-  const matches = [];
+let _allVersesCache = null; // [{ qkey, ref, text, theme, tags:[], category }]
 
-   fetch(`./questions/${q}`)
-    .then(res => res.json())
-    .then(rows => {
-      if (!rows || !rows.length) {
-        console.error("No answers found");
-        alert("Oops! That question doesn't have any verses yet.");
-        return;
+// Fetch and flatten ALL verses from the server (cached)
+async function getAllVerses(forceReload = false) {
+  if (_allVersesCache && !forceReload) return _allVersesCache;
+
+  // 1) get list of questions (each row should include qkey)
+  const qRes = await fetch("/questions");
+  if (!qRes.ok) throw new Error("Failed to fetch questions list");
+  const qRows = await qRes.json(); // e.g. [{id, qkey, title}, ...]
+
+  // 2) for each qkey fetch its verses, in parallel
+  const qkeys = qRows.map(q => q.qkey).filter(Boolean);
+  const fetches = qkeys.map(k =>
+    fetch(`/questions/${encodeURIComponent(k)}`)
+      .then(r => r.ok ? r.json() : [])
+      .catch(err => {
+        console.warn("Failed to fetch question", k, err);
+        return [];
+      })
+      .then(rows => ({ qkey: k, rows }))
+  );
+
+  //sasa hii ni nini surely
+  const results = await Promise.all(fetches);
+
+  // 3) flatten into array of verse objects
+  const flat = [];
+  for (const res of results) {
+    const qkey = res.qkey;
+    const rows = Array.isArray(res.rows) ? res.rows : [];
+
+    for (const row of rows) {
+      // server row shape: { ref, text, theme, tags, category }
+      let tags = row.tags;
+      if (typeof tags === "string") {
+        try { tags = JSON.parse(tags || "[]"); } catch { tags = []; }
       }
-      
+      if (!Array.isArray(tags)) tags = [];
 
-
-      for (let qKey in rows) {
-      let qObj = rows[qKey];
-
-      for (let answerType in qObj) {
-        let refs = qObj[answerType];
-
-        for (let refKey in refs) {
-          let refObj = refs[refKey];
-
-          if (
-            refObj &&
-            Array.isArray(refObj.tags) &&
-            refObj.tags.includes(tag) &&
-            (!refObj.ageRange || (selectedAge >= refObj.ageRange[0] && selectedAge <= refObj.ageRange[1]))
-          ) {
-            matches.push({
-              text: refObj.text,
-              tags: refObj.tags,
-              theme: refObj.theme,
-              source: refObj.source || "", // Optional fallback
-              reference: refKey, // ← get "John 3 16"
-              category: answerType,        // ← get "heading"
-              questionId: qKey             // ← which question
-            });
-          }
-        }
-      }
+      flat.push({
+        qkey,
+        ref: row.ref,
+        text: row.text,
+        theme: row.theme,
+        tags,
+        category: row.category || row.category || "",
+      });
     }
-    })
-    .catch(err => console.error(err));
-
-    
-  if (!matches.length) {
-    alert("No verses found for this tag in your selected age group. Try a different one?");
-    return;
   }
 
-  const chosen = matches[Math.floor(Math.random() * matches.length)];
-
-  let display = document.getElementById("versedisplay");
-  display.innerHTML = `
-    <b>${chosen.category}</b><br>
-    <hr>
-    <b>${chosen.reference}:</b> ${chosen.text}<br><br>
-    <i>${chosen.source || ""}</i>
-    `;
-  display.style.display = "block";
-
-  document.getElementById("overlay").style.display = "block";
-
-  // ✅ Call helper function here
-  addButtonsToDisplay(display, chosen, chosen.tags?.[0] || tag || "love"); // ✅
+  _allVersesCache = flat;
+  return flat;
 }
+
+// optional helper to clear cache if DB changes
+function invalidateVersesCache() {
+  _allVersesCache = null;
+}
+
+
+// ------ UI helper to show a verse (clickable ref) ------
+function renderVerseToDisplay(chosen) {
+  const display = document.getElementById("versedisplay");
+  if (!display) return;
+
+  // chosen: { ref, text, theme, tags, category, qkey }
+  const safeRef = chosen.ref || "";
+  const encodedRef = encodeURIComponent(safeRef);
+
+  display.className = "versebox";
+  if (chosen.theme) display.classList.add(`bg-${chosen.theme}`);
+
+  display.innerHTML = `
+    <b>${escapeHtml(chosen.category)}</b><br>
+    <hr>
+    <b>
+      <a href="bible.html?ref=${encodedRef}" class="verse-link" rel="noopener">
+        ${escapeHtml(safeRef)}
+      </a>:
+    </b>
+    ${escapeHtml(chosen.text)}<br><br>
+    <i>${escapeHtml(chosen.source || "")}</i>
+  `;
+  display.style.display = "block";
+  const overlay = document.getElementById("overlay");
+  if (overlay) overlay.style.display = "block";
+
+  // update globals if you use them elsewhere
+  lastShownId = chosen.qkey;
+  lastShownTags = chosen.tags || [];
+  lastShownVerse = chosen.text || "";
+}
+
+// tiny helper to avoid injecting raw HTML
+function escapeHtml(s) {
+  if (!s && s !== "") return "";
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+
+// ------ showMoreLikeThis(tag, currentVerseRef) ------
+async function showMoreLikeThis(tag, currentVerseRef) {
+  try {
+    const all = await getAllVerses();
+
+    // filter by tag & not the current verse (match by ref)
+    const matches = all.filter(v =>
+      Array.isArray(v.tags) && v.tags.includes(tag) && v.ref !== currentVerseRef
+    );
+
+    if (!matches.length) {
+      alert(`No more verses found with this tag: ${tag}`);
+      return;
+    }
+
+    const chosen = matches[Math.floor(Math.random() * matches.length)];
+    renderVerseToDisplay(chosen);
+    addButtonsToDisplay(document.getElementById("versedisplay"), chosen, chosen.tags?.[0] || tag);
+  } catch (err) {
+    console.error("showMoreLikeThis error:", err);
+    alert("Something went wrong. Check console.");
+  }
+}
+
+
+// ------ showVersesByTag(tag) ------
+async function showVersesByTag(tag) {
+  try {
+    const all = await getAllVerses();
+    const matches = all.filter(v => Array.isArray(v.tags) && v.tags.includes(tag));
+
+    if (!matches.length) {
+      alert(`No verses found for tag: ${tag}`);
+      return;
+    }
+
+    const chosen = matches[Math.floor(Math.random() * matches.length)];
+    renderVerseToDisplay(chosen);
+    addButtonsToDisplay(document.getElementById("versedisplay"), chosen, chosen.tags?.[0] || tag);
+  } catch (err) {
+    console.error("showVersesByTag error:", err);
+    alert("Something went wrong. Check console.");
+  }
+}
+
+
+
 
 function suggestMoreFromFavoriteTags() {
   const tagScores = buildTagScoresFromFavorites();
@@ -378,8 +468,10 @@ function randgen(q) {
       moreLikeBtn.classList.add("innerbtn");
       moreLikeBtn.innerText = "More Like This";
       moreLikeBtn.onclick = function () {
-        showMoreLikeThis();
+        const tag = (lastShownTags && lastShownTags[0]) || "love";
+        showMoreLikeThis(tag, ref, lastShownId);
       };
+
 
       // Favorites button
       let favoritebtn = document.createElement("button");
@@ -443,74 +535,7 @@ function randgen(q) {
     .catch(err => console.error(err));
 }
 
- 
-function showMoreLikeThis() {
-  if (!lastShownTags.length) return;
 
-  // Gather all verses with any matching tag
-  let matchingVerses = [];
-
-  fetch(`./questions/${q}`)
-    .then(res => res.json())
-    .then(rows => {
-      if (!rows || !rows.length) {
-        console.error("No answers found");
-        alert("Oops! That question doesn't have any verses yet.");
-        return;
-      }
-
-
-  Object.entries(rows).forEach(([qId, categories]) => {
-    Object.entries(categories).forEach(([title, verses]) => {
-      Object.entries(verses).forEach(([verseRef, verseObj]) => {
-        if (verseObj && Array.isArray(verseObj.tags)) {
-          if (verseObj.tags.some(tag => lastShownTags.includes(tag))) {
-            matchingVerses.push({
-              questionId: qId,
-              category: title,
-              reference: verseRef,
-              ...verseObj
-            });
-          }
-        }
-      });
-    });
-  });
-})
-  .catch(err => {console.error(err)});
-
-  // Exclude current verse (optional)
-  if (lastShownVerse) {
-    matchingVerses = matchingVerses.filter(v => v.text !== lastShownVerse);
-  }
-
-  if (matchingVerses.length === 0) {
-    alert("No other verses found with similar tags.");
-    return;
-  }
-
-  // Pick a new one at random
-  const chosen = matchingVerses[Math.floor(Math.random() * matchingVerses.length)];
-
-  // Display it in the same display box
-  const display = document.getElementById("versedisplay");
-  if (!display) return;
-
-  display.classList.value = "versebox";
-  if (chosen.theme) {
-    display.classList.add(`bg-${chosen.theme}`);
-  }
-
-  display.innerHTML = `<b>${chosen.category}</b></br><hr><b>${chosen.reference}:</b> ${chosen.text}</br>`;
-
-  // Update tracker
-  lastShownTags = chosen.tags;
-  lastShownVerse = chosen.text;
-  lastShownId = chosen.questionId;
-
-  // Re-add buttons
-  addButtonsToDisplay(display, chosen, chosen.tags?.[0] || ""); // ✅
-}
    
 
 function displayItem(entry) {
@@ -557,6 +582,7 @@ window.onload = function () {
     console.warn("Error accessing localStorage:", err);
   }
 
+  getAllVerses().catch(e => console.warn("Error preloading verses:", e));
   
   //this seems to say we should display the items from the localStorage which probably means if localStorage is supported, these items will be displayed twice
   //by displayitem and additem
@@ -570,6 +596,7 @@ window.onload = function () {
       console.log("Tag scores from favorites (manual log):", scores);
       console.table(scores);
     }
+
 };
 
 //this just allows you to select a question when you click on category
@@ -611,7 +638,9 @@ function toggleCategory(id) {
 
   // If no search is active, show all its question buttons
   if (!searchValue) {
-  const selectedAge = parseInt(document.getElementById('ageSelect')?.value || "10");
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const selectedAge = currentUser.age || 10;
+
   const buttons = selected.querySelectorAll(".question-btn");
   buttons.forEach(btn => {
     const q = questions.find(q => q.id === btn.id);
@@ -630,7 +659,8 @@ function filterQuestions() {
   const verseOfDayBtn = document.getElementById("q9");
   const categoryBlocks = document.querySelectorAll(".category-block");
   const noMatchMsg = document.getElementById("noMatchMessage");
-  const selectedAge = parseInt(document.getElementById('ageSelect')?.value || "10");
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  const selectedAge = user.age || "10";
 
   // Show/hide ❌ button and Verse of the Day
   clearBtn.style.display = input ? "inline-block" : "none";
@@ -700,6 +730,9 @@ function clearSearch() {
   filterQuestions(); // Reapply filters (will show all categories again)
 }
 
+
 document.querySelector('.baby-ai-bubble').addEventListener('click', () => {
   window.location.href = 'chat.html';
 });
+
+

@@ -7,9 +7,19 @@ const msg = document.getElementById("msg");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+  const birthdayInput = document.getElementById("birthday").value;
+const birthDate = new Date(birthdayInput);
+const today = new Date();
+
+let age = today.getFullYear() - birthDate.getFullYear();
+const monthDiff = today.getMonth() - birthDate.getMonth();
+if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+  age--;
+}
+
   const body = {
     username: document.getElementById("username").value.trim(),
-    age: Number(document.getElementById("age").value),
+    age,
     password: document.getElementById("password").value
   };
 
@@ -23,7 +33,8 @@ form.addEventListener("submit", async (e) => {
     const res = await fetch("/signup", { // same origin, no full URL
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
+      body: JSON.stringify(body),
+      credentials: "include" // muhimu kwa sessions
     });
 
     const data = await res.json();

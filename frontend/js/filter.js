@@ -1,21 +1,8 @@
-let storage;
-try {
-  localStorage.setItem("test", "test");
-  localStorage.removeItem("test");
-  storage = localStorage;
-} catch (err) {
-  storage = sessionStorage;
-}
+
  
 
 
-window.addEventListener('DOMContentLoaded', () => {
-  const currentUser = JSON.parse(localStorage.getItem("user"));
-  const storedAge = currentUser.age || 10;
-  const ageSelect = document.getElementById("age");
 
-  filterQuestionsByAge(storedAge);
-});
 
 
 let questions = [
@@ -294,6 +281,15 @@ let questions = [
 //     }
 //   });
 // }s
+window.addEventListener('DOMContentLoaded', () => {
+  let storage;
+try {
+  localStorage.setItem("test", "test");
+  localStorage.removeItem("test");
+  storage = localStorage;
+} catch (err) {
+  storage = sessionStorage;
+}
 function filterQuestionsByAge(age) {
   // assuming questions is your big array of { question, ageRange, category, ... }
   return questions.filter(q => {
@@ -302,3 +298,10 @@ function filterQuestionsByAge(age) {
 }
 
 
+
+  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const storedAge = currentUser.age || 10;
+
+
+  filterQuestionsByAge(storedAge);
+});

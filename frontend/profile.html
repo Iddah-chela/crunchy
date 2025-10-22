@@ -7,13 +7,16 @@
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
- 
+ <div class="animated-overlay"></div>
+
+<div id="topbar-container"></div>
+
   <main class="profile-page">
     <div id="profile-infos">
     <div class="profile-header">
       <img src="images/default-avatar.png" alt="Profile Picture" class="profile-pic">
       <div class="profile-info">
-        <h2 id="topbar-user">User Name</h2>
+        <h2 id="topbar-user">Guest</h2>
         <p id="profileBio">This is the bio section. You can edit it later.</p>
       </div>
     </div>
@@ -32,16 +35,16 @@
 <form id="profileForm" class="hidden">
     <h2>Profile</h2>
   <label>Username:</label>
-  <input class="auth-input" type="text" id="username"><br>
+  <input class="profile-input" type="text" id="username"><br>
 
   <label>Age:</label>
-  <input class="auth-input" type="number" id="age"><br>
+  <input class="profile-input" type="number" id="age"><br>
 
   <label>Password (new):</label>
-  <input class="auth-input" type="password" id="password"><br>
+  <input class="profile-input" type="password" id="password"><br>
 
   <label>Profile Picture:</label>
-<input class="auth-input" type="file" id="profilePic" accept="image/*"><br>
+<input class="profile-input" type="file" id="profilePic" accept="image/*"><br>
 <img id="previewPic" src="images/default-avatar.png" alt="Preview" style="width:80px;height:80px;border-radius:50%;">
 
 
@@ -51,8 +54,21 @@
 
 
   </main>
+<div id="tree-section">
+  <label for="tree-container">My Tree</label>
+  <div class="tree-container">
+    <img id="treeImage" src="images/tree1.png" alt="Your Tree">
+    <div class="sparkles" id="sparkles"></div>
+    <img id="wateringCan" src="backgrounds/jug.png" alt="Watering Can">
+  </div>
 
   
+</div>
+<button id="waterBtn" class="innerbtn" onclick="waterTree()">💧 Water Tree</button>
+  <p id="waterCount"></p>
+  
+  <script src="js/topbar.js" defer></script>
+<script src="js/topbar-loader.js"></script>
 <script src="js/profile.js"></script>
 
 </body>

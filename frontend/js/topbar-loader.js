@@ -1,4 +1,15 @@
 //const { response } = require("express");
+function setThemeMusic(theme) {
+  const music = document.getElementById("bg-music");
+  if (!music) return;
+
+  const newSong = musicMap[theme] || "audio/soft-piano.mp3";
+  if (music.src !== newSong) {
+    const wasPlaying = !music.paused;
+    music.src = newSong;
+    if (wasPlaying) music.play().catch(()=>console.warn("Music blocked"));
+  }
+}
 
 //themes with animated backgrounds 
 function applyAnimatedOverlay(theme) {
@@ -189,7 +200,7 @@ fetch('topbar.html')
       document.documentElement.classList.add(savedTheme);
       themeSwitcher.value = savedTheme;
       applyAnimatedOverlay(savedTheme); // NEW
-
+setThemeMusic(savedTheme); // NEW
     
 
     const baseStart = 75;
@@ -240,106 +251,68 @@ Object.keys(categoryAccents).forEach(category => {
 
 
     }
-    themeSwitcher.addEventListener("change", (e) => {
-      const theme = e.target.value;
-      applyAnimatedOverlay(theme); // NEW
-      
-      //change music per theme
-      const music = document.getElementById("bg-music");
-      const newSong = musicMap[theme] || "audio/soft-piano.mp3";
-      
-      if (music && newSong) {
-        const wasPlaying = !music.paused;
-        music.pause();
-        music.src = newSong;
-        if (wasPlaying) { 
-          try {
-            music.play()
-          }
-          catch(err) {
-            console.warn("Couldn't auto play new theme music because:", err);
-          }
-        }
-      }
+    document.querySelectorAll(".custom-select").forEach(select => {
+  const selected = select.querySelector(".selected");
+  const options = select.querySelector(".options");
 
-      // Remove all theme classes
+  // toggle options
+  selected.addEventListener("click", () => {
+    options.style.display = options.style.display === "block" ? "none" : "block";
+  });
+
+  // restore saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) {
+    const option = options.querySelector(`[data-value="${savedTheme}"]`);
+    if (option) selected.innerHTML = option.innerHTML;
+  }
+
+  // option click
+  options.querySelectorAll("li").forEach(option => {
+    option.addEventListener("click", () => {
+      selected.innerHTML = option.innerHTML; // update displayed value
+      const theme = option.dataset.value;
+      options.style.display = "none";
+
+      // Apply theme logic
+      applyAnimatedOverlay(theme);
+      setThemeMusic(theme);
+
       const themeClasses = [
         'dark-theme', 'dreamy-theme', 'glory-theme', 'celestial-theme', 'ocean-depths-theme',
         'sunrise-theme', 'braveheart-theme', 'royal-theme', 'peaceful-earth-theme', 'choco-theme'
       ];
       document.documentElement.classList.remove(...themeClasses);
-
-      // Add new one
-      if (theme !== 'default') {
-        document.documentElement.classList.add(theme);
-      }
-
-    
-      localStorage.setItem("theme", theme);
+      if (theme !== 'default') document.documentElement.classList.add(theme);
+      storage.setItem("theme", theme);
     });
-    
-    
-   //age persistence logic
-   const ageSelect = document.getElementById("ageSelect");
-   const savedAge = document.getElementById("selectedAge") || "10";
-   if (ageSelect) {
-     ageSelect.value = savedAge;
-     ageSelect.addEventListener("change", () => {
-       storage.setItem("selectedAge", ageSelect.value);
-       if (typeof filterQuestionsByAge === "function") {
-         filterQuestionsByAge(parseInt(ageSelect.value));
-       }
-       if (typeof filterQuestions === "function") {
-         filterQuestions();
-       }
-     });
-     
-     //initial filter on page load
-     if (typeof filterQuestionsByAge === "function") {
-       filterQuestionsByAge(parseInt(savedAge));
-     }
-     if (typeof filterQuestions === "function") {
-       filterQuestions();
-     }
-   }
-   
-  })
-  .catch(error => {
-    console.error('Failed to load topbar:', error);
   });
 
-fetch('bottombar.html')
-  .then(response => response.text())
-  .then(html => {
-    document.getElementById('bottom-bar').innerHTML = html;
-  })
-  .catch(err => {
-    console.error("Failed to load bottombar causse, ", err)
-  })
-
-
-  document.addEventListener("DOMContentLoaded", () => {
-  const themeSelect = document.getElementById("themeSwitcher");
-  const savedTheme = localStorage.getItem("theme") || "default";
-
-  // apply theme to body
-  document.body.className = savedTheme;
-
-  // if the current page *has* a selector, sync it
-  if (themeSelect) {
-    themeSelect.value = savedTheme;
-    themeSelect.addEventListener("change", () => {
-      const theme = themeSelect.value;
-      document.body.className = theme;
-      localStorage.setItem("theme", theme);
-    });
-  }
+  // close if click outside
+  document.addEventListener("click", e => {
+    if (!select.contains(e.target)) options.style.display = "none";
+  });
 });
 
-//play the music
-// At the bottom of main.js or topbar-loader.js
-window.addEventListener("load", () => {
-  const music = document.getElementById("bg-music");
+    
+    
+   // age persistence logic — now tied to stored user age, not dropdown
+const user = JSON.parse(localStorage.getItem("user") || "{}");
+const storedAge = parseInt(user.age || 10);
+
+// if you still want to show something on the page, like the user's age text
+const ageDisplay = document.getElementById("selectedAge");
+if (ageDisplay) ageDisplay.textContent = storedAge;
+
+// run filters directly
+if (typeof filterQuestionsByAge === "function") {
+  filterQuestionsByAge(storedAge);
+}
+if (typeof filterQuestions === "function") {
+  filterQuestions();
+}
+
+   const music = document.getElementById("bg-music");
   const button = document.getElementById("start-music-btn");
 
   if (!music || !button) {
@@ -350,15 +323,36 @@ window.addEventListener("load", () => {
   music.play()
 
   button.addEventListener("click", async () => {
+    if (!music) return;
     try {
-      await music.play();
-      console.log("🎶 Music started successfully");
-      button.style.display = "none"; // hide the button after playing
+      if (music.paused) {
+        await music.play();
+        button.innerHTML='<i class="fa-solid fa-volume-xmark"></i>';
+      } else {
+        music.pause();
+        button.innerHTML='<i class="fa-solid fa-volume-high"></i>';
+      }
     } catch (err) {
       console.warn("⚠️ Music play failed:", err);
       alert("Your browser blocked music. Tap again or try a different environment.");
     }
   });
-  
-});
+   
+  })
+  .catch(error => {
+    console.error('Failed to load topbar:', error);
+  });
+
+fetch('bottombar.html')
+  .then(response => response.text())
+  .then(html => {
+    if (!document.getElementById('bottom-bar')) {
+      console.log("No bottom bar container found");
+      return;
+    }
+    document.getElementById('bottom-bar').innerHTML = html;
+  })
+  .catch(err => {
+    console.error("Failed to load bottombar causse, ", err)
+  })
 

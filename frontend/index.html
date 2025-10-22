@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">          
     <meta name="author" content="Supherhero">          
     <meta name="keywords" content="programming hero,learn programming">          
+    <link rel="manifest" href="/manifest.json">
     <link rel="shortcut icon" href="images/favicon.ico" type="image/vnd.microsoft.icon">          
   <!--custom css-->          
 <link rel="stylesheet" href="css/style.css">   
@@ -48,6 +49,7 @@
 <button class="question-btn innerbtn" id="q9" onclick="randgen('q9')">Verse of the day</button> 
 
   <h2 style="display:block; align-items:center;">Select a category</h2>
+  
   <p id="noMatchMessage" styled="noMatchMessage" style="display: none; color: red; font-weight: bold;">No matches found 😢</p>
   <div id="categoryList">
 
@@ -271,7 +273,7 @@
     <h3>Hope & Discovery</h3>
     <small style="display:block; align-items:center;">Click to get an answer</small>
     <button class="question-btn hope-btn" id="q130" onclick="randgen('q130')">What’s something amazing about God I can learn today?</button>
-    <button class="question-btn hope-btn" id="q131" onclick="randgen('q131')">What promise from God can I hold onto right now?</button>
+    <button class="question-btn hope-btn" id="q131" onclick="randgen('q131')">What are the promises of God?</button>
     <button class="question-btn hope-btn" id="q132" onclick="randgen('q132')">How can I grow in thankfulness today?</button>
     <button class="question-btn hope-btn" id="q133" onclick="randgen('q133')">What does it look like to live joyfully with God?</button>
     <button class="question-btn hope-btn" id="q134" onclick="randgen('q134')">What is a truth from the Bible that will fill me with joy or wonder?</button>
@@ -502,12 +504,8 @@
 
   <button class="category-btn" onclick="toggleCategory('category-next')">New questions soon!...</button>
 
-    <!-- 👶 Baby AI Floating Button -->
-  <div class="baby-ai-bubble innerbtn">
-  <img src="backgrounds/purple (1).png" alt="" />
-  </div>
-
-  <a href="favorites.html" class="link-btn innerbtn" id="nav-favorites"><i class="fas fa-heart"></i><span data-i18n="nav.favorites">Favorites</span></a>
+  
+  <a href="favorites.html" class="link-btn innerbtn" id="nav-favorites"><i class="fas fa-heart"></i><span data-i18n="nav.favorites"><small>Favorite verses</small></span></a>
   
     <div id="overlay"></div>
     <div id="versedisplay"></div>  

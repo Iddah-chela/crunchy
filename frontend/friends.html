@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="animated-overlay"></div>
+  
+  <div id="app">
+    <div id="topbar-container"></div>
+    
+    <main style="padding: 20px;">
+      <h2>👥 Friend Management</h2>
+      
+      <!-- Friend Requests -->
+      <section style="margin-bottom: 30px;">
+        <h3>📬 Friend Requests</h3>
+        <div id="friend-requests">
+          <p style="color: #888;">No pending requests</p>
+        </div>
+      </section>
+
+      <!-- Current Friends -->
+      <section style="margin-bottom: 30px;">
+        <h3>✅ Your Friends</h3>
+        <div id="friends-list">
+          <p style="color: #888;">No friends yet</p>
+        </div>
+      </section>
+
+      <!-- Find Users -->
+      <section>
+        <h3>🔍 Find Friends</h3>
+        <input type="text" class="prayerSearch" id="search-users" placeholder="Search users..." 
+               style="width: 100%; padding: 10px; margin-bottom: 10px;">
+        <div id="users-list"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/topbar.js" defer></script>
+  <script src="js/topbar-loader.js"></script>
+  <script src="js/friends.js"></script>
+</body>
+</html>

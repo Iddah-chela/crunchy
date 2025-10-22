@@ -1,85 +1,72 @@
 <header id="topbar">
   <button id="menuToggle" aria-label="Toggle menu">☰</button>
-  <h4 data-i18n="title.app">Bible Verse Randomizer</h4>
+  <h4 data-i18n="title.app">HolyVerse</h4>
+  <div class="streak-display" id="streakDisplay">
+    <div class="day" data-day="0">S</div>
+    <div class="day" data-day="1">M</div>
+    <div class="day" data-day="2">T</div>
+    <div class="day" data-day="3">W</div>
+    <div class="day" data-day="4">T</div>
+    <div class="day" data-day="5">F</div>
+    <div class="day" data-day="6">S</div>
+  </div>
 </header>
 
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
   rel="stylesheet"
 />
-<div class="streak-display" style="display: none; font-weight: bold; color: var(--accent); margin: 1rem;">
-  <!-- streak will appear here -->
-</div>
+
 <nav id="sideMenu" class="hidden">
-  <label for="ageSelect" data-i18n="label.age">Choose your age:</label>
-  <select id="ageSelect">
-    <option value="10">10</option>
-    <option value="11">11</option>
-    <option value="12">12</option>
-    <option value="13">13</option>
-    <option value="14">14</option>
-    <option value="15">15</option>
-    <option value="16">16</option>
-    <option value="17">17</option>
-    <option value="18">18+</option>
-  </select>
-
   <ul>
-    <li>
-      <button id="logoutBtn" class="innerbtn">Logout</button>
-    </li>
-    <li>
-       <a class="innerbtn" href="login.html" >Login</a>
-    </li>
-    <li>
-      <a href="signup.html" class="innerbtn">Sign up</a>
-    </li>
-    <li>
-      <a href="home.html" class="innerbtn">Home</a>
-    </li>
-
-    <li>
-      <a href="profile.html">Profile page</a>
-    </li>
-
-
-
-    <li>
-      <label for="languageSelect" data-i18n="label.language">🌐 Language:</label>
-      <select id="languageSelect" class="menu-select innerbtn">
-        <option value="en">🇬🇧 English</option>
-        <option value="sw">🇰🇪 Swahili</option>
-      </select>
-    </li>
-
-    <li>
-      <button id="start-music-btn" class="menu-item innerbtn" data-i18n="btn.music">🎵 Start Music</button>
-    </li>
-<button id="themeToggle">Remove animation</button>
-
-    <li>
-      <label for="themeSwitcher" data-i18n="label.theme">🎨 Theme:</label>
-      <select id="themeSwitcher" class="menu-select innerbtn">
-        <option value="default">🌞 Light</option>
-        <option value="dark-theme">🌙 Dark</option>
-        <option value="dreamy-theme">🌸 Dreamy</option>
-        <option value="ocean-depths-theme">🌊 Ocean</option>
-        <option value="glory-theme">🏆 Glory</option>
-        <option value="celestial-theme">🌌 Celestial</option>
-        <option value="sunrise-theme">🌞 Sunrise</option>
-        <option value="braveheart-theme">🌟 Brave Heart</option>
-        <option value="royal-theme">💜 Royal</option>
-        <option value="choco-theme">🍫 Chocolate</option>
-        <option value="peaceful-earth-theme">🌍 Earth</option>
-      </select>
-    </li>
+    <li><button  class="innerbtn"><a href="home.html"><i class="fas fa-home"></i><small>Home</small></a></button></li>
+    <li><button class="innerbtn"><a href="profile.html"><i class="fas fa-user"></i><small>Profile</small></a></button></li>
+    <li><button id="settingsBtn" class="innerbtn"><i class="fa-solid fa-gear"></i><small>Settings</small></button></li>
+    <li><a id="loginLink" class="innerbtn" href="login.html">Login</a></li>
+    <li><a id="signupLink" class="innerbtn" href="signup.html">Sign up</a></li>
+    <li><button id="logoutBtn" class="innerbtn">Logout</button></li>
   </ul>
 </nav>
+
+<!-- SETTINGS MODAL -->
+<div id="settingsModal">
+  <div class="settings-content">
+    <button id="closeSettings" aria-label="Close settings">✖</button>
+
+    <ul>
+      
+      
+      
+      <li><button id="start-music-btn" class="menu-item innerbtn" data-i18n="btn.music"><i class="fa-solid fa-volume-xmark"></i></button></li>
+      <button class="menu-item innerbtn" id="themeToggle">Remove animation</button>
+      <li>
+       
+       <div class="menu-select custom-select" id="themeSwitcher">
+        <div class="selected"><i class="fa-solid fa-sun" style="color: orange;"></i><small style="color: orange;">Light</small> </div>
+        <ul class="options">
+          <li data-value="default"><i class="fa-solid fa-sun" style="color: lightblue;"></i><small style="color: lightblue;">Light</small></li>
+          <li data-value="dark-theme"><i class="fa-solid fa-moon" style="color: blue;"></i> <small style="color: blue;">Dark</small></li>
+          <li data-value="dreamy-theme"><i class="fa-solid fa-seedling" style="color: pink;"></i> <small style="color: pink;">Dreamy</small></li>
+          <li data-value="ocean-depths-theme"><i class="fa-solid fa-water" style="color: #00bbf9;"></i> <small style="color: #00bbf9;">Ocean</small></li>
+          <li data-value="glory-theme"><i class="fa-solid fa-trophy" style="color: gold;"></i><small style="color: gold;">Glory</small></li>
+          <li data-value="celestial-theme"><i class="fa-solid fa-star" style="color: rgb(19, 0, 128);"></i><small style="color: rgb(19, 0, 128);">Celestial</small></li>
+          <li data-value="sunrise-theme"><i class="fa-solid fa-sun" style="color: orange;"></i><small style="color: orange;">Sunrise</small> </li>
+          <li data-value="braveheart-theme"><i class="fa-solid fa-star" style="color: rgb(165, 87, 42);"></i><small style="color: rgb(165, 87, 42);">Brave Heart</small> </li>
+          <li data-value="royal-theme"><i class="fa-solid fa-crown" style="color: purple;"></i><small style="color: purple;">Royal</small> </li>
+          <li data-value="choco-theme"><i class="fa-solid fa-cake-candles" style="color: brown;"></i><small style="color: brown;">Chocolate</small> </li>
+          <li data-value="peaceful-earth-theme"><i class="fa-solid fa-earth-americas" style="color: green;"></i><small style="color: green;">Earth</small> </li>
+        </ul>
+
+</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
 <audio id="bg-music" preload="auto" loop hidden autoplay>
 </audio>
 
 
 
 
-<script src="js/auth.js"></script>
 <script src="js/profile.js"></script>

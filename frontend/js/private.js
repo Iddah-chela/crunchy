@@ -18,11 +18,37 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentUserId = me.id;
     currentUsername = me.username;
 
-    // init socket AFTER user info
-    socket = io("http://localhost:4000");
+    // init socket AFTER user info - WITH credentials for session sharing
+    socket = io("http://localhost:4000", {
+      withCredentials: true,
+      transports: ['websocket', 'polling']
+    });
+
+    // Socket connection debugging
+    socket.on("connect", () => {
+      console.log("✅ Socket connected:", socket.id);
+    });
+
+    socket.on("connect_error", (err) => {
+      console.error("❌ Socket connection error:", err);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("🔌 Socket disconnected");
+    });
 
     // Socket listeners
-    socket.on("newMessage", addMessageBubble);
+    socket.on("newMessage", (msg) => {
+      // inside socket.on("newMessage")
+      if (msg.senderId === currentUserId) return; // skip your own echo
+      console.log("📨 Received newMessage:", msg);
+      addMessageBubble(msg);
+    });
+
+    socket.on("messageError", (error) => {
+      console.error("❌ Message error:", error);
+      alert("Failed to send message: " + error.error);
+    });
 
     // back button
     backBtn.addEventListener("click", () => {
@@ -33,7 +59,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // send message
-    chatForm.addEventListener("submit", (e) => {
+    chatForm.addEventListener("submit", async (e) => {
       e.preventDefault();
       const text = chatInput.value.trim();
       if (!text) return;
@@ -45,8 +71,28 @@ document.addEventListener("DOMContentLoaded", async () => {
       }
       const otherUserId = Number(activeCard.dataset.userid);
 
-      socket.emit("sendMessage", { receiverId: otherUserId, text });
-      chatInput.value = "";
+      // Add message to UI immediately for better UX
+      const tempMsg = {
+        senderId: currentUserId,
+        senderUsername: currentUsername,
+        text: text,
+        timestamp: new Date()
+      };
+      addMessageBubble(tempMsg);
+
+      try {
+        console.log("📤 Sending message:", { receiverId: otherUserId, text });
+        socket.emit("sendMessage", { receiverId: otherUserId, text });
+        chatInput.value = "";
+      } catch (error) {
+        console.error("❌ Error sending message:", error);
+        // Remove the temporary message if sending failed
+        const bubbles = chatMessages.querySelectorAll('.bubble');
+        if (bubbles.length > 0) {
+          bubbles[bubbles.length - 1].remove();
+        }
+        alert("Failed to send message. Please try again.");
+      }
     });
 
     // Load the chat list
@@ -78,32 +124,61 @@ function addMessageBubble(msg) {
   const bubble = document.createElement("div");
   bubble.className = msg.senderId === currentUserId ? "bubble you" : "bubble them";
 
-  bubble.innerHTML = `
-    ${msg.senderId !== currentUserId ? `<img src="${msg.senderProfilePic || '/images/default-avatar.png'}" class="bubble-pic">` : ''}
-    <div class="bubble-text">
-      ${msg.senderId !== currentUserId ? `<span class="bubble-username">${msg.senderUsername}</span>` : ''}
-      ${msg.text}
-    </div>
-  `;
+  if (msg.senderId === currentUserId) {
+    bubble.innerHTML = `<div class="bubble-text">${msg.text}</div>`;
+  } else {
+    bubble.innerHTML = `
+      <img src="${msg.senderProfilePic || '/images/default-avatar.png'}" class="bubble-pic">
+      <div class="bubble-text">
+        <span class="bubble-username">${msg.senderUsername}</span>
+        <span class="bubble-message">${msg.text}</span>
+      </div>
+    `;
+  }
 
   chatMessages.appendChild(bubble);
   chatMessages.scrollTop = chatMessages.scrollHeight;
+  updateChatSnippet(msg.senderId === currentUserId ? msg.receiverId : msg.senderId, msg.text);
 }
 
+function updateChatSnippet(friendId, text) {
+  const card = document.querySelector(`.chat-card[data-userid='${friendId}']`);
+  if (!card) return;
+  const snippet = card.querySelector('.chat-snippet');
+  const time = card.querySelector('.chat-time');
+  snippet.textContent = text.length > 25 ? text.slice(0,25) + '…' : text;
+  time.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+}
+
+chatInput.addEventListener('input', () => {
+  chatInput.style.height = 'auto';
+  chatInput.style.height = chatInput.scrollHeight + 'px';
+});
+
 async function loadChatList() {
-  const res = await fetch("/users");
-  const users = await res.json();
+  // Load friends instead of all users
+  const res = await fetch("/chat/friends");
+  if (!res.ok) {
+    console.error("Failed to load friends");
+    return;
+  }
+  
+  const friends = await res.json();
   
   const list = document.getElementById("chat-list-view");
   list.innerHTML = "<h2>Private Threads</h2>";
   
-  users.forEach(u => {
-    if (u.id === currentUserId) return; // skip yourself
+  if (friends.length === 0) {
+    list.innerHTML += "<p style='text-align:center; color:#888;'>No friends yet. Add some <a href='friends.html'> friends</a> to start chatting! 👥</p>";
+    return;
+  }
+  
+  friends.forEach(friend => {
     const card = document.createElement("div");
     card.className = "chat-card";
-    card.dataset.userid = u.id;
+    card.dataset.userid = friend.id;
     card.innerHTML = `
-      <div class="chat-user">${u.username}</div>
+      <div class="chat-user">${friend.username}</div>
       <div class="chat-snippet">Start a conversation...</div>
     `;
     list.appendChild(card);
@@ -116,10 +191,10 @@ async function loadChatList() {
 
       chatView.style.display = "flex";
       chatListView.style.display = "none";
-      chatUsername.textContent = "Chat with " + u.username;
+      chatUsername.textContent = "Chat with " + friend.username;
 
-      await loadThread(u.id);
-      socket.emit("joinRoom", { userA: currentUserId, userB: u.id });
+      await loadThread(friend.id);
+      socket.emit("joinRoom", { userA: currentUserId, userB: friend.id });
     });
   });
 }

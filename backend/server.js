@@ -12,8 +12,9 @@ const bcrypt = require('bcrypt');
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",//change to frontend origin
-    methods:["GET", "POST"]
+    origin: "http://localhost:4000",//change to frontend origin
+    methods:["GET", "POST"],
+    credentials: true // enable cookies and critical for sessions sharing
   }
 });
 
@@ -38,8 +39,14 @@ db.serialize(() => {
       profilePic TEXT
     )
   `);
-  
-
+  // Push subscriptions table
+  db.run(`
+    CREATE TABLE IF NOT EXISTS push_subs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER UNIQUE,
+      sub TEXT NOT NULL
+    )
+  `);
 
 
 });
@@ -51,27 +58,29 @@ app.use(express.json());       // to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // if you ever send form data
 app.use(cors()); // to speak to frontend, donno how though
 
-const session = require("express-session");
+// Replace your session setup in server.js with this:
 
-app.use(session({
+const session = require("express-session");
+const sharedSession = require("express-socket.io-session");
+
+// Create session middleware ONCE
+const sessionMiddleware = session({
   secret: "Itsasecretssshhhhh",
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } //only true if using https
-}));
+  cookie: { secure: false } // only true if using https
+});
+
+// Use it in Express
+app.use(sessionMiddleware);
+
 app.use((req, res, next) => {
   console.log("Session: ", req.session);
   next();
-})
-const sharedSession = require("express-socket.io-session");
+});
 
-// Share express session with Socket.IO
-io.use(sharedSession(session({
-  secret: "Itsasecretssshhhhh",
-  resave: false,
-  saveUninitialized: false,
-  cookie: { secure: false }
-}), {
+// Share the SAME session instance with Socket.IO
+io.use(sharedSession(sessionMiddleware, {
   autoSave: true
 }));
 
@@ -79,58 +88,132 @@ const communityRoutes = require("./routes/commune");
 app.use("/commune", communityRoutes);
 
 const chatRoutes = require("./routes/chat");
-
+const { encrypt } = require("./routes/chat");
 app.use("/chat", chatRoutes);
+
+
 
 //serve static frontend files
 app.use(express.static(path.join(__dirname, "../frontend")));
 
+// Replace your Socket.IO connection handler with this:
 io.on("connection", (socket) => {
-  const userId = socket.handshake.session.userId;
-  const username = socket.handshake.session.username;
+  const userId = socket.handshake.session?.userId;
+  const username = socket.handshake.session?.username;
 
-  if (!userId) return socket.disconnect();
+  console.log("🔌 Socket connected. UserID:", userId, "Username:", username);
+
+  if (!userId) {
+    console.log("❌ No userId in session, disconnecting socket");
+    return socket.disconnect();
+  }
 
   // Join a private room
   socket.on("joinRoom", ({ userA, userB }) => {
     const room = [userA, userB].sort().join("_");
     socket.join(room);
+    console.log(`👥 User ${userId} joined room: ${room}`);
   });
 
-  // Send a message
+  // Send a message with encryption
   socket.on("sendMessage", (msg) => {
     const { receiverId, text } = msg;
     const room = [userId, receiverId].sort().join("_");
 
-    // Save to DB
-    db.run(
-      "INSERT INTO messages (senderId, receiverId, text) VALUES (?, ?, ?)",
-      [userId, receiverId, text],
-      function (err) {
-        if (err) return console.error(err);
+    console.log("📨 Saving message:", { from: userId, to: receiverId });
 
-        // Fetch sender info
-        db.get("SELECT username, profilePic FROM users WHERE id = ?", [userId], (err, senderInfo) => {
-          if (err) return console.error(err);
+    try {
+      // Encrypt the message before saving
+      const encryptedText = encrypt(text);
 
-          const savedMsg = {
-            id: this.lastID,
-            senderId: userId,
-            receiverId,
-            text,
-            senderUsername: senderInfo.username,
-            senderProfilePic: senderInfo.profilePic,
-            timestamp: new Date()
-          };
+      // Save to DB
+      db.run(
+        "INSERT INTO messages (senderId, receiverId, text) VALUES (?, ?, ?)",
+        [userId, receiverId, encryptedText],
+        function (err) {
+          if (err) {
+            console.error("❌ Error saving message:", err);
+            // Send error back to sender
+            socket.emit("messageError", { error: "Failed to save message" });
+            return;
+          }
 
-          io.to(room).emit("newMessage", savedMsg);
-        });
-        console.log("Sending message from", userId, "to", receiverId, "text:", text);
+          console.log("✅ Message saved with ID:", this.lastID);
 
-      }
-    );
+          // Fetch sender info
+          db.get("SELECT username, profilePic FROM users WHERE id = ?", [userId], (err, senderInfo) => {
+            if (err) {
+              console.error("❌ Error fetching sender info:", err);
+              socket.emit("messageError", { error: "Failed to fetch sender info" });
+              return;
+            }
+
+            // Send back the DECRYPTED message to clients
+            const savedMsg = {
+              id: this.lastID,
+              senderId: userId,
+              receiverId,
+              text: text, // Send original text, not encrypted
+              senderUsername: senderInfo.username,
+              senderProfilePic: senderInfo.profilePic,
+              timestamp: new Date()
+            };
+
+            console.log("📤 Broadcasting to room:", room);
+            io.to(room).emit("newMessage", savedMsg);
+          });
+        }
+      );
+    } catch (error) {
+      console.error("❌ Encryption error:", error);
+      socket.emit("messageError", { error: "Message encryption failed" });
+    }
+  });
+
+  socket.on("disconnect", () => {
+    console.log("🔌 Socket disconnected. UserID:", userId);
   });
 });
+
+
+const webpush = require("web-push");
+
+webpush.setVapidDetails(
+  "mailto:your@email.com",
+  process.env.VAPID_PUBLIC,
+  process.env.VAPID_PRIVATE
+);
+
+// store subscriptions per user in DB
+app.post("/subscribe", (req, res) => {
+  const userId = req.session.userId;
+  const sub = req.body;
+  db.run("INSERT OR REPLACE INTO push_subs (user_id, sub) VALUES (?, ?)", [userId, JSON.stringify(sub)]);
+  res.sendStatus(201);
+});
+
+// later when you want to send a notification
+function sendNotif(userId, payload) {
+  db.get("SELECT sub FROM push_subs WHERE user_id = ?", [userId], (err, row) => {
+    if (row) {
+      const sub = JSON.parse(row.sub);
+      webpush.sendNotification(sub, JSON.stringify(payload)).catch(console.error);
+    }
+  });
+}
+
+app.get("/test-notif", (req, res) => {
+  sendNotif(1, { title: "Friend Request 💌", body: "John sent you a friend request!" });
+  res.send("Notification sent.");
+});
+
+app.use(express.static("public", {
+  setHeaders: (res, path) => {
+    if (path.endsWith("manifest.json")) {
+      res.setHeader("Content-Type", "application/manifest+json");
+    }
+  }
+}));
 
 
 
@@ -196,13 +279,33 @@ app.get("/questions", (req, res) => {
   });
 });
 
+app.get("/verses-by-theme/:theme", (req, res) => {
+  const theme = req.params.theme.toLowerCase();
+
+  const sql = `
+    SELECT v.ref, v.text, v.theme, v.tags, e.text AS category
+    FROM verses v
+    JOIN explanations e ON e.id = v.explanation_id
+    WHERE LOWER(v.theme) = ?;
+  `;
+
+  db.all(sql, [theme], (err, rows) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: "DB error" });
+    }
+    res.json(rows);
+  });
+});
+
+
 
 //port that server will run on
-const PORT = 4000;
+const PORT = process.env.PORT || 4000;
 
-//an example route
+// Route root to home.html
 app.get('/', (req, res) => {
-    res.send('Wozzaaa, this is backend. Do you see me??')
+  res.sendFile(path.join(__dirname, '../frontend/home.html'));
 });
 
 // ================= USERS ==================
@@ -224,13 +327,17 @@ app.post("/signup", async (req, res) => {
     return res.status(400).json({ error: "Ebu jaza boxes zote 😒" });
   }
 
+  // ✅ automatically log them in
+    req.session.userId = this.lastID;
+    req.session.username = username;
+
   // username unique kiasi
   // NOTE: password iko plain-text leo. Kesho: bcrypt.
  const sql = "INSERT INTO users (username, age, password) VALUES (?, ?, ?)";
   db.run(sql, [username, age, hashedPassword], function(err) {
     if (err) {
       if (err.message.includes("UNIQUE")) {
-        return res.status(400).json({ error: "Username imechukuliwa 😤" });
+        return res.status(400).json({ error: "Username is taken!" });
       }
       return res.status(500).json({ error: err.message });
     } 

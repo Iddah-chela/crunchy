@@ -1,4 +1,6 @@
 
+console.log("Topbar loaded on", window.location.pathname);
+
 
 function initTopbar() {
   const menuToggle = document.getElementById("menuToggle");
@@ -33,18 +35,101 @@ function initTopbar() {
       link.removeAttribute("href");
     }
   });
+  
+  const settingsModal = document.getElementById("settingsModal");
+  const settingsBtn = document.getElementById("settingsBtn");
+  const closeSettings = document.getElementById("closeSettings");
+
+  const logoutBtn = document.getElementById("logoutBtn");
+  const loginLink = document.getElementById("loginLink");
+  const signupLink = document.getElementById("signupLink");
+
+logoutBtn.addEventListener("click", async () => {
+  try {
+    const res = await fetch("/logout", {
+      method: "POST",
+      credentials: "include"
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Logout failed 😭");
+      return;
+    }
+
+    // Clear localStorage
+    localStorage.removeItem("user");
+
+    // Redirect to login page
+    window.location.href = "/login.html";
+  } catch (err) {
+    console.error(err);
+    alert("Network drama 😭");
+  }
+});
+  
+  // Fake cookie check (replace with real one if needed)
+  const hasCookie = document.cookie.includes("token=");
+  const everHadCookie = localStorage.getItem("hasSignedUp") === "true";
+
+  // Visibility logic
+  logoutBtn.style.display = hasCookie ? "block" : "none";
+  loginLink.style.display = hasCookie ? "none" : "block";
+  signupLink.style.display = everHadCookie ? "none" : "block";
+
+  if (hasCookie) localStorage.setItem("hasSignedUp", "true");
+
+ 
+
+  // Open settings modal
+  settingsBtn.addEventListener("click", () => {
+    sideMenu.classList.add("active");
+    settingsModal.style.display = "flex";
+  });
+
+  // Close settings modal
+  closeSettings.addEventListener("click", () => {
+    settingsModal.style.display = "none";
+  });
+
+  // Optional: close modal when clicking outside
+  settingsModal.addEventListener("click", e => {
+    if (e.target === settingsModal) {
+      settingsModal.style.display = "none";
+    }
+  });
+
+  const streakDisplay = document.getElementById("streakDisplay");
+  const days = streakDisplay.querySelectorAll(".day");
+
+  const today = new Date();
+  const todayIndex = today.getDay(); // 0 = Sunday, 6 = Saturday
+  const todayDate = today.toDateString(); // e.g. "Sat Oct 18 2025"
+
+  let streakData = JSON.parse(localStorage.getItem("streakData")) || {
+    visitedDays: {},
+    lastVisit: null
+  };
+
+  // Mark today as visited if not already
+  if (streakData.lastVisit !== todayDate) {
+    streakData.visitedDays[todayIndex] = true;
+    streakData.lastVisit = todayDate;
+    localStorage.setItem("streakData", JSON.stringify(streakData));
+  }
+
+  // Activate streak circles for visited days
+  for (let i = 0; i < 7; i++) {
+    if (streakData.visitedDays[i]) {
+      days[i].classList.add("active");
+    }
+  }
+
+
+
 }
 
-document.getElementById("logoutBtn").addEventListener("click", () => {
-  // remove user session
-  storage.removeItem("currentUser");
 
-  // optional: clear all questions if you want privacy
-  // storage.removeItem("community_questions");
-
-  // redirect to login page
-  window.location.href = "login.html";
-});
 
 // --- Swipe Logic for All Pages ---
 // only do this if page is fully loaded
@@ -112,10 +197,10 @@ const checkForNav = setInterval (() => {
 const translations = {
   en: {
     "language-label": "🌐 Language ▾",
-    "home-title": "Home",
+    "home-title": "QnA",
     "verse-button": "Read Verse",
     "welcome-msg": "Welcome!",
-    "title.app": "Bible Verse Randomizer",
+    "title.app": "Holy Verse",
     "label.language": "Language:",
     "label.age": "Choose your age:",
     "label.theme": "Theme:",
@@ -208,16 +293,65 @@ function checkStreak() {
   storage.setItem("streak", streak);
   storage.setItem("lastVisit", today);
 
-  showStreakMessage(streak);
+  
 }
 
-function showStreakMessage(streak) {
-  const streakDisplay = document.querySelector(".streak-display");
-  if (streakDisplay) {
-    streakDisplay.textContent = `🔥 Streak: ${streak} day${streak > 1 ? "s" : ""} in a row!`;
-    streakDisplay.style.display = "block";
-  }
-}
+
 
 // Run it on page load
 checkStreak();
+
+console.log("script loaded");
+
+// Register service worker
+navigator.serviceWorker.register("/service-worker.js").then(reg => {
+  return Notification.requestPermission().then(permission => {
+    if (permission === "granted") {
+      const vapidKey = "BDF7aki5ACDWUSBFkGU_2pEPDWjXPOLU01hb6DAh1Vog5XJwPSuXhGR5AT289QEt8yw0Xw7c40V46RBjFYYRb2k";
+      const convertedKey = urlBase64ToUint8Array(vapidKey);
+
+      return reg.pushManager.subscribe({
+        userVisibleOnly: true,
+        applicationServerKey: convertedKey
+      });
+    }
+  });
+}).then(sub => {
+  if (!sub) return console.warn("Subscription failed or permission denied.");
+
+  console.log("Subscription:", sub);
+
+  // send sub to backend to store for this user
+  fetch("/subscribe", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(sub)
+  });
+});
+
+function urlBase64ToUint8Array(base64String) {
+  const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
+  const base64 = (base64String + padding).replace(/-/g, "+").replace(/_/g, "/");
+  const rawData = atob(base64);
+  const outputArray = new Uint8Array(rawData.length);
+  for (let i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+  return outputArray;
+}
+
+let deferredPrompt;
+
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show your own “Install” button
+  const btn = document.querySelector('#installButton');
+  btn.style.display = 'block';
+
+  btn.addEventListener('click', () => {
+    btn.style.display = 'none';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then(() => deferredPrompt = null);
+  });
+});

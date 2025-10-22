@@ -89,8 +89,7 @@ function create() {
   this.rescueText = this.add.text(740, 12, 'Rescue: 0%', { fontSize:'18px', fill:'#fff' });
   this.baseText = this.add.text(16, 40, 'Base Damage: 0', { fontSize:'14px', fill:'#ffb3b3' });
 
-  // inventory UI
-  createInventoryUI(scene);
+  
 
   // instructions cover for initial hint
   this.time.delayedCall(600, ()=>{ showHint(scene, "Collect fruits and press J to throw them. Different fruits do different effects."); });
@@ -111,6 +110,8 @@ function create() {
     grape: { color: 0xA78BFA, power: 3, label:'Grape', desc:'Small area effect on hit.' },
     orange: { color: 0xFB923C, power: 4, label:'Orange', desc:'Strong single-target hit.' }
   };
+  // inventory UI
+  createInventoryUI(scene);
 
   // register fruit textures
   for (const [id, conf] of Object.entries(this.fruitTypes)) {
@@ -380,19 +381,19 @@ function makeBoxTexture(scene, key, w, h, color, label) {
 }
 
 function drawBackground(scene) {
-  // gradient-ish sky
+  // gradient-ish sky using layered rectangles (Phaser doesn't have direct canvas gradients)
   const bg = scene.add.graphics();
-  const grd = bg.createLinearGradient(0,0,0,480);
-  // Phaser graphics doesn't support canvas gradient API conveniently here; do layered rectangles
-  for (let i=0;i<8;i++){
+  for (let i = 0; i < 8; i++) {
     const col = Phaser.Display.Color.Interpolate.ColorWithColor(
-      new Phaser.Display.Color(6,10,22),
-      new Phaser.Display.Color(7+20*i,30+8*i,40+12*i),
-      8, i
+      new Phaser.Display.Color(6, 10, 22),
+      new Phaser.Display.Color(7 + 20 * i, 30 + 8 * i, 40 + 12 * i),
+      8,
+      i
     );
     const hex = Phaser.Display.Color.GetColor(col.r, col.g, col.b);
-    bg.fillStyle(hex, 1).fillRect(0, i*60, 900, 60);
+    bg.fillStyle(hex, 1).fillRect(0, i * 60, 900, 60);
   }
+
   // distant hills
   bg.fillStyle(0x123a2b, 1).fillRoundedRect(-40, 320, 1000, 140, 60);
   bg.fillStyle(0x175b47, 1).fillEllipse(150, 340, 220, 120);
@@ -400,6 +401,7 @@ function drawBackground(scene) {
   bg.fillStyle(0x123a2b, 1).fillEllipse(780, 350, 200, 90);
   bg.setDepth(-2);
 }
+
 
 // inventory UI creation
 function createInventoryUI(scene) {
