@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentUsername = me.username;
 
     // init socket AFTER user info - WITH credentials for session sharing
-    socket = io("http://localhost:4000", {
+    socket = io("/", {
       withCredentials: true,
       transports: ['websocket', 'polling']
     });
@@ -138,7 +138,11 @@ function addMessageBubble(msg) {
 
   chatMessages.appendChild(bubble);
   chatMessages.scrollTop = chatMessages.scrollHeight;
-  updateChatSnippet(msg.senderId === currentUserId ? msg.receiverId : msg.senderId, msg.text);
+  updateChatSnippet(
+  msg.senderId === currentUserId ? msg.receiverId : msg.senderId,
+  msg.text
+);
+
 }
 
 function updateChatSnippet(friendId, text) {
@@ -166,7 +170,7 @@ async function loadChatList() {
   const friends = await res.json();
   
   const list = document.getElementById("chat-list-view");
-  list.innerHTML = "<h2>Private Threads</h2>";
+  list.innerHTML = "<h2>Threads</h2>";
   
   if (friends.length === 0) {
     list.innerHTML += "<p style='text-align:center; color:#888;'>No friends yet. Add some <a href='friends.html'> friends</a> to start chatting! 👥</p>";
@@ -180,7 +184,9 @@ async function loadChatList() {
     card.innerHTML = `
       <div class="chat-user">${friend.username}</div>
       <div class="chat-snippet">Start a conversation...</div>
+      <div class="chat-time">–</div>
     `;
+
     list.appendChild(card);
 
     card.addEventListener("click", async () => {

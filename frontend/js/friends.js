@@ -96,7 +96,7 @@ async function loadFriends() {
           <div>
             <strong>${friend.username}</strong>
           </div>
-          <a href="private.html" class="innerbtnc">Chat</a>
+          <a href="private.html" class="innerbtnc" style="text-decoration: none;">Chat</a>
         </div>
       `;
       container.appendChild(card);

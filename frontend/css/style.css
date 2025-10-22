@@ -1428,7 +1428,7 @@ html, body {
   flex-direction: column;
   align-items: flex-end;
   position: fixed;
-  top: 55px;
+  top: 45px;
   right: 25px;
   z-index: 999;
 }
@@ -1995,35 +1995,51 @@ html, body {
 }
 
 .highlights { padding: 1rem; }
-.highlight-strip { 
-  display: flex; 
-  gap: 1rem; 
-  overflow-x: auto; 
+.highlight-strip {
+  display: flex;
+  gap: 1rem;
+  overflow: hidden;
   white-space: nowrap;
   position: relative;
 }
-.highlight-strip.animate {
-  animation: scrollLeft 20s linear infinite;
+
+.highlight-track {
+  display: flex;
+  gap: 1rem;
+  animation: scrollLoop 20s linear infinite;
 }
-.highlight-item { 
+
+.highlight-item {
   display: inline-block;
   white-space: nowrap;
   padding: 0.5rem 1rem;
-  margin-right: 1rem;
   background: var(--button-bg);
   border-radius: 10px;
-  animation: moveRight 10s linear infinite;
 }
 
-/* The keyframes that loop rightward motion */
-@keyframes moveRight {
-  0% {
+/* Seamless loop animation */
+@keyframes scrollLoop {
+  from {
     transform: translateX(0);
   }
-  100% {
-    transform: translateX(100vw);
+  to {
+    transform: translateX(-50%);
   }
 }
+
+#backBtnb {
+  position: fixed;
+  top: 40px;
+  left: 10px;
+  color: var(--text-color);
+  border: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+
 
 .auth-card {
   position: relative;
@@ -2045,7 +2061,7 @@ html, body {
   position: absolute;
   inset: -3px; /* just outside the card */
   border-radius: inherit;
-  padding: 8px;
+  padding: 10px;
   background: conic-gradient(
     from 0deg,
     #32fff5,
@@ -2258,15 +2274,15 @@ canvas#lens {
 
 .portal {
   position: relative;
-  width: 25rem;
-  height: 25rem;
+  width: 22rem;
+  height: 22rem;
   border-radius: 50%;
   background: radial-gradient(circle at center, rgba(0,0,0,0) 60%, rgba(45, 92, 255 0.15) 100%);
   box-shadow: 0 0 80px 25px rgba(90,160,255,0.25);
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: show;
   transition: transform 1.2s ease-in-out, opacity 0.6s ease;
   z-index: 10;
 }
@@ -2344,7 +2360,7 @@ canvas#lens {
   display: flex;
   justify-content: center;
   padding: 20px;
-  background: var(--bg-color);
+  background: none;
 }
 
 /* Chat list */
@@ -2380,11 +2396,12 @@ canvas#lens {
 
 .chat-user {
   font-weight: bold;
+  color: var(--text-color);
 }
 
 .chat-snippet {
   font-size: 0.9em;
-  color: #555;
+  color: #777;
 }
 
 .chat-time {
@@ -2401,7 +2418,7 @@ canvas#lens {
   margin: 20px;
   background: var(--bg-color);
   position: fixed;
-  bottom: 10px;
+  bottom: 0;
   top: 60px;
   width: 460px;
   max-width: 700px;
@@ -2440,15 +2457,17 @@ canvas#lens {
 }
 
 .bubble {
-  display: flex;
-  align-items: flex-end;
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 8px;
   max-width: 70%;
-  height: fit-content;
   padding: 10px 15px;
   border-radius: var(--border-radius);
   position: relative;
   word-wrap: break-word;
 }
+
 
 .bubble.you {
   align-self: flex-end;
@@ -2464,7 +2483,8 @@ canvas#lens {
 }
 
 .bubble-text {
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
   white-space: pre-wrap;
   word-break: break-word;
   max-width: 100%;
@@ -2609,9 +2629,8 @@ canvas#lens {
     top: 65px;
     padding-bottom: 0%;
   }
-  .notes {
+  .notes, #backBtnb {
     top: 70px;
-    right: 70px;
   }
   #topbar {
     border-bottom: none;

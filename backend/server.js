@@ -20,7 +20,7 @@ const io = new Server(server, {
 
 app.use(bodyParser.json());
 
-const __dirname = path.resolve();
+
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("./randomverse.db", (err) => {
   if (err) console.error("🔥 Error opening SQLite:", err.message);

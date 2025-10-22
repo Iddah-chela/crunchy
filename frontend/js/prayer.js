@@ -314,7 +314,7 @@ function showSlideshow() {
   currentSlide = 0;
   const nextBtn = document.getElementById("nextBtn");
 if (nextBtn) nextBtn.style.display = "inline-block";
-  const backBtn = document.getElementById("backBtn");
+  const backBtn = document.getElementById("backBtnp");
 if (backBtn) backBtn.style.display = "inline-block";
   document.getElementById("slideshow").classList.remove("hidden");
   updateSlide();

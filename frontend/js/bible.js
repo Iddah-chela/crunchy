@@ -331,9 +331,31 @@ verseText.id = ref.replace(/\s+/g, "_").replace(":", "_");
   localStorage.setItem("lastBook", book.name);
   localStorage.setItem("lastChapter", chapterIdx);
 }
+const backBtn = document.getElementById("backBtnb");
+
+// keeps track of what section we came from
+let lastVisibleSection = null;
+
+function showBackButton() {
+  backBtn.style.display = "block";
+}
+
+function hideBackButton() {
+  backBtn.style.display = "none";
+}
+
+backBtn.onclick = () => {
+  hideAll();
+  hideBackButton();
+  // go back to wherever user was last reading
+  document.getElementById("verse-list").style.display = "block";
+};
+
+
 
 function renderNotesPage() {
   hideAll();
+  showBackButton();
   const notesPage = document.getElementById("notes-page");
   notesPage.style.display = "block";
   notesPage.innerHTML = "<h2>My Notes</h2>";
@@ -353,6 +375,7 @@ function renderNotesPage() {
 
 function renderHighlightsPage() {
   hideAll();
+  showBackButton();
   const highlightsPage = document.getElementById("highlights-page");
   highlightsPage.style.display = "block";
   highlightsPage.innerHTML = "<h2>🌟Highlighted Verses</h2>";
@@ -488,13 +511,7 @@ highlightBtn.onclick = () => renderHighlightsPage();
 notesBtn.onclick = () => renderNotesPage();
 
 // optional: auto theme sync
-const observer = new MutationObserver(() => {
-  document.querySelectorAll(".nav-btn").forEach(btn => {
-    btn.style.background = getComputedStyle(document.documentElement)
-      
-      .trim();
-  });
-});
+
 observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
 

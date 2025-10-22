@@ -8,6 +8,7 @@
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js"
   },
+  "type": "commonjs",
   "keywords": [],
   "author": "Iddah",
   "license": "ISC",

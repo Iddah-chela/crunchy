@@ -110,29 +110,35 @@ Promise.all([
     requestsArray.length
       ? `${requestsArray[0].username} sent you a friend request`
       : "No new friend requests!";
+const highlightFeed = document.getElementById("highlightFeed");
+const highlights = [];
 
-  const highlightFeed = document.getElementById("highlightFeed");
-  const highlights = [];
+community.slice(0,2).forEach(q => highlights.push({ type:"community", text:`${q.username} asked: ${q.title}` }));
+requestsArray.slice(0,2).forEach(r => highlights.push({ type:"friend", text:`${r.username} sent a friend request` }));
 
-  community.slice(0,2).forEach(q => highlights.push({ type:"community", text:`${q.username} asked: ${q.title}` }));
-  qna.slice(0,2).forEach(q => highlights.push({ type:"question", text:`${q.username} posted: ${q.title}` }));
-  requestsArray.slice(0,2).forEach(r => highlights.push({ type:"prayer", text:`${r.username} sent a friend request` }));
+if (!highlights.length) {
+  highlights.push(
+    { type:"verse", text:"Be strong and courageous. (Joshua 1:9)" },
+    { type:"friend", text:"Send friend requests to chat!" }
+  );
+}
 
-  if(!highlights.length){
-    highlights.push(
-      { type:"verse", text:"Be strong and courageous. (Joshua 1:9)"},
-      { type:"game", text:"Trivia mode is calling you!"}
-    );
-  }
+// build track and duplicate it
+const track = document.createElement("div");
+track.className = "highlight-track";
 
-  highlightFeed.innerHTML = "";
-  highlights.forEach(h=>{
-    const div = document.createElement("div");
-    div.className="highlight-item";
-    div.textContent=`${h.type.toUpperCase()}: ${h.text}`;
-    highlightFeed.appendChild(div);
-  });
-  highlightFeed.classList.add("animate");
+highlights.forEach(h => {
+  const div = document.createElement("div");
+  div.className = "highlight-item";
+  div.textContent = `${h.type.toUpperCase()}: ${h.text}`;
+  track.appendChild(div);
+});
+
+// clone once for seamless looping
+track.innerHTML += track.innerHTML;
+
+highlightFeed.appendChild(track);
+
 });
 
 
