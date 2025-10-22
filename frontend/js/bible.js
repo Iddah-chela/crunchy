@@ -512,7 +512,7 @@ notesBtn.onclick = () => renderNotesPage();
 
 // optional: auto theme sync
 
-observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+//observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
 
 
 // Restore last read on load
