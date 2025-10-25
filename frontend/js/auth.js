@@ -109,11 +109,20 @@ export function startCiscoVibe() {
   //phase 3: fade to black
   setTimeout(() => {
     document.body.classList.add('fade-black');
-  }, 2000);
+  }, 2500);
 
   //phase 4: redirect
   setTimeout(() => {
-    window.location.href = "home.html";
+    
+    let prev = document.referrer;
+
+// If the previous page is login.html or signup.html, go to index.html
+if (prev.includes("login.html") || prev.includes("signup.html") || prev === "") {
+    window.location.href = "index.html";
+} else {
+    window.location.href = prev;
+}
+
   }, 3000);
 }
 

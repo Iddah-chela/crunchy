@@ -27,7 +27,6 @@ const db = new sqlite3.Database(path.join(process.cwd(), "randomverse.db"), (err
 
 // Make sure tables exist
 db.serialize(() => {
-  
 
   db.run(`
     CREATE TABLE IF NOT EXISTS community_questions (
@@ -36,6 +35,7 @@ db.serialize(() => {
       title TEXT,
       body TEXT,
       image TEXT,
+      hidden INTEGER DEFAULT 0,
       mature_content INTEGER DEFAULT 0,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY(user_id) REFERENCES users(id)
@@ -47,11 +47,13 @@ db.serialize(() => {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       question_id INTEGER,
       user_id INTEGER,
+      parent_response_id INTEGER DEFAULT NULL,
       body TEXT,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       image TEXT,
-      FOREIGN KEY(question_id) REFERENCES community_questions(id),
-      FOREIGN KEY(user_id) REFERENCES users(id)
+      FOREIGN KEY(question_id) REFERENCES community_questions(id) ON DELETE CASCADE,
+      FOREIGN KEY(user_id) REFERENCES users(id),
+      FOREIGN KEY(parent_response_id) REFERENCES community_responses(id)
     )
   `);
 
@@ -61,7 +63,7 @@ db.serialize(() => {
       question_id INTEGER,
       user_id INTEGER,
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY(question_id) REFERENCES community_questions(id),
+      FOREIGN KEY(question_id) REFERENCES community_questions(id) ON DELETE CASCADE,
       FOREIGN KEY(user_id) REFERENCES users(id),
       UNIQUE(user_id, question_id)
     )`);
@@ -84,7 +86,7 @@ function containsMatureContent(text) {
 router.get("/questions", (req, res) => {
   const uid = req.session && req.session.userId ? req.session.userId : -1;
 
-  // First get the current user's age
+  // Get current user's age
   db.get("SELECT age FROM users WHERE id = ?", [uid], (err, currentUserData) => {
     if (err) {
       console.error("Error fetching user age:", err);
@@ -97,13 +99,13 @@ router.get("/questions", (req, res) => {
     const matureFilter = userAge >= 18 ? "" : "AND q.mature_content = 0";
 
     const sql = `
-      SELECT q.id, q.title, q.body, q.created_at, u.username,
+      SELECT q.id, q.title, q.body, q.created_at, q.image, u.username AS author, u.id AS authorId, u.profilePic AS authorProfilePic,
       CASE WHEN f.id IS NULL THEN 0 ELSE 1 END AS favorited,
       (SELECT COUNT(*) FROM favorites f2 WHERE f2.question_id = q.id) AS favorites_count
       FROM community_questions q
       JOIN users u ON q.user_id = u.id
       LEFT JOIN favorites f ON f.question_id = q.id AND f.user_id = ?
-      WHERE 1=1 ${matureFilter}
+      WHERE 1=1 ${matureFilter} AND q.hidden = 0
       ORDER BY q.created_at DESC
     `;
     
@@ -117,10 +119,11 @@ router.get("/questions", (req, res) => {
   });
 });
 
+
 // Create new question with automatic mature content detection
 router.post("/questions",upload.single("image"), (req, res) => {
   const { user_id, title, body } = req.body;
-  const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+  const imagePath = req.file ? `//uploads/${req.file.filename}` : null;
   
   console.log("Received question post:", { user_id, title, body });
   
@@ -159,24 +162,33 @@ router.put("/questions/:id", (req, res) => {
 });
 
 // Delete post
+// Soft delete post
 router.delete("/questions/:id", (req, res) => {
   db.get("SELECT * FROM community_questions WHERE id = ?", [req.params.id], (err, post) => {
+    if (err) return res.status(500).json({ error: err.message });
     if (!post) return res.status(404).json({ error: "Not found" });
-    if (post.user_id !== req.session.userId) return res.status(404).json({ error: "Not yours" });
+    if (post.user_id !== req.session.userId) return res.status(403).json({ error: "Not yours" });
 
-    db.run("DELETE FROM community_questions WHERE id = ?", [req.params.id], function (err) {
+    // Soft delete: just mark as hidden
+    db.run("UPDATE community_questions SET hidden = 1 WHERE id = ?", [req.params.id], function(err) {
       if (err) return res.status(500).json({ error: err.message });
       res.json({ success: true });
     });
   });
 });
 
+
 // ================= RESPONSES ==================
 
 // Get all responses for a question
+// GET responses for a question (include parent_response_id)
 router.get("/questions/:id/responses", (req, res) => {
   db.all(
-    "SELECT r.id, r.body, r.created_at, u.username FROM community_responses r JOIN users u ON r.user_id = u.id WHERE r.question_id = ? ORDER BY r.created_at ASC",
+    `SELECT r.id, r.body, r.created_at, r.parent_response_id, u.username, r.image
+     FROM community_responses r
+     JOIN users u ON r.user_id = u.id
+     WHERE r.question_id = ?
+     ORDER BY r.created_at ASC`,
     [req.params.id],
     (err, rows) => {
       if (err) return res.status(500).json({ error: err.message });
@@ -186,24 +198,26 @@ router.get("/questions/:id/responses", (req, res) => {
 });
 
 // Add response to a question
-router.post("/questions/:id/responses", (req, res) => {
-  const { user_id, body } = req.body;
-  
-  console.log("Received response post:", { question_id: req.params.id, user_id, body });
-  
-  if (!user_id || !body) {
-    return res.status(400).json({ error: "Fill response bana 😅" });
-  }
-  
+// POST response (nested)
+router.post("/questions/:id/responses", upload.single("image"), (req, res) => {
+  const { user_id, body, parent_response_id } = req.body;
+  if (!user_id || !body) return res.status(400).json({ error: "Fill response" });
+  const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
   db.run(
-    "INSERT INTO community_responses (question_id, user_id, body) VALUES (?, ?, ?)",
-    [req.params.id, user_id, body],
-    function (err) {
-      if (err) {
-        console.error("Insert response failed:", err.message);
-        return res.status(500).json({ error: err.message });
-      }
-      res.json({ id: this.lastID, question_id: req.params.id, user_id, body });
+    `INSERT INTO community_responses (question_id, user_id, parent_response_id, body, image) 
+     VALUES (?, ?, ?, ?, ?)`,
+    [req.params.id, user_id, parent_response_id || null, body, imagePath],
+    function(err) {
+      if (err) return res.status(500).json({ error: err.message });
+      res.json({
+        id: this.lastID,
+        question_id: req.params.id,
+        user_id,
+        body,
+        parent_response_id: parent_response_id || null,
+        image: imagePath
+      });
     }
   );
 });

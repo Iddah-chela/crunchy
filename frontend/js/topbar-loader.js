@@ -183,22 +183,33 @@ fetch('topbar.html')
 
     
     const overlay = document.querySelectorAll(".animated-overlay");
-    const btn = document.getElementById("themeToggle")
+    const btn = document.getElementById("themeToggle");
+
+    // Read saved state on page load
+    let plainMode = localStorage.getItem("plainMode") === "true";
+
     function applyOverlay(disabled) {
-      if(disabled) {
+      if (disabled) {
         document.body.classList.add('plain');
-        btn.textContent = "🌺";
+        btn.textContent = "🌺 On";
         overlay.forEach(el => el.style.display = 'none');
+        localStorage.setItem("plainMode", "true"); // save preference
       } else {
         document.body.classList.remove('plain');
-        btn.textContent = "Remove animation";
+        btn.textContent = "🥀 Off";
         overlay.forEach(el => el.style.display = 'block');
+        localStorage.setItem("plainMode", "false"); // save preference
       }
     }
-    document.getElementById("themeToggle").addEventListener("click", () => {
+
+    // Apply saved state on load
+    applyOverlay(plainMode);
+
+    btn.addEventListener("click", () => {
       const disabled = !document.body.classList.contains('plain');
       applyOverlay(disabled);
-    })
+    });
+
      // Theme handling
     const themeSwitcher = document.getElementById('themeSwitcher');
     const savedTheme = storage.getItem("theme");
@@ -207,7 +218,7 @@ fetch('topbar.html')
       document.documentElement.classList.add(savedTheme);
       themeSwitcher.value = savedTheme;
       applyAnimatedOverlay(savedTheme); // NEW
-setThemeMusic(savedTheme); // NEW
+      setThemeMusic(savedTheme); // NEW
     
 
     const baseStart = 75;
@@ -327,21 +338,35 @@ if (typeof filterQuestions === "function") {
     return;
   }
 
-  music.play()
+  music.pause();
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
 
   button.addEventListener("click", async () => {
     if (!music) return;
     try {
       if (music.paused) {
         await music.play();
+        localStorage.setItem("playingMode", "true"); // save preference
         button.innerHTML='<i class="fa-solid fa-volume-xmark"></i>';
       } else {
         music.pause();
+        localStorage.setItem("playingMode", "false"); // save preference
         button.innerHTML='<i class="fa-solid fa-volume-high"></i>';
       }
     } catch (err) {
       console.warn("⚠️ Music play failed:", err);
-      alert("Your browser blocked music. Tap again or try a different environment.");
+      showModal("Your browser blocked music. Tap again or try a different environment.");
     }
   });
    

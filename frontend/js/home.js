@@ -8,6 +8,44 @@ try {
   storage = sessionStorage;
 }
 
+const isDev = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
+if (isDev) console.log("Connected to SQLite, running in dev mode.");
+
+
+const messages = [
+      "Preparing your space...",
+      "Gathering what you need...",
+      "Setting things in place...",
+      "Almost ready..."
+    ];
+
+    let i = 0;
+    const loadingText = document.getElementById("loadingText");
+    setInterval(() => {
+      i = (i + 1) % messages.length;
+      loadingText.textContent = messages[i];
+    }, 1800);
+
+// Fake progress fill (looks real, isn’t)
+const progress = document.querySelector(".loading-progress");
+let width = 0;
+const interval = setInterval(() => {
+  width += Math.random() * 5;
+  if (width >= 100) {
+    width = 100;
+    clearInterval(interval);
+  }
+  progress.style.width = width + "%";
+}, 200);
+
+// Hide once loaded
+
+    window.addEventListener("load", () => {
+      document.getElementById("loading-screen").classList.add("hidden");
+      
+        document.getElementById("loading-screen").remove();
+      
+    });
 
 
 // Get username from login session
@@ -94,13 +132,13 @@ Promise.all([
   fetch("/questions").then(r => r.json()).catch(() => []),
   fetch("/chat/friend-requests").then(r => r.json()).catch(() => [])
 ])
-.then(([community, qna, requests, friends]) => {
+.then(([community, qna, requests]) => {
   const requestsArray = Array.isArray(requests) ? requests : requests.data || [];
   //const friendsArray = Array.isArray(friends) ? friends : friends.data || [];
 
   document.getElementById("communityInfo").textContent =
     community[0]?.title
-      ? `${community[0].username} asked: ${community[0].title}`
+      ? `${community[0].author} asked: ${community[0].title}`
       : "No new community posts.";
 
   document.getElementById("qnaInfo").textContent =
@@ -113,7 +151,7 @@ Promise.all([
 const highlightFeed = document.getElementById("highlightFeed");
 const highlights = [];
 
-community.slice(0,2).forEach(q => highlights.push({ type:"community", text:`${q.username} asked: ${q.title}` }));
+community.slice(0,2).forEach(q => highlights.push({ type:"community", text:`${q.author} asked: ${q.title}` }));
 requestsArray.slice(0,2).forEach(r => highlights.push({ type:"friend", text:`${r.username} sent a friend request` }));
 
 if (!highlights.length) {
@@ -150,7 +188,7 @@ function getTimeGreeting() {
   if (hour >= 5 && hour < 12) return "Good morning ☀️";
   if (hour >= 12 && hour < 17) return "Good afternoon 🌞";
   if (hour >= 17 && hour < 21) return "Good evening 🌙";
-  return "Rest well, night owl 🌌";
+  return "Good night 🌌";
 }
 
 function showGreeting(username) {

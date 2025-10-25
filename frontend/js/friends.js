@@ -1,5 +1,18 @@
 let currentUser;
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch("/me");
@@ -11,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     await loadAllUsers();
   } catch (err) {
     console.error(err);
-    alert("Please log in first");
+    showModal("Please log in first");
     window.location.href = "/login.html";
   }
 });
@@ -59,7 +72,7 @@ async function acceptRequest(friendshipId) {
   try {
     const res = await fetch(`/chat/friend-accept/${friendshipId}`, { method: "POST" });
     const data = await res.json();
-    alert(data.msg);
+    showModal(data.msg);
     
     await loadFriendRequests();
     await loadFriends();
@@ -167,12 +180,12 @@ async function sendFriendRequest(friendId, username) {
     const data = await res.json();
     
     if (res.ok) {
-      alert(`Friend request sent to ${username}! 🤝`);
+      showModal(`Friend request sent to ${username}! 🤝`);
     } else {
-      alert(data.error || "Failed to send request");
+      showModal(data.error || "Failed to send request");
     }
   } catch (err) {
     console.error("Failed to send request:", err);
-    alert("Failed to send friend request");
+    showModal("Failed to send friend request");
   }
 }

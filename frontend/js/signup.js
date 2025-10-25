@@ -54,6 +54,7 @@ if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate()))
       age: data.user.age
       // password haipaswi kuhifadhiwa hapa IRL, lakini tuta-fix tukianza auth proper
     }));
+    localStorage.setItem("hasSignedUp", "true");
 
     // play animation
     startCiscoVibe();

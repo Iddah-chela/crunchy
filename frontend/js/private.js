@@ -9,6 +9,19 @@ const chatForm = document.getElementById("chat-input-area");
 let currentUserId, currentUsername;
 let socket;
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch("/me");
@@ -47,7 +60,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     socket.on("messageError", (error) => {
       console.error("❌ Message error:", error);
-      alert("Failed to send message: " + error.error);
+      showModal("Failed to send message: " + error.error);
     });
 
     // back button
@@ -57,6 +70,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       // Remove active class from all cards
       document.querySelectorAll(".chat-card").forEach(c => c.classList.remove("active"));
     });
+    
 
     // send message
     chatForm.addEventListener("submit", async (e) => {
@@ -91,7 +105,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (bubbles.length > 0) {
           bubbles[bubbles.length - 1].remove();
         }
-        alert("Failed to send message. Please try again.");
+        showModal("Failed to send message. Please try again.");
       }
     });
 
@@ -100,7 +114,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   } catch (err) {
     console.error(err);
-    alert("Please log in first");
+    showModal("Please log in first");
   }
 });
 
@@ -138,21 +152,37 @@ function addMessageBubble(msg) {
 
   chatMessages.appendChild(bubble);
   chatMessages.scrollTop = chatMessages.scrollHeight;
-  updateChatSnippet(
-  msg.senderId === currentUserId ? msg.receiverId : msg.senderId,
-  msg.text
-);
+  updateChatSnippet(msg.senderId === currentUserId ? msg.receiverId : msg.senderId, msg.text);
 
 }
 
+
+
+// Update snippet + localStorage on new message
 function updateChatSnippet(friendId, text) {
+  if (!friendId) return;
+
   const card = document.querySelector(`.chat-card[data-userid='${friendId}']`);
   if (!card) return;
-  const snippet = card.querySelector('.chat-snippet');
-  const time = card.querySelector('.chat-time');
-  snippet.textContent = text.length > 25 ? text.slice(0,25) + '…' : text;
-  time.textContent = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
+
+  // Load local snippets first
+  const localSnippets = JSON.parse(localStorage.getItem("chatSnippets") || "{}");
+
+  // Save/update snippet for this friend
+  localSnippets[friendId] = {
+    text: text,
+    timestamp: new Date().toISOString()
+  };
+  localStorage.setItem("chatSnippets", JSON.stringify(localSnippets));
+
+  // Update UI
+  const snippetText = text.length > 25 ? text.slice(0, 25) + "…" : text;
+  const timeText = new Date(localSnippets[friendId].timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+
+  card.querySelector(".chat-snippet").textContent = snippetText;
+  card.querySelector(".chat-time").textContent = timeText;
 }
+
 
 chatInput.addEventListener('input', () => {
   chatInput.style.height = 'auto';
@@ -162,29 +192,34 @@ chatInput.addEventListener('input', () => {
 async function loadChatList() {
   // Load friends instead of all users
   const res = await fetch("/chat/friends");
-  if (!res.ok) {
-    console.error("Failed to load friends");
-    return;
-  }
-  
+  if (!res.ok) return console.error("Failed to load friends");
   const friends = await res.json();
-  
+
+  // Restore local snippets/times if they exist
+  const localSnippets = JSON.parse(localStorage.getItem('chatSnippets') || '{}');
+
   const list = document.getElementById("chat-list-view");
   list.innerHTML = "<h2>Threads</h2>";
-  
+
   if (friends.length === 0) {
     list.innerHTML += "<p style='text-align:center; color:#888;'>No friends yet. Add some <a href='friends.html'> friends</a> to start chatting! 👥</p>";
     return;
   }
-  
+
   friends.forEach(friend => {
     const card = document.createElement("div");
     card.className = "chat-card";
     card.dataset.userid = friend.id;
+
+    // Use backend lastMessage OR localStorage
+    const snippetData = localSnippets[friend.id];
+    const snippetText = snippetData ? (snippetData.text.length > 25 ? snippetData.text.slice(0,25)+'…' : snippetData.text) : "Start a conversation…";
+    const timeText = snippetData ? new Date(snippetData.timestamp).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', hour12:true }) : "–";
+
     card.innerHTML = `
       <div class="chat-user">${friend.username}</div>
-      <div class="chat-snippet">Start a conversation...</div>
-      <div class="chat-time">–</div>
+      <div class="chat-snippet">${snippetText}</div>
+      <div class="chat-time">${timeText}</div>
     `;
 
     list.appendChild(card);

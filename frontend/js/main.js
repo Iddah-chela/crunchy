@@ -14,6 +14,19 @@ try {
   storage = sessionStorage;
 }
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 // Grab all the question buttons and convert to array of objects
 const questionButtons = Array.from(document.querySelectorAll(".question-btn"))
   .filter(btn => btn.id !== "q9") // exclude verse of the day
@@ -48,7 +61,7 @@ function addButtonsToDisplay(display, chosen, tag) {
   copy.innerText = "Copy";
   copy.onclick = () => {
     navigator.clipboard.writeText(display.innerText).then(() => {
-      alert("Verse copied to clipboard!");
+      showModal("Verse copied to clipboard!");
     });
   };
 
@@ -320,7 +333,7 @@ async function showMoreLikeThis(tag, currentVerseRef) {
     );
 
     if (!matches.length) {
-      alert(`No more verses found with this tag: ${tag}`);
+      showModal(`No more verses found with this tag: ${tag}`);
       return;
     }
 
@@ -329,7 +342,7 @@ async function showMoreLikeThis(tag, currentVerseRef) {
     addButtonsToDisplay(document.getElementById("versedisplay"), chosen, chosen.tags?.[0] || tag);
   } catch (err) {
     console.error("showMoreLikeThis error:", err);
-    alert("Something went wrong. Check console.");
+    showModal("Something went wrong. Check console.");
   }
 }
 
@@ -341,7 +354,7 @@ async function showVersesByTag(tag) {
     const matches = all.filter(v => Array.isArray(v.tags) && v.tags.includes(tag));
 
     if (!matches.length) {
-      alert(`No verses found for tag: ${tag}`);
+      showModal(`No verses found.`);
       return;
     }
 
@@ -350,7 +363,7 @@ async function showVersesByTag(tag) {
     addButtonsToDisplay(document.getElementById("versedisplay"), chosen, chosen.tags?.[0] || tag);
   } catch (err) {
     console.error("showVersesByTag error:", err);
-    alert("Something went wrong. Check console.");
+    showModal("Something went wrong. Check console.");
   }
 }
 
@@ -396,7 +409,7 @@ function randgen(q) {
     .then(rows => {
       if (!rows || !rows.length) {
         console.error("No answers found");
-        alert("Oops! That question doesn't have any verses yet.");
+        showModal("Oops! That question doesn't have any verses yet.");
         return;
       }
 
@@ -428,8 +441,19 @@ function randgen(q) {
       if (themer) {
         display.classList.add(`bg-${themer}`);
       }
+      const encodedRef = encodeURIComponent(ref);
 
-      display.innerHTML = `<b>${category}</b><br><hr><b>${ref}:</b> ${verse}<br>`;
+      display.innerHTML = `
+    <b>${escapeHtml(category)}</b><br>
+    <hr>
+    <b>
+      <a href="bible.html?ref=${encodedRef}" class="verse-link" rel="noopener">
+        ${escapeHtml(ref)}
+      </a>:
+    </b>
+    ${escapeHtml(verse)}<br><br>
+
+  `;
       display.style.display = "block";
 
       // ===== Buttons below the verse =====
@@ -446,7 +470,7 @@ function randgen(q) {
         // okay so theres a new object called navigator, and I think it can access the clipboard 
         // but where does it end...maybe it accesses time and location too.
         navigator.clipboard.writeText(text).then(() => {
-          alert("Verse copied to clipboard!");
+          showModal("Verse copied to clipboard!");
         }).catch(err => {
           console.error("Failed to copy: ", err);
         });
@@ -503,7 +527,7 @@ function randgen(q) {
           let ul = document.getElementById("favoritelist");
           if (ul) {
             let li = document.createElement("li");
-            li.innerHTML = verseText.replace(/\n/g, "<br>");
+            li.innerHTML = verseText.replace(/\n/g);
             addButtonsToLi(li, newEntry);
             ul.appendChild(li);
           }
@@ -729,10 +753,5 @@ function clearSearch() {
   currentCategory = null; // Reset open category
   filterQuestions(); // Reapply filters (will show all categories again)
 }
-
-
-document.querySelector('.baby-ai-bubble').addEventListener('click', () => {
-  window.location.href = 'chat.html';
-});
 
 

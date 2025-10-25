@@ -8,7 +8,7 @@ const multer = require("multer");
 const app = express();
 const cors = require('cors');
 const bcrypt = require('bcrypt');
-
+const fs = require('fs');
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
@@ -36,7 +36,9 @@ db.serialize(() => {
       username TEXT UNIQUE,
       age INTEGER,
       password TEXT,
-      profilePic TEXT
+      profilePic TEXT,
+      bio TEXT,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )
   `);
   // Push subscriptions table
@@ -47,6 +49,14 @@ db.serialize(() => {
       sub TEXT NOT NULL
     )
   `);
+
+  db.run(`CREATE TABLE IF NOT EXISTS bible (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  book TEXT,
+  chapter INTEGER,
+  verse INTEGER,
+  text TEXT
+  )`);
 
 
 });
@@ -68,8 +78,12 @@ const sessionMiddleware = session({
   secret: "Itsasecretssshhhhh",
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false } // only true if using https
+  cookie: {
+    secure: false, // true if HTTPS
+    maxAge: 30*24*60*60*1000 // 30 days
+  }
 });
+
 
 // Use it in Express
 app.use(sessionMiddleware);
@@ -78,6 +92,9 @@ app.use((req, res, next) => {
   console.log("Session: ", req.session);
   next();
 });
+// Serve uploaded files
+app.use("/uploads", express.static("uploads"));
+
 
 // Share the SAME session instance with Socket.IO
 io.use(sharedSession(sessionMiddleware, {
@@ -90,6 +107,10 @@ app.use("/commune", communityRoutes);
 const chatRoutes = require("./routes/chat");
 const { encrypt } = require("./routes/chat");
 app.use("/chat", chatRoutes);
+
+const bibleRoutes = require('./routes/bible');
+app.use('/api/bible', bibleRoutes);
+
 
 if(process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend")));
@@ -176,7 +197,6 @@ io.on("connection", (socket) => {
     console.log("🔌 Socket disconnected. UserID:", userId);
   });
 });
-
 
 const webpush = require("web-push");
 
@@ -307,7 +327,7 @@ const PORT = process.env.PORT || 4000;
 
 // Route root to home.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/home.html'));
+  res.sendFile(path.join(__dirname, '../frontend/index.html'));
 });
 
 // ================= USERS ==================
@@ -329,9 +349,7 @@ app.post("/signup", async (req, res) => {
     return res.status(400).json({ error: "Ebu jaza boxes zote 😒" });
   }
 
-  // ✅ automatically log them in
-    req.session.userId = this.lastID;
-    req.session.username = username;
+  
 
   // username unique kiasi
   // NOTE: password iko plain-text leo. Kesho: bcrypt.
@@ -343,6 +361,10 @@ app.post("/signup", async (req, res) => {
       }
       return res.status(500).json({ error: err.message });
     } 
+
+    // ✅ automatically log them in
+    req.session.userId = this.lastID;
+    req.session.username = username;
     // usirudishe password kwa response IRL; ni demo
     res.json({ msg: "Account imeundwa safi 🎉", user: { id: this.lastID, username, age } });
   });
@@ -359,7 +381,7 @@ app.get("/users", (req, res) => {
 
 // Get one user profile (for viewing by others)
 app.get("/users/:id", (req, res) => {
-  const sql = "SELECT id, username, age, profilePic FROM users WHERE id = ?";
+  const sql = "SELECT id, username, age, profilePic, bio FROM users WHERE id = ?";
   db.get(sql, [req.params.id], (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     if (!row) return res.status(404).json({ error: "User haonekani 😅" });
@@ -380,7 +402,7 @@ app.post("/login", async (req, res) => {
 
   // Wrap db.get in a Promise so we can await bcrypt properly
   const getUser = () => new Promise((resolve, reject) => {
-    const sql = "SELECT id, username, age, password FROM users WHERE username = ?";
+    const sql = "SELECT id, username, age, password, profilePic FROM users WHERE username = ?";
     db.get(sql, [username], (err, row) => {
       if (err) return reject(err);
       if (!row) return reject("Username au password si fiti 👀");
@@ -413,7 +435,7 @@ app.get("/me", (req, res) => {
     return res.status(401).json({ errror: "Not logged  in" });
   }
 
-  db.get("SELECT id, username, age FROM users WHERE id = ?", [req.session.userId], (err, row) => {
+  db.get("SELECT id, username, age, profilePic FROM users WHERE id = ?", [req.session.userId], (err, row) => {
     if (err) return res.status(500).json({ error: err.message });
     res.json(row);
   })
@@ -448,22 +470,31 @@ const upload = multer({ storage });
 
 // Update user route
 app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
-  const { username, age, password } = req.body; // all strings!
+  const { username, password, bio } = req.body;
   const userId = req.params.id;
 
-  if (!username || !age) {
-    return res.status(400).json({ error: "Username and age required 😅" });
+  if (!username) {
+    return res.status(400).json({ error: "Username required 😅" });
   }
 
-  const params = [username, Number(age)];
-  let sql = "UPDATE users SET username=?, age=?";
+  // Start with basic updates
+  const params = [username];
+  let sql = "UPDATE users SET username=?";
 
+  // Add bio if provided
+  if (bio) {
+    sql += ", bio=?";
+    params.push(bio);
+  }
+
+  // Add password if provided
   if (password) {
     const hashed = await bcrypt.hash(password, 10);
     sql += ", password=?";
     params.push(hashed);
   }
 
+  // Add profilePic if uploaded
   if (req.file) {
     const profilePicUrl = `/uploads/${req.file.filename}`;
     sql += ", profilePic=?";
@@ -481,6 +512,7 @@ app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
     res.json({ msg: "Profile updated 🎉", profilePicUrl: picUrl });
   });
 });
+
 
 
 

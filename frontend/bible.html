@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bible Reader</title>
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="css/style.css">
@@ -26,6 +27,17 @@
 
     <!-- Verses -->
     <div id="verse-list" class="verses"></div>
+    <div id="inputModal" class="modal">
+  <div class="modal-content">
+    <p id="inputMessage">Enter something:</p>
+    <input type="text" id="inputField" class="modal-input" />
+    <div class="modal-actions">
+      <button id="inputCancel" class="btn cancel">Cancel</button>
+      <button id="inputOk" class="btn ok">OK</button>
+    </div>
+  </div>
+</div>
+
   </div>
   <div class="notes">
    <button id="menuToggleBtn" class="innerbtn">…</button>

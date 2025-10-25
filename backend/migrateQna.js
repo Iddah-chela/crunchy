@@ -33,21 +33,8 @@ db.serialize(() => {
     FOREIGN KEY (explanation_id) REFERENCES explanations(id)
   )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE,
-  password TEXT,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-  )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS bible (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  book TEXT,
-  chapter INTEGER,
-  verse INTEGER,
-  text TEXT
-  )`);
-
+  
 
   // insert everything
   for (const [qkey, answers] of Object.entries(questionMap)) {

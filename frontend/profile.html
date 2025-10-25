@@ -22,7 +22,8 @@
     </div>
 
     <div class="profile-stats">
-      <p><strong>Age:</strong> <span id="age"  onchange="filterQuestionsByAge()">18</span></p>
+
+
       <p><strong>Joined:</strong> <span id="profileJoined">August 2025</span></p>
     </div>
 
@@ -37,8 +38,9 @@
   <label>Username:</label>
   <input class="profile-input" type="text" id="username"><br>
 
-  <label>Age:</label>
-  <input class="profile-input" type="number" id="age"><br>
+  <label>Bio:</label>
+<textarea class="profile-input" id="bio" placeholder="Write something about yourself..."></textarea><br>
+
 
   <label>Password (new):</label>
   <input class="profile-input" type="password" id="password"><br>
@@ -55,14 +57,11 @@
 
   </main>
 <div id="tree-section">
-  <label for="tree-container">My Tree</label>
   <div class="tree-container">
-    <img id="treeImage" src="images/tree1.png" alt="Your Tree">
+    <img id="treeImage" src="backgrounds/seedling.png" alt="Your Tree">
     <div class="sparkles" id="sparkles"></div>
     <img id="wateringCan" src="backgrounds/jug.png" alt="Watering Can">
   </div>
-
-  
 </div>
 <button id="waterBtn" class="innerbtn" onclick="waterTree()">💧 Water Tree</button>
   <p id="waterCount"></p>

@@ -1,6 +1,18 @@
 
 console.log("Topbar loaded on", window.location.pathname);
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
 
 function initTopbar() {
   const menuToggle = document.getElementById("menuToggle");
@@ -53,7 +65,7 @@ logoutBtn.addEventListener("click", async () => {
     const data = await res.json();
 
     if (!res.ok) {
-      alert(data.error || "Logout failed 😭");
+      showModal(data.error || "Logout failed 😭");
       return;
     }
 
@@ -64,18 +76,28 @@ logoutBtn.addEventListener("click", async () => {
     window.location.href = "/login.html";
   } catch (err) {
     console.error(err);
-    alert("Network drama 😭");
+    showModal("Network drama 😭");
   }
 });
   
   // Fake cookie check (replace with real one if needed)
-  const hasCookie = document.cookie.includes("token=");
-  const everHadCookie = localStorage.getItem("hasSignedUp") === "true";
+  function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}
 
-  // Visibility logic
-  logoutBtn.style.display = hasCookie ? "block" : "none";
-  loginLink.style.display = hasCookie ? "none" : "block";
-  signupLink.style.display = everHadCookie ? "none" : "block";
+// Replace fake cookie check with real one
+const token = getCookie("token");
+const hasCookie = !!token; // true if cookie exists
+
+const everHadCookie = localStorage.getItem("hasSignedUp") === "true";
+
+// Visibility logic
+logoutBtn.style.display = hasCookie ? "block" : "none";
+loginLink.style.display = hasCookie ? "none" : "block";
+signupLink.style.display = everHadCookie ? "block" : "none";
+
 
   if (hasCookie) localStorage.setItem("hasSignedUp", "true");
 
@@ -135,12 +157,12 @@ logoutBtn.addEventListener("click", async () => {
 // only do this if page is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
 // List all your HTML pages in the order you want to swipe through
-const pages = ['index.html', 'bible.html', 'prayer.html', 'game.html', 'community.html']; 
+const pages = ['home.html', 'bible.html', 'prayer.html', 'game.html', 'community.html']; 
 
 // Get current file name (e.g. 'home.html')
 let currentPage = window.location.pathname.split("/").pop();
 if (!currentPage || currentPage === '') {
-  currentPage = 'index.html'; // default fallback
+  currentPage = 'home.html'; // default fallback
 }
 
 // Find current index in the array
@@ -175,7 +197,7 @@ if (currentIndex !== -1) {
 
 // Map page names to nav link IDs
 const pageToNavId = {
-  "index.html": "nav-index",
+  "home.html": "nav-index",
   "notes.html": "nav-notes",
   "bible.html": "nav-bible",
   "prayer.html": "nav-prayer",
@@ -204,8 +226,7 @@ const translations = {
     "label.language": "Language:",
     "label.age": "Choose your age:",
     "label.theme": "Theme:",
-    "btn.music": "🎵 Start Music",
-    "nav.index": "Home",
+    "nav.index": "Qna",
     "nav.notes": "Notes",
     "nav.favorites": "Favorites",
     "nav.prayer": "Prayer",
@@ -217,7 +238,6 @@ const translations = {
     "label.language": "Lugha:",
     "label.age": "Chagua umri wako:",
     "label.theme": "Mandhari:",
-    "btn.music": "🎵 Anza Muziki",
     "nav.index": "Nyumbani",
     "nav.notes": "Maandishi",
     "nav.favorites": "Mistari",
@@ -255,14 +275,16 @@ function applyLanguage(lang) {
   if (languageSelect) {
     languageSelect.addEventListener("change", (e) => {
       const newLang = e.target.value;
-      storage.setItem("lang", newLang);
+      localStorage.setItem("lang", newLang);
       applyLanguage(newLang);
     });
   }
 
+  
+
 
   // Apply saved language
-  const savedLang = storage.getItem("lang") || "en";
+  const savedLang = localStorage.getItem("lang") || "en";
   applyLanguage(savedLang);
   
   // Also update dropdown to match saved value
@@ -272,8 +294,8 @@ function applyLanguage(lang) {
 
 function checkStreak() {
   const today = new Date().toDateString(); // e.g., "Thu Jul 18 2025"
-  const lastVisit = storage.getItem("lastVisit");
-  let streak = parseInt(storage.getItem("streak")) || 0;
+  const lastVisit = localStorage.getItem("lastVisit");
+  let streak = parseInt(localStorage.getItem("streak")) || 0;
 
   if (lastVisit === today) {
     // Already visited today — don’t change streak
@@ -290,12 +312,11 @@ function checkStreak() {
     streak = 1; // reset streak
   }
 
-  storage.setItem("streak", streak);
-  storage.setItem("lastVisit", today);
+  localStorage.setItem("streak", streak);
+  localStorage.setItem("lastVisit", today);
 
   
 }
-
 
 
 // Run it on page load
@@ -341,17 +362,39 @@ function urlBase64ToUint8Array(base64String) {
 }
 
 let deferredPrompt;
+const installPromptKey = "installPromptDismissed";
 
-window.addEventListener('beforeinstallprompt', (e) => {
+window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
-  deferredPrompt = e;
-  // Show your own “Install” button
-  const btn = document.querySelector('#installButton');
-  btn.style.display = 'block';
 
-  btn.addEventListener('click', () => {
-    btn.style.display = 'none';
+  // If user already installed or dismissed
+  if (localStorage.getItem(installPromptKey)) return;
+
+  deferredPrompt = e;
+  const toast = document.getElementById("installPrompt");
+  toast.style.display = "flex";
+
+  const btn = document.querySelector("#installButton");
+  btn.addEventListener("click", () => {
+    btn.style.display = "none";
     deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(() => deferredPrompt = null);
+    deferredPrompt.userChoice.then((choice) => {
+      if (choice.outcome === "dismissed") {
+        localStorage.setItem(installPromptKey, "true");
+      }
+      deferredPrompt = null;
+      toast.style.display = "none";
+    });
   });
+
+  document.querySelector(".close-btnm").addEventListener("click", () => {
+    localStorage.setItem(installPromptKey, "true");
+    toast.style.display = "none";
+  });
+});
+
+window.addEventListener("appinstalled", () => {
+  localStorage.setItem(installPromptKey, "true");
+  deferredPrompt = null;
+  document.getElementById("installPrompt").style.display = "none";
 });

@@ -20526,40 +20526,788 @@ let q194ans = {
     },
     "Psalm 147:3": {
       text: "He heals the brokenhearted and binds up their wounds.",
-      theme: "Healing and restoration",
+      theme: "hope",
       tags: ["healing", "restoration", "care"]
     },
     "Isaiah 41:10": {
       text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
-      theme: "Divine presence and strength",
+      theme: "fear",
       tags: ["strength", "fear", "presence"]
     }
   },
   "God provides through His people": {
     "Matthew 25:35-36": {
       text: "For I was hungry and you gave me something to eat, I was thirsty and you gave me something to drink, I was a stranger and you invited me in, I needed clothes and you clothed me, I was sick and you looked after me, I was in prison and you came to visit me.",
-      theme: "God’s care shown through compassion",
+      theme: "love",
       tags: ["compassion", "service", "care"]
     },
     "James 2:15-17": {
       text: "Suppose a brother or a sister is without clothes and daily food. If one of you says to them, 'Go in peace; keep warm and well fed,' but does nothing about their physical needs, what good is it? In the same way, faith by itself, if it is not accompanied by action, is dead.",
-      theme: "Faith expressed through action",
+      theme: "faithful",
       tags: ["faith", "works", "compassion"]
     }
   },
   "God offers hope and security to the forgotten": {
     "Psalm 68:5-6": {
       text: "A father to the fatherless, a defender of widows, is God in his holy dwelling. God sets the lonely in families; he leads out the prisoners with singing, but the rebellious live in a sun-scorched land.",
-      theme: "Hope for the lonely",
+      theme: "hope",
       tags: ["loneliness", "family", "provision"]
     },
     "Philippians 4:19": {
       text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
-      theme: "Provision and care",
+      theme: "trust",
       tags: ["provision", "trust", "faithfulness"]
     }
   }
 };
+
+// What happens immediately after death?
+let q195ans = {
+  "The soul departs the body and faces the reality of eternity": {
+    "Ecclesiastes 12:7": {
+      text: "And the dust returns to the ground it came from, and the spirit returns to God who gave it.",
+      theme: "eternital",
+      tags: ["death", "soul", "spirit", "afterlife"]
+    },
+    "2 Corinthians 5:8": {
+      text: "We are confident, I say, and would prefer to be away from the body and at home with the Lord.",
+      theme: "presence",
+      tags: ["heaven", "faith", "comfort", "hope"]
+    }
+  },
+  "Believers are welcomed into God’s presence through Christ": {
+    "Luke 23:42-43": {
+      text: "Then he said, 'Jesus, remember me when you come into your kingdom.' Jesus answered him, 'Truly I tell you, today you will be with me in paradise.'",
+      theme: "grace",
+      tags: ["salvation", "heaven", "grace", "hope"]
+    },
+    "Philippians 1:21-23": {
+      text: "For to me, to live is Christ and to die is gain. If I am to go on living in the body, this will mean fruitful labor for me. Yet what shall I choose? I do not know! I am torn between the two: I desire to depart and be with Christ, which is better by far.",
+      theme: "hope",
+      tags: ["death", "christ", "faith", "eternity"]
+    }
+  },
+  "Judgment follows death, determining eternal destiny": {
+    "Hebrews 9:27": {
+      text: "Just as people are destined to die once, and after that to face judgment,",
+      theme: "truth",
+      tags: ["death", "eternity", "accountability", "truth"]
+    },
+    "John 5:28-29": {
+      text: "Do not be amazed at this, for a time is coming when all who are in their graves will hear his voice and come out—those who have done what is good will rise to live, and those who have done what is evil will rise to be condemned.",
+      theme: "resurrection",
+      tags: ["judgment", "life", "death", "eternity"]
+    }
+  },
+  "Those who reject God face separation, but His justice remains righteous": {
+    "Matthew 25:46": {
+      text: "Then they will go away to eternal punishment, but the righteous to eternal life.",
+      theme: "justice",
+      tags: ["judgment", "eternity", "life", "punishment"]
+    },
+    "2 Thessalonians 1:9": {
+      text: "They will be punished with everlasting destruction and shut out from the presence of the Lord and from the glory of his might.",
+      theme: "eternal",
+      tags: ["judgment", "eternity", "justice", "truth"]
+    }
+  }
+};
+
+// What happens to people who never heard about Jesus or God?
+let q196ans = {
+  "God reveals Himself to all people through creation and conscience": {
+    "Romans 1:19-20": {
+      text: "Since what may be known about God is plain to them, because God has made it plain to them. For since the creation of the world God’s invisible qualities—his eternal power and divine nature—have been clearly seen, being understood from what has been made, so that people are without excuse.",
+      theme: "truth",
+      tags: ["creation", "truth", "justice", "knowledge"]
+    },
+    "Psalm 19:1-2": {
+      text: "The heavens declare the glory of God; the skies proclaim the work of his hands. Day after day they pour forth speech; night after night they reveal knowledge.",
+      theme: "creation",
+      tags: ["glory", "nature", "testimony", "knowledge"]
+    }
+  },
+  "God is perfectly just and judges people according to the truth they have received": {
+    "Romans 2:14-16": {
+      text: "Indeed, when Gentiles, who do not have the law, do by nature things required by the law, they are a law for themselves, even though they do not have the law. They show that the requirements of the law are written on their hearts, their consciences also bearing witness, and their thoughts sometimes accusing them and at other times even defending them. This will take place on the day when God judges people’s secrets through Jesus Christ, as my gospel declares.",
+      theme: "justice",
+      tags: ["judgment", "conscience", "truth", "law"]
+    },
+    "Deuteronomy 32:4": {
+      text: "He is the Rock, his works are perfect, and all his ways are just. A faithful God who does no wrong, upright and just is he.",
+      theme: "faithful",
+      tags: ["justice", "faithfulness", "truth", "integrity"]
+    }
+  },
+  "Salvation is ultimately through Christ, whose sacrifice reaches beyond human limits": {
+    "John 14:6": {
+      text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'",
+      theme: "salvation",
+      tags: ["jesus", "truth", "life", "faith"]
+    },
+    "1 Timothy 2:3-4": {
+      text: "This is good, and pleases God our Savior, who wants all people to be saved and to come to a knowledge of the truth.",
+      theme: "mercy",
+      tags: ["salvation", "grace", "truth", "love"]
+    },
+    "Acts 17:30-31": {
+      text: "In the past God overlooked such ignorance, but now he commands all people everywhere to repent. For he has set a day when he will judge the world with justice by the man he has appointed. He has given proof of this to everyone by raising him from the dead.",
+      theme: "grace",
+      tags: ["repentance", "judgment", "grace", "resurrection"]
+    }
+  }
+};
+
+// How can Christians balance faith with modern culture?
+let q197ans = {
+  "Believers are called to live in the world without becoming shaped by it": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["world", "transformation", "mind", "discernment"]
+    },
+    "John 17:15-16": {
+      text: "My prayer is not that you take them out of the world but that you protect them from the evil one. They are not of the world, even as I am not of it.",
+      theme: "protect",
+      tags: ["world", "protection", "holiness", "faith"]
+    }
+  },
+  "Christians should engage culture with wisdom, reflecting God’s truth and love": {
+    "Matthew 5:14-16": {
+      text: "You are the light of the world. A town built on a hill cannot be hidden. Neither do people light a lamp and put it under a bowl. Instead they put it on its stand, and it gives light to everyone in the house. In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["light", "influence", "gooddeeds", "example"]
+    },
+    "Colossians 4:5-6": {
+      text: "Be wise in the way you act toward outsiders; make the most of every opportunity. Let your conversation be always full of grace, seasoned with salt, so that you may know how to answer everyone.",
+      theme: "wisdom",
+      tags: ["grace", "speech", "outreach", "wisdom"]
+    }
+  },
+  "Faith must remain anchored in Christ, not in cultural approval": {
+    "Galatians 1:10": {
+      text: "Am I now trying to win the approval of human beings, or of God? Or am I trying to please people? If I were still trying to please people, I would not be a servant of Christ.",
+      theme: "faithful",
+      tags: ["approval", "obedience", "discipleship", "faith"]
+    },
+    "1 John 2:15-17": {
+      text: "Do not love the world or anything in the world. If anyone loves the world, love for the Father is not in them. For everything in the world—the lust of the flesh, the lust of the eyes, and the pride of life—comes not from the Father but from the world. The world and its desires pass away, but whoever does the will of God lives forever.",
+      theme: "obedience",
+      tags: ["world", "temptation", "obedience", "eternity"]
+    }
+  }
+};
+
+
+// Should I avoid music and movies if I want to get to heaven?
+let q199ans = {
+  "God calls believers to guard their hearts and minds from corrupt influence": {
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "purity",
+      tags: ["thoughts", "focus", "holiness", "wisdom"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "protect",
+      tags: ["heart", "discipline", "focus", "values"]
+    }
+  },
+  "God gives freedom but expects discernment and self-control in what we consume": {
+    "1 Corinthians 10:23": {
+      text: "'I have the right to do anything,' you say—but not everything is beneficial. 'I have the right to do anything'—but not everything is constructive.",
+      theme: "wisdom",
+      tags: ["freedom", "choices", "wisdom", "selfcontrol"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["renewal", "mind", "worldliness", "spiritualgrowth"]
+    }
+  },
+  "True salvation comes through Christ, not through avoiding earthly things": {
+    "Ephesians 2:8-9": {
+      text: "For it is by grace you have been saved, through faith—and this is not from yourselves, it is the gift of God—not by works, so that no one can boast.",
+      theme: "grace",
+      tags: ["salvation", "faith", "grace", "humility"]
+    },
+    "John 14:6": {
+      text: "Jesus answered, 'I am the way and the truth and the life. No one comes to the Father except through me.'",
+      theme: "salvation",
+      tags: ["jesus", "truth", "eternallife", "faith"]
+    }
+  }
+};
+
+// Why has sin been normalized and being holy is now weird?
+let q200ans = {
+  "Sin has been normalized because people reject God’s truth and follow their own desires": {
+    "Romans 1:21-22": {
+      text: "For although they knew God, they neither glorified him as God nor gave thanks to him, but their thinking became futile and their foolish hearts were darkened. Although they claimed to be wise, they became fools.",
+      theme: "fallenness",
+      tags: ["sin", "pride", "darkness", "truth"]
+    },
+    "Isaiah 5:20": {
+      text: "Woe to those who call evil good and good evil, who put darkness for light and light for darkness, who put bitter for sweet and sweet for bitter.",
+      theme: "truth",
+      tags: ["morality", "truth", "evil", "deception"]
+    },
+    "2 Timothy 4:3-4": {
+      text: "For the time will come when people will not put up with sound doctrine. Instead, to suit their own desires, they will gather around them a great number of teachers to say what their itching ears want to hear. They will turn their ears away from the truth and turn aside to myths.",
+      theme: "fallenness",
+      tags: ["falsehood", "selfishness", "truth", "culture"]
+    }
+  },
+  "Being holy seems strange because true righteousness exposes the darkness around it": {
+    "John 3:19-20": {
+      text: "This is the verdict: Light has come into the world, but people loved darkness instead of light because their deeds were evil. Everyone who does evil hates the light, and will not come into the light for fear that their deeds will be exposed.",
+      theme: "light",
+      tags: ["darkness", "truth", "exposure", "sin"]
+    },
+    "1 Peter 4:4": {
+      text: "They are surprised that you do not join them in their reckless, wild living, and they heap abuse on you.",
+      theme: "holy",
+      tags: ["holiness", "persecution", "difference", "faith"]
+    },
+    "Matthew 5:14-16": {
+      text: "You are the light of the world. A town built on a hill cannot be hidden. Neither do people light a lamp and put it under a bowl. Instead they put it on its stand, and it gives light to everyone in the house. In the same way, let your light shine before others, that they may see your good deeds and glorify your Father in heaven.",
+      theme: "light",
+      tags: ["holiness", "example", "light", "goodness"]
+    }
+  },
+  "God calls His people to remain holy and stand apart even when the world mocks them": {
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "faithful",
+      tags: ["holiness", "mind", "world", "faith"]
+    },
+    "1 Peter 1:14-16": {
+      text: "As obedient children, do not conform to the evil desires you had when you lived in ignorance. But just as he who called you is holy, so be holy in all you do; for it is written: 'Be holy, because I am holy.'",
+      theme: "holy",
+      tags: ["obedience", "purity", "faith", "character"]
+    },
+    "Philippians 2:15": {
+      text: "So that you may become blameless and pure, 'children of God without fault in a warped and crooked generation.' Then you will shine among them like stars in the sky.",
+      theme: "purity",
+      tags: ["righteousness", "example", "faith", "integrity"]
+    }
+  }
+};
+
+// How can I forgive someone who isn't sorry?
+let q201ans = {
+  "You can forgive because God forgave you even before you repented": {
+    "Romans 5:8": {
+      text: "But God demonstrates his own love for us in this: While we were still sinners, Christ died for us.",
+      theme: "grace",
+      tags: ["forgiveness", "love", "sacrifice", "mercy"]
+    },
+    "Ephesians 4:32": {
+      text: "Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.",
+      theme: "love",
+      tags: ["forgiveness", "love", "grace", "mercy"]
+    },
+    "Colossians 3:13": {
+      text: "Bear with each other and forgive one another if any of you has a grievance against someone. Forgive as the Lord forgave you.",
+      theme: "mercy",
+      tags: ["forgiveness", "patience", "grace", "obedience"]
+    }
+  },
+  "You can forgive because bitterness chains you, not the person who hurt you": {
+    "Hebrews 12:15": {
+      text: "See to it that no one falls short of the grace of God and that no bitter root grows up to cause trouble and defile many.",
+      theme: "grace",
+      tags: ["bitterness", "grace", "peace", "freedom"]
+    },
+    "Matthew 6:14-15": {
+      text: "For if you forgive other people when they sin against you, your heavenly Father will also forgive you. But if you do not forgive others their sins, your Father will not forgive your sins.",
+      theme: "obedience",
+      tags: ["forgiveness", "grace", "mercy", "freedom"]
+    },
+    "Proverbs 19:11": {
+      text: "A person’s wisdom yields patience; it is to one’s glory to overlook an offense.",
+      theme: "patience",
+      tags: ["wisdom", "forgiveness", "humility", "peace"]
+    }
+  },
+  "You forgive not because they deserve it, but because you belong to God who heals through mercy": {
+    "Luke 23:34": {
+      text: "Jesus said, 'Father, forgive them, for they do not know what they are doing.' And they divided up his clothes by casting lots.",
+      theme: "love",
+      tags: ["forgiveness", "love", "grace", "sacrifice"]
+    },
+    "Romans 12:19-21": {
+      text: "Do not take revenge, my dear friends, but leave room for God’s wrath, for it is written: 'It is mine to avenge; I will repay,' says the Lord. On the contrary: 'If your enemy is hungry, feed him; if he is thirsty, give him something to drink. In doing this, you will heap burning coals on his head.' Do not be overcome by evil, but overcome evil with good.",
+      theme: "goodness",
+      tags: ["forgiveness", "revenge", "peace", "kindness"]
+    },
+    "Matthew 18:21-22": {
+      text: "Then Peter came to Jesus and asked, 'Lord, how many times shall I forgive my brother or sister who sins against me? Up to seven times?' Jesus answered, 'I tell you, not seven times, but seventy-seven times.'",
+      theme: "grace",
+      tags: ["forgiveness", "grace", "patience", "obedience"]
+    }
+  }
+};
+
+// How should Christians respond to hate, discrimination, or insults?
+let q202ans = {
+  "Christians respond to hate with love because Christ loved His enemies first": {
+    "Matthew 5:44": {
+      text: "But I tell you, love your enemies and pray for those who persecute you.",
+      theme: "love",
+      tags: ["enemy", "forgiveness", "mercy", "grace"]
+    },
+    "Luke 6:27-28": {
+      text: "But to you who are listening I say: Love your enemies, do good to those who hate you, bless those who curse you, pray for those who mistreat you.",
+      theme: "love",
+      tags: ["love", "kindness", "humility", "patience"]
+    },
+    "Romans 12:14": {
+      text: "Bless those who persecute you; bless and do not curse.",
+      theme: "love",
+      tags: ["forgiveness", "grace", "peace", "obedience"]
+    }
+  },
+  "Christians respond to discrimination with endurance, trusting that God defends the righteous": {
+    "1 Peter 3:9": {
+      text: "Do not repay evil with evil or insult with insult. On the contrary, repay evil with blessing, because to this you were called so that you may inherit a blessing.",
+      theme: "patience",
+      tags: ["faith", "patience", "forgiveness", "peace"]
+    },
+    "Romans 12:17-18": {
+      text: "Do not repay anyone evil for evil. Be careful to do what is right in the eyes of everyone. If it is possible, as far as it depends on you, live at peace with everyone.",
+      theme: "peace",
+      tags: ["forgiveness", "wisdom", "humility", "love"]
+    },
+    "Psalm 37:5-6": {
+      text: "Commit your way to the Lord; trust in him and he will do this: He will make your righteous reward shine like the dawn, your vindication like the noonday sun.",
+      theme: "trust",
+      tags: ["justice", "faith", "hope", "endurance"]
+    }
+  },
+  "Christians respond to insults by reflecting Christ’s humility and leaving judgment to God": {
+    "1 Peter 2:23": {
+      text: "When they hurled their insults at him, he did not retaliate; when he suffered, he made no threats. Instead, he entrusted himself to him who judges justly.",
+      theme: "humble",
+      tags: ["forgiveness", "faith", "trust", "endurance"]
+    },
+    "Matthew 5:11-12": {
+      text: "Blessed are you when people insult you, persecute you and falsely say all kinds of evil against you because of me. Rejoice and be glad, because great is your reward in heaven.",
+      theme: "faithful",
+      tags: ["persecution", "faithfulness", "joy", "hope"]
+    },
+    "Proverbs 15:1": {
+      text: "A gentle answer turns away wrath, but a harsh word stirs up anger.",
+      theme: "wisdom",
+      tags: ["wisdom", "peace", "humility", "selfcontrol"]
+    }
+  }
+};
+
+// What is true repentance, and how is it different from regret?
+let q203ans = {
+  "True repentance is turning away from sin and toward God in obedience, not just feeling sorry": {
+    "Acts 3:19": {
+      text: "Repent, then, and turn to God, so that your sins may be wiped out, that times of refreshing may come from the Lord.",
+      theme: "grace",
+      tags: ["repentance", "forgiveness", "renewal", "grace"]
+    },
+    "2 Corinthians 7:10": {
+      text: "Godly sorrow brings repentance that leads to salvation and leaves no regret, but worldly sorrow brings death.",
+      theme: "truth",
+      tags: ["repentance", "sorrow", "salvation", "truth"]
+    },
+    "Ezekiel 18:30-31": {
+      text: "Therefore, you Israelites, I will judge each of you according to your own ways, declares the Sovereign Lord. Repent! Turn away from all your offenses; then sin will not be your downfall. Rid yourselves of all the offenses you have committed, and get a new heart and a new spirit.",
+      theme: "obedience",
+      tags: ["repentance", "obedience", "grace", "change"]
+    }
+  },
+  "Regret feels guilt for consequences; repentance grieves breaking God’s heart": {
+    "Psalm 51:17": {
+      text: "My sacrifice, O God, is a broken spirit; a broken and contrite heart you, God, will not despise.",
+      theme: "humble",
+      tags: ["repentance", "forgiveness", "grace", "heart"]
+    },
+    "Luke 15:21": {
+      text: "The son said to him, 'Father, I have sinned against heaven and against you. I am no longer worthy to be called your son.'",
+      theme: "grace",
+      tags: ["repentance", "humility", "grace", "restoration"]
+    },
+    "James 4:8-9": {
+      text: "Come near to God and he will come near to you. Wash your hands, you sinners, and purify your hearts, you double-minded. Grieve, mourn and wail. Change your laughter to mourning and your joy to gloom.",
+      theme: "purity",
+      tags: ["repentance", "grace", "sincerity", "change"]
+    }
+  },
+  "True repentance leads to visible change, showing a heart transformed by grace": {
+    "Matthew 3:8": {
+      text: "Produce fruit in keeping with repentance.",
+      theme: "obedience",
+      tags: ["repentance", "obedience", "faith", "evidence"]
+    },
+    "Luke 19:8-9": {
+      text: "But Zacchaeus stood up and said to the Lord, 'Look, Lord! Here and now I give half of my possessions to the poor, and if I have cheated anybody out of anything, I will pay back four times the amount.' Jesus said to him, 'Today salvation has come to this house.'",
+      theme: "transformation",
+      tags: ["repentance", "change", "faith", "grace"]
+    },
+    "Isaiah 55:7": {
+      text: "Let the wicked forsake their ways and the unrighteous their thoughts. Let them turn to the Lord, and he will have mercy on them, and to our God, for he will freely pardon.",
+      theme: "mercy",
+      tags: ["repentance", "forgiveness", "grace", "change"]
+    }
+  }
+};
+
+// Why does God allow natural disasters to happen?
+let q204ans = {
+  "Natural disasters exist because creation itself was broken by humanity’s sin": {
+    "Romans 8:20-22": {
+      text: "For the creation was subjected to frustration, not by its own choice, but by the will of the one who subjected it, in hope that the creation itself will be liberated from its bondage to decay and brought into the freedom and glory of the children of God. We know that the whole creation has been groaning as in the pains of childbirth right up to the present time.",
+      theme: "fallenness",
+      tags: ["sin", "creation", "fall", "hope"]
+    },
+    "Genesis 3:17-18": {
+      text: "To Adam he said, 'Because you listened to your wife and ate fruit from the tree about which I commanded you,'You must not eat from it,' Cursed is the ground because of you; through painful toil you will eat food from it all the days of your life. It will produce thorns and thistles for you, and you will eat the plants of the field.'",
+      theme: "fallenness",
+      tags: ["fall", "sin", "creation", "suffering"]
+    },
+    "Isaiah 24:4-5": {
+      text: "The earth dries up and withers, the world languishes and withers, the heavens languish with the earth. The earth is defiled by its people; they have disobeyed the laws, violated the statutes and broken the everlasting covenant.",
+      theme: "fallenness",
+      tags: ["sin", "judgment", "earth", "rebellion"]
+    }
+  },
+  "God can use disasters to awaken hearts and call people back to Himself": {
+    "Amos 4:6-8": {
+      text: "I gave you empty stomachs in every city and lack of bread in every town, yet you have not returned to me,” declares the Lord. “I also withheld rain from you when the harvest was still three months away. I sent rain on one town, but withheld it from another. One field had rain; another had none and dried up.",
+      theme: "mercy",
+      tags: ["repentance", "judgment", "mercy", "awakening"]
+    },
+    "Luke 13:4-5": {
+      text: "Or those eighteen who died when the tower in Siloam fell on them—do you think they were more guilty than all the others living in Jerusalem? I tell you, no! But unless you repent, you too will all perish.",
+      theme: "mercy",
+      tags: ["warning", "mercy", "sin", "judgment"]
+    },
+    "Psalm 46:1-2": {
+      text: "God is our refuge and strength, an ever-present help in trouble. Therefore we will not fear, though the earth give way and the mountains fall into the heart of the sea.",
+      theme: "hope",
+      tags: ["faith", "hope", "trust", "disaster"]
+    }
+  },
+  "Even in disaster, God remains sovereign and can bring redemption from chaos": {
+    "Nahum 1:7": {
+      text: "The Lord is good, a refuge in times of trouble. He cares for those who trust in him.",
+      theme: "goodness",
+      tags: ["trust", "faith", "comfort", "hope"]
+    },
+    "Romans 8:28": {
+      text: "And we know that in all things God works for the good of those who love him, who have been called according to his purpose.",
+      theme: "power",
+      tags: ["purpose", "faith", "trust", "hope"]
+    },
+    "Revelation 21:4-5": {
+      text: "‘He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away.’ He who was seated on the throne said, ‘I am making everything new!’ Then he said, ‘Write this down, for these words are trustworthy and true.’",
+      theme: "eternal",
+      tags: ["hope", "eternity", "redemption", "comfort"]
+    }
+  }
+};
+
+// What happens to children who die young?
+let q205ans = {
+  "Children who die young are received by God in mercy, for they belong to Him": {
+    "Matthew 19:14": {
+      text: "Jesus said, 'Let the little children come to me, and do not hinder them, for the kingdom of heaven belongs to such as these.'",
+      theme: "love",
+      tags: ["children", "kingdom", "mercy", "love"]
+    },
+    "Isaiah 11:6": {
+      text: "The wolf will live with the lamb, the leopard will lie down with the goat, the calf and the lion and the yearling together; and a little child will lead them.",
+      theme: "peace",
+      tags: ["innocence", "restoration", "hope", "heaven"]
+    },
+    "2 Samuel 12:23": {
+      text: "But now that he is dead, why should I go on fasting? Can I bring him back again? I will go to him, but he will not return to me.",
+      theme: "hope",
+      tags: ["death", "afterlife", "comfort", "faith"]
+    }
+  },
+  "God’s justice and mercy are perfect—He judges hearts, not age or intellect": {
+    "Deuteronomy 1:39": {
+      text: "And the little ones that you said would be taken captive, your children who do not yet know good from bad—they will enter the land. I will give it to them and they will take possession of it.",
+      theme: "mercy",
+      tags: ["children", "grace", "innocence", "justice"]
+    },
+    "Jonah 4:11": {
+      text: "And should I not have concern for the great city of Nineveh, in which there are more than a hundred and twenty thousand people who cannot tell their right hand from their left—and also many animals?",
+      theme: "grace",
+      tags: ["mercy", "grace", "justice", "innocence"]
+    },
+    "Psalm 103:13": {
+      text: "As a father has compassion on his children, so the Lord has compassion on those who fear him.",
+      theme: "love",
+      tags: ["love", "mercy", "grace", "comfort"]
+    }
+  },
+  "Children’s deaths remind us of the broken world—but also of the hope of reunion in Christ": {
+    "1 Thessalonians 4:13-14": {
+      text: "Brothers and sisters, we do not want you to be uninformed about those who sleep in death, so that you do not grieve like the rest of mankind, who have no hope. For we believe that Jesus died and rose again, and so we believe that God will bring with Jesus those who have fallen asleep in him.",
+      theme: "resurrection",
+      tags: ["hope", "comfort", "grief", "eternity"]
+    },
+    "Revelation 21:4": {
+      text: "‘He will wipe every tear from their eyes. There will be no more death or mourning or crying or pain, for the old order of things has passed away.’",
+      theme: "hope",
+      tags: ["hope", "heaven", "restoration", "peace"]
+    },
+    "Isaiah 49:15-16": {
+      text: "Can a mother forget the baby at her breast and have no compassion on the child she has borne? Though she may forget, I will not forget you! See, I have engraved you on the palms of my hands; your walls are ever before me.",
+      theme: "faithful",
+      tags: ["love", "mercy", "comfort", "eternity"]
+    }
+  }
+};
+
+
+// Do demons hate us or just want us confused, what is their goal?
+let q206ans = {
+  "Demons hate humans because we bear God’s image, and they rebelled against Him": {
+    "John 10:10": {
+      text: "The thief comes only to steal and kill and destroy; I have come that they may have life, and have it to the full.",
+      theme: "destruction",
+      tags: ["evil", "satan", "hate", "sin"]
+    },
+    "Genesis 1:27": {
+      text: "So God created mankind in his own image, in the image of God he created them; male and female he created them.",
+      theme: "creation",
+      tags: ["creation", "identity", "value", "purpose"]
+    },
+    "Revelation 12:9": {
+      text: "The great dragon was hurled down—that ancient serpent called the devil, or Satan, who leads the whole world astray. He was hurled to the earth, and his angels with him.",
+      theme: "fallenness",
+      tags: ["satan", "fall", "deception", "evil"]
+    }
+  },
+  "Their goal is to oppose God by deceiving, enslaving, and destroying those He loves": {
+    "2 Corinthians 4:4": {
+      text: "The god of this age has blinded the minds of unbelievers, so that they cannot see the light of the gospel that displays the glory of Christ, who is the image of God.",
+      theme: "deception",
+      tags: ["blindness", "sin", "truth", "faith"]
+    },
+    "1 Peter 5:8": {
+      text: "Be alert and of sober mind. Your enemy the devil prowls around like a roaring lion looking for someone to devour.",
+      theme: "faithful",
+      tags: ["spiritualwarfare", "evil", "alertness", "faith"]
+    },
+    "Ephesians 6:12": {
+      text: "For our struggle is not against flesh and blood, but against the rulers, against the authorities, against the powers of this dark world and against the spiritual forces of evil in the heavenly realms.",
+      theme: "faithful",
+      tags: ["evil", "spiritrealm", "faith", "resistance"]
+    }
+  },
+  "Their confusion strategy works by twisting truth, tempting pride, and weakening faith": {
+    "John 8:44": {
+      text: "You belong to your father, the devil, and you want to carry out your father’s desires. He was a murderer from the beginning, not holding to the truth, for there is no truth in him. When he lies, he speaks his native language, for he is a liar and the father of lies.",
+      theme: "truth",
+      tags: ["truth", "sin", "deception", "evil"]
+    },
+    "2 Corinthians 11:14": {
+      text: "And no wonder, for Satan himself masquerades as an angel of light.",
+      theme: "dtemptstion",
+      tags: ["falsehood", "temptation", "discernment", "truth"]
+    },
+    "1 Timothy 4:1": {
+      text: "The Spirit clearly says that in later times some will abandon the faith and follow deceiving spirits and things taught by demons.",
+      theme: "temptation",
+      tags: ["apostasy", "deception", "faith", "truth"]
+    }
+  },
+  "But believers have authority over demons through Christ’s victory, not their own strength": {
+    "Luke 10:19": {
+      text: "I have given you authority to trample on snakes and scorpions and to overcome all the power of the enemy; nothing will harm you.",
+      theme: "authority",
+      tags: ["victory", "faith", "power", "jesus"]
+    },
+    "James 4:7": {
+      text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you.",
+      theme: "obedience",
+      tags: ["faith", "obedience", "spiritualwarfare", "trust"]
+    },
+    "1 John 4:4": {
+      text: "You, dear children, are from God and have overcome them, because the one who is in you is greater than the one who is in the world.",
+      theme: "spirit",
+      tags: ["faith", "strength", "holyspirit", "courage"]
+    }
+  }
+};
+
+
+// Are horror movies demonic?
+let q207ans = {
+  "Horror becomes demonic when it glorifies darkness or invites fascination with evil": {
+    "Ephesians 5:11": {
+      text: "Have nothing to do with the fruitless deeds of darkness, but rather expose them.",
+      theme: "truth",
+      tags: ["evil", "darkness", "truth", "purity"]
+    },
+    "Isaiah 5:20": {
+      text: "Woe to those who call evil good and good evil, who put darkness for light and light for darkness, who put bitter for sweet and sweet for bitter.",
+      theme: "truthg",
+      tags: ["evil", "deception", "truth", "judgment"]
+    },
+    "3 John 1:11": {
+      text: "Dear friend, do not imitate what is evil but what is good. Anyone who does what is good is from God. Anyone who does what is evil has not seen God.",
+      theme: "holy",
+      tags: ["evil", "behavior", "faith", "holiness"]
+    }
+  },
+  "Christians should be careful what they feed their minds, since fear and darkness shape the heart": {
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "purity",
+      tags: ["mind", "focus", "thoughts", "holiness"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God’s will is—his good, pleasing and perfect will.",
+      theme: "renewal",
+      tags: ["mind", "faith", "transformation", "wisdom"]
+    },
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "wisdom",
+      tags: ["wisdom", "purity", "mind", "discipline"]
+    }
+  },
+  "Not all horror is demonic, but believers should test whether it draws them closer to God or desensitizes them": {
+    "1 Thessalonians 5:21-22": {
+      text: "But test them all; hold on to what is good, reject every kind of evil.",
+      theme: "wisdom",
+      tags: ["discernment", "wisdom", "faith", "purity"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["faith", "behavior", "worship", "focus"]
+    },
+    "2 Corinthians 6:14": {
+      text: "Do not be yoked together with unbelievers. For what do righteousness and wickedness have in common? Or what fellowship can light have with darkness?",
+      theme: "holy",
+      tags: ["holiness", "purity", "faith", "truth"]
+    }
+  }
+};
+
+// Does God test people, and if so, why?
+let q208ans = {
+  "God tests people to reveal and strengthen their faith, not to make them fail": {
+    "James 1:2-4": {
+      text: "Consider it pure joy, my brothers and sisters, whenever you face trials of many kinds, because you know that the testing of your faith produces perseverance. Let perseverance finish its work so that you may be mature and complete, not lacking anything.",
+      theme: "growth",
+      tags: ["faith", "testing", "perseverance", "maturity"]
+    },
+    "Deuteronomy 8:2": {
+      text: "Remember how the Lord your God led you all the way in the wilderness these forty years, to humble and test you in order to know what was in your heart, whether or not you would keep his commands.",
+      theme: "humble",
+      tags: ["obedience", "faith", "testing", "trust"]
+    },
+    "1 Peter 1:6-7": {
+      text: "In all this you greatly rejoice, though now for a little while you may have had to suffer grief in all kinds of trials. These have come so that the proven genuineness of your faith—of greater worth than gold, which perishes even though refined by fire—may result in praise, glory and honor when Jesus Christ is revealed.",
+      theme: "hope",
+      tags: ["testing", "faith", "endurance", "hope"]
+    }
+  },
+  "God’s tests expose what’s real, helping believers depend more on Him than on comfort": {
+    "Exodus 16:4": {
+      text: "Then the Lord said to Moses, 'I will rain down bread from heaven for you. The people are to go out each day and gather enough for that day. In this way I will test them and see whether they will follow my instructions.'",
+      theme: "obedience",
+      tags: ["trust", "testing", "faithfulness", "discipline"]
+    },
+    "Judges 2:22": {
+      text: "I will use them to test Israel and see whether they will keep the way of the Lord and walk in it as their ancestors did.",
+      theme: "faithful",
+      tags: ["obedience", "testing", "faith", "covenant"]
+    },
+    "2 Chronicles 32:31": {
+      text: "But when envoys were sent by the rulers of Babylon to ask him about the sign that had been done in the land, God left him to test him and to know everything that was in his heart.",
+      theme: "trust",
+      tags: ["testing", "faith", "trust", "truth"]
+    }
+  },
+  "God’s testing is never temptation—He refines, Satan tempts to destroy": {
+    "James 1:13": {
+      text: "When tempted, no one should say, 'God is tempting me.' For God cannot be tempted by evil, nor does he tempt anyone;",
+      theme: "truth",
+      tags: ["temptation", "truth", "faith", "holiness"]
+    },
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+      theme: "faithful",
+      tags: ["temptation", "testing", "strength", "hope"]
+    },
+    "Psalm 66:10": {
+      text: "For you, God, tested us; you refined us like silver.",
+      theme: "growth",
+      tags: ["testing", "faith", "growth", "purity"]
+    }
+  }
+};
+
+// Why pray if God’s just going to do what He wants?
+let q209ans = {
+  "Prayer is not to change God’s plan but to draw us into it": {
+    "Matthew 6:9-10": {
+      text: "This, then, is how you should pray: 'Our Father in heaven, hallowed be your name, your kingdom come, your will be done, on earth as it is in heaven.'",
+      theme: "obedience",
+      tags: ["prayer", "obedience", "faith", "kingdom"]
+    },
+    "1 John 5:14": {
+      text: "This is the confidence we have in approaching God: that if we ask anything according to his will, he hears us.",
+      theme: "trust",
+      tags: ["faith", "trust", "obedience", "relationship"]
+    },
+    "Romans 8:27": {
+      text: "And he who searches our hearts knows the mind of the Spirit, because the Spirit intercedes for God’s people in accordance with the will of God.",
+      theme: "spirit",
+      tags: ["holyspirit", "prayer", "faith", "trust"]
+    }
+  },
+  "Prayer changes us—it molds our hearts to trust, obey, and depend on God": {
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["faith", "trust", "comfort", "relationship"]
+    },
+    "Psalm 37:4": {
+      text: "Take delight in the Lord, and he will give you the desires of your heart.",
+      theme: "trust",
+      tags: ["faith", "trust", "joy", "relationship"]
+    },
+    "Luke 22:42": {
+      text: "‘Father, if you are willing, take this cup from me; yet not my will, but yours be done.’",
+      theme: "trust",
+      tags: ["obedience", "trust", "faith", "submission"]
+    }
+  },
+  "God invites prayer because He chooses to work through partnership with His people": {
+    "James 5:16": {
+      text: "Therefore confess your sins to each other and pray for each other so that you may be healed. The prayer of a righteous person is powerful and effective.",
+      theme: "power",
+      tags: ["faith", "healing", "intercession", "righteousness"]
+    },
+    "2 Chronicles 7:14": {
+      text: "If my people, who are called by my name, will humble themselves and pray and seek my face and turn from their wicked ways, then I will hear from heaven, and I will forgive their sin and will heal their land.",
+      theme: "mercy",
+      tags: ["repentance", "mercy", "faith", "obedience"]
+    },
+    "John 15:7": {
+      text: "If you remain in me and my words remain in you, ask whatever you wish, and it will be done for you.",
+      theme: "friend",
+      tags: ["faith", "obedience", "trust", "intimacy"]
+    }
+  }
+};
+
 
 
 
@@ -20756,7 +21504,22 @@ const questionMap = {
   q190: q190ans,
   q191: q191ans,
   q192: q192ans,
-  q193: q193ans
+  q193: q193ans,
+  q194: q194ans,
+  q195: q195ans,
+  q196: q196ans,
+  q197: q197ans,
+  q199: q199ans,
+  q200: q200ans,
+  q201: q201ans,
+  q202: q202ans,
+  q203: q203ans,
+  q204: q204ans,
+  q205: q205ans,
+  q206: q206ans,
+  q207: q207ans,
+  q208: q208ans,
+  q209: q209ans,
 };
 
 

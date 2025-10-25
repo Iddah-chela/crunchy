@@ -76,38 +76,83 @@ router.get("/friends", (req, res) => {
   if (!userId) return res.status(401).json({ error: "Not logged in" });
 
   const sql = `
-    SELECT u.id, u.username, u.profilePic, f.status
-    FROM friendships f
-    JOIN users u ON (f.friendId = u.id OR f.userId = u.id)
-    WHERE (f.userId = ? OR f.friendId = ?) 
-      AND u.id != ?
-      AND f.status = 'accepted'
-  `;
+  SELECT 
+    u.id, 
+    u.username, 
+    u.profilePic, 
+    f.status,
+    m.text AS lastMessage,
+    m.timestamp AS lastTimestamp
+  FROM friendships f
+  JOIN users u ON (f.friendId = u.id OR f.userId = u.id)
+  LEFT JOIN (
+    SELECT * 
+    FROM messages 
+    WHERE senderId = ? OR receiverId = ?
+    ORDER BY timestamp DESC
+  ) m ON ( (m.senderId = u.id AND m.receiverId = ?) OR (m.senderId = ? AND m.receiverId = u.id) )
+  WHERE (f.userId = ? OR f.friendId = ?) 
+    AND u.id != ?
+    AND f.status = 'accepted'
+  GROUP BY u.id
+`;
+db.all(sql, [userId, userId, userId, userId, userId, userId, userId], (err, rows) => {
+  if (err) return res.status(500).json({ error: err.message });
+  res.json(rows);
+});
 
-  db.all(sql, [userId, userId, userId], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
 });
 
 // Send friend request
 router.post("/friend-request", (req, res) => {
-  const userId = req.session.userId;
-  const { friendId } = req.body;
+  try {
+    const userId = req.session && req.session.userId;
+    const friendId = Number(req.body.friendId || req.body.friendId === 0 ? req.body.friendId : req.body.friendId);
 
-  if (!userId) return res.status(401).json({ error: "Not logged in" });
-  if (!friendId) return res.status(400).json({ error: "friendId required" });
-
-  const sql = `INSERT INTO friendships (userId, friendId, status) VALUES (?, ?, 'pending')`;
-  db.run(sql, [userId, friendId], function(err) {
-    if (err) {
-      if (err.message.includes("UNIQUE")) {
-        return res.status(400).json({ error: "Request already sent" });
-      }
-      return res.status(500).json({ error: err.message });
+    if (!userId) {
+      console.warn("Friend request blocked: not logged in");
+      return res.status(401).json({ error: "Not logged in" });
     }
-    res.json({ msg: "Friend request sent! 🤝", id: this.lastID });
-  });
+    if (!friendId) {
+      console.warn("Friend request blocked: missing friendId, body:", req.body);
+      return res.status(400).json({ error: "friendId required" });
+    }
+    if (userId === friendId) {
+      return res.status(400).json({ error: "You cannot friend yourself" });
+    }
+
+    // Ensure friendships table exists with unique constraint (userId, friendId)
+    // Prevent duplicate or reverse duplicates (optional)
+    const checkSql = `SELECT id, status FROM friendships WHERE (userId = ? AND friendId = ?) OR (userId = ? AND friendId = ?)`;
+    db.get(checkSql, [userId, friendId, friendId, userId], (err, row) => {
+      if (err) {
+        console.error("DB error checking friendship:", err);
+        return res.status(500).json({ error: err.message });
+      }
+      if (row) {
+        // If reverse exists and accepted -> already friends
+        if (row.status === "accepted") return res.status(400).json({ error: "Already friends" });
+        // If pending in either direction
+        return res.status(400).json({ error: "Request already exists or pending" });
+      }
+
+      const sql = `INSERT INTO friendships (userId, friendId, status) VALUES (?, ?, 'pending')`;
+      db.run(sql, [userId, friendId], function(err) {
+        if (err) {
+          console.error("Insert friendship failed:", err.message);
+          if (err.message.includes("UNIQUE")) {
+            return res.status(400).json({ error: "Request already sent" });
+          }
+          return res.status(500).json({ error: err.message });
+        }
+        console.log(`Friend request created: ${userId} -> ${friendId} (id=${this.lastID})`);
+        res.json({ msg: "Friend request sent! 🤝", id: this.lastID });
+      });
+    });
+  } catch (ex) {
+    console.error("Unexpected friend-request error:", ex);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // Accept friend request

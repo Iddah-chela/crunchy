@@ -1,13 +1,18 @@
-let bibleData = [];
-let currentBook = null;
-let currentChapter = null;
-let showNotes = false; // global flag
+
+// top-of-file globals
+let bibleBooks = [];            // array of book names (strings) from server
+let currentBookName = null;     // e.g. "Genesis"
+let currentChapters = [];       // array of chapter numbers for current book
+let currentChapterIdx = 0;      // zero-based index of current chapter
+let showNotes = false;
 
 // Load Bible JSON
-fetch("./bible/en_kjv.json")
+fetch("/api/bible/books")
   .then(res => res.json())
   .then(async (data) => {
     bibleData = data;
+
+    renderBookList("ot")
 
     // --- handle ?ref= deep-link here ---
     const params = new URLSearchParams(window.location.search);
@@ -110,9 +115,9 @@ function enterBibleReading() {
 }
 
 function exitBibleReading() {
-  document.body.classList.remove("paused"); // resume animations
-  const music = document.getElementById("bg-music");
-  if (music) music.play(); // resume bg music
+  // document.body.classList.remove("paused"); // resume animations
+  // const music = document.getElementById("bg-music");
+  // if (music) music.play(); // resume bg music
 }
 
 
@@ -128,7 +133,96 @@ function setMainHeading(text) {
 }
 
 
-// Render book list
+
+// --- initial load: fetch book list (absolute path) ---
+(async function initBible() {
+  try {
+    const res = await fetch("/api/bible/books");
+    if (!res.ok) throw new Error("Failed to fetch books");
+    bibleBooks = await res.json(); // ["Genesis","Exodus",...]
+    // render first view (OT/NT split uses first 39 as before)
+    renderBookList("ot");
+    // then handle deep-link / last-read AFTER books are known
+    handleDeepLinkOrLastRead();
+  } catch (err) {
+    console.error("Could not load bible books:", err);
+    showModal("Could not load Bible. Make sure server is running.");
+  }
+})();
+
+// handle deep link or last read (called after books are loaded)
+async function handleDeepLinkOrLastRead() {
+  const params = new URLSearchParams(window.location.search);
+  const refParam = params.get("ref");
+  if (refParam) {
+    const refMatch = refParam.match(/^(.+?)\s+(\d+):(\d+)$/);
+    if (refMatch) {
+      const [, rawBook, chapterStr, verseStr] = refMatch;
+      const chapterIdx = parseInt(chapterStr, 10) - 1;
+      const wanted = normalizeName(rawBook);
+
+      // find best matching book name from bibleBooks
+      let matchedName = bibleBooks.find(b => normalizeName(b) === wanted);
+      if (!matchedName) {
+        matchedName = bibleBooks.find(b => normalizeName(b).startsWith(wanted) || wanted.startsWith(normalizeName(b)));
+      }
+
+      if (matchedName) {
+        await renderChapters(matchedName);
+        await renderVerses(matchedName, chapterIdx);
+        // scroll to verse after render
+        const ref = `${matchedName} ${chapterStr}:${verseStr}`;
+        const expectedId = ref.replace(/\s+/g, "_").replace(":", "_");
+        waitForElementAndHighlight(expectedId);
+        return;
+      }
+    }
+  }
+
+  // fallback: last read
+  const lastBook = localStorage.getItem("lastBook");
+  const lastChapter = localStorage.getItem("lastChapter");
+  if (lastBook && lastChapter !== null) {
+    // if lastBook exists on server
+    if (bibleBooks.includes(lastBook)) {
+      await renderChapters(lastBook);
+      await renderVerses(lastBook, parseInt(lastChapter));
+      return;
+    }
+  }
+
+  // default
+  renderBookList("ot");
+}
+
+// small helper used above
+function normalizeName(s) {
+  return String(s || "")
+    .replace(/[^\w\s]/g, "")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+}
+
+async function waitForElementAndHighlight(id, timeout = 5000, interval = 60) {
+  const start = Date.now();
+  return new Promise((resolve, reject) => {
+    const check = () => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        el.classList.add("jump-highlight");
+        setTimeout(() => el.classList.remove("jump-highlight"), 2200);
+        return resolve(el);
+      }
+      if (Date.now() - start > timeout) return reject(new Error("Timeout waiting for " + id));
+      setTimeout(check, interval);
+    };
+    check();
+  }).catch(e => console.warn(e));
+}
+
+// -------------------- Render Book List --------------------
 function renderBookList(testament) {
   hideAll();
   setMainHeading("📖 Bible");
@@ -136,17 +230,17 @@ function renderBookList(testament) {
   bookList.style.display = "block";
   bookList.innerHTML = "";
 
-  const books = testament === "ot" ? bibleData.slice(0, 39) : bibleData.slice(39);
+  // bibleBooks is an array of strings; split first 39 as OT
+  const books = testament === "ot" ? bibleBooks.slice(0, 39) : bibleBooks.slice(39);
 
-  books.forEach((book) => {
+  books.forEach((bookName) => {
     const btn = document.createElement("button");
     btn.className = "category-btn category-block";
-    btn.textContent = book.name;
-    btn.onclick = () => renderChapters(book);
+    btn.textContent = bookName;
+    btn.onclick = () => renderChapters(bookName);
     bookList.appendChild(btn);
   });
 
-  // toggle NT/OT
   const toggleBtn = document.createElement("button");
   toggleBtn.className = "link-btn innerbtn";
   toggleBtn.textContent = testament === "ot" ? "Go to NT ➡️" : "⬅️ Back to OT";
@@ -154,46 +248,54 @@ function renderBookList(testament) {
   bookList.appendChild(toggleBtn);
 }
 
-// Render chapters
-function renderChapters(book) {
+// -------------------- Render Chapters (by book name) --------------------
+async function renderChapters(bookName) {
   hideAll();
-  currentBook = book;
-  setMainHeading(`📖 ${book.name}`);
+  currentBookName = bookName;
+  setMainHeading(`📖 ${bookName}`);
   const chapterList = document.getElementById("chapter-list");
   chapterList.style.display = "block";
   chapterList.innerHTML = "";
 
-  book.chapters.forEach((_, idx) => {
-    const btn = document.createElement("button");
-    btn.className = "innerbtn";
-    btn.textContent = idx + 1;
-    btn.onclick = () => renderVerses(book, idx);
-    chapterList.appendChild(btn);
-  });
+  try {
+    const res = await fetch(`/api/bible/chapters/${encodeURIComponent(bookName)}`);
+    if (!res.ok) throw new Error("Failed to fetch chapters");
+    const chapters = await res.json(); // e.g. [1,2,3,...]
+    currentChapters = chapters;
+    // create buttons
+    chapters.forEach(ch => {
+      const btn = document.createElement("button");
+      btn.className = "innerbtn";
+      btn.textContent = ch;
+      btn.onclick = () => renderVerses(bookName, ch - 1);
+      chapterList.appendChild(btn);
+    });
 
-  // Back to books
-  const backBtn = document.createElement("button");
-  backBtn.className = "link-btn innerbtn";
-  backBtn.textContent = "⬅️ Back to Books";
-  backBtn.onclick = () => 
-  {
-    exitBibleReading();
-    renderBookList(book.index < 39 ? "nt" : "ot");
+    // Back to books
+    const backBtn = document.createElement("button");
+    backBtn.className = "innerbtn";
+    backBtn.id =  "backBtnb"
+    backBtn.textContent = "⬅ Back";
+    backBtn.onclick = () => {
+      exitBibleReading();
+      renderBookList(currentChapters && currentChapters.length ? (bibleBooks.indexOf(bookName) < 39 ? "ot" : "nt") : "ot");
+    };
+    chapterList.appendChild(backBtn);
+
+  } catch (err) {
+    console.error("Could not load chapters:", err);
+    showModal("Failed to load chapters.");
   }
-  chapterList.appendChild(backBtn);
 }
 
-// Render verses
-// Render verses
-function renderVerses(book, chapterIdx) {
+// -------------------- Render Verses (fetch from API) --------------------
+async function renderVerses(bookName, chapterIdx) {
   hideAll();
   enterBibleReading();
-  currentBook = book;
-  currentChapter = chapterIdx;
+  currentBookName = bookName;
+  currentChapterIdx = chapterIdx;
 
-  
-  // update heading with book and chapter name
-  setMainHeading(`📖 ${book.name} ${chapterIdx + 1}`);
+  setMainHeading(`📖 ${bookName} ${chapterIdx + 1}`);
   const verseList = document.getElementById("verse-list");
   verseList.style.display = "block";
   verseList.innerHTML = "";
@@ -202,135 +304,152 @@ function renderVerses(book, chapterIdx) {
 
   // Back to chapters
   const backBtn = document.createElement("button");
-  backBtn.className = "link-btn innerbtn";
-  backBtn.textContent = "⬅️ Back to Chapters";
-  backBtn.onclick = () => renderChapters(book);
+  backBtn.className = " innerbtn";
+  backBtn.id =  "backBtnb"
+  backBtn.textContent = "⬅ Back";
+  backBtn.onclick = () => renderChapters(bookName);
   verseList.appendChild(backBtn);
 
-  // Render verses
-  const verses = book.chapters[chapterIdx];
-  verses.forEach((text, idx) => {
-    const { cleaned, notes } = splitVerse(text);
-    const verseNum = idx + 1;
+  try {
+    const chapterNum = chapterIdx + 1;
+    const res = await fetch(`/api/bible/verses/${encodeURIComponent(bookName)}/${chapterNum}`);
+    if (!res.ok) throw new Error("Failed to fetch verses");
+    const verses = await res.json(); // rows: [{verse:1,text:"..."}, ...]
 
-    const card = document.createElement("div");
-    card.className = "question-card";
+    // iterate rows (use row.verse as number)
+    for (const row of verses) {
+      const idx = parseInt(row.verse, 10) - 1;   // zero-based
+      const text = row.text || "";
+      const { cleaned, notes } = splitVerse(text);
+      const verseNum = idx + 1;
 
-    const verseText = document.createElement("p");
-    const ref = `${book.name} ${chapterIdx + 1}:${idx + 1}`;
-verseText.innerHTML = `<b>${idx + 1}</b>. ${cleaned}`;
-verseText.setAttribute("data-ref", ref);
-verseText.id = ref.replace(/\s+/g, "_").replace(":", "_");
+      const card = document.createElement("div");
+      card.className = "question-card";
 
+      const verseText = document.createElement("p");
+      const ref = `${bookName} ${chapterNum}:${verseNum}`;
+      verseText.innerHTML = `<b>${verseNum}</b>. ${cleaned}`;
+      verseText.setAttribute("data-ref", ref);
+      verseText.id = ref.replace(/\s+/g, "_").replace(":", "_");
 
-    card.appendChild(verseText);
+      card.appendChild(verseText);
 
-    if (notes.length) {
-      notesCollected.push(`v${idx + 1}: ${notes.join("; ")}`);
-    }
+      if (notes.length) notesCollected.push(`v${verseNum}: ${notes.join("; ")}`);
 
-    //toolbar(hidden by default)
-    const toolbar = document.createElement("div");
-    toolbar.className = "verse-toolbar";
-    toolbar.style.display = "none";
+      // toolbar
+      const toolbar = document.createElement("div");
+      toolbar.className = "verse-toolbar";
+      toolbar.style.display = "none";
 
-    const noteBtn = document.createElement("button");
-    noteBtn.textContent = "📝Note";
-    noteBtn.className = "innerbtn";
-    noteBtn.onclick = () => {
-      addNote(book, chapterIdx, verseNum);
-    }
+      const noteBtn = document.createElement("button");
+      noteBtn.textContent = "📝Note"; noteBtn.className = "innerbtn";
+      noteBtn.onclick = () => addNote({name: bookName}, chapterIdx, verseNum);
 
-    const highlightBtn = document.createElement("button");
-    highlightBtn.textContent = "✨Highlight";
-    highlightBtn.className = "innerbtn";
-    highlightBtn.onclick = () => toggleHighlight(card, book, chapterIdx, verseNum);
+      const highlightBtn = document.createElement("button");
+      highlightBtn.textContent = "✨Highlight"; highlightBtn.className = "innerbtn";
+      highlightBtn.onclick = () => toggleHighlight(card, {name: bookName}, chapterIdx, verseNum);
 
-    const commBtn = document.createElement("button");
-    commBtn.textContent = "📖Commentary";
-   commBtn.className = "innerbtn";
-    commBtn.onclick = () => toggleCommentary(card, book, chapterIdx, verseNum);
+      const commBtn = document.createElement("button");
+      commBtn.textContent = "📖Commentary"; commBtn.className = "innerbtn";
+      commBtn.onclick = () => toggleCommentary(card, {name: bookName}, chapterIdx, verseNum);
 
-    toolbar.append(noteBtn, highlightBtn, commBtn);
-    card.appendChild(toolbar);
+      toolbar.append(noteBtn, highlightBtn, commBtn);
+      card.appendChild(toolbar);
 
-    //clicking verse shows or hides toolbar
-    verseText.onclick = () => {
-      toolbar.style.display = toolbar.style.display === "none" ? "block": "none";
-    };
+      verseText.onclick = () => {
+        toolbar.style.display = toolbar.style.display === "none" ? "block" : "none";
+      };
 
-    //append user notes if they exist
-    const noteKey = `note_${book.name}_${chapterIdx}_${verseNum}`;
-    const savedNote = localStorage.getItem(noteKey);
-    if (savedNote) {
-      const noteBox = document.createElement("div");
-      noteBox.className = "note-box";
-      noteBox.textContent = savedNote;
-      card.appendChild(noteBox);
-    }
-
-    
-    // apply saved highlight if any (value might be var name or legacy hex)
-    const hKey = `highlight_${book.name}_${chapterIdx}_${verseNum}`;
-    const savedHighlight = localStorage.getItem(hKey);
-    if (savedHighlight) {
-      // if savedHighlight starts with '--' treat as var name; otherwise treat as color value
-      if (savedHighlight.trim().startsWith("--")) {
-        card.style.backgroundColor = `var(${savedHighlight})`;
-      } else {
-        card.style.backgroundColor = savedHighlight;
+      // notes from localStorage
+      const noteKey = `note_${bookName}_${chapterIdx}_${verseNum}`;
+      const savedNote = localStorage.getItem(noteKey);
+      if (savedNote) {
+        const noteBox = document.createElement("div");
+        noteBox.className = "note-box";
+        noteBox.textContent = savedNote;
+        card.appendChild(noteBox);
       }
+
+      // apply highlight
+      const hKey = `highlight_${bookName}_${chapterIdx}_${verseNum}`;
+      const savedHighlight = localStorage.getItem(hKey);
+      if (savedHighlight) {
+        if (savedHighlight.trim().startsWith("--")) card.style.backgroundColor = `var(${savedHighlight})`;
+        else card.style.backgroundColor = savedHighlight;
+      }
+
+      verseList.appendChild(card);
     }
 
-    verseList.appendChild(card);
+    // Notes box
+    if (notesCollected.length) {
+      const notesBox = document.createElement("div");
+      notesBox.id = "notes-box";
+      notesBox.className = "game-card";
+      notesBox.style.display = showNotes ? "block" : "none";
+      notesBox.innerHTML = "<b>Notes:</b><br>" + notesCollected.join("<br>");
+      verseList.appendChild(notesBox);
+
+      const toggleBtn = document.createElement("button");
+      toggleBtn.className = "innerbtn note";
+      toggleBtn.textContent = showNotes ? "Hide Notes" : "Show Notes";
+      toggleBtn.onclick = () => { showNotes = !showNotes; renderVerses(bookName, chapterIdx); };
+      verseList.appendChild(toggleBtn);
+    }
+
+    // next/previous - use currentChapters to know lengths if available
+    const totalChapters = currentChapters && currentChapters.length ? currentChapters.length : null;
+    if (totalChapters && chapterIdx < totalChapters - 1) {
+      const nextBtn = document.createElement("button");
+      nextBtn.className = "innerbtn next"; nextBtn.textContent = "➡️";
+      nextBtn.onclick = () => { renderVerses(bookName, chapterIdx + 1); window.scrollTo(0,0); };
+      verseList.appendChild(nextBtn);
+    }
+    if (chapterIdx > 0) {
+      const previousBtn = document.createElement("button");
+      previousBtn.className = "innerbtn previous"; previousBtn.textContent = "⬅️";
+      previousBtn.onclick = () => { renderVerses(bookName, chapterIdx - 1); window.scrollTo(0,0); };
+      verseList.appendChild(previousBtn);
+    }
+
+    // Save progress
+    localStorage.setItem("lastBook", bookName);
+    localStorage.setItem("lastChapter", chapterIdx);
+    // --- show nav buttons only when user scrolls ---
+    let scrollTimeout;
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const scrollHeight = document.documentElement.scrollHeight;
+  const clientHeight = window.innerHeight;
+
+  const atBottom = scrollTop + clientHeight >= scrollHeight - 10;
+
+  // Get your buttons
+  const navBtns = document.querySelectorAll(".innerbtn.next, .innerbtn.previous, .innerbtn.note, #backBtnb, .notes");
+  
+  navBtns.forEach(btn => {
+    btn.style.opacity = atBottom ? "1" : (scrollTop > 100 ? "1" : "0");
+    btn.style.transition = "opacity 0.3s";
+    btn.style.pointerEvents = btn.style.opacity === "1" ? "auto" : "none";
   });
-
-  // Notes box (hidden by default)
-  if (notesCollected.length) {
-    const notesBox = document.createElement("div");
-    notesBox.id = "notes-box";
-    notesBox.className = "game-card";
-    notesBox.style.display = showNotes ? "block" : "none";
-    notesBox.innerHTML = "<b>Notes:</b><br>" + notesCollected.join("<br>");
-    verseList.appendChild(notesBox);
-
-    const toggleBtn = document.createElement("button");
-    toggleBtn.className = "innerbtn note";
-    toggleBtn.textContent = showNotes ? "Hide Notes" : "Show Notes";
-    toggleBtn.onclick = () => {
-      showNotes = !showNotes;
-      renderVerses(book, chapterIdx);
-    };
-    verseList.appendChild(toggleBtn);
-  }
-  // Next chapter button
-  if (chapterIdx < book.chapters.length - 1) {
-    const nextBtn = document.createElement("button");
-    nextBtn.className = "innerbtn next";
-    nextBtn.textContent = "➡️";
-    nextBtn.onclick = () => {
-      renderVerses(book, chapterIdx + 1);
-      window.scrollTo(0, 0);
+  // hide after 1.2s of no movement (unless at bottom)
+  clearTimeout(scrollTimeout);
+  scrollTimeout = setTimeout(() => {
+    if (!atBottom) {
+      navBtns.forEach(btn => {
+        btn.style.opacity = "0";
+        btn.style.pointerEvents = "none";
+      });
     }
-    verseList.appendChild(nextBtn);
-  }
+  }, 3500);
+});
 
-  //previous caphter button
-  if (chapterIdx > 0) {
-    const previousBtn = document.createElement("button");
-    previousBtn.className = "innerbtn previous";
-    previousBtn.textContent = "⬅️";
-    previousBtn.onclick = () => {
-      renderVerses(book, chapterIdx - 1);
-      window.scrollTo(0, 0);
-    }
-    verseList.appendChild(previousBtn);
+  } catch (err) {
+    console.error("Failed to render verses:", err);
+    showModal("Could not load verses for this chapter.");
   }
-
-  // Save progress
-  localStorage.setItem("lastBook", book.name);
-  localStorage.setItem("lastChapter", chapterIdx);
 }
+
 const backBtn = document.getElementById("backBtnb");
 
 // keeps track of what section we came from
@@ -358,6 +477,7 @@ function renderNotesPage() {
   showBackButton();
   const notesPage = document.getElementById("notes-page");
   notesPage.style.display = "block";
+  notesPage.style.position  =  "relative";
   notesPage.innerHTML = "<h2>My Notes</h2>";
 
   for(let key in localStorage) {
@@ -424,15 +544,50 @@ function renderHighlightsPage() {
   }
 }
 
+function showPrompt(message, callback) {
+  const modal = document.getElementById("inputModal");
+  const msg = document.getElementById("inputMessage");
+  const input = document.getElementById("inputField");
+  const okBtn = document.getElementById("inputOk");
+  const cancelBtn = document.getElementById("inputCancel");
+
+  msg.textContent = message;
+  input.value = "";
+  modal.style.display = "flex";
+  input.focus();
+
+  okBtn.onclick = () => {
+    modal.style.display = "none";
+    callback(input.value);
+  };
+
+  cancelBtn.onclick = () => {
+    modal.style.display = "none";
+    callback(null);
+  };
+}
+
 
 function addNote(book, chapter, verse) {
-  const note = prompt("Write your note: ");
-  if (note) {
-    const key = `note_${book.name}_${chapter}_${verse}`;
-    localStorage.setItem(key, note);
-    renderVerses(book, chapter); //re-render so note appears
-  }
+  showPrompt("Write your note:", value => {
+    if (value && value.trim() !== "") {
+      const key = `note_${book.name}_${chapter}_${verse}`;
+      try {
+        localStorage.setItem(key, value.trim());
+      } catch (err) {
+        console.error("Failed to save note:", err);
+        showModal("Couldn’t save your note. Try again.");
+        return;
+      }
+      renderVerses(book, chapter);
+    } else {
+      // User either cancelled or entered empty note
+      // Optionally show a modal or simply ignore
+      showModal("No note was entered.");
+    }
+  });
 }
+
 
 function toggleHighlight(card, book, chapter, verse) {
   const key = `highlight_${book.name}_${chapter}_${verse}`;

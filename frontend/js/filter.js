@@ -237,6 +237,23 @@ let questions = [
 { id: "q191", text: "What does the Bible say about war and violence?", category: "", ageRange: [15, 99] },
 { id: "q192", text: "Where is heaven?", category: "", ageRange: [10, 99] },
 { id: "q193", text: "Where is hell?", category: "", ageRange: [10, 99] },
+{ id: "q194", text: "", category: "", ageRange: [15, 99] },
+{ id: "q195", text: "", category: "", ageRange: [16, 99] },
+{ id: "q196", text: "", category: "", ageRange: [14, 99] },
+{ id: "q197", text: "", category: "", ageRange: [16, 99] },
+{ id: "q198", text: "", category: "", ageRange: [14, 99] },
+{ id: "q199", text: "", category: "", ageRange: [15, 99] },
+{ id: "q200", text: "", category: "", ageRange: [15, 99] },
+{ id: "q201", text: "", category: "", ageRange: [13, 99] },
+{ id: "q202", text: "", category: "", ageRange: [14, 99] },
+{ id: "q203", text: "", category: "", ageRange: [15, 99] },
+{ id: "q204", text: "", category: "", ageRange: [16, 99] },
+{ id: "q205", text: "", category: "", ageRange: [16, 99] },
+{ id: "q206", text: "", category: "", ageRange: [14, 99] },
+{ id: "q207", text: "", category: "", ageRange: [13, 99] },
+{ id: "q208", text: "", category: "", ageRange: [13, 99] },
+{ id: "q209", text: "", category: "", ageRange: [14, 99] },
+
 ];
 
 // function filterQuestionsByAge(optionalAge) {
@@ -293,6 +310,7 @@ try {
 function filterQuestionsByAge(age) {
   // assuming questions is your big array of { question, ageRange, category, ... }
   return questions.filter(q => {
+
     return age >= q.ageRange[0] && age <= q.ageRange[1];
   });
 }
@@ -301,6 +319,7 @@ function filterQuestionsByAge(age) {
 
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const storedAge = currentUser.age || 10;
+  console.log(storedAge)
 
 
   filterQuestionsByAge(storedAge);

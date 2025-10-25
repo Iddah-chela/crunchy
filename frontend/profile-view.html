@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Friends</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="animated-overlay"></div>
+  <div id="topbar-container"></div>
+  
+    
+    
+<main class="profile-page">
+  <button id="backBtnb" class="innerbtn" onclick="window.location.href='community.html'">⬅ Back</button>
+  <div id="profile-infos">
+    <div class="profile-header">
+      <img id="viewProfilePic" src="images/default-avatar.png" class="profile-pic">
+      <div class="profile-info">
+  <h2 id="viewUsername">Guest</h2>
+  <p id="viewBio" class="bio-text">No bio yet.</p>
+</div>
+
+    </div>
+
+    <div class="profile-actions">
+      <button id="friendRequestBtn" class="auth-btn">Send Friend Request</button>
+    </div>
+  
+</main>
+  <div id="tree-section">
+    <div class="tree-container">
+      <img id="treeImage" src="backgrounds/seedling.png" alt="Tree">
+      <div class="sparkles" id="viewSparkles"></div>
+      <img id="wateringCan" src="backgrounds/jug.png" alt="Watering Can">
+    </div>
+  </div>
+
+
+
+<script src="js/topbar.js" defer></script>
+<script src="js/topbar-loader.js"></script>
+<script  src="js/profile-view.js" defer></script>
+</body>
+
+</html>

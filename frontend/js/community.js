@@ -11,10 +11,23 @@ try {
 // ensure user is signed in
 const currentUser = JSON.parse(storage.getItem("user"));
 if (!currentUser) {
-  // keep showing UI but warn — some parts will be drafts
-  // you might want to remove this alert in production
-  alert("You need to sign in to post questions!");
+  console.log("Not logged in, skipping backend load");
+  
 }
+
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 
 document.querySelector('.baby-ai-bubble')?.addEventListener('click', () => {
   window.location.href = 'private.html';
@@ -26,6 +39,7 @@ const questionFeed = document.querySelector('.question-feed');
 const STORAGE_KEY = 'community_questions';
 let questions = [];
 let openQuestionId = null; // keep which question is open after re-render
+let openReply = null; // top of file, as a global tracker
 
 // load saved (old behavior)
 const saved = storage.getItem(STORAGE_KEY);
@@ -80,7 +94,7 @@ async function getVerseByIntent(intent, questionMap) {
     );
 
     if (!matchingVerses.length) {
-      alert(`No verses found for the theme: ${keyword}`);
+      showModal(`No verses found.`);
       return [];
     }
 
@@ -135,6 +149,86 @@ function dataURLtoBlob(dataurl) {
   return new Blob([u8arr], { type: mime });
 }
 
+// keep track of which response threads are expanded across reloads
+// normalize global openQuestionId to string when set. initialize as null.
+if(openQuestionId) openQuestionId = String(openQuestionId);
+
+// expandedReplies already in your code — make sure keys are strings
+let expandedReplies = JSON.parse(localStorage.getItem('expandedReplies') || '{}');
+function saveExpandedReplies() {
+  try {
+    localStorage.setItem('expandedReplies', JSON.stringify(expandedReplies));
+  } catch (e) {
+    console.warn('Could not save expanded replies state', e);
+  }
+}
+
+
+// Build nested replies from flat server response array (expects parent_response_id)
+function buildNestedResponses(flatResponses) {
+  const map = Object.create(null);
+  flatResponses.forEach(r => {
+    map[String(r.id)] = {
+      id: r.id,
+      text: r.body,
+      author: r.username,
+      image: r.image || null,
+      parent_response_id: r.parent_response_id || null,
+      created_at: r.created_at || null,
+      replies: []
+    };
+  });
+
+  const roots = [];
+  Object.values(map).forEach(r => {
+    if (r.parent_response_id) {
+      const parent = map[String(r.parent_response_id)];
+      if (parent) parent.replies.push(r);
+      else {
+        // parent missing — promote to root but log for debugging
+        console.warn('Parent missing for response', r.id, 'parent_response_id', r.parent_response_id);
+        roots.push(r);
+      }
+    } else {
+      roots.push(r);
+    }
+  });
+
+  // Sort recursively by created_at ascending (oldest first)
+  const sortRec = (arr) => {
+    arr.sort((a,b) => {
+      const ta = a.created_at ? new Date(a.created_at).getTime() : 0;
+      const tb = b.created_at ? new Date(b.created_at).getTime() : 0;
+      return ta - tb;
+    });
+    arr.forEach(x => { if (x.replies && x.replies.length) sortRec(x.replies); });
+  };
+  sortRec(roots);
+
+  return roots;
+}
+
+
+
+// helper to focus main reply box inside currently-open question (non-fatal)
+function reopenReplyBox() {
+  if (!openQuestionId) return;
+  const card = document.querySelector(`.question-card[data-qid="${openQuestionId}"]`);
+  if (!card) return;
+  const expanded = card.querySelector('.question-expanded');
+  if (!expanded || expanded.classList.contains('hidden')) return;
+  const box = expanded.querySelector('.response-box');
+  if (box) {
+    box.focus();
+    return;
+  }
+  // if no main box, try to focus any inline response-box (rare)
+  const inline = expanded.querySelector('.response .response-box');
+  if (inline) inline.focus();
+}
+
+
+
 // ---------- Load from backend (new behavior) ----------
 async function loadFromBackend() {
   if (!currentUser) {
@@ -149,17 +243,22 @@ async function loadFromBackend() {
     console.log("Loaded questions from backend:", data);
 
     // map backend → local structure (but keep local drafts + cached ones)
-    const backendQuestions = data.map(q => ({
-      id: q.id,
-      text: q.body,
-      author: q.username,
-      image: q.image || null,           // backend should return image URL if exists
-      responses: [],                    // fetch separately
-      aiAnswered: false,
-      draft: false,
-      favorited: q.favorited === 1 || q.favorited === true,
-      favoritesCount: q.favorites_count || 0
-    }));
+    // when mapping rows from /commune/questions
+const backendQuestions = data.map(q => ({
+  id: String(q.id),
+  text: q.text || q.body || '',
+  author: q.author || q.username || "Anonymous",
+  authorId: q.authorId || q.user_id || q.userId || null,            // <-- important
+  authorProfilePic: q.authorProfilePic || q.profile || q.author_profile_pic || null,
+  image: q.image || null,
+  responses: [],
+  aiAnswered: false,
+  draft: false,
+  favorited: q.favorited === 1 || q.favorited === true,
+  favoritesCount: q.favoritesCount ?? q.favorites_count ?? 0,
+  created_at: q.created_at || q.createdAt || null
+}));
+
 
     // merge strategy: keep local drafts and local-only items, replace backend ones by id
     const localDrafts = questions.filter(q => q.draft || !q.id);
@@ -175,13 +274,8 @@ async function loadFromBackend() {
         const respRes = await fetch(`/commune/questions/${q.id}/responses`);
         if (!respRes.ok) throw new Error("responses fetch failed");
         const responses = await respRes.json();
-        q.responses = responses.map(r => ({
-          id: r.id,
-          text: r.body,
-          author: r.username,
-          image: r.image || null,
-          replies: []
-        }));
+        const nested = buildNestedResponses(Array.isArray(responses) ? responses :  []);
+        q.responses = nested
       } catch (err) {
         console.warn("Could not load responses for", q.id, err);
         // leave existing responses as is
@@ -196,6 +290,9 @@ async function loadFromBackend() {
     renderQuestions();
   }
 }
+
+
+
 
 // ---------- Posting utilities (support FormData or JSON with base64) ----------
 async function postQuestionToServer({ user_id, title, body, imageFile, imageDataUrl }) {
@@ -249,10 +346,11 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
   }
 }
 
-async function postResponseToServer({ questionId, user_id, body, imageFile, imageDataUrl }) {
+async function postResponseToServer({ questionId, user_id, body, parentResponseId = null, imageFile, imageDataUrl }) {
   try {
-    if (imageFile) {
-      const fd = new FormData();
+    let fd;
+    if (imageFile || imageDataUrl) {
+      fd = new FormData();
       fd.append("user_id", user_id);
       fd.append("body", body);
       fd.append("image", imageFile);
@@ -283,16 +381,14 @@ async function postResponseToServer({ questionId, user_id, body, imageFile, imag
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify({ user_id, body })
+        body: JSON.stringify({ user_id, body, parent_response_id: parentResponseId })
       });
       if (!res.ok) throw res;
-      const data = await res.json();
-      return data;
+      return await res.json();
     }
-  } catch (err) {
-    throw err;
-  }
+  } catch (err) { throw err; }
 }
+
 
 // ---------- Add Question (merged behavior) ----------
 async function addQuestion(text, imageFile = null, imageDataUrl = null) {
@@ -308,16 +404,19 @@ async function addQuestion(text, imageFile = null, imageDataUrl = null) {
 
   // create local object first
   const localQuestion = {
-    id: draft ? Date.now() : null, // temp id for local drafts
-    text,
-    author: currentUser ? currentUser.username : "Anonymous",
-    image: imageDataUrl || null,      // local display uses dataURL if present; if file uploaded server will return URL later
-    responses: aiReply ? [{ text: aiReply, author: 'Vale' }] : [],
-    aiAnswered: !!aiReply,
-    draft,
-    favorited: false,
-    favoritesCount: 0
-  };
+  id: draft ? Date.now() : null,
+  text,
+  author: currentUser ? currentUser.username : "Anonymous",
+  authorId: currentUser ? currentUser.id : null,          // <-- add
+  authorProfilePic: currentUser ? currentUser.profilePic : null,
+  image: imageDataUrl || null,
+  responses: aiReply ? [{ text: aiReply, author: 'Vale' }] : [],
+  aiAnswered: !!aiReply,
+  draft,
+  favorited: false,
+  favoritesCount: 0
+};
+
 
   questions.unshift(localQuestion);
   saveQuestions();
@@ -340,10 +439,12 @@ async function addQuestion(text, imageFile = null, imageDataUrl = null) {
 
     console.log("Saved to backend:", data);
 
+    
     // replace temp local id with backend id & update image URL if backend returned one
     localQuestion.id = data.id;
     if (data.image) localQuestion.image = data.image;
     localQuestion.draft = false;
+    if (!localQuestion.authorId && data.user_id) localQuestion.authorId = data.user_id;
     saveQuestions();
     renderQuestions();
   } catch (err) {
@@ -368,16 +469,13 @@ async function addResponse(questionId, parentResponse, text, imageDataUrl = null
     replyingTo
   };
 
-  if (parentResponse) {
-    parentResponse.replies.unshift(newResp);
-  } else {
+  if (parentResponse) parentResponse.replies.unshift(newResp);
+  else {
     const q = questions.find(q => q.id === questionId);
     if (q) q.responses.unshift(newResp);
   }
 
   saveQuestions();
-  
-  //reopenExpandedIfNeeded();
 
   if (draft) return;
 
@@ -386,14 +484,25 @@ async function addResponse(questionId, parentResponse, text, imageDataUrl = null
       questionId,
       user_id: currentUser.id,
       body: text,
+      parentResponseId: parentResponse?.id || null,
       imageFile,
       imageDataUrl
     });
-    console.log("Response saved:", data);
+
     newResp.id = data.id;
     if (data.image) newResp.image = data.image;
     saveQuestions();
-    
+
+    // Immediately rerender only the expanded question
+    const card = document.querySelector(`.question-card[data-qid="${questionId}"]`);
+    if (card) {
+      const expanded = card.querySelector('.question-expanded');
+      if (!expanded.classList.contains('hidden')) {
+        const respContainer = expanded.querySelector('.responses');
+        respContainer.innerHTML = "";
+        renderResponses(questions.find(q => q.id === questionId).responses, questionId, respContainer);
+      }
+    }
   } catch (err) {
     console.error("Response save failed", err);
     // mark as draft (we reuse the draft flag located on the parent question level if desired)
@@ -401,17 +510,28 @@ async function addResponse(questionId, parentResponse, text, imageDataUrl = null
     if (q) q.draft = true;
     saveQuestions();
     
-    reopenExpandedIfNeeded();
-    reopenReplyBox();
+    
   }
 }
+
+
+
 
 // ---------- Favorites ----------
 async function toggleFavorite(questionId, favBtn) {
   if (!currentUser) {
-    alert("You must log in to favorite.");
-    return;
+    showModal("You must log in to favorite.");
+    return; // <-- prevent local toggle
   }
+
+  const q = questions.find(q => q.id === questionId);
+  if (!q) return;
+
+  // local toggle
+  q.favorited = !q.favorited;
+  q.favoritesCount += q.favorited ? 1 : -1;
+  
+  updateFavUI(favBtn, q);
 
   try {
     const res = await fetch(`/commune/questions/${questionId}/favorite`, {
@@ -419,22 +539,29 @@ async function toggleFavorite(questionId, favBtn) {
       credentials: "include"
     });
     const data = await res.json();
-    const q = questions.find(q => q.id === questionId);
-    if (q) {
-      q.favorited = data.favorited;
-      q.favoritesCount = (q.favoritesCount || 0) + (data.favorited ? 1 : -1);
-    }
-    saveQuestions();
-
-    favBtn.textContent = data.favorited ? "★" : "☆";
-    const countSpan = favBtn.nextElementSibling;
-    if (countSpan) countSpan.textContent = ` ${q.favoritesCount}`;
-    favBtn.setAttribute('aria-pressed', data.favorited ? 'true' : 'false');
-    saveQuestions();
-  } catch (err) {
-    console.error('Favorite failed:', err);
+    if (!res.ok) throw new Error(data.error || "Unknown");
+    
+    // sync local with backend
+    q.favorited = !!data.favorited;
+    q.favoritesCount = data.favoritesCount ?? q.favoritesCount;
+    updateFavUI(favBtn, q);
+  } catch(err) {
+    console.error("Favorite failed:", err);
+    // maybe revert UI changes here if you want strict consistency
   }
+
+  saveQuestions();
 }
+
+function updateFavUI(favBtn, q) {
+  favBtn.textContent = q.favorited ? "★" : "☆";
+  const countSpan = favBtn.nextElementSibling;
+  if (countSpan) countSpan.textContent = ` ${q.favoritesCount}`;
+  favBtn.classList.toggle('favorited', q.favorited);
+}
+
+
+
 
 // ---------- Render helpers ----------
 function countAllReplies(responses) {
@@ -457,6 +584,8 @@ function reopenExpandedIfNeeded() {
 }
 
 function renderResponses(responses, questionId, container, level = 0) {
+  container.innerHTML = ""; // render fresh
+
   responses.forEach(r => {
     const div = document.createElement('div');
     div.className = "response";
@@ -488,27 +617,33 @@ function renderResponses(responses, questionId, container, level = 0) {
       toggleBtn = document.createElement('button');
       toggleBtn.className = "toggle-replies-link";
       const totalNested = countAllReplies(r.replies);
-      toggleBtn.textContent = `💬 ${totalNested} response${totalNested > 1 ? "s" : ""}`;
+      const isOpen = !!expandedReplies[String(r.id)];
+      toggleBtn.textContent = `💬 ${totalNested} response${totalNested > 1 ? "s" : ""}${isOpen ? " (open)" : ""}`;
       div.appendChild(toggleBtn);
 
       repliesContainer = document.createElement('div');
-      repliesContainer.className = "replies hidden";
+      repliesContainer.className = "replies" + (isOpen ? "" : " hidden");
       div.appendChild(repliesContainer);
+
+      if (isOpen) {
+        renderResponses(r.replies, questionId, repliesContainer, level + 1);
+      }
 
       toggleBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        repliesContainer.classList.toggle("hidden");
-        if (!repliesContainer.classList.contains("hidden")) {
+        const nowHidden = repliesContainer.classList.toggle("hidden");
+        const newOpenState = !nowHidden;
+        expandedReplies[String(r.id)] = newOpenState;
+        saveExpandedReplies();
+        if (newOpenState) {
           repliesContainer.innerHTML = "";
           renderResponses(r.replies, questionId, repliesContainer, level + 1);
-          toggleBtn.textContent = `💬 ${totalNested} response${totalNested > 1 ? "s" : ""} (open)`;
-        } else {
-          toggleBtn.textContent = `💬 ${totalNested} response${totalNested > 1 ? "s" : ""}`;
         }
+        toggleBtn.textContent = `💬 ${totalNested} response${totalNested > 1 ? "s" : ""}${newOpenState ? " (open)" : ""}`;
       });
     }
 
-    // on reply → show inline mini input
+    // reply UI
     replyBtn.addEventListener('click', () => {
       if (div.querySelector('.response-box')) return;
       if (toggleBtn) toggleBtn.style.display = 'none';
@@ -526,7 +661,7 @@ function renderResponses(responses, questionId, container, level = 0) {
       sendReplyBtn.textContent = "Send";
       sendReplyBtn.className = "innerbtnc";
 
-      replyBtn.style.display = "none"; // hide reply link while open
+      replyBtn.style.display = "none";
 
       div.appendChild(replyBox);
       div.appendChild(fileInput);
@@ -537,17 +672,23 @@ function renderResponses(responses, questionId, container, level = 0) {
         const file = fileInput.files[0];
         if (!text && !file) return;
 
+        // ensure parent thread is flagged open before sending
+        if (r.id) {
+          expandedReplies[String(r.id)] = true;
+          saveExpandedReplies();
+        }
+
         if (file) {
           const reader = new FileReader();
           reader.onload = () => {
-            // reader.result is dataURL
-            addResponse(questionId, r, text, reader.result, r.author, file);
+            addResponse(questionId, r, text, reader.result, r.author, file)
+              .catch(() => reopenReplyBox());
           };
           reader.readAsDataURL(file);
         } else {
-          addResponse(questionId, r, text, null, r.author, null);
+          addResponse(questionId, r, text, null, r.author, null)
+            .catch(() => reopenReplyBox());
         }
-        reopenExpandedIfNeeded();
       });
     });
 
@@ -555,20 +696,65 @@ function renderResponses(responses, questionId, container, level = 0) {
   });
 }
 
+
 function renderQuestions(filter = "") {
   questionFeed.innerHTML = "";
 
   questions
-    .filter(q => q.text.toLowerCase().includes(filter.toLowerCase()))
+   
+    .filter(q => !q.draft || (q.draft && currentUser && q.author === currentUser.username))
+    .filter(q => (q.text || "").toLowerCase().includes((filter || "").toLowerCase()))
     .forEach((q) => {
       const card = document.createElement('div');
       card.className = 'question-card';
-      card.dataset.qid = q.id || ''; // might be null for local drafts
+            // previous: card.dataset.qid = q.id || '';
+      if (q.draft || !q.id) {
+        // local draft — prefix so dataset doesn't collide with server numerical ids
+        card.dataset.qid = `local-${q.id || Date.now()}`;
+      } else {
+        card.dataset.qid = String(q.id);
+      }
+      // might be null for local drafts
 
+      // Question text
       const questionText = document.createElement('p');
       questionText.className = 'question';
       questionText.textContent = `“${q.text}”`;
+      questionText.innerHTML = questionText.innerHTML.replace(/“(.*?)”/, '“<em>$1</em>”');
+            
+      // Profile pic in chat bubble
+const profileImg = document.createElement('img');
+profileImg.src = q.authorProfilePic || '/images/default-avatar.png';
+profileImg.className = 'bubble-pic';
+profileImg.style.cursor = 'pointer';
 
+// Click leads to profile page
+profileImg.addEventListener('click', (e) => {
+  e.stopPropagation(); // don't open the question
+
+  // Try multiple possible fields (normalize across layers)
+  const profileId =
+    q.authorId ?? q.user_id ?? q.userId ?? q.senderId ?? q.author_id ?? null;
+
+  // If no authorId and it's a local draft, let it point to current user when available
+  const finalId = profileId || (q.draft && currentUser ? currentUser.id : null);
+
+  if (finalId) {
+    window.location.href = `/profile-view.html?id=${encodeURIComponent(finalId)}`;
+    return;
+  }
+
+  // Helpful debug so we can see what we're missing instead of blind guessing
+  console.warn("Profile click failed — no author id present on question:", q);
+  showModal("User missing 😭");
+});
+
+
+
+card.appendChild(profileImg);
+
+
+      // Meta info row
       const meta = document.createElement('div');
       meta.className = 'meta';
 
@@ -576,6 +762,7 @@ function renderQuestions(filter = "") {
       const favBtn = document.createElement('button');
       favBtn.textContent = q.favorited ? "★" : "☆";
       favBtn.className = "favorite-btn";
+        favBtn.classList.toggle('favorited', q.favorited);
 
       const favCount = document.createElement('span');
 favCount.className = "favorite-count";
@@ -584,10 +771,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
     
       favBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        if (!currentUser) {
-          alert("You must log in to favorite.");
-          return;
-        }
+        
         toggleFavorite(q.id, favBtn);
       });
 
@@ -632,7 +816,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
         expanded.innerHTML = "";
 
         if (nowOpening) {
-          openQuestionId = q.id;
+          openQuestionId = q.id ? String(q.id) : null;
           meta.style.display = "none";
 
           // close button
@@ -653,7 +837,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
 
 
           // Check if user can edit (only if they posted the question)
-      const canEdit = currentUser && q.author === currentUser.username;
+      const canEdit = currentUser && q.author === currentUser.username && q.id;
 
       // main write response box ABOVE replies
       const box = document.createElement('textarea');
@@ -674,8 +858,10 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
       actionsRow.appendChild(fileInput);
       actionsRow.appendChild(sendBtn);
 
-      // Add edit button if user can edit
+     // Check if user can edit/delete (only author)
+
       if (canEdit) {
+        // Edit button
         const editBtn = document.createElement('button');
         editBtn.textContent = "Edit Question";
         editBtn.className = "edit-btn";
@@ -685,7 +871,39 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
           e.stopPropagation();
           toggleEditMode();
         });
+
+        // Delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.textContent = "Delete Question";
+        deleteBtn.className = "delete-btn";
+        actionsRow.appendChild(deleteBtn);
+
+        deleteBtn.addEventListener('click', async (e) => {
+          e.stopPropagation();
+          const confirmDel = confirm("Are you sure you want to delete this question?");
+          if (!confirmDel) return;
+
+          // Optimistically remove locally
+          questions = questions.filter(qq => qq.id !== q.id);
+          saveQuestions();
+          renderQuestions();
+
+          // Sync with backend
+          try {
+            const res = await fetch(`/commune/questions/${q.id}`, {
+              method: "DELETE",
+              credentials: "include"
+            });
+            const data = await res.json();
+            if (!data.success) showModal("Delete failed: " + (data.error || "unknown"));
+          } catch (err) {
+            console.error('Delete failed:', err);
+            showModal("Failed to delete on server");
+          }
+        });
       }
+
+
 
       expanded.appendChild(box);
       expanded.appendChild(actionsRow);
@@ -697,46 +915,68 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
 
       renderResponses(q.responses || [], q.id, respContainer);
 
-      sendBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const text = box.value.trim();
-        const file = fileInput.files[0];
-        if (!text && !file) return;
+      sendBtn.addEventListener('click', async (e) => {
+  e.stopPropagation();
 
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = () => {
-            // dataURL available for local preview; file included to send when online
-            addResponse(q.id, null, text, reader.result, null, file);
-            box.value = "";
-            fileInput.value = "";
-          };
-          reader.readAsDataURL(file);
-        } else {
-          addResponse(q.id, null, text, null, null, null);
-          box.value = "";
-        }
+  if (box.classList.contains('editing')) {
+    // EDIT mode
+    const newText = box.value.trim();
+    if (!newText) return;
+
+    try {
+      const res = await fetch(`/commune/questions/${q.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ body: newText })
       });
+      const data = await res.json();
+      if (data.success) {
+        q.text = newText;
+        q.draft = false;
+        saveQuestions();
+        renderQuestions();
+        showModal('Question updated!');
+      } else {
+        showModal('Failed to update question: ' + (data.error || 'unknown'));
+      }
+    } catch (err) {
+      console.error('Edit failed:', err);
+      showModal('Failed to update question');
+    }
+  } else {
+    // RESPONSE mode (old logic)
+    const text = box.value.trim();
+    const file = fileInput.files[0];
+    if (!text && !file) return;
+    addResponse(q.id, null, text, file ? await fileToDataURL(file) : null, null, file);
+    box.value = "";
+    fileInput.value = "";
+  }
+});
+
 
       // Edit mode functionality
+      let sendClickHandler; // keep reference
+
       function toggleEditMode() {
+        if (!q.id) return showModal("Drafts must be published first before editing.");
         const isEditing = box.classList.contains('editing');
 
         if (!isEditing) {
-          // Enter edit mode
           box.classList.add('editing');
           box.value = q.text;
           box.placeholder = "Edit your question...";
           sendBtn.textContent = "Save Changes";
           sendBtn.classList.add('save-edit');
 
-          // Hide file input and other buttons during edit
           fileInput.style.display = 'none';
-          actionsRow.querySelector('.edit-btn').textContent = "Cancel Edit";
+          editBtn.textContent = "Cancel Edit";
 
-          // Change send button behavior to save edit
-          const originalSendHandler = sendBtn.onclick;
-          sendBtn.onclick = async (e) => {
+          // Remove previous send listener if any
+          if (sendClickHandler) sendBtn.removeEventListener('click', sendClickHandler);
+
+          sendClickHandler = async (e) => {
             e.stopPropagation();
             const newText = box.value.trim();
             if (!newText) return;
@@ -749,19 +989,24 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
                 body: JSON.stringify({ body: newText })
               });
 
-              if (res.ok) {
+              const data = await res.json();
+              if (data.success) {
                 q.text = newText;
+                q.draft = false;
                 saveQuestions();
                 renderQuestions();
-                alert('Question updated successfully!');
+                showModal('Question updated!');
               } else {
-                alert('Failed to update question');
+                showModal('Failed to update question: ' + (data.error || 'unknown'));
               }
             } catch (err) {
               console.error('Edit failed:', err);
-              alert('Failed to update question');
+              showModal('Failed to update question');
             }
           };
+
+          sendBtn.addEventListener('click', sendClickHandler);
+
         } else {
           // Exit edit mode
           box.classList.remove('editing');
@@ -769,15 +1014,15 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
           box.placeholder = "Write a response...";
           sendBtn.textContent = "Send";
           sendBtn.classList.remove('save-edit');
-
-          // Show file input and restore buttons
           fileInput.style.display = 'inline-block';
-          actionsRow.querySelector('.edit-btn').textContent = "Edit Question";
+          editBtn.textContent = "Edit Question";
 
-          // Restore original send button behavior
-          sendBtn.onclick = null;
+          if (sendClickHandler) sendBtn.removeEventListener('click', sendClickHandler);
+          sendClickHandler = null;
         }
       }
+
+
         } else {
           meta.style.display = "flex";
           openQuestionId = null;
@@ -809,10 +1054,12 @@ askInput?.addEventListener('input', () => {
 // Hashtag search
 document.querySelectorAll('.tags span').forEach(tag => {
   tag.addEventListener('click', () => {
-    askInput.value = tag.textContent;
-    renderQuestions(tag.textContent);
+    const tagText = tag.textContent.replace(/^#/, ''); // remove leading #
+    askInput.value = tagText;
+    renderQuestions(tagText);
   });
 });
+
 
 // ---------- Draft retry ----------
 window.addEventListener("online", trySendDrafts);
@@ -829,17 +1076,17 @@ function reopenReplyBox() {
   if (!respDiv) return;
   respDiv.querySelector('.reply-link')?.click();
 }
-
 async function trySendDrafts() {
   if (!currentUser) return; // still can’t publish
   let changed = false;
+
+  // Copy questions to iterate safely while removing drafts
   for (const q of [...questions]) {
     if (q.draft) {
-      // attempt to publish
       try {
-        // if q.image is a data URL, convert to blob
+        // Convert data URL to blob if needed
         let imageFile = null;
-        if (q._file) imageFile = q._file; // prefer original File if saved
+        if (q._file) imageFile = q._file;
         else if (q.image && q.image.startsWith('data:')) imageFile = dataURLtoBlob(q.image);
 
         const result = await postQuestionToServer({
@@ -850,9 +1097,22 @@ async function trySendDrafts() {
           imageDataUrl: (q.image && q.image.startsWith('data:')) ? q.image : null
         });
 
-        q.id = result.id;
-        if (result.image) q.image = result.image;
-        q.draft = false;
+        // Draft was successfully posted, remove it from local questions
+        questions = questions.filter(qq => qq !== q);
+
+        // Add the real question returned from backend
+        questions.push({
+          id: result.id,
+          user_id: currentUser.id,
+          title: q.text.slice(0, 50),
+          body: q.text,
+          image: result.image || null,
+          favorited: false,
+          favoritesCount: 0,
+          draft: false,
+          author: currentUser.username
+        });
+
         changed = true;
       } catch (err) {
         console.warn("Draft publish failed for question:", q.id, err);
@@ -860,34 +1120,7 @@ async function trySendDrafts() {
       }
     }
 
-    // try replies drafts too (mark parent q.draft true if any reply fails)
-    if (q.responses && q.responses.length) {
-      for (const r of q.responses) {
-        if (r.id === null || (r.id && r.id.toString().startsWith('temp'))) {
-          // assume not published (we used timestamp ids for drafts)
-          try {
-            let imageFile = null;
-            if (r._file) imageFile = r._file;
-            else if (r.image && r.image.startsWith('data:')) imageFile = dataURLtoBlob(r.image);
-
-            const result = await postResponseToServer({
-              questionId: q.id,
-              user_id: currentUser.id,
-              body: r.text,
-              imageFile: imageFile instanceof Blob ? imageFile : null,
-              imageDataUrl: (r.image && r.image.startsWith('data:')) ? r.image : null
-            });
-
-            r.id = result.id;
-            if (result.image) r.image = result.image;
-            changed = true;
-          } catch (err) {
-            console.warn("Draft response publish failed", err);
-            q.draft = true;
-          }
-        }
-      }
-    }
+    // handle reply drafts similarly if you need
   }
 
   if (changed) {
@@ -895,6 +1128,7 @@ async function trySendDrafts() {
     renderQuestions();
   }
 }
+
 
 // Export initial render if you loaded local cache before backend
 renderQuestions();

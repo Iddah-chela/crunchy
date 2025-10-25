@@ -1,257 +1,228 @@
-const user = JSON.parse(localStorage.getItem("user"));
-const form = document.getElementById("profileForm");
-const msg = document.getElementById("msg");
+let user = JSON.parse(localStorage.getItem("user")) || null;
 
-// Pre-fill form with localStorage values
-document.getElementById("username").value = user.username;
-document.getElementById("age").value = user.age;
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("profileForm");
+  const msg = document.getElementById("msg");
+  const usernameInput = document.getElementById("username");
+  const bioInput = document.getElementById("bio");
+  const passwordInput = document.getElementById("password");
+  const topbarUser = document.getElementById("topbar-user");
+  const profileInfos = document.getElementById("profile-infos");
+  const profilePicEl = document.querySelector(".profile-pic");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const fileInput = document.getElementById("profilePic");
+  const preview = document.getElementById("previewPic");
+  const profileBio = document.getElementById("profileBio");
 
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
+  if (user) {
+    (async () => {
+      try {
+        const res = await fetch(`/users/${user.id}`);
+        if (res.ok) {
+          const data = await res.json();
+          user = { ...user, ...data };
+          localStorage.setItem("user", JSON.stringify(user));
 
-  const body = {
-    username: document.getElementById("username").value.trim(),
-    age: Number(document.getElementById("age").value),
-    password: document.getElementById("password").value || null
+          if (topbarUser) topbarUser.textContent = `👋 ${user.username}`;
+          if (profilePicEl)
+            profilePicEl.src = user.profilePic || "images/default-avatar.png";
+          if (usernameInput) usernameInput.value = user.username || "";
+          if (bioInput) bioInput.value = user.bio || "";
+          if (profileBio) profileBio.textContent = user.bio || "No bio yet.";
+        }
+      } catch (err) {
+        console.error("Failed to fetch user on load:", err);
+      }
+    })();
+  }
+
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        const res = await fetch("/logout", {
+          method: "POST",
+          credentials: "include"
+        });
+        const data = await res.json();
+        if (!res.ok) return alert(data.error || "Logout failed 😭");
+        localStorage.removeItem("user");
+        user = null;
+        window.location.href = "/login.html";
+      } catch (err) {
+        console.error(err);
+        alert("Logout error 😭");
+      }
+    });
+  }
+
+  if (fileInput && preview) {
+    fileInput.addEventListener("change", () => {
+      const file = fileInput.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => (preview.src = reader.result);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!user) return alert("No user logged in.");
+
+      const formData = new FormData();
+      const usernameVal = usernameInput?.value.trim() || "";
+      const bioVal = bioInput?.value.trim() || "";
+
+      if (usernameVal) formData.append("username", usernameVal);
+      if (bioVal) formData.append("bio", bioVal);
+      if (passwordInput?.value)
+        formData.append("password", passwordInput.value);
+      if (fileInput?.files[0])
+        formData.append("profilePic", fileInput.files[0]);
+
+      try {
+        const res = await fetch(`/users/${user.id}`, {
+          method: "PUT",
+          body: formData,
+          credentials: "include"
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          msg.textContent = data.error || "Profile update failed 😭";
+          return;
+        }
+
+        msg.textContent = data.msg || "Profile updated 🎉";
+
+        const updatedUser = {
+          ...user,
+          username: formData.get("username") || user.username,
+          bio: formData.get("bio") || user.bio,
+          profilePic: data.profilePicUrl || user.profilePic
+        };
+
+        user = updatedUser;
+        localStorage.setItem("user", JSON.stringify(updatedUser));
+
+        if (topbarUser) topbarUser.textContent = updatedUser.username;
+        if (profileBio) profileBio.textContent = updatedUser.bio || "No bio yet.";
+        if (profilePicEl)
+          profilePicEl.src = updatedUser.profilePic || "images/default-avatar.png";
+
+        form.classList.add("hidden");
+        if (profileInfos) profileInfos.classList.remove("hidden");
+      } catch (err) {
+        console.error(err);
+        msg.textContent = "Network drama 😭";
+      }
+    });
+  }
+
+  window.edit = function () {
+    form?.classList.remove("hidden");
+    profileInfos?.classList.add("hidden");
   };
 
-  try {
-    const res = await fetch(`/users/${user.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
-    const data = await res.json();
-
-    if (!res.ok) {
-      msg.textContent = data.error || "Profile update failed 😭";
-      return;
-    }
-
-    msg.textContent = data.msg;
-
-    // Update localStorage copy
-    localStorage.setItem("user", JSON.stringify({
-      ...user,
-      username: body.username || user.username,
-      age: body.age || user.age
-    }));
-    document.getElementById("topbar-user").textContent = user.username;
-
-    form.classList.add("hidden");
-  document.getElementById("profile-infos").classList.remove("hidden");
-  } catch (err) {
-    console.error(err);
-    msg.textContent = "Network drama 😭";
-  }
-  document.getElementById("topbar-user").textContent = body.username || user.username;
-
-});
-function edit() {
-  form.classList.remove("hidden");
-  document.getElementById("profile-infos").classList.add("hidden");
-}
-window.addEventListener("DOMContentLoaded", async () => {
-  let user = JSON.parse(localStorage.getItem("user"));
-  if (user) {
-    try {
-      const res = await fetch(`/users/${user.id}`);
-      if (res.ok) {
-        const data = await res.json();
-        user = { ...user, ...data }; // merge with localStorage
-        localStorage.setItem("user", JSON.stringify(user));
-
-        document.getElementById("topbar-user").textContent = `👋 ${user.username}`;
-        document.querySelector(".profile-pic").src = user.profilePic || "images/default-avatar.png";
-      }
-    } catch (err) {
-      console.error("Failed to fetch user on load:", err);
-    }
-  }
-});
 
 
-const logoutBtn = document.getElementById("logoutBtn");
+  // --- Tree & water system (per-user keys fixed) ---
+  const currentUserName = user?.username || "Guest";
+  const treeKey = `treeLevel_${currentUserName}`;
+  const waterKey = `water_${currentUserName}`;
+  const lastWaterDayKey = `lastWaterDay_${currentUserName}`;
 
-logoutBtn.addEventListener("click", async () => {
-  try {
-    const res = await fetch("/logout", {
-      method: "POST",
-      credentials: "include"
-    });
-    const data = await res.json();
+  let water = parseInt(localStorage.getItem(waterKey)) || 0;
+  let treeLevel = parseInt(localStorage.getItem(treeKey)) || 0;
 
-    if (!res.ok) {
-      alert(data.error || "Logout failed 😭");
-      return;
-    }
+  const treeImages = [
+    "backgrounds/seedling.png", // seedling
+    "backgrounds/kidplant.png",
+    "backgrounds/tweenseed.png",
+    "backgrounds/teenplant.png",
+    "backgrounds/almost18tree.png",
+    "backgrounds/20stree.png",
+    "backgrounds/25hapo.png",
+    "backgrounds/30sasa.png",
+    "backgrounds/bigtree.png"  // full-grown
+  ];
 
-    // Clear localStorage
-    localStorage.removeItem("user");
+  function updateTree() {
+    if (!treeImg) return;
 
-    // Redirect to login page
-    window.location.href = "/login.html";
-  } catch (err) {
-    console.error(err);
-    alert("Network drama 😭");
-  }
-});
+    const safeLevel = Math.min(Math.max(0, treeLevel), treeImages.length - 1);
+    treeImg.src = treeImages[safeLevel];
 
-const fileInput = document.getElementById("profilePic");
-const preview = document.getElementById("previewPic");
+    // size growth
+    const baseHeight = 120; // seedling
+    const growth = 25 * safeLevel;
+    treeImg.style.height = baseHeight + growth + "px";
 
-// Live preview
-fileInput.addEventListener("change", () => {
-  const file = fileInput.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => preview.src = reader.result;
-  reader.readAsDataURL(file);
-});
-
-form.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const formData = new FormData();
-  formData.append("username", document.getElementById("username").value.trim());
-  formData.append("age", Number(document.getElementById("age").value));
-  if (document.getElementById("password").value) {
-    formData.append("password", document.getElementById("password").value);
-  }
-  if (fileInput.files[0]) {
-    formData.append("profilePic", fileInput.files[0]);
-  }
-
-  try {
-    const res = await fetch(`/users/${user.id}`, {
-      method: "PUT",
-      body: formData,
-      credentials: "include"
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      msg.textContent = data.error || "Profile update failed 😭";
-      return;
-    }
-
-    msg.textContent = data.msg;
-
-    // Update localStorage & UI
-    const updatedUser = {
-      ...user,
-      username: formData.get("username"),
-      age: formData.get("age"),
-      profilePic: data.profilePicUrl || user.profilePic
-    };
-    localStorage.setItem("user", JSON.stringify(updatedUser));
-    document.getElementById("topbar-user").textContent = updatedUser.username;
-    document.querySelector(".profile-pic").src = updatedUser.profilePic || "images/default-avatar.png";
-
-    form.classList.add("hidden");
-    document.getElementById("profile-infos").classList.remove("hidden");
-  } catch (err) {
-    console.error(err);
-    msg.textContent = "Network drama 😭";
-  }
-});
-
-// in profile.js
-const treeImg = document.getElementById("treeImage");
-const waterBtn = document.getElementById("waterBtn");
-
-const currentUser = JSON.parse(localStorage.getItem("user"))?.username || "Guest";
-const treeKey = `treeLevel_${currentUser}`;
-const waterKey = `water_${currentUser}`;
-
-let water = parseInt(localStorage.getItem(waterKey)) || 0;
-let treeLevel = parseInt(localStorage.getItem(treeKey)) || 0;
-
-const treeImages = [
-  "backgrounds/seedling.png", // seedling
-  "backgrounds/kidplant.png",
-  "backgrounds/tweenseed.png",
-  "backgrounds/teenplant.png",
-  "backgrounds/almost18tree.png",
-  "backgrounds/20stree.png",
-  "backgrounds/25hapo.png",
-  "backgrounds/30sasa.png",
-  "backgrounds/bigtree.png"  // full-grown
-];
-
-function updateTree() {
-  treeImg.src = treeImages[treeLevel];
-  
-  // make tree grow in size as it levels up
-  const baseHeight = 120; // seedling
-  const growth = 25 * treeLevel; // each level adds 25px
-  treeImg.style.height = baseHeight + growth + "px";
-  
-  // sparkle + bounce effect
-  const sparkles = document.getElementById("sparkles");
-  sparkles.classList.add("active");
-  treeImg.style.opacity = "0"; // hide while sparkles cover it
-
-  setTimeout(() => {
-    sparkles.classList.remove("active");
-    treeImg.style.opacity = "1";
-    treeImg.style.animation = "bounce 0.6s ease";
-    setTimeout(() => (treeImg.style.animation = ""), 600);
-  }, 800);
-}
-
-
-function waterTree() {
-  const sparkles = document.getElementById("sparkles");
-  const can = document.getElementById("wateringCan");
-
-  if (water <= 0) {
-    alert("No water left! Come back tomorrow for more!");
-    return;
-  }
-
-  // Start pouring animation
-  can.classList.add("pouring");
-  sparkles.classList.add("active");
-
-  setTimeout(() => {
-    // finish watering after animation
-    can.classList.remove("pouring");
-    sparkles.classList.remove("active");
-
-    water--;
-    if (treeLevel < treeImages.length - 1) {
-      treeLevel++;
-    }
-
-    localStorage.setItem(waterKey, water);
-    localStorage.setItem(treeKey, treeLevel);
-
-    // bounce animation
+    // sparkle + bounce effect
+    if (sparkles) sparkles.classList.add("active");
     treeImg.style.opacity = "0";
+
     setTimeout(() => {
-      updateTree();
+      if (sparkles) sparkles.classList.remove("active");
       treeImg.style.opacity = "1";
-      treeImg.style.transform = "scale(1.2)";
+      treeImg.style.animation = "bounce 0.6s ease";
+      setTimeout(() => (treeImg.style.animation = ""), 600);
+    }, 800);
+
+    // update water count text
+    if (waterCountEl) waterCountEl.textContent = `Water left: ${water}`;
+  }
+
+  function waterTree() {
+    if (!waterBtn) return;
+    if (water <= 0) {
+      showModal("No water left! Come back tomorrow for more!");
+      return;
+    }
+
+    // pouring animation
+    if (wateringCan) wateringCan.classList.add("pouring");
+    if (sparkles) sparkles.classList.add("active");
+
+    setTimeout(() => {
+      if (wateringCan) wateringCan.classList.remove("pouring");
+      if (sparkles) sparkles.classList.remove("active");
+
+      water = Math.max(0, water - 1);
+      if (treeLevel < treeImages.length - 1) treeLevel++;
+
+      localStorage.setItem(waterKey, water);
+      localStorage.setItem(treeKey, treeLevel);
+
+      // animate tree change
+      if (treeImg) treeImg.style.opacity = "0";
       setTimeout(() => {
-        treeImg.style.transform = "scale(1)";
+        updateTree();
+        if (treeImg) {
+          treeImg.style.opacity = "1";
+          treeImg.style.transform = "scale(1.2)";
+          setTimeout(() => (treeImg.style.transform = "scale(1)"), 300);
+        }
       }, 300);
-    }, 300);
-  }, 1200);
-  document.getElementById("waterCount").textContent = `Water left: ${water}`;
-}
+    }, 1200);
 
+    // update visible count quickly (show anticipated value)
+    if (waterCountEl) waterCountEl.textContent = `Water left: ${Math.max(0, water - 1)}`;
+  }
 
-//give water once per day
-const today = new Date().toDateString();
-const lastWaterDay = localStorage.getItem("lastWaterDay");
+  // attach water button
+  if (waterBtn) waterBtn.addEventListener("click", waterTree);
 
-if (today !== lastWaterDay) {
-  water++;
-  localStorage.setItem("water", water);
-  localStorage.setItem("lastWaterDay", today);
-}
+  // give water once per day (per-user)
+  const todayStr = new Date().toDateString();
+  const lastWaterDay = localStorage.getItem(lastWaterDayKey);
+  if (todayStr !== lastWaterDay) {
+    water++;
+    localStorage.setItem(waterKey, water);
+    localStorage.setItem(lastWaterDayKey, todayStr);
+  }
 
-
-updateTree();
+  // initial render
+  updateTree();
+});

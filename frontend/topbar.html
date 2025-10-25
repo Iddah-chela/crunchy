@@ -19,7 +19,7 @@
 
 <nav id="sideMenu" class="hidden">
   <ul>
-    <li><button  class="innerbtn"><a href="home.html"><i class="fas fa-home"></i><small>Home</small></a></button></li>
+    <li><button  class="innerbtn"><a href="index.html"><i class="fas fa-home"></i><small>Home</small></a></button></li>
     <li><button class="innerbtn"><a href="profile.html"><i class="fas fa-user"></i><small>Profile</small></a></button></li>
     <li><button id="settingsBtn" class="innerbtn"><i class="fa-solid fa-gear"></i><small>Settings</small></button></li>
     <li><a id="loginLink" class="innerbtn" href="login.html">Login</a></li>
@@ -27,7 +27,12 @@
     <li><button id="logoutBtn" class="innerbtn">Logout</button></li>
   </ul>
 </nav>
-
+<div id="appModal" class="modal">
+  <div class="modal-content">
+    <p id="modalMessage">This is a message.</p>
+    <button id="modalClose" class="btn">OK</button>
+  </div>
+</div>
 <!-- SETTINGS MODAL -->
 <div id="settingsModal">
   <div class="settings-content">
@@ -37,7 +42,7 @@
       
       
       
-      <li><button id="start-music-btn" class="menu-item innerbtn" data-i18n="btn.music"><i class="fa-solid fa-volume-xmark"></i></button></li>
+      <li><button id="start-music-btn" class="menu-item innerbtn"><i class="fa-solid fa-volume-high"></i></button></li>
       <button class="menu-item innerbtn" id="themeToggle">Remove animation</button>
       <li>
        
@@ -63,8 +68,9 @@
   </div>
 </div>
 
-<audio id="bg-music" preload="auto" loop hidden autoplay>
+<audio id="bg-music" loop hidden>
 </audio>
+
 
 
 

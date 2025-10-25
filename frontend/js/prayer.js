@@ -111,6 +111,19 @@ const prayerPool = {
   }
 };
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 function generatePrayerByTopic(topic) {
   const category = prayerPool[topic];
   if (!category) return;
@@ -412,7 +425,7 @@ if (backBtn) backBtn.style.display = "none";
       document.getElementById("slideshow").classList.add("hidden");
       showSpace();
       setTimeout(() => {
-        alert("🎉 You just prayed for the first time!");
+        showModal("🎉 You just prayed for the first time!");
       }, 500);
     };
     tryBtn.classList.add("innerbtn");

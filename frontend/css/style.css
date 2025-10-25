@@ -12,15 +12,15 @@
 
 /* Light Theme with fully distinct pastel gradients */
 :root {
-  --main-gradient: linear-gradient(135deg, #80f0e0, #00bbf9, #3ac3c3);
+  --main-gradient: linear-gradient(135deg, #70d9f0, #00a6f0, #3ac3c3);
   --bg-color: #e6f4ff;
   --text-color: #002b36;
   --button-bg: #d0eaff;
   --button-text: #002b36;
-  --accent: #89bfff;
+  --accent: #a0cbff;
   --verse-color: #1b1818;
   --border-radius: 15px;
-  --font: 'Segoe UI', sans-serif;
+  --font: 'Segoe UI', 'Helvetica Neue', sans-serif;
 
   --accent1: #bbfab9;
   --accent2: #bbd9fd;
@@ -43,14 +43,14 @@
 
 /* Dark Theme */
 :root.dark-theme { 
-  --main-gradient: linear-gradient(135deg, #003566, #006494, #00bbf9);
+  --main-gradient: linear-gradient(135deg,#167bff, #003566, #006494 );
   --bg-color: #1b1f23;
   --text-color: #d6dce5;
   --button-bg: #2a2f36;
   --button-text: #d6dce5;
   --accent: #5470a1;
   --verse-color: #13171a;
-  --border-radius: 5px;
+  --border-radius: 8px;
   --font: 'Segoe UI', sans-serif;
 
   --accent1: #101b10;
@@ -75,7 +75,7 @@
 
 /* Dreamy Theme */
 :root.dreamy-theme {
-  --main-gradient: linear-gradient(135deg, #c2e9fb, #a1c4fd, #ffb3c6);
+  --main-gradient: linear-gradient(135deg, #b6e6fc, #a1c4fd, #ffc1d0);
   --bg-color: #fff0f5;
   --text-color: #4b0082;
   --button-bg: #ffe4e1;
@@ -101,17 +101,19 @@
   --accent16: #ebc1ff;
   
   font-size: 16px; /* Boost overall text size */
-  --font: 'Comic Sans MS', cursive;
+  --font: 'Comic Sans MS';
+  --border-radius: 27px;
 }
 
 :root.sunrise-theme {
-  --main-gradient: linear-gradient(135deg, #ffbb70, #ffd8a9, #9fd9f6);
+  --main-gradient: linear-gradient(135deg, #9fd9f6, #7abcfa, #ffd2a2);
   --bg-color: #fffaf2;
   --text-color: #5b3e2b;
   --button-bg: #ffe9cc;
   --button-text: #5b3e2b;
   --accent: rgb(255, 173, 118);
   --verse-color: #ffffff;
+  --border-radius: 10px;
 
   --accent1: #fdd995;
   --accent2: #b2d3fa;
@@ -134,13 +136,14 @@
 }
 
 :root.celestial-theme {
-  --main-gradient: linear-gradient(135deg, #0b2447, #19376d, #00bbf9);
+  --main-gradient: linear-gradient(135deg, #19376d, #0b2447, #003af9);
   --bg-color: #0a0f2c;
   --text-color: #e0e6ff;
   --button-bg: #1c1e44;
   --button-text: #e0e6ff;
   --accent: #518ee9;
   --verse-color: #14173a;
+  --border-radius: 10px;
 
   --accent1: #0a0a1b;
   --accent2: #020825;
@@ -163,13 +166,14 @@
 }
 
 :root.braveheart-theme {
-  --main-gradient: linear-gradient(135deg, #7b3e2d, #4b3f72, #00a8cc);
+  --main-gradient: linear-gradient(135deg, #00a8cc, #473583, #7b3e2d);
   --bg-color: #2a1d1f;
   --text-color: #ffeedd;
   --button-bg: #4a2e2e;
   --button-text: #ffeedd;
   --accent: #e76f51;
   --verse-color: #3e2b2b;
+  --border-radius: 11px;
 
   --accent1: #1a1010;
   --accent2: #4b2f1e;
@@ -192,7 +196,7 @@
 }
 
 :root.ocean-depths-theme {
-  --main-gradient: linear-gradient(135deg, #003f5c, #2f8f9d, #00bbf9);
+  --main-gradient: linear-gradient(135deg, #00bbf9, #2f8f9d, #003f5c);
   --bg-color: #154454;
   --text-color: #e0f7fa;
   --button-bg: #1f5561;
@@ -222,7 +226,7 @@
 
 
 :root.peaceful-earth-theme {
-  --main-gradient: linear-gradient(135deg, #8cc084, #aee6b6, #7ad1f9);
+  --main-gradient: linear-gradient(135deg, #7ad1f9, #a7bfdb, #aee6b6);
   --bg-color: #f0f9f1;
   --text-color: #2e3d2f;
   --button-bg: #dcefd8;
@@ -251,7 +255,7 @@
 }
 
 :root.choco-theme {
-  --main-gradient: linear-gradient(135deg, #9b673c, #c58c5a, #00a0c0);
+  --main-gradient: linear-gradient(135deg, #5ac5c0, #00a0c0, #9b673c);
   --bg-color: #8b5a2b; /* rich milk chocolate */
   --text-color: #fff6ec; /* creamy beige */
   --button-bg: #a5643c;
@@ -281,13 +285,14 @@
 
 
 :root.glory-theme {
-  --main-gradient: linear-gradient(135deg, #f7d07a, #ffd56b, #9fd9f6);
+  --main-gradient: linear-gradient(135deg, #9fd9f6, #a2e9ff, #ffe091);
   --bg-color: #fdf9e8;
   --text-color: #2f1b00;
   --button-bg: #fcf0c2;
   --button-text: #2f1b00;
   --accent: #ffe68b;
   --verse-color: #303313;
+  --border-radius: 18px;
 
 /* ✨ Category backgrounds with golden harmony */
   --accent1: #fceeaa;
@@ -311,7 +316,7 @@
 }
 
 :root.royal-theme {
-  --main-gradient: linear-gradient(135deg, #4a148c, #6a1b9a, #00bbf9);
+  --main-gradient: linear-gradient(135deg,#00bbf9, #6a1b9a, #4a148c);
   --bg-color: #2b1d3a;
   --text-color: #e6daf7;
   --button-bg: #451170;
@@ -359,6 +364,7 @@ body.plain {
   padding: 0;
   position: relative;
 }
+
 
 
 
@@ -630,6 +636,76 @@ grace guidance*/
   box-shadow: 0 0 6px var(--accent, limegreen);
 }
 
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: var(--bg-color, #fff);
+  color: var(--text-color, #222);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  width: 80%;
+  max-width: 300px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--main-gradient, linear-gradient(135deg, #00f5d4, #00bbf9, #48cae4));
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.verse-link {
+  background: none;
+  text-decoration: underline;
+  color: #000;
+}
+
+.modal-input {
+  width: 90%;
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: var(--bg-color);
+  border: 1px solid #ccc;
+  outline: none;
+  margin: 10px 0;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.btn.cancel {
+  background: var(--accent7);
+  color: var(--text-color);
+}
+
+.btn.ok {
+  background: var(--main-gradient, linear-gradient(135deg, #00f5d4, #00bbf9, #48cae4));
+}
+
+
+
 #settingsModal {
   display: none;
   position: fixed;
@@ -741,7 +817,6 @@ grace guidance*/
 
 
 .tree-container {
-  position: relative;
   display: inline-block;
 }
 
@@ -775,7 +850,7 @@ grace guidance*/
 }
 
 #treeImage {
-  width: fit-content;
+  width: 100px;
   transition: transform 0.5s ease, opacity 0.3s ease;
 }
 
@@ -828,6 +903,130 @@ grace guidance*/
 @keyframes bounce {
   0%, 100% { transform: scale(1); }
   50% { transform: scale(1.2); }
+}
+/* overlay behind the modal */
+#installPrompt {
+  position: fixed;
+  inset: 0;
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+/* the actual modal box */
+.install-toast {
+  background: var(--main-gradient);
+  color: var(--text-color);
+  padding: 24px 28px;
+  border-radius: 16px;
+  text-align: center;
+  max-width: 300px;
+  width: 80%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  animation: popIn 0.3s ease;
+}
+
+/* the install button inside */
+.install-btn {
+  background: var(--text-color);
+  color: var(--bg-color, #000);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-weight: 600;
+  margin-top: 16px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.install-btn:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+/* simple fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* modal zoom */
+@keyframes popIn {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.close-btn {
+  border: none;
+  color: var(--text-color);
+  font-size: 18px;
+  cursor: pointer;
+  margin-right: 6px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.close-btn:hover {
+  opacity: 1;
+}
+
+
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background: var(--main-gradient, linear-gradient(135deg, #00f5d4, #00bbf9, #48cae4));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#loading-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-logo img {
+  width: 80px;
+  height: 80px;
+  animation: pulse 1.5s infinite ease-in-out;
+  margin-bottom: 30px;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.1); opacity: 1; }
+}
+
+.loading-bar {
+  width: 70%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.loading-progress {
+  height: 100%;
+  width: 0%;
+  background: white;
+  border-radius: 4px;
+  transition: width 0.2s ease;
+}
+
+.loading-text {
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  opacity: 0.8;
 }
 
 
@@ -960,7 +1159,7 @@ button:hover {
   box-shadow: 
     0 0 15px var(--accent),
     0 0 0px rgba(169, 210, 255, 0.5);
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeInd 0.5s ease-out;
   backdrop-filter: blur(5px);
   padding: 20px;
   max-width: 80%;
@@ -983,7 +1182,7 @@ button:hover {
   box-shadow: 
     0 0 15px var(--accent),
     0 0 0px rgba(169, 210, 255, 0.5);
-  animation: fadeIn 0.5s ease-out;
+  animation: fadeInd 0.5s ease-out;
   backdrop-filter: blur(5px);
   padding: 20px;
   max-width: 80%;
@@ -998,7 +1197,7 @@ button:hover {
   to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
-@keyframes fadeIn {
+@keyframes fadeInd {
   from {
     transform: scale(0.95);
     opacity: 0;
@@ -1156,7 +1355,7 @@ a {
   text-decoration: underline;
 }
 .actions-row {
-  display: flex;
+  display: block;
   gap: 8px;
   margin: 6px 0;
   align-items: center;
@@ -1196,6 +1395,7 @@ a {
 .close-btn:hover {
   color: #e74c3c; /* red hover */
 }
+
 
 
 /* Category button list at the top */
@@ -1414,14 +1614,16 @@ html, body {
 }
 
 
-.previous, .next {
+.previous, .next, .note {
   position: fixed;
   bottom: 50px;
+ 
+}
+.previous {
   left: 0;
 }
-
 .next {
-  left: 145px;
+  right: 0;
 }
 .notes {
   display: flex;
@@ -1444,10 +1646,24 @@ html, body {
   font-size: 18px;
 }
 .note {
-  position: absolute;
-  align-items: center;
-  justify-content: center;
+  left: 42%;
+  right: 42%;
 }
+
+#notes-box {
+  position: fixed;
+  bottom: 65px;
+}
+
+.bio-text {
+  margin: 4px 0 0;
+  color: #777;
+  font-size: 0.95rem;
+  line-height: 1.3;
+  max-width: 640px;
+  white-space: pre-wrap; /* preserve newlines from user input */
+}
+
 
 .prayer-section {
   display: flex;
@@ -1458,7 +1674,6 @@ html, body {
   padding: 15px;
   border-radius: var(--border-radius);
 }
-
 .prayer-textarea {
   display: none;
   margin-top: 10px;
@@ -1678,7 +1893,7 @@ html, body {
 /* 👶 Baby AI Bubble */
 .baby-ai-bubble {
   position: fixed;
-  bottom: 6rem;
+  bottom: 2rem;
   right: 1rem;
   background: var(--button-bg);
   color: var(--button-text);
@@ -2420,7 +2635,7 @@ canvas#lens {
   position: fixed;
   bottom: 0;
   top: 60px;
-  width: 460px;
+  width: calc(100% - 60px);
   max-width: 700px;
   border-radius: var(--border-radius);
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
@@ -2498,7 +2713,8 @@ canvas#lens {
   margin-bottom: 3px;
 }
 
-.bubble .bubble-pic {
+
+.bubble-pic {
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -2511,6 +2727,7 @@ canvas#lens {
 #chat-input-area {
   display: flex;
   padding: 10px;
+  color: var(--text-color);
   background: var(--main-gradient);
   border-top: 1px solid var(--accent);
 }
@@ -2520,6 +2737,7 @@ canvas#lens {
   padding: 8px 12px;
   background: var(--bg-color);
   border-radius: var(--border-radius);
+  color: var(--text-color);
   border: 1px solid #ccc;
   font-size: 1em;
   resize: none;
@@ -2543,6 +2761,7 @@ canvas#lens {
   color: var(--verse-color);
 }
 
+
 /* Background switcher */
 .bg-option {
   display: inline-block;
@@ -2558,6 +2777,10 @@ canvas#lens {
 .bg-option.bg2 { background: var(--bg2); }
 .bg-option.bg3 { background: var(--bg3); }
 
+.innerbtn.next, .innerbtn.previous, .innerbtn.note, .notes {
+  opacity: 0;
+  transition: opacity 0.3s;
+}
 
 /* Verse suggestion buttons */
 .verse-buttons {
@@ -2583,11 +2806,12 @@ canvas#lens {
 
 /* Community edit button styles */
 .edit-btn {
-  background: #007bff;
-  color: white;
+  background: var(--accent13);
+  color: var(--text-color);
   border: none;
   padding: 6px 12px;
   border-radius: 4px;
+  position: relative;
   cursor: pointer;
   font-size: 12px;
   margin-left: 8px;
@@ -2595,20 +2819,36 @@ canvas#lens {
 }
 
 .edit-btn:hover {
-  background: #0056b3;
+  background: var(--accent);
+}
+
+.delete-btn {
+  background: var(--accent4);
+  color: var(--text-color);
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 8px;
+  transition: background-color 0.2s;
+}
+.delete-btn:hover {
+  background: var(--accent3);
 }
 
 .response-box.editing {
-  border: 2px solid #007bff;
-  background: #f8f9fa;
+  border: 2px solid var(--accent);
+  background: var(--bg-color);
 }
 
 .save-edit {
-  background: #28a745 !important;
+  background: var(--accent1) !important;
 }
 
 .save-edit:hover {
-  background: #218838 !important;
+  background: var(--accent12) !important;
 }
 
 /* Hide/show menu */
@@ -2629,19 +2869,20 @@ canvas#lens {
     top: 65px;
     padding-bottom: 0%;
   }
-  .notes, #backBtnb {
-    top: 70px;
+.notes, #backBtnb   {
+    top: 80px;
   }
+  
   #topbar {
     border-bottom: none;
   }
-  .baby-ai-bubble {
-    bottom: 37px;
+  .baby-ai-bubble, #notes-box {
+    bottom: 10px;
   }
   .link-btn {
     bottom: 0;
   }
-  .next, .previous {
+  .next, .previous, .note {
     bottom: 0;
   }
 }
