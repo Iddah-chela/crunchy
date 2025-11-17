@@ -9,10 +9,16 @@ const app = express();
 const cors = require('cors');
 const bcrypt = require('bcrypt');
 const fs = require('fs');
+const session = require("express-session");
+const sharedSession = require("express-socket.io-session");
 const server = http.createServer(app);
+const webpush = require("web-push");
+
+require("dotenv").config({ path: __dirname + "/.env" });
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "http://localhost:4000";
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:4000",//change to frontend origin
+    origin: FRONTEND_ORIGIN,
     methods:["GET", "POST"],
     credentials: true // enable cookies and critical for sessions sharing
   }
@@ -20,62 +26,51 @@ const io = new Server(server, {
 
 app.use(bodyParser.json());
 
+const { supabase } = require("./db/supabase"); // central client
+const { sendNotif } = require("./notifications");
 
-const sqlite3 = require("sqlite3").verbose();
-const db = new sqlite3.Database("./randomverse.db", (err) => {
-  if (err) console.error("🔥 Error opening SQLite:", err.message);
-  else console.log("✅ SQLite connected safi!");
+// storage config
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => cb(null, "uploads/"),
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, `user-${req.params.id}-${Date.now()}${ext}`);
+  }
 });
+const upload = multer({ storage });
 
-// Create tables if haziko
-db.serialize(() => {
-  // Users table
-  db.run(`
-    CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      username TEXT UNIQUE,
-      age INTEGER,
-      password TEXT,
-      profilePic TEXT,
-      bio TEXT,
-      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-    )
-  `);
-  // Push subscriptions table
-  db.run(`
-    CREATE TABLE IF NOT EXISTS push_subs (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      user_id INTEGER UNIQUE,
-      sub TEXT NOT NULL
-    )
-  `);
+require("./cron"); // start cron jobs
 
-  db.run(`CREATE TABLE IF NOT EXISTS bible (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  book TEXT,
-  chapter INTEGER,
-  verse INTEGER,
-  text TEXT
-  )`);
+// Serve uploaded files
+app.use("/uploads", express.static("uploads"));
 
+function calculateAge(birthday) {
+  const birthDate = new Date(birthday);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
 
-});
-
-require("dotenv").config({ path: __dirname + "/.env" });
 
 //middleware to parse json and cors to speak to frontend
 app.use(express.json());       // to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // if you ever send form data
-app.use(cors()); // to speak to frontend, donno how though
+app.use(cors({
+  origin: FRONTEND_ORIGIN,
+  credentials: true
+})); // to speak to frontend, donno how though
 
 // Replace your session setup in server.js with this:
 
-const session = require("express-session");
-const sharedSession = require("express-socket.io-session");
+
 
 // Create session middleware ONCE
 const sessionMiddleware = session({
-  secret: "Itsasecretssshhhhh",
+  secret: process.env.SESSION_SECRET || "Itsasecretssshhhhh",
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -88,12 +83,11 @@ const sessionMiddleware = session({
 // Use it in Express
 app.use(sessionMiddleware);
 
+// Simple logger middleware to see sessions in action
 app.use((req, res, next) => {
   console.log("Session: ", req.session);
   next();
 });
-// Serve uploaded files
-app.use("/uploads", express.static("uploads"));
 
 
 // Share the SAME session instance with Socket.IO
@@ -105,19 +99,31 @@ const communityRoutes = require("./routes/commune");
 app.use("/commune", communityRoutes);
 
 const chatRoutes = require("./routes/chat");
+// Import chat encryption helper from your converted route (it exports encrypt)
 const { encrypt } = require("./routes/chat");
 app.use("/chat", chatRoutes);
 
-const bibleRoutes = require('./routes/bible');
-app.use('/api/bible', bibleRoutes);
 
-
+// Serve frontend in production
 if(process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, "../frontend")));
 }
 
 //serve static frontend files
 app.use(express.static(path.join(__dirname, "../frontend")));
+
+
+
+// Web-push config
+if (process.env.VAPID_PUBLIC && process.env.VAPID_PRIVATE) {
+  webpush.setVapidDetails(
+    "mailto:your@email.com",
+    process.env.VAPID_PUBLIC,
+    process.env.VAPID_PRIVATE
+  );
+} else {
+  console.warn("VAPID keys not set; push notifications will fail.");
+}
 
 // Replace your Socket.IO connection handler with this:
 io.on("connection", (socket) => {
@@ -139,7 +145,7 @@ io.on("connection", (socket) => {
   });
 
   // Send a message with encryption
-  socket.on("sendMessage", (msg) => {
+  socket.on("sendMessage", async (msg) => {
     const { receiverId, text } = msg;
     const room = [userId, receiverId].sort().join("_");
 
@@ -150,43 +156,53 @@ io.on("connection", (socket) => {
       const encryptedText = encrypt(text);
 
       // Save to DB
-      db.run(
-        "INSERT INTO messages (senderId, receiverId, text) VALUES (?, ?, ?)",
-        [userId, receiverId, encryptedText],
-        function (err) {
-          if (err) {
-            console.error("❌ Error saving message:", err);
-            // Send error back to sender
-            socket.emit("messageError", { error: "Failed to save message" });
-            return;
-          }
+      const { data: insertData, error: insertErr } = await supabase
+        .from("messages")
+        .insert([{ senderId: userId, receiverId, text: encryptedText }])
+        .select()
+        .single();
 
-          console.log("✅ Message saved with ID:", this.lastID);
+      if (insertErr) {
+        console.error("Error inserting message:", insertErr);
+        socket.emit("messageError", { error: "Failed to save message" });
+        return;
+      }
 
-          // Fetch sender info
-          db.get("SELECT username, profilePic FROM users WHERE id = ?", [userId], (err, senderInfo) => {
-            if (err) {
-              console.error("❌ Error fetching sender info:", err);
-              socket.emit("messageError", { error: "Failed to fetch sender info" });
-              return;
-            }
+      // fetch sender info (username + profilePic)
+      const { data: senderInfo, error: senderErr } = await supabase
+        .from("users")
+        .select("username, profilePic")
+        .eq("id", userId)
+        .single();
 
-            // Send back the DECRYPTED message to clients
-            const savedMsg = {
-              id: this.lastID,
-              senderId: userId,
-              receiverId,
-              text: text, // Send original text, not encrypted
-              senderUsername: senderInfo.username,
-              senderProfilePic: senderInfo.profilePic,
-              timestamp: new Date()
-            };
+      if (senderErr) {
+        console.error("Error fetching sender info:", senderErr);
+        socket.emit("messageError", { error: "Failed to fetch sender info" });
+        return;
+      }
 
-            console.log("📤 Broadcasting to room:", room);
-            io.to(room).emit("newMessage", savedMsg);
-          });
-        }
-      );
+      // Broadcast decrypted text (frontend expects plaintext)
+      const savedMsg = {
+        id: insertData.id,
+        senderId: userId,
+        receiverId,
+        text, // original plaintext
+        senderUsername: senderInfo.username,
+        senderProfilePic: senderInfo.profilePic,
+        timestamp: insertData.timestamp || new Date().toISOString()
+      };
+
+      io.to(room).emit("newMessage", savedMsg);
+
+      // only send push to **receiver**, not sender
+  // Inside io.on("connection") -> socket.on("sendMessage")
+const payload = {
+  title: `New message from ${senderInfo.username} 💌`,
+  body: text.length > 50 ? text.slice(0, 50) + "…" : text,
+  url: "/private.html"
+};
+
+await sendNotif(receiverId, payload);
     } catch (error) {
       console.error("❌ Encryption error:", error);
       socket.emit("messageError", { error: "Message encryption failed" });
@@ -198,37 +214,41 @@ io.on("connection", (socket) => {
   });
 });
 
-const webpush = require("web-push");
 
-webpush.setVapidDetails(
-  "mailto:your@email.com",
-  process.env.VAPID_PUBLIC,
-  process.env.VAPID_PRIVATE
-);
 
 // store subscriptions per user in DB
-app.post("/subscribe", (req, res) => {
+app.post("/subscribe", async (req, res) => {
   const userId = req.session.userId;
   const sub = req.body;
-  db.run("INSERT OR REPLACE INTO push_subs (user_id, sub) VALUES (?, ?)", [userId, JSON.stringify(sub)]);
-  res.sendStatus(201);
+  if (!userId) return res.status(401).json({ error: "Not logged in" });
+
+  try {
+    const payload = JSON.stringify(sub);
+    const { error } = await supabase
+      .from("push_subs")
+      .upsert([{ user_id: userId, sub: payload }], { onConflict: ["user_id"] });
+
+    if (error) {
+      console.error("subscribe upsert error:", error);
+      return res.status(500).json({ error: error.message });
+    }
+
+    res.sendStatus(201);
+  } catch (err) {
+    console.error("subscribe error:", err);
+    res.status(500).json({ error: "Failed to save subscription" });
+  }
 });
 
-// later when you want to send a notification
-function sendNotif(userId, payload) {
-  db.get("SELECT sub FROM push_subs WHERE user_id = ?", [userId], (err, row) => {
-    if (row) {
-      const sub = JSON.parse(row.sub);
-      webpush.sendNotification(sub, JSON.stringify(payload)).catch(console.error);
-    }
-  });
-}
 
+
+// test notif route
 app.get("/test-notif", (req, res) => {
   sendNotif(1, { title: "Friend Request 💌", body: "John sent you a friend request!" });
   res.send("Notification sent.");
 });
 
+// Serve static files from "public" with correct MIME for manifest
 app.use(express.static("public", {
   setHeaders: (res, path) => {
     if (path.endsWith("manifest.json")) {
@@ -266,58 +286,111 @@ app.use(express.static("public", {
 // });
 
 
-app.get('/test', (req,res) => {
-  res.send("Express is running!");
+
+app.get("/models/en_kjv.json", (req, res) => {
+  res.sendFile(path.join(__dirname, "models/en_kjv.json"));
 });
+
+
+
 
 
 
 // GET all verses for a given question
-app.get("/questions/:qkey", (req, res) => {
+app.get("/questions/:qkey", async (req, res) => {
   const qkey = req.params.qkey;
 
-  const sql = `
-    SELECT v.ref, v.text, v.theme, v.tags, e.text AS category
-    FROM questions q
-    JOIN explanations e ON e.question_id = q.id
-    JOIN verses v ON v.explanation_id = e.id
-    WHERE q.qkey = ?;
-  `;
+  try {
+    const { data: question, error: qErr } = await supabase
+      .from("questions")
+      .select("id")
+      .eq("qkey", qkey)
+      .single();
 
-  db.all(sql, [qkey], (err, rows) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: "DB error" });
+    if (qErr || !question) {
+      return res.status(404).json({ error: "Question not found" });
     }
-    res.json(rows); // send to frontend
-  });
+
+    // fetch explanations for the question
+    const { data: explanations, error: exErr } = await supabase
+      .from("explanations")
+      .select("id, text")
+      .eq("question_id", question.id);
+
+    if (exErr) return res.status(500).json({ error: exErr.message });
+
+    const explanationIds = explanations.map(e => e.id);
+    if (explanationIds.length === 0) return res.json([]);
+
+    // fetch verses belonging to those explanations
+    const { data: verses, error: vErr } = await supabase
+      .from("verses")
+      .select("ref, text, theme, tags, explanation_id")
+      .in("explanation_id", explanationIds);
+
+    if (vErr) return res.status(500).json({ error: vErr.message });
+
+    // Merge category (explanation text) into verse result
+    const explanationMap = new Map(explanations.map(e => [e.id, e.text]));
+    const output = verses.map(v => ({
+      ref: v.ref,
+      text: v.text,
+      theme: v.theme,
+      tags: v.tags,
+      category: explanationMap.get(v.explanation_id) || null
+    }));
+
+    res.json(output);
+  } catch (err) {
+    console.error("questions/:qkey error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // Get all questions
-app.get("/questions", (req, res) => {
-  db.all("SELECT * FROM questions", [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+app.get("/questions", async (req, res) => {
+  try {
+    const { data, error } = await supabase.from("questions").select("*");
+    if (error) return res.status(500).json({ error: error.message });
+    res.json(data);
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
-app.get("/verses-by-theme/:theme", (req, res) => {
+// Get verses by theme
+app.get("/verses-by-theme/:theme", async (req, res) => {
   const theme = req.params.theme.toLowerCase();
 
-  const sql = `
-    SELECT v.ref, v.text, v.theme, v.tags, e.text AS category
-    FROM verses v
-    JOIN explanations e ON e.id = v.explanation_id
-    WHERE LOWER(v.theme) = ?;
-  `;
+  try {
+    // Case-insensitive match
+    const { data: verses, error: vErr } = await supabase
+      .from("verses")
+      .select("ref, text, theme, tags, explanation_id")
+      .ilike("theme", theme);
 
-  db.all(sql, [theme], (err, rows) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).json({ error: "DB error" });
+    if (vErr) return res.status(500).json({ error: vErr.message });
+
+    const explanationIds = [...new Set(verses.map(v => v.explanation_id))].filter(Boolean);
+    let explanationMap = new Map();
+    if (explanationIds.length) {
+      const { data: exs } = await supabase.from("explanations").select("id, text").in("id", explanationIds);
+      explanationMap = new Map(exs.map(e => [e.id, e.text]));
     }
-    res.json(rows);
-  });
+
+    const output = verses.map(v => ({
+      ref: v.ref,
+      text: v.text,
+      theme: v.theme,
+      tags: v.tags,
+      category: explanationMap.get(v.explanation_id) || null
+    }));
+
+    res.json(output);
+  } catch (err) {
+    console.error("verses-by-theme error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 
@@ -325,68 +398,79 @@ app.get("/verses-by-theme/:theme", (req, res) => {
 //port that server will run on
 const PORT = process.env.PORT || 4000;
 
-// Route root to home.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/index.html'));
-});
+
 
 // ================= USERS ==================
 
 // Serve the signup page nicely at /signup (GET)
 app.get("/signup", (req, res) => {
-  // hapa tunatuma file moja kwa moja
+  // hapa tunatuma file moja kwa moja and apparently do nothing else
   res.sendFile(__dirname + "/frontend/signup.html");
 });
 
 // Create account (POST)
 app.post("/signup", async (req, res) => {
-  const { username, age, password } = req.body;
+ try {
+    const { username, birthday, password } = req.body;
+    if (!username || !birthday || !password) return res.status(400).json({ error: "Fill all fields" });
 
-  //hash password before putting in db like...
-  const hashedPassword = await bcrypt.hash(password,10);
-  // validation ya mtaa
-  if (!username || !age || !password) {
-    return res.status(400).json({ error: "Ebu jaza boxes zote 😒" });
-  }
+    //hash password before putting in db like...
+  const hashed = await bcrypt.hash(password,10);
 
-  
+    const { data, error } = await supabase
+      .from("users")
+      .insert([{ username, birthday, password: hashed }])
+      .select()
+      .single();
 
-  // username unique kiasi
-  // NOTE: password iko plain-text leo. Kesho: bcrypt.
- const sql = "INSERT INTO users (username, age, password) VALUES (?, ?, ?)";
-  db.run(sql, [username, age, hashedPassword], function(err) {
-    if (err) {
-      if (err.message.includes("UNIQUE")) {
-        return res.status(400).json({ error: "Username is taken!" });
+    if (error) {
+      if (error.message && error.message.includes("duplicate")) {
+        return res.status(400).json({ error: "Username taken" });
       }
-      return res.status(500).json({ error: err.message });
-    } 
+      return res.status(500).json({ error: error.message });
+    }
 
-    // ✅ automatically log them in
-    req.session.userId = this.lastID;
-    req.session.username = username;
-    // usirudishe password kwa response IRL; ni demo
-    res.json({ msg: "Account imeundwa safi 🎉", user: { id: this.lastID, username, age } });
-  });
+    // Create session
+    req.session.userId = data.id;
+    req.session.username = data.username;
+
+    res.json({ msg: "Account created", user: { id: data.id, username: data.username, birthday: data.birthday } });
+  } catch (err) {
+    console.error("signup error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // Testing route kuona users wote (usiiache production 😅)
 // Testing route kuona users wote (hide passwords)
-app.get("/users", (req, res) => {
-  db.all("SELECT id, username, age FROM users", [], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+app.get("/users", async (req, res) => {
+  try {
+    const { data, error } = await supabase.from("users").select("id, username, birthday");
+    if (error) return res.status(500).json({ error: error.message });
+    const age = data.birthday ? calculateAge(data.birthday) : 10;
+    res.json({ ...data, age });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 // Get one user profile (for viewing by others)
-app.get("/users/:id", (req, res) => {
-  const sql = "SELECT id, username, age, profilePic, bio FROM users WHERE id = ?";
-  db.get(sql, [req.params.id], (err, row) => {
-    if (err) return res.status(500).json({ error: err.message });
-    if (!row) return res.status(404).json({ error: "User haonekani 😅" });
-    res.json(row);
-  });
+app.get("/users/:id", async (req, res) => {
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select("id, username, birthday, profilePic, bio")
+      .eq("id", Number(req.params.id))
+      .single();
+
+    if (error) return res.status(500).json({ error: error.message });
+    if (!data) return res.status(404).json({ error: "User not found" });
+    const age = data.birthday ? calculateAge(data.birthday) : 10;
+
+    res.json({ ...data, age });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
 });
 
 
@@ -394,60 +478,91 @@ app.get("/users/:id", (req, res) => {
 // Login (POST)
 // Login (POST)
 app.post("/login", async (req, res) => {
-  const { username, password } = req.body;
-
-  if (!username || !password) {
-    return res.status(400).json({ error: "Weka credentials zote bana 😤" });
-  }
-
-  // Wrap db.get in a Promise so we can await bcrypt properly
-  const getUser = () => new Promise((resolve, reject) => {
-    const sql = "SELECT id, username, age, password, profilePic FROM users WHERE username = ?";
-    db.get(sql, [username], (err, row) => {
-      if (err) return reject(err);
-      if (!row) return reject("Username au password si fiti 👀");
-      resolve(row);
-    });
-  });
-
   try {
-    const user = await getUser();
-    const match = await bcrypt.compare(password, user.password);
+    const { username, password } = req.body;
+    if (!username || !password) return res.status(400).json({ error: "Provide credentials" });
 
-    if (!match) return res.status(401).json({ error: "Password sio fiti 😬" });
+    const { data: user, error } = await supabase
+      .from("users")
+      .select("id, username, birthday, password, last_active, received_welcome_back")
+      .eq("username", username)
+      .single();
+
+    if (error || !user) return res.status(401).json({ error: "Invalid credentials" });
+
+    const match = await bcrypt.compare(password, user.password);
+    if (!match) return res.status(401).json({ error: "Invalid credentials" });
 
     // Success: set session
     req.session.userId = user.id;
     req.session.username = user.username;
 
-    res.json({
-      msg: "Login safi, karibu tena 🎉",
-      user: { id: user.id, username: user.username, age: user.age }
+    
+
+if (user.last_active) {
+  const last = new Date(user.last_active);
+  const now = new Date();
+  const hours = (now - last) / 36e5;
+
+  if (hours > 12 && !user.received_welcome_back) {
+    // send welcome back
+    await sendNotif(user.id, {
+      title: "Welcome back 🎉",
+      body: "You’ve been away for a bit. Good to see you again!"
     });
+
+    await supabase
+      .from("users")
+      .update({ received_welcome_back: true })
+      .eq("id", user.id);
+  }
+}
+
+
+    const age = user.birthday ? calculateAge(user.birthday) : 10;
+    res.json({ msg: "Logged in", user: { id: user.id, username: user.username, age: age } });
   } catch (err) {
-    res.status(401).json({ error: err.toString() });
+    console.error("login error:", err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 
 
-app.get("/me", (req, res) => {
-  if (!req.session || !req.session.userId) {
-    return res.status(401).json({ errror: "Not logged  in" });
-  }
+app.get("/me", async (req, res) => {
+  const uid = req.session && req.session.userId;
+  if (!uid) return res.status(401).json({ error: "Not logged in" });
 
-  db.get("SELECT id, username, age, profilePic FROM users WHERE id = ?", [req.session.userId], (err, row) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(row);
+  await supabase
+  .from("users")
+  .update({
+    last_active: new Date().toISOString(),
+    received_welcome_back: false,
+    received_miss_you: false
   })
-})
+  .eq("id", uid);
+
+  try {
+    const { data, error } = await supabase
+      .from("users")
+      .select("id, username, birthday, profilePic")
+      .eq("id", uid)
+      .single();
+
+    if (error) return res.status(500).json({ error: error.message });
+    const age = data.birthday ? calculateAge(data.birthday) : 10;
+    res.json({ ...data, age });
+  } catch (err) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
 
 app.post("/logout", (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      return res.status(500).json({ error: "Logout haikufaulu 😬" });
+      return res.status(500).json({ error: "Logout failed" });
     }
     res.clearCookie("connect.sid"); // default cookie name
-    res.json({ msg: "Logged out, tuonane tena 👋" });
+    res.json({ msg: "Logged out👋" });
   });
 });
 
@@ -458,63 +573,53 @@ server.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
 });
 
-// storage config
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `user-${req.params.id}-${Date.now()}${ext}`);
-  }
-});
-const upload = multer({ storage });
 
 // Update user route
 app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
-  const { username, password, bio } = req.body;
-  const userId = req.params.id;
 
-  if (!username) {
-    return res.status(400).json({ error: "Username required 😅" });
+  try {
+    const { username, password, bio } = req.body;
+    const userId = req.params.id;
+
+    if (!username) {
+      return res.status(400).json({ error: "Username required." });
+    }
+
+    // Start with basic updates
+    const params = { username };
+
+    // Add bio if provided
+    if (bio) {
+      params.bio = bio;
+    }
+
+    // Add password if provided
+    if (password) {
+      const hashed = await bcrypt.hash(password, 10);
+      params.password = hashed;
+    }
+
+    // Add profilePic if uploaded
+    if (req.file) {
+      const profilePicUrl = `/uploads/${req.file.filename}`;
+      params.profilePic = profilePicUrl;
+    }
+    const { data, error } = await supabase
+        .from("users")
+        .update(payload)
+        .eq("id", userId)
+        .select()
+        .single();
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    res.json({ msg: "Profile updated", profilePicUrl: data.profilePic || null });
+  } catch (err) {
+    console.error("update user error:", err);
+    res.status(500).json({ error: "Server error" });
   }
-
-  // Start with basic updates
-  const params = [username];
-  let sql = "UPDATE users SET username=?";
-
-  // Add bio if provided
-  if (bio) {
-    sql += ", bio=?";
-    params.push(bio);
-  }
-
-  // Add password if provided
-  if (password) {
-    const hashed = await bcrypt.hash(password, 10);
-    sql += ", password=?";
-    params.push(hashed);
-  }
-
-  // Add profilePic if uploaded
-  if (req.file) {
-    const profilePicUrl = `/uploads/${req.file.filename}`;
-    sql += ", profilePic=?";
-    params.push(profilePicUrl);
-  }
-
-  sql += " WHERE id=?";
-  params.push(userId);
-
-  db.run(sql, params, function (err) {
-    if (err) return res.status(500).json({ error: err.message });
-
-    // Return profilePic URL if updated
-    const picUrl = req.file ? `/uploads/${req.file.filename}` : null;
-    res.json({ msg: "Profile updated 🎉", profilePicUrl: picUrl });
-  });
 });
 
 
 
 
-// Serve uploaded files
-app.use("/uploads", express.static("uploads"));

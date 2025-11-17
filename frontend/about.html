@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — HolyVerse</title>
+  <meta name="description" content="HolyVerse: a simple app to bring people closer to God through daily verses, prayer, learning resources and community." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="line-height: 1.7;">
+  <div class="animated-overlay"></div>
+ 
+<div id="app">
+<div id="topbar-container"></div> 
+<button id="backBtnb" class="innerbtn" style="top: 45px;" onclick="history.back()">⬅ Back</button>
+  <div class="page-wrap">
+    <header class="site-header">
+      <div class="site-logo">
+        <img src="/icons/icon.png" alt="HolyVerse logo">
+        <div>
+          <h1 class="site-title">HolyVerse</h1>
+          <div class="label-pill">Faith • Scripture • Community</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="intro-card card-box">
+      <h2>Bringing people closer to God</h2>
+      <p class="lead-text">HolyVerse helps you encounter God daily through Scripture, prayer, and community resources. Whether you want a short verse for your morning, a deeper study resource, or a place to pray with others — HolyVerse is designed to guide and encourage your walk with God.</p>
+      <p style="margin-top:12px">Core idea: make spiritual growth simple, approachable, and repeatable. Small daily habits change lives.</p>
+    </section>
+
+    <div class="content-grid">
+      <main>
+        <section class="card-box">
+          <h3>What we do</h3>
+          <p>HolyVerse focuses on three pillars:</p>
+          <ul>
+            <li><strong>Daily Scripture</strong> — brief, curated verses to reflect on every day.</li>
+            <li><strong>Community</strong> — a safe space you can ask your lingering questions to, and get answers from anyone. </li>
+            <li><strong>Learning</strong> — questions with answers straight from the Bible so users can discover more about God, theology, and how to apply faith in daily life.</li>
+          </ul>
+
+          <h3 style="margin-top:14px">How it works</h3>
+          <p>Users can ask questions, save favourites, join conversations, and use the prayer section to explore prayers at their own pace. The app is intentionally lightweight — built to work well on slow connections and to be usable without getting sucked into endless scrolling.</p>
+
+          <h3 style="margin-top:14px">Who it’s for</h3>
+          <p>Everyone. New believers, curious seekers, long-time Christians, and anyone who wants a gentle daily reminder of God’s presence. We aim to keep the language welcoming and the content rooted in Scripture.</p>
+
+          <h3 style="margin-top:14px">Trust & safety</h3>
+          <p>We take privacy seriously. We don’t sell your data or show targeted ads. Community spaces are moderated to keep discussion respectful and safe. For details, see our <a class="aboutlink" href="/privacy.html">Privacy Policy</a>.</p>
+
+          <h3 style="margin-top:14px">Guiding values</h3>
+          <p>Presence, truth, mercy, growth, and community. Everything we build is measured against whether it helps people know God more and love others better.</p>
+        </section>
+
+        <section class="card-box" style="margin-top:14px">
+          <h3>Want to help or contribute?</h3>
+          <p>HolyVerse is a community effort. You can contribute by:</p>
+          <ul>
+            <li>Sharing the app with friends and small groups.</li>
+            <li>Suggesting content or study topics.</li>
+            <li>Donating to help keep the servers running.</li>
+            <li>Reporting issues or helping moderate discussions if you’re trusted by the community.</li>
+          </ul>
+          <p style="margin-top:8px">Interested in more hands-on support? Email us at <a class="aboutlink" href="mailto:hello@holyverse.example">hello@holyverse.example</a>.</p>
+        </section>
+      </main>
+
+      <aside>
+        <div class="card-box">
+          <h4>Quick links</h4>
+          <ul style="padding-left: 20px;">
+            <li><a class="aboutlink" href="/">Home</a></li>
+            <li><a class="aboutlink" href="/home">Ask Questions</a></li>
+            <li><a class="aboutlink" href="/community">Community</a></li>
+            <li><a class="aboutlink" href="/prayer">Pray</a></li>
+            <li><a class="aboutlink" href="/privacy.html">Privacy</a></li>
+          </ul>
+        </div>
+
+        <div class="card-box" style="margin-top:12px">
+          <h4>Our promise</h4>
+          <p>We aim to create a simple, respectful place for spiritual growth. No manipulative tactics. No spam. Just honest resources to help you know God.</p>
+          <a class="primary-btn" href="https://holyverse-s5s1.onrender.com">Open HolyVerse</a>
+        </div>
+
+        <div class="card-box" style="margin-top:12px">
+          <h4>Team</h4>
+          <p>Small, passionate group of volunteers and contributors. Want to join or partner? Reach out at <a class="aboutlink" href="mailto:partnerships@holyverse.example">partnerships@holyverse.example</a>.</p>
+        </div>
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <p>HolyVerse © <span id="year"></span> — Built to help people meet God daily. App link: <a class="aboutlink" href="https://holyverse-s5s1.onrender.com">https://holyverse-s5s1.onrender.com</a></p>
+    </footer>
+  </div>
+</div>
+<script src="js/topbar.js" defer></script>
+<script src="js/topbar-loader.js"></script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

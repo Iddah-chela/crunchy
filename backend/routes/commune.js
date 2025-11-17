@@ -1,9 +1,13 @@
 // routes/community.js
 const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
+
 const path = require('path');
 const multer = require("multer");
 
+
+
+const { supabase } = require("../db/supabase"); // central client
+const { sendNotif } = require("../notifications");
 
 // Storage setup
 const storage = multer.diskStorage({
@@ -16,58 +20,18 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const router = express.Router();
-const db = new sqlite3.Database(path.join(process.cwd(), "randomverse.db"), (err) => {
-  if (err) {
-    console.error("Database opening error:", err.message);
-  } else {
-    console.log("✅ Community route connected to DB");
-    db.run("PRAGMA foreign_keys = ON");
+
+function calculateAge(birthday) {
+  const birthDate = new Date(birthday);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
   }
-});
+  return age;
+}
 
-// Make sure tables exist
-db.serialize(() => {
-
-  db.run(`
-    CREATE TABLE IF NOT EXISTS community_questions (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      user_id INTEGER,
-      title TEXT,
-      body TEXT,
-      image TEXT,
-      hidden INTEGER DEFAULT 0,
-      mature_content INTEGER DEFAULT 0,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY(user_id) REFERENCES users(id)
-    )
-  `);
-
-  db.run(`
-    CREATE TABLE IF NOT EXISTS community_responses (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      question_id INTEGER,
-      user_id INTEGER,
-      parent_response_id INTEGER DEFAULT NULL,
-      body TEXT,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      image TEXT,
-      FOREIGN KEY(question_id) REFERENCES community_questions(id) ON DELETE CASCADE,
-      FOREIGN KEY(user_id) REFERENCES users(id),
-      FOREIGN KEY(parent_response_id) REFERENCES community_responses(id)
-    )
-  `);
-
-  db.run(`
-    CREATE TABLE IF NOT EXISTS favorites (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      question_id INTEGER,
-      user_id INTEGER,
-      created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY(question_id) REFERENCES community_questions(id) ON DELETE CASCADE,
-      FOREIGN KEY(user_id) REFERENCES users(id),
-      UNIQUE(user_id, question_id)
-    )`);
-});
 
 // Mature content keywords (can be expanded)
 const MATURE_KEYWORDS = [
@@ -83,98 +47,178 @@ function containsMatureContent(text) {
 // ================= QUESTIONS ==================
 
 // Get all questions with automatic age-appropriate filtering
-router.get("/questions", (req, res) => {
-  const uid = req.session && req.session.userId ? req.session.userId : -1;
+router.get("/questions", async (req, res) => {
+  const uid = req.session?.userId || -1;
 
-  // Get current user's age
-  db.get("SELECT age FROM users WHERE id = ?", [uid], (err, currentUserData) => {
-    if (err) {
-      console.error("Error fetching user age:", err);
-      return res.status(500).json({ error: err.message });
-    }
+  try {
+    let userAge = 10;
+    let ageWarning = null;
 
-    const userAge = currentUserData ? currentUserData.age : 18; // Default to 18 if not logged in
-    
-    // Only show mature content if user is 18+
-    const matureFilter = userAge >= 18 ? "" : "AND q.mature_content = 0";
-
-    const sql = `
-      SELECT q.id, q.title, q.body, q.created_at, q.image, u.username AS author, u.id AS authorId, u.profilePic AS authorProfilePic,
-      CASE WHEN f.id IS NULL THEN 0 ELSE 1 END AS favorited,
-      (SELECT COUNT(*) FROM favorites f2 WHERE f2.question_id = q.id) AS favorites_count
-      FROM community_questions q
-      JOIN users u ON q.user_id = u.id
-      LEFT JOIN favorites f ON f.question_id = q.id AND f.user_id = ?
-      WHERE 1=1 ${matureFilter} AND q.hidden = 0
-      ORDER BY q.created_at DESC
-    `;
-    
-    db.all(sql, [uid], (err, rows) => {
-      if (err) {
-        console.error("Error fetching questions:", err);
-        return res.status(500).json({ error: err.message });
+    if (uid !== -1) {
+      const { data: user, error: userErr } = await supabase
+        .from("users")
+        .select("birthday")
+        .eq("id", uid)
+        .single();
+      if (userErr) throw userErr;
+      if (user?.birthday) {
+        userAge = calculateAge(user.birthday);
+        ageWarning = null;
+      } else {
+        ageWarning = "Log in to see more content.";
       }
-      res.json(rows);
-    });
-  });
+    } 
+
+    
+    const { data, error } = await supabase
+      .from("community_questions")
+      .select(`
+        id, title, body, created_at, image, mature_content,
+        users:user_id(username, id, profilePic),
+        favorites:favorites(*)
+      `)
+      .eq("hidden", false)
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    const filtered = data
+      .filter(q => userAge >= 18 || Number(q.mature_content) === 0)
+      .map(q => {
+        const favorited = (q.favorites || []).some(f => f.user_id === uid);
+        const favorites_count = (q.favorites || []).length;
+        return {
+          id: q.id,
+          title: q.title,
+          body: q.body,
+          created_at: q.created_at,
+          image: q.image,
+          author: q.users?.username || "Anonymous",
+          authorId: q.users?.id || null,
+          authorProfilePic: q.users?.profilePic || null,
+          favorited,
+          favorites_count
+        };
+      });
+
+      console.log("Filtered questions:", filtered);
+    res.json({questions: filtered, warning: ageWarning});
+
+  } catch (err) {
+    console.error("Error fetching questions:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
+
+
+
 
 
 // Create new question with automatic mature content detection
-router.post("/questions",upload.single("image"), (req, res) => {
+router.post("/questions", upload.single("image"), async (req, res) => {
   const { user_id, title, body } = req.body;
-  const imagePath = req.file ? `//uploads/${req.file.filename}` : null;
-  
-  console.log("Received question post:", { user_id, title, body });
-  
+  const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
+
   if (!user_id || !title || !body) {
-    return res.status(400).json({ error: "Fill all fields bana 😅" });
+    return res.status(400).json({ error: "Fill all fields." });
   }
 
-  // Automatically detect mature content
-  const hasMatureContent = containsMatureContent(title + " " + body) ? 1 : 0;
-  
-  db.run(
-    "INSERT INTO community_questions (user_id, title, body, mature_content, image) VALUES (?, ?, ?, ?, ?)",
-    [user_id, title, body, hasMatureContent, imagePath],
-    function (err) {
-      if (err) {
-        console.error("Insert question failed:", err.message);
-        return res.status(500).json({ error: err.message });
-      }
-      res.json({ id: this.lastID, user_id, title, body, mature_content: hasMatureContent });
-    }
-  );
+  const mature_content = containsMatureContent(title + " " + body) ? 1 : 0;
+
+  try {
+    const { data, error } = await supabase
+      .from("community_questions")
+      .insert([{ user_id, title, body, mature_content, image: imagePath }])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    res.json(data);
+
+    // --- NOTIFICATIONS ---
+    // fetch the posting user's info for the notification
+    const { data: user } = await supabase
+      .from("users")
+      .select("username")
+      .eq("id", user_id)
+      .single();
+
+    const payload = {
+      title: "New post. 📣",
+      body: `${user?.username || "Someone"} posted: ${
+        title.length > 50 ? title.slice(0, 50) + "…" : title
+      }`,
+      url: "/community.html"
+    };
+
+    // Fetch all subscriptions except the poster
+    await sendNotif(null, payload, user_id) // broadcast to all except poster
+
+  } catch (err) {
+    console.error("Insert question failed:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
-// Edit posts as poster
-router.put("/questions/:id", (req, res) => {
+
+// Edit posts as the poster
+router.put("/questions/:id", async (req, res) => {
   const { body } = req.body;
-  db.get("SELECT * FROM community_questions WHERE id = ?", [req.params.id], (err, post) => {
+  const questionId = req.params.id;
+  const userId = req.session.userId;
+
+  try {
+    const { data: post, error: fetchErr } = await supabase
+      .from("community_questions")
+      .select("user_id")
+      .eq("id", questionId)
+      .single();
+    if (fetchErr) throw fetchErr;
     if (!post) return res.status(404).json({ error: "Not found" });
-    if (post.user_id !== req.session.userId) return res.status(403).json({ error: "Not yours" });
-    
-    db.run("UPDATE community_questions SET body = ? WHERE id = ?", [body, req.params.id], function (err) {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ success: true });
-    });
-  });
+    if (post.user_id !== userId) return res.status(403).json({ error: "Not yours" });
+
+    const { error: updateErr } = await supabase
+      .from("community_questions")
+      .update({ body })
+      .eq("id", questionId);
+
+    if (updateErr) throw updateErr;
+    res.json({ success: true });
+
+  } catch (err) {
+    console.error("Update question error:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Delete post
 // Soft delete post
-router.delete("/questions/:id", (req, res) => {
-  db.get("SELECT * FROM community_questions WHERE id = ?", [req.params.id], (err, post) => {
-    if (err) return res.status(500).json({ error: err.message });
-    if (!post) return res.status(404).json({ error: "Not found" });
-    if (post.user_id !== req.session.userId) return res.status(403).json({ error: "Not yours" });
+router.delete("/questions/:id", async (req, res) => {
+  const questionId = req.params.id;
+  const userId = req.session.userId;
 
-    // Soft delete: just mark as hidden
-    db.run("UPDATE community_questions SET hidden = 1 WHERE id = ?", [req.params.id], function(err) {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({ success: true });
-    });
-  });
+  try {
+    const { data: post, error: fetchErr } = await supabase
+      .from("community_questions")
+      .select("user_id")
+      .eq("id", questionId)
+      .single();
+    if (fetchErr) throw fetchErr;
+    if (!post) return res.status(404).json({ error: "Not found" });
+    if (post.user_id !== userId) return res.status(403).json({ error: "Not yours" });
+
+    const { error } = await supabase
+      .from("community_questions")
+      .update({ hidden: 1 })
+      .eq("id", questionId);
+    if (error) throw error;
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error("Delete question error:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 
@@ -182,89 +226,179 @@ router.delete("/questions/:id", (req, res) => {
 
 // Get all responses for a question
 // GET responses for a question (include parent_response_id)
-router.get("/questions/:id/responses", (req, res) => {
-  db.all(
-    `SELECT r.id, r.body, r.created_at, r.parent_response_id, u.username, r.image
-     FROM community_responses r
-     JOIN users u ON r.user_id = u.id
-     WHERE r.question_id = ?
-     ORDER BY r.created_at ASC`,
-    [req.params.id],
-    (err, rows) => {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json(rows);
-    }
-  );
+router.get("/questions/:id/responses", async (req, res) => {
+  const questionId = req.params.id;
+
+  try {
+    const { data, error } = await supabase
+      .from("community_responses")
+      .select(`
+        id, body, created_at, parent_response_id, image,
+        user:user_id(username)
+      `)
+      .eq("question_id", questionId)
+      .order("created_at", { ascending: true });
+
+    if (error) throw error;
+
+    const formatted = data.map(r => ({
+      id: r.id,
+      body: r.body,
+      created_at: r.created_at,
+      parent_response_id: r.parent_response_id,
+      image: r.image,
+      username: r.user.username
+    }));
+
+    res.json(formatted);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Add response to a question
 // POST response (nested)
-router.post("/questions/:id/responses", upload.single("image"), (req, res) => {
+router.post("/questions/:id/responses", upload.single("image"), async (req, res) => {
+   const questionId = req.params.id;
   const { user_id, body, parent_response_id } = req.body;
-  if (!user_id || !body) return res.status(400).json({ error: "Fill response" });
   const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
-  db.run(
-    `INSERT INTO community_responses (question_id, user_id, parent_response_id, body, image) 
-     VALUES (?, ?, ?, ?, ?)`,
-    [req.params.id, user_id, parent_response_id || null, body, imagePath],
-    function(err) {
-      if (err) return res.status(500).json({ error: err.message });
-      res.json({
-        id: this.lastID,
-        question_id: req.params.id,
-        user_id,
-        body,
-        parent_response_id: parent_response_id || null,
-        image: imagePath
+  if (!user_id || !body) return res.status(400).json({ error: "Fill response" });
+
+  try {
+    const { data, error } = await supabase
+      .from("community_responses")
+      .insert([{ question_id: questionId, user_id, parent_response_id: parent_response_id || null, body, image: imagePath }])
+      .select()
+      .single();
+
+    if (error) throw error;
+    // 🔔 2. Fetch who should be notified
+    let targetUserId = null;
+
+    if (parent_response_id) {
+      // Replying to another response → notify that response owner
+      const { data: parent, error: parentErr } = await supabase
+        .from("community_responses")
+        .select("user_id")
+        .eq("id", parent_response_id)
+        .single();
+
+      if (!parentErr && parent && parent.user_id !== Number(user_id)) {
+        targetUserId = parent.user_id;
+      }
+
+    } else {
+      // Replying to the question directly → notify question owner
+      const { data: question, error: qErr } = await supabase
+        .from("community_questions")
+        .select("user_id, title")
+        .eq("id", questionId)
+        .single();
+
+      if (!qErr && question && question.user_id !== Number(user_id)) {
+        targetUserId = question.user_id;
+      }
+    }
+
+    // 3. Send notification if needed
+    if (targetUserId) {
+      await sendNotif(targetUserId, {
+        title: "New reply",
+        body: "Someone replied to your post!",
+        url: `/question.html?id=${questionId}`
       });
     }
-  );
+
+    res.json(data);
+  } catch (err) {
+    console.error("Insert response error:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Toggle favorite
-router.post("/questions/:id/favorite", (req, res) => {
-  const userId = req.session && req.session.userId;
+router.post("/questions/:id/favorite", async (req, res) => {
+
+  const userId = req.session?.userId;
   const questionId = req.params.id;
-  
+
   if (!userId) return res.status(401).json({ error: "Login required" });
 
-  db.get(
-    "SELECT id FROM favorites WHERE user_id = ? AND question_id = ?",
-    [userId, questionId],
-    (err, row) => {
-      if (err) return res.status(500).json({ error: err.message });
+  try {
+    // Check if already favorited
+    const { data: existing, error: fetchErr } = await supabase
+      .from("favorites")
+      .select("id")
+      .eq("user_id", userId)
+      .eq("question_id", questionId)
+      .maybeSingle();
 
-      if (row) {
-        // If already favorited, remove
-        db.run("DELETE FROM favorites WHERE id = ?", [row.id], function(err) {
-          if (err) return res.status(500).json({ error: err.message });
-          res.json({ favorited: false });
-        });
-      } else {
-        // Not favorited, add it
-        db.run(
-          "INSERT INTO favorites (user_id, question_id) VALUES (?, ?)",
-          [userId, questionId],
-          function (err) {
-            if (err) return res.status(500).json({ error: err.message });
-            res.json({ favorited: true, id: this.lastID });
-          }
-        );
-      }
+    if (fetchErr && !fetchErr.message.includes("No rows")) throw fetchErr;
+
+    if (existing) {
+      // Remove favorite
+      const { error } = await supabase
+        .from("favorites")
+        .delete()
+        .eq("id", existing.id);
+
+      if (error) throw error;
+      return res.json({ favorited: false });
     }
-  );
+
+    // Add favorite
+    const { data: fav, error } = await supabase
+      .from("favorites")
+      .insert([{ user_id: userId, question_id: questionId }])
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    // 🔔 Notify the author
+    const { data: question, error: qErr } = await supabase
+      .from("community_questions")
+      .select("user_id, title")
+      .eq("id", questionId)
+      .single();
+
+    if (!qErr && question && question.user_id !== userId) {
+      await sendNotif(question.user_id, {
+        title: "New favorite ❤️",
+        body: "Someone favorited your post!",
+        url: `/question.html?id=${questionId}`
+      });
+    }
+
+    res.json({ favorited: true, id: fav.id });
+
+  } catch (err) {
+    console.error("Favorite toggle error:", err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 // Get user's favorites
-router.get("/favorites", (req, res) => {
+router.get("/favorites", async (req, res) => {
   const userId = req.session && req.session.userId;
   if (!userId) return res.json({ error: "Login required" });
   
-  db.all("SELECT question_id FROM favorites WHERE user_id = ?", [userId], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows.map(r => r.question_id));
-  });
+  try {
+    const { data, error } = await supabase
+      .from("favorites")
+      .select("question_id")
+      .eq("user_id", userId);
+    if (error) throw error;
+
+    res.json(data.map(r => r.question_id));
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: err.message });
+  }
 });
 
 //get all favorites

@@ -29,9 +29,7 @@ function showModal(message) {
 }
 
 
-document.querySelector('.baby-ai-bubble')?.addEventListener('click', () => {
-  window.location.href = 'private.html';
-});
+
 
 const askInput = document.querySelector('.ask-input');
 const questionFeed = document.querySelector('.question-feed');
@@ -240,13 +238,16 @@ async function loadFromBackend() {
     const res = await fetch("/commune/questions");
     if (!res.ok) throw new Error("Backend /commune/questions failed");
     const data = await res.json();
-    console.log("Loaded questions from backend:", data);
+    const {questions: qList, warning} = data;
+    if (warning) { showModal(warning); }
+
+    console.log("Loaded questions from backend:", qList);
 
     // map backend → local structure (but keep local drafts + cached ones)
     // when mapping rows from /commune/questions
-const backendQuestions = data.map(q => ({
+const backendQuestions = qList.map(q => ({
   id: String(q.id),
-  text: q.text || q.body || '',
+  text: q.text || q.body || q.title || '',
   author: q.author || q.username || "Anonymous",
   authorId: q.authorId || q.user_id || q.userId || null,            // <-- important
   authorProfilePic: q.authorProfilePic || q.profile || q.author_profile_pic || null,

@@ -1,10 +1,4 @@
 
- 
-
-
-
-
-
 let questions = [
   // 💬 General
   { id: "q3", text: "What's my purpose on Earth?", category: "general", ageRange: [12, 99] },

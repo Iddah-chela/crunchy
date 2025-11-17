@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     console.error(err);
     showModal("Please log in first");
-    window.location.href = "/login.html";
+   
   }
 });
 
@@ -60,8 +60,14 @@ async function loadFriendRequests() {
       `;
       container.appendChild(card);
 
-      card.querySelector('[data-action="accept"]').addEventListener("click", () => acceptRequest(req.id));
-      card.querySelector('[data-action="decline"]').addEventListener("click", () => declineRequest(req.id));
+      card.querySelector('[data-action="accept"]').addEventListener("click", () => {
+        acceptRequest(req.id);
+        card.remove();
+      });
+      card.querySelector('[data-action="decline"]').addEventListener("click", () => {
+        declineRequest(req.id);
+        card.remove();
+      });
     });
   } catch (err) {
     console.error("Failed to load requests:", err);
@@ -82,10 +88,18 @@ async function acceptRequest(friendshipId) {
 }
 
 async function declineRequest(friendshipId) {
-  // For now, just remove from display
-  // TODO: Add decline endpoint
-  await loadFriendRequests();
+  try {
+    const res = await fetch(`/chat/friend-decline/${friendshipId}`, { method: "POST" });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || "Failed to decline");
+
+    showModal(data.msg);
+    await loadFriendRequests(); // refresh list
+  } catch (err) {
+    console.error("Failed to decline:", err);
+  }
 }
+
 
 // Load current friends
 async function loadFriends() {

@@ -2,6 +2,18 @@ import { startCiscoVibe } from './auth.js';
 const form = document.getElementById("loginForm");
 const msg = document.getElementById("msg");
 
+function calculateAge(birthday) {
+  const birthDate = new Date(birthday);
+  const today = new Date();
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--;
+  }
+  return age;
+}
+
+
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -25,13 +37,15 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
+    const age = data.user.birthday ? calculateAge(data.user.birthday) : 10;
+
     msg.textContent = "Karibu tena 🎉";
 
     // save logged in user in localStorage
     localStorage.setItem("user", JSON.stringify({
       id: data.user.id,
       username: data.user.username,
-      age: data.user.age
+      age: age
     }));
 
     localStorage.setItem("hasSignedUp", "true");

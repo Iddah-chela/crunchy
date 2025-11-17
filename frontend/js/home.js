@@ -16,6 +16,8 @@ const messages = [
       "Preparing your space...",
       "Gathering what you need...",
       "Setting things in place...",
+      "Loading your content...",
+      "Just a moment...",
       "Almost ready..."
     ];
 
@@ -125,6 +127,47 @@ document.querySelectorAll(".card").forEach(card => {
     window.location.href = link;
   });
 });
+async function loadLatestChats(maxMessages = 3) {
+  const res = await fetch("/chat/friends");
+  if (!res.ok) return console.error("Failed to load friends");
+  const friends = await res.json();
+
+  const chatInfo = document.getElementById("chatInfo");
+  chatInfo.textContent = ""; // clear previous
+
+  if (!friends.length) {
+    chatInfo.textContent = "No messages yet. Add friends to start chatting!";
+    return;
+  }
+
+  // Fetch last message from each friend
+  const latestMessages = await Promise.all(friends.map(async friend => {
+    const threadRes = await fetch(`/chat/thread/${friend.id}`);
+    if (!threadRes.ok) return null;
+    const messages = await threadRes.json();
+    if (!messages.length) return null;
+    const lastMsg = messages[messages.length - 1];
+    return {
+      username: friend.username,
+      text: lastMsg.text
+    };
+  }));
+
+  const filtered = latestMessages.filter(m => m !== null);
+
+  if (!filtered.length) {
+    chatInfo.textContent = "No messages yet. Start a conversation!";
+    return;
+  }
+
+  // Show up to maxMessages
+  filtered.slice(-maxMessages).forEach(msg => {
+    const p = document.createElement("p");
+    p.textContent = `${msg.username}: ${msg.text}`;
+    chatInfo.appendChild(p);
+  });
+}
+
 
 
 Promise.all([
@@ -148,6 +191,10 @@ Promise.all([
     requestsArray.length
       ? `${requestsArray[0].username} sent you a friend request`
       : "No new friend requests!";
+
+ loadLatestChats();
+
+// Build highlights ticker
 const highlightFeed = document.getElementById("highlightFeed");
 const highlights = [];
 

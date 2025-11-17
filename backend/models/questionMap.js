@@ -16891,7 +16891,6 @@ let q157ans = {
   }
 },
 "God welcomes the sexual minority: eunuchs": {
-  explanation: "Eunuchs were biologically or socially outside sexual norms in biblical times—often infertile, castrated, or sexually ambiguous. Many scholars consider them a symbol for people whose bodies or desires set them apart. God still honors and includes them.",
   "Isaiah 56:3–5": {
     text: "Let no foreigner who is bound to the Lord say, 'The Lord will surely exclude me from his people.' And let no eunuch complain, 'I am only a dry tree.' For this is what the Lord says: 'To the eunuchs who keep my Sabbaths... I will give them an everlasting name that will endure forever.'",
     theme: "obedience",

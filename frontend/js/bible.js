@@ -5,14 +5,34 @@ let currentBookName = null;     // e.g. "Genesis"
 let currentChapters = [];       // array of chapter numbers for current book
 let currentChapterIdx = 0;      // zero-based index of current chapter
 let showNotes = false;
+let bibleData = [];
 
-// Load Bible JSON
-fetch("/api/bible/books")
-  .then(res => res.json())
-  .then(async (data) => {
-    bibleData = data;
+import db, { migrateBible, isBibleLoaded } from "./bibleMigrator.js";
 
-    renderBookList("ot")
+(async function loadBible() {
+  
+
+  const loaded = await isBibleLoaded();
+  if (!loaded) {
+    console.log("📥 Loading Bible for first time...");
+    await migrateBible();
+  }
+
+  const verses = await db.bible.orderBy("order").toArray();
+const seen = new Set();
+bibleData = [];
+
+for (const v of verses) {
+  if (!seen.has(v.book)) {
+    seen.add(v.book);
+    bibleData.push({ name: v.book });
+  }
+}
+
+  
+  renderBookList("ot");
+
+
 
     // --- handle ?ref= deep-link here ---
     const params = new URLSearchParams(window.location.search);
@@ -115,7 +135,7 @@ function enterBibleReading() {
 }
 
 function exitBibleReading() {
-  // document.body.classList.remove("paused"); // resume animations
+  document.body.classList.remove("paused"); // resume animations
   // const music = document.getElementById("bg-music");
   // if (music) music.play(); // resume bg music
 }
@@ -137,17 +157,49 @@ function setMainHeading(text) {
 // --- initial load: fetch book list (absolute path) ---
 (async function initBible() {
   try {
-    const res = await fetch("/api/bible/books");
-    if (!res.ok) throw new Error("Failed to fetch books");
-    bibleBooks = await res.json(); // ["Genesis","Exodus",...]
-    // render first view (OT/NT split uses first 39 as before)
-    renderBookList("ot");
-    // then handle deep-link / last-read AFTER books are known
-    handleDeepLinkOrLastRead();
-  } catch (err) {
-    console.error("Could not load bible books:", err);
-    showModal("Could not load Bible. Make sure server is running.");
+  const loaded = await isBibleLoaded();
+  if (!loaded) {
+    console.log("📥 Loading Bible for first time...");
+    await migrateBible();
   }
+
+  // Pull *all* verses so we can extract book names in stored order
+  const verses = await db.bible.orderBy("order").toArray();
+  const seen = new Set();
+  bibleBooks = [];
+  
+  for (const v of verses) {
+    if (!seen.has(v.book)) {
+      seen.add(v.book);
+      bibleBooks.push(v.book);
+    }
+  }
+
+  // canonical sort (so OT/NT stay in correct order)
+  const canonicalOrder = [
+    "Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth",
+    "1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra",
+    "Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song of Solomon",
+    "Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos",
+    "Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi",
+    "Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians",
+    "Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians",
+    "1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter",
+    "1 John","2 John","3 John","Jude","Revelation"
+  ];
+
+  bibleBooks.sort(
+    (a, b) => canonicalOrder.indexOf(a) - canonicalOrder.indexOf(b)
+  );
+
+  renderBookList("ot");
+  handleDeepLinkOrLastRead();
+
+} catch (err) {
+  console.error("Could not load Bible from Dexie:", err);
+  showModal("Could not load Bible. Maybe Dexie got hungry.");
+}
+
 })();
 
 // handle deep link or last read (called after books are loaded)
@@ -258,9 +310,11 @@ async function renderChapters(bookName) {
   chapterList.innerHTML = "";
 
   try {
-    const res = await fetch(`/api/bible/chapters/${encodeURIComponent(bookName)}`);
-    if (!res.ok) throw new Error("Failed to fetch chapters");
-    const chapters = await res.json(); // e.g. [1,2,3,...]
+    // Get chapters directly from Dexie
+
+const chapterRows = await db.bible.where("book").equals(bookName).toArray();
+const chapters = [...new Set(chapterRows.map(r => r.chapter))].sort((a, b) => Number(a) - Number(b));
+
     currentChapters = chapters;
     // create buttons
     chapters.forEach(ch => {
@@ -312,9 +366,11 @@ async function renderVerses(bookName, chapterIdx) {
 
   try {
     const chapterNum = chapterIdx + 1;
-    const res = await fetch(`/api/bible/verses/${encodeURIComponent(bookName)}/${chapterNum}`);
-    if (!res.ok) throw new Error("Failed to fetch verses");
-    const verses = await res.json(); // rows: [{verse:1,text:"..."}, ...]
+    // Read verses straight from Dexie
+const verses = await db.bible
+  .where({ book: bookName, chapter: chapterNum })
+  .sortBy("verse");
+
 
     // iterate rows (use row.verse as number)
     for (const row of verses) {

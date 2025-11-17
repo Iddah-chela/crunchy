@@ -1,237 +1,306 @@
 const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
-const path = require("path");
 const crypto = require("crypto");
 
 const router = express.Router();
 
-// Simple encryption/decryption for messages
-const ENCRYPTION_KEY = process.env.MESSAGE_KEY || "your-32-char-secret-key-here!!"; // Must be 32 chars
+const { sendNotif } = require("../notifications"); // import sendNotif
+const { supabase } = require("../db/supabase"); // central client
+
+
+// Encryption / Decryption
+const ENCRYPTION_KEY = process.env.MESSAGE_KEY || "your-32-char-secret-key-here!!";
 const IV_LENGTH = 16;
 
 function encrypt(text) {
   const iv = crypto.randomBytes(IV_LENGTH);
-  const cipher = crypto.createCipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
+  const cipher = crypto.createCipheriv("aes-256-cbc", Buffer.from(ENCRYPTION_KEY), iv);
   let encrypted = cipher.update(text);
   encrypted = Buffer.concat([encrypted, cipher.final()]);
-  return iv.toString('hex') + ':' + encrypted.toString('hex');
+  return iv.toString("hex") + ":" + encrypted.toString("hex");
 }
 
 function decrypt(text) {
-  const parts = text.split(':');
-  const iv = Buffer.from(parts.shift(), 'hex');
-  const encryptedText = Buffer.from(parts.join(':'), 'hex');
-  const decipher = crypto.createDecipheriv('aes-256-cbc', Buffer.from(ENCRYPTION_KEY), iv);
+  const parts = text.split(":");
+  const iv = Buffer.from(parts.shift(), "hex");
+  const encryptedText = Buffer.from(parts.join(":"), "hex");
+  const decipher = crypto.createDecipheriv("aes-256-cbc", Buffer.from(ENCRYPTION_KEY), iv);
   let decrypted = decipher.update(encryptedText);
   decrypted = Buffer.concat([decrypted, decipher.final()]);
   return decrypted.toString();
 }
 
-const dbPath = path.join(process.cwd(), "randomverse.db");
-const db = new sqlite3.Database(dbPath, (err) => {
-  if (err) console.error("❌ Chat route DB error:", err.message);
-  else console.log("✅ Chat route connected to DB at:", dbPath);
-});
-
-// Create tables
-db.serialize(() => {
-  // Messages table with encrypted text
-  db.run(`
-    CREATE TABLE IF NOT EXISTS messages 
-    (
-      id INTEGER PRIMARY KEY AUTOINCREMENT, 
-      senderId INTEGER NOT NULL,
-      receiverId INTEGER NOT NULL,
-      text TEXT NOT NULL,
-      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY(senderId) REFERENCES users(id),
-      FOREIGN KEY(receiverId) REFERENCES users(id)
-    )
-  `, (err) => {
-    if (err) console.error("Error creating messages table:", err);
-    else console.log("✅ Messages table ready");
-  });
-
-  // Friendships table
-  db.run(`
-    CREATE TABLE IF NOT EXISTS friendships (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      userId INTEGER NOT NULL,
-      friendId INTEGER NOT NULL,
-      status TEXT DEFAULT 'pending',
-      createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
-      FOREIGN KEY(userId) REFERENCES users(id),
-      FOREIGN KEY(friendId) REFERENCES users(id),
-      UNIQUE(userId, friendId)
-    )
-  `, (err) => {
-    if (err) console.error("Error creating friendships table:", err);
-    else console.log("✅ Friendships table ready");
-  });
-});
-
-// Get friends list
-router.get("/friends", (req, res) => {
+/* ------------------------------------------------------------------------------------------------
+   GET FRIENDS LIST
+------------------------------------------------------------------------------------------------ */
+router.get("/friends", async (req, res) => {
   const userId = req.session.userId;
   if (!userId) return res.status(401).json({ error: "Not logged in" });
 
-  const sql = `
-  SELECT 
-    u.id, 
-    u.username, 
-    u.profilePic, 
-    f.status,
-    m.text AS lastMessage,
-    m.timestamp AS lastTimestamp
-  FROM friendships f
-  JOIN users u ON (f.friendId = u.id OR f.userId = u.id)
-  LEFT JOIN (
-    SELECT * 
-    FROM messages 
-    WHERE senderId = ? OR receiverId = ?
-    ORDER BY timestamp DESC
-  ) m ON ( (m.senderId = u.id AND m.receiverId = ?) OR (m.senderId = ? AND m.receiverId = u.id) )
-  WHERE (f.userId = ? OR f.friendId = ?) 
-    AND u.id != ?
-    AND f.status = 'accepted'
-  GROUP BY u.id
-`;
-db.all(sql, [userId, userId, userId, userId, userId, userId, userId], (err, rows) => {
-  if (err) return res.status(500).json({ error: err.message });
-  res.json(rows);
-});
+  // Get all friendships involving this user
+  const { data: friendships, error } = await supabase
+    .from("friendships")
+    .select(
+      `
+      id,
+      status,
+      userId,
+      friendId
+    `
+    )
+    .or(`userId.eq.${userId},friendId.eq.${userId}`)
+    .eq("status", "accepted");
 
-});
+  if (error) return res.status(500).json({ error: error.message });
 
-// Send friend request
-router.post("/friend-request", (req, res) => {
-  try {
-    const userId = req.session && req.session.userId;
-    const friendId = Number(req.body.friendId || req.body.friendId === 0 ? req.body.friendId : req.body.friendId);
+  if (!friendships.length) return res.json([]);
 
-    if (!userId) {
-      console.warn("Friend request blocked: not logged in");
-      return res.status(401).json({ error: "Not logged in" });
-    }
-    if (!friendId) {
-      console.warn("Friend request blocked: missing friendId, body:", req.body);
-      return res.status(400).json({ error: "friendId required" });
-    }
-    if (userId === friendId) {
-      return res.status(400).json({ error: "You cannot friend yourself" });
-    }
+  const friendIds = friendships.map((f) =>
+    f.userId === userId ? f.friendId : f.userId
+  );
 
-    // Ensure friendships table exists with unique constraint (userId, friendId)
-    // Prevent duplicate or reverse duplicates (optional)
-    const checkSql = `SELECT id, status FROM friendships WHERE (userId = ? AND friendId = ?) OR (userId = ? AND friendId = ?)`;
-    db.get(checkSql, [userId, friendId, friendId, userId], (err, row) => {
-      if (err) {
-        console.error("DB error checking friendship:", err);
-        return res.status(500).json({ error: err.message });
-      }
-      if (row) {
-        // If reverse exists and accepted -> already friends
-        if (row.status === "accepted") return res.status(400).json({ error: "Already friends" });
-        // If pending in either direction
-        return res.status(400).json({ error: "Request already exists or pending" });
-      }
+  // Fetch user profiles for all friends
+  const { data: users, error: usersErr } = await supabase
+    .from("users")
+    .select("id, username, profilePic")
+    .in("id", friendIds);
 
-      const sql = `INSERT INTO friendships (userId, friendId, status) VALUES (?, ?, 'pending')`;
-      db.run(sql, [userId, friendId], function(err) {
-        if (err) {
-          console.error("Insert friendship failed:", err.message);
-          if (err.message.includes("UNIQUE")) {
-            return res.status(400).json({ error: "Request already sent" });
-          }
-          return res.status(500).json({ error: err.message });
-        }
-        console.log(`Friend request created: ${userId} -> ${friendId} (id=${this.lastID})`);
-        res.json({ msg: "Friend request sent! 🤝", id: this.lastID });
-      });
+  if (usersErr) return res.status(500).json({ error: usersErr.message });
+
+  // For each friend, fetch last message between the two
+  const final = [];
+
+  for (const friend of users) {
+    const { data: msg } = await supabase
+      .from("messages")
+      .select("id, senderId, receiverId, text, timestamp")
+      .or(
+        `and(senderId.eq.${userId},receiverId.eq.${friend.id}),and(senderId.eq.${friend.id},receiverId.eq.${userId})`
+      )
+      .order("timestamp", { ascending: false })
+      .limit(1);
+
+    final.push({
+      id: friend.id,
+      username: friend.username,
+      profilePic: friend.profilePic,
+      lastMessage: msg && msg.length ? decrypt(msg[0].text) : null,
+      lastTimestamp: msg && msg.length ? msg[0].timestamp : null,
     });
+  }
+
+  res.json(final);
+});
+
+/* ------------------------------------------------------------------------------------------------
+   SEND FRIEND REQUEST
+------------------------------------------------------------------------------------------------ */
+router.post("/friend-request", async (req, res) => {
+  try {
+    const userId = req.session.userId;
+    const friendId = Number(req.body.friendId);
+
+    if (!userId) return res.status(401).json({ error: "Not logged in" });
+    if (!friendId) return res.status(400).json({ error: "friendId required" });
+    if (userId === friendId)
+      return res.status(400).json({ error: "You cannot friend yourself" });
+
+    // Check if a relationship already exists
+    const { data: existing, error: checkErr } = await supabase
+      .from("friendships")
+      .select("*")
+      .or(
+        `and(userId.eq.${userId},friendId.eq.${friendId}),and(userId.eq.${friendId},friendId.eq.${userId})`
+      );
+
+    if (checkErr) return res.status(500).json({ error: checkErr.message });
+
+    if (existing.length)
+      return res
+        .status(400)
+        .json({ error: "Request already exists or already friends" });
+
+    // Insert pending request
+    const { data, error } = await supabase
+      .from("friendships")
+      .insert({
+        userId,
+        friendId,
+        status: "pending",
+      })
+      .select()
+      .single();
+
+    if (error) return res.status(500).json({ error: error.message });
+
+    
+// --- SEND NOTIF TO TARGET USER ---
+await sendNotif(friendId, {
+  title: "New Friend Request 💌",
+  body: `You have a new friend request from ${req.session.username}!`,
+  url: "/friends.html" // optional, wherever you want them to click to see requests
+});
+
+
+    res.json({ msg: "Friend request sent!", id: data.id });
   } catch (ex) {
-    console.error("Unexpected friend-request error:", ex);
     res.status(500).json({ error: "Server error" });
   }
 });
 
-// Accept friend request
-router.post("/friend-accept/:friendshipId", (req, res) => {
+/* ------------------------------------------------------------------------------------------------
+   ACCEPT FRIEND REQUEST
+------------------------------------------------------------------------------------------------ */
+router.post("/friend-accept/:friendshipId", async (req, res) => {
   const userId = req.session.userId;
   const friendshipId = req.params.friendshipId;
 
   if (!userId) return res.status(401).json({ error: "Not logged in" });
 
-  const sql = `UPDATE friendships SET status = 'accepted' WHERE id = ? AND friendId = ?`;
-  db.run(sql, [friendshipId, userId], function(err) {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json({ msg: "Friend request accepted! 🎉" });
-  });
+  const { error } = await supabase
+    .from("friendships")
+    .update({ status: "accepted" })
+    .eq("id", friendshipId)
+    .eq("friendId", userId);
+
+  if (error) return res.status(500).json({ error: error.message });
+
+  // Get the original request to know who sent it
+const { data: request, error: fetchErr } = await supabase
+  .from("friendships")
+  .select("userId, friendId")
+  .eq("id", friendshipId)
+  .single();
+
+if (fetchErr) return res.status(500).json({ error: fetchErr.message });
+
+
+// --- SEND NOTIF TO ORIGINAL SENDER ---
+await sendNotif(request.userId, {
+  title: "Friend Request Accepted 🎉",
+  body: `${req.session.username} accepted your friend request!`,
+  url: "/friends.html"
 });
 
-// Get pending friend requests
-router.get("/friend-requests", (req, res) => {
+  res.json({ msg: "Friend request accepted!" });
+});
+
+// POST /chat/friend-decline/:id
+router.post("/friend-decline/:id", async (req, res) => {
+  const friendshipId = req.params.id;
+  const userId = req.session?.userId;
+
+  if (!userId) return res.status(401).json({ error: "Login required" });
+
+  try {
+    // make sure this request belongs to the current user
+    const { data: fr, error: fetchErr } = await supabase
+      .from("friendships")
+      .select("*")
+      .eq("id", friendshipId)
+      .maybeSingle();
+    if (fetchErr) throw fetchErr;
+    if (!fr || fr.friendId !== userId) {
+      return res.status(403).json({ error: "Not allowed" });
+    }
+
+    // delete the pending request
+    const { error: delErr } = await supabase
+      .from("friendships")
+      .delete()
+      .eq("id", friendshipId);
+    if (delErr) throw delErr;
+
+    res.json({ msg: "Friend request declined" });
+  } catch (err) {
+    console.error("Decline request error:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+/* ------------------------------------------------------------------------------------------------
+   GET PENDING FRIEND REQUESTS
+------------------------------------------------------------------------------------------------ */
+router.get("/friend-requests", async (req, res) => {
   const userId = req.session.userId;
   if (!userId) return res.status(401).json({ error: "Not logged in" });
 
-  const sql = `
-    SELECT f.id, u.id as userId, u.username, u.profilePic
-    FROM friendships f
-    JOIN users u ON f.userId = u.id
-    WHERE f.friendId = ? AND f.status = 'pending'
-  `;
+  const { data, error } = await supabase
+    .from("friendships")
+    .select(
+      `
+      id,
+      userId,
+      users:userId (id, username, profilePic)
+    `
+    )
+    .eq("friendId", userId)
+    .eq("status", "pending");
 
-  db.all(sql, [userId], (err, rows) => {
-    if (err) return res.status(500).json({ error: err.message });
-    res.json(rows);
-  });
+  if (error) return res.status(500).json({ error: error.message });
+
+  res.json(
+    data.map((row) => ({
+      id: row.id,
+      userId: row.userId,
+      username: row.users.username,
+      profilePic: row.users.profilePic,
+    }))
+  );
 });
 
-// Get message thread between two users (with decryption)
-router.get("/thread/:otherUserId", (req, res) => {
+/* ------------------------------------------------------------------------------------------------
+   GET MESSAGE THREAD BETWEEN TWO USERS
+------------------------------------------------------------------------------------------------ */
+router.get("/thread/:otherUserId", async (req, res) => {
   const currentUser = req.session.userId;
   const otherUser = Number(req.params.otherUserId);
 
-  if (!currentUser || !otherUser) {
+  if (!currentUser || !otherUser)
     return res.status(400).json({ error: "Invalid IDs" });
-  }
 
-  // First check if they're friends
-  const friendCheck = `
-    SELECT * FROM friendships 
-    WHERE ((userId = ? AND friendId = ?) OR (userId = ? AND friendId = ?))
-      AND status = 'accepted'
-  `;
+  // Check friendship
+  const { data: friendship } = await supabase
+    .from("friendships")
+    .select("*")
+    .or(
+      `and(userId.eq.${currentUser},friendId.eq.${otherUser}),and(userId.eq.${otherUser},friendId.eq.${currentUser})`
+    )
+    .eq("status", "accepted")
+    .limit(1);
 
-  db.get(friendCheck, [currentUser, otherUser, otherUser, currentUser], (err, friendship) => {
-    if (err) return res.status(500).json({ error: err.message });
-    if (!friendship) return res.status(403).json({ error: "Not friends with this user" });
+  if (!friendship || !friendship.length)
+    return res.status(403).json({ error: "Not friends with this user" });
 
-    const sql = `
-      SELECT m.id, m.senderId, m.receiverId, m.text, m.timestamp,
-             u.username AS senderUsername, u.profilePic AS senderProfilePic
-      FROM messages m
-      JOIN users u ON m.senderId = u.id
-      WHERE (m.senderId = ? AND m.receiverId = ?) OR (m.senderId = ? AND m.receiverId = ?)
-      ORDER BY m.timestamp ASC
-    `;
-    
-    db.all(sql, [currentUser, otherUser, otherUser, currentUser], (err, rows) => {
-      if (err) {
-        console.error("Error fetching thread:", err);
-        return res.status(500).json({ error: err.message });
-      }
+  // Fetch messages
+  const { data, error } = await supabase
+    .from("messages")
+    .select(
+      `
+      id,
+      senderId,
+      receiverId,
+      text,
+      timestamp,
+      users:senderId (username, profilePic)
+    `
+    )
+    .or(
+      `and(senderId.eq.${currentUser},receiverId.eq.${otherUser}),and(senderId.eq.${otherUser},receiverId.eq.${currentUser})`
+    )
+    .order("timestamp", { ascending: true });
 
-      // Decrypt messages before sending
-      const decryptedRows = rows.map(row => ({
-        ...row,
-        text: decrypt(row.text)
-      }));
+  if (error) return res.status(500).json({ error: error.message });
 
-      res.json(decryptedRows);
-    });
-  });
+  const decrypted = data.map((row) => ({
+    ...row,
+    text: decrypt(row.text),
+    senderUsername: row.users.username,
+    senderProfilePic: row.users.profilePic,
+  }));
+
+  res.json(decrypted);
 });
 
 module.exports = router;
-module.exports.encrypt = encrypt; // Export for use in server.js
+module.exports.encrypt = encrypt;

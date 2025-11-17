@@ -192,29 +192,55 @@ function toggleCategory(id) {
   }
 }
 
-function saveCustomPrayer() {
-  const text = document.getElementById("customPrayer").value.trim();
-  if (text) {
+// Load prayers on page load
+  window.addEventListener("load", loadPrayers);
+
+  function saveCustomPrayer() {
+    const text = document.getElementById("customPrayer").value.trim();
+    if (text) {
+      const prayers = JSON.parse(localStorage.getItem("customPrayers")) || [];
+      prayers.push(text);
+      localStorage.setItem("customPrayers", JSON.stringify(prayers));
+
+      addPrayerToList(text);
+      document.getElementById("customPrayer").value = "";
+      document.getElementById("customPrayer").style.display = "none";
+      document.getElementById("savePrayer").style.display = "none";
+    }
+  }
+
+  function addPrayerToList(text) {
     const li = document.createElement("li");
     li.textContent = text;
-    let deleteBtn = document.createElement("button");
+
+    const deleteBtn = document.createElement("button");
     deleteBtn.innerText = "Delete";
     deleteBtn.classList.add("innerbtn");
+
     deleteBtn.onclick = function() {
       li.remove();
-    }
+      removePrayerFromStorage(text);
+    };
+
     li.appendChild(deleteBtn);
     document.getElementById("savedPrayers").appendChild(li);
-    document.getElementById("customPrayer").value = "";
-    document.getElementById("customPrayer").style.display = "none";
-    document.getElementById("savePrayer").style.display = "none";
   }
-}
 
-function showSpace() {
-  document.getElementById("customPrayer").style.display = "block";
-  document.getElementById("savePrayer").style.display = "block";
-}
+  function loadPrayers() {
+    const prayers = JSON.parse(localStorage.getItem("customPrayers")) || [];
+    prayers.forEach(prayer => addPrayerToList(prayer));
+  }
+
+  function removePrayerFromStorage(text) {
+    let prayers = JSON.parse(localStorage.getItem("customPrayers")) || [];
+    prayers = prayers.filter(p => p !== text);
+    localStorage.setItem("customPrayers", JSON.stringify(prayers));
+  }
+
+  function showSpace() {
+    document.getElementById("customPrayer").style.display = "block";
+    document.getElementById("savePrayer").style.display = "block";
+  }
 
 const slides = [
   {

@@ -157,7 +157,7 @@ signupLink.style.display = everHadCookie ? "block" : "none";
 // only do this if page is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
 // List all your HTML pages in the order you want to swipe through
-const pages = ['home.html', 'bible.html', 'prayer.html', 'game.html', 'community.html']; 
+const pages = ['home.html', 'notes.html', 'bible.html', 'prayer.html',  'community.html']; 
 
 // Get current file name (e.g. 'home.html')
 let currentPage = window.location.pathname.split("/").pop();
@@ -201,7 +201,6 @@ const pageToNavId = {
   "notes.html": "nav-notes",
   "bible.html": "nav-bible",
   "prayer.html": "nav-prayer",
-  "game.html": "nav-game",
   "community.html": "nav-community"
 };
 
@@ -214,7 +213,7 @@ const checkForNav = setInterval (() => {
     clearInterval(checkForNav);
   } 
 
-
+}, 500); // check every 500ms
 
 const translations = {
   en: {
@@ -281,8 +280,6 @@ function applyLanguage(lang) {
   }
 
   
-
-
   // Apply saved language
   const savedLang = localStorage.getItem("lang") || "en";
   applyLanguage(savedLang);
@@ -290,7 +287,6 @@ function applyLanguage(lang) {
   // Also update dropdown to match saved value
   if (languageSelect) languageSelect.value = savedLang;
  });
-});
 
 function checkStreak() {
   const today = new Date().toDateString(); // e.g., "Thu Jul 18 2025"

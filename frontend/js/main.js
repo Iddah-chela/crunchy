@@ -14,6 +14,8 @@ try {
   storage = sessionStorage;
 }
 
+//this just allows you to select a question when you click on category
+let currentCategory = null; // Track which is open
 function showModal(message) {
   const modal = document.getElementById("appModal");
   const msg = document.getElementById("modalMessage");
@@ -404,7 +406,7 @@ function suggestMoreFromFavoriteTags() {
 }
 
 function randgen(q) {
-  fetch(`./questions/${q}`)
+  fetch(`/questions/${q}`)
     .then(res => res.json())
     .then(rows => {
       if (!rows || !rows.length) {
@@ -412,6 +414,11 @@ function randgen(q) {
         showModal("Oops! That question doesn't have any verses yet.");
         return;
       }
+      rows.forEach(r => {
+  if (typeof r.tags === 'string') r.tags = r.tags.split(',');
+});
+
+      console.log("Fetched rows:", rows);
 
       // pick random row from DB
       const randomRow = rows[Math.floor(Math.random() * rows.length)];
@@ -420,7 +427,7 @@ function randgen(q) {
       let themer = randomRow.theme;
       let category = randomRow.category;
       let ref = randomRow.ref;
-      let tags = JSON.parse(randomRow.tags || "[]");
+      let tags = randomRow.tags || "[]";
 
       // blur out the background, overlay is always blur so if verse is not there, blur kills app
       let overlay = document.getElementById("overlay");
@@ -556,7 +563,7 @@ function randgen(q) {
       display.appendChild(displayBtn);
 
     })
-    .catch(err => console.error(err));
+    .catch(err => console.error("Fetch failed:",err));
 }
 
 
@@ -623,8 +630,7 @@ window.onload = function () {
 
 };
 
-//this just allows you to select a question when you click on category
-let currentCategory = null; // Track which is open
+
 
 function toggleCategory(id) {
   const selected = document.getElementById(id);

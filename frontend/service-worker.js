@@ -1,4 +1,4 @@
-const CACHE_NAME = "holyverse-cache-v2";
+const CACHE_NAME = "holyverse-cache-v6";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -24,6 +24,7 @@ const urlsToCache = [
   "/js/private.js",
   "/js/profile-view.js",
   "/js/profile.js",
+  "/js/community.js",
   "/css/style.css",
   "/icons/icon192.png"
 ];
@@ -82,8 +83,9 @@ self.addEventListener("fetch", (event) => {
 
 
 
-// Push event (you already had this)
+// Push event
 self.addEventListener("push", event => {
+  console.log("Push received:", event.data?.json());
   const data = event.data ? event.data.json() : {};
   event.waitUntil(
     self.registration.showNotification(data.title || "Hey 👋", {
@@ -92,3 +94,27 @@ self.addEventListener("push", event => {
     })
   );
 });
+
+self.addEventListener("notificationclick", function(event) {
+  event.notification.close(); // close the notification
+
+  const postId = event.notification.data?.postId; // the post ID we’ll send with the notification
+  const urlToOpen = postId ? `/community?q=${postId}` : "/"; // default to homepage if no postId
+
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then(clientList => {
+      for (const client of clientList) {
+        // if tab is already open, focus it
+        if (client.url.includes("/")) {
+          client.navigate(urlToOpen); // navigate to the post
+          return client.focus();
+        }
+      }
+      // if no tab is open, open a new one
+      if (clients.openWindow) {
+        return clients.openWindow(urlToOpen);
+      }
+    })
+  );
+});
+

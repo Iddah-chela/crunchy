@@ -132,6 +132,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const treeKey = `treeLevel_${currentUserName}`;
   const waterKey = `water_${currentUserName}`;
   const lastWaterDayKey = `lastWaterDay_${currentUserName}`;
+  const treeImg = document.getElementById('treeImage')
+  const waterCountEl = document.getElementById('waterCount');
+  const waterBtn = document.getElementById('waterBtn');
 
   let water = parseInt(localStorage.getItem(waterKey)) || 0;
   let treeLevel = parseInt(localStorage.getItem(treeKey)) || 0;
@@ -216,12 +219,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // give water once per day (per-user)
   const todayStr = new Date().toDateString();
-  const lastWaterDay = localStorage.getItem(lastWaterDayKey);
-  if (todayStr !== lastWaterDay) {
+  const lastWaterDayd = localStorage.getItem(lastWaterDayKey);
+  if (todayStr !== lastWaterDayd) {
     water++;
     localStorage.setItem(waterKey, water);
     localStorage.setItem(lastWaterDayKey, todayStr);
   }
+
+  const lastWaterDayStr = localStorage.getItem(lastWaterDayKey);
+const lastWaterDay = lastWaterDayStr ? new Date(lastWaterDayStr) : new Date();
+const today = new Date();
+
+// calculate difference in days
+const msPerDay = 24 * 60 * 60 * 1000;
+const daysMissed = Math.floor((today - lastWaterDay) / msPerDay);
+
+if (daysMissed > 0) {
+  // tree goes backward 1 level per missed day, but never below 0
+  treeLevel = Math.max(0, treeLevel - daysMissed);
+  localStorage.setItem(treeKey, treeLevel);
+
+  // optionally reduce water if you want
+  // water = Math.max(0, water - daysMissed);
+  localStorage.setItem(waterKey, water);
+  localStorage.setItem(lastWaterDayKey, today.toDateString());
+}
+
+
+
 
   // initial render
   updateTree();

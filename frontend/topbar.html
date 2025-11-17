@@ -22,9 +22,99 @@
     <li><button  class="innerbtn"><a href="index.html"><i class="fas fa-home"></i><small>Home</small></a></button></li>
     <li><button class="innerbtn"><a href="profile.html"><i class="fas fa-user"></i><small>Profile</small></a></button></li>
     <li><button id="settingsBtn" class="innerbtn"><i class="fa-solid fa-gear"></i><small>Settings</small></button></li>
-    <li><a id="loginLink" class="innerbtn" href="login.html">Login</a></li>
-    <li><a id="signupLink" class="innerbtn" href="signup.html">Sign up</a></li>
+    
     <li><button id="logoutBtn" class="innerbtn">Logout</button></li>
+    <li><button class="innerbtn" ><a href="about.html">About</a></button></li>
+    <!-- SHARE BUTTON + MENU -->
+     
+    <li>
+      <div class="share-container">
+      <button id="shareToggle" class="innerbtn">
+    <i class="share-main fa-solid fa-share-nodes"></i><small>Share HolyVerse</small> 
+  </button>
+
+  <div id="shareMenu" class="share-menu">
+    <a href="https://wa.me/?text=Check%20out%20HolyVerse%20✨%20A%20faith%20app%20for%20daily%20verses%2C%20prayer%20and%20community%20🙏%20https%3A%2F%2Fholyverse-s5s1.onrender.com"
+       target="_blank" class="share-icon" data-brand="WhatsApp" style="--brand-color:#25D366" title="WhatsApp">
+       <i class="fa-brands fa-whatsapp" ></i>
+    </a>
+
+    <a href="https://t.me/share/url?url=https://holyverse-s5s1.onrender.com&text=Check%20out%20HolyVerse%20✨"
+       target="_blank" class="share-icon" title="Telegram" data-brand="Telegram" style="--brand-color:#0088cc">
+       <i class="fa-brands fa-telegram"></i>
+    </a>
+
+    <a href="https://twitter.com/intent/tweet?text=Check%20out%20HolyVerse%20✨%20https%3A%2F%2Fholyverse-s5s1.onrender.com"
+       target="_blank" class="share-icon" title="X / Twitter" data-brand="Twitter" style="--brand-color:#000">
+       <i class="fa-brands fa-x-twitter"></i>
+    </a>
+
+    <a href="https://www.facebook.com/sharer/sharer.php?u=https://holyverse-s5s1.onrender.com"
+       target="_blank" class="share-icon" title="Facebook" data-brand="Facebook" style="--brand-color:#1877f2">
+       <i class="fa-brands fa-facebook"></i>
+    </a>
+
+    <a href="mailto:?subject=Check out HolyVerse&body=HolyVerse ✨ A faith app for daily verses, prayer, and community 🙏 https://holyverse-s5s1.onrender.com"
+       class="share-icon" title="Email" data-brand="Email" style="--brand-color:#ea4335">
+       <i class="fa-solid fa-envelope"></i>
+    </a>
+
+    <a href="sms:?body=Check out HolyVerse ✨ https://holyverse-s5s1.onrender.com"
+       class="share-icon" title="SMS" data-brand="SMS" style="--brand-color:#4CAF50">
+       <i class="fa-solid fa-comment-sms"></i>
+    </a>
+
+    <button id="copyLink" class="share-icon" title="Copy Link" data-brand="Copy" style="--brand-color:#666;">
+       <i class="fa-solid fa-link"></i>
+    </button>
+
+    <button id="nativeShare" class="share-icon" title="More Options" data-brand="More Options" style="--brand-color:#666;">
+       <i class="fa-solid fa-share-from-square"></i>
+    </button>
+  </div></div>
+</li>
+  <!-- SUPPORT BUTTON + MODAL -->
+<li><button id="supportBtn" class="innerbtn">Support the mission</button>
+</li>
+<div id="supportModal" class="modal">
+  <div class="modal-content">
+    <h3>Support HolyVerse</h3>
+    <p>Help us keep HolyVerse free and growing. Choose a method:</p>
+
+    
+
+    <!-- M-PESA STK Push (requires backend) -->
+     <div id="mpesaInfo" style="font-size:13px;color:#666;margin-top:6px;">
+        Pay with Paystack (You can use Mpesa, card or other mobile money.)
+      </div>
+    <div class="modal-actions">
+      
+      
+      <a class="btn" href="https://paystack.shop/pay/holyverse">Pay with Mpesa</a>
+    </div>
+
+    <!-- Bank transfer toggle -->
+<button id="showBankBtn" class="btn">Pay with Bank</button>
+
+<div id="bankSection" class="modal-actions" style="display:none; margin-top:10px;">
+  <strong>Bank transfer</strong>
+  <div>
+    <div>Bank: <span id="bankName">Stanbic Bank</span></div>
+    <div>Account name: <span id="accName">HolyVerse Projects</span></div>
+    <div>
+      Account number: <span id="accNumber">1234567890</span>
+      <button id="copyBank" class="btn">Copy</button>
+    </div>
+  </div>
+</div>
+
+    
+
+    <div>
+      <button id="closeSupport" class="btn">Close</button>
+    </div>
+  </div>
+</div>
   </ul>
 </nav>
 <div id="appModal" class="modal">
@@ -43,7 +133,9 @@
       
       
       <li><button id="start-music-btn" class="menu-item innerbtn"><i class="fa-solid fa-volume-high"></i></button></li>
-      <button class="menu-item innerbtn" id="themeToggle">Remove animation</button>
+      <li><button class="menu-item innerbtn" id="themeToggle">Remove animation</button></li>
+      <li><a id="loginLink" class="innerbtn" href="login.html">Login</a></li>
+    <li><a id="signupLink" class="innerbtn" href="signup.html">Sign up</a></li>
       <li>
        
        <div class="menu-select custom-select" id="themeSwitcher">

@@ -22,6 +22,10 @@ function showModal(message) {
   };
 }
 
+document.querySelector('.backbtnb')?.addEventListener('click', () => {
+  window.location.href = 'friends.html';
+});
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch("/me");

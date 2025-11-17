@@ -305,6 +305,121 @@ Object.keys(categoryAccents).forEach(category => {
       storage.setItem("theme", theme);
     });
   });
+  
+    const copyLink = document.getElementById("copyLink");
+    const nativeShare = document.getElementById("nativeShare");
+    const appUrl = window.location.href;
+
+
+const shareToggle = document.getElementById("shareToggle");
+const shareMenu = document.getElementById("shareMenu");
+const shareContainer = document.querySelector(".share-container");
+const shareButtons = Array.from(shareMenu.querySelectorAll(".share-icon"));
+
+let isOpen = false;
+
+shareToggle.addEventListener("click", (e) => {
+  e.stopPropagation();
+  isOpen = !isOpen;
+  shareButtons.forEach((btn, i) => {
+    const angle = (i / shareButtons.length) * 2 * Math.PI - Math.PI / 2; // start at top
+    if (isOpen) {
+      const radius = 75; // distance from main button
+      const x = radius * Math.cos(angle);
+      const y = radius * Math.sin(angle);
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+      btn.style.opacity = 1;
+      btn.style.pointerEvents = "auto";
+      shareContainer.style.height = "170px"; // expand container
+      shareContainer.style.width = "185px";
+      shareContainer.style.marginBottom = "35px";
+      shareContainer.style.right = "0";  
+    } else {
+      btn.style.transform = `translate(0,0)`;
+      btn.style.opacity = 0;
+      btn.style.pointerEvents = "none";
+      shareContainer.style.height = "fit-content"; // collapse container
+      shareContainer.style.width = "fit-content";
+      shareContainer.style.marginBottom = "0";
+      shareContainer.style.right = "8px";  
+    }
+  });
+
+  // optionally shrink main button text/icon if you want
+  if (isOpen) {
+    shareToggle.innerHTML = '<i class="fa-solid fa-share-nodes"></i>'; // just icon
+    shareToggle.style.bottom = "-10px";
+    shareToggle.style.right = "15px";
+  } else {
+    shareToggle.innerHTML = '<i class="fa-solid fa-share-nodes"></i> Share HolyVerse';
+    shareToggle.style.bottom = "0";
+    shareToggle.style.right = "-4px";
+  }
+});
+
+
+
+
+    copyLink.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(appUrl);
+        alert("Link copied! Share anywhere ✨");
+      } catch (err) {
+        alert("Couldn't copy the link.");
+      }
+    });
+
+    nativeShare.addEventListener("click", async () => {
+      if (navigator.share) {
+        try {
+          await navigator.share({
+            title: "HolyVerse",
+            text: "✨ A faith app for daily verses, prayer, and community 🙏",
+            url: appUrl
+          });
+        } catch (err) {
+          console.log("Share canceled:", err);
+        }
+      } else {
+        alert("Your browser doesn’t support native sharing 😩");
+      }
+    });
+
+    // --- UI toggles ---
+
+document.getElementById("supportModal").querySelector("#closeSupport").addEventListener("click", () => {
+  document.getElementById("supportModal").style.display = "none";
+});
+
+document.getElementById("supportBtn").addEventListener("click", () => {
+  document.getElementById("supportModal").style.display = "flex";
+});
+
+const showBankBtn = document.getElementById('showBankBtn');
+  const bankSection = document.getElementById('bankSection');
+
+  showBankBtn.addEventListener('click', () => {
+    // Toggle visibility
+    if (bankSection.style.display === 'none') {
+      bankSection.style.display = 'block';
+    } else {
+      bankSection.style.display = 'none';
+    }
+  });
+ 
+
+  // --- copy bank details ---
+  document.getElementById('copyBank').addEventListener('click', async () => {
+    const details = `Bank: ${document.getElementById('bankName').textContent}\nAccount name: ${document.getElementById('accName').textContent}\nAccount number: ${document.getElementById('accNumber').textContent}`;
+    try {
+      await navigator.clipboard.writeText(details);
+      alert('Bank details copied. Paste into your mobile banking app to transfer.');
+    } catch {
+      alert('Copy failed. Select and copy manually: ' + details);
+    }
+  });
+
+
 
   // close if click outside
   document.addEventListener("click", e => {

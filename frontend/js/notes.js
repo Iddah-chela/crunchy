@@ -55,7 +55,8 @@ if (typeof initTopbar === "function") {
     // Create a textarea with the note
     let textarea = document.createElement("textarea");
     textarea.value = noteslist[index];
-    textarea.style.width = "100%";
+    textarea.style.height = "100%";
+    textarea.className = "prayer-textarea";
    
 
     // Create a Save button
