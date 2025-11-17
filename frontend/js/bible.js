@@ -197,7 +197,7 @@ function setMainHeading(text) {
 
 } catch (err) {
   console.error("Could not load Bible from Dexie:", err);
-  showModal("Could not load Bible. Maybe Dexie got hungry.");
+  showModal("Could not load Bible.");
 }
 
 })();
