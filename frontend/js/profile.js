@@ -217,15 +217,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // attach water button
   if (waterBtn) waterBtn.addEventListener("click", waterTree);
 
-  // give water once per day (per-user)
-  const todayStr = new Date().toDateString();
-  const lastWaterDayd = localStorage.getItem(lastWaterDayKey);
-  if (todayStr !== lastWaterDayd) {
-    water++;
-    localStorage.setItem(waterKey, water);
-    localStorage.setItem(lastWaterDayKey, todayStr);
-  }
-
   const lastWaterDayStr = localStorage.getItem(lastWaterDayKey);
 const lastWaterDay = lastWaterDayStr ? new Date(lastWaterDayStr) : new Date();
 const today = new Date();
@@ -241,12 +232,21 @@ if (daysMissed > 0) {
 
   // optionally reduce water if you want
   // water = Math.max(0, water - daysMissed);
-  localStorage.setItem(waterKey, water);
+
   localStorage.setItem(lastWaterDayKey, today.toDateString());
 }
 
 
 
+// ---- DAILY WATER GIVE (now AFTER the backward logic) ----
+const todayStr = today.toDateString();
+const lastGivenDay = localStorage.getItem(lastWaterDayKey) || "";
+
+if (todayStr !== lastGivenDay) {
+  water++;
+  localStorage.setItem(waterKey, water);
+  localStorage.setItem(lastWaterDayKey, todayStr);
+}
 
   // initial render
   updateTree();

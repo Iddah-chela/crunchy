@@ -127,13 +127,20 @@ document.querySelectorAll(".card").forEach(card => {
     window.location.href = link;
   });
 });
+
 async function loadLatestChats(maxMessages = 3) {
   const res = await fetch("/chat/friends");
-  if (!res.ok) return console.error("Failed to load friends");
+
   const friends = await res.json();
 
   const chatInfo = document.getElementById("chatInfo");
   chatInfo.textContent = ""; // clear previous
+
+  if (res.status === 401) {
+    chatInfo.textContent = "Login to see your chats!";
+    return;
+  }  
+  if (!res.ok) return console.error("Failed to load friends");
 
   if (!friends.length) {
     chatInfo.textContent = "No messages yet. Add friends to start chatting!";
@@ -197,8 +204,9 @@ Promise.all([
 // Build highlights ticker
 const highlightFeed = document.getElementById("highlightFeed");
 const highlights = [];
-
-community.slice(0,2).forEach(q => highlights.push({ type:"community", text:`${q.author} asked: ${q.title}` }));
+if (community && community.length)
+{community.slice(0,2).forEach(q => highlights.push({ type:"community", text:`${q.author} asked: ${q.title}` }));
+}
 requestsArray.slice(0,2).forEach(r => highlights.push({ type:"friend", text:`${r.username} sent a friend request` }));
 
 if (!highlights.length) {
