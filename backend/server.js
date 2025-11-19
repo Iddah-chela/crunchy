@@ -15,14 +15,23 @@ const server = http.createServer(app);
 const webpush = require("web-push");
 
 require("dotenv").config({ path: __dirname + "/.env" });
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "http://localhost:4000";
+const FRONTEND_ORIGIN = [
+  process.env.FRONTEND_ORIGIN || "http://localhost:4000",
+  process.env.FRONTEND_PROD || "https://holyverses.netlify.app"
+];
+
 const io = new Server(server, {
   cors: {
-    origin: FRONTEND_ORIGIN,
-    methods:["GET", "POST"],
-    credentials: true // enable cookies and critical for sessions sharing
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true); // Postman, scripts
+      if (FRONTEND_ORIGIN.includes(origin)) callback(null, true);
+      else callback(new Error("Not allowed by CORS"));
+    },
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
+
 
 app.use(bodyParser.json());
 
@@ -59,9 +68,22 @@ function calculateAge(birthday) {
 //middleware to parse json and cors to speak to frontend
 app.use(express.json());       // to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // if you ever send form data
+const whitelist = [
+  process.env.FRONTEND_ORIGIN || 'http://localhost:4000',
+  process.env.FRONTEND_PROD || "https://holyverses.netlify.app"
+];
+
 app.use(cors({
-  origin: FRONTEND_ORIGIN,
-  credentials: true
+  origin: function(origin, callback) {
+    // allow requests with no origin (like Postman)
+    if (!origin) return callback(null, true);
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true // for cookies/sessions
 })); // to speak to frontend, donno how though
 
 // Replace your session setup in server.js with this:
