@@ -6,6 +6,11 @@ const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chatInput");
 const chatForm = document.getElementById("chat-input-area");
 
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
+
 let currentUserId, currentUsername;
 let socket;
 
@@ -28,7 +33,7 @@ document.querySelector('.backbtnb')?.addEventListener('click', () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("/me");
+    const res = await fetch(`${API_BASE}/me`);
     if (!res.ok) throw new Error("Not logged in");
     const me = await res.json();
 
@@ -123,7 +128,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadThread(otherUserId) {
-  const res = await fetch(`/chat/thread/${otherUserId}`);
+  const res = await fetch(`${API_BASE}/chat/thread/${otherUserId}`);
   if (!res.ok) {
     console.error("Failed to load thread", res.status);
     chatMessages.innerHTML = "<p>Failed to load messages</p>";
@@ -195,7 +200,7 @@ chatInput.addEventListener('input', () => {
 
 async function loadChatList() {
   // Load friends instead of all users
-  const res = await fetch("/chat/friends");
+  const res = await fetch(`${API_BASE}/chat/friends`);
   if (!res.ok) return console.error("Failed to load friends");
   const friends = await res.json();
 

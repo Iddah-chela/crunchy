@@ -1,3 +1,7 @@
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
 
 console.log("Topbar loaded on", window.location.pathname);
 
@@ -58,7 +62,7 @@ function initTopbar() {
 
 logoutBtn.addEventListener("click", async () => {
   try {
-    const res = await fetch("/logout", {
+    const res = await fetch(`${API_BASE}/logout`, {
       method: "POST",
       credentials: "include"
     });
@@ -267,6 +271,7 @@ function applyLanguage(lang) {
 }
 
 
+  callHeartbeat();
   //hope it works
 
   // ✅ Add this handler to listen for dropdown changes
@@ -287,6 +292,8 @@ function applyLanguage(lang) {
   // Also update dropdown to match saved value
   if (languageSelect) languageSelect.value = savedLang;
  });
+
+
 
 function checkStreak() {
   const today = new Date().toDateString(); // e.g., "Thu Jul 18 2025"
@@ -339,7 +346,7 @@ navigator.serviceWorker.register("/service-worker.js").then(reg => {
   console.log("Subscription:", sub);
 
   // send sub to backend to store for this user
-  fetch("/subscribe", {
+  fetch(`${API_BASE}/subscribe`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(sub)
@@ -394,3 +401,33 @@ window.addEventListener("appinstalled", () => {
   deferredPrompt = null;
   document.getElementById("installPrompt").style.display = "none";
 });
+
+
+async function callHeartbeat() {
+  try {
+    const res = await fetch(`${API_BASE}/heartbeat`, {
+      method: "GET",
+      credentials: "include"
+    });
+    if (!res.ok) {
+      // ignore silently, or handle if you want
+      return;
+    }
+    const data = await res.json();
+    // optional: use data.hoursSince or data.sentWelcomeBack to show UI
+    // console.log("heartbeat ok:", data);
+  } catch (err) {
+    console.warn("heartbeat failed", err);
+  }
+}
+
+
+
+// call when page becomes visible (user switches back to tab)
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") {
+    callHeartbeat();
+  }
+});
+
+window.initTopbar = initTopbar;

@@ -6,6 +6,8 @@ let currentChapters = [];       // array of chapter numbers for current book
 let currentChapterIdx = 0;      // zero-based index of current chapter
 let showNotes = false;
 let bibleData = [];
+let currentVersion = "KJV"; // default
+
 
 import db, { migrateBible, isBibleLoaded } from "./bibleMigrator.js";
 
@@ -106,7 +108,19 @@ for (const v of verses) {
     renderBookList("ot");
   });
 
+const versionSelect = document.getElementById("versionSelect");
 
+const savedVersion = localStorage.getItem("bibleVersion");
+if (savedVersion) {
+  currentVersion = savedVersion;
+  versionSelect.value = savedVersion;
+}
+
+versionSelect.addEventListener("change", (e) => {
+  currentVersion = e.target.value;
+  localStorage.setItem("bibleVersion", currentVersion);
+  renderVerses(currentBookName, currentChapterIdx);
+});
 
 
 // Extract notes vs grammar
@@ -368,7 +382,7 @@ async function renderVerses(bookName, chapterIdx) {
     const chapterNum = chapterIdx + 1;
     // Read verses straight from Dexie
 const verses = await db.bible
-  .where({ book: bookName, chapter: chapterNum })
+  .where({ book: bookName, chapter: chapterNum, version: currentVersion })
   .sortBy("verse");
 
 
@@ -710,11 +724,13 @@ function hideAll() {
 const menuToggle = document.getElementById("menuToggleBtn");
 const highlightBtn = document.getElementById("highlightPageBtn");
 const notesBtn = document.getElementById("notesPageBtn");
+const versionBtn = document.getElementById("versionSelect");
 
 menuToggle.onclick = () => {
   const isVisible = highlightBtn.style.display === "inline-block";
   highlightBtn.style.display = isVisible ? "none" : "inline-block";
   notesBtn.style.display = isVisible ? "none" : "inline-block";
+  versionBtn.style.display = isVisible ? "none" : "inline-block";
 };
 
 // Hook buttons to pages

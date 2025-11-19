@@ -101,7 +101,7 @@ router.get("/questions", async (req, res) => {
         };
       });
 
-      console.log("Filtered questions:", filtered);
+
     res.json({questions: filtered, warning: ageWarning});
 
   } catch (err) {

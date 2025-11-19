@@ -1,4 +1,8 @@
 import { startCiscoVibe } from './auth.js';
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
 
 // Hii script ndio inabonga na backend
 const form = document.getElementById("signupForm");
@@ -22,7 +26,7 @@ form.addEventListener("submit", async (e) => {
   }
 
   try {
-    const res = await fetch("/signup", { // same origin, no full URL
+    const res = await fetch(`${API_BASE}/signup`, { // same origin, no full URL
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),

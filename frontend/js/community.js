@@ -8,6 +8,10 @@ try {
   storage = sessionStorage;
 }
 
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
 // ensure user is signed in
 const currentUser = JSON.parse(storage.getItem("user"));
 if (!currentUser) {
@@ -69,13 +73,13 @@ async function getVerseByIntent(intent, questionMap) {
 
   try {
     // Use same pattern as main.js - fetch all questions and filter verses by theme
-    const qRes = await fetch("/questions");
+    const qRes = await fetch(`${API_BASE}/questions`);
     if (!qRes.ok) throw new Error("Failed to fetch questions list");
     const qRows = await qRes.json();
 
     // Fetch verses for each question in parallel
     const fetches = qRows.map(q =>
-      fetch(`/questions/${encodeURIComponent(q.qkey)}`)
+      fetch(`${API_BASE}/questions/${encodeURIComponent(q.qkey)}`)
         .then(r => r.ok ? r.json() : [])
         .catch(err => {
           console.warn("Failed to fetch question", q.qkey, err);
@@ -235,13 +239,13 @@ async function loadFromBackend() {
     return;
   }
   try {
-    const res = await fetch("/commune/questions");
+    const res = await fetch(`${API_BASE}/commune/questions`);
     if (!res.ok) throw new Error("Backend /commune/questions failed");
     const data = await res.json();
     const {questions: qList, warning} = data;
     if (warning) { showModal(warning); }
 
-    console.log("Loaded questions from backend:", qList);
+
 
     // map backend → local structure (but keep local drafts + cached ones)
     // when mapping rows from /commune/questions
@@ -272,7 +276,7 @@ const backendQuestions = qList.map(q => ({
     for (const q of questions) {
       if (!q.id) continue; // skip local-only
       try {
-        const respRes = await fetch(`/commune/questions/${q.id}/responses`);
+        const respRes = await fetch(`${API_BASE}/commune/questions/${q.id}/responses`);
         if (!respRes.ok) throw new Error("responses fetch failed");
         const responses = await respRes.json();
         const nested = buildNestedResponses(Array.isArray(responses) ? responses :  []);
@@ -305,7 +309,7 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
       fd.append("title", title);
       fd.append("body", body);
       fd.append("image", imageFile);
-      const res = await fetch("/commune/questions", {
+      const res = await fetch(`${API_BASE}/commune/questions`, {
         method: "POST",
         body: fd,
         credentials: "include"
@@ -321,7 +325,7 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
       fd.append("title", title);
       fd.append("body", body);
       fd.append("image", blob, 'upload.png');
-      const res = await fetch("/commune/questions", {
+      const res = await fetch(`${API_BASE}/commune/questions`, {
         method: "POST",
         body: fd,
         credentials: "include"
@@ -331,7 +335,7 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
       return data;
     } else {
       // No image: send JSON
-      const res = await fetch("/commune/questions", {
+      const res = await fetch(`${API_BASE}/commune/questions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -355,7 +359,7 @@ async function postResponseToServer({ questionId, user_id, body, parentResponseI
       fd.append("user_id", user_id);
       fd.append("body", body);
       fd.append("image", imageFile);
-      const res = await fetch(`/commune/questions/${questionId}/responses`, {
+      const res = await fetch(`${API_BASE}/commune/questions/${questionId}/responses`, {
         method: "POST",
         body: fd,
         credentials: "include"
@@ -369,7 +373,7 @@ async function postResponseToServer({ questionId, user_id, body, parentResponseI
       fd.append("user_id", user_id);
       fd.append("body", body);
       fd.append("image", blob, 'upload.png');
-      const res = await fetch(`/commune/questions/${questionId}/responses`, {
+      const res = await fetch(`${API_BASE}/commune/questions/${questionId}/responses`, {
         method: "POST",
         body: fd,
         credentials: "include"
@@ -378,7 +382,7 @@ async function postResponseToServer({ questionId, user_id, body, parentResponseI
       const data = await res.json();
       return data;
     } else {
-      const res = await fetch(`/commune/questions/${questionId}/responses`, {
+      const res = await fetch(`${API_BASE}/commune/questions/${questionId}/responses`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -535,7 +539,7 @@ async function toggleFavorite(questionId, favBtn) {
   updateFavUI(favBtn, q);
 
   try {
-    const res = await fetch(`/commune/questions/${questionId}/favorite`, {
+    const res = await fetch(`${API_BASE}/commune/questions/${questionId}/favorite`, {
       method: "POST",
       credentials: "include"
     });
@@ -891,7 +895,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
 
           // Sync with backend
           try {
-            const res = await fetch(`/commune/questions/${q.id}`, {
+            const res = await fetch(`${API_BASE}/commune/questions/${q.id}`, {
               method: "DELETE",
               credentials: "include"
             });
@@ -925,7 +929,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
     if (!newText) return;
 
     try {
-      const res = await fetch(`/commune/questions/${q.id}`, {
+      const res = await fetch(`${API_BASE}/commune/questions/${q.id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -983,7 +987,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
             if (!newText) return;
 
             try {
-              const res = await fetch(`/commune/questions/${q.id}`, {
+              const res = await fetch(`${API_BASE}/commune/questions/${q.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 credentials: 'include',

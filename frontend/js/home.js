@@ -8,6 +8,11 @@ try {
   storage = sessionStorage;
 }
 
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
+
 const isDev = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 if (isDev) console.log("Connected to SQLite, running in dev mode.");
 
@@ -129,7 +134,7 @@ document.querySelectorAll(".card").forEach(card => {
 });
 
 async function loadLatestChats(maxMessages = 3) {
-  const res = await fetch("/chat/friends");
+  const res = await fetch(`${API_BASE}/chat/friends`);
 
   const friends = await res.json();
 
@@ -149,7 +154,7 @@ async function loadLatestChats(maxMessages = 3) {
 
   // Fetch last message from each friend
   const latestMessages = await Promise.all(friends.map(async friend => {
-    const threadRes = await fetch(`/chat/thread/${friend.id}`);
+    const threadRes = await fetch(`${API_BASE}/chat/thread/${friend.id}`);
     if (!threadRes.ok) return null;
     const messages = await threadRes.json();
     if (!messages.length) return null;
@@ -178,13 +183,22 @@ async function loadLatestChats(maxMessages = 3) {
 
 
 Promise.all([
-  fetch("/commune/questions").then(r => r.json()).catch(() => []),
-  fetch("/questions").then(r => r.json()).catch(() => []),
-  fetch("/chat/friend-requests").then(r => r.json()).catch(() => [])
+  fetch(`${API_BASE}/community/questions`)
+    .then(r => r.json())
+    .then(d => Array.isArray(d) ? d : d.data || d.questions || [])
+    .catch(() => []),
+
+  fetch(`${API_BASE}/questions`)
+    .then(r => r.json())
+    .then(d => Array.isArray(d) ? d : d.data || [])
+    .catch(() => []),
+
+  fetch(`${API_BASE}/chat/friend-requests`)
+    .then(r => r.json())
+    .catch(() => [])
 ])
 .then(([community, qna, requests]) => {
   const requestsArray = Array.isArray(requests) ? requests : requests.data || [];
-  //const friendsArray = Array.isArray(friends) ? friends : friends.data || [];
 
   document.getElementById("communityInfo").textContent =
     community[0]?.title
@@ -199,40 +213,50 @@ Promise.all([
       ? `${requestsArray[0].username} sent you a friend request`
       : "No new friend requests!";
 
- loadLatestChats();
+  loadLatestChats();
 
-// Build highlights ticker
-const highlightFeed = document.getElementById("highlightFeed");
-const highlights = [];
-if (community && community.length)
-{community.slice(0,2).forEach(q => highlights.push({ type:"community", text:`${q.author} asked: ${q.title}` }));
-}
-requestsArray.slice(0,2).forEach(r => highlights.push({ type:"friend", text:`${r.username} sent a friend request` }));
+  // highlights
+  const highlightFeed = document.getElementById("highlightFeed");
+  const highlights = [];
 
-if (!highlights.length) {
-  highlights.push(
-    { type:"verse", text:"Be strong and courageous. (Joshua 1:9)" },
-    { type:"friend", text:"Send friend requests to chat!" }
+  if (community.length) {
+    community.slice(0, 2).forEach(q =>
+      highlights.push({
+        type: "community",
+        text: `${q.author} asked: ${q.title}`
+      })
+    );
+  }
+
+  requestsArray.slice(0, 2).forEach(r =>
+    highlights.push({
+      type: "friend",
+      text: `${r.username} sent a friend request`
+    })
   );
-}
 
-// build track and duplicate it
-const track = document.createElement("div");
-track.className = "highlight-track";
+  if (!highlights.length) {
+    highlights.push(
+      { type: "verse", text: "Be strong and courageous. (Joshua 1:9)" },
+      { type: "friend", text: "Send friend requests to chat!" }
+    );
+  }
 
-highlights.forEach(h => {
-  const div = document.createElement("div");
-  div.className = "highlight-item";
-  div.textContent = `${h.type.toUpperCase()}: ${h.text}`;
-  track.appendChild(div);
+  const track = document.createElement("div");
+  track.className = "highlight-track";
+
+  highlights.forEach(h => {
+    const div = document.createElement("div");
+    div.className = "highlight-item";
+    div.textContent = `${h.type.toUpperCase()}: ${h.text}`;
+    track.appendChild(div);
+  });
+
+  track.innerHTML += track.innerHTML;
+
+  highlightFeed.appendChild(track);
 });
 
-// clone once for seamless looping
-track.innerHTML += track.innerHTML;
-
-highlightFeed.appendChild(track);
-
-});
 
 
 

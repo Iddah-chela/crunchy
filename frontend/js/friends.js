@@ -1,4 +1,8 @@
 let currentUser;
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
 
 function showModal(message) {
   const modal = document.getElementById("appModal");
@@ -15,7 +19,7 @@ function showModal(message) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch("/me");
+    const res = await fetch(`${API_BASE}/me`);
     if (!res.ok) throw new Error("Not logged in");
     currentUser = await res.json();
 
@@ -34,7 +38,7 @@ async function loadFriendRequests() {
   const container = document.getElementById("friend-requests");
   
   try {
-    const res = await fetch("/chat/friend-requests");
+    const res = await fetch(`${API_BASE}/chat/friend-requests`);
     const requests = await res.json();
 
     if (requests.length === 0) {
@@ -76,7 +80,7 @@ async function loadFriendRequests() {
 
 async function acceptRequest(friendshipId) {
   try {
-    const res = await fetch(`/chat/friend-accept/${friendshipId}`, { method: "POST" });
+    const res = await fetch(`${API_BASE}/chat/friend-accept/${friendshipId}`, { method: "POST" });
     const data = await res.json();
     showModal(data.msg);
     
@@ -89,7 +93,7 @@ async function acceptRequest(friendshipId) {
 
 async function declineRequest(friendshipId) {
   try {
-    const res = await fetch(`/chat/friend-decline/${friendshipId}`, { method: "POST" });
+    const res = await fetch(`${API_BASE}/chat/friend-decline/${friendshipId}`, { method: "POST" });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Failed to decline");
 
@@ -106,7 +110,7 @@ async function loadFriends() {
   const container = document.getElementById("friends-list");
   
   try {
-    const res = await fetch("/chat/friends");
+    const res = await fetch(`${API_BASE}/chat/friends`);
     const friends = await res.json();
 
     if (friends.length === 0) {
@@ -139,8 +143,9 @@ async function loadAllUsers() {
   const searchInput = document.getElementById("search-users");
   
   try {
-    const res = await fetch("/users");
-    const allUsers = await res.json();
+    const res = await fetch(`${API_BASE}/users`);
+    const data = await res.json();
+    const allUsers = Object.values(data);
 
     // Filter out current user
     const users = allUsers.filter(u => u.id !== currentUser.id);
@@ -149,7 +154,7 @@ async function loadAllUsers() {
       container.innerHTML = "";
       
       const filtered = users.filter(u => 
-        u.username.toLowerCase().includes(filter.toLowerCase())
+        u.username && u.username.toLowerCase().includes(filter.toLowerCase())
       );
 
       if (filtered.length === 0) {
@@ -184,7 +189,7 @@ async function loadAllUsers() {
 
 async function sendFriendRequest(friendId, username) {
   try {
-    const res = await fetch("/chat/friend-request", {
+    const res = await fetch(`${API_BASE}/chat/friend-request`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       credentials: "include",

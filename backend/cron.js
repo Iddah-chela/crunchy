@@ -6,7 +6,7 @@ const { sendNotif } = require("./notifications.js");
 cron.schedule("0 10 * * *", async () => {
   console.log("Running inactivity check...");
 
-  const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  const cutoff = new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString();
 
   const { data: users, error } = await supabase
     .from("users")

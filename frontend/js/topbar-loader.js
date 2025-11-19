@@ -350,10 +350,12 @@ shareToggle.addEventListener("click", (e) => {
     shareToggle.innerHTML = '<i class="fa-solid fa-share-nodes"></i>'; // just icon
     shareToggle.style.bottom = "-10px";
     shareToggle.style.right = "15px";
+    shareToggle.style.fontSize = "20px";
   } else {
     shareToggle.innerHTML = '<i class="fa-solid fa-share-nodes"></i> Share HolyVerse';
     shareToggle.style.bottom = "0";
     shareToggle.style.right = "-4px";
+    shareToggle.style.fontSize = "16px";
   }
 });
 
@@ -363,9 +365,9 @@ shareToggle.addEventListener("click", (e) => {
     copyLink.addEventListener("click", async () => {
       try {
         await navigator.clipboard.writeText(appUrl);
-        alert("Link copied! Share anywhere ✨");
+        showModal("Link copied! Share anywhere ✨");
       } catch (err) {
-        alert("Couldn't copy the link.");
+        showModal("Couldn't copy the link.");
       }
     });
 
@@ -381,7 +383,7 @@ shareToggle.addEventListener("click", (e) => {
           console.log("Share canceled:", err);
         }
       } else {
-        alert("Your browser doesn’t support native sharing 😩");
+        showModal("Your browser doesn’t support native sharing 😩");
       }
     });
 
@@ -413,9 +415,9 @@ const showBankBtn = document.getElementById('showBankBtn');
     const details = `Bank: ${document.getElementById('bankName').textContent}\nAccount name: ${document.getElementById('accName').textContent}\nAccount number: ${document.getElementById('accNumber').textContent}`;
     try {
       await navigator.clipboard.writeText(details);
-      alert('Bank details copied. Paste into your mobile banking app to transfer.');
+      showModal('Bank details copied. Paste into your mobile banking app to transfer.');
     } catch {
-      alert('Copy failed. Select and copy manually: ' + details);
+      showModal('Copy failed. Select and copy manually: ' + details);
     }
   });
 

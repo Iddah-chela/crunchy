@@ -1,7 +1,5 @@
 // migrateQnA.js
 const questionMap = require("./models/questionMap.js");
-console.log("URL?", process.env.SUPABASE_URL);
-console.log("KEY?", process.env.SUPABASE_SERVICE_KEY ? "Loaded" : "MISSING");
 
 const { supabase } = require("./db/supabase"); // central client
 

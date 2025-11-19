@@ -1,6 +1,11 @@
 // Add all your JS here
 //oookay, I think an array will do, here or...?
 
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
+
 let lastShownTags = [];
 let lastShownId = null;
 let lastShownVerse = null;
@@ -227,14 +232,14 @@ async function getAllVerses(forceReload = false) {
   if (_allVersesCache && !forceReload) return _allVersesCache;
 
   // 1) get list of questions (each row should include qkey)
-  const qRes = await fetch("/questions");
+  const qRes = await fetch(`${API_BASE}/questions`);
   if (!qRes.ok) throw new Error("Failed to fetch questions list");
   const qRows = await qRes.json(); // e.g. [{id, qkey, title}, ...]
 
   // 2) for each qkey fetch its verses, in parallel
   const qkeys = qRows.map(q => q.qkey).filter(Boolean);
   const fetches = qkeys.map(k =>
-    fetch(`/questions/${encodeURIComponent(k)}`)
+    fetch(`${API_BASE}/questions/${encodeURIComponent(k)}`)
       .then(r => r.ok ? r.json() : [])
       .catch(err => {
         console.warn("Failed to fetch question", k, err);
@@ -406,7 +411,7 @@ function suggestMoreFromFavoriteTags() {
 }
 
 function randgen(q) {
-  fetch(`/questions/${q}`)
+  fetch(`${API_BASE}/questions/${q}`)
     .then(res => res.json())
     .then(rows => {
       if (!rows || !rows.length) {
@@ -418,7 +423,7 @@ function randgen(q) {
   if (typeof r.tags === 'string') r.tags = r.tags.split(',');
 });
 
-      console.log("Fetched rows:", rows);
+      
 
       // pick random row from DB
       const randomRow = rows[Math.floor(Math.random() * rows.length)];
@@ -759,5 +764,13 @@ function clearSearch() {
   currentCategory = null; // Reset open category
   filterQuestions(); // Reapply filters (will show all categories again)
 }
+document.getElementById("q9").addEventListener("click", () => randgen("q9"));
 
 
+window.randgen = randgen;
+window.showModal = showModal;
+window.toggleCategory = toggleCategory;
+window.filterQuestions = filterQuestions;
+window.clearSearch = clearSearch;
+window.showVersesByTag = showVersesByTag;
+window.showMoreLikeThis = showMoreLikeThis;

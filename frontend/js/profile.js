@@ -1,5 +1,23 @@
 let user = JSON.parse(localStorage.getItem("user")) || null;
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("profileForm");
   const msg = document.getElementById("msg");
@@ -17,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (user) {
     (async () => {
       try {
-        const res = await fetch(`/users/${user.id}`);
+        const res = await fetch(`${API_BASE}/users/${user.id}`);
         if (res.ok) {
           const data = await res.json();
           user = { ...user, ...data };
@@ -39,18 +57,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (logoutBtn) {
     logoutBtn.addEventListener("click", async () => {
       try {
-        const res = await fetch("/logout", {
+        const res = await fetch(`${API_BASE}/logout`, {
           method: "POST",
           credentials: "include"
         });
         const data = await res.json();
-        if (!res.ok) return alert(data.error || "Logout failed 😭");
+        if (!res.ok) return showModal(data.error || "Logout failed 😭");
         localStorage.removeItem("user");
         user = null;
         window.location.href = "/login.html";
       } catch (err) {
         console.error(err);
-        alert("Logout error 😭");
+        showModal("Logout error 😭");
       }
     });
   }
@@ -68,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      if (!user) return alert("No user logged in.");
+      if (!user) return showModal("No user logged in.");
 
       const formData = new FormData();
       const usernameVal = usernameInput?.value.trim() || "";
@@ -82,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
         formData.append("profilePic", fileInput.files[0]);
 
       try {
-        const res = await fetch(`/users/${user.id}`, {
+        const res = await fetch(`${API_BASE}/users/${user.id}`, {
           method: "PUT",
           body: formData,
           credentials: "include"

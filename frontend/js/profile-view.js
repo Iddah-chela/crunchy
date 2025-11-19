@@ -11,6 +11,12 @@ function showModal(message) {
     modal.style.display = "none";
   };
 }
+
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
+
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const userId = urlParams.get("id");
@@ -28,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadUser() {
     try {
-      const res = await fetch(`/users/${encodeURIComponent(userId)}`);
+      const res = await fetch(`${API_BASE}/users/${encodeURIComponent(userId)}`);
       if (!res.ok) {
         console.warn("Profile fetch failed:", res.status);
         document.body.innerHTML = "<p style='padding:20px;text-align:center;'>User not found 😭</p>";
@@ -74,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
   async function checkPendingAndBind(btn, otherUserId) {
     try {
       // optional: check pending friend requests that target current user
-      const res = await fetch('/chat/friend-requests', { credentials: 'include' });
+      const res = await fetch(`${API_BASE}/chat/friend-requests`, { credentials: 'include' });
       if (res.ok) {
         const pending = await res.json();
         const requestSent = pending.some(f => f.userId == otherUserId);
@@ -91,7 +97,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     btn.addEventListener("click", async () => {
       try {
-        const r = await fetch("/chat/friend-request", {
+        const r = await fetch(`${API_BASE}/chat/friend-request`, {
           method: "POST",
           credentials: "include",
           headers: { "Content-Type": "application/json" },

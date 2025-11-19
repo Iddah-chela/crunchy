@@ -83,11 +83,6 @@ const sessionMiddleware = session({
 // Use it in Express
 app.use(sessionMiddleware);
 
-// Simple logger middleware to see sessions in action
-app.use((req, res, next) => {
-  console.log("Session: ", req.session);
-  next();
-});
 
 
 // Share the SAME session instance with Socket.IO
@@ -130,7 +125,7 @@ io.on("connection", (socket) => {
   const userId = socket.handshake.session?.userId;
   const username = socket.handshake.session?.username;
 
-  console.log("🔌 Socket connected. UserID:", userId, "Username:", username);
+
 
   if (!userId) {
     console.log("❌ No userId in session, disconnecting socket");
@@ -141,7 +136,7 @@ io.on("connection", (socket) => {
   socket.on("joinRoom", ({ userA, userB }) => {
     const room = [userA, userB].sort().join("_");
     socket.join(room);
-    console.log(`👥 User ${userId} joined room: ${room}`);
+
   });
 
   // Send a message with encryption
@@ -149,8 +144,7 @@ io.on("connection", (socket) => {
     const { receiverId, text } = msg;
     const room = [userId, receiverId].sort().join("_");
 
-    console.log("📨 Saving message:", { from: userId, to: receiverId });
-
+    
     try {
       // Encrypt the message before saving
       const encryptedText = encrypt(text);
@@ -292,6 +286,7 @@ app.get("/models/en_kjv.json", (req, res) => {
 });
 
 
+app.use("/models/niv-maina", express.static(path.join(__dirname, "models/Bible-niv-main")));
 
 
 
@@ -434,7 +429,9 @@ app.post("/signup", async (req, res) => {
     req.session.userId = data.id;
     req.session.username = data.username;
 
-    res.json({ msg: "Account created", user: { id: data.id, username: data.username, birthday: data.birthday } });
+    const age = user.birthday ? calculateAge(user.birthday) : 10;
+
+    res.json({ msg: "Account created", user: { id: data.id, username: data.username, age: age } });
   } catch (err) {
     console.error("signup error:", err);
     res.status(500).json({ error: "Server error" });
@@ -473,6 +470,52 @@ app.get("/users/:id", async (req, res) => {
   }
 });
 
+app.get("/heartbeat", async (req, res) => {
+  try {
+    if (!req.session?.userId) return res.status(401).json({ error: "Not logged in" });
+
+    const userId = req.session.userId;
+
+    // fetch user
+    const { data: user, error } = await supabase
+      .from("users")
+      .select("id, last_active, received_welcome_back")
+      .eq("id", userId)
+      .single();
+
+    if (error) return res.status(500).json({ error: "DB error" });
+
+    const last = user.last_active ? new Date(user.last_active) : null;
+    const hoursSince = last ? (Date.now() - last) / 36e5 : Infinity;
+
+    // if they've been gone > 48h and we haven't welcomed them back yet, do it now
+    let sentWelcomeBack = false;
+    if (hoursSince > 48 && !user.received_welcome_back) {
+      await sendNotif(userId, {
+        title: "Welcome back 🎉",
+        body: "You’ve been away for a bit. Good to see you again!"
+      });
+
+      await supabase
+        .from("users")
+        .update({ received_welcome_back: true })
+        .eq("id", userId);
+
+      sentWelcomeBack = true;
+    }
+
+    // always update last_active to now
+    await supabase
+      .from("users")
+      .update({ last_active: new Date().toISOString() })
+      .eq("id", userId);
+
+    return res.json({ ok: true, sentWelcomeBack, hoursSince });
+  } catch (err) {
+    console.error("heartbeat error:", err);
+    return res.status(500).json({ error: "Server error" });
+  }
+});
 
 
 // Login (POST)
@@ -497,29 +540,8 @@ app.post("/login", async (req, res) => {
     req.session.userId = user.id;
     req.session.username = user.username;
 
-    
-
-if (user.last_active) {
-  const last = new Date(user.last_active);
-  const now = new Date();
-  const hours = (now - last) / 36e5;
-
-  if (hours > 12 && !user.received_welcome_back) {
-    // send welcome back
-    await sendNotif(user.id, {
-      title: "Welcome back 🎉",
-      body: "You’ve been away for a bit. Good to see you again!"
-    });
-
-    await supabase
-      .from("users")
-      .update({ received_welcome_back: true })
-      .eq("id", user.id);
-  }
-}
-
-
-    const age = user.birthday ? calculateAge(user.birthday) : 10;
+   
+    const age = user.birthday ? calculateAge(new Date(user.birthday)) : 10;
     res.json({ msg: "Logged in", user: { id: user.id, username: user.username, age: age } });
   } catch (err) {
     console.error("login error:", err);

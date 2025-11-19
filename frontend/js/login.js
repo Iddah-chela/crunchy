@@ -2,16 +2,10 @@ import { startCiscoVibe } from './auth.js';
 const form = document.getElementById("loginForm");
 const msg = document.getElementById("msg");
 
-function calculateAge(birthday) {
-  const birthDate = new Date(birthday);
-  const today = new Date();
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDiff = today.getMonth() - birthDate.getMonth();
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-  return age;
-}
+const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
 
 
 form.addEventListener("submit", async (e) => {
@@ -23,7 +17,7 @@ form.addEventListener("submit", async (e) => {
   };
 
   try {
-    const res = await fetch("/login", {
+    const res = await fetch(`${API_BASE}/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
@@ -37,15 +31,17 @@ form.addEventListener("submit", async (e) => {
       return;
     }
 
-    const age = data.user.birthday ? calculateAge(data.user.birthday) : 10;
+    const age = data.user.age;
 
+
+  
     msg.textContent = "Karibu tena 🎉";
 
     // save logged in user in localStorage
     localStorage.setItem("user", JSON.stringify({
       id: data.user.id,
       username: data.user.username,
-      age: age
+      age: data.user.age
     }));
 
     localStorage.setItem("hasSignedUp", "true");
@@ -56,7 +52,7 @@ form.addEventListener("submit", async (e) => {
     
   } catch (err) {
     console.error(err);
-    msg.textContent = "Network imechoka 😅";
+    msg.textContent = "Network error 😅";
   }
 });
 
