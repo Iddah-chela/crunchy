@@ -1,4 +1,4 @@
-const CACHE_NAME = "holyverse-cache-v6";
+const CACHE_NAME = "holyverse-cache-v7";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -12,7 +12,6 @@ const urlsToCache = [
   "/private.html",
   "/profile-view.js",
   "/writenotes.html",
-  "/community.html",
   "/topbar.html",
   "/js/topbar.js",
   "/js/topbar-loader.js",
@@ -24,7 +23,6 @@ const urlsToCache = [
   "/js/private.js",
   "/js/profile-view.js",
   "/js/profile.js",
-  "/js/community.js",
   "/css/style.css",
   "/icons/icon192.png"
 ];

@@ -16,24 +16,28 @@ function showModal(message) {
 }
 
 function initTopbar() {
-  const menuToggle = document.getElementById("menuToggle");
-const sideMenu = document.getElementById("sideMenu");
+   const menuToggle = document.getElementById("menuToggle");
+  const sideMenu = document.getElementById("sideMenu");
 
-if (menuToggle && sideMenu) {
-  menuToggle.addEventListener("click", (e) => {
-    sideMenu.classList.toggle("hidden");
-    e.stopPropagation();
-  });
-}
+  if (menuToggle && sideMenu) {
+    // ✅ Remove any previous click events safely by cloning the button
+    const newToggle = menuToggle.cloneNode(true);
+    menuToggle.parentNode.replaceChild(newToggle, menuToggle);
 
+    // ✅ Add fresh toggle logic
+    newToggle.addEventListener("click", (e) => {
+      sideMenu.classList.toggle("hidden");
+      e.stopPropagation();
+    });
 
     // ✅ Document click to close the menu when clicking outside
     document.addEventListener("click", (e) => {
-      if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+      if (!sideMenu.contains(e.target) && !newToggle.contains(e.target)) {
         sideMenu.classList.add("hidden");
       }
     });
   }
+  
 
   // ✅ Disable or hide the current page link
   const currentPage = window.location.pathname.split("/").pop();
@@ -53,7 +57,7 @@ if (menuToggle && sideMenu) {
   const logoutBtn = document.getElementById("logoutBtn");
   const loginLink = document.getElementById("loginLink");
   const signupLink = document.getElementById("signupLink");
-
+if (logoutBtn)  {
 logoutBtn.addEventListener("click", async () => {
   try {
     const API_BASE = window.location.hostname === "localhost"
@@ -81,7 +85,7 @@ logoutBtn.addEventListener("click", async () => {
     showModal("Network drama 😭");
   }
 });
-  
+}
   // Fake cookie check (replace with real one if needed)
   function getCookie(name) {
   const value = `; ${document.cookie}`;
@@ -98,7 +102,7 @@ const everHadCookie = localStorage.getItem("hasSignedUp") === "true";
 // Visibility logic
 logoutBtn.style.display = hasCookie ? "block" : "none";
 loginLink.style.display = hasCookie ? "none" : "block";
-signupLink.style.display = everHadCookie ? "block" : "none";
+signupLink.style.display = everHadCookie ? "none" : "block";
 
 
   if (hasCookie) localStorage.setItem("hasSignedUp", "true");
@@ -151,7 +155,7 @@ signupLink.style.display = everHadCookie ? "block" : "none";
 
 
 
-
+}
 
 
 

@@ -13,8 +13,16 @@ const session = require("express-session");
 const sharedSession = require("express-socket.io-session");
 const server = http.createServer(app);
 const webpush = require("web-push");
+const { v2: cloudinary } = require("cloudinary");
 
 require("dotenv").config({ path: __dirname + "/.env" });
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
 const FRONTEND_ORIGIN = [
   process.env.FRONTEND_ORIGIN || "http://localhost:4000",
   process.env.FRONTEND_PROD || "https://holyverses.netlify.app",
@@ -40,19 +48,11 @@ const { supabase } = require("./db/supabase"); // central client
 const { sendNotif } = require("./notifications");
 
 // storage config
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `user-${req.params.id}-${Date.now()}${ext}`);
-  }
-});
-const upload = multer({ storage });
+const upload = multer({ storage: multer.memoryStorage() });
+
 
 require("./cron"); // start cron jobs
 
-// Serve uploaded files
-app.use("/uploads", express.static("uploads"));
 
 function calculateAge(birthday) {
   const birthDate = new Date(birthday);
@@ -98,7 +98,7 @@ const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false, // true if HTTPS
+    secure: process.env.NODE_ENV === "production", // true if HTTPS
     maxAge: 30*24*60*60*1000 // 30 days
   }
 });
@@ -647,9 +647,20 @@ app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
 
     // Add profilePic if uploaded
     if (req.file) {
-      const profilePicUrl = `/uploads/${req.file.filename}`;
-      params.profilePic = profilePicUrl;
-    }
+  const base64 = req.file.buffer.toString("base64");
+  const dataURI = `data:${req.file.mimetype};base64,${base64}`;
+
+  const uploadResult = await cloudinary.uploader.upload(dataURI, {
+    folder: "profiles",
+    public_id: `user-${userId}-${Date.now()}`
+  });
+
+  params.profilePic = uploadResult.secure_url;
+ 
+}
+
+
+    // Finally, update the user record
     const { data, error } = await supabase
         .from("users")
         .update(params)
