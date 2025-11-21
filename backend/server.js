@@ -65,6 +65,7 @@ function calculateAge(birthday) {
   return age;
 }
 
+app.set("trust proxy", 1); // tell Express it’s behind a proxy
 
 //middleware to parse json and cors to speak to frontend
 app.use(express.json());       // to parse JSON request bodies
@@ -100,6 +101,7 @@ const sessionMiddleware = session({
   cookie: {
     secure: process.env.NODE_ENV === "production", // true if HTTPS
     sameSite: "none", // to allow cross-site cookies
+    httpOnly: true,
     maxAge: 30*24*60*60*1000 // 30 days
   }
 });
