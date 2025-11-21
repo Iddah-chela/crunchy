@@ -8,6 +8,7 @@ cron.schedule("0 10 * * *", async () => {
 
   const cutoff = new Date(Date.now() - 72 * 60 * 60 * 1000).toISOString();
 
+  const oneWeekCutoff = new Date(Date.now() - 7*24*60*60*1000).toISOString();
   const { data: users, error } = await supabase
     .from("users")
     .select("id, last_active, received_miss_you")
@@ -30,5 +31,16 @@ cron.schedule("0 10 * * *", async () => {
         .update({ received_miss_you: true })
         .eq("id", user.id);
     }
+  }
+
+  if (!users.received_miss_you && users.last_active < oneWeekCutoff) {
+    await sendNotif(user.id, {
+      title: "It's been a week! 🌟",
+      body: "We noticed you haven't been around for a week. Come back and check out what's new!"
+    });
+    await supabase
+      .from("users")
+      .update({ received_miss_you: true })
+      .eq("id", user.id);
   }
 });

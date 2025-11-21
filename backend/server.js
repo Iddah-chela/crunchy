@@ -456,7 +456,7 @@ app.post("/signup", async (req, res) => {
     req.session.userId = data.id;
     req.session.username = data.username;
 
-    const age = user.birthday ? calculateAge(user.birthday) : 10;
+    const age = data.birthday ? calculateAge(data.birthday) : 10;
 
     res.json({ msg: "Account created", user: { id: data.id, username: data.username, age: age } });
   } catch (err) {
