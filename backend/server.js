@@ -17,7 +17,8 @@ const webpush = require("web-push");
 require("dotenv").config({ path: __dirname + "/.env" });
 const FRONTEND_ORIGIN = [
   process.env.FRONTEND_ORIGIN || "http://localhost:4000",
-  process.env.FRONTEND_PROD || "https://holyverses.netlify.app"
+  process.env.FRONTEND_PROD || "https://holyverses.netlify.app",
+  process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com"
 ];
 
 const io = new Server(server, {
@@ -70,7 +71,8 @@ app.use(express.json());       // to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // if you ever send form data
 const whitelist = [
   process.env.FRONTEND_ORIGIN || 'http://localhost:4000',
-  process.env.FRONTEND_PROD || "https://holyverses.netlify.app"
+  process.env.FRONTEND_PROD || "https://holyverses.netlify.app",
+  process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com"
 ];
 
 app.use(cors({
@@ -650,7 +652,7 @@ app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
     }
     const { data, error } = await supabase
         .from("users")
-        .update(payload)
+        .update(params)
         .eq("id", userId)
         .select()
         .single();

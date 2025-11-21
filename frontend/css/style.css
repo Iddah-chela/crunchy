@@ -3159,6 +3159,10 @@ canvas#lens {
 .notes, #backBtnb   {
     top: 80px;
   }
+
+  #private-container {
+    margin-top: 70px;
+  }
   
   #topbar {
     border-bottom: none;

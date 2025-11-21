@@ -183,7 +183,7 @@ async function loadLatestChats(maxMessages = 3) {
 
 
 Promise.all([
-  fetch(`${API_BASE}/community/questions`)
+  fetch(`${API_BASE}/commune/questions`)
     .then(r => r.json())
     .then(d => Array.isArray(d) ? d : d.data || d.questions || [])
     .catch(() => []),

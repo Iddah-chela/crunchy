@@ -19,7 +19,7 @@ async function chunkedAdd(list, size = 500) {
 
 // MIGRATE KJV (single file)
 async function loadKJV() {
-  const res = await fetch(`${API_BASE}/models/kjv.json`);
+  const res = await fetch(`${API_BASE}/models/en_kjv.json`);
   const bibleData = await res.json();
   let total = 0;
 
@@ -71,7 +71,7 @@ async function loadNIV() {
   "Psalms.json",
   "Proverbs.json",
   "Ecclesiastes.json",
-  "Song of Solomon.json",
+  "Song Of Solomon.json",
   "Isaiah.json",
   "Jeremiah.json",
   "Lamentations.json",

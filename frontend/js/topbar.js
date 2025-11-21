@@ -1,6 +1,3 @@
-const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
 
 
 console.log("Topbar loaded on", window.location.pathname);
@@ -20,22 +17,19 @@ function showModal(message) {
 
 function initTopbar() {
   const menuToggle = document.getElementById("menuToggle");
-  const sideMenu = document.getElementById("sideMenu");
+const sideMenu = document.getElementById("sideMenu");
 
-  if (menuToggle && sideMenu) {
-    // ✅ Remove any previous click events safely by cloning the button
-    const newToggle = menuToggle.cloneNode(true);
-    menuToggle.parentNode.replaceChild(newToggle, menuToggle);
+if (menuToggle && sideMenu) {
+  menuToggle.addEventListener("click", (e) => {
+    sideMenu.classList.toggle("hidden");
+    e.stopPropagation();
+  });
+}
 
-    // ✅ Add fresh toggle logic
-    newToggle.addEventListener("click", (e) => {
-      sideMenu.classList.toggle("hidden");
-      e.stopPropagation();
-    });
 
     // ✅ Document click to close the menu when clicking outside
     document.addEventListener("click", (e) => {
-      if (!sideMenu.contains(e.target) && !newToggle.contains(e.target)) {
+      if (!sideMenu.contains(e.target) && !menuToggle.contains(e.target)) {
         sideMenu.classList.add("hidden");
       }
     });
@@ -62,6 +56,10 @@ function initTopbar() {
 
 logoutBtn.addEventListener("click", async () => {
   try {
+    const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
     const res = await fetch(`${API_BASE}/logout`, {
       method: "POST",
       credentials: "include"
@@ -153,7 +151,7 @@ signupLink.style.display = everHadCookie ? "block" : "none";
 
 
 
-}
+
 
 
 
@@ -344,6 +342,10 @@ navigator.serviceWorker.register("/service-worker.js").then(reg => {
   if (!sub) return console.warn("Subscription failed or permission denied.");
 
   console.log("Subscription:", sub);
+  const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
 
   // send sub to backend to store for this user
   fetch(`${API_BASE}/subscribe`, {
@@ -405,6 +407,10 @@ window.addEventListener("appinstalled", () => {
 
 async function callHeartbeat() {
   try {
+    const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
+
     const res = await fetch(`${API_BASE}/heartbeat`, {
       method: "GET",
       credentials: "include"
@@ -415,7 +421,7 @@ async function callHeartbeat() {
     }
     const data = await res.json();
     // optional: use data.hoursSince or data.sentWelcomeBack to show UI
-    // console.log("heartbeat ok:", data);
+    console.log("heartbeat ok:", data);
   } catch (err) {
     console.warn("heartbeat failed", err);
   }
