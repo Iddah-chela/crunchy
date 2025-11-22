@@ -97,7 +97,7 @@ function addButtonsToDisplay(display, chosen, tag) {
       let ul = document.getElementById("favoritelist");
       if (ul) {
         let li = document.createElement("li");
-        li.innerHTML = verseText.replace(/\n/g, "<br>");
+        li.innerHTML = verseText.replace(/\n/g, "");
         addButtonsToLi(li, newEntry);
         ul.appendChild(li);
       }
@@ -534,14 +534,14 @@ function randgen(q) {
             tags: lastShownTags || []
           };
 
-          currentFavorites.push(newEntry);
+          currentFavorites.unshift(newEntry);
 
           let ul = document.getElementById("favoritelist");
           if (ul) {
             let li = document.createElement("li");
-            li.innerHTML = verseText.replace(/\n/g);
+            li.innerHTML = verseText.replace(/\n/g, "");
             addButtonsToLi(li, newEntry);
-            ul.appendChild(li);
+            ul.insertBefore(li, ul.firstChild); // puts the new <li> at the top
           }
         }
 
@@ -581,7 +581,7 @@ function displayItem(entry) {
   let li = document.createElement("li");
 
   //Huh the line is back. no idea why it happens twice
-  li.innerHTML = entry.text.replace(/\n/g, "<br>");
+  li.innerHTML = entry.text.replace(/\n/g, "");
 
   // If there's a note, show it too
   if (entry.notes) {
