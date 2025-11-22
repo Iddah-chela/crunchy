@@ -19,7 +19,9 @@ function showModal(message) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch(`${API_BASE}/me`);
+    const res = await fetch(`${API_BASE}/me`, { 
+      method: "GET",
+      credentials: "include" });
     if (!res.ok) throw new Error("Not logged in");
     currentUser = await res.json();
 
@@ -38,7 +40,9 @@ async function loadFriendRequests() {
   const container = document.getElementById("friend-requests");
   
   try {
-    const res = await fetch(`${API_BASE}/chat/friend-requests`);
+    const res = await fetch(`${API_BASE}/chat/friend-requests`, { 
+      method: "GET",
+      credentials: "include" });
     const requests = await res.json();
 
     if (requests.length === 0) {
@@ -80,7 +84,7 @@ async function loadFriendRequests() {
 
 async function acceptRequest(friendshipId) {
   try {
-    const res = await fetch(`${API_BASE}/chat/friend-accept/${friendshipId}`, { method: "POST" });
+    const res = await fetch(`${API_BASE}/chat/friend-accept/${friendshipId}`, { method: "POST", credentials: "include" });
     const data = await res.json();
     showModal(data.msg);
     
@@ -93,7 +97,7 @@ async function acceptRequest(friendshipId) {
 
 async function declineRequest(friendshipId) {
   try {
-    const res = await fetch(`${API_BASE}/chat/friend-decline/${friendshipId}`, { method: "POST" });
+    const res = await fetch(`${API_BASE}/chat/friend-decline/${friendshipId}`, { method: "POST", credentials: "include" });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || "Failed to decline");
 
@@ -110,7 +114,9 @@ async function loadFriends() {
   const container = document.getElementById("friends-list");
   
   try {
-    const res = await fetch(`${API_BASE}/chat/friends`);
+    const res = await fetch(`${API_BASE}/chat/friends`, { 
+      method: "GET",
+      credentials: "include" });
     const friends = await res.json();
 
     if (friends.length === 0) {
@@ -143,7 +149,9 @@ async function loadAllUsers() {
   const searchInput = document.getElementById("search-users");
   
   try {
-    const res = await fetch(`${API_BASE}/users`);
+    const res = await fetch(`${API_BASE}/users`, { 
+      method: "GET",
+      credentials: "include" });
     const data = await res.json();
     const allUsers = Object.values(data);
 

@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function loadUser() {
     try {
-      const res = await fetch(`${API_BASE}/users/${encodeURIComponent(userId)}`);
+      const res = await fetch(`${API_BASE}/users/${encodeURIComponent(userId)}`, { credentials: 'include' });
       if (!res.ok) {
         console.warn("Profile fetch failed:", res.status);
         document.body.innerHTML = "<p style='padding:20px;text-align:center;'>User not found 😭</p>";
@@ -55,6 +55,15 @@ document.addEventListener("DOMContentLoaded", () => {
         "backgrounds/25hapo.png","backgrounds/30sasa.png","backgrounds/bigtree.png"
       ];
       if (viewTreeImage) viewTreeImage.src = treeImages[Math.min(treeLevel, treeImages.length-1)];
+
+      if (viewTreeImage) {
+  const safeLevel = Math.min(treeLevel, treeImages.length - 1);
+
+  const baseHeight = 120;  
+  const growth = 25 * safeLevel;
+
+  viewTreeImage.style.height = (baseHeight + growth) + "px";
+}
 
       // If this is NOT the logged-in user, show friend UI
       const me = JSON.parse(localStorage.getItem("user") || "null");

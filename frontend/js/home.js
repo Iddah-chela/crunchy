@@ -134,7 +134,7 @@ document.querySelectorAll(".card").forEach(card => {
 });
 
 async function loadLatestChats(maxMessages = 3) {
-  const res = await fetch(`${API_BASE}/chat/friends`);
+  const res = await fetch(`${API_BASE}/chat/friends`, { method: "GET", credentials: "include" });
 
   const friends = await res.json();
 
@@ -154,7 +154,7 @@ async function loadLatestChats(maxMessages = 3) {
 
   // Fetch last message from each friend
   const latestMessages = await Promise.all(friends.map(async friend => {
-    const threadRes = await fetch(`${API_BASE}/chat/thread/${friend.id}`);
+    const threadRes = await fetch(`${API_BASE}/chat/thread/${friend.id}`,  { method: "GET", credentials: "include" });
     if (!threadRes.ok) return null;
     const messages = await threadRes.json();
     if (!messages.length) return null;
@@ -193,7 +193,7 @@ Promise.all([
     .then(d => Array.isArray(d) ? d : d.data || [])
     .catch(() => []),
 
-  fetch(`${API_BASE}/chat/friend-requests`)
+  fetch(`${API_BASE}/chat/friend-requests`, { method: "GET", credentials: "include" })
     .then(r => r.json())
     .catch(() => [])
 ])

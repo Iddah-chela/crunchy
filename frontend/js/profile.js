@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (user) {
     (async () => {
       try {
-        const res = await fetch(`${API_BASE}/users/${user.id}`);
+        const res = await fetch(`${API_BASE}/users/${user.id}`, { credentials: 'include' });
         if (res.ok) {
           const data = await res.json();
           user = { ...user, ...data };

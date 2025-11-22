@@ -33,7 +33,9 @@ document.querySelector('.backbtnb')?.addEventListener('click', () => {
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
-    const res = await fetch(`${API_BASE}/me`);
+    const res = await fetch(`${API_BASE}/me`, { 
+      method: "GET",
+      credentials: "include" });
     if (!res.ok) throw new Error("Not logged in");
     const me = await res.json();
 
@@ -41,7 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     currentUsername = me.username;
 
     // init socket AFTER user info - WITH credentials for session sharing
-    socket = io("/", {
+    socket = io(`${API_BASE}/`, {
       withCredentials: true,
       transports: ['websocket', 'polling']
     });
@@ -128,7 +130,9 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadThread(otherUserId) {
-  const res = await fetch(`${API_BASE}/chat/thread/${otherUserId}`);
+  const res = await fetch(`${API_BASE}/chat/thread/${otherUserId}`, { 
+    method: "GET",
+    credentials: "include" });
   if (!res.ok) {
     console.error("Failed to load thread", res.status);
     chatMessages.innerHTML = "<p>Failed to load messages</p>";
@@ -200,7 +204,9 @@ chatInput.addEventListener('input', () => {
 
 async function loadChatList() {
   // Load friends instead of all users
-  const res = await fetch(`${API_BASE}/chat/friends`);
+  const res = await fetch(`${API_BASE}/chat/friends`, { 
+    method: "GET",
+    credentials: "include" });
   if (!res.ok) return console.error("Failed to load friends");
   const friends = await res.json();
 
