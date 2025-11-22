@@ -355,7 +355,8 @@ navigator.serviceWorker.register("/service-worker.js").then(reg => {
   fetch(`${API_BASE}/subscribe`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(sub)
+    body: JSON.stringify(sub),
+    credentials: "include"
   });
 });
 
