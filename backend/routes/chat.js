@@ -253,7 +253,7 @@ router.get("/friend-requests", async (req, res) => {
    GET MESSAGE THREAD BETWEEN TWO USERS
 ------------------------------------------------------------------------------------------------ */
 router.get("/thread/:otherUserId", async (req, res) => {
-  const currentUser = req.session.userId;
+  const currentUser = req.session.userId || {};
   const otherUser = Number(req.params.otherUserId);
 
   if (!currentUser || !otherUser)

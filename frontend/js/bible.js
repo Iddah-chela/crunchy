@@ -216,6 +216,9 @@ function setMainHeading(text) {
 
 })();
 
+// --- initial load: fetch book list (absolute path) ---
+
+
 // handle deep link or last read (called after books are loaded)
 async function handleDeepLinkOrLastRead() {
   const params = new URLSearchParams(window.location.search);
@@ -486,7 +489,15 @@ const verses = await db.bible
     localStorage.setItem("lastBook", bookName);
     localStorage.setItem("lastChapter", chapterIdx);
     // --- show nav buttons only when user scrolls ---
-    let scrollTimeout;
+    
+
+  } catch (err) {
+    console.error("Failed to render verses:", err);
+    showModal("Could not load verses for this chapter.");
+  }
+}
+
+let scrollTimeout;
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const scrollHeight = document.documentElement.scrollHeight;
@@ -513,12 +524,6 @@ window.addEventListener("scroll", () => {
     }
   }, 3500);
 });
-
-  } catch (err) {
-    console.error("Failed to render verses:", err);
-    showModal("Could not load verses for this chapter.");
-  }
-}
 
 const backBtn = document.getElementById("backBtnb");
 

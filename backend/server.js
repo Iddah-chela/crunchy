@@ -91,7 +91,7 @@ app.use(cors({
 
 // Replace your session setup in server.js with this:
 
-
+const isProd = process.env.NODE_ENV === "production";
 
 // Create session middleware ONCE
 const sessionMiddleware = session({
@@ -99,10 +99,10 @@ const sessionMiddleware = session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: process.env.NODE_ENV === "production", // true if HTTPS
-    sameSite: "none", // to allow cross-site cookies
+    secure: isProd, 
+    sameSite: isProd ? "none" : "lax",
     httpOnly: true,
-    maxAge: 30*24*60*60*1000 // 30 days
+    maxAge: 30*24*60*60*1000
   }
 });
 

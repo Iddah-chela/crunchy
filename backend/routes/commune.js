@@ -64,8 +64,6 @@ router.get("/questions", async (req, res) => {
       if (user?.birthday) {
         userAge = calculateAge(user.birthday);
         ageWarning = null;
-      } else {
-        ageWarning = "Log in to see more content.";
       }
     } 
 

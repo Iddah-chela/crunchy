@@ -16,7 +16,7 @@ function showModal(message) {
 }
 
 function initTopbar() {
-   const menuToggle = document.getElementById("menuToggle");
+  const menuToggle = document.getElementById("menuToggle");
   const sideMenu = document.getElementById("sideMenu");
 
   if (menuToggle && sideMenu) {
@@ -37,79 +37,70 @@ function initTopbar() {
       }
     });
   }
-  
 
-  // ✅ Disable or hide the current page link
+  //page link highlighting and disabling
   const currentPage = window.location.pathname.split("/").pop();
-  const links = document.querySelectorAll("nav a");
-
-  links.forEach(link => {
+  document.querySelectorAll("nav a").forEach(link => {
     if (link.getAttribute("href") === currentPage) {
       link.classList.add("disabled");
       link.removeAttribute("href");
     }
   });
-  
+
   const settingsModal = document.getElementById("settingsModal");
   const settingsBtn = document.getElementById("settingsBtn");
   const closeSettings = document.getElementById("closeSettings");
 
-  const logoutBtn = document.getElementById("logoutBtn");
+
+  const streakDisplay = document.getElementById("streakDisplay");
+
+  let isLoggedIn = false;
+
+fetch("/me", {
+  method: "GET",
+  credentials: "include"
+})
+  .then(async res => {
+    if (!res.ok) throw new Error("Not logged in");
+
+    const data = await res.json();
+    isLoggedIn = true;
+
+    // Save user to localStorage
+    localStorage.setItem("user", JSON.stringify(data));
+
+    updateTopbar(true, data); // <— new function
+  })
+  .catch(() => {
+    updateTopbar(false, null);
+  });
+
+  function updateTopbar(isLoggedIn, user) {
   const loginLink = document.getElementById("loginLink");
   const signupLink = document.getElementById("signupLink");
-if (logoutBtn)  {
-logoutBtn.addEventListener("click", async () => {
-  try {
-    const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+  const profileBtn = document.getElementById("profileBtn");
+  const streakDisplay = document.getElementById("streakDisplay");
 
-    const res = await fetch(`${API_BASE}/logout`, {
-      method: "POST",
-      credentials: "include"
-    });
-    const data = await res.json();
+  if (loginLink) loginLink.style.display = isLoggedIn ? "none" : "block";
+  if (signupLink) signupLink.style.display = isLoggedIn ? "none" : "block";
+  if (profileBtn) profileBtn.style.display = isLoggedIn ? "block" : "none";
+  if (streakDisplay) streakDisplay.style.display = isLoggedIn ? "flex" : "none";
 
-    if (!res.ok) {
-      showModal(data.error || "Logout failed 😭");
-      return;
+  // Add profile pic
+  if (isLoggedIn && user?.profilePic) {
+    let img = profileBtn.querySelector("img");
+    if (!img) {
+      img = document.createElement("img");
+      img.style.width = "35px";
+      img.style.height = "35px";
+      img.style.borderRadius = "50%";
+      profileBtn.prepend(img);
     }
-
-    // Clear localStorage
-    localStorage.removeItem("user");
-
-    // Redirect to login page
-    window.location.href = "/login.html";
-  } catch (err) {
-    console.error(err);
-    showModal("Network drama 😭");
+    img.src = user.profilePic || "images/default-avatar.png";
   }
-});
-}
-  // Fake cookie check (replace with real one if needed)
-  function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
 }
 
-// Replace fake cookie check with real one
-const token = getCookie("token");
-const hasCookie = !!token; // true if cookie exists
-
-const everHadCookie = localStorage.getItem("hasSignedUp") === "true";
-
-// Visibility logic
-logoutBtn.style.display = hasCookie ? "block" : "none";
-loginLink.style.display = hasCookie ? "none" : "block";
-signupLink.style.display = everHadCookie ? "none" : "block";
-
-
-  if (hasCookie) localStorage.setItem("hasSignedUp", "true");
-
- 
-
-  // Open settings modal
+  // Settings modal logic
   settingsBtn.addEventListener("click", () => {
     sideMenu.classList.add("active");
     settingsModal.style.display = "flex";
@@ -122,12 +113,10 @@ signupLink.style.display = everHadCookie ? "none" : "block";
 
   // Optional: close modal when clicking outside
   settingsModal.addEventListener("click", e => {
-    if (e.target === settingsModal) {
-      settingsModal.style.display = "none";
-    }
+    if (e.target === settingsModal) settingsModal.style.display = "none";
   });
 
-  const streakDisplay = document.getElementById("streakDisplay");
+  // Streak logic
   const days = streakDisplay.querySelectorAll(".day");
 
   const today = new Date();
@@ -148,14 +137,10 @@ signupLink.style.display = everHadCookie ? "none" : "block";
 
   // Activate streak circles for visited days
   for (let i = 0; i < 7; i++) {
-    if (streakData.visitedDays[i]) {
-      days[i].classList.add("active");
-    }
+    if (streakData.visitedDays[i]) days[i].classList.add("active");
   }
-
-
-
 }
+
 
 
 
@@ -170,6 +155,8 @@ let currentPage = window.location.pathname.split("/").pop();
 if (!currentPage || currentPage === '') {
   currentPage = 'home.html'; // default fallback
 }
+
+
 
 // Find current index in the array
 const currentIndex = pages.indexOf(currentPage);
@@ -370,44 +357,132 @@ function urlBase64ToUint8Array(base64String) {
   }
   return outputArray;
 }
+// ----- existing stuff above stays the same -----
+// (service worker registration, push subscription, urlBase64ToUint8Array, etc.)
 
-let deferredPrompt;
+let deferredPrompt = null;
 const installPromptKey = "installPromptDismissed";
 
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
+// Timing / visibility flags
+let installTimerId = null;
+let installTimerFired = false;
+let installTimerShouldShowWhenAvailable = false;
 
-  // If user already installed or dismissed
-  if (localStorage.getItem(installPromptKey)) return;
-
-  deferredPrompt = e;
+// helper: show the toast and wire buttons (only once)
+function showInstallToast() {
+  if (localStorage.getItem(installPromptKey)) return; // already dismissed/installed
   const toast = document.getElementById("installPrompt");
+  if (!toast) return;
+
   toast.style.display = "flex";
 
   const btn = document.querySelector("#installButton");
-  btn.addEventListener("click", () => {
-    btn.style.display = "none";
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then((choice) => {
-      if (choice.outcome === "dismissed") {
-        localStorage.setItem(installPromptKey, "true");
-      }
-      deferredPrompt = null;
-      toast.style.display = "none";
-    });
-  });
+  const closeBtn = document.querySelector(".close-btnm");
 
-  document.querySelector(".close-btnm").addEventListener("click", () => {
-    localStorage.setItem(installPromptKey, "true");
-    toast.style.display = "none";
-  });
+  // install button handler (guard to avoid double listeners)
+  if (btn && !btn._hasInstallListener) {
+    btn._hasInstallListener = true;
+    btn.addEventListener("click", async () => {
+      // hide immediate UI to avoid double clicks
+      btn.style.display = "none";
+
+      if (!deferredPrompt) {
+        // no install prompt available — just mark dismissed to avoid repeating
+        localStorage.setItem(installPromptKey, "true");
+        toast.style.display = "none";
+        return;
+      }
+
+      try {
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        if (choice && choice.outcome === "dismissed") {
+          localStorage.setItem(installPromptKey, "true");
+        }
+      } catch (e) {
+        // ignore errors, but prevent retry spam
+        localStorage.setItem(installPromptKey, "true");
+      } finally {
+        deferredPrompt = null;
+        toast.style.display = "none";
+        clearInstallTimer();
+      }
+    });
+  }
+
+  // close/dismiss handler (guard)
+  if (closeBtn && !closeBtn._hasCloseListener) {
+    closeBtn._hasCloseListener = true;
+    closeBtn.addEventListener("click", () => {
+      localStorage.setItem(installPromptKey, "true");
+      toast.style.display = "none";
+      clearInstallTimer();
+    });
+  }
+}
+
+function clearInstallTimer() {
+  if (installTimerId) {
+    clearTimeout(installTimerId);
+    installTimerId = null;
+  }
+  installTimerFired = false;
+  installTimerShouldShowWhenAvailable = false;
+}
+
+// 1) Capture the beforeinstallprompt and *don't* show immediately.
+//    We store the event so we can trigger the real prompt after 10 minutes.
+window.addEventListener("beforeinstallprompt", (e) => {
+  e.preventDefault();
+
+  // don't do anything if already dismissed/installed
+  if (localStorage.getItem(installPromptKey)) return;
+
+  deferredPrompt = e;
+
+  // If the 10-minute timer already fired, show the toast now.
+  // Or if the timer fired earlier and set the "should show" flag, show now.
+  if (installTimerFired || installTimerShouldShowWhenAvailable) {
+    showInstallToast();
+    // once shown, clear the timer flags
+    clearInstallTimer();
+  }
 });
 
+// 2) Start a single 10-minute timer (only if the user hasn't dismissed before).
+//    After 10 minutes, attempt to show the toast. If the beforeinstallprompt event
+//    hasn't arrived yet, wait and show as soon as it does.
+if (!localStorage.getItem(installPromptKey)) {
+  // don't set multiple timers if this script runs twice
+  if (!installTimerId) {
+    installTimerId = setTimeout(() => {
+      installTimerFired = true;
+
+      // if PWA install prompt already available, show immediately
+      if (deferredPrompt) {
+        showInstallToast();
+        clearInstallTimer();
+        return;
+      }
+
+      // otherwise mark that we should show as soon as the beforeinstallprompt fires
+      installTimerShouldShowWhenAvailable = true;
+      // we keep the flags so the beforeinstallprompt handler can show the toast later
+    }, 10 * 60 * 1000); // 10 minutes
+  }
+}
+
+// 3) When the app is installed via browser UI, mark as done and hide toast
 window.addEventListener("appinstalled", () => {
   localStorage.setItem(installPromptKey, "true");
   deferredPrompt = null;
-  document.getElementById("installPrompt").style.display = "none";
+  const toast = document.getElementById("installPrompt");
+  if (toast) toast.style.display = "none";
+  clearInstallTimer();
 });
+
+// ----- existing callHeartbeat, visibilitychange, window.initTopbar etc. stay the same -----
+
 
 
 async function callHeartbeat() {
@@ -432,7 +507,20 @@ async function callHeartbeat() {
   }
 }
 
-
+// In your frontend JS
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js').then(reg => {
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+      newWorker.onstatechange = () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          // New version ready
+          showModal("New version available! Refresh to update.");
+        }
+      };
+    };
+  });
+}
 
 // call when page becomes visible (user switches back to tab)
 document.addEventListener("visibilitychange", () => {

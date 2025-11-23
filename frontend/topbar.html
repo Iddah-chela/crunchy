@@ -1,6 +1,9 @@
 <header id="topbar">
   <button id="menuToggle" aria-label="Toggle menu">☰</button>
-  <h4 data-i18n="title.app">HolyVerse</h4>
+  <div class="right-group">
+  <h4 data-i18n="title.app">Holy Verse</h4>
+  </div>
+  <div class="left-group">
   <div class="streak-display" id="streakDisplay">
     <div class="day" data-day="0">S</div>
     <div class="day" data-day="1">M</div>
@@ -10,6 +13,12 @@
     <div class="day" data-day="5">F</div>
     <div class="day" data-day="6">S</div>
   </div>
+  
+  <a id="loginLink" class="innerbtn" href="login.html">Login</a>
+    <a id="signupLink" class="innerbtn" href="signup.html">Sign up</a>
+   
+    <a id="profileBtn" href="profile.html"></a>
+    </div> 
 </header>
 
 <link
@@ -20,9 +29,9 @@
 <nav id="sideMenu" class="hidden">
   <ul>
     <li><button  class="innerbtn"><a href="index.html"><i class="fas fa-home"></i><small>Home</small></a></button></li>
-    <li><button class="innerbtn"><a href="profile.html"><i class="fas fa-user"></i><small>Profile</small></a></button></li>
+
     <li><button id="settingsBtn" class="innerbtn"><i class="fa-solid fa-gear"></i><small>Settings</small></button></li>
-    <li><button id="logoutBtn" class="innerbtn">Logout</button></li>
+    
     
     <li><button class="innerbtn" ><a href="about.html">About</a></button></li>
     <!-- SHARE BUTTON + MENU -->
@@ -146,8 +155,7 @@
       
       <li><button id="start-music-btn" class="menu-item innerbtn"><i class="fa-solid fa-volume-high"></i></button></li>
       <li><button class="menu-item innerbtn" id="themeToggle">Remove animation</button></li>
-      <li><a id="loginLink" class="innerbtn" href="login.html">Login</a></li>
-    <li><a id="signupLink" class="innerbtn" href="signup.html">Sign up</a></li>
+      
     
       <li>
        

@@ -311,7 +311,7 @@ function filterQuestionsByAge(age) {
 
 
 
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+  const currentUser = JSON.parse(localStorage.getItem("user")) || {};
   const storedAge = currentUser.age || 10;
  
 

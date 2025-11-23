@@ -17,6 +17,23 @@ async function chunkedAdd(list, size = 500) {
   }
 }
 
+// show/hide modal
+function showLoadingModal() {
+  const modal = document.getElementById("loadingBibleModal");
+  if(modal){
+    modal.style.display = "flex";
+    document.body.classList.add("modal-active"); // block scroll
+  }
+}
+
+function hideLoadingModal() {
+  const modal = document.getElementById("loadingBibleModal");
+  if(modal){
+    modal.style.display = "none";
+    document.body.classList.remove("modal-active");
+  }
+}
+
 // MIGRATE KJV (single file)
 async function loadKJV() {
   const res = await fetch(`${API_BASE}/models/en_kjv.json`);
@@ -151,12 +168,15 @@ async function loadNIV() {
 
 // MAIN migration router
 export async function migrateBible() {
-  console.log("🕊️ Starting Bible migration…");
-
-  await loadKJV();
-  await loadNIV();
-
-  console.log("✅ All Bibles loaded.");
+  showLoadingModal();
+  try {
+    console.log("🕊️ Starting Bible migration…");
+    await loadKJV();
+    await loadNIV();
+    console.log("✅ All Bibles loaded.");
+  } finally {
+    hideLoadingModal();
+  }
 }
 
 export async function isBibleLoaded() {

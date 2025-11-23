@@ -673,8 +673,8 @@ function toggleCategory(id) {
 
   // If no search is active, show all its question buttons
   if (!searchValue) {
-  const currentUser = JSON.parse(localStorage.getItem("user"));
-  const selectedAge = currentUser.age || 10;
+  const currentUser = JSON.parse(localStorage.getItem("user")) || {};
+  const selectedAge = currentUser.age || 15;
 
   const buttons = selected.querySelectorAll(".question-btn");
   buttons.forEach(btn => {

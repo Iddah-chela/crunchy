@@ -56,7 +56,7 @@ const interval = setInterval(() => {
 
 
 // Get username from login session
-const currentUser = JSON.parse(localStorage.getItem("user"));
+const currentUser = JSON.parse(localStorage.getItem("user")) || {};
 
 // Verse of the day (temporary random verse array)
 const verses = [
@@ -272,11 +272,12 @@ function getTimeGreeting() {
 
 function showGreeting(username) {
   const greetingEl = document.getElementById("welcomeText");
-  if(greetingEl) {
-    //we'll get username with backend but till then, beautiful work really. . 
-   greetingEl.innerText = `${getTimeGreeting()}, ${username}, Welcome back`;
-    }
+  if (greetingEl) {
+    const nameToShow = username || "Guest"; // fallback if username is falsy
+    greetingEl.innerText = `${getTimeGreeting()}, ${nameToShow}, Welcome back`;
+  }
 }
 
 // Call it once on load
-showGreeting(currentUser.username);
+showGreeting(currentUser?.username);
+

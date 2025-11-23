@@ -1,4 +1,4 @@
-const CACHE_NAME = "holyverse-cache-v7";
+const CACHE_NAME = "holyverse-cache-v9";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -12,6 +12,7 @@ const urlsToCache = [
   "/private.html",
   "/profile-view.js",
   "/writenotes.html",
+  "/community.html",
   "/topbar.html",
   "/js/topbar.js",
   "/js/topbar-loader.js",
@@ -20,6 +21,8 @@ const urlsToCache = [
   "/js/bible.js",
   "/js/prayer.js",
   "/js/filter.js",
+  "/js/notes.js",
+  "/js/community.js",
   "/js/private.js",
   "/js/profile-view.js",
   "/js/profile.js",
@@ -29,6 +32,7 @@ const urlsToCache = [
 
 // Install event: cache app shell
 self.addEventListener("install", event => {
+  self.skipWaiting(); // activate worker immediately
   event.waitUntil(
     caches.open(CACHE_NAME).then(async cache => {
       for (const url of urlsToCache) {
@@ -51,33 +55,51 @@ self.addEventListener("activate", event => {
       Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k)))
     )
   );
-  self.clients.claim();
+  self.clients.claim(); // take control of all clients immediately
+});
+
+self.addEventListener("message", event => {
+  if (event.data === "SKIP_WAITING") self.skipWaiting();
 });
 
 // Fetch event: serve cached content when offline
 self.addEventListener("fetch", (event) => {
-  if (event.request.method === "GET") {
+  if (event.request.method !== "GET") return;
+
+  const url = new URL(event.request.url);
+
+  // Only apply network-first for these pages
+  if (url.pathname === "/community.html" || url.pathname === "/private.html") {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // if valid response, update cache
+          if (response && response.status === 200 && response.type === "basic") {
+            const responseClone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+          }
+          return response;
+        })
+        .catch(() => {
+          // if offline or fetch fails, return cached version
+          return caches.match(event.request).then((cached) => cached || caches.match("/offline.html"));
+        })
+    );
+  } else {
+    // default cache-first behavior for other resources
     event.respondWith(
       caches.match(event.request).then((response) => {
-        return (
-          response ||
-          fetch(event.request).then((fetchedResponse) => {
-            // Only cache successful full responses
-            if (!fetchedResponse || fetchedResponse.status !== 200 || fetchedResponse.type !== "basic") {
-              return fetchedResponse;
-            }
-
-            const responseClone = fetchedResponse.clone();
-            caches.open(CACHE_NAME).then((cache) => {
-              cache.put(event.request, responseClone);
-            });
-            return fetchedResponse;
-          }).catch(() => caches.match("/offline.html"))
-        );
+        return response || fetch(event.request).then((fetchedResponse) => {
+          if (!fetchedResponse || fetchedResponse.status !== 200 || fetchedResponse.type !== "basic") return fetchedResponse;
+          const responseClone = fetchedResponse.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, responseClone));
+          return fetchedResponse;
+        }).catch(() => caches.match("/offline.html"));
       })
     );
   }
 });
+
 
 
 

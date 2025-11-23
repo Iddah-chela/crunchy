@@ -13,7 +13,7 @@ const API_BASE = window.location.hostname === "localhost"
   : "https://holyverse-s5s1.onrender.com";
 
 // ensure user is signed in
-const currentUser = JSON.parse(storage.getItem("user"));
+const currentUser = JSON.parse(storage.getItem("user")) || {};
 if (!currentUser) {
   console.log("Not logged in, skipping backend load");
   

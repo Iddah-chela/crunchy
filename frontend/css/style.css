@@ -610,7 +610,6 @@ grace guidance*/
   display: flex;
   gap: 6px;
   margin-left: auto;
-  margin-right: 1rem;
   align-items: center;
 }
 
@@ -888,7 +887,53 @@ grace guidance*/
   pointer-events: none;
 }
 
+/* Force full-screen, block interaction */
+#loadingBibleModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  color: var(--text-color);
+  height: 100vh;
+  background: rgba(0,0,0,0.6);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/* Modal box */
+.modalContent {
+  background: var(--bg-color);
+  padding: 30px 50px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+/* Spinner */
+.spinner {
+  border: 6px solid var(--button-bg);
+  border-top: 6px solid var(--accent);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spins 1s linear infinite;
+}
+
+@keyframes spins {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Disable scrolling while modal is visible */
+body.modal-active {
+  overflow: hidden;
+}
 @keyframes sparkle {
   0% { opacity: 0; transform: scale(0.8); }
   50% { opacity: 1; transform: scale(1.2); }
@@ -1510,6 +1555,7 @@ html, body {
   justify-content: flex-start;
   text-align: center;
   align-items: center;
+  flex-wrap: nowrap;
   padding: 0;
   height: 45px;
   border-bottom: 1px solid var(--accent);
@@ -1529,12 +1575,105 @@ html, body {
   color: var(--text-color);
 }
 
-#topbar h3 {
+#topbar h4 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: clamp(12px, 2.5vw, 16px); /* shrinks on small screens */
+  line-height: 1.1;      /* allows wrapping */
+  white-space: normal;    /* lets text wrap to new line */
+  overflow-wrap: break-word; /* breaks if still too long */
+  font-size: 1.15rem;
   font-weight: bold;
-  text-align: center;
-  justify-content: center;
+  text-align: right;
+  justify-content: right;
+}
+
+/* Force break on smaller screens only */
+@media (max-width: 400px) {
+  .right-group h4 {
+    word-break: break-word;   /* break long words */
+    display: block;    /* let it wrap naturally */
+  }
+}
+
+/* flex grouping */
+.left-group {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+  margin-right: 18px;
+  margin-left: auto; /* push everything else to the right */
+}
+.right-group {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 50px;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+
+/* Login & Signup buttons */
+#loginLink, #signupLink {
+  display: inline-block;
+  padding: 5px 5px;
+  border-radius: var(--border-radius);
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: 1px solid var(--accent);
+}
+
+/* Hover fun */
+#loginLink:hover, #signupLink:hover {
+  background: var(--main-gradient);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Optional: subtle focus effect for accessibility */
+#loginLink:focus, #signupLink:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+/* Login & Signup buttons */
+#loginLink, #signupLink {
+  display: inline-block;
+  padding: 5px 15px;
+  border-radius: var(--border-radius);
+  background: var(--button-bg);
+  color: var(--button-text);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  border: 1px solid var(--accent);
+}
+
+/* Hover fun */
+#loginLink:hover, #signupLink:hover {
+  background: var(--main-gradient);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Optional: subtle focus effect for accessibility */
+#loginLink:focus, #signupLink:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+#profileBtn {
+  all: unset;  /* removes inherited styles from global a if needed */
+  width: 35px;
+  height: 35px;
+  margin-left: 10px;
+  display: inline-block;
+  border-radius: 50%;
 }
 
 /* SIDE MENU */
