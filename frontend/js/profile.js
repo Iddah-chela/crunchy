@@ -18,7 +18,7 @@ const API_BASE = window.location.hostname === "localhost"
   : "https://holyverse-s5s1.onrender.com";
 
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("profileForm");
   const msg = document.getElementById("msg");
   const usernameInput = document.getElementById("username");
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (wateringCan) wateringCan.classList.add("pouring");
     if (sparkles) sparkles.classList.add("active");
 
-    setTimeout(() => {
+    setTimeout( async () => {
       if (wateringCan) wateringCan.classList.remove("pouring");
       if (sparkles) sparkles.classList.remove("active");
 
@@ -226,6 +226,20 @@ document.addEventListener("DOMContentLoaded", () => {
           setTimeout(() => (treeImg.style.transform = "scale(1)"), 300);
         }
       }, 300);
+
+      //send updated treeLevel to backend
+      if (user?.id) {
+        try {
+          await fetch(`${API_BASE}/users/${user.id}`, {
+            method: "PUT",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ treeLevel, username: user.username })
+          });
+        } catch (err) {
+          console.error("Failed to update tree level on server:", err);
+        }
+      }
     }, 1200);
 
     // update visible count quickly (show anticipated value)
@@ -243,7 +257,7 @@ const today = new Date();
 const msPerDay = 24 * 60 * 60 * 1000;
 const daysMissed = Math.floor((today - lastWaterDay) / msPerDay);
 
-if (daysMissed > 0) {
+if (daysMissed > 1) {
   // tree goes backward 1 level per missed day, but never below 0
   treeLevel = Math.max(0, treeLevel - daysMissed);
   localStorage.setItem(treeKey, treeLevel);
@@ -252,6 +266,20 @@ if (daysMissed > 0) {
   // water = Math.max(0, water - daysMissed);
 
   localStorage.setItem(lastWaterDayKey, today.toDateString());
+
+  //send updated treeLevel to backend
+  if (user?.id) {
+    try {
+      await fetch(`${API_BASE}/users/${user.id}`, {
+        method: "PUT",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ treeLevel, username: user.username })
+      });
+    } catch (err) {
+      console.error("Failed to update tree level on server after missed days:", err);
+    }
+  }
 }
 
 

@@ -9,7 +9,8 @@ let bibleData = [];
 let currentVersion = "KJV"; // default
 
 
-import db, { migrateBible, isBibleLoaded } from "./bibleMigrator.js";
+import db, { migrateBible, isBibleLoaded, clearBibleDB } from "./bibleMigrator.js";
+const MIGRATION_KEY = "bible_migration_status";
 
 (async function loadBible() {
   
@@ -108,6 +109,19 @@ for (const v of verses) {
     renderBookList("ot");
   });
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 const versionSelect = document.getElementById("versionSelect");
 
 const savedVersion = localStorage.getItem("bibleVersion");
@@ -170,6 +184,24 @@ function setMainHeading(text) {
 
 // --- initial load: fetch book list (absolute path) ---
 (async function initBible() {
+  const status = localStorage.getItem(MIGRATION_KEY);
+
+if (status === "loading") {
+  console.warn("User left mid-migration. Resetting Bible DB…");
+  showModal("Your Bible didn’t finish loading last time. Please don’t leave the app until it completes.");
+
+  await clearBibleDB(); // wipe incomplete data
+  localStorage.setItem(MIGRATION_KEY, "loading");
+  await migrateBible();
+
+} else {
+  const loaded = await isBibleLoaded();
+  if (!loaded) {
+    localStorage.setItem(MIGRATION_KEY, "loading");
+    await migrateBible();
+  }
+}
+
   try {
   const loaded = await isBibleLoaded();
   if (!loaded) {
@@ -489,15 +521,8 @@ const verses = await db.bible
     localStorage.setItem("lastBook", bookName);
     localStorage.setItem("lastChapter", chapterIdx);
     // --- show nav buttons only when user scrolls ---
-    
 
-  } catch (err) {
-    console.error("Failed to render verses:", err);
-    showModal("Could not load verses for this chapter.");
-  }
-}
-
-let scrollTimeout;
+    let scrollTimeout;
 window.addEventListener("scroll", () => {
   const scrollTop = window.scrollY;
   const scrollHeight = document.documentElement.scrollHeight;
@@ -524,6 +549,15 @@ window.addEventListener("scroll", () => {
     }
   }, 3500);
 });
+    
+
+  } catch (err) {
+    console.error("Failed to render verses:", err);
+    showModal("Could not load verses for this chapter.");
+  }
+}
+
+
 
 const backBtn = document.getElementById("backBtnb");
 

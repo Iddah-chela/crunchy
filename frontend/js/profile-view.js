@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (viewBio) viewBio.textContent = user.bio || "No bio yet."; // <-- new
 
       // Tree (localStorage-based fallback)
-      const treeLevel = parseInt(localStorage.getItem(`treeLevel_${user.username}`), 10) || 0;
+      const treeLevel = parseInt(user.tree_level, 10) || 0;
       const treeImages = [
         "backgrounds/seedling.png","backgrounds/kidplant.png","backgrounds/tweenseed.png",
         "backgrounds/teenplant.png","backgrounds/almost18tree.png","backgrounds/20stree.png",

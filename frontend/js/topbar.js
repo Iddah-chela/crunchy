@@ -89,14 +89,7 @@ fetch("/me", {
   // Add profile pic
   if (isLoggedIn && user?.profilePic) {
     let img = profileBtn.querySelector("img");
-    if (!img) {
-      img = document.createElement("img");
-      img.style.width = "35px";
-      img.style.height = "35px";
-      img.style.borderRadius = "50%";
-      profileBtn.prepend(img);
-    }
-    img.src = user.profilePic || "images/default-avatar.png";
+    img.src = user.profilePic || "/images/default-avatar.png";
   }
 }
 

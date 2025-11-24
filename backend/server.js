@@ -91,24 +91,34 @@ app.use(cors({
 
 // Replace your session setup in server.js with this:
 
+// --- SESSION STORE SETUP ---
+const pgSession = require("connect-pg-simple")(session);
+
 const isProd = process.env.NODE_ENV === "production";
 
-// Create session middleware ONCE
-const sessionMiddleware = session({
+const sessionOptions = {
   secret: process.env.SESSION_SECRET || "Itsasecretssshhhhh",
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: isProd, 
+    secure: isProd,
     sameSite: isProd ? "none" : "lax",
     httpOnly: true,
-    maxAge: 30*24*60*60*1000
+    maxAge: 30 * 24 * 60 * 60 * 1000
   }
-});
+};
 
+// Use Postgres session store ONLY in production
+if (isProd) {
+  sessionOptions.store = new pgSession({
+    conString: process.env.DATABASE_URL,
+    createTableIfMissing: true
+  });
+}
 
-// Use it in Express
+const sessionMiddleware = session(sessionOptions);
 app.use(sessionMiddleware);
+
 
 
 
@@ -483,7 +493,7 @@ app.get("/users/:id", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("users")
-      .select("id, username, birthday, profilePic, bio")
+      .select("id, username, birthday, profilePic, bio, tree_level")
       .eq("id", Number(req.params.id))
       .single();
 
@@ -627,7 +637,7 @@ server.listen(PORT, () => {
 app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
 
   try {
-    const { username, password, bio } = req.body;
+    const { username, password, bio, treeLevel } = req.body;
     const userId = req.params.id;
 
     if (!username) {
@@ -661,6 +671,9 @@ app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
   params.profilePic = uploadResult.secure_url;
  
 }
+    if (treeLevel !== undefined) {
+      params.tree_level = parseInt(treeLevel, 10); // <-- save treeLevel
+    }
 
 
     // Finally, update the user record

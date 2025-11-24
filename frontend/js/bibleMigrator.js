@@ -8,6 +8,12 @@ const db = new Dexie("HolyVerseDB");
 db.version(4).stores({
   bible: "++id, version, book, order, chapter, verse",
 });
+const MIGRATION_KEY = "bible_migration_status";
+
+export async function clearBibleDB() {
+  await db.bible.clear();
+}
+
 
 // reuse-able chunker
 async function chunkedAdd(list, size = 500) {
@@ -168,16 +174,27 @@ async function loadNIV() {
 
 // MAIN migration router
 export async function migrateBible() {
+  localStorage.setItem(MIGRATION_KEY, "loading");
   showLoadingModal();
+
   try {
     console.log("🕊️ Starting Bible migration…");
     await loadKJV();
     await loadNIV();
+
     console.log("✅ All Bibles loaded.");
+    localStorage.setItem(MIGRATION_KEY, "done");
+
+  } catch (err) {
+    console.error("Migration failed:", err);
+    localStorage.removeItem(MIGRATION_KEY); // make sure it retries next launch
+    throw err;
+
   } finally {
     hideLoadingModal();
   }
 }
+
 
 export async function isBibleLoaded() {
   const count = await db.bible.count();
