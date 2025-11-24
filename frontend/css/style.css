@@ -1581,7 +1581,7 @@ html, body {
   line-height: 1.1;      /* allows wrapping */
   white-space: normal;    /* lets text wrap to new line */
   overflow-wrap: break-word; /* breaks if still too long */
-  font-size: 1.15rem;
+  font-size: 1rem;
   font-weight: bold;
   text-align: right;
   justify-content: right;
