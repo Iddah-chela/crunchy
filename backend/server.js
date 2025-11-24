@@ -111,7 +111,12 @@ const sessionOptions = {
 // Use Postgres session store ONLY in production
 if (isProd) {
   sessionOptions.store = new pgSession({
-    conString: process.env.DATABASE_URL,
+    conObject: {
+      connectionString: process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false // <--- ignore self-signed cert
+      }
+    },
     createTableIfMissing: true
   });
 }
