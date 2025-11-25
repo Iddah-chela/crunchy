@@ -34,6 +34,73 @@ function showModal(message) {
   };
 }
 
+// helpers for local question map ------------------------------------------------
+
+// Return list of available question rows like server /questions/:qkey would
+function getQuestionVersesLocal(qkey) {
+  const answers = window.QUESTION_MAP?.[qkey];
+  if (!answers) {
+    console.error(`❌ No answers found for qkey: ${qkey}`);
+
+    return;
+  }
+
+  if (!answers) return [];
+
+  const rows = [];
+  for (const [explanation, verses] of Object.entries(answers)) {
+    for (const [ref, verseObj] of Object.entries(verses)) {
+      rows.push({
+        ref,
+        text: verseObj.text,
+        theme: verseObj.theme || "",
+        tags: Array.isArray(verseObj.tags) ? verseObj.tags : (typeof verseObj.tags === "string" ? verseObj.tags.split(",") : []),
+        category: explanation
+      });
+    }
+  }
+
+  return rows;
+}
+
+// Return list of question meta (like GET /questions)
+function getQuestionsListLocal() {
+  // If you had titles or extra fields, adapt this
+  return Object.keys(window.QUESTION_MAP || {}).map(qkey => ({ qkey }));
+}
+
+// Return flattened list of all verses across every qkey (replaces your getAllVerses)
+let _allVersesCache = null;
+async function getAllVersesLocal(forceReload = false) {
+  if (_allVersesCache && !forceReload) {
+    console.log("⚡ Using cached _allVersesCache");
+    return _allVersesCache;
+  }
+  if (_allVersesCache && !forceReload) return _allVersesCache;
+
+  const flat = [];
+  const qm = window.QUESTION_MAP || {};
+
+  for (const [qkey, answers] of Object.entries(qm)) {
+    for (const [explanation, verses] of Object.entries(answers)) {
+      for (const [ref, verseObj] of Object.entries(verses)) {
+        flat.push({
+          qkey,
+          ref,
+          text: verseObj.text,
+          theme: verseObj.theme || "",
+          tags: Array.isArray(verseObj.tags) ? verseObj.tags : (typeof verseObj.tags === "string" ? verseObj.tags.split(",") : []),
+          category: explanation
+        });
+      }
+    }
+  }
+
+  _allVersesCache = flat;
+  return flat;
+}
+
+
 // Grab all the question buttons and convert to array of objects
 const questionButtons = Array.from(document.querySelectorAll(".question-btn"))
   .filter(btn => btn.id !== "q9") // exclude verse of the day
@@ -225,60 +292,13 @@ function buildTagScoresFromFavorites() {
 }
 // ------ Verses cache & loader ------
 
-let _allVersesCache = null; // [{ qkey, ref, text, theme, tags:[], category }]
+ // [{ qkey, ref, text, theme, tags:[], category }]
 
 // Fetch and flatten ALL verses from the server (cached)
 async function getAllVerses(forceReload = false) {
-  if (_allVersesCache && !forceReload) return _allVersesCache;
-
-  // 1) get list of questions (each row should include qkey)
-  const qRes = await fetch(`${API_BASE}/questions`);
-  if (!qRes.ok) throw new Error("Failed to fetch questions list");
-  const qRows = await qRes.json(); // e.g. [{id, qkey, title}, ...]
-
-  // 2) for each qkey fetch its verses, in parallel
-  const qkeys = qRows.map(q => q.qkey).filter(Boolean);
-  const fetches = qkeys.map(k =>
-    fetch(`${API_BASE}/questions/${encodeURIComponent(k)}`)
-      .then(r => r.ok ? r.json() : [])
-      .catch(err => {
-        console.warn("Failed to fetch question", k, err);
-        return [];
-      })
-      .then(rows => ({ qkey: k, rows }))
-  );
-
-  //sasa hii ni nini surely
-  const results = await Promise.all(fetches);
-
-  // 3) flatten into array of verse objects
-  const flat = [];
-  for (const res of results) {
-    const qkey = res.qkey;
-    const rows = Array.isArray(res.rows) ? res.rows : [];
-
-    for (const row of rows) {
-      // server row shape: { ref, text, theme, tags, category }
-      let tags = row.tags;
-      if (typeof tags === "string") {
-        try { tags = JSON.parse(tags || "[]"); } catch { tags = []; }
-      }
-      if (!Array.isArray(tags)) tags = [];
-
-      flat.push({
-        qkey,
-        ref: row.ref,
-        text: row.text,
-        theme: row.theme,
-        tags,
-        category: row.category || row.category || "",
-      });
-    }
-  }
-
-  _allVersesCache = flat;
-  return flat;
+  return await getAllVersesLocal(forceReload);
 }
+
 
 // optional helper to clear cache if DB changes
 function invalidateVersesCache() {
@@ -411,17 +431,19 @@ function suggestMoreFromFavoriteTags() {
 }
 
 function randgen(q) {
-  fetch(`${API_BASE}/questions/${q}`)
-    .then(res => res.json())
-    .then(rows => {
-      if (!rows || !rows.length) {
-        console.error("No answers found");
-        showModal("Oops! That question doesn't have any verses yet.");
-        return;
-      }
-      rows.forEach(r => {
-  if (typeof r.tags === 'string') r.tags = r.tags.split(',');
-});
+  // Fetch verses for question key 'q' from local data
+  const rows = getQuestionVersesLocal(q);
+
+  if (!rows || !rows.length) {
+    console.error("No answers found");
+    showModal("Oops! That question doesn't have any verses yet.");
+    return;
+  }
+
+  // keep existing logic: normalize tags if string etc.
+  rows.forEach(r => {
+    if (typeof r.tags === 'string') r.tags = r.tags.split(',');
+  });
 
       
 
@@ -567,9 +589,7 @@ function randgen(q) {
 
       display.appendChild(displayBtn);
 
-    })
-    .catch(err => console.error("Fetch failed:",err));
-}
+    }
 
 
    
@@ -764,7 +784,6 @@ function clearSearch() {
   currentCategory = null; // Reset open category
   filterQuestions(); // Reapply filters (will show all categories again)
 }
-document.getElementById("q9").addEventListener("click", () => randgen("q9"));
 
 
 window.randgen = randgen;

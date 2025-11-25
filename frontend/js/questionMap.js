@@ -21522,4 +21522,5 @@ const questionMap = {
 };
 
 
-module.exports = questionMap;
+window.QUESTION_MAP = questionMap;
+

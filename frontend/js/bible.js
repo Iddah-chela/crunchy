@@ -9,9 +9,7 @@ let bibleData = [];
 let currentVersion = "KJV"; // default
 
 
-import db, { migrateBible, isBibleLoaded, clearBibleDB } from "./bibleMigrator.js";
-const MIGRATION_KEY = "bible_migration_status";
-
+import { initBibleMemory } from "./bibleMigrator.js";
 (async function loadBible() {
   
 
@@ -124,10 +122,18 @@ function showModal(message) {
 
 const versionSelect = document.getElementById("versionSelect");
 
+// populate options dynamically
+versionSelect.innerHTML = Object.keys(window.BIBLE)
+  .map(v => `<option value="${v}">${v}</option>`)
+  .join("");
+
 const savedVersion = localStorage.getItem("bibleVersion");
-if (savedVersion) {
+if (savedVersion && window.BIBLE[savedVersion]) {
   currentVersion = savedVersion;
   versionSelect.value = savedVersion;
+} else {
+  currentVersion = Object.keys(window.BIBLE)[0]; // default to first version
+  versionSelect.value = currentVersion;
 }
 
 versionSelect.addEventListener("change", (e) => {
@@ -184,68 +190,24 @@ function setMainHeading(text) {
 
 // --- initial load: fetch book list (absolute path) ---
 (async function initBible() {
-  const status = localStorage.getItem(MIGRATION_KEY);
-
-if (status === "loading") {
-  console.warn("User left mid-migration. Resetting Bible DB…");
-  showModal("Your Bible didn’t finish loading last time. Please don’t leave the app until it completes.");
-
-  await clearBibleDB(); // wipe incomplete data
-  localStorage.setItem(MIGRATION_KEY, "loading");
-  await migrateBible();
-
-} else {
-  const loaded = await isBibleLoaded();
-  if (!loaded) {
-    localStorage.setItem(MIGRATION_KEY, "loading");
-    await migrateBible();
-  }
-}
-
   try {
-  const loaded = await isBibleLoaded();
-  if (!loaded) {
-    console.log("📥 Loading Bible for first time...");
-    await migrateBible();
+    console.log("📥 Loading Bible into app memory...");
+    await initBibleMemory();
+
+    // Use the in-memory books (canonical order filtered by available books)
+    bibleBooks = window.BIBLE_BOOKS.slice(); // keep existing global variable name
+
+    // default version if not set
+    if (!window.currentVersion) window.currentVersion = "KJV";
+
+    renderBookList("ot");
+    handleDeepLinkOrLastRead();
+
+    console.log("✅ Init complete (memory mode).");
+  } catch (err) {
+    console.error("Could not initialize Bible memory:", err);
+    showModal("Could not load Bible. Check console for details.");
   }
-
-  // Pull *all* verses so we can extract book names in stored order
-  const verses = await db.bible.orderBy("order").toArray();
-  const seen = new Set();
-  bibleBooks = [];
-  
-  for (const v of verses) {
-    if (!seen.has(v.book)) {
-      seen.add(v.book);
-      bibleBooks.push(v.book);
-    }
-  }
-
-  // canonical sort (so OT/NT stay in correct order)
-  const canonicalOrder = [
-    "Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth",
-    "1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra",
-    "Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song Of Solomon",
-    "Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos",
-    "Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah","Malachi",
-    "Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians",
-    "Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians",
-    "1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter",
-    "1 John","2 John","3 John","Jude","Revelation"
-  ];
-
-  bibleBooks.sort(
-    (a, b) => canonicalOrder.indexOf(a) - canonicalOrder.indexOf(b)
-  );
-
-  renderBookList("ot");
-  handleDeepLinkOrLastRead();
-
-} catch (err) {
-  console.error("Could not load Bible from Dexie:", err);
-  showModal("Could not load Bible.");
-}
-
 })();
 
 // --- initial load: fetch book list (absolute path) ---
@@ -350,7 +312,7 @@ function renderBookList(testament) {
 }
 
 // -------------------- Render Chapters (by book name) --------------------
-async function renderChapters(bookName) {
+function renderChapters(bookName) {
   hideAll();
   currentBookName = bookName;
   setMainHeading(`📖 ${bookName}`);
@@ -359,17 +321,27 @@ async function renderChapters(bookName) {
   chapterList.innerHTML = "";
 
   try {
-    // Get chapters directly from Dexie
+    const version = window.currentVersion || "KJV";
+    const bookObj = window.BIBLE?.[version]?.[bookName];
 
-const chapterRows = await db.bible.where("book").equals(bookName).toArray();
-const chapters = [...new Set(chapterRows.map(r => r.chapter))].sort((a, b) => Number(a) - Number(b));
+    if (!bookObj) {
+      showModal("This book is not available in the selected version.");
+      return;
+    }
+
+    // bookObj keys are chapter numbers (1-based). Convert to sorted array of numbers.
+    const chapters = Object.keys(bookObj)
+      .map(n => Number(n))
+      .sort((a, b) => a - b);
 
     currentChapters = chapters;
-    // create buttons
+
+    // create buttons (note: UI earlier expected onclick -> renderVerses(bookName, ch - 1))
     chapters.forEach(ch => {
       const btn = document.createElement("button");
       btn.className = "innerbtn";
       btn.textContent = ch;
+      // keep same signature: renderVerses expects chapterIdx (zero-based)
       btn.onclick = () => renderVerses(bookName, ch - 1);
       chapterList.appendChild(btn);
     });
@@ -377,11 +349,11 @@ const chapters = [...new Set(chapterRows.map(r => r.chapter))].sort((a, b) => Nu
     // Back to books
     const backBtn = document.createElement("button");
     backBtn.className = "innerbtn";
-    backBtn.id =  "backBtnb"
+    backBtn.id = "backBtnb";
     backBtn.textContent = "⬅ Back";
     backBtn.onclick = () => {
       exitBibleReading();
-      renderBookList(currentChapters && currentChapters.length ? (bibleBooks.indexOf(bookName) < 39 ? "ot" : "nt") : "ot");
+      renderBookList(bibleBooks.indexOf(bookName) < 39 ? "ot" : "nt");
     };
     chapterList.appendChild(backBtn);
 
@@ -391,6 +363,7 @@ const chapters = [...new Set(chapterRows.map(r => r.chapter))].sort((a, b) => Nu
   }
 }
 
+
 // -------------------- Render Verses (fetch from API) --------------------
 async function renderVerses(bookName, chapterIdx) {
   hideAll();
@@ -398,7 +371,8 @@ async function renderVerses(bookName, chapterIdx) {
   currentBookName = bookName;
   currentChapterIdx = chapterIdx;
 
-  setMainHeading(`📖 ${bookName} ${chapterIdx + 1}`);
+  const chapterNum = chapterIdx + 1;
+  setMainHeading(`📖 ${bookName} ${chapterNum}`);
   const verseList = document.getElementById("verse-list");
   verseList.style.display = "block";
   verseList.innerHTML = "";
@@ -407,23 +381,25 @@ async function renderVerses(bookName, chapterIdx) {
 
   // Back to chapters
   const backBtn = document.createElement("button");
-  backBtn.className = " innerbtn";
-  backBtn.id =  "backBtnb"
+  backBtn.className = "innerbtn";
+  backBtn.id = "backBtnb";
   backBtn.textContent = "⬅ Back";
   backBtn.onclick = () => renderChapters(bookName);
   verseList.appendChild(backBtn);
 
   try {
-    const chapterNum = chapterIdx + 1;
-    // Read verses straight from Dexie
-const verses = await db.bible
-  .where({ book: bookName, chapter: chapterNum, version: currentVersion })
-  .sortBy("verse");
+    const bookObj = window.BIBLE?.[currentVersion]?.[bookName];
 
+    if (!bookObj || !bookObj[chapterNum]) {
+      showModal("This chapter is not available in the selected version.");
+      return;
+    }
 
-    // iterate rows (use row.verse as number)
+    // verses is an array of objects matching Dexie-style (verse property is number)
+    const verses = bookObj[chapterNum].slice().sort((a, b) => (Number(a.verse) - Number(b.verse)));
+
     for (const row of verses) {
-      const idx = parseInt(row.verse, 10) - 1;   // zero-based
+      const idx = Number(row.verse) - 1;   // zero-based
       const text = row.text || "";
       const { cleaned, notes } = splitVerse(text);
       const verseNum = idx + 1;
@@ -502,7 +478,7 @@ const verses = await db.bible
       verseList.appendChild(toggleBtn);
     }
 
-    // next/previous - use currentChapters to know lengths if available
+    // previous / next
     const totalChapters = currentChapters && currentChapters.length ? currentChapters.length : null;
     if (totalChapters && chapterIdx < totalChapters - 1) {
       const nextBtn = document.createElement("button");
@@ -520,36 +496,40 @@ const verses = await db.bible
     // Save progress
     localStorage.setItem("lastBook", bookName);
     localStorage.setItem("lastChapter", chapterIdx);
-    // --- show nav buttons only when user scrolls ---
 
-    let scrollTimeout;
-window.addEventListener("scroll", () => {
-  const scrollTop = window.scrollY;
-  const scrollHeight = document.documentElement.scrollHeight;
-  const clientHeight = window.innerHeight;
+    // Setup scroll-based nav button visibility once (guarded)
+    if (!window._holyverse_scroll_listener_added) {
+      window._holyverse_scroll_listener_added = true;
+      let lastScrollTop = 0;
+      
+      window.addEventListener("scroll", () => {
+        const navBtns = document.querySelectorAll(".innerbtn.next, .innerbtn.previous, .innerbtn.note, #backBtnb, .notes");
+        const scrollTop = window.scrollY;
+        const scrollHeight = document.documentElement.scrollHeight;
+        const clientHeight = window.innerHeight;
+        const atTop = scrollTop <= 10;
+        const atBottom = scrollTop + clientHeight >= scrollHeight - 10;
 
-  const atBottom = scrollTop + clientHeight >= scrollHeight - 10;
+        if (atTop || atBottom || scrollTop < lastScrollTop) {
+          // scrolling up or at top/bottom
+          navBtns.forEach(btn => {
+            btn.style.opacity = "1";
+            btn.style.pointerEvents = "auto";
+            btn.style.transition = "opacity 0.3s";
+          });
+        } else {
+          // scrolling down
+          navBtns.forEach(btn => {
+            btn.style.opacity = "0";
+            btn.style.pointerEvents = "none";
+            btn.style.transition = "opacity 0.3s";
+          });
+        }
 
-  // Get your buttons
-  const navBtns = document.querySelectorAll(".innerbtn.next, .innerbtn.previous, .innerbtn.note, #backBtnb, .notes");
-  
-  navBtns.forEach(btn => {
-    btn.style.opacity = atBottom ? "1" : (scrollTop > 100 ? "1" : "0");
-    btn.style.transition = "opacity 0.3s";
-    btn.style.pointerEvents = btn.style.opacity === "1" ? "auto" : "none";
-  });
-  // hide after 1.2s of no movement (unless at bottom)
-  clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    if (!atBottom) {
-      navBtns.forEach(btn => {
-        btn.style.opacity = "0";
-        btn.style.pointerEvents = "none";
-      });
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scroll
+      }, { passive: true });
     }
-  }, 3500);
-});
-    
+
 
   } catch (err) {
     console.error("Failed to render verses:", err);

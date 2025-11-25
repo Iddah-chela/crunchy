@@ -1,204 +1,85 @@
-import Dexie from "https://cdn.jsdelivr.net/npm/dexie@3.2.5/dist/dexie.mjs";
-const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+// --- GLOBAL BIBLE MEMORY ---
+window.BIBLE = {
+  KJV: {},
+  NIV: {}
+};
 
-// setup db with VERSION COLUMN
-const db = new Dexie("HolyVerseDB");
-db.version(4).stores({
-  bible: "++id, version, book, order, chapter, verse",
-});
-const MIGRATION_KEY = "bible_migration_status";
+window.BIBLE_BOOKS = [];
+const CANONICAL_ORDER = [
+  "Genesis","Exodus","Leviticus","Numbers","Deuteronomy","Joshua","Judges","Ruth",
+  "1 Samuel","2 Samuel","1 Kings","2 Kings","1 Chronicles","2 Chronicles","Ezra",
+  "Nehemiah","Esther","Job","Psalms","Proverbs","Ecclesiastes","Song Of Solomon",
+  "Isaiah","Jeremiah","Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos",
+  "Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah","Haggai","Zechariah",
+  "Malachi","Matthew","Mark","Luke","John","Acts","Romans","1 Corinthians","2 Corinthians",
+  "Galatians","Ephesians","Philippians","Colossians","1 Thessalonians","2 Thessalonians",
+  "1 Timothy","2 Timothy","Titus","Philemon","Hebrews","James","1 Peter","2 Peter",
+  "1 John","2 John","3 John","Jude","Revelation"
+];
 
-export async function clearBibleDB() {
-  await db.bible.clear();
-}
-
-
-// reuse-able chunker
-async function chunkedAdd(list, size = 500) {
-  for (let i = 0; i < list.length; i += size) {
-    const chunk = list.slice(i, i + size);
-    await db.bible.bulkAdd(chunk);
-  }
-}
-
-// show/hide modal
-function showLoadingModal() {
-  const modal = document.getElementById("loadingBibleModal");
-  if(modal){
-    modal.style.display = "flex";
-    document.body.classList.add("modal-active"); // block scroll
-  }
-}
-
-function hideLoadingModal() {
-  const modal = document.getElementById("loadingBibleModal");
-  if(modal){
-    modal.style.display = "none";
-    document.body.classList.remove("modal-active");
-  }
-}
-
-// MIGRATE KJV (single file)
+// --- FETCH KJV (single JSON) ---
 async function loadKJV() {
-  const res = await fetch(`${API_BASE}/models/en_kjv.json`);
-  const bibleData = await res.json();
-  let total = 0;
+  const res = await fetch("/bible/en_kjv.json");
+  const data = await res.json();
 
-  for (let i = 0; i < bibleData.length; i++) {
-    const book = bibleData[i];
-    const bookName = book.name;
-    const order = i + 1;
+  for (let i = 0; i < data.length; i++) {
+    const book = data[i];
+    const name = book.name;
+
+    window.BIBLE.KJV[name] = {};
 
     for (let c = 0; c < book.chapters.length; c++) {
-      const verses = book.chapters[c].map((text, v) => ({
+      const versesArray = book.chapters[c]; // array of verse strings
+      window.BIBLE.KJV[name][c + 1] = versesArray.map((text, index) => ({
         version: "KJV",
-        book: bookName,
-        order,
+        book: name,
+        order: CANONICAL_ORDER.indexOf(name) + 1,
         chapter: c + 1,
-        verse: v + 1,
-        text,
+        verse: index + 1,
+        text
       }));
-
-      await chunkedAdd(verses);
-      total += verses.length;
     }
   }
 
-  console.log("📖 KJV loaded:", total, "verses");
+  console.log("KJV loaded into memory");
 }
 
-// MIGRATE NIV (multiple json files)
+// --- FETCH NIV (66 JSON files) ---
 async function loadNIV() {
-  // you fill this list manually
-  const NIV_BOOKS = [
-  "Genesis.json",
-  "Exodus.json",
-  "Leviticus.json",
-  "Numbers.json",
-  "Deuteronomy.json",
-  "Joshua.json",
-  "Judges.json",
-  "Ruth.json",
-  "1 Samuel.json",
-  "2 Samuel.json",
-  "1 Kings.json",
-  "2 Kings.json",
-  "1 Chronicles.json",
-  "2 Chronicles.json",
-  "Ezra.json",
-  "Nehemiah.json",
-  "Esther.json",
-  "Job.json",
-  "Psalms.json",
-  "Proverbs.json",
-  "Ecclesiastes.json",
-  "Song Of Solomon.json",
-  "Isaiah.json",
-  "Jeremiah.json",
-  "Lamentations.json",
-  "Ezekiel.json",
-  "Daniel.json",
-  "Hosea.json",
-  "Joel.json",
-  "Amos.json",
-  "Obadiah.json",
-  "Jonah.json",
-  "Micah.json",
-  "Nahum.json",
-  "Habakkuk.json",
-  "Zephaniah.json",
-  "Haggai.json",
-  "Zechariah.json",
-  "Malachi.json",
-  "Matthew.json",
-  "Mark.json",
-  "Luke.json",
-  "John.json",
-  "Acts.json",
-  "Romans.json",
-  "1 Corinthians.json",
-  "2 Corinthians.json",
-  "Galatians.json",
-  "Ephesians.json",
-  "Philippians.json",
-  "Colossians.json",
-  "1 Thessalonians.json",
-  "2 Thessalonians.json",
-  "1 Timothy.json",
-  "2 Timothy.json",
-  "Titus.json",
-  "Philemon.json",
-  "Hebrews.json",
-  "James.json",
-  "1 Peter.json",
-  "2 Peter.json",
-  "1 John.json",
-  "2 John.json",
-  "3 John.json",
-  "Jude.json",
-  "Revelation.json"
-];
+  const BOOK_FILES = CANONICAL_ORDER.map(name => `${name}.json`);
 
-
-  let total = 0;
-
-  for (let i = 0; i < NIV_BOOKS.length; i++) {
-    const filename = NIV_BOOKS[i];
-    const res = await fetch(`${API_BASE}/models/niv-maina/${filename}`);
+  for (const file of BOOK_FILES) {
+    const res = await fetch(`/bible/Bible-niv-main/${file}`);
     const bookData = await res.json();
 
-    const bookName = bookData.book;
-    const order = i + 1;
+    const name = bookData.book;
+    window.BIBLE.NIV[name] = {};
 
-    for (let c = 0; c < bookData.chapters.length; c++) {
-      const chapterObj = bookData.chapters[c];
-
-      const verses = chapterObj.verses.map(v => ({
+    for (const c of bookData.chapters) {
+      const chapterNum = Number(c.chapter);
+      window.BIBLE.NIV[name][chapterNum] = c.verses.map(v => ({
         version: "NIV",
-        book: bookName,
-        order,
-        chapter: Number(chapterObj.chapter),
+        book: name,
+        order: CANONICAL_ORDER.indexOf(name) + 1,
+        chapter: chapterNum,
         verse: Number(v.verse),
         text: v.text
       }));
-
-      await chunkedAdd(verses);
-      total += verses.length;
     }
   }
 
-  console.log("📖 NIV loaded:", total, "verses");
+  console.log("NIV loaded into memory");
 }
 
-// MAIN migration router
-export async function migrateBible() {
-  localStorage.setItem(MIGRATION_KEY, "loading");
-  showLoadingModal();
+// --- MAIN LOADER ---
+export async function initBibleMemory() {
+  console.log("📚 Loading Bible from frontend JSON…");
 
-  try {
-    console.log("🕊️ Starting Bible migration…");
-    await loadKJV();
-    await loadNIV();
+  await loadKJV();
+  await loadNIV();
 
-    console.log("✅ All Bibles loaded.");
-    localStorage.setItem(MIGRATION_KEY, "done");
+  // Build books list in canonical order
+  window.BIBLE_BOOKS = CANONICAL_ORDER.filter(name => window.BIBLE.KJV[name] || window.BIBLE.NIV[name]);
 
-  } catch (err) {
-    console.error("Migration failed:", err);
-    localStorage.removeItem(MIGRATION_KEY); // make sure it retries next launch
-    throw err;
-
-  } finally {
-    hideLoadingModal();
-  }
+  console.log("📚 Bible fully ready.");
 }
-
-
-export async function isBibleLoaded() {
-  const count = await db.bible.count();
-  return count > 0;
-}
-
-export default db;
