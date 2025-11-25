@@ -188,16 +188,11 @@ Promise.all([
     .then(d => Array.isArray(d) ? d : d.data || d.questions || [])
     .catch(() => []),
 
-  fetch(`${API_BASE}/questions`)
-    .then(r => r.json())
-    .then(d => Array.isArray(d) ? d : d.data || [])
-    .catch(() => []),
-
   fetch(`${API_BASE}/chat/friend-requests`, { method: "GET", credentials: "include" })
     .then(r => r.json())
     .catch(() => [])
 ])
-.then(([community, qna, requests]) => {
+.then(([community, requests]) => {
   const requestsArray = Array.isArray(requests) ? requests : requests.data || [];
 
   document.getElementById("communityInfo").textContent =
@@ -206,7 +201,7 @@ Promise.all([
       : "No new community posts.";
 
   document.getElementById("qnaInfo").textContent =
-    `${qna.length || 0} new questions waiting`;
+    `Ask questions and get answers straight from the Bible!`;
 
   document.getElementById("commInfo").textContent =
     requestsArray.length
