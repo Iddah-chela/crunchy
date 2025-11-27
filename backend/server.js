@@ -25,7 +25,7 @@ cloudinary.config({
 
 const FRONTEND_ORIGIN = [
   process.env.FRONTEND_ORIGIN || "http://localhost:4000",
-  process.env.FRONTEND_PROD || "https://holyverses.netlify.app",
+  process.env.FRONTEND_PROD || "https://holy-verse.web.app",
   process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com"
 ];
 
@@ -72,8 +72,8 @@ app.use(express.json());       // to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); // if you ever send form data
 const whitelist = [
   process.env.FRONTEND_ORIGIN || 'http://localhost:4000',
-  process.env.FRONTEND_PROD || "https://holyverses.netlify.app",
-  process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com"
+  process.env.FRONTEND_PROD || "https://holy-verse.web.app",
+  process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com",
 ];
 
 app.use(cors({
@@ -142,12 +142,10 @@ app.use("/chat", chatRoutes);
 
 
 // Serve frontend in production
-if(process.env.NODE_ENV === "production") {
+if(process.env.NODE_ENV === "development") {
   app.use(express.static(path.join(__dirname, "../frontend")));
 }
 
-//serve static frontend files
-app.use(express.static(path.join(__dirname, "../frontend")));
 
 
 
