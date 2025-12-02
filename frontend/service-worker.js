@@ -1,4 +1,4 @@
-const CACHE_NAME = "holyverse-cache-v12";
+const CACHE_NAME = "holyverse-cache-v17";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -21,8 +21,6 @@ const urlsToCache = [
   "/js/prayer.js",
   "/js/filter.js",
   "/js/notes.js",
-  "/js/community.js",
-  "/js/private.js",
   "/js/profile-view.js",
   "/js/profile.js",
   "/js/questionMap.js",
@@ -138,7 +136,7 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
   // Only apply network-first for these pages
-  if (url.pathname === "/community.html" || url.pathname === "/private.html") {
+  if (url.pathname === "/community.html" || url.pathname === "/private.html" || url.pathname === "/friends.html" || url.pathname === "/js/community.js" || url.pathname === "/js/private.js" || url.pathname === "/js/friends.js") {
     event.respondWith(
       fetch(event.request)
         .then((response) => {

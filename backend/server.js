@@ -522,6 +522,34 @@ app.post("/logout", (req, res) => {
   });
 });
 
+// express
+app.post("/track-visitor", async (req, res) => {
+  const { anonId } = req.body;
+
+  try {
+    // check if exists
+    const { data: existing, error: checkError } = await supabase
+      .from("visitors")
+      .select("anon_id")
+      .eq("anon_id", anonId)
+      .single();
+
+    if (existing) {
+      return res.status(200).json({ message: "Already counted" });
+    }
+
+    // if new, insert
+    const { error: insertError } = await supabase
+      .from("visitors")
+      .insert([{ anon_id: anonId }]);
+
+    if (insertError) throw insertError;
+
+    res.status(201).json({ message: "New visitor added" });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
 
 
 //start server

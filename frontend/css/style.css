@@ -2554,13 +2554,18 @@ html, body {
 }
 .main-cards { 
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
   gap: 2rem; 
   padding: 1rem; 
   justify-content: center;
   align-items: center;
 }
+
+
+
 .card {
+  width: clamp(250px, 20vw, 250px); /* min 150px, max 250px, scales with viewport */
+  aspect-ratio: 1 / 1; /* makes height same as width */
   border-radius: 52% 48% 33% 67%/38% 45% 55% 62%;
   box-shadow: 
     inset 20px 20px 20px var(--button-bg),
@@ -2618,8 +2623,11 @@ html, body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   gap: 20px;
   padding: 80px 60px;
+  /* text scales automatically */
+  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
 
   .intro {
     color: var(--text-color);
@@ -2634,6 +2642,44 @@ html, body {
     gap: 0;
   }
 }
+@media (max-width: 585px) {
+  .main-cards {
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 2rem; /* a bit tighter on small screens */
+    padding: 0.5rem;
+  }
+
+  .card {
+    width: clamp(100px, 40vw, 185px); /* circle size adjusts but not too small */
+    aspect-ratio: 1 / 1; /* always a circle */
+    padding: 0; /* box will handle inner spacing */
+  }
+
+  .card .box {
+    padding: 0.8rem; /* still enough space for text */
+    gap: 0.5rem;
+    font-size: clamp(0.75rem, 1.5vw, 0.9rem); /* scales nicely */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    word-wrap: break-word; /* long text wraps inside the circle */
+  }
+
+  /* Extra padding for the Community card to prevent overflow */
+  .card[data-link="community.html"] .box {
+    padding: 2rem;
+    margin-top: 0;
+  }
+}
+@media (max-width: 405px) {
+    .main-cards {
+        grid-template-columns: 145px 1fr;
+    }
+}
+
 
 .highlights { padding: 1rem; }
 .highlight-strip {

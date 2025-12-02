@@ -264,9 +264,20 @@ const backendQuestions = qList.map(q => ({
   created_at: q.created_at || q.createdAt || null
 }));
 
+    // after fetching backendQuestions
+for (const bq of backendQuestions) {
+  const local = questions.find(q => q.id === bq.id);
+  if (local) {
+    bq.favorited = local.favorited;
+    bq.favoritesCount = local.favoritesCount;
+  }
+}
+
 
     // merge strategy: keep local drafts and local-only items, replace backend ones by id
     const localDrafts = questions.filter(q => q.draft || !q.id);
+questions = [...localDrafts, ...backendQuestions];
+
     // replace any existing with backend versions
     const merged = backendQuestions.slice();
     for (const d of localDrafts) merged.unshift(d);
@@ -536,8 +547,7 @@ async function toggleFavorite(questionId, favBtn) {
   q.favorited = !q.favorited;
   q.favoritesCount += q.favorited ? 1 : -1;
   
-  updateFavUI(favBtn, q);
-
+updateFavUI(favBtn, q);
   try {
     const res = await fetch(`${API_BASE}/commune/questions/${questionId}/favorite`, {
       method: "POST",
@@ -549,7 +559,7 @@ async function toggleFavorite(questionId, favBtn) {
     // sync local with backend
     q.favorited = !!data.favorited;
     q.favoritesCount = data.favoritesCount ?? q.favoritesCount;
-    updateFavUI(favBtn, q);
+    
   } catch(err) {
     console.error("Favorite failed:", err);
     // maybe revert UI changes here if you want strict consistency

@@ -55,25 +55,35 @@ function initTopbar() {
   const streakDisplay = document.getElementById("streakDisplay");
 
   let isLoggedIn = false;
+  const API_BASE = window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com";
 
-fetch("/me", {
-  method: "GET",
-  credentials: "include"
-})
-  .then(async res => {
-    if (!res.ok) throw new Error("Not logged in");
 
-    const data = await res.json();
-    isLoggedIn = true;
-
-    // Save user to localStorage
-    localStorage.setItem("user", JSON.stringify(data));
-
-    updateTopbar(true, data); // <— new function
-  })
-  .catch(() => {
-    updateTopbar(false, null);
-  });
+const savedUser = localStorage.getItem("user");
+if (savedUser) {
+  const user = JSON.parse(savedUser);
+  isLoggedIn = true;
+  updateTopbar(true, user);
+} else {
+  // only fetch if not offline
+  if (navigator.onLine) {
+    fetch(`${API_BASE}/me`, {
+      method: "GET",
+      credentials: "include"
+    })
+      .then(async res => {
+        if (!res.ok) throw new Error("Not logged in");
+        const data = await res.json();
+        isLoggedIn = true;
+        localStorage.setItem("user", JSON.stringify(data));
+        updateTopbar(true, data);
+      })
+      .catch(() => updateTopbar(false, null));
+  } else {
+    updateTopbar(false, null); // offline & no saved user
+  }
+}
 
   function updateTopbar(isLoggedIn, user) {
   const loginLink = document.getElementById("loginLink");
@@ -156,6 +166,9 @@ const currentIndex = pages.indexOf(currentPage);
 
 // Only run if current page is found in the list
 if (currentIndex !== -1) {
+  // Disable page swiping on bible page
+if (currentPage === "bible.html") return;
+
   let startX = 0;
 
   document.addEventListener('touchstart', (e) => {

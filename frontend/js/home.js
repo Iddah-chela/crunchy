@@ -13,6 +13,23 @@ const API_BASE = window.location.hostname === "localhost"
   : "https://holyverse-s5s1.onrender.com";
 
 
+// run this early in your frontend
+let anonId = localStorage.getItem("anon_id");
+
+if (!anonId) {
+  // make a unique ID
+  anonId = "anon_" + crypto.randomUUID();
+  localStorage.setItem("anon_id", anonId);
+
+  // since it's new, send to backend
+  fetch("/track-visitor", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ anonId })
+  });
+}
+
+
 const isDev = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1";
 if (isDev) console.log("Connected to SQLite, running in dev mode.");
 
@@ -262,14 +279,18 @@ function getTimeGreeting() {
   if (hour >= 5 && hour < 12) return "Good morning ☀️";
   if (hour >= 12 && hour < 17) return "Good afternoon 🌞";
   if (hour >= 17 && hour < 21) return "Good evening 🌙";
-  return "Good night 🌌";
+  return "Good evening 🌌";
 }
 
 function showGreeting(username) {
   const greetingEl = document.getElementById("welcomeText");
   if (greetingEl) {
     const nameToShow = username || "Guest"; // fallback if username is falsy
-    greetingEl.innerText = `${getTimeGreeting()}, ${nameToShow}, Welcome back`;
+    if (username) {
+      greetingEl.textContent = `${getTimeGreeting()}, ${nameToShow}! Welcome back.`;
+    } else {
+      greetingEl.textContent = `${getTimeGreeting()}, Welcome.`;
+    }
   }
 }
 

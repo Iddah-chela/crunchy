@@ -6,10 +6,10 @@ let currentChapters = [];       // array of chapter numbers for current book
 let currentChapterIdx = 0;      // zero-based index of current chapter
 let showNotes = false;
 let bibleData = [];
-let currentVersion = "KJV"; // default
+let currentVersion = "AMERICAN STANDARD VERSION";
 
 
-import { initBibleMemory } from "./bibleMigrator.js";
+import { initBibleMemory, loadVersionIfNeeded } from "./bibleMigrator.js";
 (async function loadBible() {
   
 
@@ -120,27 +120,24 @@ function showModal(message) {
   };
 }
 
+// wire-up versionSelect to lazy-load on change
 const versionSelect = document.getElementById("versionSelect");
 
-// populate options dynamically
-versionSelect.innerHTML = Object.keys(window.BIBLE)
-  .map(v => `<option value="${v}">${v}</option>`)
-  .join("");
 
-const savedVersion = localStorage.getItem("bibleVersion");
-if (savedVersion && window.BIBLE[savedVersion]) {
-  currentVersion = savedVersion;
-  versionSelect.value = savedVersion;
-} else {
-  currentVersion = Object.keys(window.BIBLE)[0]; // default to first version
-  versionSelect.value = currentVersion;
-}
-
-versionSelect.addEventListener("change", (e) => {
-  currentVersion = e.target.value;
-  localStorage.setItem("bibleVersion", currentVersion);
-  renderVerses(currentBookName, currentChapterIdx);
+versionSelect.addEventListener("change", async (e) => {
+  const selected = e.target.value;
+  localStorage.setItem("bibleVersion", selected);
+  try {
+    await loadVersionIfNeeded(selected); // lazy fetch
+    currentVersion = selected;
+    renderVerses(currentBookName, currentChapterIdx);
+  } catch (err) {
+    console.error("Failed to load version:", err);
+    showModal("Could not load selected Bible version.");
+  }
 });
+
+
 
 
 // Extract notes vs grammar
@@ -192,14 +189,37 @@ function setMainHeading(text) {
 (async function initBible() {
   try {
     console.log("📥 Loading Bible into app memory...");
-    await initBibleMemory();
+    await initBibleMemory(); // seeds version list and sets defaults (but doesn't necessarily load data)
 
-    // Use the in-memory books (canonical order filtered by available books)
-    bibleBooks = window.BIBLE_BOOKS.slice(); // keep existing global variable name
+    // populate select AFTER seedVersionList has run
+    versionSelect.innerHTML = Object.keys(window.BIBLE)
+      .filter(k => !k.endsWith("___path"))
+      .map(v => `<option value="${v}">${v}</option>`)
+      .join("");
 
-    // default version if not set
-    if (!window.currentVersion) window.currentVersion = "KJV";
+    // determine saved or first version
+    const savedVersion = localStorage.getItem("bibleVersion");
+    const keys = Object.keys(window.BIBLE).filter(k => !k.endsWith("___path"));
+    const first = keys[0];
 
+    const chosen = (savedVersion && window.BIBLE[savedVersion] !== undefined) ? savedVersion : first;
+
+    if (!chosen) {
+      throw new Error("No Bible versions available. Check /bible folder and fallback manifest.");
+    }
+
+    // actually load chosen version before rendering anything
+    await loadVersionIfNeeded(chosen);
+    console.log("Chosen version key:", chosen);
+console.log("Loaded object:", window.BIBLE[chosen]);
+console.log("Books list:", window.BIBLE_BOOKS);
+
+    currentVersion = chosen;
+    window.currentVersion = chosen;
+    versionSelect.value = chosen;
+
+    // now build book list and render
+    bibleBooks = window.BIBLE_BOOKS.slice();
     renderBookList("ot");
     handleDeepLinkOrLastRead();
 
@@ -209,6 +229,7 @@ function setMainHeading(text) {
     showModal("Could not load Bible. Check console for details.");
   }
 })();
+
 
 // --- initial load: fetch book list (absolute path) ---
 
@@ -320,8 +341,19 @@ function renderChapters(bookName) {
   chapterList.style.display = "block";
   chapterList.innerHTML = "";
 
+  // Back to books
+    const backBtn = document.createElement("button");
+    backBtn.className = "innerbtn";
+    backBtn.id = "backBtnb";
+    backBtn.textContent = "⬅ Back";
+    backBtn.onclick = () => {
+      exitBibleReading();
+      renderBookList(bibleBooks.indexOf(bookName) < 39 ? "ot" : "nt");
+    };
+    chapterList.appendChild(backBtn);
+
   try {
-    const version = window.currentVersion || "KJV";
+    const version = currentVersion;
     const bookObj = window.BIBLE?.[version]?.[bookName];
 
     if (!bookObj) {
@@ -346,16 +378,6 @@ function renderChapters(bookName) {
       chapterList.appendChild(btn);
     });
 
-    // Back to books
-    const backBtn = document.createElement("button");
-    backBtn.className = "innerbtn";
-    backBtn.id = "backBtnb";
-    backBtn.textContent = "⬅ Back";
-    backBtn.onclick = () => {
-      exitBibleReading();
-      renderBookList(bibleBooks.indexOf(bookName) < 39 ? "ot" : "nt");
-    };
-    chapterList.appendChild(backBtn);
 
   } catch (err) {
     console.error("Could not load chapters:", err);
@@ -370,6 +392,29 @@ async function renderVerses(bookName, chapterIdx) {
   enterBibleReading();
   currentBookName = bookName;
   currentChapterIdx = chapterIdx;
+
+  // --- Add swipe to next/prev chapter ---
+let startX = 0;
+
+document.addEventListener("touchstart", (e) => {
+  startX = e.touches[0].clientX;
+}, { passive: true });
+
+document.addEventListener("touchend", (e) => {
+  const endX = e.changedTouches[0].clientX;
+  const diff = endX - startX;
+
+  if (diff > 100 && chapterIdx > 0) {
+    // swipe right → previous chapter
+    renderVerses(bookName, chapterIdx - 1);
+    window.scrollTo(0, 0);
+  } else if (diff < -100 && chapterIdx < currentChapters.length - 1) {
+    // swipe left → next chapter
+    renderVerses(bookName, chapterIdx + 1);
+    window.scrollTo(0, 0);
+  }
+}, { passive: true });
+
 
   const chapterNum = chapterIdx + 1;
   setMainHeading(`📖 ${bookName} ${chapterNum}`);
