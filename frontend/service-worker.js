@@ -1,4 +1,4 @@
-const CACHE_NAME = "holyverse-cache-v18";
+const CACHE_NAME = "holyverse-cache-v19";
 const urlsToCache = [
   "/",
   "/index.html",
