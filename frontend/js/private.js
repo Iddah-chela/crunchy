@@ -6,9 +6,10 @@ const chatMessages = document.getElementById("chat-messages");
 const chatInput = document.getElementById("chatInput");
 const chatForm = document.getElementById("chat-input-area");
 
-const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
 
 
 let currentUserId, currentUsername;

@@ -17,11 +17,23 @@
 <div id="topbar-container"></div> 
 <div id="bottom-bar"></div>
 
+<!-- Community Tabs -->
+<nav class="community-tabs">
+  <button class="tab-btn active" onclick="switchTab('community')">Community</button>
+  <button class="tab-btn" onclick="switchTab('testimony')">Testimony</button>
+  <button class="tab-btn" onclick="switchTab('groups')">Groups</button>
+</nav>
 
-  <!-- 🔍 Ask a Question -->
+<!-- COMMUNITY TAB -->
+<div id="communityTab" class="tab-content active">
+  <!-- 🔍 Post in Community -->
   <section class="ask-section">
-    <input type="text" placeholder="Ask something..." class="ask-input"/>
-   
+    <div style="display:flex; gap:0.5rem; align-items:flex-end; margin-bottom:1rem;">
+      <textarea class="ask-input" id="communityPostText" placeholder="Share something..." rows="2" style="flex:1; padding:0.75rem; border-radius:20px; border:1px solid var(--accent); resize:none; max-height:80px;"></textarea>
+      <input type="file" id="communityPostImage" accept="image/*" style="display:none;" />
+      <button onclick="document.getElementById('communityPostImage').click()" class="innerbtn" style="width:45px; height:45px; border-radius:50%; padding:0; display:flex; align-items:center; justify-content:center; font-size:1.3rem;" title="Add image">🖼️</button>
+      <button class="innerbtn" onclick="submitCommunityPost()" style="padding:0.75rem 1.5rem; border-radius:20px;">Send</button>
+    </div>
     <div class="tags">
       <span>#Love</span>
       <span>#Pain</span>
@@ -54,11 +66,87 @@
 
     <!-- More questions... -->
   </section>
+</div>
 
-  
+<!-- TESTIMONY TAB -->
+<div id="testimonyTab" class="tab-content">
+  <section class="testimony-section">
+    <h2>📖 Real Stories, Real Faith</h2>
+    <p style="text-align:center; opacity:0.8; margin-bottom:1.5rem;">Share your story — ongoing, messy, or hopeful</p>
+    
+    <!-- Submit Testimony -->
+    <div class="submit-testimony">
+      <textarea id="testimonyText" placeholder="Share your story..." maxlength="1000"></textarea>
+      <div class="testimony-options">
+        <div class="tags-input">
+          <label>Tag your story:</label>
+          <div class="tag-btns">
+            <button class="tag-btn" data-tag="Still struggling" onclick="toggleTag(this)">Still struggling</button>
+            <button class="tag-btn" data-tag="Learning" onclick="toggleTag(this)">Learning</button>
+            <button class="tag-btn" data-tag="Encouragement" onclick="toggleTag(this)">Encouragement</button>
+            <button class="tag-btn" data-tag="Breakthrough" onclick="toggleTag(this)">Breakthrough</button>
+          </div>
+          <input type="hidden" id="selectedTags" />
+        </div>
+        <label>
+          <input type="checkbox" id="anonymousTestimony" />
+          Post anonymously
+        </label>
+      </div>
+      <button class="innerbtn" onclick="submitTestimony()">Submit Story</button>
+    </div>
+    
+    <!-- Testimonies Feed -->
+    <div id="testimoniesFeed" class="testimonies-feed">
+      <!-- Dynamically populated -->
+    </div>
+  </section>
+</div>
 
+<!-- GROUPS TAB -->
+<div id="groupsTab" class="tab-content">
+  <section class="groups-section">
+    <h2>🏠 Your Groups</h2>
+    <p style="text-align:center; opacity:0.8;">Private spaces for focused discussions</p>
+    
+    <!-- Create Group Button -->
+    <div style="text-align:center; margin:1rem 0;">
+      <button class="innerbtn" onclick="createGroup()">+ Create Group</button>
+    </div>
+    
+    <!-- Your Groups -->
+    <div class="your-groups-section">
+      <h3>Groups You've Joined</h3>
+      <div id="yourGroupsList" class="groups-list">
+        <p style="opacity:0.6; text-align:center;">You haven't joined any groups yet</p>
+      </div>
+    </div>
+    
+    <!-- All Available Groups -->
+    <div class="all-groups-section">
+      <h3>Browse Groups</h3>
+      <input type="text" id="groupSearch" placeholder="🔍 Search groups..." style="width:100%; padding:0.75rem; margin:0.5rem 0; border-radius:8px; border:1px solid var(--accent); background:rgba(0,0,0,0.2); color:var(--text-color); font-size:1rem;" oninput="filterGroups()" />
+      <div id="groupsList" class="groups-list">
+        <!-- Dynamically populated -->
+      </div>
+    </div>
+  </section>
+</div>
 
+<!-- Join Groups Modal -->
+<div id="joinGroupsModal" class="custom-modal hidden">
+  <div class="modal-content">
+    <span class="close" onclick="closeJoinGroupsModal()">&times;</span>
+    <h2>Join Groups</h2>
+    <p>Select denomination(s) or interest groups:</p>
+    <div class="groups-selection" id="groupsSelection">
+      <!-- Dynamically populated with available groups -->
+    </div>
+    <button class="innerbtn" onclick="saveGroupSelections()">Save</button>
+  </div>
+</div>
 
+<script src="js/modal-utils.js"></script>
 <script src="js/topbar.js" defer></script>
 <script src="js/topbar-loader.js"></script>
 <script src="js/community.js"></script>

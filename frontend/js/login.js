@@ -2,9 +2,10 @@ import { startCiscoVibe } from './auth.js';
 const form = document.getElementById("loginForm");
 const msg = document.getElementById("msg");
 
-const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
 
 
 

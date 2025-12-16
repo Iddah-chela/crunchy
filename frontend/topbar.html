@@ -31,6 +31,7 @@
 
 <nav id="sideMenu" class="hidden">
   <ul>
+         <li><button id="pwaInstallBtn" class="menu-item innerbtn" style="display:none;"><i class="fa-solid fa-download"></i> <small>Install App</small></button></li>
     <li><button  class="innerbtn"><a href="index.html"><i class="fas fa-home"></i><small>Home</small></a></button></li>
 
     <li><button id="settingsBtn" class="innerbtn"><i class="fa-solid fa-gear"></i><small>Settings</small></button></li>
@@ -163,9 +164,10 @@
       <li>
        
        <div class="menu-select custom-select" id="themeSwitcher">
-        <div class="selected"><i class="fa-solid fa-sun" style="color: orange;"></i><small style="color: orange;">Light</small> </div>
+        <div class="selected"><i class="fa-solid fa-bolt" style="color: #5b9ac8;"></i><small style="color: #5b9ac8;">Default</small> </div>
         <ul class="options">
-          <li data-value="default"><i class="fa-solid fa-sun" style="color: lightblue;"></i><small style="color: lightblue;">Light</small></li>
+          <li data-value="default"><i class="fa-solid fa-bolt" style="color: #5b9ac8;"></i><small style="color: #5b9ac8;">Default</small></li>
+          <li data-value="midnight-ocean-theme"><i class="fa-solid fa-sun" style="color: orange;"></i><small style="color: rgb(0, 119, 255);">Midnight ocean</small></li>
           <li data-value="dark-theme"><i class="fa-solid fa-moon" style="color: blue;"></i> <small style="color: blue;">Dark</small></li>
           <li data-value="dreamy-theme"><i class="fa-solid fa-seedling" style="color: pink;"></i> <small style="color: pink;">Dreamy</small></li>
           <li data-value="ocean-depths-theme"><i class="fa-solid fa-water" style="color: #00bbf9;"></i> <small style="color: #00bbf9;">Ocean</small></li>

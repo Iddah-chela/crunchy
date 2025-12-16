@@ -8,9 +8,10 @@ try {
   storage = sessionStorage;
 }
 
-const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
 
 // ensure user is signed in
 const currentUser = JSON.parse(storage.getItem("user")) || {};
@@ -43,6 +44,16 @@ let questions = [];
 let openQuestionId = null; // keep which question is open after re-render
 let openReply = null; // top of file, as a global tracker
 
+function updateCommunityPostCount() {
+  const published = questions.filter(q => !q.draft).length;
+  try {
+    localStorage.setItem("community_posts_count", published);
+    console.log(`💬 Community posts count updated to ${published}`);
+  } catch (e) {
+    // ignore storage errors (private browsing)
+  }
+}
+
 // load saved (old behavior)
 const saved = storage.getItem(STORAGE_KEY);
 if (saved) {
@@ -58,6 +69,7 @@ if (saved) {
 function saveQuestions() {
   try {
     storage.setItem(STORAGE_KEY, JSON.stringify(questions));
+    updateCommunityPostCount(); // Update count whenever questions are saved
   } catch (e) {
     console.error('Could not save questions:', e);
   }
@@ -743,16 +755,19 @@ profileImg.src = q.authorProfilePic || '/images/default-avatar.png';
 profileImg.className = 'bubble-pic';
 profileImg.style.cursor = 'pointer';
 
+// Apply milestone border
+const profileId = q.authorId ?? q.user_id ?? q.userId ?? q.senderId ?? q.author_id ?? null;
+const finalId = profileId || (q.draft && currentUser ? currentUser.id : null);
+if (finalId) {
+  const borderStyle = getUserBorderStyle(finalId);
+  if (borderStyle) {
+    profileImg.style.cssText += borderStyle;
+  }
+}
+
 // Click leads to profile page
 profileImg.addEventListener('click', (e) => {
   e.stopPropagation(); // don't open the question
-
-  // Try multiple possible fields (normalize across layers)
-  const profileId =
-    q.authorId ?? q.user_id ?? q.userId ?? q.senderId ?? q.author_id ?? null;
-
-  // If no authorId and it's a local draft, let it point to current user when available
-  const finalId = profileId || (q.draft && currentUser ? currentUser.id : null);
 
   if (finalId) {
     window.location.href = `/profile-view.html?id=${encodeURIComponent(finalId)}`;
@@ -792,11 +807,27 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
 
       const info = document.createElement('span');
       const total = countAllReplies(q.responses || []);
-      info.textContent = `👤 ${q.author} · ${total} response${total !== 1 ? 's' : ''}`;
+      
+      // Check if author is theology contributor
+      const contributorBadge = q.isTheologyContributor ? ' <span class="theology-badge" title="Theology Contributor">📘</span>' : '';
+      
+      info.innerHTML = `👤 ${q.author}${contributorBadge} · ${total} response${total !== 1 ? 's' : ''}`;
       meta.appendChild(info);
       meta.appendChild(favBtn);
       meta.appendChild(favCount);
 
+      // Report button
+      if (!q.draft) {
+        const reportBtn = document.createElement('button');
+        reportBtn.textContent = "⚠️";
+        reportBtn.className = "report-btn";
+        reportBtn.title = "Report this post";
+        reportBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          reportContent(q.id, 'post');
+        });
+        meta.appendChild(reportBtn);
+      }
 
       const badge = document.createElement('span');
       badge.className = "tag-badge";
@@ -808,10 +839,15 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
       meta.appendChild(badge);
 
       card.appendChild(questionText);
-      if (q.image) {
+      // Check both image and image_url fields (backend returns image_url)
+      const imageUrl = q.image_url || q.image;
+      if (imageUrl) {
         const img = document.createElement('img');
-        img.src = q.image;
+        img.src = imageUrl;
         img.className = "post-img";
+        img.style.maxWidth = "100%";
+        img.style.borderRadius = "8px";
+        img.style.marginTop = "10px";
         card.appendChild(img);
       }
       card.appendChild(meta);
@@ -850,6 +886,16 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
           questionText.classList.add("open")
           questionFeed.classList.add("open")
 
+          // Show disclaimer if theology contributor
+          if (q.isTheologyContributor) {
+            const disclaimer = document.createElement('div');
+            disclaimer.className = "theology-disclaimer";
+            disclaimer.innerHTML = `
+              <span class="theology-badge">📘</span>
+              <em>This is an interpretation from a theology contributor. Reflect personally.</em>
+            `;
+            expanded.appendChild(disclaimer);
+          }
 
           // Check if user can edit (only if they posted the question)
       const canEdit = currentUser && q.author === currentUser.username && q.id;
@@ -895,26 +941,25 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
 
         deleteBtn.addEventListener('click', async (e) => {
           e.stopPropagation();
-          const confirmDel = confirm("Are you sure you want to delete this question?");
-          if (!confirmDel) return;
+          showConfirm("Are you sure you want to delete this question?", async () => {
+            // Optimistically remove locally
+            questions = questions.filter(qq => qq.id !== q.id);
+            saveQuestions();
+            renderQuestions();
 
-          // Optimistically remove locally
-          questions = questions.filter(qq => qq.id !== q.id);
-          saveQuestions();
-          renderQuestions();
-
-          // Sync with backend
-          try {
-            const res = await fetch(`${API_BASE}/commune/questions/${q.id}`, {
-              method: "DELETE",
-              credentials: "include"
-            });
-            const data = await res.json();
-            if (!data.success) showModal("Delete failed: " + (data.error || "unknown"));
-          } catch (err) {
-            console.error('Delete failed:', err);
-            showModal("Failed to delete on server");
-          }
+            // Sync with backend
+            try {
+              const res = await fetch(`${API_BASE}/commune/questions/${q.id}`, {
+                method: "DELETE",
+                credentials: "include"
+              });
+              const data = await res.json();
+              if (!data.success) showModal("Delete failed: " + (data.error || "unknown"));
+            } catch (err) {
+              console.error('Delete failed:', err);
+              showModal("Failed to delete on server");
+            }
+          });
         });
       }
 
@@ -964,7 +1009,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
     const text = box.value.trim();
     const file = fileInput.files[0];
     if (!text && !file) return;
-    addResponse(q.id, null, text, file ? await fileToDataURL(file) : null, null, file);
+    addResponse(q.id, null, text, null, null, file);
     box.value = "";
     fileInput.value = "";
   }
@@ -1049,6 +1094,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
   );
 
   reopenExpandedIfNeeded();
+  updateCommunityPostCount();
 }    
     // ---------- Create top-level question from input (askInput) ----------
 askInput?.addEventListener('keydown', (e) => {
@@ -1147,3 +1193,737 @@ async function trySendDrafts() {
 
 // Export initial render if you loaded local cache before backend
 renderQuestions();
+
+// ============================================
+// HELPER: Get User Milestone Border
+// ============================================
+function getUserBorderStyle(userId) {
+  if (!userId) return '';
+  const borderLevel = localStorage.getItem(`profileBorderLevel:${userId}`);
+  
+  if (borderLevel === "legendary") {
+    return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box;';
+  } else if (borderLevel === "gold") {
+    return 'border:4px solid gold; box-shadow:0 0 15px rgba(255,215,0,0.6);';
+  } else if (borderLevel === "silver") {
+    return 'border:4px solid silver; box-shadow:0 0 10px rgba(192,192,192,0.6);';
+  } else if (borderLevel === "bronze") {
+    return 'border:4px solid #cd7f32; box-shadow:0 0 8px rgba(205,127,50,0.5);';
+  }
+  return '';
+}
+
+// ============================================
+// COMMUNITY TABS SYSTEM
+// ============================================
+
+function switchTab(tabName) {
+  // Hide all tabs
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Remove active from all buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  // Show selected tab
+  const tabs = {
+    'community': 'communityTab',
+    'testimony': 'testimonyTab',
+    'groups': 'groupsTab'
+  };
+  
+  document.getElementById(tabs[tabName]).classList.add('active');
+  event.target.classList.add('active');
+  
+  // Load data for specific tab
+  if (tabName === 'testimony') {
+    loadTestimonies();
+  } else if (tabName === 'groups') {
+    loadGroups();
+  }
+}
+
+// ============================================
+// TESTIMONY FUNCTIONS
+// ============================================
+
+let selectedTags = [];
+
+function toggleTag(button) {
+  const tag = button.getAttribute('data-tag');
+  
+  if (button.classList.contains('selected')) {
+    button.classList.remove('selected');
+    selectedTags = selectedTags.filter(t => t !== tag);
+  } else {
+    button.classList.add('selected');
+    selectedTags.push(tag);
+  }
+}
+
+async function submitTestimony() {
+  const text = document.getElementById("testimonyText").value.trim();
+  const isAnonymous = document.getElementById("anonymousTestimony").checked;
+  
+  if (!text) {
+    showModal("Please share your story");
+    return;
+  }
+  
+  if (selectedTags.length === 0) {
+    showModal("Please select at least one tag");
+    return;
+  }
+  
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{"username": "Guest"}');
+    
+    const response = await fetch(`${API_BASE}/api/testimonies`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        text,
+        tags: selectedTags,
+        username: isAnonymous ? "Anonymous" : user.username,
+        userId: user.id || null
+      })
+    });
+    
+    if (response.ok) {
+      document.getElementById("testimonyText").value = "";
+      document.getElementById("anonymousTestimony").checked = false;
+      selectedTags = [];
+      document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('selected'));
+      loadTestimonies();
+      showModal("Testimony submitted! It will be reviewed before publishing. 🙏");
+    }
+  } catch (error) {
+    console.error("Error submitting testimony:", error);
+    showModal("Failed to submit. Please try again.");
+  }
+}
+
+async function loadTestimonies() {
+  try {
+    const response = await fetch(`${API_BASE}/api/testimonies`);
+    const testimonies = await response.json();
+    
+    const feed = document.getElementById("testimoniesFeed");
+    feed.innerHTML = "";
+    
+    if (testimonies.length === 0) {
+      feed.innerHTML = "<p style='text-align:center; opacity:0.6;'>No testimonies yet. Be the first to share your story.</p>";
+      return;
+    }
+    
+    testimonies.forEach(test => {
+      const card = document.createElement("div");
+      card.className = "testimony-card";
+      
+      const tagHTML = test.tags.map(tag => `<span class="story-tag">${tag}</span>`).join('');
+      
+      card.innerHTML = `
+        <div class="testimony-header">
+          <span>👤 ${test.username}</span>
+          <div class="testimony-tags">${tagHTML}</div>
+        </div>
+        <p class="testimony-text">${test.text}</p>
+        <div class="testimony-footer">
+          <span>${new Date(test.created_at).toLocaleDateString()}</span>
+        </div>
+      `;
+      feed.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error loading testimonies:", error);
+  }
+}
+
+// ============================================
+// GROUPS FUNCTIONS
+// ============================================
+
+const availableGroups = [
+  "Catholic", "Protestant", "Orthodox", "Pentecostal", 
+  "Baptist", "Methodist", "Lutheran", "Anglican",
+  "Non-denominational", "Young Adults", "College Students",
+  "Parents", "Singles", "Recovery"
+];
+
+function showJoinGroupsModal() {
+  const modal = document.getElementById("joinGroupsModal");
+  const selection = document.getElementById("groupsSelection");
+  
+  selection.innerHTML = "";
+  availableGroups.forEach(group => {
+    const div = document.createElement("div");
+    div.className = "group-option";
+    div.innerHTML = `
+      <label>
+        <input type="checkbox" value="${group}" />
+        ${group}
+      </label>
+    `;
+    selection.appendChild(div);
+  });
+  
+  modal.classList.remove("hidden");
+}
+
+function closeJoinGroupsModal() {
+  document.getElementById("joinGroupsModal").classList.add("hidden");
+}
+
+async function saveGroupSelections() {
+  const selected = Array.from(document.querySelectorAll('#groupsSelection input:checked'))
+    .map(input => input.value);
+  
+  if (selected.length === 0) {
+    showAlert("Please select at least one group");
+    return;
+  }
+  
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    
+    const response = await fetch(`${API_BASE}/api/user-groups`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        userId: user.id,
+        groups: selected
+      })
+    });
+    
+    if (response.ok) {
+      closeJoinGroupsModal();
+      loadGroups();
+    }
+  } catch (error) {
+    console.error("Error saving groups:", error);
+  }
+}
+
+async function loadGroups() {
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    
+    const response = await fetch(`${API_BASE}/api/user-groups/${user.id}`);
+    const userGroups = await response.json();
+    
+    const list = document.getElementById("yourGroupsList");
+    
+    if (!userGroups || userGroups.groups.length === 0) {
+      list.innerHTML = "<p style='opacity:0.6; text-align:center;'>You haven't joined any groups yet</p>";
+    } else {
+      list.innerHTML = userGroups.groups.map(group => 
+        `<div class="group-item">${group}</div>`
+      ).join('');
+    }
+  } catch (error) {
+    console.error("Error loading groups:", error);
+  }
+}
+
+// ============================================
+// REPORT SYSTEM
+// ============================================
+
+async function reportContent(contentId, contentType) {
+  const reasons = [
+    "Sexual content",
+    "Hate / harassment",
+    "Misinformation",
+    "Spam",
+    "Self-harm / crisis",
+    "Other"
+  ];
+  
+  const reason = prompt("Why are you reporting?\n\n" + reasons.map((r, i) => `${i+1}. ${r}`).join("\n") + "\n\nEnter number or text:");
+  
+  if (!reason) return;
+  
+  const selectedReason = reasons[parseInt(reason) - 1] || reason;
+  
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    
+    const response = await fetch(`${API_BASE}/api/reports`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        contentId,
+        contentType,
+        reason: selectedReason,
+        reporterId: user.id || "guest"
+      })
+    });
+    
+    if (response.ok) {
+      showAlert("✓ Report submitted. Thank you for helping keep our community safe.");
+    } else {
+      const errorData = await response.json();
+      console.error("Report failed:", errorData);
+      showModal(`Failed to submit report: ${errorData.error || "Unknown error"}`);
+    }
+  } catch (error) {
+    console.error("Error reporting content:", error);
+    showModal("Failed to submit report. Please try again.");
+  }
+}
+// ============================================
+// COMMUNITY GROUPS MANAGEMENT
+// ============================================
+
+let userGroups = [];
+
+let allGroups = []; // Store all groups for search filtering
+
+async function loadGroups() {
+  try {
+    const response = await fetch(`${API_BASE}/api/groups`);
+    if (!response.ok) throw new Error("Failed to load groups");
+    
+    allGroups = await response.json();
+    renderGroups(allGroups);
+  } catch (error) {
+    console.error("Error loading groups:", error);
+  }
+}
+
+function renderGroups(groups) {
+  const groupsList = document.getElementById("groupsList");
+  if (!groupsList) return;
+  
+  groupsList.innerHTML = "";
+  
+  if (!groups || groups.length === 0) {
+    groupsList.innerHTML = "<p style='text-align:center; opacity:0.6;'>No groups found</p>";
+    return;
+  }
+  
+  groups.forEach(group => {
+    const card = document.createElement("div");
+    card.className = "group-card";
+    card.innerHTML = `
+      <div class="group-header">
+        <span class="group-icon" style="font-size:2rem;">${group.icon || "👥"}</span>
+        <div class="group-info">
+          <h3>${group.name}</h3>
+          <p style="opacity:0.7; margin:0.25rem 0;">${group.description || "No description"}</p>
+          <small style="opacity:0.6;">Created by ${group.creator_name || "Unknown"}</small>
+        </div>
+      </div>
+      <div class="group-actions">
+        <button class="innerbtn" onclick="viewGroup('${group.id}')">View</button>
+        <button class="innerbtn" onclick="joinGroup('${group.id}', '${group.name}')">Join</button>
+      </div>
+    `;
+    groupsList.appendChild(card);
+  });
+}
+
+function filterGroups() {
+  const searchTerm = document.getElementById("groupSearch").value.toLowerCase();
+  const filtered = allGroups.filter(g => 
+    (g.name || "").toLowerCase().includes(searchTerm) ||
+    (g.description || "").toLowerCase().includes(searchTerm) ||
+    (g.creator_name || "").toLowerCase().includes(searchTerm)
+  );
+  renderGroups(filtered);
+}
+
+window.filterGroups = filterGroups;
+
+let currentGroupId = null;
+let currentGroupData = null;
+
+async function viewGroup(groupId) {
+  try {
+    currentGroupId = groupId;
+    
+    // Fetch group details
+    const groupResponse = await fetch(`${API_BASE}/api/groups/${groupId}`);
+    if (!groupResponse.ok) throw new Error("Failed to load group");
+    currentGroupData = await groupResponse.json();
+    
+    // Hide tabs and main content
+    document.querySelector('.community-tabs')?.style.setProperty('display', 'none');
+    document.querySelectorAll('.tab-content').forEach(el => el.style.display = 'none');
+    
+    let groupViewSection = document.getElementById('groupViewSection');
+    if (!groupViewSection) {
+      groupViewSection = document.createElement('div');
+      groupViewSection.id = 'groupViewSection';
+      groupViewSection.style.padding = '1rem';
+      const app = document.getElementById('app');
+      if (app) app.appendChild(groupViewSection);
+    }
+    
+    groupViewSection.style.display = 'block';
+    groupViewSection.innerHTML = `
+      <!-- Group Header (clickable for details) -->
+      <div onclick="showGroupDetails()" style="cursor:pointer; background:linear-gradient(135deg, var(--accent) 0%, rgba(255,107,53,0.6) 100%); padding:1rem; border-radius:12px; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <span style="font-size:3rem;">${currentGroupData.icon || "👥"}</span>
+          <div>
+            <h2 style="margin:0; font-size:1.5rem;">${currentGroupData.name}</h2>
+            <small style="opacity:0.9;">${currentGroupData.member_count || 0} members • Tap for info</small>
+          </div>
+        </div>
+        <button class="innerbtn" onclick="event.stopPropagation(); closeGroupView()" style="padding:0.5rem 1rem;">← Back</button>
+      </div>
+      
+      <!-- Chat Feed -->
+      <div id="groupChatFeed" style="background:rgba(0,0,0,0.3); border-radius:12px; padding:1rem; min-height:400px; max-height:500px; overflow-y:auto; margin-bottom:1rem;">
+        <div style="text-align:center; padding:2rem; opacity:0.6;">
+          <div style="font-size:3rem; margin-bottom:1rem;">💬</div>
+          Loading messages...
+        </div>
+      </div>
+      
+      <!-- Message Input -->
+      <div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:1rem; display:flex; gap:0.5rem; align-items:flex-end;">
+        <textarea id="groupMessageInput" placeholder="Type a message..." rows="1" style="flex:1; padding:0.75rem; border-radius:20px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,107,53,0.3); color:white; resize:none; max-height:100px; font-family:inherit;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); postToGroup();}"></textarea>
+        <button class="innerbtn" onclick="postToGroup()" style="padding:0.75rem 1.5rem; border-radius:20px;">Send</button>
+      </div>
+    `;
+    
+    // Load posts
+    loadGroupPosts();
+    
+  } catch (error) {
+    console.error("Error viewing group:", error);
+    showAlert("Failed to load group details.");
+  }
+}
+
+function closeGroupView() {
+  const groupView = document.getElementById('groupViewSection');
+  if (groupView) groupView.style.display = 'none';
+  
+  document.querySelector('.community-tabs')?.style.setProperty('display', '');
+  document.querySelectorAll('.tab-content').forEach(el => el.style.display = '');
+  
+  currentGroupId = null;
+  currentGroupData = null;
+}
+
+function showGroupDetails() {
+  if (!currentGroupData) return;
+  
+  let rulesHtml = "";
+  if (currentGroupData.rules && currentGroupData.rules.length > 0) {
+    rulesHtml = "<h3 style='margin-top:1.5rem; color:var(--accent);'>Group Rules:</h3><ol style='line-height:1.8;'>";
+    currentGroupData.rules.forEach(rule => {
+      rulesHtml += `<li>${escapeModalHtml(rule.rule_text)}</li>`;
+    });
+    rulesHtml += "</ol>";
+  }
+  
+  // Create custom modal with HTML content
+  const modal = document.createElement('div');
+  modal.className = 'custom-modal';
+  modal.style.display = 'flex';
+  modal.innerHTML = `
+    <div class="modal-content" style="max-width:500px;">
+      <span class="close" onclick="this.closest('.custom-modal').remove()">&times;</span>
+      <div style="text-align:center;">
+        <div style="font-size:4rem; margin-bottom:1rem;">${currentGroupData.icon || "👥"}</div>
+        <h2 style="margin:0 0 0.5rem 0;">${currentGroupData.name}</h2>
+        <p style="opacity:0.7; margin-bottom:1rem;">${currentGroupData.description || ""}</p>
+        <div style="display:inline-block; background:rgba(255,107,53,0.2); padding:0.5rem 1rem; border-radius:20px;">
+          <strong>${currentGroupData.member_count || 0}</strong> members
+        </div>
+        ${rulesHtml}
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+  
+  // Close on background click
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.remove();
+  });
+}
+
+async function loadGroupPosts() {
+  try {
+    const response = await fetch(`${API_BASE}/api/groups/${currentGroupId}/posts`);
+    const posts = await response.json();
+    renderGroupPosts(posts);
+  } catch (error) {
+    console.error("Error loading posts:", error);
+    document.getElementById('groupChatFeed').innerHTML = '<p style="text-align:center; opacity:0.6; padding:2rem;">Failed to load messages</p>';
+  }
+}
+
+function renderGroupPosts(posts) {
+  const feed = document.getElementById('groupChatFeed');
+  if (!feed) return;
+  
+  // Handle error responses or non-array data
+  if (!Array.isArray(posts) || posts.length === 0) {
+    feed.innerHTML = '<div style="text-align:center; padding:3rem; opacity:0.6;"><div style="font-size:3rem; margin-bottom:1rem;">💬</div><p>No messages yet.<br/>Start the conversation!</p></div>';
+    return;
+  }
+  
+  const user = JSON.parse(localStorage.getItem("user") || '{}');
+  
+  feed.innerHTML = posts.map(post => {
+    const isOwn = String(post.user_id) === String(user.id) || post.users?.username === user.username;
+    const time = new Date(post.created_at);
+    const timeStr = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const messageText = post.message || post.body || '';
+    
+    return `
+      <div style="margin-bottom:1rem; display:flex; ${isOwn ? 'justify-content:flex-end;' : 'justify-content:flex-start;'}">
+        <div style="max-width:70%; ${isOwn ? 'background:linear-gradient(135deg, var(--accent), rgba(255,107,53,0.8));' : 'background:rgba(255,255,255,0.1);'} padding:0.75rem 1rem; border-radius:12px; ${isOwn ? 'border-bottom-right-radius:4px;' : 'border-bottom-left-radius:4px;'}">
+          ${!isOwn ? `<div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.25rem;">${escapeModalHtml(post.username || "Anonymous")}</div>` : ''}
+          <div style="line-height:1.5; word-wrap:break-word; white-space:pre-wrap;">${escapeModalHtml(messageText)}</div>
+          <div style="font-size:0.7rem; opacity:0.7; text-align:right; margin-top:0.25rem;">${timeStr}</div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  // Scroll to bottom
+  feed.scrollTop = feed.scrollHeight;
+}
+
+async function postToGroup() {
+  const textarea = document.getElementById('groupMessageInput');
+  const text = textarea?.value.trim();
+  
+  if (!text) return;
+  
+  if (!currentGroupId) {
+    showAlert("Group not found");
+    return;
+  }
+  
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    
+    const response = await fetch(`${API_BASE}/api/groups/${currentGroupId}/posts`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: String(user.id),
+        username: user.username || "Anonymous",
+        body: text
+      })
+    });
+    
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || "Failed to post");
+    }
+    
+    textarea.value = "";
+    textarea.style.height = 'auto';
+    
+    // Reload posts
+    loadGroupPosts();
+    
+  } catch (error) {
+    console.error("Error posting to group:", error);
+    showAlert("Failed to send message. Please try again.");
+  }
+}
+
+async function joinGroup(groupId, groupName) {
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    
+    const response = await fetch(`${API_BASE}/api/groups/${groupId}/join`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: user.id,
+        username: user.username || "Guest"
+      })
+    });
+    
+    if (response.ok) {
+      alert(`✓ Joined ${groupName}!`);
+      loadUserGroups();
+    } else {
+      const error = await response.json();
+      alert(error.error || "Failed to join group");
+    }
+  } catch (error) {
+    console.error("Error joining group:", error);
+    alert("Failed to join group. Please try again.");
+  }
+}
+
+async function createGroup() {
+  const name = prompt("Group name:");
+  if (!name) return;
+  
+  const description = prompt("Group description (optional):");
+  const iconEmoji = prompt("Group icon/emoji (default: 👥):");
+  
+  const rulesStr = prompt("Group rules (separate with |):\nExample: Be kind|No spam|Keep it family-friendly");
+  const rules = rulesStr ? rulesStr.split("|").map(r => r.trim()).filter(r => r) : [];
+  
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    
+    // Convert user.id to UUID format if it's just a number
+    let creatorId = null;
+    if (user.id) {
+      // If it's a numeric ID, leave it null and backend will handle it
+      // If it's already a UUID string, use it
+      const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      creatorId = uuidPattern.test(String(user.id)) ? user.id : null;
+    }
+    
+    const response = await fetch(`${API_BASE}/api/groups`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        description: description || "",
+        icon: iconEmoji || "👥",
+        creator_id: creatorId,
+        creator_name: user.username || "Anonymous"
+      })
+    });
+    
+    if (!response.ok) throw new Error("Failed to create group");
+    
+    const group = await response.json();
+    
+    // Add rules if provided
+    if (rules.length > 0) {
+      await fetch(`${API_BASE}/api/groups/${group.id}/rules`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rules })
+      });
+    }
+    
+    alert(`✓ Group "${name}" created successfully!`);
+    loadGroups();
+  } catch (error) {
+    console.error("Error creating group:", error);
+    alert("Failed to create group. Please try again.");
+  }
+}
+
+async function loadUserGroups() {
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{}');
+    if (!user.id) return;
+    
+    const response = await fetch(`${API_BASE}/api/user/${user.id}/groups`);
+    if (!response.ok) throw new Error("Failed to load user groups");
+    
+    userGroups = await response.json();
+    
+    const yourGroupsList = document.getElementById("yourGroupsList");
+    if (!yourGroupsList) return;
+    
+    yourGroupsList.innerHTML = "";
+    
+    if (!userGroups || userGroups.length === 0) {
+      yourGroupsList.innerHTML = "<p style='text-align:center; opacity:0.6;'>You haven't joined any groups yet.</p>";
+      return;
+    }
+    
+    userGroups.forEach(group => {
+      const card = document.createElement("div");
+      card.className = "group-card";
+      card.innerHTML = `
+        <div class="group-header">
+          <span class="group-icon" style="font-size:2rem;">${group.icon || "👥"}</span>
+          <div class="group-info">
+            <h3>${group.name}</h3>
+            <p style="opacity:0.7; margin:0.25rem 0;">${group.description || "No description"}</p>
+          </div>
+        </div>
+        <div class="group-actions">
+          <button class="innerbtn" onclick="viewGroup('${group.id}')">View</button>
+          <button class="innerbtn" onclick="leaveGroup('${group.id}', '${group.name}')">Leave</button>
+        </div>
+      `;
+      yourGroupsList.appendChild(card);
+    });
+  } catch (error) {
+    console.error("Error loading user groups:", error);
+  }
+}
+
+async function leaveGroup(groupId, groupName) {
+  showConfirm(`Leave "${groupName}"?`, async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user") || '{}');
+      
+      const response = await fetch(`${API_BASE}/api/groups/${groupId}/leave`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          user_id: user.id,
+          username: user.username 
+        })
+      });
+      
+      if (response.ok) {
+        showAlert(`✓ Left ${groupName}`);
+        loadUserGroups();
+        loadGroups(); // Refresh available groups
+      }
+    } catch (error) {
+      console.error("Error leaving group:", error);
+      showAlert("Failed to leave group.");
+    }
+  });
+}
+
+// Submit community post with optional image
+async function submitCommunityPost() {
+  const text = document.getElementById("communityPostText").value.trim();
+  const imageInput = document.getElementById("communityPostImage");
+  const imageFile = imageInput?.files[0];
+  
+  if (!text) {
+    alert("Please write something!");
+    return;
+  }
+  
+  const user = JSON.parse(localStorage.getItem("user") || "{}");
+  if (!user.id) {
+    alert("Please log in to post.");
+    return;
+  }
+  
+  try {
+    await postQuestionToServer({
+      user_id: user.id,
+      title: text.slice(0, 100), // Use first 100 chars as title
+      body: text,
+      imageFile: imageFile || null
+    });
+    
+    alert("✓ Posted!");
+    document.getElementById("communityPostText").value = "";
+    if (imageInput) imageInput.value = "";
+    loadFromBackend(); // Reload feed
+  } catch (error) {
+    console.error("Error posting:", error);
+    alert("Failed to post.");
+  }
+}
+
+window.submitCommunityPost = submitCommunityPost;
+
+// Load on page load
+window.addEventListener("DOMContentLoaded", () => {
+  loadGroups();
+  loadUserGroups();
+});

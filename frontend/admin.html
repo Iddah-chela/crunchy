@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="animated-overlay"></div>
+  
+  <div id="app">
+    <div id="topbar-container"></div>
+    
+    <main class="admin-dashboard">
+      <h1>🛡️ Admin Dashboard</h1>
+      
+      <!-- Navigation Tabs -->
+      <nav class="admin-tabs">
+        <button class="tab-btn active" onclick="switchAdminTab('questions')">Pending Questions</button>
+        <button class="tab-btn" onclick="switchAdminTab('testimonies')">Pending Testimonies</button>
+        <button class="tab-btn" onclick="switchAdminTab('reports')">Reports</button>
+      </nav>
+      
+      <!-- Questions Tab -->
+      <div id="questionsTab" class="admin-tab-content active">
+        <section class="admin-section">
+          <h2>User-Submitted Questions</h2>
+          <div id="pendingQuestions" class="admin-list">
+            <!-- Populated dynamically -->
+          </div>
+        </section>
+      </div>
+      
+      <!-- Testimonies Tab -->
+      <div id="testimoniesTab" class="admin-tab-content">
+        <section class="admin-section">
+          <h2>Pending Testimonies</h2>
+          <div id="pendingTestimonies" class="admin-list">
+            <!-- Populated dynamically -->
+          </div>
+        </section>
+      </div>
+      
+      <!-- Reports Tab -->
+      <div id="reportsTab" class="admin-tab-content">
+        <section class="admin-section">
+          <h2>Content Reports</h2>
+          <div id="pendingReports" class="admin-list">
+            <!-- Populated dynamically -->
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+  
+  <script src="js/admin-auth.js"></script>
+  <script src="js/topbar.js" defer></script>
+  <script src="js/topbar-loader.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

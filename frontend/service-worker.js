@@ -1,4 +1,4 @@
-const CACHE_NAME = "holyverse-cache-v17";
+const CACHE_NAME = "holyverse-cache-v18";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -26,74 +26,16 @@ const urlsToCache = [
   "/js/questionMap.js",
   "/css/style.css",
   "/icons/icon192.png",
-  // --- NIV Bible JSONs ---
-  "/bible/Bible-niv-main/Genesis.json",
-  "/bible/Bible-niv-main/Exodus.json",
-  "/bible/Bible-niv-main/Leviticus.json",
-  "/bible/Bible-niv-main/Numbers.json",
-  "/bible/Bible-niv-main/Deuteronomy.json",
-  "/bible/Bible-niv-main/Joshua.json",
-  "/bible/Bible-niv-main/Judges.json",
-  "/bible/Bible-niv-main/Ruth.json",
-  "/bible/Bible-niv-main/1 Samuel.json",
-  "/bible/Bible-niv-main/2 Samuel.json",
-  "/bible/Bible-niv-main/1 Kings.json",
-  "/bible/Bible-niv-main/2 Kings.json",
-  "/bible/Bible-niv-main/1 Chronicles.json",
-  "/bible/Bible-niv-main/2 Chronicles.json",
-  "/bible/Bible-niv-main/Ezra.json",
-  "/bible/Bible-niv-main/Nehemiah.json",
-  "/bible/Bible-niv-main/Esther.json",
-  "/bible/Bible-niv-main/Job.json",
-  "/bible/Bible-niv-main/Psalms.json",
-  "/bible/Bible-niv-main/Proverbs.json",
-  "/bible/Bible-niv-main/Ecclesiastes.json",
-  "/bible/Bible-niv-main/Song Of Solomon.json",
-  "/bible/Bible-niv-main/Isaiah.json",
-  "/bible/Bible-niv-main/Jeremiah.json",
-  "/bible/Bible-niv-main/Lamentations.json",
-  "/bible/Bible-niv-main/Ezekiel.json",
-  "/bible/Bible-niv-main/Daniel.json",
-  "/bible/Bible-niv-main/Hosea.json",
-  "/bible/Bible-niv-main/Joel.json",
-  "/bible/Bible-niv-main/Amos.json",
-  "/bible/Bible-niv-main/Obadiah.json",
-  "/bible/Bible-niv-main/Jonah.json",
-  "/bible/Bible-niv-main/Micah.json",
-  "/bible/Bible-niv-main/Nahum.json",
-  "/bible/Bible-niv-main/Habakkuk.json",
-  "/bible/Bible-niv-main/Zephaniah.json",
-  "/bible/Bible-niv-main/Haggai.json",
-  "/bible/Bible-niv-main/Zechariah.json",
-  "/bible/Bible-niv-main/Malachi.json",
-  "/bible/Bible-niv-main/Matthew.json",
-  "/bible/Bible-niv-main/Mark.json",
-  "/bible/Bible-niv-main/Luke.json",
-  "/bible/Bible-niv-main/John.json",
-  "/bible/Bible-niv-main/Acts.json",
-  "/bible/Bible-niv-main/Romans.json",
-  "/bible/Bible-niv-main/1 Corinthians.json",
-  "/bible/Bible-niv-main/2 Corinthians.json",
-  "/bible/Bible-niv-main/Galatians.json",
-  "/bible/Bible-niv-main/Ephesians.json",
-  "/bible/Bible-niv-main/Philippians.json",
-  "/bible/Bible-niv-main/Colossians.json",
-  "/bible/Bible-niv-main/1 Thessalonians.json",
-  "/bible/Bible-niv-main/2 Thessalonians.json",
-  "/bible/Bible-niv-main/1 Timothy.json",
-  "/bible/Bible-niv-main/2 Timothy.json",
-  "/bible/Bible-niv-main/Titus.json",
-  "/bible/Bible-niv-main/Philemon.json",
-  "/bible/Bible-niv-main/Hebrews.json",
-  "/bible/Bible-niv-main/James.json",
-  "/bible/Bible-niv-main/1 Peter.json",
-  "/bible/Bible-niv-main/2 Peter.json",
-  "/bible/Bible-niv-main/1 John.json",
-  "/bible/Bible-niv-main/2 John.json",
-  "/bible/Bible-niv-main/3 John.json",
-  "/bible/Bible-niv-main/Jude.json",
-  "/bible/Bible-niv-main/Revelation.json",
-  "/bible/en_kjv.json"
+  "/bible/en_kjv.json",
+  "/backgrounds/seedling.png", // seedling
+  "/backgrounds/kidplant.png",
+  "/backgrounds/tweenseed.png",
+  "/backgrounds/teenplant.png",
+  "/backgrounds/almost18tree.png",
+  "/backgrounds/20stree.png",
+  "/backgrounds/25hapo.png",
+  "/backgrounds/30sasa.png",
+  "/backgrounds/bigtree.png"  // full-grown
 ];
 
 
@@ -132,6 +74,22 @@ self.addEventListener("message", event => {
 // Fetch event: serve cached content when offline
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
+
+  // Handle pages (navigation requests)
+if (event.request.mode === "navigate") {
+  event.respondWith(
+    caches.match(event.request).then((cached) => {
+      if (cached) return cached;
+
+      return fetch(event.request)
+        .then((response) => response)
+        .catch(() => caches.match("/offline.html"));
+    })
+  );
+  return;
+}
+
+
 
   const url = new URL(event.request.url);
 

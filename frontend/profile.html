@@ -6,6 +6,7 @@
   <title>Profile</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="shortcut icon" href="icons/icon.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
  <div class="animated-overlay"></div>
@@ -55,18 +56,28 @@
 </form>
 <p id="msg"></p>
 
-
   </main>
+
 <div id="tree-section">
+  
   <div class="tree-container">
     <img id="treeImage" src="backgrounds/seedling.png" alt="Your Tree">
     <div class="sparkles" id="sparkles"></div>
     <img id="wateringCan" src="backgrounds/jug.png" alt="Watering Can">
   </div>
-</div>
 <button id="waterBtn" class="innerbtn">💧 Water Tree</button>
-  <p id="waterCount"></p>
-  
+  <p id="waterCount"></p>  
+
+</div>
+
+<!-- Milestones Section -->
+<section class="milestones-section" style="margin-top: 48px;">
+  <h2>🏆 Your Milestones</h2>
+  <div id="milestonesContainer" class="milestones-grid">
+    <!-- Dynamically populated by profile.js -->
+  </div>
+</section>
+
   <script src="js/topbar.js" defer></script>
 <script src="js/topbar-loader.js"></script>
 <script src="js/profile.js"></script>

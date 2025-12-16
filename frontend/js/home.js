@@ -8,9 +8,10 @@ try {
   storage = sessionStorage;
 }
 
-const API_BASE = window.location.hostname === "localhost"
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
   ? ""
-  : "https://holyverse-s5s1.onrender.com";
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
 
 
 // run this early in your frontend
@@ -22,7 +23,7 @@ if (!anonId) {
   localStorage.setItem("anon_id", anonId);
 
   // since it's new, send to backend
-  fetch("/track-visitor", {
+  fetch(`${API_BASE}/track-visitor`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ anonId })
@@ -138,9 +139,10 @@ const verses = [
 document.getElementById("dailyVerse").textContent = verses[Math.floor(Math.random()*verses.length)];
 
 // Update card info (dummy placeholders for now)
-document.getElementById("prayerInfo").textContent = "Generate uplifting prayers!";
-document.getElementById("bibleInfo").textContent = "Pick up where you left off!";
-document.getElementById("notesInfo").textContent = "Write some notes!";
+document.getElementById("prayerInfo").textContent = "Generate uplifting prayers!🙏";
+document.getElementById("bibleInfo").textContent = "Pick up where you left off!📖";
+document.getElementById("notesInfo").textContent = "Write some notes!📝";
+document.getElementById("musicInfo").textContent = "Listen to uplifting music!🎵"
 
 // Make cards clickable
 document.querySelectorAll(".card").forEach(card => {
@@ -296,4 +298,73 @@ function showGreeting(username) {
 
 // Call it once on load
 showGreeting(currentUser?.username);
+
+// ============================================
+// DOPAMINE CAROUSEL
+// ============================================
+const dopamineHits = [
+  { text: "You are loved beyond measure 💖", emoji: "💖" },
+  { text: "God has amazing plans for you 🌟", emoji: "🌟" },
+  { text: "Your faith moves mountains 🏔️", emoji: "🏔️" },
+  { text: "Every step forward is progress ✨", emoji: "✨" },
+  { text: "You're stronger than you know 💪", emoji: "💪" },
+  { text: "His grace is new every morning 🌅", emoji: "🌅" },
+  { text: "You are fearfully and wonderfully made 🎨", emoji: "🎨" },
+  { text: "Keep going, you're doing great! 🚀", emoji: "🚀" },
+  { text: "God's love never fails 🕊️", emoji: "🕊️" },
+  { text: "You are a work in progress, and that's okay 🌱", emoji: "🌱" },
+  { text: "Your prayers are heard 🙏", emoji: "🙏" },
+  { text: "Trust the process, trust God 🌈", emoji: "🌈" },
+  { text: "You bring light to the world 💡", emoji: "💡" },
+  { text: "His strength is made perfect in weakness 🌟", emoji: "🌟" },
+  { text: "You are more than a conqueror ⚡", emoji: "⚡" },
+  { text: "Today is a gift, embrace it 🎁", emoji: "🎁" },
+  { text: "Your best days are still ahead 🌄", emoji: "🌄" },
+  { text: "God believes in you 💙", emoji: "💙" },
+  { text: "You are worthy of love and respect 👑", emoji: "👑" },
+  { text: "Keep shining your light ✨", emoji: "✨" },
+  { text: "Be still and know that He is God 🙌", emoji: "🙌" },
+  { text: "You were created for a purpose 🎯", emoji: "🎯" },
+  { text: "His peace surpasses all understanding 🕊️", emoji: "🕊️" },
+  { text: "You are chosen and beloved 💝", emoji: "💝" },
+  { text: "Faith can move mountains ⛰️", emoji: "⛰️" }
+];
+
+let lastDopamineIndex = -1;
+
+window.getNextDopamine = function() {
+  const contentEl = document.getElementById("dopamineContent");
+  if (!contentEl) return;
+
+  // Get next random dopamine hit
+  let nextIndex;
+  do {
+    nextIndex = Math.floor(Math.random() * dopamineHits.length);
+  } while (nextIndex === lastDopamineIndex && dopamineHits.length > 1);
+
+  lastDopamineIndex = nextIndex;
+  const hit = dopamineHits[nextIndex];
+
+  // Fade out, change content, fade in
+  contentEl.style.opacity = "0";
+  setTimeout(() => {
+    contentEl.innerHTML = `<p id="dopamineText">${hit.text}</p>`;
+    contentEl.style.opacity = "1";
+    
+    // Small celebration
+    if (typeof confetti !== "undefined") {
+      confetti({ particleCount: 20, spread: 45, origin: { y: 0.3 } });
+    }
+  }, 300);
+};
+
+// Initialize dopamine hit on page load
+document.addEventListener("DOMContentLoaded", () => {
+  const dopamineCard = document.getElementById("dopamineCard");
+  if (dopamineCard) {
+    getNextDopamine(); // Show initial hit
+  }
+});
+
+window.getNextDopamine = getNextDopamine;
 

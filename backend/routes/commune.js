@@ -3,20 +3,21 @@ const express = require("express");
 
 const path = require('path');
 const multer = require("multer");
+const { v2: cloudinary } = require("cloudinary");
 
+require("dotenv").config({ path: __dirname + "/../.env" });
 
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 const { supabase } = require("../db/supabase"); // central client
 const { sendNotif } = require("../notifications");
 
-// Storage setup
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, `community-${Date.now()}${ext}`);
-  }
-});
+// Storage setup - use memory storage for cloudinary upload
+const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 const router = express.Router();
@@ -115,7 +116,6 @@ router.get("/questions", async (req, res) => {
 // Create new question with automatic mature content detection
 router.post("/questions", upload.single("image"), async (req, res) => {
   const { user_id, title, body } = req.body;
-  const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
   if (!user_id || !title || !body) {
     return res.status(400).json({ error: "Fill all fields." });
@@ -124,9 +124,24 @@ router.post("/questions", upload.single("image"), async (req, res) => {
   const mature_content = containsMatureContent(title + " " + body) ? 1 : 0;
 
   try {
+    let imageUrl = null;
+
+    // Upload image to Cloudinary if provided
+    if (req.file) {
+      const base64 = req.file.buffer.toString("base64");
+      const dataURI = `data:${req.file.mimetype};base64,${base64}`;
+
+      const uploadResult = await cloudinary.uploader.upload(dataURI, {
+        folder: "holyverse/community",
+        public_id: `post-${Date.now()}`
+      });
+
+      imageUrl = uploadResult.secure_url;
+    }
+
     const { data, error } = await supabase
       .from("community_questions")
-      .insert([{ user_id, title, body, mature_content, image: imagePath }])
+      .insert([{ user_id, title, body, mature_content, image: imageUrl }])
       .select()
       .single();
 
@@ -261,14 +276,28 @@ router.get("/questions/:id/responses", async (req, res) => {
 router.post("/questions/:id/responses", upload.single("image"), async (req, res) => {
    const questionId = req.params.id;
   const { user_id, body, parent_response_id } = req.body;
-  const imagePath = req.file ? `/uploads/${req.file.filename}` : null;
 
   if (!user_id || !body) return res.status(400).json({ error: "Fill response" });
 
   try {
+    let imageUrl = null;
+
+    // Upload image to Cloudinary if provided
+    if (req.file) {
+      const base64 = req.file.buffer.toString("base64");
+      const dataURI = `data:${req.file.mimetype};base64,${base64}`;
+
+      const uploadResult = await cloudinary.uploader.upload(dataURI, {
+        folder: "holyverse/responses",
+        public_id: `response-${Date.now()}`
+      });
+
+      imageUrl = uploadResult.secure_url;
+    }
+
     const { data, error } = await supabase
       .from("community_responses")
-      .insert([{ question_id: questionId, user_id, parent_response_id: parent_response_id || null, body, image: imagePath }])
+      .insert([{ question_id: questionId, user_id, parent_response_id: parent_response_id || null, body, image: imageUrl }])
       .select()
       .single();
 

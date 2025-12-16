@@ -12,9 +12,10 @@ function showModal(message) {
   };
 }
 
-const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -46,6 +47,9 @@ document.addEventListener("DOMContentLoaded", () => {
       viewUsername.textContent = user.username || "Unknown";
       viewProfilePic.src = user.profilePic || "/images/default-avatar.png";
       if (viewBio) viewBio.textContent = user.bio || "No bio yet."; // <-- new
+      
+      // Apply milestone border
+      applyUserBorder(viewProfilePic, user.id);
 
       // Tree (localStorage-based fallback)
       const treeLevel = parseInt(user.tree_level, 10) || 0;
@@ -122,6 +126,27 @@ document.addEventListener("DOMContentLoaded", () => {
         showModal(err.message || "Failed to send friend request 😭");
       }
     });
+  }
+
+  // Apply user's milestone border
+  function applyUserBorder(imgElement, userId) {
+    if (!imgElement || !userId) return;
+    
+    const borderLevel = localStorage.getItem(`profileBorderLevel:${userId}`);
+    
+    if (borderLevel === "legendary") {
+      imgElement.style.border = "4px solid transparent";
+      imgElement.style.background = "linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box";
+    } else if (borderLevel === "gold") {
+      imgElement.style.border = "4px solid gold";
+      imgElement.style.boxShadow = "0 0 15px rgba(255, 215, 0, 0.6)";
+    } else if (borderLevel === "silver") {
+      imgElement.style.border = "4px solid silver";
+      imgElement.style.boxShadow = "0 0 10px rgba(192, 192, 192, 0.6)";
+    } else if (borderLevel === "bronze") {
+      imgElement.style.border = "4px solid #cd7f32";
+      imgElement.style.boxShadow = "0 0 8px rgba(205, 127, 50, 0.5)";
+    }
   }
 
   // actually load the user

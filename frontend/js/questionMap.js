@@ -1388,7 +1388,7 @@ let q11ans = {
   "Bring your doubts honestly to God": {
     "Mark 9:24": {
       text: "Immediately the boy’s father exclaimed, 'I do believe; help me overcome my unbelief!'",
-      theme: "honesty",
+      theme: "truth",
       tags: ["doubt", "faith", "honesty"]
     },
     "Psalm 34:4": {
@@ -7536,7 +7536,7 @@ let q78ans = {
     },
     "1 Peter 3:14-16": {
       text: "But even if you should suffer for what is right, you are blessed. 'Do not fear their threats; do not be frightened.' But in your hearts revere Christ as Lord. Always be prepared to give an answer to everyone who asks you to give the reason for the hope that you have. But do this with gentleness and respect, keeping a clear conscience, so that those who speak maliciously against your good behavior in Christ may be ashamed of their slander.",
-      theme: "courage",
+      theme: "strength",
       tags: ["fear", "suffering", "boldness", "witness"]
     }
   },
@@ -7708,7 +7708,7 @@ let q79ans = {
     },
     "Hebrews 12:3": {
       text: "Consider him who endured such opposition from sinners, so that you will not grow weary and lose heart.",
-      theme: "encouragement",
+      theme: "hope",
       tags: ["endurance", "Jesus", "hope"]
     },
     "James 1:12": {
@@ -8946,7 +8946,7 @@ let q90ans = {
     },
     "Deuteronomy 7:6": {
       text: "For you are a people holy to the Lord your God. The Lord your God has chosen you out of all the peoples on the face of the earth to be his people, his treasured possession.",
-      theme: "identity",
+      theme: "purpose",
       tags: ["chosen", "treasured", "belonging", "God’s people"]
     },
     "Psalm 139:13–14": {
@@ -9777,7 +9777,7 @@ let q97ans = {
     },
     "2 Corinthians 1:3–4": {
       text: "Praise be to the God and Father of our Lord Jesus Christ, the Father of compassion and the God of all comfort, who comforts us in all our troubles, so that we can comfort those in any trouble with the comfort we ourselves receive from God.",
-      theme: "comfort",
+      theme: "peace",
       tags: ["comfort", "trouble", "compassion"]
     }
   },
@@ -9829,17 +9829,17 @@ let q98ans = {
   "Remember that God heals what’s broken": {
     "Isaiah 61:1": {
       text: "The Spirit of the Sovereign Lord is on me, because the Lord has anointed me to proclaim good news to the poor. He has sent me to bind up the brokenhearted, to proclaim freedom for the captives and release from darkness for the prisoners.",
-      theme: "healing",
+      theme: "grace",
       tags: ["freedom", "healing", "hope", "comfort"]
     },
     "Jeremiah 30:17": {
       text: "But I will restore you to health and heal your wounds,’ declares the Lord, ‘because you are called an outcast, Zion for whom no one cares.’",
-      theme: "healing",
+      theme: "grace",
       tags: ["restoration", "wounds", "outcast", "love"]
     },
     "Malachi 4:2": {
       text: "But for you who revere my name, the sun of righteousness will rise with healing in its rays. And you will go out and frolic like well-fed calves.",
-      theme: "healing",
+      theme: "grace",
       tags: ["healing", "joy", "freedom", "righteousness"]
     }
   },
@@ -10398,7 +10398,7 @@ let q103ans = {
     },
     "1 Peter 3:15-16": {
       text: "But in your hearts revere Christ as Lord. Always be prepared to give an answer... with gentleness and respect, keeping a clear conscience, so that those who speak maliciously... may be ashamed of their slander.",
-      theme: "witness",
+      theme: "light",
       tags: ["gentleness", "respect", "answer", "defense", "behavior"]
     }
   },
@@ -10496,7 +10496,7 @@ let q104ans = {
     },
     "Joel 2:12–13,25": {
       text: "“Yet even now,” declares the Lord, “return to me with all your heart, with fasting, with weeping, and with mourning; and rend your hearts and not your garments.” Return to the Lord your God, for he is gracious and merciful, slow to anger and abounding in steadfast love; and he relents over disaster. And I will restore to you the years that the swarming locust has eaten...",
-      theme: "restoration",
+      theme: "transformation",
       tags: ["return", "healing", "hope", "restoration"]
     }
   },
@@ -11513,7 +11513,7 @@ let q111ans = {
     },
     "Proverbs 12:25": {
       text: "Anxiety weighs down the heart, but a kind word cheers it up.",
-      theme: "emotion",
+      theme: "understanding",
       tags: ["anxiety", "overthinking", "comfort"]
     }
   },
@@ -11651,7 +11651,7 @@ let q112ans = {
     },
     "Proverbs 16:33": {
       text: "The lot is cast into the lap, but its every decision is from the Lord.",
-      theme: "sovereignty",
+      theme: "authority",
       tags: ["chance", "decision", "God’s authority"]
     },
     "Proverbs 15:22": {
@@ -12816,7 +12816,7 @@ let q120ans = {
     },
     "Psalm 66:18-20": {
       text: "If I had cherished sin in my heart, the Lord would not have listened; but God has surely listened and has heard my prayer. Praise be to God, who has not rejected my prayer or withheld his love from me!",
-      theme: "prayer",
+      theme: "devotion",
       tags: ["repentance", "hope", "listening"]
     }
   },
@@ -13203,7 +13203,7 @@ let q123ans = {
   "Your love and example can help lead others to God": {
     "1 Peter 3:1–2": {
       text: "Wives, be subject to your own husbands, so that even if some do not obey the word, they may be won without a word by the conduct of their wives, when they see your respectful and pure conduct.",
-      theme: "witness",
+      theme: "light",
       tags: ["conduct", "marriage", "influence"]
     },
     "Luke 5:31–32": {
@@ -13246,7 +13246,7 @@ let q123ans = {
     },
     "2 Thessalonians 3:14–15": {
       text: "Have nothing to do with him, that he may be ashamed. Do not regard him as an enemy, but warn him as a brother.",
-      theme: "boundaries",
+      theme: "wisdom",
       tags: ["correction", "discipline", "love"]
     },
     "1 Corinthians 9:22–23": {
@@ -13367,7 +13367,7 @@ let q125ans = {
     },
     "1 Peter 2:9": {
       text: "But you are a chosen people, a royal priesthood, a holy nation, God’s special possession, that you may declare the praises of him who called you out of darkness into his wonderful light.",
-      theme: "identity",
+      theme: "purpose",
       tags: ["chosen", "purpose", "light"]
     },
     "2 Corinthians 5:17": {
@@ -15824,7 +15824,7 @@ let q145ans = {
     },
     "1 Corinthians 6:12": {
       text: "'I have the right to do anything,' you say—but not everything is beneficial. 'I have the right to do anything'—but I will not be mastered by anything.",
-      theme: "boundaries",
+      theme: "wisdom",
       tags: ["freedom", "self-control", "desire"]
     }
   },
@@ -16523,7 +16523,7 @@ let q154ans = {
     },
     "Proverbs 5:18-19": {
       text: "May your fountain be blessed, and may you rejoice in the wife of your youth... may her breasts satisfy you always, may you ever be intoxicated with her love.",
-      theme: "joy",
+      theme: "hope",
       tags: ["pleasure", "marriage", "blessing"]
     }
   },
@@ -16667,7 +16667,7 @@ let q156ans = {
     },
     "1 Corinthians 6:12": {
       text: "I have the right to do anything,” you say—but not everything is beneficial. “I have the right to do anything”—but I will not be mastered by anything.",
-      theme: "boundaries",
+      theme: "wisdom",
       tags: ["self-control", "freedom", "discipline"]
     }
   },
@@ -17818,7 +17818,7 @@ let q166ans = {
     },
     "Isaiah 55:12": {
       text: "You will go out in joy and be led forth in peace; the mountains and hills will burst into song before you, and all the trees of the field will clap their hands.",
-      theme: "joy",
+      theme: "hope",
       tags: ["creation", "art", "expression", "worship"]
     }
   },
@@ -18020,7 +18020,7 @@ let q168ans = {
   "Every member of Christ’s body is needed, no matter their strength or weakness": {
     "1 Corinthians 12:22": {
       text: "On the contrary, those parts of the body that seem to be weaker are indispensable.",
-      theme: "body",
+      theme: "truth",
       tags: ["church", "purpose", "weakness", "value", "identity"]
     },
     "Romans 12:4-5": {
@@ -19451,7 +19451,7 @@ let q181ans = {
   "God’s joy and delight are different from worldly pleasure; the heart that pursues Him finds true satisfaction.": {
     "Psalm 16:11": {
       text: "You make known to me the path of life; you will fill me with joy in your presence, with eternal pleasures at your right hand.",
-      theme: "joy",
+      theme: "hope",
       tags: ["pleasure", "delight", "satisfaction"]
     },
     "John 10:10": {
@@ -19673,7 +19673,7 @@ let q183ans = {
     },
     "1 Chronicles 28:20": {
       text: "Be strong and courageous, and do the work. Do not be afraid or discouraged, for the Lord God, my God, is with you.",
-      theme: "courage",
+      theme: "strength",
       tags: ["hobbies", "work", "God's presence"]
     },
     "Psalm 33:3": {
@@ -21307,8 +21307,1009 @@ let q209ans = {
   }
 };
 
+// Why does fear feel so overwhelming even when I pray?
+let q210ans = {
+  "Fear is a normal human response, not a sign of weak faith": {
+    "2 Timothy 1:7": {
+      text: "For the Spirit God gave us does not make us timid, but gives us power, love and a sound mind.",
+      theme: "strength",
+      tags: ["fear", "faith", "courage", "spirit"]
+    },
+    "Psalm 27:1": {
+      text: "The Lord is my light and my salvation—whom shall I fear? The Lord is the stronghold of my life—of whom shall I be afraid?",
+      theme: "trust",
+      tags: ["fear", "trust", "faith", "protection"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "trust",
+      tags: ["fear", "trust", "anxiety", "faith"]
+    }
+  },
+  "God doesn't ask us to feel brave—only to trust Him despite the fear": {
+    "Joshua 1:9": {
+      text: "Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.",
+      theme: "strength",
+      tags: ["courage", "trust", "faith", "obedience"]
+    },
+    "Hebrews 13:6": {
+      text: "So we say with confidence, 'The Lord is my helper; I will not be afraid. What can mere mortals do to me?'",
+      theme: "trust",
+      tags: ["faith", "trust", "courage", "protection"]
+    }
+  },
+  "When prayer doesn't eliminate fear, it may be teaching you faith": {
+    "Proverbs 29:25": {
+      text: "Fear of man will prove to be a snare, but whoever trusts in the Lord is kept safe.",
+      theme: "trust",
+      tags: ["fear", "trust", "faith", "protection"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "trust",
+      tags: ["fear", "trust", "comfort", "faith"]
+    }
+  }
+};
 
+// Is it okay to be angry at God for my suffering?
+let q211ans = {
+  "Yes—God can handle your anger, and honesty in prayer is faithful": {
+    "Psalm 13:1-2": {
+      text: "How long, O Lord? Will you forget me forever? How long will you hide your face from me? How long must I wrestle with my thoughts and every day have sorrow in my heart?",
+      theme: "truth",
+      tags: ["anger", "honesty", "struggle", "faith"]
+    },
+    "Psalm 22:1": {
+      text: "My God, my God, why have you forsaken me? Why are you so far from saving me, so far from the words of my groaning?",
+      theme: "truth",
+      tags: ["anger", "suffering", "honesty", "faith"]
+    },
+    "Job 7:11": {
+      text: "Therefore I will not keep silent; I will speak out in the anguish of my spirit, I will complain in the bitterness of my soul.",
+      theme: "truth",
+      tags: ["anger", "honesty", "suffering", "faith"]
+    }
+  },
+  "The anger you feel toward God matters and deserves conversation with Him": {
+    "Habakkuk 1:2-3": {
+      text: "How long, Lord, must I call for help, but you do not listen? Or cry out to you, 'Violence!' but you do not save? Why do you make me look at injustice?",
+      theme: "truth",
+      tags: ["anger", "suffering", "justice", "faith"]
+    },
+    "Jeremiah 20:7": {
+      text: "You deceived me, Lord, and I was deceived; you overpowered me and prevailed. I am ridiculed all day long; everyone mocks me.",
+      theme: "truth",
+      tags: ["anger", "suffering", "honesty", "faith"]
+    }
+  },
+  "Bring your anger to God—not as rebellion but as broken trust seeking healing": {
+    "Psalm 142:1-2": {
+      text: "I cry aloud to the Lord; I lift up my voice to the Lord and plead for his mercy. I pour out before him my trouble.",
+      theme: "truth",
+      tags: ["prayer", "honesty", "suffering", "faith"]
+    },
+    "Psalm 55:22": {
+      text: "Cast your cares on the Lord and he will sustain you; he will never let the righteous be shaken.",
+      theme: "trust",
+      tags: ["trust", "faith", "comfort", "guidance"]
+    }
+  }
+};
 
+// What if my doubts never go away?
+let q212ans = {
+  "Doubt doesn't disqualify you from faith—many faithful people have wrestled with doubt": {
+    "Mark 9:24": {
+      text: "'I do believe; help me overcome my unbelief!'",
+      theme: "faith",
+      tags: ["doubt", "faith", "honesty", "growth"]
+    },
+    "John 20:27": {
+      text: "Then he said to Thomas, 'Put your finger here; see my hands. Reach out your hand and put it into my side. Stop doubting and believe.'",
+      theme: "faith",
+      tags: ["doubt", "faith", "evidence", "growth"]
+    },
+    "Hebrews 11:1": {
+      text: "Now faith is confidence in what we hope for and assurance about what we do not see.",
+      theme: "faith",
+      tags: ["faith", "doubt", "trust", "spiritual"]
+    }
+  },
+  "Living with doubt can deepen your faith if you keep seeking God": {
+    "Romans 14:23": {
+      text: "But whoever has doubts is condemned if they eat, because their eating is not from faith; and everything that does not come from faith is sin.",
+      theme: "conviction",
+      tags: ["faith", "doubt", "growth", "wisdom"]
+    },
+    "Psalm 73:16-17": {
+      text: "When I tried to understand all this, it troubled me deeply till I entered the sanctuary of God; then I understood their final destiny.",
+      theme: "seeking",
+      tags: ["doubt", "seeking", "faith", "understanding"]
+    }
+  },
+  "God welcomes your questions and doubts—they're part of the journey toward deeper faith": {
+    "Proverbs 14:15": {
+      text: "The simple believe anything, but the prudent give thought to their steps.",
+      theme: "wisdom",
+      tags: ["wisdom", "faith", "growth", "discernment"]
+    },
+    "James 1:5-6": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you. But when you ask, you must believe.",
+      theme: "wisdom",
+      tags: ["wisdom", "faith", "prayer", "guidance"]
+    }
+  }
+};
+
+// How do I trust God when everything is falling apart?
+let q213ans = {
+  "Trust is a choice you can make even when nothing feels safe": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["trust", "faith", "surrender", "guidance"]
+    },
+    "Psalm 56:3-4": {
+      text: "When I am afraid, I put my trust in you. In God, whose word I praise—in God I trust and am not afraid.",
+      theme: "trust",
+      tags: ["trust", "fear", "faith", "protection"]
+    },
+    "Isaiah 26:3": {
+      text: "You will keep in perfect peace those whose minds are steadfast, because they trust in you.",
+      theme: "peace",
+      tags: ["peace", "trust", "faith", "comfort"]
+    }
+  },
+  "Trust isn't about feeling confident—it's about remembering God's faithfulness in your past": {
+    "1 Samuel 12:7": {
+      text: "Now then, stand here, because I am going to confront you with evidence of all the righteous acts performed by the Lord for you.",
+      theme: "faith",
+      tags: ["faith", "remembrance", "faithfulness", "trust"]
+    },
+    "Psalm 42:5": {
+      text: "Why, my soul, are you downcast? Why so disturbed within me? Put your hope in God, for I will yet praise him, my Savior and my God.",
+      theme: "faith",
+      tags: ["faith", "hope", "encouragement", "trust"]
+    },
+    "Philippians 1:6": {
+      text: "being confident of this, that he who began a good work in you will carry it on to completion until the day of Christ Jesus.",
+      theme: "faith",
+      tags: ["faith", "trust", "completion", "faithfulness"]
+    }
+  },
+  "God is stable even when your circumstances are not": {
+    "Hebrews 13:8": {
+      text: "Jesus Christ is the same yesterday and today and forever.",
+      theme: "faith",
+      tags: ["faith", "stability", "trust", "unchanging"]
+    },
+    "Deuteronomy 31:8": {
+      text: "The Lord himself goes before you and will be with you; he will never leave you nor forsake you. Do not be afraid; do not be discouraged.",
+      theme: "trust",
+      tags: ["trust", "faith", "protection", "comfort"]
+    }
+  }
+};
+
+// Why does it feel like God is silent when I need Him most?
+let q214ans = {
+  "Silence doesn't mean absence—God may be listening rather than speaking": {
+    "Psalm 37:7": {
+      text: "Be still before the Lord and wait patiently for him; do not fret when people succeed in their ways, when they carry out their wicked schemes.",
+      theme: "faith",
+      tags: ["silence", "trust", "waiting", "faith"]
+    },
+    "Lamentations 3:25-26": {
+      text: "The Lord is good to those whose hope is in him, to the one who seeks him; it is good to wait quietly for the salvation of the Lord.",
+      theme: "faith",
+      tags: ["silence", "waiting", "faith", "hope"]
+    },
+    "Psalm 5:3": {
+      text: "In the morning, Lord, you hear my voice; in the morning I lay my requests before you and wait expectantly.",
+      theme: "faith",
+      tags: ["prayer", "waiting", "faith", "guidance"]
+    }
+  },
+  "Sometimes God is silent because He's inviting you to deeper faith—not through words but presence": {
+    "Job 23:8-10": {
+      text: "But if I go to the east, he is not there; if I go to the west, I do not find him... But he knows the way that I take; when he has tested me, I will come forth as gold.",
+      theme: "faith",
+      tags: ["silence", "testing", "faith", "trust"]
+    },
+    "Isaiah 45:15": {
+      text: "Truly you are a God who has been hiding himself, the God and Savior of Israel.",
+      theme: "faith",
+      tags: ["silence", "trust", "faith", "mystery"]
+    }
+  },
+  "God may be speaking in ways you haven't learned to hear yet": {
+    "1 Kings 19:11-13": {
+      text: "The Lord said, 'Go out and stand on the mountain in the presence of the Lord, for the Lord is about to pass by.'... Then a gentle whisper.",
+      theme: "seeking",
+      tags: ["guidance", "silence", "seeking", "faith"]
+    },
+    "Romans 10:17": {
+      text: "Consequently, faith comes from hearing the message, and the message is heard through the word about Christ.",
+      theme: "faith",
+      tags: ["faith", "word", "guidance", "growth"]
+    }
+  }
+};
+
+// What does the Bible say about money and wealth?
+let q215ans = {
+  "Money itself is not evil—it's a tool that reveals what you value": {
+    "1 Timothy 6:10": {
+      text: "For the love of money is a root of all kinds of evil. Some people, eager for money, have wandered from the faith.",
+      theme: "wisdom",
+      tags: ["money", "greed", "wisdom", "values"]
+    },
+    "Proverbs 11:28": {
+      text: "Whoever trusts in his riches will fall, but the righteous will thrive like a green leaf.",
+      theme: "wisdom",
+      tags: ["wisdom", "money", "trust", "faith"]
+    },
+    "1 Timothy 6:17-18": {
+      text: "Command those who are rich in this present world not to be arrogant nor to put their hope in wealth... Command them to do good, to be rich in good deeds, and to be generous.",
+      theme: "generosity",
+      tags: ["money", "generosity", "wisdom", "faith"]
+    }
+  },
+  "God cares about your financial health and wants you to manage money wisely": {
+    "Proverbs 22:7": {
+      text: "The rich rule over the poor, and the borrower is servant to the lender.",
+      theme: "wisdom",
+      tags: ["money", "wisdom", "stewardship", "freedom"]
+    },
+    "Proverbs 21:5": {
+      text: "The plans of the diligent lead to profit as surely as haste leads to poverty.",
+      theme: "wisdom",
+      tags: ["money", "planning", "discipline", "wisdom"]
+    },
+    "Ecclesiastes 5:10": {
+      text: "Whoever loves money never has enough; whoever loves wealth is never satisfied with their income.",
+      theme: "wisdom",
+      tags: ["money", "greed", "satisfaction", "wisdom"]
+    }
+  },
+  "Wealth comes with responsibility to help others and honor God": {
+    "Proverbs 19:17": {
+      text: "Whoever is kind to the poor lends to the Lord, and he will reward them for what they have done.",
+      theme: "generosity",
+      tags: ["money", "generosity", "kindness", "faith"]
+    },
+    "Malachi 3:10": {
+      text: "Bring the whole tithe into the storehouse... and see if I will not throw open the floodgates of heaven and pour out so much blessing that there will not be room enough to store it.",
+      theme: "faith",
+      tags: ["giving", "faith", "provision", "trust"]
+    }
+  }
+};
+
+// Is it wrong to want financial stability?
+let q216ans = {
+  "Wanting financial stability is natural—God Himself cares about your provision": {
+    "Matthew 6:11": {
+      text: "Give us today our daily bread.",
+      theme: "provision",
+      tags: ["provision", "faith", "needs", "trust"]
+    },
+    "1 Timothy 5:8": {
+      text: "Anyone who does not provide for their relatives, and especially for their own household, has denied the faith and is worse than an unbeliever.",
+      theme: "responsibility",
+      tags: ["provision", "responsibility", "faith", "family"]
+    },
+    "Proverbs 10:4": {
+      text: "Lazy hands make for poverty, but diligent hands bring wealth.",
+      theme: "diligence",
+      tags: ["work", "discipline", "provision", "wisdom"]
+    }
+  },
+  "Financial stability allows you to serve God better and help others more freely": {
+    "Proverbs 31:8-9": {
+      text: "Speak up for those who cannot speak for themselves, for the rights of all who are destitute. Speak up and judge fairly; defend the rights of the poor.",
+      theme: "justice",
+      tags: ["provision", "justice", "service", "generosity"]
+    },
+    "2 Thessalonians 3:12": {
+      text: "Such people we command and urge in the Lord Jesus Christ to settle down and earn the food they eat.",
+      theme: "responsibility",
+      tags: ["work", "provision", "responsibility", "dignity"]
+    }
+  },
+  "Seek stability, not greed—there's a difference between need and excess": {
+    "Proverbs 27:12": {
+      text: "The prudent see danger and take refuge, but the simple keep going and pay the penalty.",
+      theme: "wisdom",
+      tags: ["wisdom", "planning", "provision", "safety"]
+    },
+    "1 Corinthians 16:2": {
+      text: "On the first day of every week, each one of you should set aside a sum of money in keeping with your income.",
+      theme: "planning",
+      tags: ["planning", "discipline", "provision", "wisdom"]
+    }
+  }
+};
+
+// How much should I give to church or charity?
+let q217ans = {
+  "The Bible emphasizes the spirit of giving over a specific amount": {
+    "2 Corinthians 9:7": {
+      text: "Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver.",
+      theme: "generosity",
+      tags: ["giving", "generosity", "faith", "joy"]
+    },
+    "Proverbs 3:9-10": {
+      text: "Honor the Lord with your wealth, with the firstfruits of all your crops; then your barns will be filled to overflowing.",
+      theme: "honor",
+      tags: ["giving", "honor", "faith", "provision"]
+    },
+    "Mark 12:41-44": {
+      text: "A poor widow put in two very small copper coins... Jesus said, 'I tell you the truth, this poor widow has put more into the treasury than all the others.'",
+      theme: "faith",
+      tags: ["giving", "faith", "sacrifice", "generosity"]
+    }
+  },
+  "Tithing (10%) is a traditional guideline, but what matters is your heart": {
+    "Leviticus 27:30": {
+      text: "A tithe of everything from the land, whether grain from the soil or fruit from the trees, belongs to the Lord; it is holy to the Lord.",
+      theme: "obedience",
+      tags: ["giving", "obedience", "faith", "stewardship"]
+    },
+    "Malachi 3:8-9": {
+      text: "'Will a mere mortal rob God? Yet you rob me. But you ask, \"How are we robbing you?\" By withholding tithes and contributions.'",
+      theme: "obedience",
+      tags: ["giving", "obedience", "stewardship", "faith"]
+    }
+  },
+  "Give proportionally to your income and capacity, always maintaining your basic needs": {
+    "2 Corinthians 8:12": {
+      text: "For if the willingness is there, the gift is acceptable according to what one has, not according to what one does not have.",
+      theme: "faith",
+      tags: ["giving", "faith", "proportional", "generosity"]
+    },
+    "1 Timothy 6:18": {
+      text: "Command them to do good, to be rich in good deeds, and to be generous and willing to share.",
+      theme: "generosity",
+      tags: ["giving", "generosity", "faith", "character"]
+    }
+  }
+};
+
+// What if I'm struggling financially—will God provide?
+let q218ans = {
+  "God promises to provide your needs, though sometimes through your own work and wisdom": {
+    "Matthew 6:31-33": {
+      text: "So do not worry, saying 'What shall we eat?' or 'What shall we drink?'... But seek first his kingdom and his righteousness, and all these things will be given to you.",
+      theme: "trust",
+      tags: ["provision", "trust", "faith", "anxiety"]
+    },
+    "Philippians 4:19": {
+      text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
+      theme: "trust",
+      tags: ["provision", "trust", "faith", "God's glory"]
+    },
+    "Proverbs 22:3": {
+      text: "The prudent see danger and take refuge, but the simple keep going and pay the penalty.",
+      theme: "wisdom",
+      tags: ["wisdom", "planning", "provision", "prudence"]
+    }
+  },
+  "God may provide through work, community, or His intervention—sometimes in unexpected ways": {
+    "2 Thessalonians 3:7-8": {
+      text: "For you yourselves know how you ought to follow our example. We were not idle when we were with you, nor did we eat anyone's food without paying for it.",
+      theme: "diligence",
+      tags: ["work", "provision", "discipline", "faith"]
+    },
+    "Psalm 145:15-16": {
+      text: "The eyes of all look to you, and you give them their food at the proper time. You open your hand and satisfy the desires of every living thing.",
+      theme: "provision",
+      tags: ["provision", "trust", "faith", "God's care"]
+    },
+    "1 Peter 5:7": {
+      text: "Cast all your anxiety on him because he cares for you.",
+      theme: "trust",
+      tags: ["trust", "faith", "anxiety", "God's care"]
+    }
+  },
+  "Financial struggle can deepen your faith—God has not abandoned you": {
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God. And the peace of God will guard your hearts.",
+      theme: "peace",
+      tags: ["anxiety", "prayer", "faith", "peace"]
+    },
+    "Hebrews 13:5": {
+      text: "Keep your lives free from the love of money and be content with what you have, because God has said, 'Never will I leave you; never will I forsake you.'",
+      theme: "trust",
+      tags: ["trust", "faith", "contentment", "God's presence"]
+    }
+  }
+};
+
+// Is debt a sin?
+let q219ans = {
+  "Debt itself is not sin, but debt-driven by poor choices, greed, or desperation can be harmful": {
+    "Romans 13:8": {
+      text: "Let no debt remain outstanding, except the continuing debt to love one another, for whoever loves others has fulfilled the law.",
+      theme: "responsibility",
+      tags: ["debt", "love", "responsibility", "wisdom"]
+    },
+    "Proverbs 22:7": {
+      text: "The rich rule over the poor, and the borrower is servant to the lender.",
+      theme: "wisdom",
+      tags: ["debt", "wisdom", "freedom", "caution"]
+    },
+    "Proverbs 11:15": {
+      text: "Whoever puts up security for a stranger will surely suffer, but whoever refuses to shake hands in pledge is safe.",
+      theme: "wisdom",
+      tags: ["caution", "wisdom", "responsibility", "prudence"]
+    }
+  },
+  "Borrowing for legitimate needs (education, home, business) can be wise": {
+    "Proverbs 14:15": {
+      text: "The simple believe anything, but the prudent give thought to their steps.",
+      theme: "wisdom",
+      tags: ["wisdom", "planning", "prudence", "discernment"]
+    },
+    "Ecclesiastes 5:5": {
+      text: "It is better not to make a vow than to make one and not fulfill it.",
+      theme: "integrity",
+      tags: ["commitment", "integrity", "responsibility", "faith"]
+    }
+  },
+  "If you're in debt, work toward freedom—God wants you free and responsible": {
+    "Proverbs 6:1-5": {
+      text: "My son, if you have put up security for your neighbor... then do this to free yourself... Go and humble yourself; press your plea with your neighbor!",
+      theme: "freedom",
+      tags: ["freedom", "humility", "responsibility", "wisdom"]
+    },
+    "1 Corinthians 6:12": {
+      text: "You say, 'Everything is permissible for me'—but not everything is beneficial. 'Everything is permissible for me'—but I will not be mastered by anything.",
+      theme: "freedom",
+      tags: ["freedom", "mastery", "self-control", "wisdom"]
+    }
+  }
+};
+
+// How do I trust God when I can't pay my bills?
+let q220ans = {
+  "God promises provision—though faith doesn't eliminate the need to take practical steps": {
+    "Matthew 6:31-33": {
+      text: "So do not worry, saying 'What shall we eat?' or 'What shall we drink?'... But seek first his kingdom and his righteousness, and all these things will be given to you.",
+      theme: "trust",
+      tags: ["provision", "trust", "faith", "anxiety"]
+    },
+    "Proverbs 10:4": {
+      text: "Lazy hands make for poverty, but diligent hands bring wealth.",
+      theme: "diligence",
+      tags: ["provision", "work", "diligence", "wisdom"]
+    },
+    "1 Thessalonians 4:11-12": {
+      text: "Make it your ambition to lead a quiet life: You should mind your own business and work with your hands, just as we told you, so that you will not be dependent on anybody.",
+      theme: "responsibility",
+      tags: ["work", "provision", "responsibility", "dignity"]
+    }
+  },
+  "Seek help without shame—God provides through community, resources, and unexpected provision": {
+    "Proverbs 3:27-28": {
+      text: "Do not withhold good from those to whom it is due, when it is in your power to act. Do not say to your neighbor, 'Come back later; I'll give it tomorrow'.",
+      theme: "generosity",
+      tags: ["community", "help", "generosity", "faith"]
+    },
+    "Philippians 4:19": {
+      text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
+      theme: "trust",
+      tags: ["provision", "trust", "faith", "God's glory"]
+    }
+  },
+  "Crisis can deepen faith—bring your fears to God and take action": {
+    "Philippians 4:6-7": {
+      text: "Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.",
+      theme: "devotion",
+      tags: ["prayer", "faith", "anxiety", "trust"]
+    },
+    "Luke 12:6-7": {
+      text: "Are not five sparrows sold for two pennies? Yet not one of them is forgotten by God... you are worth more than many sparrows.",
+      theme: "worth",
+      tags: ["trust", "faith", "worth", "God's care"]
+    }
+  }
+};
+
+// Is it okay to be ambitious and pursue success?
+let q221ans = {
+  "Ambition is not sinful if it's aligned with God's values and your calling": {
+    "Proverbs 22:29": {
+      text: "Do you see someone skilled in their work? They will serve before kings; they will not serve before officials of low rank.",
+      theme: "excellence",
+      tags: ["work", "excellence", "ambition", "character"]
+    },
+    "Colossians 3:17": {
+      text: "And whatever you do, whether in word or deed, do it all in the name of the Lord Jesus, giving thanks to God the Father through him.",
+      theme: "purpose",
+      tags: ["work", "purpose", "faith", "God's glory"]
+    },
+    "Proverbs 12:24": {
+      text: "Diligent hands will rule, but laziness ends in forced labor.",
+      theme: "diligence",
+      tags: ["ambition", "work", "diligence", "wisdom"]
+    }
+  },
+  "The danger is ambition for the wrong things—status, money, or power": {
+    "Matthew 16:26": {
+      text: "What good will it be for someone to gain the whole world, yet forfeit their soul? Or what can anyone give in exchange for their soul?",
+      theme: "wisdom",
+      tags: ["ambition", "wisdom", "values", "eternity"]
+    },
+    "1 Timothy 6:9-10": {
+      text: "Those who want to get rich fall into temptation and a trap and into many foolish and harmful desires that plunge people into ruin. For the love of money is a root of all kinds of evil.",
+      theme: "wisdom",
+      tags: ["greed", "wisdom", "values", "danger"]
+    },
+    "Ecclesiastes 4:4": {
+      text: "And I saw that all labor and all achievement spring from one person's envy of another. This too is meaningless, a chasing after the wind.",
+      theme: "wisdom",
+      tags: ["ambition", "envy", "wisdom", "meaning"]
+    }
+  },
+  "Pursue excellence in your work, but keep God and others as your true north": {
+    "Proverbs 16:3": {
+      text: "Commit to the Lord whatever you do, and your plans will succeed.",
+      theme: "trust",
+      tags: ["planning", "trust", "faith", "God's will"]
+    },
+    "Proverbs 27:12": {
+      text: "The prudent see danger and take refuge, but the simple keep going and pay the penalty.",
+      theme: "wisdom",
+      tags: ["wisdom", "planning", "prudence", "ambition"]
+    }
+  }
+};
+
+// Why do I feel confused about what God wants from me?
+let q223ans = {
+  "God reveals His will through His Word, prayer, and the Holy Spirit": {
+    "Psalm 119:105": {
+      text: "Your word is a lamp for my feet, a light on my path.",
+      theme: "guidance",
+      tags: ["guidance", "wisdom", "clarity", "word"]
+    },
+    "James 1:5": {
+      text: "If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.",
+      theme: "wisdom",
+      tags: ["wisdom", "prayer", "guidance", "generosity"]
+    },
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["trust", "guidance", "submission", "clarity"]
+    }
+  },
+  "Confusion often comes when we rely on our own understanding instead of God's wisdom": {
+    "Isaiah 55:8-9": {
+      text: "For my thoughts are not your thoughts, neither are your ways my ways, declares the Lord. As the heavens are higher than the earth, so are my ways higher than your ways and my thoughts than your thoughts.",
+      theme: "wisdom",
+      tags: ["wisdom", "understanding", "trust", "sovereignty"]
+    },
+    "1 Corinthians 2:14": {
+      text: "The person without the Spirit does not accept the things that come from the Spirit of God but considers them foolishness, and cannot understand them because they are discerned only through the Spirit.",
+      theme: "understanding",
+      tags: ["spirit", "wisdom", "understanding", "discernment"]
+    }
+  },
+  "God wants obedience, faith, and a loving relationship more than perfect understanding": {
+    "Micah 6:8": {
+      text: "He has shown you, O mortal, what is good. And what does the Lord require of you? To act justly and to love mercy and to walk humbly with your God.",
+      theme: "obedience",
+      tags: ["obedience", "justice", "mercy", "humility"]
+    },
+    "John 14:15": {
+      text: "If you love me, keep my commands.",
+      theme: "love",
+      tags: ["love", "obedience", "relationship", "commands"]
+    }
+  }
+};
+
+// What if I don't understand the Bible?
+let q224ans = {
+  "The Holy Spirit helps us understand Scripture": {
+    "John 14:26": {
+      text: "But the Advocate, the Holy Spirit, whom the Father will send in my name, will teach you all things and will remind you of everything I have said to you.",
+      theme: "understanding",
+      tags: ["spirit", "teaching", "understanding", "truth"]
+    },
+    "1 Corinthians 2:12": {
+      text: "What we have received is not the spirit of the world, but the Spirit who is from God, so that we may understand what God has freely given us.",
+      theme: "understanding",
+      tags: ["spirit", "understanding", "revelation", "grace"]
+    },
+    "Psalm 119:18": {
+      text: "Open my eyes that I may see wonderful things in your law.",
+      theme: "revelation",
+      tags: ["revelation", "understanding", "prayer", "word"]
+    }
+  },
+  "Understanding comes gradually through study, prayer, and obedience": {
+    "2 Timothy 2:15": {
+      text: "Do your best to present yourself to God as one approved, a worker who does not need to be ashamed and who correctly handles the word of truth.",
+      theme: "study",
+      tags: ["study", "diligence", "truth", "understanding"]
+    },
+    "Acts 17:11": {
+      text: "Now the Berean Jews were of more noble character than those in Thessalonica, for they received the message with great eagerness and examined the Scriptures every day to see if what Paul said was true.",
+      theme: "study",
+      tags: ["study", "diligence", "truth", "discernment"]
+    },
+    "John 7:17": {
+      text: "Anyone who chooses to do the will of God will find out whether my teaching comes from God or whether I speak on my own.",
+      theme: "obedience",
+      tags: ["obedience", "understanding", "truth", "discernment"]
+    }
+  }
+};
+
+// Is it normal to feel lost even as a Christian?
+let q225ans = {
+  "Even mature Christians experience seasons of confusion and uncertainty": {
+    "Psalm 42:5": {
+      text: "Why, my soul, are you downcast? Why so disturbed within me? Put your hope in God, for I will yet praise him, my Savior and my God.",
+      theme: "hope",
+      tags: ["hope", "struggle", "faith", "encouragement"]
+    },
+    "2 Corinthians 4:8-9": {
+      text: "We are hard pressed on every side, but not crushed; perplexed, but not in despair; persecuted, but not abandoned; struck down, but not destroyed.",
+      theme: "perseverance",
+      tags: ["perseverance", "struggle", "hope", "endurance"]
+    },
+    "Psalm 73:26": {
+      text: "My flesh and my heart may fail, but God is the strength of my heart and my portion forever.",
+      theme: "strength",
+      tags: ["strength", "struggle", "faithfulness", "comfort"]
+    }
+  },
+  "God promises to guide those who seek Him, even when the path is unclear": {
+    "Proverbs 3:5-6": {
+      text: "Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.",
+      theme: "trust",
+      tags: ["trust", "guidance", "faith", "clarity"]
+    },
+    "Jeremiah 29:11": {
+      text: "For I know the plans I have for you, declares the Lord, plans to prosper you and not to harm you, plans to give you hope and a future.",
+      theme: "hope",
+      tags: ["hope", "plans", "future", "trust"]
+    },
+    "Isaiah 41:10": {
+      text: "So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.",
+      theme: "comfort",
+      tags: ["comfort", "fear", "strength", "presence"]
+    }
+  }
+};
+
+// How do I know if I'm hearing God or just my own thoughts?
+let q226ans = {
+  "God's voice aligns with Scripture and never contradicts His Word": {
+    "2 Timothy 3:16-17": {
+      text: "All Scripture is God-breathed and is useful for teaching, rebuking, correcting and training in righteousness, so that the servant of God may be thoroughly equipped for every good work.",
+      theme: "truth",
+      tags: ["scripture", "truth", "discernment", "guidance"]
+    },
+    "Isaiah 8:20": {
+      text: "Consult God's instruction and the testimony of warning. If anyone does not speak according to this word, they have no light of dawn.",
+      theme: "truth",
+      tags: ["truth", "word", "discernment", "testing"]
+    },
+    "John 10:27": {
+      text: "My sheep listen to my voice; I know them, and they follow me.",
+      theme: "guidance",
+      tags: ["guidance", "relationship", "discernment", "following"]
+    }
+  },
+  "God's voice brings peace, conviction, and draws you closer to Him": {
+    "Philippians 4:7": {
+      text: "And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.",
+      theme: "peace",
+      tags: ["peace", "assurance", "protection", "mind"]
+    },
+    "1 John 4:1": {
+      text: "Dear friends, do not believe every spirit, but test the spirits to see whether they are from God, because many false prophets have gone out into the world.",
+      theme: "discernment",
+      tags: ["discernment", "testing", "truth", "wisdom"]
+    },
+    "James 3:17": {
+      text: "But the wisdom that comes from heaven is first of all pure; then peace-loving, considerate, submissive, full of mercy and good fruit, impartial and sincere.",
+      theme: "wisdom",
+      tags: ["wisdom", "peace", "discernment", "character"]
+    }
+  }
+};
+
+// What if I'm attracted to someone I shouldn't be?
+let q227ans = {
+  "God calls us to guard our hearts and flee from temptation": {
+    "Proverbs 4:23": {
+      text: "Above all else, guard your heart, for everything you do flows from it.",
+      theme: "purity",
+      tags: ["purity", "heart", "wisdom", "protection"]
+    },
+    "1 Corinthians 6:18": {
+      text: "Flee from sexual immorality. All other sins a person commits are outside the body, but whoever sins sexually, sins against their own body.",
+      theme: "purity",
+      tags: ["purity", "temptation", "wisdom", "holiness"]
+    },
+    "2 Timothy 2:22": {
+      text: "Flee the evil desires of youth and pursue righteousness, faith, love and peace, along with those who call on the Lord out of a pure heart.",
+      theme: "purity",
+      tags: ["purity", "righteousness", "temptation", "holiness"]
+    }
+  },
+  "God gives strength to resist temptation and promises a way out": {
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+      theme: "strength",
+      tags: ["temptation", "faithfulness", "endurance", "hope"]
+    },
+    "James 4:7": {
+      text: "Submit yourselves, then, to God. Resist the devil, and he will flee from you.",
+      theme: "resistance",
+      tags: ["resistance", "submission", "victory", "spiritual warfare"]
+    },
+    "Philippians 4:13": {
+      text: "I can do all this through him who gives me strength.",
+      theme: "strength",
+      tags: ["strength", "power", "endurance", "faith"]
+    }
+  }
+};
+
+// How do I control my thoughts when they're inappropriate?
+let q228ans = {
+  "Take every thought captive and focus on what is pure": {
+    "2 Corinthians 10:5": {
+      text: "We demolish arguments and every pretension that sets itself up against the knowledge of God, and we take captive every thought to make it obedient to Christ.",
+      theme: "purity",
+      tags: ["purity", "mind", "obedience", "spiritual warfare"]
+    },
+    "Philippians 4:8": {
+      text: "Finally, brothers and sisters, whatever is true, whatever is noble, whatever is right, whatever is pure, whatever is lovely, whatever is admirable—if anything is excellent or praiseworthy—think about such things.",
+      theme: "purity",
+      tags: ["purity", "mind", "character", "holiness"]
+    },
+    "Romans 12:2": {
+      text: "Do not conform to the pattern of this world, but be transformed by the renewing of your mind. Then you will be able to test and approve what God's will is—his good, pleasing and perfect will.",
+      theme: "transformation",
+      tags: ["transformation", "mind", "renewal", "holiness"]
+    }
+  },
+  "Fill your mind with God's Word and truth": {
+    "Psalm 119:9": {
+      text: "How can a young person stay on the path of purity? By living according to your word.",
+      theme: "purity",
+      tags: ["purity", "word", "obedience", "holiness"]
+    },
+    "Psalm 119:11": {
+      text: "I have hidden your word in my heart that I might not sin against you.",
+      theme: "obedience",
+      tags: ["obedience", "word", "purity", "heart"]
+    },
+    "Colossians 3:2": {
+      text: "Set your minds on things above, not on earthly things.",
+      theme: "focus",
+      tags: ["focus", "mind", "heavenly", "priority"]
+    }
+  }
+};
+
+// Is masturbation a sin?
+let q229ans = {
+  "God calls us to sexual purity and self-control": {
+    "1 Thessalonians 4:3-5": {
+      text: "It is God's will that you should be sanctified: that you should avoid sexual immorality; that each of you should learn to control your own body in a way that is holy and honorable, not in passionate lust like the pagans, who do not know God.",
+      theme: "purity",
+      tags: ["purity", "holiness", "self-control", "sanctification"]
+    },
+    "Galatians 5:22-23": {
+      text: "But the fruit of the Spirit is love, joy, peace, forbearance, kindness, goodness, faithfulness, gentleness and self-control. Against such things there is no law.",
+      theme: "self-control",
+      tags: ["self-control", "spirit", "character", "holiness"]
+    },
+    "1 Corinthians 6:18-20": {
+      text: "Flee from sexual immorality. All other sins a person commits are outside the body, but whoever sins sexually, sins against their own body. Do you not know that your bodies are temples of the Holy Spirit, who is in you, whom you have received from God? You are not your own.",
+      theme: "purity",
+      tags: ["purity", "holiness", "body", "temple"]
+    }
+  },
+  "Our bodies belong to God and should honor Him": {
+    "Romans 12:1": {
+      text: "Therefore, I urge you, brothers and sisters, in view of God's mercy, to offer your bodies as a living sacrifice, holy and pleasing to God—this is your true and proper worship.",
+      theme: "holiness",
+      tags: ["holiness", "worship", "sacrifice", "dedication"]
+    },
+    "1 Corinthians 10:31": {
+      text: "So whether you eat or drink or whatever you do, do it all for the glory of God.",
+      theme: "glory",
+      tags: ["glory", "purpose", "obedience", "worship"]
+    }
+  }
+};
+
+// What does the Bible say about pornography?
+let q230ans = {
+  "Lust and impurity grieve God and harm us": {
+    "Matthew 5:28": {
+      text: "But I tell you that anyone who looks at a woman lustfully has already committed adultery with her in his heart.",
+      theme: "purity",
+      tags: ["purity", "lust", "heart", "holiness"]
+    },
+    "Job 31:1": {
+      text: "I made a covenant with my eyes not to look lustfully at a young woman.",
+      theme: "purity",
+      tags: ["purity", "covenant", "discipline", "holiness"]
+    },
+    "Ephesians 5:3": {
+      text: "But among you there must not be even a hint of sexual immorality, or of any kind of impurity, or of greed, because these are improper for God's holy people.",
+      theme: "holiness",
+      tags: ["holiness", "purity", "immorality", "standard"]
+    }
+  },
+  "God offers forgiveness and power to overcome": {
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["forgiveness", "cleansing", "grace", "restoration"]
+    },
+    "1 Corinthians 10:13": {
+      text: "No temptation has overtaken you except what is common to mankind. And God is faithful; he will not let you be tempted beyond what you can bear. But when you are tempted, he will also provide a way out so that you can endure it.",
+      theme: "victory",
+      tags: ["victory", "temptation", "faithfulness", "strength"]
+    },
+    "Romans 8:1": {
+      text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
+      theme: "freedom",
+      tags: ["freedom", "grace", "forgiveness", "identity"]
+    }
+  }
+};
+
+// Can I be forgiven for sexual sin?
+let q231ans = {
+  "God's grace is greater than any sin": {
+    "1 John 1:9": {
+      text: "If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.",
+      theme: "forgiveness",
+      tags: ["forgiveness", "cleansing", "grace", "restoration"]
+    },
+    "Isaiah 1:18": {
+      text: "Come now, let us settle the matter, says the Lord. Though your sins are like scarlet, they shall be as white as snow; though they are red as crimson, they shall be like wool.",
+      theme: "cleansing",
+      tags: ["cleansing", "forgiveness", "restoration", "grace"]
+    },
+    "Psalm 103:12": {
+      text: "As far as the east is from the west, so far has he removed our transgressions from us.",
+      theme: "forgiveness",
+      tags: ["forgiveness", "grace", "mercy", "removal"]
+    }
+  },
+  "Jesus offers complete forgiveness and a fresh start": {
+    "John 8:11": {
+      text: "Then neither do I condemn you, Jesus declared. Go now and leave your life of sin.",
+      theme: "grace",
+      tags: ["grace", "forgiveness", "transformation", "freedom"]
+    },
+    "2 Corinthians 5:17": {
+      text: "Therefore, if anyone is in Christ, the new creation has come: The old has gone, the new is here!",
+      theme: "newness",
+      tags: ["newness", "transformation", "identity", "grace"]
+    },
+    "Romans 8:1": {
+      text: "Therefore, there is now no condemnation for those who are in Christ Jesus.",
+      theme: "freedom",
+      tags: ["freedom", "grace", "forgiveness", "identity"]
+    }
+  }
+};
+
+// How does the bible say we should do to get money and wealth?
+let q232ans = {
+  "Work diligently and trust God to provide": {
+    "Proverbs 10:4": {
+      text: "Lazy hands make for poverty, but diligent hands bring wealth.",
+      theme: "diligence",
+      tags: ["diligence", "work", "provision", "wisdom"]
+    },
+    "Proverbs 13:11": {
+      text: "Dishonest money dwindles away, but whoever gathers money little by little makes it grow.",
+      theme: "integrity",
+      tags: ["integrity", "patience", "provision", "honesty"]
+    },
+    "2 Thessalonians 3:10": {
+      text: "For even when we were with you, we gave you this rule: The one who is unwilling to work shall not eat.",
+      theme: "responsibility",
+      tags: ["responsibility", "work", "provision", "discipline"]
+    }
+  },
+  "Seek God's kingdom first and He will provide": {
+    "Matthew 6:33": {
+      text: "But seek first his kingdom and his righteousness, and all these things will be given to you as well.",
+      theme: "priority",
+      tags: ["priority", "kingdom", "provision", "trust"]
+    },
+    "Philippians 4:19": {
+      text: "And my God will meet all your needs according to the riches of his glory in Christ Jesus.",
+      theme: "provision",
+      tags: ["provision", "faithfulness", "trust", "abundance"]
+    },
+    "Proverbs 3:9-10": {
+      text: "Honor the Lord with your wealth, with the firstfruits of all your crops; then your barns will be filled to overflowing, and your vats will brim over with new wine.",
+      theme: "generosity",
+      tags: ["generosity", "provision", "blessing", "honor"]
+    }
+  },
+  "True wealth is found in contentment and godliness": {
+    "1 Timothy 6:6-8": {
+      text: "But godliness with contentment is great gain. For we brought nothing into the world, and we can take nothing out of it. But if we have food and clothing, we will be content with that.",
+      theme: "contentment",
+      tags: ["contentment", "godliness", "wisdom", "perspective"]
+    },
+    "Hebrews 13:5": {
+      text: "Keep your lives free from the love of money and be content with what you have, because God has said, Never will I leave you; never will I forsake you.",
+      theme: "contentment",
+      tags: ["contentment", "faithfulness", "trust", "presence"]
+    }
+  }
+};
+
+// What does it mean to be a good steward of my resources?
+let q222ans = {
+  "Stewardship means managing what God has given you with care, wisdom, and accountability": {
+    "1 Peter 4:10": {
+      text: "Each of you should use whatever gift you have received to serve others, as faithful stewards of God's grace in its various forms.",
+      theme: "responsibility",
+      tags: ["stewardship", "responsibility", "faith", "service"]
+    },
+    "Matthew 25:21": {
+      text: "'His master replied, \"Well done, good and faithful servant! You have been faithful with a few things; I will put you in charge of many things.\"'",
+      theme: "faithfulness",
+      tags: ["stewardship", "faithfulness", "responsibility", "reward"]
+    },
+    "Proverbs 12:27": {
+      text: "The lazy do not roast any game, but the diligent feed on the riches of the hunt.",
+      theme: "diligence",
+      tags: ["stewardship", "diligence", "wisdom", "provision"]
+    }
+  },
+  "Good stewardship includes caring for your body, time, talents, and money": {
+    "1 Corinthians 6:19-20": {
+      text: "Do you not know that your bodies are temples of the Holy Spirit, who is in you, whom you have received from God? You are not your own; you were bought at a price.",
+      theme: "care",
+      tags: ["stewardship", "health", "faith", "worship"]
+    },
+    "Ephesians 5:15-16": {
+      text: "Be very careful, then, how you live—not as unwise but as wise, making the most of every opportunity, because the days are evil.",
+      theme: "wisdom",
+      tags: ["stewardship", "time", "wisdom", "discernment"]
+    },
+    "Proverbs 14:23": {
+      text: "All hard work brings a profit, but mere talk leads only to poverty.",
+      theme: "diligence",
+      tags: ["stewardship", "work", "diligence", "provision"]
+    }
+  },
+  "Stewardship is ultimately about honoring God and serving others, not hoarding": {
+    "Proverbs 11:24-25": {
+      text: "One person gives freely, yet gains even more; another withholds unduly, but comes to poverty. A generous person will prosper.",
+      theme: "generosity",
+      tags: ["stewardship", "generosity", "provision", "blessing"]
+    },
+    "Luke 12:48": {
+      text: "From everyone who has been given much, much will be demanded; and from the one who has been entrusted with much, much more will be asked.",
+      theme: "responsibility",
+      tags: ["stewardship", "responsibility", "accountability", "blessing"]
+    }
+  }
+};
 
 const questionMap = {
   q1: q1ans,
@@ -21519,6 +22520,29 @@ const questionMap = {
   q207: q207ans,
   q208: q208ans,
   q209: q209ans,
+  q210: q210ans,
+  q211: q211ans,
+  q212: q212ans,
+  q213: q213ans,
+  q214: q214ans,
+  q215: q215ans,
+  q216: q216ans,
+  q217: q217ans,
+  q218: q218ans,
+  q219: q219ans,
+  q220: q220ans,
+  q221: q221ans,
+  q222: q222ans,
+  q223: q223ans,
+  q224: q224ans,
+  q225: q225ans,
+  q226: q226ans,
+  q227: q227ans,
+  q228: q228ans,
+  q229: q229ans,
+  q230: q230ans,
+  q231: q231ans,
+  q232: q232ans,
 };
 
 

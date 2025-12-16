@@ -10,7 +10,7 @@
   <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="shortcut icon" href="icons/icon.png" type="image/png">
-
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>   
 </head>
 <body>
 <div id="loading-screen">
@@ -74,7 +74,25 @@
         <p class="form" id="chatInfo">Loading...</p>
       </div>
       </div>
+
+       <div class="card" data-link="music.html">
+      <div class="box">
+        <h3 class="intro">Music</h3>
+        <p class="form" id="musicInfo">Loading...</p>
+      </div>
+      </div>
     </section>
+
+    <!-- Dopamine Hit Carousel -->
+    <div class="dopamine-carousel">
+      <h3>💫 Daily Inspiration</h3>
+      <div class="dopamine-card" id="dopamineCard" onclick="getNextDopamine()">
+        <div class="dopamine-content" id="dopamineContent">
+          <p id="dopamineText">Tap to get inspired! ✨</p>
+        </div>
+        <p class="dopamine-hint">Tap for next</p>
+      </div>
+    </div>
 
     <!-- 🌟 Highlights -->
     <section class="highlights">

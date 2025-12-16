@@ -13,9 +13,10 @@ function showModal(message) {
   };
 }
 
-const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+  ? "http://localhost:4000"
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
 
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -215,6 +216,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       localStorage.setItem(waterKey, water);
       localStorage.setItem(treeKey, treeLevel);
+      localStorage.setItem(lastWaterDayKey, new Date().toDateString());
 
       // animate tree change
       if (treeImg) treeImg.style.opacity = "0";
@@ -249,51 +251,317 @@ document.addEventListener("DOMContentLoaded", async () => {
   // attach water button
   if (waterBtn) waterBtn.addEventListener("click", waterTree);
 
-  const lastWaterDayStr = localStorage.getItem(lastWaterDayKey);
-const lastWaterDay = lastWaterDayStr ? new Date(lastWaterDayStr) : new Date();
-const today = new Date();
+  const lastWaterDayKey2 = `lastWaterGiven_${currentUserName}`;
+  const lastWaterDay = localStorage.getItem(lastWaterDayKey2);
+  const today = new Date();
+  const todayStr = today.toDateString();
 
-// calculate difference in days
-const msPerDay = 24 * 60 * 60 * 1000;
-const daysMissed = Math.floor((today - lastWaterDay) / msPerDay);
+  // Give daily water FIRST if it's a new day
+  if (todayStr !== lastWaterDay) {
+    water++;
+    localStorage.setItem(waterKey, water);
+    localStorage.setItem(lastWaterDayKey2, todayStr);
+  }
 
-if (daysMissed > 1) {
-  // tree goes backward 1 level per missed day, but never below 0
-  treeLevel = Math.max(0, treeLevel - daysMissed);
-  localStorage.setItem(treeKey, treeLevel);
-
-  // optionally reduce water if you want
-  // water = Math.max(0, water - daysMissed);
-
-  localStorage.setItem(lastWaterDayKey, today.toDateString());
-
-  //send updated treeLevel to backend
-  if (user?.id) {
-    try {
-      await fetch(`${API_BASE}/users/${user.id}`, {
-        method: "PUT",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ treeLevel, username: user.username })
-      });
-    } catch (err) {
-      console.error("Failed to update tree level on server after missed days:", err);
+  // Check if user watered yesterday - if not, tree goes down 1 step
+  const lastWateredStr = localStorage.getItem(lastWaterDayKey);
+  if (lastWateredStr) {
+    const lastWatered = new Date(lastWateredStr);
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    
+    // If last watered was before yesterday, tree goes down 1 level
+    if (lastWatered < yesterday) {
+      treeLevel = Math.max(0, treeLevel - 1);
+      localStorage.setItem(treeKey, treeLevel);
+      
+      // Update backend
+      if (user?.id) {
+        try {
+          await fetch(`${API_BASE}/users/${user.id}`, {
+            method: "PUT",
+            credentials: "include",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ treeLevel, username: user.username })
+          });
+        } catch (err) {
+          console.error("Failed to update tree level on server:", err);
+        }
+      }
     }
   }
-}
-
-
-
-// ---- DAILY WATER GIVE (now AFTER the backward logic) ----
-const todayStr = today.toDateString();
-const lastGivenDay = localStorage.getItem(lastWaterDayKey) || "";
-
-if (todayStr !== lastGivenDay) {
-  water++;
-  localStorage.setItem(waterKey, water);
-  localStorage.setItem(lastWaterDayKey, todayStr);
-}
 
   // initial render
   updateTree();
+
+  // ============================================
+  // MILESTONES SYSTEM
+  // ============================================
+  const milestoneData = {
+    streak_days: {
+      label: "Streak",
+      emoji: "🔥",
+      thresholds: [
+        { value: 3, title: "3 days strong!", reward: "🌱 Seedling" },
+        { value: 7, title: "One week!", reward: "🌿 Growing" },
+        { value: 14, title: "Two weeks!", reward: "🌳 Strong" },
+        { value: 21, title: "21 days habit!", reward: "💪 Dedicated" },
+        { value: 30, title: "30-day warrior!", reward: "⚔️ Warrior" },
+        { value: 60, title: "60 days!", reward: "🏆 Champion" },
+        { value: 90, title: "90-day legend!", reward: "👑 Legend" },
+        { value: 365, title: "ONE YEAR!", reward: "🥳 LEGENDARY" }
+      ]
+    },
+    community_posts_count: {
+      label: "Community Posts",
+      emoji: "🗣️",
+      thresholds: [
+        { value: 1, title: "First post!", reward: "📢 Voice" },
+        { value: 5, title: "5 posts!", reward: "🤝 Connector" },
+        { value: 15, title: "15 posts!", reward: "🌟 Encourager" },
+        { value: 30, title: "30 posts!", reward: "🧭 Guide" },
+        { value: 50, title: "50 posts!", reward: "🏅 Pillar" }
+      ]
+    },
+    chapters_read_count: {
+      label: "Chapters Read",
+      emoji: "📖",
+      thresholds: [
+        { value: 1, title: "First chapter!", reward: "📄 Reader" },
+        { value: 5, title: "5 chapters!", reward: "📜 Seeker" },
+        { value: 20, title: "20 chapters!", reward: "🧭 Explorer" },
+        { value: 50, title: "50 chapters!", reward: "🛡️ Disciple" },
+        { value: 100, title: "100 chapters!", reward: "🏆 Scholar" }
+      ]
+    },
+    books_read_count: {
+      label: "Books Read",
+      emoji: "📚",
+      thresholds: [
+        { value: 1, title: "First book!", reward: "🌱 Beginner" },
+        { value: 5, title: "5 books!", reward: "🌿 Growing" },
+        { value: 10, title: "10 books!", reward: "🌳 Rooted" },
+        { value: 20, title: "20 books!", reward: "🕊️ Faithful" },
+        { value: 66, title: "All books!", reward: "👑 Finisher" }
+      ]
+    },
+    prayers_count: {
+      label: "Prayers",
+      emoji: "🙏",
+      thresholds: [
+        { value: 1, title: "First prayer!", reward: "🕯️ Seeker" },
+        { value: 10, title: "10 prayers!", reward: "💫 Believer" },
+        { value: 50, title: "50 prayers!", reward: "🕊️ Faithful" },
+        { value: 100, title: "100 prayers!", reward: "✨ Warrior" }
+      ]
+    },
+    app_shared_count: {
+      label: "App Shares",
+      emoji: "📤",
+      thresholds: [
+        { value: 1, title: "First share!", reward: "📣 Spreader" },
+        { value: 5, title: "5 shares!", reward: "🌍 Ambassador" },
+        { value: 10, title: "10 shares!", reward: "🔥 Evangelist" },
+        { value: 25, title: "25 shares!", reward: "👑 Influencer" }
+      ]
+    }
+  };
+
+  function initMilestones() {
+    const container = document.getElementById("milestonesContainer");
+    if (!container) return;
+
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    const uidSuffix = user && user.id ? `:${user.id}` : ":guest";
+
+    let milestonesClaimed = JSON.parse(localStorage.getItem(`milestonesClaimed${uidSuffix}`)) || {};
+    let milestonesProgress = JSON.parse(localStorage.getItem(`milestonesProgress${uidSuffix}`)) || {};
+
+    let html = "";
+
+    for (const [key, data] of Object.entries(milestoneData)) {
+      // Key already includes _count suffix, don't double it
+      const count = parseInt(localStorage.getItem(`${key}${uidSuffix}`)) || 0;
+      const claimed = milestonesClaimed[key] || [];
+      console.log(`🎯 Milestone ${key}: count=${count}, claimed=${claimed.length}`);
+
+      html += `<div class="milestone-category">
+        <h3>${data.emoji} ${data.label}</h3>
+        <div class="milestone-badges">`;
+
+      for (const threshold of data.thresholds) {
+        const isClaimed = claimed.includes(threshold.value);
+        const isUnlocked = count >= threshold.value;
+
+        if (isUnlocked && !isClaimed) {
+          // Show "Claim" button for unlocked unclaimed milestone
+          html += `<button class="milestone-badge unlocked" onclick="claimMilestone('${key}', ${threshold.value}, '${threshold.reward}')">
+            <span class="unlock-text">${threshold.value}</span>
+            <span class="claim-text">Claim!</span>
+            <div class="tooltip">${threshold.title}<br>${threshold.reward}</div>
+          </button>`;
+        } else if (isClaimed) {
+          // Show claimed badge
+          html += `<div class="milestone-badge claimed" title="${threshold.title}">
+            <span class="badge-value">${threshold.value}</span>
+            <span class="badge-emoji">${threshold.reward.split(" ")[0]}</span>
+            <div class="tooltip">${threshold.title}<br>${threshold.reward}</div>
+          </div>`;
+        } else {
+          // Show locked badge
+          html += `<div class="milestone-badge locked" title="Reach ${threshold.value}">
+            <span class="badge-value">?</span>
+            <span class="badge-progress">${count}/${threshold.value}</span>
+            <div class="tooltip">Reach ${threshold.value}<br>${threshold.title}</div>
+          </div>`;
+        }
+      }
+
+      html += `</div></div>`;
+    }
+
+    container.innerHTML = html;
+  }
+
+  window.claimMilestone = function(category, value, reward) {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    const uidSuffix = user && user.id ? `:${user.id}` : ":guest";
+    let milestonesClaimed = JSON.parse(localStorage.getItem(`milestonesClaimed${uidSuffix}`)) || {};
+    if (!milestonesClaimed[category]) milestonesClaimed[category] = [];
+    milestonesClaimed[category].push(value);
+    localStorage.setItem(`milestonesClaimed${uidSuffix}`, JSON.stringify(milestonesClaimed));
+
+    // Check if all milestones are complete and unlock profile border
+    checkAndUnlockProfileBorder();
+
+    // Celebration!
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    showModal(`🎉 Milestone Unlocked!\n${reward}`);
+
+    initMilestones(); // Refresh display
+  };
+
+  function checkAndUnlockProfileBorder() {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    const uidSuffix = user && user.id ? `:${user.id}` : ":guest";
+    const milestonesClaimed = JSON.parse(localStorage.getItem(`milestonesClaimed${uidSuffix}`)) || {};
+    const totalMilestones = Object.values(milestoneData).reduce((sum, cat) => sum + cat.thresholds.length, 0);
+    const claimedCount = Object.values(milestonesClaimed).reduce((sum, arr) => sum + arr.length, 0);
+    
+    const percentage = Math.round((claimedCount / totalMilestones) * 100);
+    console.log(`🏆 Milestone progress: ${claimedCount}/${totalMilestones} (${percentage}%)`);
+    
+    const profilePic = document.querySelector(".profile-pic");
+    if (!profilePic) return;
+
+    // Unlock borders at different completion levels
+    if (claimedCount >= totalMilestones) {
+      // All milestones complete - legendary rainbow border
+      profilePic.style.border = "4px solid transparent";
+      profilePic.style.background = "linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box";
+      localStorage.setItem(`profileBorderLevel${uidSuffix}`, "legendary");
+      console.log(`✨ LEGENDARY BORDER UNLOCKED! (100%)`);
+    } else if (claimedCount >= totalMilestones * 0.75) {
+      // 75% complete - gold border
+      profilePic.style.border = "4px solid gold";
+      profilePic.style.boxShadow = "0 0 15px rgba(255, 215, 0, 0.6)";
+      localStorage.setItem(`profileBorderLevel${uidSuffix}`, "gold");
+      console.log(`🥇 GOLD BORDER UNLOCKED! (75%+)`);
+    } else if (claimedCount >= totalMilestones * 0.5) {
+      // 50% complete - silver border
+      profilePic.style.border = "4px solid silver";
+      profilePic.style.boxShadow = "0 0 10px rgba(192, 192, 192, 0.6)";
+      localStorage.setItem(`profileBorderLevel${uidSuffix}`, "silver");
+      console.log(`🥈 SILVER BORDER UNLOCKED! (50%+)`);
+    } else if (claimedCount >= totalMilestones * 0.25) {
+      // 25% complete - bronze border
+      profilePic.style.border = "4px solid #cd7f32";
+      profilePic.style.boxShadow = "0 0 8px rgba(205, 127, 50, 0.5)";
+      localStorage.setItem(`profileBorderLevel${uidSuffix}`, "bronze");
+      console.log(`🥉 BRONZE BORDER UNLOCKED! (25%+)`);
+    } else {
+      console.log(`🎯 Next border at ${Math.ceil(totalMilestones * 0.25)} milestones (currently ${claimedCount})`);
+    }
+  }
+
+  // Apply saved border on page load - but verify user actually earned it
+  function applySavedProfileBorder() {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    const uidSuffix = user && user.id ? `:${user.id}` : ":guest";
+    const borderLevel = localStorage.getItem(`profileBorderLevel${uidSuffix}`);
+    const profilePic = document.querySelector(".profile-pic");
+    if (!profilePic) return;
+    
+    // If no border saved for this user, don't apply anything
+    if (!borderLevel) {
+      profilePic.style.border = "";
+      profilePic.style.boxShadow = "";
+      profilePic.style.background = "";
+      return;
+    }
+
+    switch(borderLevel) {
+      case "legendary":
+        profilePic.style.border = "4px solid transparent";
+        profilePic.style.background = "linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box";
+        break;
+      case "gold":
+        profilePic.style.border = "4px solid gold";
+        profilePic.style.boxShadow = "0 0 15px rgba(255, 215, 0, 0.6)";
+        break;
+      case "silver":
+        profilePic.style.border = "4px solid silver";
+        profilePic.style.boxShadow = "0 0 10px rgba(192, 192, 192, 0.6)";
+        break;
+      case "bronze":
+        profilePic.style.border = "4px solid #cd7f32";
+        profilePic.style.boxShadow = "0 0 8px rgba(205, 127, 50, 0.5)";
+        break;
+    }
+  }
+
+  // Track counts from localStorage
+  function updateMilestoneTracking() {
+    const currentUser = JSON.parse(localStorage.getItem("user")) || {};
+    const uidSuffix = currentUser && currentUser.id ? `:${currentUser.id}` : ":guest";
+    
+    // Get current counts from app data
+    const streakData = JSON.parse(localStorage.getItem("streakData")) || { visitedDays: {} };
+    const streakFromVisited = Object.keys(streakData.visitedDays || {}).length;
+    const streakFromTopbar = parseInt(localStorage.getItem("streak")) || 0;
+    const streakDays = Math.max(streakFromVisited, streakFromTopbar);
+    localStorage.setItem(`streak_days_count${uidSuffix}`, streakDays);
+
+    // Community posts (exclude drafts, count only current user's posts)
+    const community = JSON.parse(localStorage.getItem("community_questions")) || [];
+    const publishedPosts = community.filter(q => 
+      !q.draft && 
+      (q.author === currentUser.username || q.user_id === currentUser.id)
+    ).length;
+    localStorage.setItem(`community_posts_count${uidSuffix}`, publishedPosts);
+    console.log(`📊 Milestones: ${publishedPosts} community posts by ${currentUser.username}`);
+
+    // Bible reading progress
+    const chaptersRead = JSON.parse(localStorage.getItem("chaptersRead")) || {};
+    const booksReadCount = Object.keys(chaptersRead).length;
+    const chaptersReadCount = Object.values(chaptersRead).reduce((sum, arr) => {
+      if (Array.isArray(arr)) return sum + arr.length;
+      return sum;
+    }, 0);
+    localStorage.setItem(`books_read_count${uidSuffix}`, booksReadCount);
+    localStorage.setItem(`chapters_read_count${uidSuffix}`, chaptersReadCount);
+    console.log(`📊 Milestones: ${booksReadCount} books, ${chaptersReadCount} chapters read`);
+
+    // Prayers: total prayed (fallback to saved customs)
+    const prayersCountStored = parseInt(localStorage.getItem(`prayers_count${uidSuffix}`)) || 0;
+    const customPrayers = JSON.parse(localStorage.getItem("customPrayers")) || [];
+    const prayersCount = Math.max(prayersCountStored, customPrayers.length);
+    localStorage.setItem(`prayers_count${uidSuffix}`, prayersCount);
+    console.log(`📊 Milestones: ${prayersCount} prayers, ${streakDays} day streak`);
+  }
+
+  updateMilestoneTracking();
+  initMilestones();
+  // Don't apply saved border - recalculate based on current user's actual milestones
+  checkAndUnlockProfileBorder();
 });

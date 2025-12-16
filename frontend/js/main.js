@@ -1,9 +1,10 @@
 // Add all your JS here
 //oookay, I think an array will do, here or...?
 
-const API_BASE = window.location.hostname === "localhost"
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
   ? ""
-  : "https://holyverse-s5s1.onrender.com";
+  : "https://holyverse-s5s1.onrender.com");
+
 
 
 let lastShownTags = [];
@@ -616,6 +617,14 @@ function displayItem(entry) {
 
 window.onload = function () {
 
+  // Collapse the ask question button after 3 seconds
+  setTimeout(() => {
+    const bubble = document.getElementById('askQuestionBubble');
+    if (bubble) {
+      bubble.classList.add('collapsed');
+    }
+  }, 3000);
+
 //make an array that'll contain our favorite list
   let fave = [];
 
@@ -694,10 +703,16 @@ function toggleCategory(id) {
   // If no search is active, show all its question buttons
   if (!searchValue) {
   const currentUser = JSON.parse(localStorage.getItem("user")) || {};
-  const selectedAge = currentUser.age || 15;
+  const selectedAge = currentUser.age || 10;
 
   const buttons = selected.querySelectorAll(".question-btn");
   buttons.forEach(btn => {
+    // Skip age filtering for user-submitted questions
+    if (btn.classList.contains("user-submitted-btn")) {
+      btn.style.display = "inline-block";
+      return;
+    }
+    
     const q = questions.find(q => q.id === btn.id);
     if (q && selectedAge >= q.ageRange[0] && selectedAge <= q.ageRange[1]) {
       btn.style.display = "inline-block";
@@ -793,3 +808,242 @@ window.filterQuestions = filterQuestions;
 window.clearSearch = clearSearch;
 window.showVersesByTag = showVersesByTag;
 window.showMoreLikeThis = showMoreLikeThis;
+window.closeVerse = closeVerse;
+window.showUserQuestionVerses = showUserQuestionVerses;
+
+
+// ============================================
+// USER Q&A SUBMISSION
+// ============================================
+
+function showAskQuestionModal() {
+  document.getElementById("askQuestionModal").classList.remove("hidden");
+}
+
+function closeAskQuestionModal() {
+  document.getElementById("askQuestionModal").classList.add("hidden");
+  document.getElementById("askQuestionForm").reset();
+}
+
+document.getElementById("askQuestionForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  
+  const question = document.getElementById("userQuestion").value.trim();
+  const category = document.getElementById("questionCategory").value;
+  const context = document.getElementById("questionContext").value.trim();
+  
+  if (!question) {
+    alert("Please enter your question");
+    return;
+  }
+  
+  try {
+    const user = JSON.parse(localStorage.getItem("user") || '{"username": "Guest"}');
+    
+    const response = await fetch("/api/user-questions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        question,
+        category: category || "other",
+        context,
+        userId: user.id || null,
+        username: user.username || "Guest"
+      })
+    });
+    
+    if (response.ok) {
+      showModal("Question submitted! 🙏 It will be reviewed and answered using Scripture.");
+      closeAskQuestionModal();
+    } else {
+      showModal("Failed to submit. Please try again.");
+    }
+  } catch (error) {
+    console.error("Error submitting question:", error);
+    showModal("Failed to submit. Please try again.");
+  }
+});
+
+
+// ============================================
+// LOAD USER-SUBMITTED QUESTIONS
+// ============================================
+
+// Cache to prevent multiple renders
+let userQuestionsLoaded = false;
+
+async function loadUserQuestions() {
+  // Prevent multiple loads
+  if (userQuestionsLoaded) {
+    console.log("User questions already loaded, skipping...");
+    return;
+  }
+  
+  try {
+    // Force full sync without last_sync parameter to get all questions
+    console.log("Loading user questions from:", `${API_BASE}/api/qna/sync`);
+    const response = await fetch(`${API_BASE}/api/qna/sync`); // No last_sync parameter
+    
+    if (!response.ok) {
+      console.error("Could not load user questions, status:", response.status);
+      const errorText = await response.text();
+      console.error("Error response:", errorText);
+      return;
+    }
+    
+    const data = await response.json();
+    console.log("Raw API response:", data);
+    console.log("Questions array:", data.questions);
+    let { questions } = data;
+    
+    // Filter to only show user-submitted questions (those with question_id starting with "user_q")
+    if (questions && questions.length > 0) {
+      // Log first few questions to see their structure
+      console.log("Sample questions:", questions.slice(0, 3).map(q => ({ id: q.id, question_id: q.question_id, text: q.question_text })));
+      
+      questions = questions.filter(q => q.question_id && q.question_id.startsWith("user_q"));
+      console.log(`Filtered to ${questions.length} user-submitted questions`);
+      
+      if (questions.length > 0) {
+        console.log("User questions:", questions.map(q => ({ id: q.id, question_id: q.question_id, text: q.question_text })));
+      }
+    }
+    
+    if (!questions || questions.length === 0) {
+      console.log("No user questions found");
+      return; // Don't show section if no questions
+    }
+    
+    console.log(`Found ${questions.length} user questions`);
+    
+    // Show the section
+    document.getElementById("userQuestionsSection").style.display = "block";
+    
+    // Render questions (don't auto-expand - let user click to open)
+    const container = document.getElementById("userQuestionsList");
+    container.innerHTML = "";
+    
+    questions.forEach((q, index) => {
+      console.log("Rendering question:", q);
+      const button = document.createElement("button");
+      button.className = "question-btn user-submitted-btn";
+      button.id = `user_q${index}`;
+      // Try different possible field names
+      button.textContent = q.question_text || q.question || q.text || "Question " + (index + 1);
+      button.onclick = () => showUserQuestionVerses(q);
+      container.appendChild(button);
+    });
+    
+    console.log(`Rendered ${questions.length} question buttons`);
+    
+    // Mark as loaded to prevent duplicate renders
+    userQuestionsLoaded = true;
+    
+  } catch (error) {
+    console.error("Error loading user questions:", error);
+  }
+}
+
+// Close verse display
+function closeVerse() {
+  const overlay = document.getElementById("overlay");
+  const display = document.getElementById("versedisplay");
+  
+  if (overlay) {
+    overlay.style.display = "none";
+  }
+  if (display) {
+    display.style.display = "none";
+    display.innerHTML = "";
+  }
+}
+
+// Show verses for user-submitted question (like regular questions)
+function showUserQuestionVerses(question) {
+  console.log("showUserQuestionVerses called with:", question);
+  console.log("Verses in question:", question.verses);
+  
+  if (!question.verses || question.verses.length === 0) {
+    showModal("No verses available for this question yet.");
+    return;
+  }
+  
+  // Pick a random verse from the question (like regular questions do)
+  const randomVerse = question.verses[Math.floor(Math.random() * question.verses.length)];
+  console.log("Selected random verse:", randomVerse);
+  
+  const display = document.getElementById("versedisplay");
+  const overlay = document.getElementById("overlay");
+  
+  if (!display) {
+    console.error("versedisplay element not found");
+    return;
+  }
+  
+  // Show overlay
+  if (overlay) {
+    overlay.style.display = "block";
+  }
+  
+  // Get theme from verse
+  const verseTheme = randomVerse.theme || "general";
+  
+  // Display exactly like regular questions
+  display.classList.value = `versebox bg-${verseTheme}`;
+  display.style.display = "block";
+  
+  const ref = randomVerse.ref || "";
+  const encodedRef = encodeURIComponent(ref);
+  
+  display.innerHTML = `
+    <b>${escapeHtml(question.question_text)}</b><br>
+    <hr>
+    <b>
+      <a href="bible.html?ref=${encodedRef}" class="verse-link" rel="noopener">
+        ${escapeHtml(ref)}
+      </a>:
+    </b>
+    ${escapeHtml(randomVerse.text)}<br><br>
+  `;
+  
+  // Add buttons (copy, close, favorite, more like this)
+  addButtonsToDisplay(display, {
+    ref: ref,
+    text: randomVerse.text,
+    theme: verseTheme,
+    tags: randomVerse.tags || [],
+    category: question.question_text,
+    qkey: question.question_id
+  }, randomVerse.tags?.[0] || verseTheme);
+  
+  console.log("Displayed user question verse:", question.question_text);
+}
+
+// Make functions globally available FIRST
+window.loadUserQuestions = loadUserQuestions;
+window.showUserQuestionVerses = showUserQuestionVerses;
+
+// Load user questions when page loads
+window.addEventListener("load", () => {
+  console.log("=== HOME.JS LOADED - Calling loadUserQuestions ===");
+  setTimeout(() => {
+    loadUserQuestions();
+  }, 2000); // Wait 2 seconds for qna-cache to finish
+});
+
+// Also call after DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("=== DOM READY - Will load user questions in 3 seconds ===");
+    setTimeout(() => {
+      loadUserQuestions();
+    }, 3000);
+  });
+} else {
+  // DOM already loaded
+  console.log("=== DOM ALREADY READY - Loading user questions in 3 seconds ===");
+  setTimeout(() => {
+    loadUserQuestions();
+  }, 3000);
+}
+

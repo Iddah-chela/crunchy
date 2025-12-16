@@ -55,9 +55,10 @@ function initTopbar() {
   const streakDisplay = document.getElementById("streakDisplay");
 
   let isLoggedIn = false;
-  const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+  window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+    ? ""
+    : "https://holyverse-s5s1.onrender.com");
+  const API_BASE = window.API_BASE;
 
 
 const savedUser = localStorage.getItem("user");
@@ -199,6 +200,7 @@ const pageToNavId = {
   "home.html": "nav-index",
   "notes.html": "nav-notes",
   "bible.html": "nav-bible",
+  "music.html": "nav-music",
   "prayer.html": "nav-prayer",
   "community.html": "nav-community"
 };
@@ -339,9 +341,10 @@ navigator.serviceWorker.register("/service-worker.js").then(reg => {
   if (!sub) return console.warn("Subscription failed or permission denied.");
 
   console.log("Subscription:", sub);
-  const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+  window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+    ? ""
+    : "https://holyverse-s5s1.onrender.com");
+  const API_BASE = window.API_BASE;
 
 
   // send sub to backend to store for this user
@@ -368,6 +371,46 @@ function urlBase64ToUint8Array(base64String) {
 
 let deferredPrompt = null;
 const installPromptKey = "installPromptDismissed";
+
+// Make sure the persistent install button (in topbar) is wired
+function setupPersistentInstallButton(){
+  const pwaBtn = document.getElementById('pwaInstallBtn');
+  if(!pwaBtn) return;
+
+  // If user already dismissed or installed, hide the button
+  if(localStorage.getItem(installPromptKey)){
+    pwaBtn.style.display = 'none';
+  } else {
+    // show the button always but subtle; click behavior depends on availability
+    pwaBtn.style.display = 'inline-flex';
+  }
+
+  pwaBtn.addEventListener('click', async () => {
+    // If we have a beforeinstallprompt event, use it
+    if(deferredPrompt){
+      try{
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        if(choice && choice.outcome === 'accepted'){
+          localStorage.setItem(installPromptKey, 'true');
+          pwaBtn.style.display = 'none';
+        } else {
+          // user dismissed – don't spam again
+          localStorage.setItem(installPromptKey, 'true');
+        }
+      }catch(err){
+        console.warn('Install prompt failed', err);
+        // fallback to manual instructions
+        showModal("To install this app: On Android use the browser menu → Install app. On iOS (Safari): tap Share → Add to Home Screen.");
+      } finally {
+        deferredPrompt = null;
+      }
+    } else {
+      // No programmatic prompt available — show manual instructions
+      showModal("To install this app: On Android use the browser menu → Install app. On iOS (Safari): tap Share → Add to Home Screen.");
+    }
+  });
+}
 
 // Timing / visibility flags
 let installTimerId = null;
@@ -455,6 +498,11 @@ window.addEventListener("beforeinstallprompt", (e) => {
   }
 });
 
+// Initialize the persistent install button early
+document.addEventListener('DOMContentLoaded', () => {
+  try{ setupPersistentInstallButton(); } catch(e){}
+});
+
 // 2) Start a single 10-minute timer (only if the user hasn't dismissed before).
 //    After 10 minutes, attempt to show the toast. If the beforeinstallprompt event
 //    hasn't arrived yet, wait and show as soon as it does.
@@ -493,9 +541,10 @@ window.addEventListener("appinstalled", () => {
 
 async function callHeartbeat() {
   try {
-    const API_BASE = window.location.hostname === "localhost"
-  ? ""
-  : "https://holyverse-s5s1.onrender.com";
+    window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+      ? ""
+      : "https://holyverse-s5s1.onrender.com");
+    const API_BASE = window.API_BASE;
 
     const res = await fetch(`${API_BASE}/heartbeat`, {
       method: "GET",

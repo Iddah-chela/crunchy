@@ -13,6 +13,7 @@
     <!--custom css-->
     
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
  <div class="animated-overlay"></div>
@@ -37,26 +38,128 @@
       <!-- Make sure this div has the right ID and is hidden by default -->
 <div class="question-group" id="category-pray">
   <small style="display:block; align-items:center;">Click to get a prayer</small>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('serenity')">Serenity prayer</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('Lord')">The Lord's prayer</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('love')">Prayer about love</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('peace')">Prayer about peace</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('strength')">Prayer about strength</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('gratitude')">Prayer about gratitude</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('guidance')">Prayer for guidance</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('forgiveness')">Prayer about forgiveness</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('healing')">Prayer about healing</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('courage')">Prayer about courage</button>   
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('desire')">Prayer about desire</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('hope')">Prayer for hope</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('emotion')">Prayer about emotions</button>
-  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('purpose')">Prayer about my purpose</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">📜 Classic Prayers</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('Lord')">The Lord's Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('serenity')">Serenity Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('stfrancis')">Prayer of St. Francis</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('jabez')">Prayer of Jabez</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('aaronblessing')">Aaron's Blessing</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('psalm23')">Psalm 23</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">💭 Emotions & Mental Health</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('peace')">Prayer for Peace</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('anxiety')">Prayer for Anxiety</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('depression')">Prayer for Depression</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('fear')">Prayer for Fear</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('loneliness')">Prayer for Loneliness</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('anger')">Prayer for Anger</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('hope')">Prayer for Hope</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('emotion')">Prayer about Emotions</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">🌅 Daily Life</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('morning')">Morning Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('night')">Night Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('meal')">Meal/Grace Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('work')">Prayer for Work</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('job')">Prayer for Finding a Job</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('finances')">Prayer for Finances</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('exam')">Prayer for Exams</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('school')">Prayer for School</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('travel')">Prayer for Safe Travel</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">💕 Relationships</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('love')">Prayer about Love</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('marriage')">Prayer for Marriage</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('relationship')">Prayer for Relationships</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('singleness')">Prayer for Singles</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('family')">Prayer for Family</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('children')">Prayer for Children</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('parents')">Prayer for Parents</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('friends')">Prayer for Friends</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('enemy')">Prayer for Enemies</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">🔥 Strength & Courage</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('strength')">Prayer for Strength</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('courage')">Prayer for Courage</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('healing')">Prayer for Healing</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('sickness')">Prayer When Sick</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('grief')">Prayer for Grief</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('addiction')">Prayer for Addiction</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('temptation')">Prayer Against Temptation</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">✨ Spiritual Growth</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('faith')">Prayer for Faith</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('guidance')">Prayer for Guidance</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('wisdom')">Prayer for Wisdom</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('forgiveness')">Prayer for Forgiveness</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('gratitude')">Prayer of Gratitude</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('purpose')">Prayer for Purpose</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('patience')">Prayer for Patience</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('humility')">Prayer for Humility</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('obedience')">Prayer for Obedience</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('holiness')">Prayer for Holiness</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('desire')">Prayer about Desires</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('salvation')">Prayer for Salvation</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('revival')">Prayer for Revival</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">🛡️ Protection</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('protection')">Prayer for Protection</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('spiritual_warfare')">Spiritual Warfare Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('nightmares')">Prayer Against Nightmares</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">🌍 World & Crisis</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('nation')">Prayer for My Nation</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('leaders')">Prayer for Leaders</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('world')">Prayer for the World</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('church')">Prayer for the Church</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('missionaries')">Prayer for Missionaries</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('war')">Prayer for Peace in War</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('disaster')">Prayer in Disaster</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('injustice')">Prayer for Justice</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('persecution')">Prayer for Persecuted</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">🎉 Special Occasions</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('birthday')">Birthday Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('newyear')">New Year Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('thanksgiving')">Thanksgiving Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('easter')">Easter Prayer</button>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('christmas')">Christmas Prayer</button>
+  
+  <h4 style="margin-top:15px; color:var(--accent);">⚡ Quick Prayers</h4>
+  <button class="question-btn pray-btn" onclick="generatePrayerByTopic('quick')">Quick Prayer</button>
   </div>
 </div>
 
       
       <div id="overlay"></div>
       <div id="prayerdisplay" class="hidden"></div>
+    </div>
+
+    <!-- Pray for Others -->
+    <div class="category-block">
+      <button class="category-btn" onclick="toggleCategory('category-pray-others')">🙏 Pray for Others</button>
+      <div class="question-group hidden" id="category-pray-others">
+        <small style="display:block; text-align:center; margin-bottom:1rem; color:var(--accent); opacity:0.9;">
+          Join others in lifting up these prayer requests
+        </small>
+        
+        <!-- Submit a Prayer Request -->
+        <div style="background: rgba(255,255,255,0.05); padding:1rem; border-radius:8px; margin-bottom:1rem;">
+          <h4 style="margin:0 0 0.5rem 0; color:var(--accent);">Share a Prayer Request</h4>
+          <textarea id="prayerRequestText" placeholder="What's on your heart? How can we pray for you?" rows="3" style="width:100%; padding:0.5rem; border-radius:4px; background:rgba(0,0,0,0.2); border:1px solid var(--accent); color:white; resize:vertical;"></textarea>
+          <label style="display:flex; align-items:center; gap:0.5rem; margin:0.5rem 0; font-size:0.9rem;">
+            <input type="checkbox" id="anonymousPrayerRequest" />
+            Post anonymously
+          </label>
+          <button class="innerbtn" onclick="submitPrayerRequest()">Submit Request</button>
+        </div>
+        
+        <!-- Prayer Requests Feed -->
+        <div id="prayerRequestsFeed" style="max-height:500px; overflow-y:auto;">
+          <p style="text-align:center; opacity:0.6;">Loading prayer requests...</p>
+        </div>
+      </div>
     </div>
 
     <!-- Right: Write your own -->
@@ -84,8 +187,10 @@
 
 <!--main js-->
 
+<script src="js/modal-utils.js"></script>
 <script src="js/topbar.js" defer></script>
 <script src="js/topbar-loader.js"></script>
+<script src="js/prayer-toast.js"></script>
 <script src="js/prayer.js"></script>
 </body>
 </html>

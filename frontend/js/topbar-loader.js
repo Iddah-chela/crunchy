@@ -84,10 +84,62 @@ overlay.style.position = "fixed";
       overlay.style.opacity = "0.3";
       overlay.style.animation = "oceanScroll 30s linear infinite";
       return;
-      
-    default:
+    
+    case "light-theme":
+      // Floating clouds for light theme only
+      assetUrl = "backgrounds/cloud.png";
+      count = 10;
+      size = "90px";
       overlay.style.background = "";
-      overlay.style.animation = "";
+      overlay.style.opacity = "0.7";
+      overlay.style.animation = "none";
+
+      for (let i = 0; i < count; i++) {
+        const cloud = document.createElement("div");
+        cloud.classList.add("floating-cloud");
+        cloud.style.position = "absolute";
+        cloud.style.top = `${Math.random() * 70}vh`;
+        cloud.style.left = `${-20 - Math.random() * 50}vw`;
+        cloud.style.backgroundImage = `url('${assetUrl}')`;
+        cloud.style.width = `${70 + Math.random() * 120}px`;
+        cloud.style.height = "60px";
+        cloud.style.backgroundSize = "contain";
+        cloud.style.backgroundRepeat = "no-repeat";
+        cloud.style.opacity = `${0.35 + Math.random() * 0.3}`;
+        cloud.style.animation = `cloudDrift ${28 + Math.random() * 40}s linear infinite`;
+        cloud.style.animationDelay = `${Math.random() * 8}s`;
+        overlay.appendChild(cloud);
+      }
+      return;
+
+    case "choco-theme":
+      // Floating chocolate tiles without external assets
+      count = 25;
+      overlay.style.background = "";
+      overlay.style.opacity = "0.9";
+      overlay.style.animation = "none";
+      for (let i = 0; i < count; i++) {
+        const tile = document.createElement("div");
+        tile.classList.add("floating-asset");
+        tile.style.position = "absolute";
+        tile.style.top = `${Math.random() * -20}vh`;
+        tile.style.left = `${Math.random() * 100}vw`;
+        const sizePx = 12 + Math.random() * 18;
+        tile.style.width = `${sizePx}px`;
+        tile.style.height = `${sizePx + 6}px`;
+        tile.style.background = `linear-gradient(145deg, #4e342e, #3e2723)`;
+        tile.style.borderRadius = "3px";
+        tile.style.boxShadow = "0 2px 4px rgba(0,0,0,0.35)";
+        tile.style.animation = `fall ${12 + Math.random() * 10}s linear infinite`;
+        overlay.appendChild(tile);
+      }
+      return;
+
+    default:
+      // Default (Neon) - no overlay/animation
+      overlay.style.background = "";
+      overlay.style.opacity = "0";
+      overlay.style.animation = "none";
       return;
   }
 
@@ -156,6 +208,7 @@ const categoryAccents = {
     hell: '--accent7',
     heaven: '--accent6',
     war: '--accent10',
+    money: '--accent1'
 }
 
 // This fetches the HTML and injects it into the page
@@ -297,7 +350,7 @@ Object.keys(categoryAccents).forEach(category => {
       setThemeMusic(theme);
 
       const themeClasses = [
-        'dark-theme', 'dreamy-theme', 'glory-theme', 'celestial-theme', 'ocean-depths-theme',
+        'midnight-ocean-theme','dark-theme', 'dreamy-theme', 'glory-theme', 'celestial-theme', 'ocean-depths-theme',
         'sunrise-theme', 'braveheart-theme', 'royal-theme', 'peaceful-earth-theme', 'choco-theme'
       ];
       document.documentElement.classList.remove(...themeClasses);
@@ -366,6 +419,13 @@ shareToggle.addEventListener("click", (e) => {
       try {
         await navigator.clipboard.writeText(appUrl);
         showModal("Link copied! Share anywhere ✨");
+        // Track app share for milestone
+        const user = JSON.parse(localStorage.getItem("user") || "null");
+        if (user && user.id) {
+          const uidSuffix = `:${user.id}`;
+          const currentCount = parseInt(localStorage.getItem(`app_shared_count${uidSuffix}`) || "0");
+          localStorage.setItem(`app_shared_count${uidSuffix}`, currentCount + 1);
+        }
       } catch (err) {
         showModal("Couldn't copy the link.");
       }
@@ -378,8 +438,13 @@ shareToggle.addEventListener("click", (e) => {
             title: "HolyVerse",
             text: "✨ A faith app for daily verses, prayer, and community 🙏",
             url: appUrl
-          });
-        } catch (err) {
+          });          // Track app share for milestone
+          const user = JSON.parse(localStorage.getItem("user") || "null");
+          if (user && user.id) {
+            const uidSuffix = `:${user.id}`;
+            const currentCount = parseInt(localStorage.getItem(`app_shared_count${uidSuffix}`) || "0");
+            localStorage.setItem(`app_shared_count${uidSuffix}`, currentCount + 1);
+          }        } catch (err) {
           console.log("Share canceled:", err);
         }
       } else {

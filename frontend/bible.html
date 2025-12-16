@@ -17,6 +17,35 @@
 <div id="topbar-container"></div>
   <div id="bottom-bar"></div>
     <h1 class="heading">📖 Bible</h1>
+
+<!-- Smart Search Bar -->
+<div id="bibleSearchContainer" style="position: relative; width: 100%; margin: 1rem auto;">
+  <input 
+    type="text" 
+    id="bibleSearch" 
+    placeholder="Search for verses..." 
+    style="margin-left: 0; padding: 10px 80px 10px 15px; background: none; color: var(--text-color); width: 90%; border-radius: 10px; border: 1px solid var(--accent);"
+  />
+  <span 
+    style="position: absolute; right: 12%; top: 50%; transform: translateY(-50%); font-size: 1.2rem; color: #999;"
+  >🔍</span>
+  <button 
+    id="clearBibleSearch"
+    style="position: absolute; right: 6%; top: 50%; transform: translateY(-50%); font-size: 1rem; background: none; border: none; cursor: pointer; color: #999; display: none;"
+  >❌</button>
+</div>
+
+
+<div id="searchResults" class="list" style="display: none;"></div>
+
+<!-- Multi-select toolbar -->
+<div id="multiSelectToolbar" style="display: none; position: fixed; bottom: 80px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, rgba(30, 30, 50, 0.95) 0%, rgba(50, 30, 70, 0.95) 100%); padding: 12px 20px; border-radius: 20px; border: 2px solid var(--accent); z-index: 1000; box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 20px rgba(138, 43, 226, 0.3); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);">
+  <span id="selectedCount">0 selected</span>
+  <button id="shareSelectedBtn" class="innerbtn" style="margin-left: 10px;">📤 Share</button>
+  <button id="highlightSelectedBtn" class="innerbtn" style="margin-left: 5px;">✨ Highlight</button>
+  <button id="cancelSelectBtn" class="innerbtn" style="margin-left: 5px;">✖ Cancel</button>
+</div>
+
     <button id="backBtnb" class="innerbtn" style="display:none;">⬅ Back</button>
 
 <div id="loadingBibleModal" style="display:none;">
