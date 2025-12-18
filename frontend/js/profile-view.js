@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const profileActions = document.querySelector(".profile-actions");
 
   if (!userId) {
-    document.body.innerHTML = "<p style='padding:20px;text-align:center;'>User not found 😭</p>";
+    document.body.innerHTML = "<p style='padding:20px;text-align:center;'>User not found.</p>";
     return;
   }
 
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const res = await fetch(`${API_BASE}/users/${encodeURIComponent(userId)}`, { credentials: 'include' });
       if (!res.ok) {
         console.warn("Profile fetch failed:", res.status);
-        document.body.innerHTML = "<p style='padding:20px;text-align:center;'>User not found 😭</p>";
+        document.body.innerHTML = "<p style='padding:20px;text-align:center;'>User not found.</p>";
         return;
       }
       const user = await res.json();
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (err) {
       console.error("Failed loading profile:", err);
-      document.body.innerHTML = "<p style='padding:20px;text-align:center;'>Network drama 😭</p>";
+      document.body.innerHTML = "<p style='padding:20px;text-align:center;'>Network error. Please check your connection.</p>";
     }
   }
 
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showModal(data.msg || "Friend request sent! 🤝");
       } catch (err) {
         console.error("Friend request failed:", err);
-        showModal(err.message || "Failed to send friend request 😭");
+        showModal(err.message || "Failed to send friend request. Please try again.");
       }
     });
   }

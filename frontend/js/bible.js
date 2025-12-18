@@ -245,7 +245,7 @@ function setMainHeading(text) {
     console.log("✅ Init complete (memory mode).");
   } catch (err) {
     console.error("Could not initialize Bible memory:", err);
-    showModal("Could not load Bible. Check console for details.");
+    showModal("Could not load Bible. Please refresh the page or check your internet connection.");
   }
 })();
 
@@ -1192,7 +1192,12 @@ function speakText(text, onEnd = null) {
   // Cancel any previous speech
   speechSynthesis.cancel();
   
-  const cleanText = text.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim();
+  // Remove HTML tags, emojis, and normalize whitespace
+  const cleanText = text
+    .replace(/<[^>]*>/g, "")
+    .replace(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, "")
+    .replace(/\s+/g, " ")
+    .trim();
   const utterance = new SpeechSynthesisUtterance(cleanText);
   
   const voice = getSelectedVoice();

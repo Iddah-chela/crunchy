@@ -63,13 +63,13 @@ document.addEventListener("DOMContentLoaded", async () => {
           credentials: "include"
         });
         const data = await res.json();
-        if (!res.ok) return showModal(data.error || "Logout failed 😭");
+        if (!res.ok) return showModal(data.error || "Logout failed. Please try again.");
         localStorage.removeItem("user");
         user = null;
         window.location.href = "/login.html";
       } catch (err) {
         console.error(err);
-        showModal("Logout error 😭");
+        showModal("Logout error. Please try again.");
       }
     });
   }
@@ -109,7 +109,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await res.json();
 
         if (!res.ok) {
-          msg.textContent = data.error || "Profile update failed 😭";
+          msg.textContent = data.error || "Profile update failed. Please try again.";
           return;
         }
 
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         if (profileInfos) profileInfos.classList.remove("hidden");
       } catch (err) {
         console.error(err);
-        msg.textContent = "Network drama 😭";
+        msg.textContent = "Network error. Please check your connection.";
       }
     });
   }
@@ -269,24 +269,28 @@ document.addEventListener("DOMContentLoaded", async () => {
     const lastWatered = new Date(lastWateredStr);
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(0, 0, 0, 0); // Set to start of day
+    lastWatered.setHours(0, 0, 0, 0); // Set to start of day
     
     // If last watered was before yesterday, tree goes down 1 level
     if (lastWatered < yesterday) {
       treeLevel = Math.max(0, treeLevel - 1);
       localStorage.setItem(treeKey, treeLevel);
       
-      // Update backend
+      // Update backend (wrap in async IIFE)
       if (user?.id) {
-        try {
-          await fetch(`${API_BASE}/users/${user.id}`, {
-            method: "PUT",
-            credentials: "include",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ treeLevel, username: user.username })
-          });
-        } catch (err) {
-          console.error("Failed to update tree level on server:", err);
-        }
+        (async () => {
+          try {
+            await fetch(`${API_BASE}/users/${user.id}`, {
+              method: "PUT",
+              credentials: "include",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ treeLevel, username: user.username })
+            });
+          } catch (err) {
+            console.error("Failed to update tree level on server:", err);
+          }
+        })();
       }
     }
   }
@@ -369,10 +373,14 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function initMilestones() {
     const container = document.getElementById("milestonesContainer");
-    if (!container) return;
+    if (!container) {
+      console.warn("⚠️ Milestones container not found!");
+      return;
+    }
 
     const user = JSON.parse(localStorage.getItem("user") || "null");
     const uidSuffix = user && user.id ? `:${user.id}` : ":guest";
+    console.log(`🎯 Initializing milestones for user: ${user?.username || 'guest'}, uidSuffix: ${uidSuffix}`);
 
     let milestonesClaimed = JSON.parse(localStorage.getItem(`milestonesClaimed${uidSuffix}`)) || {};
     let milestonesProgress = JSON.parse(localStorage.getItem(`milestonesProgress${uidSuffix}`)) || {};
@@ -380,10 +388,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     let html = "";
 
     for (const [key, data] of Object.entries(milestoneData)) {
-      // Key already includes _count suffix, don't double it
-      const count = parseInt(localStorage.getItem(`${key}${uidSuffix}`)) || 0;
+      // Key already includes _count suffix for most, but not for streak_days
+      const storageKey = `${key}${uidSuffix}`;
+      const count = parseInt(localStorage.getItem(storageKey)) || 0;
       const claimed = milestonesClaimed[key] || [];
-      console.log(`🎯 Milestone ${key}: count=${count}, claimed=${claimed.length}`);
+      console.log(`🎯 Milestone ${key}: storageKey=${storageKey}, count=${count}, claimed=${claimed.length}`);
 
       html += `<div class="milestone-category">
         <h3>${data.emoji} ${data.label}</h3>
@@ -530,7 +539,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const streakFromVisited = Object.keys(streakData.visitedDays || {}).length;
     const streakFromTopbar = parseInt(localStorage.getItem("streak")) || 0;
     const streakDays = Math.max(streakFromVisited, streakFromTopbar);
-    localStorage.setItem(`streak_days_count${uidSuffix}`, streakDays);
+    localStorage.setItem(`streak_days${uidSuffix}`, streakDays);
 
     // Community posts (exclude drafts, count only current user's posts)
     const community = JSON.parse(localStorage.getItem("community_questions")) || [];
@@ -557,7 +566,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     const customPrayers = JSON.parse(localStorage.getItem("customPrayers")) || [];
     const prayersCount = Math.max(prayersCountStored, customPrayers.length);
     localStorage.setItem(`prayers_count${uidSuffix}`, prayersCount);
-    console.log(`📊 Milestones: ${prayersCount} prayers, ${streakDays} day streak`);
+    
+    // App shares tracking (already uses uidSuffix in topbar-loader.js)
+    const appSharedCount = parseInt(localStorage.getItem(`app_shared_count${uidSuffix}`)) || 0;
+    
+    console.log(`📊 Milestones: ${prayersCount} prayers, ${streakDays} day streak, ${appSharedCount} shares`);
   }
 
   updateMilestoneTracking();

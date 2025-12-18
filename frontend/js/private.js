@@ -149,14 +149,37 @@ async function loadThread(otherUserId) {
 }
 
 function addMessageBubble(msg) {
+  const bubbleWrapper = document.createElement("div");
+  bubbleWrapper.style.cssText = `margin-bottom:1rem; display:flex; align-items:flex-start; gap:8px; ${msg.senderId === currentUserId ? 'justify-content:flex-end; flex-direction:row-reverse;' : 'justify-content:flex-start;'}`;
+  
   const bubble = document.createElement("div");
   bubble.className = msg.senderId === currentUserId ? "bubble you" : "bubble them";
 
   if (msg.senderId === currentUserId) {
     bubble.innerHTML = `<div class="bubble-text">${msg.text}</div>`;
   } else {
+    const profilePic = msg.senderProfilePic || '/images/default-avatar.png';
+    const senderId = msg.senderId || msg.sender_id;
+    
+    // Get border style for sender
+    const borderStyle = senderId ? getUserBorderStyle(senderId) : '';
+    
+    const pic = document.createElement('img');
+    pic.src = profilePic;
+    pic.className = 'bubble-pic';
+    pic.style.cursor = 'pointer';
+    if (borderStyle) {
+      pic.style.cssText += borderStyle;
+    }
+    pic.onclick = () => {
+      if (senderId) {
+        window.location.href = `/profile-view.html?id=${encodeURIComponent(senderId)}`;
+      }
+    };
+    
+    bubbleWrapper.appendChild(pic);
+    
     bubble.innerHTML = `
-      <img src="${msg.senderProfilePic || '/images/default-avatar.png'}" class="bubble-pic">
       <div class="bubble-text">
         <span class="bubble-username">${msg.senderUsername}</span>
         <span class="bubble-message">${msg.text}</span>
@@ -164,10 +187,27 @@ function addMessageBubble(msg) {
     `;
   }
 
-  chatMessages.appendChild(bubble);
+  bubbleWrapper.appendChild(bubble);
+  chatMessages.appendChild(bubbleWrapper);
   chatMessages.scrollTop = chatMessages.scrollHeight;
   updateChatSnippet(msg.senderId === currentUserId ? msg.receiverId : msg.senderId, msg.text);
+}
 
+// Helper function to get user milestone border
+function getUserBorderStyle(userId) {
+  if (!userId) return '';
+  const borderLevel = localStorage.getItem(`profileBorderLevel:${userId}`);
+  
+  if (borderLevel === "legendary") {
+    return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box;';
+  } else if (borderLevel === "gold") {
+    return 'border:4px solid gold; box-shadow:0 0 15px rgba(255,215,0,0.6);';
+  } else if (borderLevel === "silver") {
+    return 'border:4px solid silver; box-shadow:0 0 10px rgba(192,192,192,0.6);';
+  } else if (borderLevel === "bronze") {
+    return 'border:4px solid #cd7f32; box-shadow:0 0 8px rgba(205,127,50,0.5);';
+  }
+  return '';
 }
 
 

@@ -416,15 +416,20 @@ shareToggle.addEventListener("click", (e) => {
 
 
     copyLink.addEventListener("click", async () => {
+      console.log("🔗 Copy link clicked");
       try {
         await navigator.clipboard.writeText(appUrl);
         showModal("Link copied! Share anywhere ✨");
+        console.log("📋 Clipboard write successful, tracking share...");
         // Track app share for milestone
         const user = JSON.parse(localStorage.getItem("user") || "null");
         if (user && user.id) {
           const uidSuffix = `:${user.id}`;
           const currentCount = parseInt(localStorage.getItem(`app_shared_count${uidSuffix}`) || "0");
           localStorage.setItem(`app_shared_count${uidSuffix}`, currentCount + 1);
+          console.log(`📤 App share tracked! Count: ${currentCount + 1}`);
+        } else {
+          console.warn("⚠️ App share not tracked - user not logged in");
         }
       } catch (err) {
         showModal("Couldn't copy the link.");
@@ -432,24 +437,69 @@ shareToggle.addEventListener("click", (e) => {
     });
 
     nativeShare.addEventListener("click", async () => {
+      console.log("📱 Native share clicked");
       if (navigator.share) {
         try {
           await navigator.share({
             title: "HolyVerse",
             text: "✨ A faith app for daily verses, prayer, and community 🙏",
             url: appUrl
-          });          // Track app share for milestone
+          });
+          console.log("✅ Share completed, tracking...");
+          // Track app share for milestone
           const user = JSON.parse(localStorage.getItem("user") || "null");
           if (user && user.id) {
             const uidSuffix = `:${user.id}`;
             const currentCount = parseInt(localStorage.getItem(`app_shared_count${uidSuffix}`) || "0");
             localStorage.setItem(`app_shared_count${uidSuffix}`, currentCount + 1);
-          }        } catch (err) {
+            console.log(`📤 App share tracked! Count: ${currentCount + 1}`);
+          } else {
+            console.warn("⚠️ App share not tracked - user not logged in");
+          }
+        } catch (err) {
           console.log("Share canceled:", err);
         }
       } else {
-        showModal("Your browser doesn’t support native sharing 😩");
+        showModal("Your browser doesn't support native sharing. Try copying the link instead.");
       }
+    });
+
+    // Track shares for all social media links (WhatsApp, Telegram, etc.)
+    const socialShareLinks = document.querySelectorAll('.share-icon[target="_blank"]');
+    socialShareLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const platform = link.getAttribute('data-brand') || 'Unknown';
+        console.log(`🔗 ${platform} share clicked`);
+        
+        const user = JSON.parse(localStorage.getItem("user") || "null");
+        if (user && user.id) {
+          const uidSuffix = `:${user.id}`;
+          const currentCount = parseInt(localStorage.getItem(`app_shared_count${uidSuffix}`) || "0");
+          localStorage.setItem(`app_shared_count${uidSuffix}`, currentCount + 1);
+          console.log(`📤 App share tracked! Count: ${currentCount + 1} (via ${platform})`);
+        } else {
+          console.warn("⚠️ App share not tracked - user not logged in");
+        }
+      });
+    });
+
+    // Track email and SMS shares
+    const emailSms = document.querySelectorAll('.share-icon[href^="mailto:"], .share-icon[href^="sms:"]');
+    emailSms.forEach(link => {
+      link.addEventListener('click', () => {
+        const platform = link.getAttribute('data-brand') || 'Unknown';
+        console.log(`📧 ${platform} share clicked`);
+        
+        const user = JSON.parse(localStorage.getItem("user") || "null");
+        if (user && user.id) {
+          const uidSuffix = `:${user.id}`;
+          const currentCount = parseInt(localStorage.getItem(`app_shared_count${uidSuffix}`) || "0");
+          localStorage.setItem(`app_shared_count${uidSuffix}`, currentCount + 1);
+          console.log(`📤 App share tracked! Count: ${currentCount + 1} (via ${platform})`);
+        } else {
+          console.warn("⚠️ App share not tracked - user not logged in");
+        }
+      });
     });
 
     // --- UI toggles ---
@@ -567,6 +617,6 @@ fetch('bottombar.html')
     document.getElementById('bottom-bar').innerHTML = html;
   })
   .catch(err => {
-    console.error("Failed to load bottombar causse, ", err)
+    console.error("Failed to load bottombar:", err)
   })
 

@@ -28,7 +28,7 @@ form.addEventListener("submit", async (e) => {
     const data = await res.json();
 
     if (!res.ok) {
-      msg.textContent = data.error || "Login imegonga mwamba 😭";
+      msg.textContent = data.error || "Login failed. Please check your credentials.";
       return;
     }
 

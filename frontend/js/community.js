@@ -675,24 +675,37 @@ function renderResponses(responses, questionId, container, level = 0) {
       if (div.querySelector('.response-box')) return;
       if (toggleBtn) toggleBtn.style.display = 'none';
 
+      const replyWrapper = document.createElement('div');
+      replyWrapper.style.cssText = 'display:flex; gap:0.5rem; align-items:flex-end; margin-bottom:1rem;';
+
       const replyBox = document.createElement('textarea');
       replyBox.placeholder = `Reply to ${r.author}...`;
-      replyBox.className = "response-box";
+      replyBox.className = "ask-input";
+      replyBox.rows = 2;
+      replyBox.style.cssText = 'flex:1; padding:0.75rem; border-radius:20px; border:1px solid var(--accent); resize:none; max-height:80px;';
 
       const fileInput = document.createElement('input');
       fileInput.type = "file";
       fileInput.accept = "image/*";
-      fileInput.className = "file-input";
+      fileInput.style.display = "none";
+
+      const fileBtn = document.createElement('button');
+      fileBtn.innerHTML = '<i class="fa-solid fa-image"></i>';
+      fileBtn.className = "post-action-btn image-btn";
+      fileBtn.title = "Add image";
+      fileBtn.onclick = () => fileInput.click();
 
       const sendReplyBtn = document.createElement('button');
       sendReplyBtn.textContent = "Send";
-      sendReplyBtn.className = "innerbtnc";
+      sendReplyBtn.className = "post-action-btn send-btn";
 
       replyBtn.style.display = "none";
 
-      div.appendChild(replyBox);
-      div.appendChild(fileInput);
-      div.appendChild(sendReplyBtn);
+      replyWrapper.appendChild(replyBox);
+      replyWrapper.appendChild(fileInput);
+      replyWrapper.appendChild(fileBtn);
+      replyWrapper.appendChild(sendReplyBtn);
+      div.appendChild(replyWrapper);
 
       sendReplyBtn.addEventListener('click', () => {
         const text = replyBox.value.trim();
@@ -776,7 +789,7 @@ profileImg.addEventListener('click', (e) => {
 
   // Helpful debug so we can see what we're missing instead of blind guessing
   console.warn("Profile click failed — no author id present on question:", q);
-  showModal("User missing 😭");
+  showModal("User information not available.");
 });
 
 
@@ -901,23 +914,37 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
       const canEdit = currentUser && q.author === currentUser.username && q.id;
 
       // main write response box ABOVE replies
+      const responseWrapper = document.createElement('div');
+      responseWrapper.style.cssText = 'display:flex; gap:0.5rem; align-items:flex-end; margin-bottom:1rem;';
+
       const box = document.createElement('textarea');
       box.placeholder = "Write a response...";
-      box.className = "response-box";
+      box.className = "ask-input";
+      box.rows = 2;
+      box.style.cssText = 'flex:1; padding:0.75rem; border-radius:20px; border:1px solid var(--accent); resize:none; max-height:80px;';
 
       const fileInput = document.createElement('input');
       fileInput.type = "file";
       fileInput.accept = "image/*";
-      fileInput.className = "file-input";
+      fileInput.style.display = "none";
 
-      const actionsRow = document.createElement('div');
-      actionsRow.className = "actions-row";
+      const fileBtn = document.createElement('button');
+      fileBtn.innerHTML = '<i class="fa-solid fa-image"></i>';
+      fileBtn.className = "post-action-btn image-btn";
+      fileBtn.title = "Add image";
+      fileBtn.onclick = () => fileInput.click();
 
       const sendBtn = document.createElement('button');
       sendBtn.textContent = "Send";
-      sendBtn.className = "innerbtnc";
-      actionsRow.appendChild(fileInput);
-      actionsRow.appendChild(sendBtn);
+      sendBtn.className = "post-action-btn send-btn";
+
+      responseWrapper.appendChild(box);
+      responseWrapper.appendChild(fileInput);
+      responseWrapper.appendChild(fileBtn);
+      responseWrapper.appendChild(sendBtn);
+
+      const actionsRow = document.createElement('div');
+      actionsRow.className = "actions-row";
 
      // Check if user can edit/delete (only author)
 
@@ -965,7 +992,7 @@ favCount.textContent = q.favoritesCount ? ` ${q.favoritesCount}` : " 0";
 
 
 
-      expanded.appendChild(box);
+      expanded.appendChild(responseWrapper);
       expanded.appendChild(actionsRow);
       card.appendChild(expanded);
 
@@ -1382,7 +1409,7 @@ async function saveGroupSelections() {
     .map(input => input.value);
   
   if (selected.length === 0) {
-    showAlert("Please select at least one group");
+    showModal("Please select at least one group");
     return;
   }
   
@@ -1463,17 +1490,16 @@ async function reportContent(contentId, contentType) {
     });
     
     if (response.ok) {
-      showAlert("✓ Report submitted. Thank you for helping keep our community safe.");
+      showModal("✓ Report submitted. Thank you for helping keep our community safe.");
     } else {
       const errorData = await response.json();
-      console.error("Report failed:", errorData);
       showModal(`Failed to submit report: ${errorData.error || "Unknown error"}`);
     }
   } catch (error) {
-    console.error("Error reporting content:", error);
     showModal("Failed to submit report. Please try again.");
   }
 }
+
 // ============================================
 // COMMUNITY GROUPS MANAGEMENT
 // ============================================
@@ -1563,10 +1589,13 @@ async function viewGroup(groupId) {
       if (app) app.appendChild(groupViewSection);
     }
     
-    groupViewSection.style.display = 'block';
+    groupViewSection.style.display = 'flex';
+    groupViewSection.style.flexDirection = 'column';
+    groupViewSection.style.height = '100vh';
+    groupViewSection.style.padding = '0';
     groupViewSection.innerHTML = `
-      <!-- Group Header (clickable for details) -->
-      <div onclick="showGroupDetails()" style="cursor:pointer; background:linear-gradient(135deg, var(--accent) 0%, rgba(255,107,53,0.6) 100%); padding:1rem; border-radius:12px; margin-bottom:1rem; display:flex; align-items:center; justify-content:space-between;">
+      <!-- Group Header (clickable for details) - FIXED -->
+      <div onclick="showGroupDetails()" style="position:sticky; top:0; z-index:10; cursor:pointer; background:linear-gradient(135deg, var(--accent) 0%, rgba(255,107,53,0.6) 100%); padding:1rem; border-radius:0; display:flex; align-items:center; justify-content:space-between;">
         <div style="display:flex; align-items:center; gap:1rem;">
           <span style="font-size:3rem;">${currentGroupData.icon || "👥"}</span>
           <div>
@@ -1577,17 +1606,17 @@ async function viewGroup(groupId) {
         <button class="innerbtn" onclick="event.stopPropagation(); closeGroupView()" style="padding:0.5rem 1rem;">← Back</button>
       </div>
       
-      <!-- Chat Feed -->
-      <div id="groupChatFeed" style="background:rgba(0,0,0,0.3); border-radius:12px; padding:1rem; min-height:400px; max-height:500px; overflow-y:auto; margin-bottom:1rem;">
+      <!-- Chat Feed - SCROLLABLE -->
+      <div id="groupChatFeed" style="flex:1; background:rgba(0,0,0,0.3); padding:1rem; overflow-y:auto;">
         <div style="text-align:center; padding:2rem; opacity:0.6;">
           <div style="font-size:3rem; margin-bottom:1rem;">💬</div>
           Loading messages...
         </div>
       </div>
       
-      <!-- Message Input -->
-      <div style="background:rgba(255,255,255,0.05); border-radius:12px; padding:1rem; display:flex; gap:0.5rem; align-items:flex-end;">
-        <textarea id="groupMessageInput" placeholder="Type a message..." rows="1" style="flex:1; padding:0.75rem; border-radius:20px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,107,53,0.3); color:white; resize:none; max-height:100px; font-family:inherit;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); postToGroup();}"></textarea>
+      <!-- Message Input - FIXED -->
+      <div style="position:sticky; bottom:0; z-index:10; background:var(--bg-color); border-top:1px solid rgba(255,107,53,0.3); padding:1rem; display:flex; gap:0.5rem; align-items:flex-end;">
+        <textarea id="groupMessageInput" placeholder="Type a message..." rows="1" style="flex:1; padding:0.75rem; border-radius:20px; background:rgba(0,0,0,0.3); border:1px solid rgba(255,107,53,0.3); color:var(--text-color); resize:none; max-height:100px; font-family:inherit;" oninput="this.style.height='auto'; this.style.height=this.scrollHeight+'px';" onkeypress="if(event.key==='Enter' && !event.shiftKey){event.preventDefault(); postToGroup();}"></textarea>
         <button class="innerbtn" onclick="postToGroup()" style="padding:0.75rem 1.5rem; border-radius:20px;">Send</button>
       </div>
     `;
@@ -1597,7 +1626,7 @@ async function viewGroup(groupId) {
     
   } catch (error) {
     console.error("Error viewing group:", error);
-    showAlert("Failed to load group details.");
+    showModal("Failed to load group details.");
   }
 }
 
@@ -1678,14 +1707,21 @@ function renderGroupPosts(posts) {
     const time = new Date(post.created_at);
     const timeStr = time.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const messageText = post.message || post.body || '';
+    const postUserId = post.user_id || post.users?.id || null;
+    const profilePic = post.profile_pic || post.users?.profile_pic || '/images/default-avatar.png';
+    
+    // Get border style for profile pic
+    const borderStyle = postUserId ? getUserBorderStyle(postUserId) : '';
     
     return `
-      <div style="margin-bottom:1rem; display:flex; ${isOwn ? 'justify-content:flex-end;' : 'justify-content:flex-start;'}">
-        <div style="max-width:70%; ${isOwn ? 'background:linear-gradient(135deg, var(--accent), rgba(255,107,53,0.8));' : 'background:rgba(255,255,255,0.1);'} padding:0.75rem 1rem; border-radius:12px; ${isOwn ? 'border-bottom-right-radius:4px;' : 'border-bottom-left-radius:4px;'}">
-          ${!isOwn ? `<div style="font-size:0.85rem; font-weight:bold; color:var(--accent); margin-bottom:0.25rem;">${escapeModalHtml(post.username || "Anonymous")}</div>` : ''}
-          <div style="line-height:1.5; word-wrap:break-word; white-space:pre-wrap;">${escapeModalHtml(messageText)}</div>
-          <div style="font-size:0.7rem; opacity:0.7; text-align:right; margin-top:0.25rem;">${timeStr}</div>
+      <div style="margin-bottom:1rem; display:flex; gap:8px; ${isOwn ? 'justify-content:flex-end;' : 'justify-content:flex-start;'}">
+        ${!isOwn ? `<img src="${profilePic}" class="bubble-pic" onclick="window.location.href='/profile-view.html?id=${encodeURIComponent(postUserId)}'" style="cursor:pointer; ${borderStyle}" />` : ''}
+        <div class="bubble ${isOwn ? 'you' : 'them'}" style="max-width:70%; display:inline-flex; flex-direction:column;">
+          ${!isOwn ? `<span class="bubble-username">${escapeModalHtml(post.username || "Anonymous")}</span>` : ''}
+          <span class="bubble-message" style="line-height:1.5; word-wrap:break-word; white-space:pre-wrap;">${escapeModalHtml(messageText)}</span>
+          <span style="font-size:0.7rem; opacity:0.7; margin-top:0.25rem; align-self:flex-end;">${timeStr}</span>
         </div>
+        ${isOwn ? `<img src="${profilePic}" class="bubble-pic" onclick="window.location.href='/profile-view.html?id=${encodeURIComponent(postUserId)}'" style="cursor:pointer; ${borderStyle}" />` : ''}
       </div>
     `;
   }).join('');
@@ -1701,7 +1737,7 @@ async function postToGroup() {
   if (!text) return;
   
   if (!currentGroupId) {
-    showAlert("Group not found");
+    showModal("Group not found");
     return;
   }
   
@@ -1731,7 +1767,7 @@ async function postToGroup() {
     
   } catch (error) {
     console.error("Error posting to group:", error);
-    showAlert("Failed to send message. Please try again.");
+    showModal("Failed to send message. Please try again.");
   }
 }
 
@@ -1749,26 +1785,25 @@ async function joinGroup(groupId, groupName) {
     });
     
     if (response.ok) {
-      alert(`✓ Joined ${groupName}!`);
+      showModal(`✓ Joined ${groupName}!`);
       loadUserGroups();
     } else {
       const error = await response.json();
-      alert(error.error || "Failed to join group");
+      showModal(error.error || "Failed to join group");
     }
   } catch (error) {
     console.error("Error joining group:", error);
-    alert("Failed to join group. Please try again.");
+    showModal("Failed to join group. Please try again.");
   }
 }
 
 async function createGroup() {
-  const name = prompt("Group name:");
-  if (!name) return;
-  
-  const description = prompt("Group description (optional):");
-  const iconEmoji = prompt("Group icon/emoji (default: 👥):");
-  
-  const rulesStr = prompt("Group rules (separate with |):\nExample: Be kind|No spam|Keep it family-friendly");
+  showPrompt("Group name:", "", async (name) => {
+    if (!name) return;
+    
+    showPrompt("Group description (optional):", "", async (description) => {
+      showPrompt("Group icon/emoji (default: 👥):", "👥", async (iconEmoji) => {
+        showPrompt("Group rules (separate with |):\nExample: Be kind|No spam|Keep it family-friendly", "", async (rulesStr) => {
   const rules = rulesStr ? rulesStr.split("|").map(r => r.trim()).filter(r => r) : [];
   
   try {
@@ -1808,12 +1843,15 @@ async function createGroup() {
       });
     }
     
-    alert(`✓ Group "${name}" created successfully!`);
+    showModal(`✓ Group "${name}" created successfully!`);
     loadGroups();
   } catch (error) {
-    console.error("Error creating group:", error);
-    alert("Failed to create group. Please try again.");
+    showModal("Failed to create group. Please try again.");
   }
+        });
+      });
+    });
+  });
 }
 
 async function loadUserGroups() {
@@ -1874,13 +1912,13 @@ async function leaveGroup(groupId, groupName) {
       });
       
       if (response.ok) {
-        showAlert(`✓ Left ${groupName}`);
+        showModal(`✓ Left ${groupName}`);
         loadUserGroups();
         loadGroups(); // Refresh available groups
       }
     } catch (error) {
       console.error("Error leaving group:", error);
-      showAlert("Failed to leave group.");
+      showModal("Failed to leave group.");
     }
   });
 }
@@ -1892,13 +1930,13 @@ async function submitCommunityPost() {
   const imageFile = imageInput?.files[0];
   
   if (!text) {
-    alert("Please write something!");
+    showModal("Please write something!");
     return;
   }
   
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   if (!user.id) {
-    alert("Please log in to post.");
+    showModal("Please log in to post.");
     return;
   }
   
@@ -1910,13 +1948,13 @@ async function submitCommunityPost() {
       imageFile: imageFile || null
     });
     
-    alert("✓ Posted!");
+    showModal("✓ Posted!");
     document.getElementById("communityPostText").value = "";
     if (imageInput) imageInput.value = "";
     loadFromBackend(); // Reload feed
   } catch (error) {
     console.error("Error posting:", error);
-    alert("Failed to post.");
+    showModal("Failed to post.");
   }
 }
 

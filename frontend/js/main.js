@@ -370,7 +370,7 @@ async function showMoreLikeThis(tag, currentVerseRef) {
     addButtonsToDisplay(document.getElementById("versedisplay"), chosen, chosen.tags?.[0] || tag);
   } catch (err) {
     console.error("showMoreLikeThis error:", err);
-    showModal("Something went wrong. Check console.");
+    showModal("Something went wrong. Please try again.");
   }
 }
 
@@ -391,7 +391,7 @@ async function showVersesByTag(tag) {
     addButtonsToDisplay(document.getElementById("versedisplay"), chosen, chosen.tags?.[0] || tag);
   } catch (err) {
     console.error("showVersesByTag error:", err);
-    showModal("Something went wrong. Check console.");
+    showModal("Something went wrong. Please try again.");
   }
 }
 
@@ -833,14 +833,14 @@ document.getElementById("askQuestionForm").addEventListener("submit", async (e) 
   const context = document.getElementById("questionContext").value.trim();
   
   if (!question) {
-    alert("Please enter your question");
+    showModal("Please enter your question");
     return;
   }
   
   try {
     const user = JSON.parse(localStorage.getItem("user") || '{"username": "Guest"}');
     
-    const response = await fetch("/api/user-questions", {
+    const response = await fetch(`${API_BASE}/api/user-questions`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

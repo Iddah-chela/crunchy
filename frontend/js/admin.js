@@ -6,6 +6,19 @@ window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
   : "https://holyverse-s5s1.onrender.com");
 const API_BASE = window.API_BASE;
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 // Tab switching
 function switchAdminTab(tabName) {
   document.querySelectorAll('.admin-tab-content').forEach(tab => {
@@ -46,7 +59,7 @@ async function loadPendingQuestions() {
     });
     
     if (response.status === 401) {
-      alert("⛔ Session expired. Please log in again.");
+      showModal("⛔ Session expired. Please log in again.");
       window.location.href = "/login.html";
       return;
     }
@@ -73,8 +86,8 @@ async function loadPendingQuestions() {
         <p class="question-text">${q.question}</p>
         ${q.context ? `<p class="context-text"><em>Context: ${q.context}</em></p>` : ''}
         <div class="admin-actions">
-          <input type="text" id="explanation-${q.id}" placeholder="Answer title (e.g., God's love never fails)" style="width:100%; margin:0.5rem 0; padding:0.5rem;" />
-          <select id="theme-${q.id}" style="width:100%; margin:0.5rem 0; padding:0.5rem;">
+          <input type="text" id="explanation-${q.id}" placeholder="Answer title (e.g., God's love never fails)" />
+          <select id="theme-${q.id}">
             <option value="general">General</option>
             <option value="love">Love</option>
             <option value="hope">Hope</option>
@@ -85,7 +98,7 @@ async function loadPendingQuestions() {
             <option value="strength">Strength</option>
             <option value="faith">Faith</option>
           </select>
-          <textarea id="versePool-${q.id}" placeholder="Enter each verse with reference and text separated by | (one per line):\nJohn 3:16|For God so loved the world...\nRomans 8:28|And we know that in all things...\nPsalm 23:1|The Lord is my shepherd..." style="width:100%; margin:0.5rem 0; padding:0.5rem; min-height:120px; font-family:monospace;"></textarea>
+          <textarea id="versePool-${q.id}" placeholder="Enter each verse with reference and text separated by | (one per line):\nJohn 3:16|For God so loved the world...\nRomans 8:28|And we know that in all things...\nPsalm 23:1|The Lord is my shepherd..."></textarea>
           <small style="color:var(--text-color); opacity:0.7; display:block; margin-top:-0.3rem;">💡 Tip: Format - Reference|Verse text (one per line)</small>
           <button class="innerbtn approve-btn" onclick="reviewQuestion('${q.id}', 'approve')">✓ Approve</button>
           <button class="innerbtn reject-btn" onclick="reviewQuestion('${q.id}', 'reject')">✗ Reject</button>
@@ -112,11 +125,11 @@ async function reviewQuestion(id, action) {
       : null;
     
     if (action === 'approve' && !versePool) {
-      alert("Please enter verse references before approving");
+      showModal("Please enter verse references before approving");
       return;
     }
     if (action === 'approve' && !explanation) {
-      alert("Please enter an explanation/answer title");
+      showModal("Please enter an explanation/answer title");
       return;
     }
     
@@ -128,7 +141,7 @@ async function reviewQuestion(id, action) {
     });
     
     if (response.ok) {
-      alert(`Question ${action}d successfully!`);
+      showModal(`Question ${action}d successfully!`);
       loadPendingQuestions();
     }
   } catch (error) {
@@ -147,7 +160,7 @@ async function loadPendingTestimonies() {
     });
     
     if (response.status === 401) {
-      alert("⛔ Session expired. Please log in again.");
+      showModal("⛔ Session expired. Please log in again.");
       window.location.href = "/login.html";
       return;
     }
@@ -196,7 +209,7 @@ async function reviewTestimony(id, action) {
     });
     
     if (response.ok) {
-      alert(`Testimony ${action}d successfully!`);
+      showModal(`Testimony ${action}d successfully!`);
       loadPendingTestimonies();
     }
   } catch (error) {
@@ -215,7 +228,7 @@ async function loadPendingReports() {
     });
     
     if (response.status === 401) {
-      alert("⛔ Session expired. Please log in again.");
+      showModal("⛔ Session expired. Please log in again.");
       window.location.href = "/login.html";
       return;
     }
@@ -263,7 +276,7 @@ async function reviewReport(id, action) {
     });
     
     if (response.ok) {
-      alert(`Report reviewed: ${action}`);
+      showModal(`Report reviewed: ${action}`);
       loadPendingReports();
     }
   } catch (error) {

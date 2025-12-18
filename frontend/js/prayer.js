@@ -693,8 +693,10 @@ function toggleCategory(id) {
   window.addEventListener("load", loadPrayers);
 
   function incrementPrayerCount() {
-    const current = parseInt(localStorage.getItem("prayers_count")) || 0;
-    localStorage.setItem("prayers_count", current + 1);
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    const uidSuffix = user && user.id ? `:${user.id}` : ":guest";
+    const current = parseInt(localStorage.getItem(`prayers_count${uidSuffix}`)) || 0;
+    localStorage.setItem(`prayers_count${uidSuffix}`, current + 1);
     console.log(`🙏 Prayer count increased to ${current + 1}`);
   }
 
@@ -860,9 +862,9 @@ function toggleCategory(id) {
     } else {
       // Fallback: copy to clipboard
       navigator.clipboard.writeText(shareText).then(() => {
-        alert("Prayer copied to clipboard! You can now paste and share it.");
+        showModal("Prayer copied to clipboard! You can now paste and share it.");
       }).catch(() => {
-        alert("Could not share. Please copy the prayer manually.");
+        showModal("Could not share. Please copy the prayer manually.");
       });
     }
   }
@@ -1214,7 +1216,7 @@ async function submitPrayerRequest() {
 
   try {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    const response = await fetch("/api/prayer-requests", {
+    const response = await fetch(`${API_BASE}/api/prayer-requests`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -1241,7 +1243,7 @@ async function loadPrayerRequests() {
   const feed = document.getElementById("prayerRequestsFeed");
   
   try {
-    const response = await fetch("/api/prayer-requests");
+    const response = await fetch(`${API_BASE}/api/prayer-requests`);
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Failed to load prayer requests:", response.status, errorText);
@@ -1279,7 +1281,7 @@ async function loadPrayerRequests() {
           </div>
           <p style="margin:0.5rem 0; line-height:1.6; white-space:pre-wrap;">${escapeHtml(req.text)}</p>
           <div style="display:flex; align-items:center; gap:1rem; margin-top:0.75rem; flex-wrap:wrap;">
-            <button class="pray-for-btn" data-request-id="${req.id}" style="background:var(--accent); color:white; border:none; padding:0.5rem 1rem; border-radius:6px; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; gap:0.5rem;">
+            <button class="pray-for-btn" data-request-id="${req.id}" style="background:var(--accent); color:var(--text-color); border:none; padding:0.5rem 1rem; border-radius:6px; cursor:pointer; font-size:0.9rem; display:flex; align-items:center; gap:0.5rem;">
               <span>🙏</span>
               <span>I'm Praying</span>
             </button>
@@ -1298,7 +1300,7 @@ async function loadPrayerRequests() {
 // Mark that you've prayed for a request
 async function prayForRequest(requestId, button) {
   try {
-    const response = await fetch(`/api/prayer-requests/${requestId}/pray`, {
+    const response = await fetch(`${API_BASE}/api/prayer-requests/${requestId}/pray`, {
       method: "POST"
     });
 
@@ -1377,23 +1379,23 @@ document.addEventListener('click', function(e) {
 
 // Delete a prayer request
 async function deletePrayerRequest(requestId) {
-  if (!confirm("Are you sure you want to delete this prayer request?")) {
-    return;
-  }
+  showConfirm("Are you sure you want to delete this prayer request?", async () => {
+    try {
+      const res = await fetch(`${API_BASE}/prayer-requests/${requestId}`, {
+        method: "DELETE",
+        credentials: "include"
+      });
 
-  try {
-    const response = await fetch(`/api/prayer-requests/${requestId}`, {
-      method: "DELETE"
-    });
-
-    if (!response.ok) throw new Error("Failed to delete");
-
-    showPrayerToast("Prayer request deleted");
-    loadPrayerRequests(); // Refresh the feed
-  } catch (err) {
-    console.error("Delete prayer request error:", err);
-    showPrayerToast("Couldn't delete right now");
-  }
+      if (res.ok) {
+        showPrayerToast("Prayer request deleted");
+        loadPrayerRequests();
+      } else {
+        showPrayerToast("Failed to delete");
+      }
+    } catch (err) {
+      showPrayerToast("Couldn't delete right now");
+    }
+  });
 }
 
 // Auto-load prayer requests if category is already open on page load

@@ -1224,9 +1224,25 @@ app.post("/api/admin/reports/:id/review", requireAdmin, async (req, res) => {
       
       // Delete the actual content based on type
       if (contentType === "post") {
-        await supabase.from("posts").delete().eq("id", contentId);
-      } else if (contentType === "comment") {
-        await supabase.from("comments").delete().eq("id", contentId);
+        // Community posts are stored in community_questions table
+        const { error: deleteError } = await supabase
+          .from("community_questions")
+          .update({ hidden: true })
+          .eq("id", contentId);
+        
+        if (deleteError) {
+          console.error(`Error hiding community post ${contentId}:`, deleteError);
+        }
+      } else if (contentType === "comment" || contentType === "response") {
+        // Community responses/comments are in community_responses table
+        const { error: deleteError } = await supabase
+          .from("community_responses")
+          .delete()
+          .eq("id", contentId);
+        
+        if (deleteError) {
+          console.error(`Error deleting community response ${contentId}:`, deleteError);
+        }
       } else if (contentType === "testimony") {
         await supabase.from("testimonies").delete().eq("id", contentId);
       } else if (contentType === "group_message") {

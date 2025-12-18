@@ -10,7 +10,7 @@
   padding-bottom: 70px;
 }
 
-/* Light Theme with fully distinct pastel gradients */
+/* Pastel Dream Theme (Default) */
 :root {
   --main-gradient: linear-gradient(135deg, #70d9f0, #00a6f0, #3ac3c3);
   --bg-color: #e6f4ff;
@@ -38,7 +38,67 @@
   --accent14: #ffe7bc;
   --accent15: #b3b8ff;
   --accent16: #cd9ffc;
-  
+}
+/* Midnight Ocean Theme */
+:root.midnight-ocean-theme {
+  --main-gradient: linear-gradient(135deg, #1a3a52, #0d2a42, #082030);
+  --bg-color: #0a1929;
+  --text-color: #e3f2fd;
+  --button-bg: #1a2e42;
+  --button-text: #e3f2fd;
+  --accent: #4a90a4;
+  --verse-color: #ffffff;
+
+  --border-radius: 15px;
+  --font: 'Segoe UI', 'Helvetica Neue', sans-serif;
+
+  --accent1: #2a5c6f;
+  --accent2: #1e4d5f;
+  --accent3: #2b6a7f;
+  --accent4: #1a4555;
+  --accent5: #153844;
+  --accent6: #3d7a8f;
+  --accent7: #2e5d70;
+  --accent8: #25526a;
+  --accent9: #1f4a5f;
+  --accent10: #1b3e52;
+  --accent11: #234b5e;
+  --accent12: #1d4454;
+  --accent13: #0f2d3d;
+  --accent14: #1a3c4f;
+  --accent15: #1e4758;
+  --accent16: #26596d;
+}
+
+/* Sky Blue Light Theme (for cloud animation background) */
+:root.light-theme {
+  --main-gradient: linear-gradient(135deg, #87ceeb, #5dade2, #3498db);
+  --bg-color: #e3f2fd;
+  --text-color: #0d47a1;
+  --button-bg: #bbdefb;
+  --button-text: #0d47a1;
+  --accent: #42a5f5;
+  --verse-color: #1565c0;
+
+  --border-radius: 15px;
+  --font: 'Segoe UI', 'Helvetica Neue', sans-serif;
+
+  --accent1: #90caf9;
+  --accent2: #64b5f6;
+  --accent3: #42a5f5;
+  --accent4: #2196f3;
+  --accent5: #1e88e5;
+  --accent6: #a8daff;
+  --accent7: #81c8ff;
+  --accent8: #5eb8ff;
+  --accent9: #3ba5f5;
+  --accent10: #1976d2;
+  --accent11: #1565c0;
+  --accent12: #0d47a1;
+  --accent13: #82b1ff;
+  --accent14: #448aff;
+  --accent15: #2979ff;
+  --accent16: #2962ff;
 }
 
 /* Dark Theme */
@@ -432,7 +492,10 @@ faithful, eternal, savior, goodness, light, friend, jesus, holy, resurrection, u
 transformation,  =>  trust,  strength, unity, patience, gratitude, purpose
 battle, slavery, spirit, fallenness, temptation, wisdom, authority, salvation, glory, submission, help, word, protect
 grace guidance*/
-#versedisplay.bg-presence, .bg-trust {
+#versedisplay.bg-presence {
+  background: #f2f8ff url('/backgrounds/present (1).jpeg') center/cover no-repeat;
+}
+#versedisplay.bg-trust {
   background: #f2f8ff url('/backgrounds/present (1).jpeg') center/cover no-repeat;
 }
 #versedisplay.bg-power {
@@ -561,6 +624,24 @@ grace guidance*/
 #versedisplay.bg-guidance {
   background: #fef7f2 url('/backgrounds/rise.jpeg') center/cover no-repeat;
 }
+#versedisplay.bg-strength {
+  background: #f0f4ff url('/backgrounds/sky.jpeg') center/cover no-repeat;
+}
+#versedisplay.bg-unity {
+  background: #fff8f0 url('/backgrounds/follow (1).jpeg') center/cover no-repeat;
+}
+#versedisplay.bg-patience {
+  background: #f5f9ff url('/backgrounds/peace.jpeg') center/cover no-repeat;
+}
+#versedisplay.bg-gratitude {
+  background: #fff5e8 url('/backgrounds/good.jpeg') center/cover no-repeat;
+}
+#versedisplay.bg-purpose {
+  background: #f6faff url('/backgrounds/creator (1).jpeg') center/cover no-repeat;
+}
+#versedisplay.bg-general {
+  background: #f8f9fa url('/backgrounds/hope (1).jpeg') center/cover no-repeat;
+}
 
 .settings-content ul {
   list-style: none;
@@ -680,7 +761,7 @@ grace guidance*/
   padding: 0.5rem;
   border-radius: 6px;
   background: var(--bg-color);
-  border: 1px solid #ccc;
+  border: 1px solid var(--accent);
   outline: none;
   margin: 10px 0;
 }
@@ -812,10 +893,6 @@ grace guidance*/
 }
 
 
-.tree-container {
-  display: inline-block;
-  bottom: 0;
-}
 
 #treeImage {
   width: fit-content;
@@ -843,7 +920,6 @@ grace guidance*/
 .tree-container {
   position: relative;
   text-align: center;
-  margin-top: 20px;
 }
 
 
@@ -877,14 +953,13 @@ grace guidance*/
 }
 
 #tree-section {
-  position: fixed;
-  bottom: 0;
-  z-index: -1;
+  clear: both;
+  display: block;
+  margin-top: 40px;
+  padding-bottom: 20px;
+  position: relative;
   width: 100%;
-  max-height: 60vh;
-  height: fit-content;
   text-align: center;
-  pointer-events: none;
 }
 
 /* Force full-screen, block interaction */
@@ -1023,7 +1098,7 @@ body.modal-active {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #fff;
+  color: var(--button-text);
   font-family: 'Poppins', sans-serif;
   text-align: center;
   z-index: 9999;
@@ -1143,6 +1218,7 @@ body.modal-active {
   top: 4rem;
   bottom: 7rem;
   left: 2rem;
+  color: var(--text-color);
   right: 2rem;
 }
 
@@ -1182,7 +1258,7 @@ button:hover {
   margin-top: 15px;
   padding: 10px;
   background: var(--bg-color);
-  border-left: 4px solid #ff66a3;
+  border-left: 4px solid var(--accent);
   border-radius: 6px;
 }
 
@@ -1332,11 +1408,7 @@ a {
   margin-top: 4px;
 }
 
-.reply-context {
-  font-size: 0.85em;
-  color: #666;
-  margin: 6px 0;
-}
+
 
 .response .reply-btn {
   display: none;
@@ -1367,7 +1439,8 @@ a {
   display: inline-block;
   margin-top: 4px;
   font-size: 13px;
-  color: #555;
+  color: var(--text-color);
+  opacity: 0.7;
   cursor: pointer;
   background: none;
   border: none;
@@ -1375,7 +1448,8 @@ a {
   text-decoration: underline;
 }
 .reply-link:hover {
-  color: #000;
+  color: var(--text-color);
+  opacity: 1;
   text-decoration: none;
 }
 
@@ -1385,14 +1459,16 @@ a {
   margin-top: 6px;
   font-size: 13px;
   font-style: italic;
-  color: #666;
+  color: var(--text-color);
+  opacity: 0.7;
   cursor: pointer;
   background: none;
   border: none;
   padding: 0;
 }
 .toggle-replies-link:hover {
-  color: #333;
+  color: var(--text-color);
+  opacity: 1;
   text-decoration: underline;
 }
 .actions-row {
@@ -1429,12 +1505,14 @@ a {
   border: none;
   font-size: 18px;
   cursor: pointer;
-  color: #666;
+  color: var(--text-color);
+  opacity: 0.6;
   transition: color 0.2s ease;
 }
 
 .close-btn:hover {
-  color: #e74c3c; /* red hover */
+  opacity: 1;
+  color: var(--accent1);
 }
 
 
@@ -1564,6 +1642,7 @@ html, body {
   background: var(--bg-color);
   color: var(--text-color);
 }
+
 #topbar:hover, #bottom-nav:hover {
   background-image: var(--main-gradient);
 }
@@ -1630,7 +1709,7 @@ html, body {
 /* Hover fun */
 #loginLink:hover, #signupLink:hover {
   background: var(--main-gradient);
-  color: #fff;
+  color: var(--button-text);
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
@@ -1656,7 +1735,7 @@ html, body {
 /* Hover fun */
 #loginLink:hover, #signupLink:hover {
   background: var(--main-gradient);
-  color: #fff;
+  color: var(--button-text);
   transform: translateY(-2px);
   box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
@@ -1735,7 +1814,47 @@ html, body {
 
 .favorite-btn.favorited {
   color: gold;
-  text-shadow: 0 0 6px rgba(255, 215, 0 0.25);
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.25);
+}
+
+.report-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  margin-left: 8px;
+}
+
+.report-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.theology-badge {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  background: linear-gradient(135deg, #4A90E2, #6C5CE7);
+  color: white;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 0.3rem;
+  vertical-align: middle;
+}
+
+.theology-disclaimer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background: rgba(106, 92, 231, 0.1);
+  border-left: 3px solid #6C5CE7;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: var(--text-color);
 }
 
 .question-card.highlight {
@@ -1819,7 +1938,8 @@ html, body {
 
 .bio-text {
   margin: 4px 0 0;
-  color: #777;
+  color: var(--text-color);
+  opacity: 0.7;
   font-size: 0.95rem;
   line-height: 1.3;
   max-width: 640px;
@@ -1868,10 +1988,188 @@ html, body {
 }
 
 .prayer-list li {
-  background: var(--accent);
+  background: var(--bg-color);
   padding: 10px;
   border-radius: var(--border-radius);
   margin-bottom: 8px;
+}
+
+/* Saved Prayer Item Styles */
+.saved-prayer-item {
+  background: var(--button-bg);
+  padding: 15px;
+  border-radius: var(--border-radius);
+  margin-bottom: 12px;
+  border-left: 4px solid var(--accent);
+  border-right: 4px solid var(--accent);
+  border-bottom: 1px solid var(--accent);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.saved-prayer-item .prayer-text {
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+  color: var(--text-color);
+  font-style: italic;
+}
+
+.saved-prayer-item .prayer-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.saved-prayer-item .prayer-actions .innerbtn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+}
+
+/* Pray for Others Section */
+.pray-for-others-section {
+  margin: 2rem auto;
+  max-width: 800px;
+  padding: 1.5rem;
+  background: var(--button-bg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--accent);
+}
+
+.pray-for-others-section h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+}
+
+.submit-prayer-request {
+  margin-bottom: 2rem;
+}
+
+.submit-prayer-request textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+}
+
+.prayer-options {
+  margin: 0.8rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.prayer-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.prayer-options input[type="checkbox"] {
+  cursor: pointer;
+  width: 18px;
+  height: 18px;
+}
+
+.prayer-requests-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.prayer-request-card {
+  padding: 1.2rem;
+  background: var(--bg-color);
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.request-text {
+  margin: 0 0 1rem 0;
+  line-height: 1.6;
+  color: var(--text-color);
+  font-size: 1rem;
+}
+
+.request-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: var(--text-color);
+}
+
+.prayer-count {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.pray-btn {
+  width: 100%;
+  padding: 0.7rem;
+  background: var(--accent);
+  color: var(--button-text);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.pray-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+
+.pray-action-btn {
+  background: var(--accent5) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--accent) !important;
+}
+
+.pray-action-btn:hover {
+  opacity: 0.85;
+}
+
+.edit-action-btn {
+  background: var(--accent3) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--accent) !important;
+}
+
+.edit-action-btn:hover {
+  opacity: 0.85;
+}
+
+.share-action-btn {
+  background: var(--accent6) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--accent) !important;
+}
+
+.share-action-btn:hover {
+  opacity: 0.85;
+}
+
+.delete-action-btn {
+  background: var(--accent4) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--accent) !important;
+}
+
+.delete-action-btn:hover {
+  opacity: 0.85;
 }
 
 .game-grid {
@@ -1912,6 +2210,13 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  
+}
+
+#bottom-nav a:hover {
+  background: var(--accent);
+  opacity: 0.8;
+  border-radius: 8px;
 }
 
 #bottom-nav i {
@@ -2061,15 +2366,31 @@ html, body {
 
 .aboutlink {
   color: #1a8edb;
-  text-decoration: none;
+  text-decoration: underline;
   background: none;
+  padding: 0;
   transition: color 0.2s ease;
   margin: 0;
 }
 
 .aboutlink:hover {
   color: #008cff;
-  text-decoration: underline;
+}
+
+/* About links - dark theme visibility */
+:root.dark-theme .aboutlink,
+:root.celestial-theme .aboutlink,
+:root.braveheart-theme .aboutlink {
+  color: #8fc5fc;
+}
+:root.ocean-depths-theme .aboutlink {
+  color: #cde6ff;
+}
+
+:root.dark-theme .aboutlink:hover,
+:root.celestial-theme .aboutlink:hover,
+:root.braveheart-theme .aboutlink:hover {
+  color: #99ccff;
 }
 
 /* Buttons */
@@ -2219,6 +2540,40 @@ html, body {
   color: var(--text-color);
   font-family: var(--font);
 }
+
+.post-action-btn {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font);
+  white-space: nowrap;
+}
+
+.post-action-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.image-btn {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  border-radius: 50%;
+}
+
+.send-btn {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+}
 .profile-input {
   width: 90%;
   max-width: 400px;
@@ -2298,6 +2653,337 @@ html, body {
   overflow: visible;
 }
 
+/* Community Tabs */
+.community-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1rem auto;
+  max-width: 600px;
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab-btn {
+  padding: 0.8rem 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-bottom: 3px solid transparent;
+}
+
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: bold;
+}
+
+.tab-btn:hover {
+  color: var(--text-color);
+  background: var(--accent);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Testimony Section */
+.testimony-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.submit-testimony textarea {
+  width: 100%;
+  padding: 1rem;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 150px;
+  font-family: inherit;
+  margin-bottom: 1rem;
+}
+
+.testimony-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tags-input label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.tag-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-btn {
+  padding: 0.5rem 1rem;
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 2px solid var(--accent);
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.tag-btn.selected {
+  background: var(--accent);
+  color: var(--button-text);
+}
+
+.testimonies-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.testimony-card {
+  padding: 1.2rem;
+  background: var(--bg-color);
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.testimony-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.testimony-tags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.story-tag {
+  padding: 0.3rem 0.8rem;
+  background: var(--accent);
+  color: var(--button-text);
+  border-radius: 15px;
+  font-size: 0.8rem;
+}
+
+.testimony-text {
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0 0 0.8rem 0;
+}
+
+.testimony-footer {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  color: var(--text-color);
+}
+
+/* Groups Section */
+.groups-section {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.join-groups-prompt {
+  text-align: center;
+  padding: 2rem;
+  background: var(--button-bg);
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  margin-bottom: 2rem;
+}
+
+.your-groups-section, .open-discussion-section {
+  margin: 2rem 0;
+}
+
+.groups-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.group-item {
+  padding: 0.8rem 1.2rem;
+  background: var(--accent);
+  color: var(--button-text);
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.custom-modal:not(.hidden) {
+  display: flex;
+}
+
+.modal-content {
+  background: var(--bg-color);
+  padding: 2rem;
+  border-radius: 15px;
+  max-width: 500px;
+  width: 90%;
+  position: relative;
+}
+
+.modal-content .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.groups-selection {
+  max-height: 300px;
+  overflow-y: auto;
+  margin: 1rem 0;
+}
+
+.group-option {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--accent);
+}
+
+.group-option label {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Admin Dashboard */
+.admin-dashboard {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.admin-dashboard h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-color);
+}
+
+.admin-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.admin-tab-content {
+  display: none;
+}
+
+.admin-tab-content.active {
+  display: block;
+}
+
+.admin-section h2 {
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.admin-card {
+  background: var(--button-bg);
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+
+.admin-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.category-badge {
+  padding: 0.3rem 0.8rem;
+  background: var(--accent);
+  color: var(--button-text);
+  border-radius: 15px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.question-text, .testimony-text {
+  line-height: 1.6;
+  color: var(--text-color);
+  margin: 0.5rem 0;
+}
+
+.context-text {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: var(--text-color);
+  margin: 0.5rem 0;
+}
+
+.admin-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.approve-btn {
+  background: #4CAF50 !important;
+  color: white !important;
+}
+
+.reject-btn {
+  background: #f44336 !important;
+  color: white !important;
+}
+
+.ask-new-question-section {
+  text-align: center;
+  margin: 1.5rem auto;
+}
+
 .meta {
   display: flex;
   justify-content: flex-end;
@@ -2319,27 +3005,57 @@ html, body {
 /* 👶 Baby AI Bubble */
 .baby-ai-bubble {
   position: fixed;
-  bottom: 2rem;
+  bottom: 2.8rem;
   right: 1rem;
-  background: var(--button-bg);
+  background: none;
   color: var(--button-text);
-  padding: 0.5rem 0.5rem;
+  padding: 0;
   border-radius: var(--border-radius);
-  box-shadow: 0 0 6px var(--accent);
   cursor: pointer;
-  width: fit-content;
   text-align: center;
   z-index: 1000;
+  transition: all 0.3s ease;
 }
-.baby-ai-bubble img {
-  width: 35px;
-  height: 35px;
-  border-radius: 50%;
-  object-fit: cover;
-  position: relative;
-  mix-blend-mode: fixed; /* try 'multiply' or 'overlay' too */
-  filter: brightness(1) contrast(1);
+
+.baby-ai-bubble button {
+  white-space: nowrap;
+  overflow: hidden;
+  bottom: auto;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.baby-ai-bubble.collapsed button {
+  width: 50px;
+  height: 50px;
+  padding: 0;
+}
+
+.baby-ai-bubble.collapsed button .question-text {
+  opacity: 0;
+  width: 0;
+  align-items: center;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.baby-ai-bubble:hover.collapsed button {
+  width: auto;
+}
+
+.baby-ai-bubble:hover.collapsed button .question-text {
+  opacity: 1;
+  width: auto;
+  margin-left: 0.5rem;
+}
+
+.question-text {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
 
 #expanded-question {
   background: var(--bg-color);
@@ -3353,7 +4069,7 @@ canvas#lens {
     border-bottom: none;
   }
   .baby-ai-bubble, #notes-box, #chat-view {
-    bottom: 10px;
+    bottom: 30px;
   }
   .link-btn {
     bottom: 0;
@@ -3361,4 +4077,1536 @@ canvas#lens {
   .next, .previous, .note {
     bottom: 0;
   }
+}
+
+
+    /* Categories grid (initial view) */
+    .categories {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      align-items: start;
+    }
+    /* make control of 5-per-row on large screens */
+    @media (min-width: 1400px) {
+      .categories { grid-template-columns: repeat(5, 1fr); }
+    }
+    /* card */
+    .cat-card {
+      display:flex;
+      align-items:center;
+      gap:20px;
+      padding:12px;
+      max-width:300px;
+      min-width:200px;
+      background: var(--bg-color);
+      border-radius: var(--border-radius);
+      border: 1px solid var(--accent);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: transform .18s ease, box-shadow .18s ease;
+      align-self: start;
+    }
+    .cat-card:hover { transform: translateY(-6px) scale(1.02); box-shadow: 0 12px 26px rgba(0,0,0,0.10); }
+    .cat-img {
+      width:56px;
+      height:56px;
+      border-radius:12px;
+      flex-shrink:0;
+      overflow:hidden;
+      background:var(--bg-color);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+    }
+    .cat-meta { display:flex; flex-direction:column; gap:4px; min-width:0; }
+    .cat-title { font-weight:700; font-size:0.98rem; line-height:1; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .cat-sub { font-size:0.74rem; color: var(--text-color); opacity:0.6; }
+
+    /* Playlist view (centered single column) */
+    .playlist-view {
+      display:none;
+      justify-content:center;
+      padding-top: 8px;
+    }
+    .playlist-card {
+      width: 100%;
+      max-width: 520px;
+      border-radius: 14px;
+      padding: 14px;
+      background: var(--bg-color);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+      border: 1px solid var(--accent);
+    }
+    .playlist-header { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px; }
+    .back-btn {
+      background: var(--button-bg);
+      color: var(--button-text);
+      border: none;
+      padding:8px 10px;
+      border-radius: 10px;
+      cursor:pointer;
+      font-weight:600;
+    }
+    .cat-heading { font-size:1.1rem; font-weight:700; }
+
+    /* song list */
+    .song-list { display:flex; flex-direction:column; gap:8px; }
+    .songs-container { display:flex; flex-direction:column; gap:8px; max-height:60vh; overflow-y:auto; }
+    .song-item {
+      display:flex; align-items:center; gap:10px;
+      padding:10px; border-radius:10px;
+      background: var(--bg-color);
+      border: 1px solid var(--accent);
+    }
+    .song-left { display:flex; gap:8px; align-items:center; }
+    .badge {
+      min-width:48px;
+      padding:6px 8px;
+      border-radius:8px;
+      font-size:0.8rem;
+      text-transform:uppercase;
+      font-weight:700;
+      border:none;
+      cursor:pointer;
+    }
+    .badge.audio { background: linear-gradient(180deg,var(--accent1), var(--accent6)); color: var(--button-text); }
+    .badge.video { background: linear-gradient(180deg,var(--accent13), var(--accent2)); color: var(--button-text); }
+    .song-info { display:flex; flex-direction:column; min-width:0; }
+    .song-title { font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .song-artist { font-size:0.82rem; color: var(--text-color); opacity:0.7; }
+
+    /* Player overlay (centered) */
+    .player-overlay {
+      position: fixed;
+      inset: 0;
+      display:none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(2,11,14,0.35);
+      z-index: 1200;
+      padding: 20px;
+    }
+    .player-box {
+      width: 92%;
+      max-width: 760px;
+      min-width: 300px;
+      border-radius: 12px;
+      background: var(--bg-color);
+      padding: 14px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      border: 1px solid var(--accent);
+    }
+    .player-top { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:8px; }
+    .close-player { background: var(--bg-color); border-radius:10px; padding:6px 10px; border:1px solid var(--accent); cursor:pointer; color:var(--text-color); }
+
+    /* Hymnbook Selection Grid */
+    .hymn-selection-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 15px;
+      padding: 20px 0;
+      width: 100%;
+    }
+    
+    .hymn-card {
+      background: var(--bg-color);
+      border-radius: 10px;
+      padding: 15px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      text-align: center;
+      border: 2px solid transparent;
+    }
+    
+    .hymn-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+      border-color: var(--accent);
+    }
+    
+    .hymn-card-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    
+    .hymn-card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-color);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+    
+    .hymn-card-author {
+      font-size: 0.75rem;
+      color: var(--text-color);
+      opacity: 0.65;
+      font-style: italic;
+    }
+    
+    /* 3D Hymnbook Reader */
+    .hymnal-reader {
+      width: 100%;
+      max-width: 760px;
+      margin: 20px auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hymn-book {
+      width: 100%;
+      max-width: 720px;
+      height: 520px;
+      perspective: 2000px;
+      position: relative;
+    }
+
+    .hymn-page-3d {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform-origin: left;
+      transform-style: preserve-3d;
+      transition: transform 0.9s ease;
+      border-radius: 8px;
+      box-shadow: 0 12px 24px var(--accent);
+      background: transparent;
+    }
+
+    .hymn-page-3d .front,
+    .hymn-page-3d .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 8px;
+      box-sizing: border-box;
+      padding: 24px;
+      background: var(--button-bg);
+      color: var(--text-color);
+      border: 1px solid var(--accent);
+    }
+
+    .hymn-page-3d .back {
+      transform: rotateY(180deg);
+      background: var(--bg-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      opacity: 0.85;
+    }
+
+    .hymn-page-3d.flipped {
+      transform: rotateY(-180deg);
+      z-index: 0;
+    }
+
+    .hymn-page-meta {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .hymn-page-meta .hymn-card-number {
+      margin-bottom: 4px;
+    }
+
+    .hymn-page-meta .hymn-card-title {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .hymn-page-meta .hymn-card-author {
+      font-size: 0.85rem;
+    }
+
+    .hymn-page-text {
+      white-space: pre-line;
+      line-height: 1.75;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      font-size: 1.02rem;
+      color: var(--text-color);
+      text-align: left;
+    }
+    .hymnal-reader {
+      width: 100%;
+      max-width: none;
+      margin: 20px auto;
+      padding: 0 20px;
+    }
+    
+    .hymn-book-open {
+      width: 95%;
+      max-width: 1200px;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 2000px;
+      position: relative;
+      margin: 0 auto;
+    }
+    
+    .hymn-book-spine {
+      width: 3%;
+      height: 100%;
+      background: linear-gradient(90deg, #6b5344, #8b7355, #6b5344);
+      box-shadow: inset -2px 0 5px rgba(0,0,0,0.3), inset 2px 0 5px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    
+    .hymn-book-left,
+    .hymn-book-right {
+      width: 48%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 1s ease;
+      transform-origin: center;
+    }
+    
+    .hymn-book-left {
+      transform-origin: right;
+      margin-right: -1%;
+    }
+    
+    .hymn-book-right {
+      transform-origin: left;
+      margin-left: -1%;
+    }
+    
+    
+    
+    .hymnal-page {
+      background: linear-gradient(to bottom, #fdfcf5, #f9f7ed);
+      border: 3px solid #8b7355;
+      border-radius: 5px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 50px rgba(139,115,85,0.1);
+      padding: 2% 3%;
+      min-height: 100%;
+      max-height: 700px;
+      position: relative;
+      font-family: 'Georgia', 'Times New Roman', serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+      
+      /* Paper texture effect */
+      background-image: 
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 30px,
+          rgba(139,115,85,0.03) 30px,
+          rgba(139,115,85,0.03) 31px
+        );
+    }
+    
+    .hymnal-page-blank {
+      background: linear-gradient(to bottom, #f9f7ed, #f5f3e8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #8b7355;
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+    
+    .hymnal-header {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: var(--accent);
+      opacity: 0.9;
+      border-bottom: 1px solid var(--accent);
+      padding: 15px 10px;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      position: sticky;
+      top: 0;
+      background: var(--main-gradient);
+      z-index: 1;
+      margin-left: -3%;
+      margin-right: -3%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+    
+    .hymnal-content {
+      flex: 1;
+      padding: 0 20px;
+      overflow-y: auto;
+      min-height: 0;
+    }
+    
+    .hymn-display {
+      text-align: center;
+    }
+    
+    .hymn-num {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: var(--accent);
+      margin-bottom: 10px;
+      font-family: 'Georgia', serif;
+    }
+    
+    .hymn-name {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: var(--text-color);
+      margin-bottom: 10px;
+      line-height: 1.4;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .hymn-meta {
+      font-size: 0.9rem;
+      color: var(--text-color);
+      opacity: 0.6;
+      font-style: italic;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--accent);
+    }
+    
+    .hymn-text {
+      white-space: pre-line;
+      line-height: 1.8;
+      color: var(--text-color);
+      font-size: 1rem;
+      text-align: center;
+      max-width: 100%;
+      margin: 0 auto;
+      font-family: 'Georgia', serif;
+    }
+    
+    .hymnal-footer {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--accent);
+      border-top: 1px solid var(--accent);
+      padding: 15px 10px;
+      margin-top: 20px;
+      font-style: italic;
+      opacity: 0.8;
+      position: sticky;
+      bottom: 0;
+      background: var(--main-gradient);
+      z-index: 1;
+      margin-left: -3%;
+      margin-right: -3%;
+      padding-left: 3%;
+      padding-right: 3%;
+    }
+
+    /* Responsive mobile layout - notebook style */
+    @media (max-width: 768px) {
+      .hymn-book {
+        height: auto;
+        min-height: 400px;
+        perspective: none;
+      }
+
+      .hymn-page-3d {
+        position: relative;
+        transform: none !important;
+        transform-style: flat;
+        transition: none;
+        height: auto;
+        min-height: 400px;
+      }
+
+      .hymn-page-3d .front,
+      .hymn-page-3d .back {
+        position: relative;
+        backface-visibility: visible;
+        transform: none !important;
+        display: block;
+        height: auto;
+        min-height: 350px;
+        margin-bottom: 20px;
+      }
+
+      .hymn-page-3d .back {
+        opacity: 1;
+      }
+
+      .hymn-page-3d.flipped .front {
+        display: none;
+      }
+
+      .hymn-page-3d.flipped .back {
+        display: block;
+      }
+
+      .hymn-page-3d:not(.flipped) .back {
+        display: none;
+      }
+    }
+
+    .hymn-back-blank, .hymn-back-placeholder {
+      font-style: italic;
+      opacity: 0.6;
+      font-size: 1.2rem;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    
+    .hymnbook-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 20px;
+      gap: 20px;
+    }
+    
+    .hymn-btn {
+      padding: 8px 16px;
+      background: var(--accent);
+      color: var(--button-text);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    
+    .hymn-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    
+    .hymn-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .hymn-page-number {
+      font-weight: 600;
+      color: var(--text-color);
+      opacity: 0.7;
+    }
+    .hymn-book-left {
+  box-shadow: inset -10px 0 20px rgba(0,0,0,0.2);
+}
+
+.hymn-book-right {
+  box-shadow: inset 10px 0 20px rgba(0,0,0,0.2);
+}
+
+   .hymn-page-flip {
+  position: absolute;
+  width: 48%;
+  height: 100%;
+  top: 0;
+  pointer-events: none;
+  display: none;
+  z-index: 30;
+}
+
+.hymn-page-flip.active {
+  display: block;
+}
+
+.hymn-page-flip.forward {
+  left: 50%;
+  transform-origin: left center;
+}
+
+.hymn-page-flip.backward {
+  left: 2%;
+  transform-origin: right center;
+}
+
+.hymn-page-flip.animate {
+  animation: pageCurl 0.9s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+@keyframes pageCurl {
+  0%   { transform: rotateY(0deg); }
+  40%  { transform: rotateY(-70deg); }
+  100% { transform: rotateY(-180deg); }
+}
+
+/* Shadow */
+.hymn-page-flip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to left,
+    rgba(0,0,0,0.4),
+    rgba(0,0,0,0.05),
+    transparent
+  );
+}
+
+.hymn-page-flip .hymnal-page {
+  height: 100%;
+  width: 100%;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+@keyframes flipForward {
+  0% {
+    transform: rotateY(0deg) skewY(0deg);
+  }
+  50% {
+    transform: rotateY(-90deg) skewY(-2deg);
+  }
+  100% {
+    transform: rotateY(-180deg) skewY(0deg);
+  }
+}
+
+@keyframes flipBackward {
+  0% {
+    transform: rotateY(0deg) skewY(0deg);
+  }
+  50% {
+    transform: rotateY(90deg) skewY(2deg);
+  }
+  100% {
+    transform: rotateY(180deg) skewY(0deg);
+  }
+}
+
+.hymn-book-left::after,
+.hymn-book-right::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  pointer-events: none;
+}
+
+.hymn-book-left::after {
+  right: -6px;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0)
+  );
+}
+
+.hymn-book-right::after {
+  left: -6px;
+  background: linear-gradient(
+    to left,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0)
+  );
+}
+
+.page-stack {
+  position: absolute;
+  top: 2%;
+  bottom: 2%;
+  width: 10px;
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25),
+    rgba(255,255,255,0.3)
+  );
+  z-index: 1;
+}
+
+.page-stack.left {
+  left: 48%;
+}
+
+.page-stack.right {
+  right: 48%;
+}
+
+
+    
+    @keyframes slideOutLeft {
+      0% { opacity: 1; transform: translateX(0); }
+      100% { opacity: 0.5; transform: translateX(-20px); }
+    }
+    
+    @keyframes slideInLeft {
+      0% { opacity: 0.5; transform: translateX(-20px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideOutRight {
+      0% { opacity: 1; transform: translateX(0); }
+      100% { opacity: 0.5; transform: translateX(20px); }
+    }
+    
+    @keyframes slideInRight {
+      0% { opacity: 0.5; transform: translateX(20px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    
+
+    /* small responsive tweaks */
+    @media (max-width:560px) {
+      .cat-card { max-width: 100%; padding:10px; }
+      .cat-img { width:48px; height:48px; }
+      .player-box { padding:12px; }
+      .hymn-selection-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
+      .hymn-card { padding: 10px; }
+      .hymn-card-number { font-size: 1.5rem; }
+      .hymn-card-title { font-size: 0.8rem; }
+      .hymnal-page { padding: 20px 25px; min-height: 500px; }
+      .hymnal-content { min-height: 350px; padding: 0 10px; }
+      .hymn-num { font-size: 2rem; }
+      .hymn-name { font-size: 1.3rem; }
+      .hymn-text { font-size: 0.95rem; line-height: 1.7; }
+      .hymnal-header { font-size: 0.9rem; letter-spacing: 2px; }
+    }
+    @media (max-width: 768px) {
+  .hymn-book-open {
+    flex-direction: column;
+    aspect-ratio: auto;
+  }
+
+  .hymn-book-left,
+  .hymn-page-flip {
+    display: none;
+  }
+
+  .hymn-book-right {
+    width: 100%;
+    transform: none;
+  }
+
+  .hymn-book-spine {
+    width: 100%;
+    height: 24px;
+    background: repeating-linear-gradient(
+      90deg,
+      #444,
+      #444 4px,
+      transparent 4px,
+      transparent 10px
+    );
+  }
+
+  .hymnal-page {
+    animation: notebookFlip 0.5s ease;
+  }
+}
+
+@keyframes notebookFlip {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+/* ===== Commentary Box Styles ===== */
+.commentary-box,
+.crossref-box {
+  margin-top: 10px;
+  padding: 12px;
+  background: linear-gradient(135deg, var(--button-bg) 0%, var(--accent) 100%);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--border-radius);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Commentary Section - Minimal Pill Style ===== */
+.commentary-section {
+  margin: 4px 0 8px 0;
+  text-align: center;
+}
+
+.commentary-section.collapsed .commentary-body {
+  display: none;
+}
+
+.commentary-section.expanded .commentary-body {
+  display: block;
+}
+
+.commentary-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--button-bg);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.commentary-pill:hover {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
+.commentary-section.expanded .commentary-pill {
+  opacity: 1;
+  background: var(--accent);
+  color: var(--button-text);
+}
+
+.commentary-pill-icon {
+  font-size: 0.9rem;
+}
+
+.commentary-pill-text {
+  font-weight: 500;
+}
+
+.commentary-body {
+  margin-top: 8px;
+  padding: 16px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  background: linear-gradient(135deg, var(--bg-color) 0%, var(--button-bg) 100%);
+  border-radius: var(--border-radius);
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.commentary-body-header {
+  font-weight: 600;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Dark theme adjustments */
+:root.dark-theme .commentary-pill {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+:root.dark-theme .commentary-body-header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Inline Commentary Icon ===== */
+.commentary-inline-icon {
+  display: inline;
+  margin-left: 6px;
+  font-size: 0.85em;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  vertical-align: baseline;
+}
+
+.commentary-inline-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.commentary-inline-icon.active {
+  opacity: 1;
+}
+
+/* Standalone commentary body (outside verse card) */
+.commentary-body-standalone {
+  margin: 8px 0;
+  padding: 16px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  background: linear-gradient(135deg, var(--button-bg) 0%, var(--accent) 100%);
+  border-radius: var(--border-radius);
+  border-left: 4px solid var(--accent);
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.commentary-body-standalone .commentary-body-header {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:root.dark-theme .commentary-body-standalone {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+:root.dark-theme .commentary-body-standalone .commentary-body-header {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Hide old header styles - no longer used */
+.commentary-header,
+.commentary-icon,
+.commentary-title,
+.commentary-toggle {
+  display: none;
+}
+
+.commentary-toggle {
+  font-size: 0.8rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  transition: transform 0.2s ease;
+}
+
+.commentary-body {
+  padding: 16px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text-color);
+  background: linear-gradient(135deg, var(--button-bg) 0%, var(--accent) 100%);
+}
+
+:root.dark-theme .commentary-section {
+  border-color: var(--accent);
+}
+
+:root.dark-theme .commentary-header {
+  background: var(--button-bg);
+}
+
+:root.dark-theme .commentary-header:hover {
+  filter: brightness(1.1);
+}
+
+:root.dark-theme .commentary-body {
+  background: linear-gradient(135deg, var(--button-bg) 0%, var(--accent) 100%);
+}
+
+.crossref-box {
+  border-left-color: #6c5ce7;
+  background: linear-gradient(135deg, rgba(108, 92, 231, 0.1) 0%, rgba(108, 92, 231, 0.2) 100%);
+}
+
+.commentary-box b,
+.crossref-box b {
+  color: var(--button-text);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.commentary-box i,
+.crossref-box i {
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Cross-reference list styles */
+.crossref-list {
+  margin-top: 8px;
+}
+
+.crossref-item {
+  padding: 8px 10px;
+  margin: 6px 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #6c5ce7;
+}
+
+.crossref-link {
+  color: #6c5ce7;
+  text-decoration: none;
+  font-weight: 600;
+  background: none;
+  padding: 0;
+  margin: 0;
+  display: inline;
+}
+
+.crossref-link:hover {
+  text-decoration: underline;
+  color: #8b7cf7;
+}
+
+.crossref-text {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.9em;
+  color: var(--text-color);
+  opacity: 0.85;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.crossref-more {
+  margin-top: 8px;
+  font-size: 0.85em;
+  color: var(--accent);
+  opacity: 0.8;
+}
+
+/* ===== TTS Controls Panel ===== */
+.tts-controls-panel {
+  margin-top: 12px;
+  padding: 15px;
+  background: var(--button-bg);
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tts-control-row {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.tts-control-row label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.tts-control-row label span {
+  font-weight: normal;
+  color: var(--accent);
+  margin-left: 5px;
+}
+
+.tts-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 2px solid var(--accent);
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tts-select:focus {
+  outline: none;
+  border-color: var(--text-color);
+}
+
+.tts-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--button-bg) 100%);
+  outline: none;
+  cursor: pointer;
+}
+
+.tts-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--main-gradient);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.tts-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+.tts-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--main-gradient);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tts-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.tts-btn {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.tts-btn:active {
+  transform: scale(0.95);
+}
+
+/* TTS Modal Styles */
+.tts-modal {
+  max-width: 350px;
+  margin: 100px auto;
+  padding: 20px;
+  background: var(--bg-color);
+  border-radius: var(--border-radius);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.tts-modal h3 {
+  margin: 0 0 15px 0;
+  color: var(--text-color);
+  text-align: center;
+}
+
+.tts-modal .modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  justify-content: center;
+}
+
+/* Verse being read highlight */
+.question-card.tts-reading {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--button-bg) 100%) !important;
+  box-shadow: 0 0 15px var(--accent);
+  border-left: 4px solid var(--text-color);
+  transition: all 0.3s ease;
+}
+
+/* Auto-next checkbox styling */
+.tts-control-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  cursor: pointer;
+  accent-color: var(--accent);
+}
+
+/* ============================================
+   MULTI-SELECT VERSES STYLES
+   ============================================ */
+
+.question-card.selectable {
+  position: relative;
+  cursor: pointer;
+  padding-left: 35px !important;
+}
+
+.question-card.selectable::before {
+  content: "☐";
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5em;
+  color: var(--accent);
+  opacity: 0.8;
+  z-index: 5;
+}
+
+.question-card.selected {
+  border: 2px solid var(--accent) !important;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+.question-card.selected::before {
+  content: "☑";
+  opacity: 1;
+  color: var(--accent);
+}
+
+#multiSelectToolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--bg-color) 0%, var(--card-bg) 100%) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+#multiSelectToolbar #selectedCount {
+  font-weight: bold;
+  color: var(--accent);
+  min-width: 80px;
+}
+
+/* ============================================
+   SEARCH RESULTS STYLES
+   ============================================ */
+
+#searchResults {
+  display: none;
+  max-height: 60vh;
+  overflow-y: auto;
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+  margin: 10px auto;
+  width: 95%;
+  background: var(--bg-color);
+}
+
+#searchResults .question-card {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin: 0;
+  border-radius: 0;
+}
+
+#searchResults .question-card:last-child {
+  border-bottom: none;
+}
+
+#searchResults .question-card:hover {
+  background: var(--card-bg);
+}
+
+.search-section-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+#bibleSearchContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================
+   MULTI-COLOR PICKER STYLES
+   ============================================ */
+
+.multi-color-picker {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, var(--card-bg) 0%, var(--bg-color) 100%);
+  padding: 25px;
+  border-radius: 20px;
+  border: 2px solid var(--accent);
+  z-index: 1001;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 20px rgba(138, 43, 226, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  text-align: center;
+  min-width: 280px;
+  max-width: 90vw;
+}
+
+.multi-color-picker p {
+  color: var(--text-color);
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  font-weight: 500;
+}
+
+.multi-color-picker div {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.multi-color-picker button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.multi-color-picker button:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 15px currentColor;
+}
+
+.multi-color-picker .innerbtn {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* ============================================
+   MILESTONES DASHBOARD
+   ============================================ */
+.milestones-section {
+  clear: both;
+  display: block;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, rgba(100, 200, 255, 0.1), rgba(150, 100, 255, 0.1));
+  border-radius: var(--border-radius);
+  border: 1px solid var(--accent);
+}
+
+.milestones-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  background: linear-gradient(135deg, var(--accent), var(--text-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.milestones-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.milestone-category {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 1px solid var(--accent);
+  backdrop-filter: blur(5px);
+}
+
+.milestone-category h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.milestone-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: space-around;
+}
+
+.milestone-badge {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.milestone-badge.locked {
+  background: rgba(0, 0, 0, 0.15);
+  color: var(--text-color);
+  border-color: var(--accent);
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+.milestone-badge.unlocked {
+  background: linear-gradient(135deg, var(--accent3), var(--accent14));
+  color: var(--button-text);
+  border-color: var(--accent3);
+  animation: pulse 1.5s ease-in-out infinite;
+  box-shadow: 0 0 15px rgba(252, 240, 193, 0.6);
+}
+
+.milestone-badge.unlocked:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(252, 240, 193, 0.8);
+}
+
+.milestone-badge.claimed {
+  background: linear-gradient(135deg, var(--accent1), var(--accent6));
+  color: var(--button-text);
+  border-color: var(--accent1);
+  box-shadow: 0 0 10px rgba(187, 250, 185, 0.5);
+}
+
+.milestone-badge .badge-value,
+.milestone-badge .unlock-text {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.milestone-badge .badge-progress {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+.milestone-badge .claim-text {
+  font-size: 0.7rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.milestone-badge.unlocked:hover .unlock-text {
+  opacity: 0;
+}
+
+.milestone-badge.unlocked:hover .claim-text {
+  opacity: 1;
+}
+
+.milestone-badge .tooltip {
+  position: absolute;
+  bottom: -60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--button-bg);
+  color: var(--text-color);
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 10;
+}
+
+.milestone-badge:hover .tooltip {
+  opacity: 1;
+}
+
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(252, 240, 193, 0.6); }
+  50% { box-shadow: 0 0 25px rgba(252, 240, 193, 0.9); }
+}
+
+/* ============================================
+   DOPAMINE HIT CAROUSEL
+   ============================================ */
+.dopamine-carousel {
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+  max-width: 100%;
+  background: var(--button-bg);
+  border-radius: var(--border-radius);
+  border: 1px solid var(--accent);
+}
+
+.dopamine-carousel h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  color: var(--text-color);
+}
+
+.dopamine-card {
+  background: linear-gradient(135deg, var(--accent9), var(--accent12));
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid var(--accent9);
+  box-shadow: 0 4px 15px rgba(255, 182, 219, 0.3);
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dopamine-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(255, 182, 219, 0.5);
+  border-color: var(--accent12);
+}
+
+.dopamine-content {
+  transition: opacity 0.3s ease;
+}
+
+.dopamine-content p {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--button-text);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dopamine-hint {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  color: var(--text-color);
+}
+
+.messy-state-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.state-btn {
+  padding: 1rem;
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 2px solid var(--accent);
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.state-btn:hover {
+  background: var(--accent);
+  color: var(--button-text);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 182, 219, 0.4);
+}
+
+.reset-state-btn {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--button-bg);
+  color: var(--text-color);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.reset-state-btn:hover {
+  background: var(--accent);
+  color: var(--button-text);
+}
+
+.hidden {
+  display: none;
 }

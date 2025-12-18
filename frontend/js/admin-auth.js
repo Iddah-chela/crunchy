@@ -1,6 +1,19 @@
 // Admin authentication check
 // This runs before the page fully loads to redirect unauthorized users
 
+function showModal(message) {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.textContent = message;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 (async function checkAdminAuth() {
   try {
     window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
@@ -15,7 +28,7 @@
     
     if (!user || !user.id) {
       // Not logged in
-      alert("⛔ You must be logged in as an admin to access this page.");
+      showModal("⛔ You must be logged in as an admin to access this page.");
       window.location.href = "/login.html";
       return;
     }
@@ -25,7 +38,7 @@
                     ADMIN_USERNAMES.includes(user.username?.toLowerCase());
     
     if (!isAdmin) {
-      alert("⛔ Access denied. Admin privileges required.");
+      showModal("⛔ Access denied. Admin privileges required.");
       window.location.href = "/home.html";
       return;
     }
@@ -35,7 +48,7 @@
     
   } catch (err) {
     console.error("Admin auth check error:", err);
-    alert("⛔ Authentication error. Redirecting...");
+    showModal("⛔ Authentication error. Redirecting...");
     window.location.href = "/home.html";
   }
 })();
