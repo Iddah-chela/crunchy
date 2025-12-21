@@ -2,6 +2,48 @@
 
 console.log("Topbar loaded on", window.location.pathname);
 
+// Dynamically load Capacitor helpers if not already present
+if (!window.CapacitorHelpers) {
+  const s = document.createElement('script');
+  s.src = '/js/capacitor-helpers.js';
+  s.defer = true;
+  document.head.appendChild(s);
+}
+// Load hover-to-touch fallback for touch devices
+if (!window.HoverTouchFallback) {
+  const s2 = document.createElement('script');
+  s2.src = '/js/hover-touch-fallback.js';
+  s2.defer = true;
+  document.head.appendChild(s2);
+}
+// Load offline sync module (Dexie) if available
+if (!window.OfflineSync) {
+  const s3 = document.createElement('script');
+  s3.src = '/js/offline-sync.js';
+  s3.defer = true;
+  document.head.appendChild(s3);
+}
+
+// Listen for native push registration events and send token to backend
+window.addEventListener('capacitor:push:registration', async (e) => {
+  const token = e.detail;
+  if (!token) return;
+  try {
+    window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+      ? "http://localhost:4000"
+      : "https://holyverse-s5s1.onrender.com");
+    await fetch(`${window.API_BASE}/push/register`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token, platform: window.Capacitor?.getPlatform?.() || 'unknown' })
+    });
+    console.log('Sent device token to backend');
+  } catch (err) {
+    console.warn('Failed to send device token to backend', err);
+  }
+});
+
 function showModal(message) {
   const modal = document.getElementById("appModal");
   const msg = document.getElementById("modalMessage");
@@ -152,7 +194,7 @@ if (savedUser) {
 // only do this if page is fully loaded
 document.addEventListener('DOMContentLoaded', () => {
 // List all your HTML pages in the order you want to swipe through
-const pages = ['home.html', 'notes.html', 'bible.html', 'prayer.html',  'community.html']; 
+const pages = ['home.html', 'notes.html', 'bible.html', 'prayer.html', 'music.html', 'community.html', 'private.html']; 
 
 // Get current file name (e.g. 'home.html')
 let currentPage = window.location.pathname.split("/").pop();
@@ -202,7 +244,8 @@ const pageToNavId = {
   "bible.html": "nav-bible",
   "music.html": "nav-music",
   "prayer.html": "nav-prayer",
-  "community.html": "nav-community"
+  "community.html": "nav-community",
+  "private.html": "nav-private"
 };
 
 // Activate the matching nav
@@ -324,37 +367,45 @@ checkStreak();
 
 console.log("script loaded");
 
-// Register service worker
-navigator.serviceWorker.register("/service-worker.js").then(reg => {
-  return Notification.requestPermission().then(permission => {
-    if (permission === "granted") {
-      const vapidKey = "BDF7aki5ACDWUSBFkGU_2pEPDWjXPOLU01hb6DAh1Vog5XJwPSuXhGR5AT289QEt8yw0Xw7c40V46RBjFYYRb2k";
-      const convertedKey = urlBase64ToUint8Array(vapidKey);
-
-      return reg.pushManager.subscribe({
-        userVisibleOnly: true,
-        applicationServerKey: convertedKey
-      });
-    }
+// Register service worker or use Capacitor push on native
+if (window.CapacitorHelpers && window.CapacitorHelpers.isNative && window.CapacitorHelpers.isNative()) {
+  // Native app: let Capacitor handle push registration
+  window.CapacitorHelpers.requestPushRegistration().then(ok => {
+    if (!ok) console.warn('Capacitor push registration not completed');
   });
-}).then(sub => {
-  if (!sub) return console.warn("Subscription failed or permission denied.");
+} else {
+  // Web fallback: register service worker and subscribe to web push
+  navigator.serviceWorker.register("/service-worker.js").then(reg => {
+    return Notification.requestPermission().then(permission => {
+      if (permission === "granted") {
+        const vapidKey = "BDF7aki5ACDWUSBFkGU_2pEPDWjXPOLU01hb6DAh1Vog5XJwPSuXhGR5AT289QEt8yw0Xw7c40V46RBjFYYRb2k";
+        const convertedKey = urlBase64ToUint8Array(vapidKey);
 
-  console.log("Subscription:", sub);
-  window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
-    ? ""
-    : "https://holyverse-s5s1.onrender.com");
-  const API_BASE = window.API_BASE;
+        return reg.pushManager.subscribe({
+          userVisibleOnly: true,
+          applicationServerKey: convertedKey
+        });
+      }
+    });
+  }).then(sub => {
+    if (!sub) return console.warn("Subscription failed or permission denied.");
+
+    console.log("Subscription:", sub);
+    window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+      ? ""
+      : "https://holyverse-s5s1.onrender.com");
+    const API_BASE = window.API_BASE;
 
 
-  // send sub to backend to store for this user
-  fetch(`${API_BASE}/subscribe`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(sub),
-    credentials: "include"
+    // send sub to backend to store for this user
+    fetch(`${API_BASE}/subscribe`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(sub),
+      credentials: "include"
+    });
   });
-});
+}
 
 function urlBase64ToUint8Array(base64String) {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);

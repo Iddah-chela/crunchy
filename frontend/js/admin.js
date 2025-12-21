@@ -20,23 +20,26 @@ function showModal(message) {
 }
 
 // Tab switching
-function switchAdminTab(tabName) {
-  document.querySelectorAll('.admin-tab-content').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  
-  document.querySelectorAll('.admin-tabs .tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  
+function switchAdminTab(tabName, btnElem) {
+  // hide all tab contents and deactivate all tab buttons
+  document.querySelectorAll('.admin-tab-content').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.admin-tabs .tab-btn').forEach(btn => btn.classList.remove('active'));
+
   const tabs = {
     'questions': 'questionsTab',
     'testimonies': 'testimoniesTab',
-    'reports': 'reportsTab'
+    'reports': 'reportsTab',
+    'push': 'pushTab'
   };
-  
-  document.getElementById(tabs[tabName]).classList.add('active');
-  event.target.classList.add('active');
+
+  const targetId = tabs[tabName];
+  const targetEl = targetId ? document.getElementById(targetId) : null;
+  if (targetEl) targetEl.classList.add('active');
+  else console.warn('Unknown admin tab:', tabName);
+
+  // Determine the button element: explicit arg, event target, or lookup by data attribute
+  let btn = btnElem || (typeof event !== 'undefined' && event && event.target) || document.querySelector(`.admin-tabs .tab-btn[data-tab="${tabName}"]`);
+  if (btn && btn.classList) btn.classList.add('active');
   
   // Load data for specific tab
   if (tabName === 'questions') {
@@ -45,6 +48,8 @@ function switchAdminTab(tabName) {
     loadPendingTestimonies();
   } else if (tabName === 'reports') {
     loadPendingReports();
+  } else if (tabName === 'push') {
+    loadPushTester();
   }
 }
 
@@ -287,4 +292,29 @@ async function reviewReport(id, action) {
 // Initial load
 window.addEventListener("DOMContentLoaded", () => {
   loadPendingQuestions();
+  // attach push tester handler if admin
+  document.getElementById('sendPushTestBtn')?.addEventListener('click', async () => {
+    const uid = parseInt(document.getElementById('pushTestUserId').value) || null;
+    const token = document.getElementById('pushTestToken').value.trim() || null;
+    const title = document.getElementById('pushTestTitle').value || 'Test';
+    const body = document.getElementById('pushTestBody').value || 'Test message';
+    const resEl = document.getElementById('pushTestResult');
+    try {
+      const resp = await fetch(`${API_BASE}/push/test`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ userId: uid, token, title, body })
+      });
+      const data = await resp.json();
+      if (resp.ok) resEl.textContent = 'Sent: ' + JSON.stringify(data);
+      else resEl.textContent = 'Error: ' + JSON.stringify(data);
+    } catch (e) {
+      resEl.textContent = 'Network error: ' + e.message;
+    }
+  });
 });
+
+function loadPushTester() {
+  // nothing heavy to load; handler already bound on DOMContentLoaded
+}

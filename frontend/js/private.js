@@ -150,47 +150,59 @@ async function loadThread(otherUserId) {
 
 function addMessageBubble(msg) {
   const bubbleWrapper = document.createElement("div");
-  bubbleWrapper.style.cssText = `margin-bottom:1rem; display:flex; align-items:flex-start; gap:8px; ${msg.senderId === currentUserId ? 'justify-content:flex-end; flex-direction:row-reverse;' : 'justify-content:flex-start;'}`;
+  bubbleWrapper.style.cssText = `margin-bottom:1rem; display:flex; align-items:flex-start; gap:8px; ${msg.senderId === currentUserId ? 'justify-content:flex-end;' : 'justify-content:flex-start;'}`;
   
   const bubble = document.createElement("div");
   bubble.className = msg.senderId === currentUserId ? "bubble you" : "bubble them";
 
-  if (msg.senderId === currentUserId) {
-    bubble.innerHTML = `<div class="bubble-text">${msg.text}</div>`;
-  } else {
-    const profilePic = msg.senderProfilePic || '/images/default-avatar.png';
-    const senderId = msg.senderId || msg.sender_id;
-    
-    // Get border style for sender
-    const borderStyle = senderId ? getUserBorderStyle(senderId) : '';
-    
-    const pic = document.createElement('img');
-    pic.src = profilePic;
-    pic.className = 'bubble-pic';
-    pic.style.cursor = 'pointer';
-    if (borderStyle) {
-      pic.style.cssText += borderStyle;
+  const isOwn = msg.senderId === currentUserId;
+  const user = JSON.parse(localStorage.getItem("user") || '{}');
+  const profilePic = isOwn ? user.profilePic || '/images/default-avatar.png' : msg.senderProfilePic || '/images/default-avatar.png';
+  const senderId = isOwn ? currentUserId : (msg.senderId || msg.sender_id);
+  
+  // Get border style
+  const borderStyle = senderId ? getUserBorderStyle(senderId) : '';
+  
+  const pic = document.createElement('img');
+  pic.src = profilePic;
+  pic.className = 'bubble-pic';
+  pic.style.cursor = 'pointer';
+  if (borderStyle) {
+    pic.style.cssText += borderStyle;
+  }
+  pic.onclick = () => {
+    if (senderId) {
+      window.location.href = `/profile-view.html?id=${encodeURIComponent(senderId)}`;
     }
-    pic.onclick = () => {
-      if (senderId) {
-        window.location.href = `/profile-view.html?id=${encodeURIComponent(senderId)}`;
-      }
-    };
-    
+  };
+  
+  const timestamp = msg.timestamp || msg.created_at || new Date();
+  const timeStr = new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  
+  if (isOwn) {
+    bubble.innerHTML = `
+      <div class="bubble-text">${msg.text}</div>
+      <div style="font-size:0.7rem; opacity:0.7; margin-top:0.25rem; text-align:right;">${timeStr}</div>
+    `;
+    bubbleWrapper.appendChild(bubble);
     bubbleWrapper.appendChild(pic);
-    
+  } else {
     bubble.innerHTML = `
       <div class="bubble-text">
         <span class="bubble-username">${msg.senderUsername}</span>
         <span class="bubble-message">${msg.text}</span>
       </div>
+      <div style="font-size:0.7rem; opacity:0.7; margin-top:0.25rem;">${timeStr}</div>
     `;
+    bubbleWrapper.appendChild(pic);
+    bubbleWrapper.appendChild(bubble);
   }
 
-  bubbleWrapper.appendChild(bubble);
   chatMessages.appendChild(bubbleWrapper);
   chatMessages.scrollTop = chatMessages.scrollHeight;
-  updateChatSnippet(msg.senderId === currentUserId ? msg.receiverId : msg.senderId, msg.text);
+  const isFromMe = msg.senderId === currentUserId;
+  const otherUserId = isFromMe ? msg.receiverId : msg.senderId;
+  updateChatSnippet(otherUserId, msg.text, isFromMe);
 }
 
 // Helper function to get user milestone border
@@ -213,7 +225,7 @@ function getUserBorderStyle(userId) {
 
 
 // Update snippet + localStorage on new message
-function updateChatSnippet(friendId, text) {
+function updateChatSnippet(friendId, text, isFromMe = false) {
   if (!friendId) return;
 
   const card = document.querySelector(`.chat-card[data-userid='${friendId}']`);
@@ -225,15 +237,17 @@ function updateChatSnippet(friendId, text) {
   // Save/update snippet for this friend
   localSnippets[friendId] = {
     text: text,
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    isFromMe: isFromMe
   };
   localStorage.setItem("chatSnippets", JSON.stringify(localSnippets));
 
   // Update UI
+  const prefix = isFromMe ? "You: " : "";
   const snippetText = text.length > 25 ? text.slice(0, 25) + "…" : text;
   const timeText = new Date(localSnippets[friendId].timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
 
-  card.querySelector(".chat-snippet").textContent = snippetText;
+  card.querySelector(".chat-snippet").textContent = prefix + snippetText;
   card.querySelector(".chat-time").textContent = timeText;
 }
 
@@ -269,7 +283,8 @@ async function loadChatList() {
 
     // Use backend lastMessage OR localStorage
     const snippetData = localSnippets[friend.id];
-    const snippetText = snippetData ? (snippetData.text.length > 25 ? snippetData.text.slice(0,25)+'…' : snippetData.text) : "Start a conversation…";
+    const prefix = snippetData?.isFromMe ? "You: " : "";
+    const snippetText = snippetData ? (prefix + (snippetData.text.length > 25 ? snippetData.text.slice(0,25)+'…' : snippetData.text)) : "Start a conversation…";
     const timeText = snippetData ? new Date(snippetData.timestamp).toLocaleTimeString([], { hour:'2-digit', minute:'2-digit', hour12:true }) : "–";
 
     card.innerHTML = `

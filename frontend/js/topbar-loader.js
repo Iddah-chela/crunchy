@@ -438,14 +438,33 @@ shareToggle.addEventListener("click", (e) => {
 
     nativeShare.addEventListener("click", async () => {
       console.log("📱 Native share clicked");
-      if (navigator.share) {
+      // Prefer Capacitor native share when available
+      let shared = false;
+      if (window.CapacitorHelpers && window.CapacitorHelpers.isNative && window.CapacitorHelpers.isNative()) {
         try {
-          await navigator.share({
-            title: "HolyVerse",
-            text: "✨ A faith app for daily verses, prayer, and community 🙏",
-            url: appUrl
-          });
+          shared = await window.CapacitorHelpers.share({ title: "HolyVerse", text: "✨ A faith app for daily verses, prayer, and community 🙏", url: appUrl });
+          if (shared) console.log("✅ Capacitor share completed, tracking...");
+        } catch (e) {
+          console.warn('Capacitor share failed, falling back', e);
+          shared = false;
+        }
+      }
+
+      if (!shared && navigator.share) {
+        try {
+          await navigator.share({ title: "HolyVerse", text: "✨ A faith app for daily verses, prayer, and community 🙏", url: appUrl });
           console.log("✅ Share completed, tracking...");
+          shared = true;
+        } catch (err) {
+          console.log("Share canceled:", err);
+        }
+      }
+
+      if (!shared) {
+        showModal("Your device doesn't support native sharing. Try copying the link instead.");
+      }
+
+      if (shared) {
           // Track app share for milestone
           const user = JSON.parse(localStorage.getItem("user") || "null");
           if (user && user.id) {
@@ -456,11 +475,6 @@ shareToggle.addEventListener("click", (e) => {
           } else {
             console.warn("⚠️ App share not tracked - user not logged in");
           }
-        } catch (err) {
-          console.log("Share canceled:", err);
-        }
-      } else {
-        showModal("Your browser doesn't support native sharing. Try copying the link instead.");
       }
     });
 

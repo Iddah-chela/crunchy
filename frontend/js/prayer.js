@@ -631,10 +631,7 @@ function generatePrayerByTopic(topic) {
   amenBtn.classList.add("innerbtn");
   amenBtn.style.marginRight = "10px";
   amenBtn.onclick = () => {
-    // Show toast notification
-    if (typeof showPrayerToast === 'function') {
-      showPrayerToast('🙏 Amen');
-    }
+    
     // Throw confetti celebration
     if (typeof confetti === 'function') {
       confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
@@ -647,6 +644,10 @@ function generatePrayerByTopic(topic) {
       display.innerHTML = "";
       display.style.backgroundImage = "";
     }, 1200);
+    // Show toast notification
+    if (typeof showPrayerToast === 'function') {
+      showPrayerToast('🙏 Amen');
+    }
   };
 
   const closeBtn = document.createElement("button");

@@ -1,4 +1,4 @@
-const CACHE_NAME = "holyverse-cache-v20";
+const CACHE_NAME = "holyverse-cache-v21";
 const urlsToCache = [
   "/",
   "/index.html",
@@ -85,7 +85,7 @@ const urlsToCache = [
   "/backgrounds/almost18tree.png",
   "/backgrounds/20stree.png",
   "/backgrounds/25hapo.png",
-  "/backgrounds/30sasa.png",
+  "/backgrounds/30sasa.webp",
   "/backgrounds/bigtree.png"
 ];
 

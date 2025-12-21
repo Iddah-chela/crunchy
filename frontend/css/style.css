@@ -291,7 +291,7 @@
   --text-color: #2e3d2f;
   --button-bg: #dcefd8;
   --button-text: #2e3d2f;
-  --accent: #57df7c;
+  --accent: #44a85f;
   --verse-color: #ffffff;
 
   --accent1: #ddfdce;
@@ -3005,7 +3005,7 @@ html, body {
 /* 👶 Baby AI Bubble */
 .baby-ai-bubble {
   position: fixed;
-  bottom: 2.8rem;
+  bottom: 3.8rem;
   right: 1rem;
   background: none;
   color: var(--button-text);
@@ -3861,7 +3861,7 @@ canvas#lens {
 
 .bubble {
   display: inline-flex;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: flex-start;
   gap: 8px;
   max-width: 70%;
@@ -4069,7 +4069,7 @@ canvas#lens {
     border-bottom: none;
   }
   .baby-ai-bubble, #notes-box, #chat-view {
-    bottom: 30px;
+    bottom: 20px;
   }
   .link-btn {
     bottom: 0;
@@ -4134,7 +4134,7 @@ canvas#lens {
     }
     .playlist-card {
       width: 100%;
-      max-width: 520px;
+      max-width: 620px;
       border-radius: 14px;
       padding: 14px;
       background: var(--bg-color);
@@ -4343,7 +4343,6 @@ canvas#lens {
       width: 100%;
       max-width: none;
       margin: 20px auto;
-      padding: 0 20px;
     }
     
     .hymn-book-open {

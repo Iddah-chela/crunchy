@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const treeImages = [
         "backgrounds/seedling.png","backgrounds/kidplant.png","backgrounds/tweenseed.png",
         "backgrounds/teenplant.png","backgrounds/almost18tree.png","backgrounds/20stree.png",
-        "backgrounds/25hapo.png","backgrounds/30sasa.png","backgrounds/bigtree.png"
+        "backgrounds/25hapo.png","backgrounds/30sasa.webp","backgrounds/bigtree.png"
       ];
       if (viewTreeImage) viewTreeImage.src = treeImages[Math.min(treeLevel, treeImages.length-1)];
 

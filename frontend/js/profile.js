@@ -48,6 +48,20 @@ document.addEventListener("DOMContentLoaded", async () => {
           if (usernameInput) usernameInput.value = user.username || "";
           if (bioInput) bioInput.value = user.bio || "";
           if (profileBio) profileBio.textContent = user.bio || "No bio yet.";
+          // Show admin link only for user id 10
+          try {
+            if (user && user.id === 10) {
+              const adminLink = document.createElement('a');
+              adminLink.href = '/admin.html';
+              adminLink.textContent = 'Admin Dashboard';
+              adminLink.className = 'admin-link';
+              adminLink.style.display = 'inline-block';
+              adminLink.style.marginTop = '8px';
+              if (profileInfos) profileInfos.appendChild(adminLink);
+            }
+          } catch (e) {
+            console.warn('Failed to append admin link', e);
+          }
         }
       } catch (err) {
         console.error("Failed to fetch user on load:", err);
@@ -84,6 +98,21 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 
+  // If running as native Capacitor app, allow picking image via native camera/image picker
+  let nativePickedImageData = null;
+  if (window.CapacitorHelpers && window.CapacitorHelpers.isNative && window.CapacitorHelpers.isNative()) {
+    if (profilePicEl) {
+      profilePicEl.style.cursor = 'pointer';
+      profilePicEl.addEventListener('click', async () => {
+        const res = await window.CapacitorHelpers.pickImage({ quality: 80 });
+        if (res && res.dataUrl) {
+          nativePickedImageData = res.dataUrl;
+          if (preview) preview.src = nativePickedImageData;
+        }
+      });
+    }
+  }
+
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -100,6 +129,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (fileInput?.files[0])
         formData.append("profilePic", fileInput.files[0]);
 
+      // If native image was picked via Capacitor, convert dataURL to blob and append
+      if (nativePickedImageData) {
+        const res = await fetch(nativePickedImageData);
+        const blob = await res.blob();
+        formData.append('profilePic', blob, 'profile.jpg');
+      }
+
       try {
         const res = await fetch(`${API_BASE}/users/${user.id}`, {
           method: "PUT",
@@ -109,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         const data = await res.json();
 
         if (!res.ok) {
-          msg.textContent = data.error || "Profile update failed. Please try again.";
+          msg.textContent = "Profile update failed. Please try again.";
           return;
         }
 
@@ -155,7 +191,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const waterCountEl = document.getElementById('waterCount');
   const waterBtn = document.getElementById('waterBtn');
 
-  let water = parseInt(localStorage.getItem(waterKey)) || 0;
+  let water = parseInt(localStorage.getItem(waterKey));
+  if (isNaN(water)) water = 2;
   let treeLevel = parseInt(localStorage.getItem(treeKey)) || 0;
 
   const treeImages = [
@@ -166,7 +203,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     "backgrounds/almost18tree.png",
     "backgrounds/20stree.png",
     "backgrounds/25hapo.png",
-    "backgrounds/30sasa.png",
+    "backgrounds/30sasa.webp",
     "backgrounds/bigtree.png"  // full-grown
   ];
 
@@ -251,31 +288,36 @@ document.addEventListener("DOMContentLoaded", async () => {
   // attach water button
   if (waterBtn) waterBtn.addEventListener("click", waterTree);
 
-  const lastWaterDayKey2 = `lastWaterGiven_${currentUserName}`;
-  const lastWaterDay = localStorage.getItem(lastWaterDayKey2);
+  const lastDailyWaterKey = `lastDailyWater_${currentUserName}`;
+
   const today = new Date();
+  const lastDailyWater = localStorage.getItem(lastDailyWaterKey);
   const todayStr = today.toDateString();
 
-  // Give daily water FIRST if it's a new day
-  if (todayStr !== lastWaterDay) {
-    water++;
-    localStorage.setItem(waterKey, water);
-    localStorage.setItem(lastWaterDayKey2, todayStr);
-  }
+  // Give daily water if not already given today
 
-  // Check if user watered yesterday - if not, tree goes down 1 step
+if (todayStr !== lastDailyWater) {
+  water++;
+  localStorage.setItem(waterKey, water);
+  localStorage.setItem(lastDailyWaterKey, todayStr);
+}
+
+
+  // Check if tree should decrease - only if they haven't watered in 2+ days
+  // Example: Water on Monday → No water Tuesday → Tree decreases on Wednesday
   const lastWateredStr = localStorage.getItem(lastWaterDayKey);
   if (lastWateredStr) {
     const lastWatered = new Date(lastWateredStr);
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
-    yesterday.setHours(0, 0, 0, 0); // Set to start of day
+    const twoDaysAgo = new Date(today);
+    twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+    twoDaysAgo.setHours(0, 0, 0, 0); // Set to start of day
     lastWatered.setHours(0, 0, 0, 0); // Set to start of day
     
-    // If last watered was before yesterday, tree goes down 1 level
-    if (lastWatered < yesterday) {
+    // If last watered was before (or on) the day before yesterday, tree goes down 1 level
+    if (lastWatered <= twoDaysAgo) {
       treeLevel = Math.max(0, treeLevel - 1);
       localStorage.setItem(treeKey, treeLevel);
+      console.log(`🌳 Tree decreased to level ${treeLevel} (last watered: ${lastWateredStr})`);
       
       // Update backend (wrap in async IIFE)
       if (user?.id) {
@@ -335,7 +377,15 @@ document.addEventListener("DOMContentLoaded", async () => {
         { value: 5, title: "5 chapters!", reward: "📜 Seeker" },
         { value: 20, title: "20 chapters!", reward: "🧭 Explorer" },
         { value: 50, title: "50 chapters!", reward: "🛡️ Disciple" },
-        { value: 100, title: "100 chapters!", reward: "🏆 Scholar" }
+        { value: 100, title: "100 chapters!", reward: "🏆 Scholar" },
+        { value: 150, title: "150 chapters!", reward: "👑 Master" },
+        { value: 200, title: "200 chapters!", reward: "📚 Bookworm" },
+        { value: 250, title: "250 chapters!", reward: "📖 Scribe" },
+        { value: 300, title: "300 chapters!", reward: "🔮 Sage" },
+        { value: 350, title: "350 chapters!", reward: "🌟 Mentor" },
+        { value: 400, title: "400 chapters!", reward: "🔥 Torchbearer" },
+        { value: 450, title: "450 chapters!", reward: "🦉 Oracle" },
+        { value: 500, title: "500 chapters!", reward: "🌠 Luminary" }
       ]
     },
     books_read_count: {
@@ -463,31 +513,85 @@ document.addEventListener("DOMContentLoaded", async () => {
     const profilePic = document.querySelector(".profile-pic");
     if (!profilePic) return;
 
+    // Add tooltip on click for next border info
+    profilePic.onclick = function (e) {
+      // Remove any existing tooltip
+      let oldTip = document.getElementById("profilePicTooltip");
+      if (oldTip) oldTip.remove();
+      // Create tooltip
+      const tip = document.createElement("div");
+      tip.id = "profilePicTooltip";
+      tip.textContent = `🎯 Next border at ${Math.ceil(totalMilestones * 0.25)} milestones (currently ${claimedCount})`;
+      tip.style.position = "absolute";
+      tip.style.background = "#222";
+      tip.style.color = "#fff";
+      tip.style.padding = "6px 12px";
+      tip.style.borderRadius = "8px";
+      tip.style.fontSize = "13px";
+      tip.style.zIndex = 1000;
+      tip.style.top = (profilePic.offsetTop + profilePic.offsetHeight + 8) + "px";
+      tip.style.left = (profilePic.offsetLeft + profilePic.offsetWidth/2 - 90) + "px";
+      tip.style.boxShadow = "0 2px 8px rgba(0,0,0,0.18)";
+      tip.style.pointerEvents = "none";
+      document.body.appendChild(tip);
+      setTimeout(() => { tip.remove(); }, 2200);
+    };
+
     // Unlock borders at different completion levels
     if (claimedCount >= totalMilestones) {
       // All milestones complete - legendary rainbow border
       profilePic.style.border = "4px solid transparent";
       profilePic.style.background = "linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box";
       localStorage.setItem(`profileBorderLevel${uidSuffix}`, "legendary");
-      console.log(`✨ LEGENDARY BORDER UNLOCKED! (100%)`);
-    } else if (claimedCount >= totalMilestones * 0.75) {
-      // 75% complete - gold border
+      const lastBorderShown = localStorage.getItem(`lastBorderShown${uidSuffix}`);
+if (claimedCount >= totalMilestones && lastBorderShown !== "legendary") {
+    // show modal
+    showModal(`✨ LEGENDARY BORDER UNLOCKED! (100%)`);
+    localStorage.setItem(`lastBorderShown${uidSuffix}`, "legendary");
+}
+    } else if (claimedCount >= totalMilestones * 0.8) {
+      // 80% complete - platinum border
+      profilePic.style.border = "4px solid transparent";
+      profilePic.style.background =
+        "linear-gradient(white, white) padding-box, linear-gradient(135deg, #e5e4e2, #bfc1c2, #f5f7fa) border-box";
+      profilePic.style.boxShadow = "0 0 18px rgba(229, 228, 226, 0.8)";
+      localStorage.setItem(`profileBorderLevel${uidSuffix}`, "platinum");
+
+      if (claimedCount >= totalMilestones * 0.8 && localStorage.getItem(`lastBorderShown${uidSuffix}`) !== "platinum") {
+        showModal(`💎 PLATINUM BORDER UNLOCKED! (80%+)`);
+        localStorage.setItem(`lastBorderShown${uidSuffix}`, "platinum");
+      }
+
+    } else if (claimedCount >= totalMilestones * 0.6) {
+      // 60% complete - gold border
       profilePic.style.border = "4px solid gold";
       profilePic.style.boxShadow = "0 0 15px rgba(255, 215, 0, 0.6)";
       localStorage.setItem(`profileBorderLevel${uidSuffix}`, "gold");
-      console.log(`🥇 GOLD BORDER UNLOCKED! (75%+)`);
-    } else if (claimedCount >= totalMilestones * 0.5) {
-      // 50% complete - silver border
+      if (claimedCount >= totalMilestones * 0.6 && localStorage.getItem(`lastBorderShown${uidSuffix}`) !== "gold") {
+        // show modal
+        showModal(`🥇 GOLD BORDER UNLOCKED! (60%+)`);
+        localStorage.setItem(`lastBorderShown${uidSuffix}`, "gold");
+      }
+    } else if (claimedCount >= totalMilestones * 0.4) {
+      // 40% complete - silver border
       profilePic.style.border = "4px solid silver";
       profilePic.style.boxShadow = "0 0 10px rgba(192, 192, 192, 0.6)";
       localStorage.setItem(`profileBorderLevel${uidSuffix}`, "silver");
-      console.log(`🥈 SILVER BORDER UNLOCKED! (50%+)`);
-    } else if (claimedCount >= totalMilestones * 0.25) {
-      // 25% complete - bronze border
+      if (claimedCount >= totalMilestones * 0.4 && localStorage.getItem(`lastBorderShown${uidSuffix}`) !== "silver") {
+        // show modal
+        showModal(`🥈 SILVER BORDER UNLOCKED! (40%+)`);
+        localStorage.setItem(`lastBorderShown${uidSuffix}`, "silver");
+      }
+    } else if (claimedCount >= totalMilestones * 0.2) {
+      // 20% complete - bronze border
       profilePic.style.border = "4px solid #cd7f32";
       profilePic.style.boxShadow = "0 0 8px rgba(205, 127, 50, 0.5)";
       localStorage.setItem(`profileBorderLevel${uidSuffix}`, "bronze");
-      console.log(`🥉 BRONZE BORDER UNLOCKED! (25%+)`);
+      if (claimedCount >= totalMilestones * 0.2 && localStorage.getItem(`lastBorderShown${uidSuffix}`) !== "bronze") {
+        // show modal
+        showModal(`🥉 BRONZE BORDER UNLOCKED! (20%+)`);
+        localStorage.setItem(`lastBorderShown${uidSuffix}`, "bronze");
+      }
     } else {
       console.log(`🎯 Next border at ${Math.ceil(totalMilestones * 0.25)} milestones (currently ${claimedCount})`);
     }
@@ -577,4 +681,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   initMilestones();
   // Don't apply saved border - recalculate based on current user's actual milestones
   checkAndUnlockProfileBorder();
+// =============================
+// CAPACITOR/MOBILE COMPATIBILITY NOTE
+// =============================
+// - Most features work in Capacitor (localStorage, fetch, UI, etc.)
+// - Push notifications require a plugin (e.g. @capacitor/push-notifications) and Firebase setup. If you use browser notification APIs, they will NOT work in the APK. You must use the Capacitor plugin for notifications to work on Android/iOS.
+// - File uploads, camera, and sharing may need Capacitor plugins for best experience.
+// - If you add new native features, check Capacitor docs for the right plugin.
+
 });

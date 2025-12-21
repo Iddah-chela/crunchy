@@ -113,11 +113,15 @@ const questionButtons = Array.from(document.querySelectorAll(".question-btn"))
 
 // Create Fuse instance
 let fuse;
-if (document.getElementById("questionSearch")) {
-  fuse = new Fuse(questionButtons, {
-    keys: ["text"],
-    threshold: 0.4
-  });
+try {
+  if (typeof Fuse === 'function' && document.getElementById("questionSearch")) {
+    fuse = new Fuse(questionButtons, {
+      keys: ["text"],
+      threshold: 0.4
+    });
+  }
+} catch (e) {
+  fuse = null;
 }
 
 function getFavoritesFromStorage() {
@@ -156,8 +160,11 @@ function addButtonsToDisplay(display, chosen, tag) {
     let stored = storage.getItem("favorites");
     let currentFavorites = stored ? JSON.parse(stored) : [];
 
-    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
+    try {
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      }
+    } catch (e) {}
     if (!currentFavorites.some(fav => fav.text === verseText)) {
       let newEntry = { text: verseText, notes: "" };
       currentFavorites.push(newEntry);
@@ -541,11 +548,15 @@ function randgen(q) {
         let display = document.getElementById("versedisplay");
         let verseText = display.innerHTML.split('<div class="btn-container">')[0];
 
-        confetti({
-          particleCount: 100,
-          spread: 70,
-          origin: { y: 0.6 }
-        });
+        try {
+          if (typeof confetti === 'function') {
+            confetti({
+              particleCount: 100,
+              spread: 70,
+              origin: { y: 0.6 }
+            });
+          }
+        } catch (e) {}
 
         let stored = storage.getItem("favorites");
         let currentFavorites = stored ? JSON.parse(stored) : [];
@@ -765,7 +776,10 @@ function filterQuestions() {
   });
 
   // Run Fuse search
-  const results = fuse.search(input);
+  let results = [];
+  if (fuse && typeof fuse.search === 'function') {
+    results = fuse.search(input);
+  }
 
   // Show only matching questions and their category buttons
   results.forEach(({ item }) => {
@@ -892,8 +906,7 @@ async function loadUserQuestions() {
     }
     
     const data = await response.json();
-    console.log("Raw API response:", data);
-    console.log("Questions array:", data.questions);
+    console.log("Raw API response:", data);;
     let { questions } = data;
     
     // Filter to only show user-submitted questions (those with question_id starting with "user_q")

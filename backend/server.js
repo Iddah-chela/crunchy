@@ -28,6 +28,10 @@ const FRONTEND_ORIGIN = [
   process.env.FRONTEND_PROD || "https://holy-verse.web.app",
   process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com"
 ];
+// Allow Capacitor/native origins used by the WebView
+FRONTEND_ORIGIN.push('capacitor://localhost');
+FRONTEND_ORIGIN.push('http://localhost');
+FRONTEND_ORIGIN.push('ionic://localhost');
 
 const io = new Server(server, {
   cors: {
@@ -75,6 +79,10 @@ const whitelist = [
   process.env.FRONTEND_PROD || "https://holy-verse.web.app",
   process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com",
 ];
+// Also allow common Capacitor/ionic origins
+whitelist.push('capacitor://localhost');
+whitelist.push('http://localhost');
+whitelist.push('ionic://localhost');
 
 app.use(cors({
   origin: function(origin, callback) {
@@ -139,6 +147,9 @@ const chatRoutes = require("./routes/chat");
 // Import chat encryption helper from your converted route (it exports encrypt)
 const { encrypt } = require("./routes/chat");
 app.use("/chat", chatRoutes);
+
+const pushRoutes = require("./routes/push");
+app.use('/push', pushRoutes);
 
 
 // Serve frontend in production

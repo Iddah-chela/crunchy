@@ -131,7 +131,7 @@ async function getIntentFromWit(text) {
   try {
     const response = await fetch("https://api.wit.ai/message?v=20240515&q=" + encodeURIComponent(text), {
       headers: {
-        Authorization: "Beare BN74P3DQIXTLCLXUES3Q27KSHXKAFV3G"
+        Authorization: "Bearer BN74P3DQIXTLCLXUES3Q27KSHXKAFV3G"
       }
     });
     const data = await response.json();
@@ -327,6 +327,20 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
   // If we have a File (imageFile) prefer FormData (multipart)
   try {
     if (imageFile) {
+      // If offline, convert to dataURL and enqueue
+      if (!navigator.onLine && window.OfflineSync && window.OfflineSync.enqueueRequest) {
+        const dataUrl = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result);
+          reader.readAsDataURL(imageFile);
+        });
+        await window.OfflineSync.enqueueRequest(`${API_BASE}/commune/questions`, 'POST', { user_id, title, body, imageDataUrl: dataUrl });
+        // create a local draft
+        questions.unshift({ id: `local-${Date.now()}`, title, body, image: dataUrl, draft: true });
+        saveQuestions();
+        renderQuestions();
+        return { queued: true };
+      }
       const fd = new FormData();
       fd.append("user_id", user_id);
       fd.append("title", title);
@@ -342,6 +356,13 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
       return data;
     } else if (imageDataUrl) {
       // convert dataURL to blob then multipart (better than JSON), backend with multer will accept
+      if (!navigator.onLine && window.OfflineSync && window.OfflineSync.enqueueRequest) {
+        await window.OfflineSync.enqueueRequest(`${API_BASE}/commune/questions`, 'POST', { user_id, title, body, imageDataUrl });
+        questions.unshift({ id: `local-${Date.now()}`, title, body, image: imageDataUrl, draft: true });
+        saveQuestions();
+        renderQuestions();
+        return { queued: true };
+      }
       const blob = dataURLtoBlob(imageDataUrl);
       const fd = new FormData();
       fd.append("user_id", user_id);
@@ -358,6 +379,13 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
       return data;
     } else {
       // No image: send JSON
+      if (!navigator.onLine && window.OfflineSync && window.OfflineSync.enqueueRequest) {
+        await window.OfflineSync.enqueueRequest(`${API_BASE}/commune/questions`, 'POST', { user_id, title, body });
+        questions.unshift({ id: `local-${Date.now()}`, title, body, draft: true });
+        saveQuestions();
+        renderQuestions();
+        return { queued: true };
+      }
       const res = await fetch(`${API_BASE}/commune/questions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -369,7 +397,18 @@ async function postQuestionToServer({ user_id, title, body, imageFile, imageData
       return data;
     }
   } catch (err) {
-    // bubble error up
+    // If network error, enqueue for later
+    if ((err instanceof TypeError || err.name === 'TypeError' || !navigator.onLine) && window.OfflineSync && window.OfflineSync.enqueueRequest) {
+      try {
+        await window.OfflineSync.enqueueRequest(`${API_BASE}/commune/questions`, 'POST', { user_id, title, body, imageDataUrl });
+        questions.unshift({ id: `local-${Date.now()}`, title, body, image: imageDataUrl || null, draft: true });
+        saveQuestions();
+        renderQuestions();
+        return { queued: true };
+      } catch (e) {
+        console.error('Failed to enqueue after error', e);
+      }
+    }
     throw err;
   }
 }
@@ -1927,7 +1966,20 @@ async function leaveGroup(groupId, groupName) {
 async function submitCommunityPost() {
   const text = document.getElementById("communityPostText").value.trim();
   const imageInput = document.getElementById("communityPostImage");
-  const imageFile = imageInput?.files[0];
+  let imageFile = imageInput?.files[0];
+
+  // If no file selected and running natively, try Capacitor image picker
+  if (!imageFile && window.CapacitorHelpers && window.CapacitorHelpers.isNative && window.CapacitorHelpers.isNative()) {
+    try {
+      const picked = await window.CapacitorHelpers.pickImage({ quality: 80 });
+      if (picked && picked.dataUrl) {
+        const blob = dataURLtoBlob(picked.dataUrl);
+        imageFile = blob;
+      }
+    } catch (e) {
+      console.warn('Native image pick failed or canceled', e);
+    }
+  }
   
   if (!text) {
     showModal("Please write something!");
