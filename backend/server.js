@@ -26,17 +26,19 @@ cloudinary.config({
 const FRONTEND_ORIGIN = [
   process.env.FRONTEND_ORIGIN || "http://localhost:4000",
   process.env.FRONTEND_PROD || "https://holy-verse.web.app",
-  process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com"
+  process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com",
+  'capacitor://localhost',
+  'http://localhost',
+  'ionic://localhost',
+  'file://',
+  'android-webview'
 ];
 // Allow Capacitor/native origins used by the WebView
-FRONTEND_ORIGIN.push('capacitor://localhost');
-FRONTEND_ORIGIN.push('http://localhost');
-FRONTEND_ORIGIN.push('ionic://localhost');
 
 const io = new Server(server, {
   cors: {
     origin: (origin, callback) => {
-      if (!origin) return callback(null, true); // Postman, scripts
+      if (!origin || origin === "null") return callback(null, true); // Postman, scripts
       if (FRONTEND_ORIGIN.includes(origin)) callback(null, true);
       else callback(new Error("Not allowed by CORS"));
     },
@@ -88,7 +90,7 @@ const whitelist = [
 app.use(cors({
   origin: function(origin, callback) {
     // allow requests with no origin (like Postman)
-    if (!origin) return callback(null, true);
+    if (!origin || origin === "null") return callback(null, true);
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
