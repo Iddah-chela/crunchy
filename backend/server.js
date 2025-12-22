@@ -78,11 +78,12 @@ const whitelist = [
   process.env.FRONTEND_ORIGIN || 'http://localhost:4000',
   process.env.FRONTEND_PROD || "https://holy-verse.web.app",
   process.env.FRONTEND_ALT || "https://holyverse-s5s1.onrender.com",
+  'capacitor://localhost',
+  'http://localhost',
+  'ionic://localhost',
+  'file://',
+  'android-webview'
 ];
-// Also allow common Capacitor/ionic origins
-whitelist.push('capacitor://localhost');
-whitelist.push('http://localhost');
-whitelist.push('ionic://localhost');
 
 app.use(cors({
   origin: function(origin, callback) {
@@ -152,7 +153,11 @@ const pushRoutes = require("./routes/push");
 app.use('/push', pushRoutes);
 
 
-// Serve frontend in production
+
+// Serve Bible JSONs from root-level bible folder at /bible/*.json
+app.use('/bible', express.static(path.join(__dirname, '../bible')));
+
+// Serve frontend in development
 if(process.env.NODE_ENV === "development") {
   app.use(express.static(path.join(__dirname, "../frontend")));
 }

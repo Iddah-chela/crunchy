@@ -31,103 +31,98 @@ function recordBibleProgress(bookName, chapterNum) {
 }
 
 
-import { initBibleMemory, loadVersionIfNeeded } from "./bibleMigrator.js";
-(async function loadBible() {
-  
+(function loadBibleCacheScript() {
+  const script = document.createElement('script');
+  script.src = './js/bible-cache.js';
+  document.head.appendChild(script);
+})();
 
-  const loaded = await isBibleLoaded();
-  if (!loaded) {
-    console.log("📥 Loading Bible for first time...");
-    await migrateBible();
-  }
+// Wait for BibleCache to be available
+function waitForBibleCache() {
+  return new Promise(resolve => {
+    if (window.BibleCache) return resolve();
+    const check = () => {
+      if (window.BibleCache) return resolve();
+      setTimeout(check, 50);
+    };
+    check();
+  });
+}
+// Bible version keys: en_kjv (default), others match filenames in /bible
+const DEFAULT_VERSION = 'KING JAMES BIBLE';
+let availableVersions = [DEFAULT_VERSION];
 
-  const verses = await db.bible.orderBy("order").toArray();
-const seen = new Set();
-bibleData = [];
-
-for (const v of verses) {
-  if (!seen.has(v.book)) {
-    seen.add(v.book);
-    bibleData.push({ name: v.book });
-  }
+// Load available versions from /bible folder (except KJV)
+async function fetchAvailableVersions() {
+  // Hardcoded for now; could be fetched from server or manifest
+  availableVersions = [DEFAULT_VERSION,
+    'AMERICAN STANDARD VERSION', 'AMPLIFIED BIBLE', 'ANDERSON NEW TESTAMENT', 'ARAMAIC BIBLE IN PLAIN ENGLISH',
+    'BEREAN LITERAL BIBLE', 'BEREAN STANDARD BIBLE', 'BRENTON SEPTUAGINT TRANSLATION', 'CATHOLIC PUBLIC DOMAIN VERSION',
+    'CHRISTIAN STANDARD BIBLE', 'CONTEMPORARY ENGLISH VERSION', 'DOUAY-RHEIMS BIBLE', 'ENGLISH REVISED VERSION',
+    'ENGLISH STANDARD VERSION', "GOD'S WORD® TRANSLATION", 'GODBEY NEW TESTAMENT', 'GOOD NEWS TRANSLATION',
+    'HAWEIS NEW TESTAMENT', 'HOLMAN CHRISTIAN STANDARD BIBLE', 'INTERNATIONAL STANDARD VERSION', 'JPS TANAKH 1917',
+    'LAMSA BIBLE', 'LEGACY STANDARD BIBLE', 'LITERAL STANDARD VERSION', 'MACE NEW TESTAMENT', 'MAJORITY STANDARD BIBLE',
+    'NASB 1977', 'NASB 1995', 'NET BIBLE', 'NEW AMERICAN BIBLE', 'NEW AMERICAN STANDARD BIBLE', 'NEW HEART ENGLISH BIBLE',
+    'NEW INTERNATIONAL VERSION', 'NEW KING JAMES VERSION', 'NEW LIVING TRANSLATION', 'NEW REVISED STANDARD VERSION',
+    'PESHITTA HOLY BIBLE TRANSLATED', "SMITH'S LITERAL TRANSLATION"
+  ];
 }
 
-  
-  renderBookList("ot");
+// Load book list from KJV (bundled)
+async function loadKJVBookList() {
+  const kjv = await fetch('/bible/KING JAMES BIBLE.json').then(r => r.json());
+  let booksArr;
+  if (Array.isArray(kjv)) {
+    booksArr = kjv;
+  } else if (typeof kjv === 'object' && kjv !== null) {
+    // Convert object format to array
+    booksArr = Object.keys(kjv).map(name => ({
+      name,
+      abbrev: name,
+      chapters: Object.keys(kjv[name]).map(chNum => {
+        // Each chapter is an object: { '1': 'text', ... }
+        const verses = kjv[name][chNum];
+        // Defensive: skip if not an object
+        if (typeof verses !== 'object' || verses === null) return [];
+        return Object.keys(verses).sort((a,b)=>Number(a)-Number(b)).map(v => verses[v]);
+      })
+    }));
+  } else {
+    booksArr = [];
+  }
+  bibleBooks = booksArr.map(b => b.name);
+  bibleData = booksArr;
+}
 
+// Main init
 
+// Helper: restore last read state if available
+async function restoreLastReadState() {
+  const lastBook = localStorage.getItem("lastBook");
+  const lastChapter = localStorage.getItem("lastChapter");
+  if (lastBook && lastChapter !== null && bibleBooks.includes(lastBook)) {
+    await renderChapters(lastBook);
+    await renderVerses(lastBook, parseInt(lastChapter));
+    return true;
+  }
+  return false;
+}
 
-    // --- handle ?ref= deep-link here ---
-    const params = new URLSearchParams(window.location.search);
-    const refParam = params.get("ref");
+(async function initBibleApp() {
+  await waitForBibleCache();
+  await fetchAvailableVersions();
+  await loadKJVBookList();
+  // Populate version select
+  versionSelect.innerHTML = availableVersions.map(v => `<option value="${v}">${v}</option>`).join('');
+  const savedVersion = localStorage.getItem('bibleVersion') || DEFAULT_VERSION;
+  currentVersion = savedVersion;
+  versionSelect.value = savedVersion;
+  // Try to restore last read state, else show book list
+  if (!(await restoreLastReadState())) {
+    renderBookList('ot');
+  }
+})();
 
-    if (refParam) {
-      const refMatch = refParam.match(/^(.+?)\s+(\d+):(\d+)$/);
-      if (refMatch) {
-        const [, rawBook, chapterStr, verseStr] = refMatch;
-        const chapterIdx = parseInt(chapterStr, 10) - 1;
-
-        function normalizeName(s) {
-          return s.replace(/[^\w\s]/g, "").replace(/\s+/g, " ").trim().toLowerCase();
-        }
-
-        const wanted = normalizeName(rawBook);
-        let book = bibleData.find(b => normalizeName(b.name) === wanted);
-        if (!book) {
-          book = bibleData.find(b =>
-            normalizeName(b.name).startsWith(wanted) ||
-            wanted.startsWith(normalizeName(b.name))
-          );
-        }
-
-        if (book) {
-          renderVerses(book, chapterIdx);
-          const headingEl = document.querySelector(".heading");
-          if (headingEl) headingEl.textContent = `${book.name} ${chapterStr}`;
-
-          const ref = `${book.name} ${chapterStr}:${verseStr}`;
-          const expectedId = ref.replace(/\s+/g, "_").replace(":", "_");
-
-          const waitForElement = (id, timeout = 3000, interval = 50) =>
-            new Promise((resolve, reject) => {
-              const start = Date.now();
-              const check = () => {
-                const el = document.getElementById(id);
-                if (el) return resolve(el);
-                if (Date.now() - start > timeout)
-                  return reject(new Error("Timeout waiting for " + id));
-                setTimeout(check, interval);
-              };
-              check();
-            });
-
-          try {
-            const verseEl = await waitForElement(expectedId, 5000, 60);
-            verseEl.scrollIntoView({ behavior: "smooth", block: "center" });
-            verseEl.classList.add("jump-highlight");
-            setTimeout(() => verseEl.classList.remove("jump-highlight"), 2200);
-          } catch (e) {
-            console.warn(e);
-          }
-
-          return; // stop here, skip "last read" and OT render below
-        }
-      }
-    }
-
-    // --- fallback if no ?ref= ---
-    const lastBook = localStorage.getItem("lastBook");
-    const lastChapter = localStorage.getItem("lastChapter");
-    if (lastBook && lastChapter !== null) {
-      const book = bibleData.find(b => b.name === lastBook);
-      if (book) {
-        renderVerses(book, parseInt(lastChapter));
-        return;
-      }
-    }
-
-    renderBookList("ot");
-  });
 
 function showModal(message) {
   const modal = document.getElementById("appModal");
@@ -149,14 +144,8 @@ const versionSelect = document.getElementById("versionSelect");
 versionSelect.addEventListener("change", async (e) => {
   const selected = e.target.value;
   localStorage.setItem("bibleVersion", selected);
-  try {
-    await loadVersionIfNeeded(selected); // lazy fetch
-    currentVersion = selected;
-    renderVerses(currentBookName, currentChapterIdx);
-  } catch (err) {
-    console.error("Failed to load version:", err);
-    showModal("Could not load selected Bible version.");
-  }
+  currentVersion = selected;
+  renderVerses(currentBookName, currentChapterIdx);
 });
 
 
@@ -207,50 +196,7 @@ function setMainHeading(text) {
 
 
 
-// --- initial load: fetch book list (absolute path) ---
-(async function initBible() {
-  try {
-    console.log("📥 Loading Bible into app memory...");
-    await initBibleMemory(); // seeds version list and sets defaults (but doesn't necessarily load data)
 
-    // populate select AFTER seedVersionList has run
-    versionSelect.innerHTML = Object.keys(window.BIBLE)
-      .filter(k => !k.endsWith("___path"))
-      .map(v => `<option value="${v}">${v}</option>`)
-      .join("");
-
-    // determine saved or first version
-    const savedVersion = localStorage.getItem("bibleVersion");
-    const keys = Object.keys(window.BIBLE).filter(k => !k.endsWith("___path"));
-    const first = keys[0];
-
-    const chosen = (savedVersion && window.BIBLE[savedVersion] !== undefined) ? savedVersion : first;
-
-    if (!chosen) {
-      throw new Error("No Bible versions available. Check /bible folder and fallback manifest.");
-    }
-
-    // actually load chosen version before rendering anything
-    await loadVersionIfNeeded(chosen);
-
-    currentVersion = chosen;
-    window.currentVersion = chosen;
-    versionSelect.value = chosen;
-
-    // now build book list and render
-    bibleBooks = window.BIBLE_BOOKS.slice();
-    renderBookList("ot");
-    handleDeepLinkOrLastRead();
-
-    console.log("✅ Init complete (memory mode).");
-  } catch (err) {
-    console.error("Could not initialize Bible memory:", err);
-    showModal("Could not load Bible. Please refresh the page or check your internet connection.");
-  }
-})();
-
-
-// --- initial load: fetch book list (absolute path) ---
 
 
 // handle deep link or last read (called after books are loaded)
@@ -352,8 +298,10 @@ function renderBookList(testament) {
 }
 
 // -------------------- Render Chapters (by book name) --------------------
-function renderChapters(bookName) {
+async function renderChapters(bookName) {
   hideAll();
+  // Defensive: if bookName is an object, extract .name
+  if (typeof bookName === 'object' && bookName !== null) bookName = bookName.name || String(bookName);
   currentBookName = bookName;
   setMainHeading(`📖 ${bookName}`);
   const chapterList = document.getElementById("chapter-list");
@@ -372,32 +320,49 @@ function renderChapters(bookName) {
     chapterList.appendChild(backBtn);
 
   try {
-    const version = currentVersion;
-    const bookObj = window.BIBLE?.[version]?.[bookName];
-
-    if (!bookObj) {
-      showModal("This book is not available in the selected version.");
-      return;
+    // For KJV, use bundled data
+    let chapters = [];
+    if (currentVersion === DEFAULT_VERSION) {
+      const book = bibleData.find(b => b.name === bookName || b.abbrev === bookName);
+      if (!book) {
+        showModal("This book is not available in KJV.");
+        return;
+      }
+      chapters = book.chapters.map((_, idx) => idx + 1);
+    } else {
+      // For other versions, fetch chapter count from remote (or cache)
+      // Try to fetch first chapter to see if available
+      const chapter1 = await window.BibleCache.fetchChapter(currentVersion, bookName, 1);
+      if (!chapter1) {
+        showModal("This book is not available in the selected version.");
+        return;
+      }
+      // Assume chapter count matches KJV for now
+      const kjvBook = bibleData.find(b => b.name === bookName || b.abbrev === bookName);
+      chapters = kjvBook ? kjvBook.chapters.map((_, idx) => idx + 1) : [1];
     }
-
-    // bookObj keys are chapter numbers (1-based). Convert to sorted array of numbers.
-    const chapters = Object.keys(bookObj)
-      .map(n => Number(n))
-      .sort((a, b) => a - b);
-
     currentChapters = chapters;
-
-    // create buttons (note: UI earlier expected onclick -> renderVerses(bookName, ch - 1))
     chapters.forEach(ch => {
       const btn = document.createElement("button");
       btn.className = "innerbtn";
       btn.textContent = ch;
-      // keep same signature: renderVerses expects chapterIdx (zero-based)
       btn.onclick = () => renderVerses(bookName, ch - 1);
       chapterList.appendChild(btn);
     });
-
-
+    // Add offline/download button for non-KJV
+    if (currentVersion !== DEFAULT_VERSION) {
+      const dlBtn = document.createElement("button");
+      dlBtn.className = "innerbtn";
+      dlBtn.textContent = "⬇ Download for offline use";
+      dlBtn.onclick = async () => {
+        showModal("Downloading all chapters for offline use. This may take a while...");
+        await window.BibleCache.downloadVersionForOffline(currentVersion, (done, total) => {
+          showModal(`Downloaded ${done} of ${total} chapters...`);
+        });
+        showModal("Download complete! You can now read this version offline.");
+      };
+      chapterList.appendChild(dlBtn);
+    }
   } catch (err) {
     console.error("Could not load chapters:", err);
     showModal("Failed to load chapters.");
@@ -409,6 +374,8 @@ function renderChapters(bookName) {
 async function renderVerses(bookName, chapterIdx) {
   hideAll();
   enterBibleReading();
+  // Defensive: if bookName is an object, extract .name
+  if (typeof bookName === 'object' && bookName !== null) bookName = bookName.name || String(bookName);
   currentBookName = bookName;
   currentChapterIdx = chapterIdx;
 
@@ -452,28 +419,41 @@ document.addEventListener("touchend", (e) => {
   verseList.appendChild(backBtn);
 
   try {
-    const bookObj = window.BIBLE?.[currentVersion]?.[bookName];
-
-    if (!bookObj || !bookObj[chapterNum]) {
-      showModal("This chapter is not available in the selected version.");
-      return;
+    // Fetch chapter data using BibleCache
+    let verses = [];
+    if (currentVersion === DEFAULT_VERSION) {
+      // KJV: load from bundled JSON
+      const book = bibleData.find(b => b.name === bookName || b.abbrev === bookName);
+      if (!book) {
+        showModal("This book is not available in KJV.");
+        return;
+      }
+      const chapterArr = book.chapters[chapterIdx];
+      if (!chapterArr) {
+        showModal("This chapter is not available in KJV.");
+        return;
+      }
+      verses = chapterArr.map((text, idx) => ({ verse: idx + 1, text }));
+    } else {
+      // Other versions: fetch/cached per chapter
+      const chapterArr = await window.BibleCache.fetchChapter(currentVersion, bookName, chapterIdx + 1);
+      if (!chapterArr) {
+        showModal("This chapter is not available in the selected version.");
+        return;
+      }
+      verses = chapterArr.map((text, idx) => ({ verse: idx + 1, text }));
     }
 
     // Track reading progress for milestones
-    recordBibleProgress(bookName, chapterNum);
-
-    // verses is an array of objects matching Dexie-style (verse property is number)
-    const verses = bookObj[chapterNum].slice().sort((a, b) => (Number(a.verse) - Number(b.verse)));
+    recordBibleProgress(bookName, chapterIdx + 1);
 
     // Pre-load commentary to find verse ranges
     const commentary = await loadLocalCommentary();
-    const chapterCommentary = commentary?.[bookName]?.[chapterNum] || {};
-    
-    // Parse all verse ranges and find the last verse of each range
+    const chapterCommentary = commentary?.[bookName]?.[chapterIdx + 1] || {};
     const commentaryRanges = parseCommentaryRanges(chapterCommentary);
 
     for (const row of verses) {
-      const idx = Number(row.verse) - 1;   // zero-based
+      const idx = Number(row.verse) - 1;
       const text = row.text || "";
       const { cleaned, notes } = splitVerse(text);
       const verseNum = idx + 1;
@@ -485,15 +465,15 @@ document.addEventListener("touchend", (e) => {
       const hasCommentary = commentaryRanges[verseNum];
 
       const verseText = document.createElement("p");
-      const ref = `${bookName} ${chapterNum}:${verseNum}`;
-      
+      const ref = `${bookName} ${chapterIdx + 1}:${verseNum}`;
+
       // Add inline commentary icon if this is the last verse of a commentary range
       if (hasCommentary) {
-        verseText.innerHTML = `<b>${verseNum}</b>. ${cleaned} <span class="commentary-inline-icon" title="Commentary available for verses ${hasCommentary.range}">📖</span>`;
+        verseText.innerHTML = `<b>${verseNum}</b>. ${cleaned} <span class=\"commentary-inline-icon\" title=\"Commentary available for verses ${hasCommentary.range}\">📖</span>`;
       } else {
         verseText.innerHTML = `<b>${verseNum}</b>. ${cleaned}`;
       }
-      
+
       verseText.setAttribute("data-ref", ref);
       verseText.id = ref.replace(/\s+/g, "_").replace(":", "_");
 
@@ -506,9 +486,9 @@ document.addEventListener("touchend", (e) => {
       if (hasCommentary) {
         commBody = document.createElement("div");
         commBody.className = "commentary-body-standalone";
-        commBody.innerHTML = `<div class="commentary-body-header">📖 Matthew Henry commentary on verses ${hasCommentary.range}</div>${hasCommentary.text}`;
+        commBody.innerHTML = `<div class=\"commentary-body-header\">📖 Matthew Henry commentary on verses ${hasCommentary.range}</div>${hasCommentary.text}`;
         commBody.style.display = "none";
-        
+
         // Make the inline icon clickable
         const inlineIcon = verseText.querySelector(".commentary-inline-icon");
         if (inlineIcon) {
@@ -560,13 +540,13 @@ document.addEventListener("touchend", (e) => {
       card.onclick = (e) => {
         // Don't handle if clicking a button or the commentary icon
         if (e.target.tagName === "BUTTON" || e.target.classList.contains("commentary-inline-icon")) return;
-        
+
         // If in multi-select mode, toggle selection
         if (window.multiSelectMode && window.multiSelectMode()) {
           window.toggleVerseSelection(card, ref, cleaned);
           return;
         }
-        
+
         // Otherwise toggle toolbar
         toolbar.style.display = toolbar.style.display === "none" ? "block" : "none";
       };
@@ -590,7 +570,7 @@ document.addEventListener("touchend", (e) => {
       }
 
       verseList.appendChild(card);
-      
+
       // Append commentary body after the card (outside, but right below)
       if (commBody) {
         verseList.appendChild(commBody);
@@ -2066,7 +2046,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function shareVerse(bookName, chapter, verse, text) {
   const ref = `${bookName} ${chapter + 1}:${verse}`;
   const verseLink = `https://holy-verse.web.app/bible.html?book=${encodeURIComponent(bookName)}&chapter=${chapter + 1}&verse=${verse}`;
-  const shareText = `"${text}"\n\n— ${ref}\n\n📖 Read in app: ${verseLink}\n\nShared via HolyVerse`;
+  const shareText = `"${text}"\n\n— ${ref}\n\n📖 \n\nShared via HolyVerse`;
   
   if (navigator.share) {
     navigator.share({

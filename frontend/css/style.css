@@ -1,4 +1,32 @@
 /* Add all your styles here */
+html, body {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-size: 16px;
+}
+
+#app {
+  width: 100vw;
+  min-width: 0;
+  box-sizing: border-box;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  html, body {
+    font-size: 15px;
+    padding: 0;
+  }
+  #app {
+    max-width: 100vw;
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+  }
+}
 
 #app {
   position: relative;
@@ -2981,7 +3009,6 @@ html, body {
 
 .ask-new-question-section {
   text-align: center;
-  margin: 1.5rem auto;
 }
 
 .meta {
@@ -3005,7 +3032,7 @@ html, body {
 /* 👶 Baby AI Bubble */
 .baby-ai-bubble {
   position: fixed;
-  bottom: 3.8rem;
+  bottom: 6rem;
   right: 1rem;
   background: none;
   color: var(--button-text);
@@ -4069,7 +4096,7 @@ canvas#lens {
     border-bottom: none;
   }
   .baby-ai-bubble, #notes-box, #chat-view {
-    bottom: 20px;
+    bottom: 45px;
   }
   .link-btn {
     bottom: 0;
@@ -4084,7 +4111,7 @@ canvas#lens {
     .categories {
       display: grid;
       gap: 18px;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       align-items: start;
     }
     /* make control of 5-per-row on large screens */

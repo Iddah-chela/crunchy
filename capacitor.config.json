@@ -1,0 +1,24 @@
+{
+  "appId": "com.holyverse.app",
+  "appName": "HolyVerse",
+  "webDir": "frontend",
+  
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#70d9f0",
+      "androidScaleType": "CENTER_CROP",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": true,
+      "androidSplashResourceName": "splash",
+      "androidSplashIcon": "icons/icon.png"
+    }
+  },
+  "cordova": {
+    "preferences": {
+      "Icon": "icons/icon.png",
+      "SplashScreen": "icons/icon.png"
+    }
+  }
+}

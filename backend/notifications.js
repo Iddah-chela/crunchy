@@ -1,5 +1,15 @@
 const webpush = require("web-push");
 const {supabase} = require("./db/supabase.js"); // your supabase client
+let admin;
+try {
+  admin = require('firebase-admin');
+  const serviceAccount = require('../serviceAccountKey.json');
+  if (!admin.apps.length) {
+    admin.initializeApp({ credential: admin.credential.cert(serviceAccount) });
+  }
+} catch (e) {
+  console.warn('firebase-admin not initialized (serviceAccount missing?):', e?.message || e);
+}
 
 /**
  * Send push notification to a user or broadcast to all except one.
@@ -46,6 +56,36 @@ async function sendNotif(userId, payload, excludeUserId = null) {
         return webpush.sendNotification(sub, JSON.stringify(payload));
       })
     );
+
+    // Also send to native device tokens (FCM/APNs) if firebase-admin configured
+    try {
+      if (admin) {
+        // fetch device tokens for this user
+        const { data: tokensData, error: tErr } = await supabase
+          .from('device_tokens')
+          .select('*')
+          .eq('user_id', userId);
+
+        if (!tErr && tokensData && tokensData.length) {
+          await Promise.all(tokensData.map(d => {
+            if (!d.token) return Promise.resolve();
+            const message = {
+              token: d.token,
+              notification: {
+                title: payload.title || '',
+                body: payload.body || ''
+              },
+              data: payload.data || {}
+            };
+            return admin.messaging().send(message).catch(err => {
+              console.warn('FCM send failed for token', d.token, err?.message || err);
+            });
+          }));
+        }
+      }
+    } catch (e) {
+      console.error('Error sending FCM notifications', e);
+    }
 
   } catch (err) {
     console.error("sendNotif error:", err);

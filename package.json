@@ -6,13 +6,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon backend/server.js",
-    "start": "node backend/server.js"
+    "start": "node backend/server.js",
+    "optimize:images": "node tools/optimize-media.js --images",
+    "optimize:audio": "node tools/optimize-media.js --audio"
   },
   "type": "commonjs",
   "keywords": [],
   "author": "Iddah",
   "license": "ISC",
   "dependencies": {
+    "@capacitor/android": "^8.0.0",
+    "@capacitor/camera": "^8.0.0",
+    "@capacitor/cli": "^8.0.0",
+    "@capacitor/core": "^8.0.0",
+    "@capacitor/ios": "^8.0.0",
+    "@capacitor/local-notifications": "^8.0.0",
+    "@capacitor/push-notifications": "^8.0.0",
+    "@capacitor/share": "^8.0.0",
     "@supabase/supabase-js": "^2.81.1",
     "axios": "^1.13.2",
     "bcrypt": "^6.0.0",

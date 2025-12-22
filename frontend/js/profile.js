@@ -494,7 +494,9 @@ if (todayStr !== lastDailyWater) {
     checkAndUnlockProfileBorder();
 
     // Celebration!
-    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    if (typeof confetti === 'function') {
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    }
     showModal(`🎉 Milestone Unlocked!\n${reward}`);
 
     initMilestones(); // Refresh display
@@ -521,7 +523,31 @@ if (todayStr !== lastDailyWater) {
       // Create tooltip
       const tip = document.createElement("div");
       tip.id = "profilePicTooltip";
-      tip.textContent = `🎯 Next border at ${Math.ceil(totalMilestones * 0.25)} milestones (currently ${claimedCount})`;
+      let nextBorder = null;
+      let nextLabel = "";
+      if (claimedCount < totalMilestones * 0.2) {
+        nextBorder = Math.ceil(totalMilestones * 0.2);
+        nextLabel = "bronze";
+      } else if (claimedCount < totalMilestones * 0.4) {
+        nextBorder = Math.ceil(totalMilestones * 0.4);
+        nextLabel = "silver";
+      } else if (claimedCount < totalMilestones * 0.6) {
+        nextBorder = Math.ceil(totalMilestones * 0.6);
+        nextLabel = "gold";
+      } else if (claimedCount < totalMilestones * 0.8) {
+        nextBorder = Math.ceil(totalMilestones * 0.8);
+        nextLabel = "platinum";
+      } else if (claimedCount < totalMilestones) {
+        nextBorder = totalMilestones;
+        nextLabel = "legendary";
+      }
+      if (nextBorder && claimedCount < nextBorder) {
+        tip.textContent = `🎯 Next border (${nextLabel}) at ${nextBorder} milestones (currently ${claimedCount})`;
+      } else if (claimedCount >= totalMilestones) {
+        tip.textContent = `🏆 All borders unlocked! (${claimedCount} milestones)`;
+      } else {
+        tip.textContent = `🎯 Next border at ??? (currently ${claimedCount})`;
+      }
       tip.style.position = "absolute";
       tip.style.background = "#222";
       tip.style.color = "#fff";

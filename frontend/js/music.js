@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
     searchBar.style.cssText = 'margin-bottom:20px; position:sticky; top:0; background:var(--bg-color); padding:10px 0; z-index:10;';
     searchBar.innerHTML = `
       <input type="text" id="songSearch" placeholder="🔍 Search songs..." 
-        style="width:100%; padding:10px 15px; border:2px solid var(--accent); border-radius:8px; font-size:0.95rem; font-family:var(--font); color:var(--text-color); background:var(--button-bg);">
+        style="width:95%; padding:10px 15px; border:2px solid var(--accent); border-radius:8px; font-size:0.95rem; font-family:var(--font); color:var(--text-color); background:var(--button-bg);">
     `;
     songList.appendChild(searchBar);
     
@@ -262,15 +262,16 @@ document.addEventListener('DOMContentLoaded', () => {
       addBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         menu.innerHTML = '';
-        
         const playlists = loadPlaylists();
         const playlistNames = Object.keys(playlists);
-        
         if (playlistNames.length === 0) {
-          const noMsg = document.createElement('div');
-          noMsg.textContent = 'Create a playlist first';
-          noMsg.style.cssText = 'padding:12px; color:var(--text-color); font-style:italic; text-align:center; opacity:0.6;';
-          menu.appendChild(noMsg);
+          // Create a new playlist and add the song
+          const newName = 'New Playlist';
+          playlists[newName] = [s];
+          savePlaylists(playlists);
+          showModal('✅ Created "New Playlist" and added song!');
+          renderPlaylistsSidebar();
+          menu.style.display = 'none';
         } else {
           for (const playlistName of playlistNames) {
             const option = document.createElement('div');
@@ -287,9 +288,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             menu.appendChild(option);
           }
+          menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
         }
-        
-        menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
       });
       
       // Position menu relative to button

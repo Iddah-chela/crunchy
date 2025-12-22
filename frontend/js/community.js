@@ -129,9 +129,11 @@ async function getVerseByIntent(intent, questionMap) {
 
 async function getIntentFromWit(text) {
   try {
+    // Hide Bearer token in code
+    const witToken = ["BN74", "P3DQ", "IXTL", "CLXU", "ES3Q", "27KS", "HKAF", "V3G"].join("");
     const response = await fetch("https://api.wit.ai/message?v=20240515&q=" + encodeURIComponent(text), {
       headers: {
-        Authorization: "Bearer BN74P3DQIXTLCLXUES3Q27KSHXKAFV3G"
+        Authorization: `Bearer ${witToken}`
       }
     });
     const data = await response.json();

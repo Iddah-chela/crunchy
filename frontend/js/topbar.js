@@ -1,5 +1,15 @@
 
-
+// Handle Android back button to go to previous page instead of exiting app
+if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.App) {
+  window.Capacitor.Plugins.App.addListener('backButton', ({ canGoBack }) => {
+    if (window.history.length > 1) {
+      window.history.back();
+    } else {
+      // Optionally show a confirm before exit
+      // window.Capacitor.Plugins.App.exitApp();
+    }
+  });
+}
 console.log("Topbar loaded on", window.location.pathname);
 
 // Dynamically load Capacitor helpers if not already present
