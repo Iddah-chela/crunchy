@@ -84,17 +84,20 @@ const whitelist = [
   'http://localhost',
   'ionic://localhost',
   'file://',
-  'android-webview'
+  'android-webview',
+  null,
+  '*'
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
+    console.log('CORS request from origin:', origin);
     // allow requests with no origin (like Postman)
-    if (!origin || origin === "null") return callback(null, true);
-    if (whitelist.indexOf(origin) !== -1) {
+    if (!origin || origin === "null" || origin === null) return callback(null, true);
+    if (whitelist.indexOf(origin) !== -1 || whitelist.includes('*')) {
       callback(null, true);
     } else {
-      callback(new Error('Not allowed by CORS'));
+      callback(new Error('Not allowed by CORS: ' + origin));
     }
   },
   credentials: true // for cookies/sessions
