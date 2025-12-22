@@ -490,13 +490,22 @@ app.post("/login", async (req, res) => {
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(401).json({ error: "Invalid credentials" });
 
-    // Success: set session
-    req.session.userId = user.id;
-    req.session.username = user.username;
-
-   
+    // Detect if request is from mobile app (by header or origin)
+    const isMobile = req.headers['x-requested-with'] === 'com.holyverse.app' || req.headers['user-agent']?.includes('wv');
     const age = user.birthday ? calculateAge(new Date(user.birthday)) : 10;
-    res.json({ msg: "Logged in", user: { id: user.id, username: user.username, age: age } });
+    if (isMobile) {
+      // Generate a random token (for demo, use a UUID or random string)
+      const token = require('crypto').randomBytes(32).toString('hex');
+      // Store token in memory (for demo; use DB/Redis for production)
+      global.mobileTokens = global.mobileTokens || {};
+      global.mobileTokens[token] = { userId: user.id, username: user.username, created: Date.now() };
+      res.json({ msg: "Logged in", user: { id: user.id, username: user.username, age: age }, token });
+    } else {
+      // Web: use session/cookie
+      req.session.userId = user.id;
+      req.session.username = user.username;
+      res.json({ msg: "Logged in", user: { id: user.id, username: user.username, age: age } });
+    }
   } catch (err) {
     console.error("login error:", err);
     res.status(500).json({ error: "Server error" });
@@ -505,8 +514,20 @@ app.post("/login", async (req, res) => {
 
 
 app.get("/me", async (req, res) => {
-  console.log("/me headers:", req.headers);
-  const uid = req.session && req.session.userId;
+
+  // Check for mobile token first
+  let uid = null;
+  const auth = req.headers['authorization'];
+  if (auth && auth.startsWith('Bearer ')) {
+    const token = auth.slice(7);
+    if (global.mobileTokens && global.mobileTokens[token]) {
+      uid = global.mobileTokens[token].userId;
+    }
+  }
+  // Fallback to session for web
+  if (!uid) {
+    uid = req.session && req.session.userId;
+  }
   if (!uid) return res.status(401).json({ error: "Not logged in" });
 
   await supabase
