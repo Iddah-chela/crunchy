@@ -91,7 +91,6 @@ const whitelist = [
 
 app.use(cors({
   origin: function(origin, callback) {
-    console.log('CORS request from origin:', origin);
     // allow requests with no origin (like Postman)
     if (!origin || origin === "null" || origin === null) return callback(null, true);
     if (whitelist.indexOf(origin) !== -1 || whitelist.includes('*')) {
@@ -115,8 +114,8 @@ const sessionOptions = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: isProd,
-    sameSite: isProd ? "none" : "lax",
+    secure: false, // Always false for local/native testing
+    sameSite: "none", // Always none for local/native testing
     httpOnly: true,
     maxAge: 30 * 24 * 60 * 60 * 1000
   }
@@ -506,6 +505,7 @@ app.post("/login", async (req, res) => {
 
 
 app.get("/me", async (req, res) => {
+  console.log("/me headers:", req.headers);
   const uid = req.session && req.session.userId;
   if (!uid) return res.status(401).json({ error: "Not logged in" });
 
