@@ -8,6 +8,11 @@ let showNotes = false;
 let bibleData = [];
 let currentVersion = "AMERICAN STANDARD VERSION";
 
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
+
 function recordBibleProgress(bookName, chapterNum) {
   // Keep a per-book list of read chapters
   const chaptersRead = JSON.parse(localStorage.getItem("chaptersRead")) || {};
@@ -31,23 +36,7 @@ function recordBibleProgress(bookName, chapterNum) {
 }
 
 
-(function loadBibleCacheScript() {
-  const script = document.createElement('script');
-  script.src = './js/bible-cache.js';
-  document.head.appendChild(script);
-})();
-
-// Wait for BibleCache to be available
-function waitForBibleCache() {
-  return new Promise(resolve => {
-    if (window.BibleCache) return resolve();
-    const check = () => {
-      if (window.BibleCache) return resolve();
-      setTimeout(check, 50);
-    };
-    check();
-  });
-}
+// BibleCache removed: all versions are now loaded directly from /bible/
 // Bible version keys: en_kjv (default), others match filenames in /bible
 const DEFAULT_VERSION = 'KING JAMES BIBLE';
 let availableVersions = [DEFAULT_VERSION];
@@ -109,7 +98,7 @@ async function restoreLastReadState() {
 }
 
 (async function initBibleApp() {
-  await waitForBibleCache();
+  // BibleCache removed
   await fetchAvailableVersions();
   await loadKJVBookList();
   // Populate version select
@@ -320,26 +309,27 @@ async function renderChapters(bookName) {
     chapterList.appendChild(backBtn);
 
   try {
-    // For KJV, use bundled data
+    // For all versions, load the book file directly
     let chapters = [];
-    if (currentVersion === DEFAULT_VERSION) {
-      const book = bibleData.find(b => b.name === bookName || b.abbrev === bookName);
+    let book = null;
+    let versionFile = currentVersion + '.json';
+    if (currentVersion === DEFAULT_VERSION) versionFile = 'KING JAMES BIBLE.json';
+    const bible = await fetch(`/bible/${versionFile}`).then(r => r.json());
+    if (Array.isArray(bible)) {
+      book = bible.find(b => b.name === bookName || b.abbrev === bookName);
       if (!book) {
-        showModal("This book is not available in KJV.");
+        showModal("This book is not available in this version.");
         return;
       }
       chapters = book.chapters.map((_, idx) => idx + 1);
-    } else {
-      // For other versions, fetch chapter count from remote (or cache)
-      // Try to fetch first chapter to see if available
-      const chapter1 = await window.BibleCache.fetchChapter(currentVersion, bookName, 1);
-      if (!chapter1) {
-        showModal("This book is not available in the selected version.");
+    } else if (typeof bible === 'object' && bible !== null) {
+      // Object format: { Genesis: { 1: { 1: 'text', ... }, ... }, ... }
+      if (bible[bookName]) {
+        chapters = Object.keys(bible[bookName]).map(Number).sort((a,b)=>a-b);
+      } else {
+        showModal("This book is not available in this version.");
         return;
       }
-      // Assume chapter count matches KJV for now
-      const kjvBook = bibleData.find(b => b.name === bookName || b.abbrev === bookName);
-      chapters = kjvBook ? kjvBook.chapters.map((_, idx) => idx + 1) : [1];
     }
     currentChapters = chapters;
     chapters.forEach(ch => {
@@ -349,20 +339,6 @@ async function renderChapters(bookName) {
       btn.onclick = () => renderVerses(bookName, ch - 1);
       chapterList.appendChild(btn);
     });
-    // Add offline/download button for non-KJV
-    if (currentVersion !== DEFAULT_VERSION) {
-      const dlBtn = document.createElement("button");
-      dlBtn.className = "innerbtn";
-      dlBtn.textContent = "⬇ Download for offline use";
-      dlBtn.onclick = async () => {
-        showModal("Downloading all chapters for offline use. This may take a while...");
-        await window.BibleCache.downloadVersionForOffline(currentVersion, (done, total) => {
-          showModal(`Downloaded ${done} of ${total} chapters...`);
-        });
-        showModal("Download complete! You can now read this version offline.");
-      };
-      chapterList.appendChild(dlBtn);
-    }
   } catch (err) {
     console.error("Could not load chapters:", err);
     showModal("Failed to load chapters.");
@@ -419,30 +395,29 @@ document.addEventListener("touchend", (e) => {
   verseList.appendChild(backBtn);
 
   try {
-    // Fetch chapter data using BibleCache
+    // For all versions, load the book file directly
     let verses = [];
-    if (currentVersion === DEFAULT_VERSION) {
-      // KJV: load from bundled JSON
-      const book = bibleData.find(b => b.name === bookName || b.abbrev === bookName);
+    let versionFile = currentVersion + '.json';
+    if (currentVersion === DEFAULT_VERSION) versionFile = 'KING JAMES BIBLE.json';
+    const bible = await fetch(`/bible/${versionFile}`).then(r => r.json());
+    let chapterArr = null;
+    if (Array.isArray(bible)) {
+      const book = bible.find(b => b.name === bookName || b.abbrev === bookName);
       if (!book) {
-        showModal("This book is not available in KJV.");
+        showModal("This book is not available in this version.");
         return;
       }
-      const chapterArr = book.chapters[chapterIdx];
-      if (!chapterArr) {
-        showModal("This chapter is not available in KJV.");
-        return;
+      chapterArr = book.chapters[chapterIdx];
+    } else if (typeof bible === 'object' && bible !== null) {
+      if (bible[bookName] && bible[bookName][chapterIdx + 1]) {
+        chapterArr = Object.values(bible[bookName][chapterIdx + 1]);
       }
-      verses = chapterArr.map((text, idx) => ({ verse: idx + 1, text }));
-    } else {
-      // Other versions: fetch/cached per chapter
-      const chapterArr = await window.BibleCache.fetchChapter(currentVersion, bookName, chapterIdx + 1);
-      if (!chapterArr) {
-        showModal("This chapter is not available in the selected version.");
-        return;
-      }
-      verses = chapterArr.map((text, idx) => ({ verse: idx + 1, text }));
     }
+    if (!chapterArr) {
+      showModal("This chapter is not available in this version.");
+      return;
+    }
+    verses = chapterArr.map((text, idx) => ({ verse: idx + 1, text }));
 
     // Track reading progress for milestones
     recordBibleProgress(bookName, chapterIdx + 1);

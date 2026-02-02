@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HolyVerse</string>
+    <string name="title_activity_main">HolyVerse</string>
+    <string name="package_name">com.holyverse.app</string>
+    <string name="custom_url_scheme">com.holyverse.app</string>
+</resources>

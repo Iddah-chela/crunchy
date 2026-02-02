@@ -28,6 +28,31 @@ function showModal(message) {
   };
 }
 
+function showSafetyReminder() {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.innerHTML = `
+    <h3 style="margin:0 0 1rem 0; color:#ffc107;">🛡️ Stay Safe Online</h3>
+    <p style="text-align:left; line-height:1.8; margin-bottom:1rem;">
+      Before you start chatting, please remember:
+    </p>
+    <ul style="text-align:left; line-height:1.8; margin:0 0 1.5rem 1.5rem;">
+      <li>Never share personal information (phone, address, email)</li>
+      <li>People online may not be who they say they are</li>
+      <li>Report or block anyone who makes you uncomfortable</li>
+      <li>Meet in public spaces if meeting in real life</li>
+    </ul>
+    <button class="innerbtn" onclick="document.getElementById('appModal').style.display='none'">I Understand</button>
+  `;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 document.querySelector('.backbtnb')?.addEventListener('click', () => {
   window.location.href = 'friends.html';
 });
@@ -39,6 +64,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       credentials: "include" });
     if (!res.ok) throw new Error("Not logged in");
     const me = await res.json();
+
+    // Age restriction: Chat is only available for users 16+
+    if (me.age && me.age < 16) {
+      showModal("Private chat is only available for users 16 and older. This helps keep our community safe.");
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 3000);
+      return;
+    }
+
+    // Show safety reminder for first-time use (16+ users)
+    if (me.age >= 16 && !localStorage.getItem('safety_reminder_shown')) {
+      showSafetyReminder();
+      localStorage.setItem('safety_reminder_shown', 'true');
+    }
 
     currentUserId = me.id;
     currentUsername = me.username;
@@ -206,19 +246,62 @@ function addMessageBubble(msg) {
 }
 
 // Helper function to get user milestone border
+// Cache for user borders
+const userBorderCache = {};
+
+async function loadUserBorder(userId) {
+  if (userBorderCache[userId]) return userBorderCache[userId];
+  
+  try {
+    const res = await fetch(`${API_BASE}/users/${userId}`, { credentials: 'include' });
+    if (res.ok) {
+      const user = await res.json();
+      const border = applyBorderStyle(user.profile_border || 'none');
+      userBorderCache[userId] = border;
+      return border;
+    }
+  } catch (err) {
+    console.error('Failed to load user border:', err);
+  }
+  return '';
+}
+
+function applyBorderStyle(borderLevel) {
+  switch(borderLevel) {
+    case 'legendary':
+      return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box;';
+    case 'platinum':
+      return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(135deg, #e5e4e2, #bfc1c2, #f5f7fa) border-box; box-shadow:0 0 18px rgba(229,228,226,0.8);';
+    case 'gold':
+      return 'border:4px solid gold; box-shadow:0 0 15px rgba(255,215,0,0.6);';
+    case 'silver':
+      return 'border:4px solid silver; box-shadow:0 0 10px rgba(192,192,192,0.6);';
+    case 'bronze':
+      return 'border:4px solid #cd7f32; box-shadow:0 0 8px rgba(205,127,50,0.5);';
+    default:
+      return '';
+  }
+}
+
 function getUserBorderStyle(userId) {
   if (!userId) return '';
-  const borderLevel = localStorage.getItem(`profileBorderLevel:${userId}`);
   
-  if (borderLevel === "legendary") {
-    return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box;';
-  } else if (borderLevel === "gold") {
-    return 'border:4px solid gold; box-shadow:0 0 15px rgba(255,215,0,0.6);';
-  } else if (borderLevel === "silver") {
-    return 'border:4px solid silver; box-shadow:0 0 10px rgba(192,192,192,0.6);';
-  } else if (borderLevel === "bronze") {
-    return 'border:4px solid #cd7f32; box-shadow:0 0 8px rgba(205,127,50,0.5);';
+  // Return cached database value if available
+  if (userBorderCache[userId]) {
+    return userBorderCache[userId];
   }
+  
+  // Fallback to localStorage for immediate display (current user)
+  const localBorder = localStorage.getItem(`profileBorderLevel:${userId}`);
+  if (localBorder) {
+    const style = applyBorderStyle(localBorder);
+    // Load from database in background to update cache
+    loadUserBorder(userId);
+    return style;
+  }
+  
+  // Load from database in background for other users
+  loadUserBorder(userId);
   return '';
 }
 

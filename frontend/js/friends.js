@@ -18,6 +18,31 @@ function showModal(message) {
   };
 }
 
+function showSafetyReminder() {
+  const modal = document.getElementById("appModal");
+  const msg = document.getElementById("modalMessage");
+  const closeBtn = document.getElementById("modalClose");
+
+  msg.innerHTML = `
+    <h3 style="margin:0 0 1rem 0; color:#ffc107;">🛡️ Stay Safe Online</h3>
+    <p style="text-align:left; line-height:1.8; margin-bottom:1rem;">
+      Before you connect with others, please remember:
+    </p>
+    <ul style="text-align:left; line-height:1.8; margin:0 0 1.5rem 1.5rem;">
+      <li>Never share personal information (phone, address, email)</li>
+      <li>People online may not be who they say they are</li>
+      <li>Report or block anyone who makes you uncomfortable</li>
+      <li>Meet in public spaces if meeting in real life</li>
+    </ul>
+    <button class="innerbtn" onclick="document.getElementById('appModal').style.display='none'">I Understand</button>
+  `;
+  modal.style.display = "flex";
+
+  closeBtn.onclick = () => {
+    modal.style.display = "none";
+  };
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch(`${API_BASE}/me`, { 
@@ -25,6 +50,21 @@ document.addEventListener("DOMContentLoaded", async () => {
       credentials: "include" });
     if (!res.ok) throw new Error("Not logged in");
     currentUser = await res.json();
+
+    // Age restriction: Friends/chat features only for users 16+
+    if (currentUser.age && currentUser.age < 16) {
+      showModal("Friend features and private chat are only available for users 16 and older. This helps keep our community safe.");
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 3000);
+      return;
+    }
+
+    // Show safety reminder for first-time use (16+ users)
+    if (currentUser.age >= 16 && !localStorage.getItem('safety_reminder_shown')) {
+      showSafetyReminder();
+      localStorage.setItem('safety_reminder_shown', 'true');
+    }
 
     await loadFriendRequests();
     await loadFriends();

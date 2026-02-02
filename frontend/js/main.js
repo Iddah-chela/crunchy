@@ -705,7 +705,12 @@ function toggleCategory(id) {
   }
 
   // Otherwise: show selected and hide all others
-  allGroups.forEach(group => group.style.display = 'none');
+  allGroups.forEach(group => {
+    group.style.display = 'none';
+    // Remove any old login prompts
+    const oldPrompt = group.querySelector('.login-prompt-category');
+    if (oldPrompt) oldPrompt.remove();
+  });
   allBlocks.forEach(block => block.style.display = "inline-block");
 
   selected.style.display = 'inline-block';
@@ -718,20 +723,41 @@ function toggleCategory(id) {
   const selectedAge = currentUser.age || 10;
 
   const buttons = selected.querySelectorAll(".question-btn");
+  let visibleCount = 0;
+  
   buttons.forEach(btn => {
     // Skip age filtering for user-submitted questions
     if (btn.classList.contains("user-submitted-btn")) {
       btn.style.display = "inline-block";
+      visibleCount++;
       return;
     }
     
     const q = questions.find(q => q.id === btn.id);
     if (q && selectedAge >= q.ageRange[0] && selectedAge <= q.ageRange[1]) {
       btn.style.display = "inline-block";
+      visibleCount++;
     } else {
       btn.style.display = "none";
     }
   });
+  
+  // If no questions are visible and user is not logged in, show login prompt
+  if (visibleCount === 0) {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    if (!user || !user.id) {
+      const loginPrompt = document.createElement('div');
+      loginPrompt.className = 'login-prompt-category';
+      loginPrompt.innerHTML = `
+        <div style="padding:1.5rem; background:rgba(70,130,180,0.1); border:2px solid #4682b4; border-radius:12px; text-align:center; margin:1rem 0;">
+          <p style="margin:0 0 1rem 0; font-size:1.1rem; font-weight:600;">🔒 Want to see more questions?</p>
+          <p style="margin:0 0 1rem 0; line-height:1.6;">Log in to access age-appropriate questions personalized for you!</p>
+          <a href="/login.html" style="display:inline-block; padding:0.75rem 1.5rem; background:#4682b4; color:white; text-decoration:none; border-radius:8px; font-weight:600;">Log In</a>
+        </div>
+      `;
+      selected.appendChild(loginPrompt);
+    }
+  }
 }
 }
 
@@ -804,8 +830,26 @@ function filterQuestions() {
     
   });
 
-  // Show "no matches" message
-  noMatchMsg.style.display = matchCount === 0 ? "block" : "none";
+  // Show "no matches" or login prompt
+  if (matchCount === 0) {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
+    if (!user || !user.id) {
+      // Show login prompt instead of "no matches"
+      noMatchMsg.innerHTML = `
+        <div style="padding:1.5rem; background:rgba(70,130,180,0.1); border:2px solid #4682b4; border-radius:12px; text-align:center; margin:1rem 0;">
+          <p style="margin:0 0 1rem 0; font-size:1.1rem; font-weight:600;">🔒 Want to see more questions?</p>
+          <p style="margin:0 0 1rem 0; line-height:1.6;">Log in to access age-appropriate questions personalized for you!</p>
+          <a href="/login.html" style="display:inline-block; padding:0.75rem 1.5rem; background:#4682b4; color:white; text-decoration:none; border-radius:8px; font-weight:600;">Log In</a>
+        </div>
+      `;
+      noMatchMsg.style.display = "block";
+    } else {
+      noMatchMsg.innerHTML = "No matches found 😢";
+      noMatchMsg.style.display = "block";
+    }
+  } else {
+    noMatchMsg.style.display = "none";
+  }
 }
 
 function clearSearch() {

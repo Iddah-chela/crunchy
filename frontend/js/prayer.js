@@ -1248,12 +1248,13 @@ async function loadPrayerRequests() {
     if (!response.ok) {
       const errorText = await response.text();
       console.error("Failed to load prayer requests:", response.status, errorText);
-      throw new Error("Failed to load");
+      feed.innerHTML = `<p style="text-align:center; opacity:0.6;">Couldn't load prayer requests. Please refresh.</p>`;
+      return;
     }
-    
+
     const requests = await response.json();
-    
-    if (requests.length === 0) {
+
+    if (Array.isArray(requests) && requests.length === 0) {
       feed.innerHTML = `
         <div style="text-align:center; padding:2rem; opacity:0.6;">
           <p>No prayer requests yet</p>
@@ -1262,9 +1263,9 @@ async function loadPrayerRequests() {
       `;
       return;
     }
-    
+
     const currentUser = JSON.parse(localStorage.getItem("user") || "{}");
-    
+
     feed.innerHTML = requests.map(req => {
       const date = new Date(req.created_at);
       const timeAgo = getTimeAgo(date);
@@ -1273,7 +1274,7 @@ async function loadPrayerRequests() {
       // Check ownership: either by user_id match OR username match (fallback for numeric IDs)
       const isOwner = (req.user_id && currentUser.id && String(req.user_id) === String(currentUser.id)) ||
                       (req.username && currentUser.username && req.username === currentUser.username && req.username !== "Anonymous");
-      
+
       return `
         <div class="prayer-request-card" style="background:rgba(255,255,255,0.05); padding:1rem; border-radius:8px; margin-bottom:1rem; border-left:3px solid var(--accent);">
           <div style="display:flex; justify-content:space-between; align-items:start; margin-bottom:0.5rem;">
@@ -1291,7 +1292,7 @@ async function loadPrayerRequests() {
         </div>
       `;
     }).join("");
-    
+
   } catch (err) {
     console.error("Load prayer requests error:", err);
     feed.innerHTML = `<p style="text-align:center; opacity:0.6;">Couldn't load prayer requests. Please refresh.</p>`;

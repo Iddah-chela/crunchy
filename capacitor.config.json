@@ -2,23 +2,16 @@
   "appId": "com.holyverse.app",
   "appName": "HolyVerse",
   "webDir": "frontend",
-  
+  "server": {
+    "url": "https://holyverse-s5s1.onrender.com",
+    "cleartext": true
+  },
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 2000,
-      "backgroundColor": "#70d9f0",
+      "backgroundColor": "#1a1a2e",
       "androidScaleType": "CENTER_CROP",
-      "showSpinner": false,
-      "splashFullScreen": true,
-      "splashImmersive": true,
-      "androidSplashResourceName": "splash",
-      "androidSplashIcon": "icons/icon.png"
-    }
-  },
-  "cordova": {
-    "preferences": {
-      "Icon": "icons/icon.png",
-      "SplashScreen": "icons/icon.png"
+      "showSpinner": false
     }
   }
 }

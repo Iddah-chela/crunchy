@@ -18,6 +18,49 @@ window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
   : "https://holyverse-s5s1.onrender.com");
 const API_BASE = window.API_BASE;
 
+// Helper to escape HTML in modal messages
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Confirm modal with yes/no - returns a Promise
+function showConfirm(message) {
+  return new Promise((resolve) => {
+    const modal = document.createElement('div');
+    modal.className = 'custom-modal';
+    modal.style.cssText = 'display:flex; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(4px); z-index:9999; align-items:center; justify-content:center;';
+    modal.innerHTML = `
+      <div class="modal-content" style="max-width:400px; text-align:center; background:#1a1a2e; padding:2rem; border-radius:16px; box-shadow:0 8px 32px rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.1);">
+        <p style="margin:1rem 0 1.5rem 0; line-height:1.6; color:#fff; font-size:1.05rem;">${escapeHtml(message)}</p>
+        <div style="display:flex; gap:1rem; justify-content:center;">
+          <button class="innerbtn cancel-btn" style="background:#555; color:#fff; padding:0.75rem 1.5rem; border:none; border-radius:8px; cursor:pointer; font-size:1rem;">Cancel</button>
+          <button class="innerbtn confirm-btn" style="background:#e74c3c; color:#fff; padding:0.75rem 1.5rem; border:none; border-radius:8px; cursor:pointer; font-size:1rem;">Confirm</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    
+    modal.querySelector('.confirm-btn').onclick = () => {
+      modal.remove();
+      resolve(true);
+    };
+    
+    modal.querySelector('.cancel-btn').onclick = () => {
+      modal.remove();
+      resolve(false);
+    };
+    
+    // Close on background click (counts as cancel)
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+        resolve(false);
+      }
+    });
+  });
+}
 
 document.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("profileForm");
@@ -84,6 +127,87 @@ document.addEventListener("DOMContentLoaded", async () => {
       } catch (err) {
         console.error(err);
         showModal("Logout error. Please try again.");
+      }
+    });
+  }
+
+  // Delete account button
+  const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+  if (deleteAccountBtn) {
+    deleteAccountBtn.addEventListener("click", async () => {
+      if (!user) return showModal("You must be logged in to delete your account.");
+      
+      const confirmDelete = await showConfirm("Are you sure you want to delete your account?\n\nThis will permanently delete:\n• Your profile and personal information\n• All your private messages\n• Your prayer requests and testimonies\n• Your friendships and favorites\n\nThis action cannot be undone.");
+      if (!confirmDelete) return;
+
+      try {
+        // Check if user has community posts
+        let deletePosts = false;
+        try {
+          const checkRes = await fetch(`${API_BASE}/api/user-has-posts/${user.id}`, {
+            credentials: "include"
+          });
+          
+          if (checkRes.ok) {
+            const checkData = await checkRes.json();
+            console.log("User has posts check:", checkData);
+            
+            if (checkData.hasPosts) {
+              console.log("User has posts, asking for confirmation...");
+              
+              // Ask if they want to delete posts
+              const deletePostsChoice = await showConfirm("You have posts in the community. Do you want to delete all your posts too?\n\nConfirm = Delete posts\nCancel = Keep posts and continue");
+              
+              if (deletePostsChoice === null || deletePostsChoice === undefined) {
+                console.log("User cancelled the entire deletion process");
+                return; // User cancelled, abort everything
+              }
+              
+              deletePosts = deletePostsChoice;
+              console.log("User chose to delete posts:", deletePosts);
+              
+              // Final confirmation before deletion
+              const finalConfirm = await showConfirm(deletePosts 
+                ? "Final confirmation: Delete your account AND all your posts?" 
+                : "Final confirmation: Delete your account but KEEP your posts visible?");
+              
+              if (!finalConfirm) {
+                console.log("User cancelled at final confirmation");
+                return; // User cancelled, abort everything
+              }
+            } else {
+              console.log("User has no posts to delete");
+            }
+          } else {
+            console.warn("Failed to check posts, status:", checkRes.status);
+          }
+        } catch (checkErr) {
+          console.warn("Could not check for posts:", checkErr);
+          // Continue with deletion even if check fails
+        }
+
+        console.log("Proceeding with account deletion, deletePosts =", deletePosts);
+
+        // Delete account
+        const res = await fetch(`${API_BASE}/users/${user.id}`, {
+          method: "DELETE",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ deletePosts })
+        });
+        
+        const data = await res.json();
+        if (!res.ok) return showModal(data.error || "Failed to delete account. Please try again.");
+        
+        showModal("Your account has been deleted. You will be redirected to the home page.");
+        localStorage.removeItem("user");
+        user = null;
+        setTimeout(() => {
+          window.location.href = "/index.html";
+        }, 2000);
+      } catch (err) {
+        console.error(err);
+        showModal("Error deleting account. Please try again.");
       }
     });
   }
@@ -707,6 +831,87 @@ if (claimedCount >= totalMilestones && lastBorderShown !== "legendary") {
   initMilestones();
   // Don't apply saved border - recalculate based on current user's actual milestones
   checkAndUnlockProfileBorder();
+  initBorderSelector();
+  
+// =============================
+// BORDER SELECTOR
+// =============================
+function initBorderSelector() {
+  const container = document.getElementById('borderOptions');
+  if (!container) return;
+  
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+  const uidSuffix = user && user.id ? `:${user.id}` : ":guest";
+  
+  const milestonesClaimed = JSON.parse(localStorage.getItem(`milestonesClaimed${uidSuffix}`)) || {};
+  const totalMilestones = Object.values(milestoneData).reduce((sum, cat) => sum + cat.thresholds.length, 0);
+  const claimedCount = Object.values(milestonesClaimed).reduce((sum, arr) => sum + arr.length, 0);
+  
+  const currentBorder = localStorage.getItem(`profileBorderLevel${uidSuffix}`) || 'none';
+  
+  const borders = [
+    { id: 'none', label: 'Default', req: 0 },
+    { id: 'bronze', label: '\ud83e\udd49 Bronze', req: Math.ceil(totalMilestones * 0.2) },
+    { id: 'silver', label: '\ud83e\udd48 Silver', req: Math.ceil(totalMilestones * 0.4) },
+    { id: 'gold', label: '\ud83e\udd47 Gold', req: Math.ceil(totalMilestones * 0.6) },
+    { id: 'platinum', label: '\ud83d\udc8e Platinum', req: Math.ceil(totalMilestones * 0.8) },
+    { id: 'legendary', label: '\u2728 Legendary', req: totalMilestones }
+  ];
+  
+  borders.forEach(border => {
+    const earned = claimedCount >= border.req;
+    const btn = document.createElement('button');
+    btn.className = 'border-option-btn innerbtn';
+    btn.textContent = border.label;
+    btn.disabled = !earned;
+    btn.style.cssText = `
+      padding: 0.75rem 1.5rem;
+      ${!earned ? 'opacity: 0.4; cursor: not-allowed;' : 'cursor: pointer;'}
+      ${currentBorder === border.id ? 'background: #4682b4; box-shadow: 0 0 10px rgba(70,130,180,0.5);' : ''}
+    `;
+    
+    if (!earned) {
+      btn.title = `Unlock at ${border.req} milestones`;
+    }
+    
+    if (earned) {
+      btn.onclick = () => selectBorder(border.id);
+    }
+    
+    container.appendChild(btn);
+  });
+}
+
+async function selectBorder(borderLevel) {
+  const user = JSON.parse(localStorage.getItem("user") || "null");
+  if (!user || !user.id) return;
+  
+  const uidSuffix = `:${user.id}`;
+  localStorage.setItem(`profileBorderLevel${uidSuffix}`, borderLevel);
+  
+  // Save to database
+  try {
+    await fetch(`${API_BASE}/users/${user.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'include',
+      body: JSON.stringify({ profile_border: borderLevel })
+    });
+  } catch (err) {
+    console.error('Failed to save border:', err);
+  }
+  
+  // Reapply border
+  applySavedProfileBorder();
+  
+  // Refresh selector
+  initBorderSelector();
+  
+  showModal(`\u2705 Border changed to ${borderLevel}!`);
+}
+
+window.selectBorder = selectBorder;
+
 // =============================
 // CAPACITOR/MOBILE COMPATIBILITY NOTE
 // =============================

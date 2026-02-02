@@ -34,15 +34,48 @@ function calculateAge(birthday) {
 }
 
 
-// Mature content keywords (can be expanded)
-const MATURE_KEYWORDS = [
-  'sex', 'drunk', 'alcohol', 'drugs', 'violence', 'kill', 'death', 
-  'rape', 'abuse', 'suicide', 'porn', 'naked', 'weed', 'cocaine'
+// Inappropriate content filter
+const INAPPROPRIATE_WORDS = [
+  // profanity
+  'damn', 'hell', 'crap', 'ass', 'bastard', 'bitch', 'shit', 'fuck',
+
+  // sexual content
+  'sex', 'porn', 'nude', 'naked', 'xxx', 'explicit',
+  'horny', 'sexy', 'dick', 'cock', 'pussy', 'slut', 'whore',
+
+  // substances
+  'drunk', 'alcohol', 'beer', 'vodka', 'whiskey',
+  'drugs', 'weed', 'cocaine', 'heroin', 'meth',
+
+  // violence / harm
+  'violence', 'kill', 'murder', 'death', 'rape',
+  'abuse', 'suicide', 'selfharm',
+
+  // harassment / hate
+  'idiot', 'stupid', 'hate', 'racist',
+
+  // links & grooming vectors (handled separately but still flagged)
+  'snapchat', 'instagram', 'telegram', 'whatsapp'
 ];
 
 function containsMatureContent(text) {
+  if (!text) return false;
   const lowerText = text.toLowerCase();
-  return MATURE_KEYWORDS.some(keyword => lowerText.includes(keyword));
+  
+  // Check for inappropriate words
+  for (const word of INAPPROPRIATE_WORDS) {
+    const regex = new RegExp(`\\b${word}\\b`, 'i');
+    if (regex.test(lowerText)) {
+      return true;
+    }
+  }
+  
+  // Check for phone numbers, emails, and URLs
+  if (/\b\d{3}[-.]?\d{3}[-.]?\d{4}\b/.test(text)) return true;
+  if (/\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b/.test(text)) return true;
+  if (/(https?:\/\/|www\.)/i.test(text)) return true;
+  
+  return false;
 }
 
 // ================= QUESTIONS ==================
@@ -121,7 +154,14 @@ router.post("/questions", upload.single("image"), async (req, res) => {
     return res.status(400).json({ error: "Fill all fields." });
   }
 
-  const mature_content = containsMatureContent(title + " " + body) ? 1 : 0;
+  // Block inappropriate content
+  if (containsMatureContent(title + " " + body)) {
+    return res.status(400).json({ 
+      error: "Your message contains inappropriate content or personal information (profanity, phone numbers, emails, links). Please keep our community safe and respectful." 
+    });
+  }
+
+  const mature_content = 0;
 
   try {
     let imageUrl = null;

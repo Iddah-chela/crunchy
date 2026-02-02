@@ -191,10 +191,15 @@ async function loadLatestChats(maxMessages = 3) {
     return;
   }
 
-  // Show up to maxMessages
+  // Show up to maxMessages, truncate preview text for compactness
+  const MAX_PREVIEW_LEN = 28;
   filtered.slice(-maxMessages).forEach(msg => {
+    let preview = `${msg.username}: ${msg.text}`;
+    if (preview.length > MAX_PREVIEW_LEN) {
+      preview = preview.slice(0, MAX_PREVIEW_LEN - 3) + "...";
+    }
     const p = document.createElement("p");
-    p.textContent = `${msg.username}: ${msg.text}`;
+    p.textContent = preview;
     chatInfo.appendChild(p);
   });
 }
@@ -367,4 +372,138 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 window.getNextDopamine = getNextDopamine;
+
+
+// ============================================
+// LOAD USER-SUBMITTED QUESTIONS
+// ============================================
+
+async function loadUserQuestions() {
+  try {
+    // Force full sync without last_sync parameter to get all questions
+    console.log("Loading user questions from:", `${API_BASE}/api/qna/sync`);
+    const response = await fetch(`${API_BASE}/api/qna/sync`); // No last_sync parameter
+    
+    if (!response.ok) {
+      console.error("Could not load user questions, status:", response.status);
+      const errorText = await response.text();
+      console.error("Error response:", errorText);
+      return;
+    }
+    
+    const data = await response.json();
+    console.log("Raw API response:", data);
+    console.log("Questions array:", data.questions);
+    let { questions } = data;
+    
+    // Filter to only show user-submitted questions (those with question_id starting with "user_q")
+    if (questions && questions.length > 0) {
+      // Log first few questions to see their structure
+      console.log("Sample questions:", questions.slice(0, 3).map(q => ({ id: q.id, question_id: q.question_id, text: q.question_text })));
+      
+      questions = questions.filter(q => q.question_id && q.question_id.startsWith("user_q"));
+      console.log(`Filtered to ${questions.length} user-submitted questions`);
+      
+      if (questions.length > 0) {
+        console.log("User questions:", questions.map(q => ({ id: q.id, question_id: q.question_id, text: q.question_text })));
+      }
+    }
+    
+    if (!questions || questions.length === 0) {
+      console.log("No user questions found");
+      return; // Don't show section if no questions
+    }
+    
+    console.log(`Found ${questions.length} user questions`);
+    
+    // Show the section
+    document.getElementById("userQuestionsSection").style.display = "block";
+    
+    // Auto-expand the category to show questions
+    const categoryGroup = document.getElementById("category-user-submitted");
+    if (categoryGroup) {
+      categoryGroup.style.display = "block";
+    }
+    
+    // Render questions
+    const container = document.getElementById("userQuestionsList");
+    container.innerHTML = "";
+    
+    questions.forEach((q, index) => {
+      console.log("Rendering question:", q);
+      const button = document.createElement("button");
+      button.className = "question-btn general-btn";
+      button.id = `user_q${index}`;
+      // Try different possible field names
+      button.textContent = q.question_text || q.question || q.text || "Question " + (index + 1);
+      button.onclick = () => showUserQuestionAnswer(q);
+      container.appendChild(button);
+    });
+    
+    console.log(`Rendered ${questions.length} question buttons`);
+    
+  } catch (error) {
+    console.error("Error loading user questions:", error);
+  }
+}
+
+// Show answer for user-submitted question
+function showUserQuestionAnswer(question) {
+  const answer = document.getElementById("answer");
+  const questionDisplay = document.getElementById("question");
+  
+  // Display question
+  questionDisplay.textContent = question.question_text;
+  
+  // Build answer with verses
+  let answerHTML = "";
+  
+  if (question.verses && question.verses.length > 0) {
+    answerHTML = "<div class='verses-container'>";
+    question.verses.forEach(verse => {
+      answerHTML += `
+        <div class='verse-card' style='margin: 1rem 0; padding: 1rem; background: var(--card-bg); border-radius: 10px; border-left: 3px solid var(--accent);'>
+          <strong style='color: var(--accent);'>${verse.reference}</strong>
+          <p style='margin-top: 0.5rem;'>${verse.text}</p>
+        </div>
+      `;
+    });
+    answerHTML += "</div>";
+  } else {
+    answerHTML = "<p>No verses available for this question yet.</p>";
+  }
+  
+  answer.innerHTML = answerHTML;
+  
+  // Scroll to answer
+  answer.scrollIntoView({ behavior: "smooth", block: "center" });
+}
+
+// Make functions globally available FIRST
+window.loadUserQuestions = loadUserQuestions;
+window.showUserQuestionAnswer = showUserQuestionAnswer;
+
+// Load user questions when page loads
+window.addEventListener("load", () => {
+  console.log("=== HOME.JS LOADED - Calling loadUserQuestions ===");
+  setTimeout(() => {
+    loadUserQuestions();
+  }, 2000); // Wait 2 seconds for qna-cache to finish
+});
+
+// Also call after DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("=== DOM READY - Will load user questions in 3 seconds ===");
+    setTimeout(() => {
+      loadUserQuestions();
+    }, 3000);
+  });
+} else {
+  // DOM already loaded
+  console.log("=== DOM ALREADY READY - Loading user questions in 3 seconds ===");
+  setTimeout(() => {
+    loadUserQuestions();
+  }, 3000);
+}
 

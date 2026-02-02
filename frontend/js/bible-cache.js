@@ -8,6 +8,10 @@
 const BIBLE_CACHE_DB = 'bible_cache';
 const BIBLE_CACHE_STORE = 'chapters';
 const DEFAULT_VERSION = 'en_kjv';
+window.API_BASE = window.API_BASE || (window.location.hostname === "localhost"
+  ? ""
+  : "https://holyverse-s5s1.onrender.com");
+const API_BASE = window.API_BASE;
 
 // Setup Dexie DB
 let db;
@@ -61,55 +65,79 @@ async function cacheChapter(version, book, chapter, data) {
   }
 }
 
+function normalizeVersion(version) {
+  // Lowercase + remove non-alphanum for safer key matching
+  return String(version).toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 async function fetchChapter(version, book, chapter) {
-  // Try cache first (for non-KJV)
+  const normVersion = normalizeVersion(version);
+  const normBook = String(book).toLowerCase();
+
+  // Try cache first (except KJV)
   if (version !== DEFAULT_VERSION) {
-    const cached = await getCachedChapter(version, book, chapter);
-    if (cached) return cached.data || cached;
+    let cached = null;
+
+    if (isMobile()) {
+      const path = `bible_cache/${normVersion}/${normBook}_${chapter}.json`;
+      try {
+        const result = await window.Capacitor.Plugins.Filesystem.readFile({
+          path,
+          directory: 'DATA',
+        });
+        cached = JSON.parse(result.data);
+      } catch (e) {
+        cached = null;
+      }
+    } else if (db) {
+      // Match cached version ignoring case
+      const allCached = await db.chapters.where('version').equalsIgnoreCase(normVersion).toArray();
+      cached = allCached.find(c => String(c.book).toLowerCase() === normBook && Number(c.chapter) === Number(chapter));
+      if (cached) cached = cached.data || cached;
+    }
+
+    if (cached) return cached;
   }
 
-  // Fetch from server or bundled
+  // Network fetch
   let url;
   if (version === DEFAULT_VERSION) {
     url = '/bible/KING JAMES BIBLE.json';
   } else {
-    url = `/bible/${version}.json`;
+    url = `${API_BASE}/bible/${version}.json`;
   }
+
   const bible = await fetch(url).then(r => r.json());
 
   // Support both array and object formats
   let chapterData = null;
+
   if (Array.isArray(bible)) {
     // Array-of-books format (legacy KJV style)
     const meta = bible.find(b => {
-      // Defensive: ensure b.name and b.abbrev are strings
-      const name = typeof b.name === 'string' ? b.name : '';
-      const abbrev = typeof b.abbrev === 'string' ? b.abbrev : '';
-      return name.toLowerCase() === String(book).toLowerCase() || abbrev.toLowerCase() === String(book).toLowerCase();
+      const name = typeof b.name === 'string' ? b.name.toLowerCase() : '';
+      const abbrev = typeof b.abbrev === 'string' ? b.abbrev.toLowerCase() : '';
+      return name === normBook || abbrev === normBook;
     });
     if (meta && Array.isArray(meta.chapters)) chapterData = meta.chapters[chapter - 1] || null;
   } else if (typeof bible === 'object' && bible !== null) {
-    // Object format: { Genesis: { 1: { 1: 'text', ... }, ... }, ... }
-    let bookKey = null;
-    if (typeof book === 'string') {
-      // Try direct match first
-      if (bible[book]) {
-        bookKey = book;
-      } else {
-        // Try case-insensitive match
-        const foundKey = Object.keys(bible).find(k => typeof k === 'string' && k.toLowerCase() === book.toLowerCase());
-        if (foundKey) bookKey = foundKey;
-      }
-    }
-    if (bookKey && bible[bookKey] && bible[bookKey][chapter]) {
-      const verses = bible[bookKey][chapter];
-      // Convert { '1': 'text', ... } to [ 'text', ... ]
+    const foundKey = Object.keys(bible).find(k => typeof k === 'string' && k.toLowerCase() === normBook);
+    if (foundKey && bible[foundKey][chapter]) {
+      const verses = bible[foundKey][chapter];
       chapterData = Object.keys(verses).sort((a,b)=>Number(a)-Number(b)).map(v => verses[v]);
     }
   }
-  if (chapterData && version !== DEFAULT_VERSION) await cacheChapter(version, book, chapter, chapterData);
+
+  // Cache fetched chapter
+  if (chapterData && version !== DEFAULT_VERSION) {
+    const cacheKeyVersion = normVersion; // normalized
+    const cacheKeyBook = normBook;
+    await cacheChapter(cacheKeyVersion, cacheKeyBook, chapter, chapterData);
+  }
+
   return chapterData;
 }
+
 
 async function clearCache(version) {
   if (isMobile()) {
@@ -136,7 +164,7 @@ async function getCachedChapters(version) {
 
 async function downloadVersionForOffline(version, progressCb) {
   // Download all chapters for a version and cache them
-  const url = `/bible/${version}.json`;
+  const url = `${API_BASE}/bible/${version}.json`;
   const bible = await fetch(url).then(r => r.json());
   let booksArr;
   if (Array.isArray(bible)) {

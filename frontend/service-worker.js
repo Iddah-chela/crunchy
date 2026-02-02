@@ -78,6 +78,8 @@ const urlsToCache = [
   "/bible/WORRELL NEW TESTAMENT.json",
   "/bible/WORSLEY NEW TESTAMENT.json",
   "/bible/YOUNG'S LITERAL TRANSLATION.json",
+  "/bible/matthew_henry/commentary_full.json",
+  "/bible/crossrefs.json",
   "/backgrounds/seedling.png",
   "/backgrounds/kidplant.png",
   "/backgrounds/tweenseed.png",

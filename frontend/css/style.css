@@ -3558,6 +3558,10 @@ html, body {
   box-shadow: 0 0 20px rgba(70,120,255,0.6);
 }
 
+.auth-btn#deleteAccountBtn {
+  background: #e74c3c;
+}
+
 .portal.expand {
   transform: scale(15);
   opacity: 1;

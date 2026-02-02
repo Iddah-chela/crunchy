@@ -1192,7 +1192,45 @@ document.querySelectorAll('.tags span').forEach(tag => {
 
 // ---------- Draft retry ----------
 window.addEventListener("online", trySendDrafts);
-window.addEventListener("DOMContentLoaded", () => {
+window.addEventListener("DOMContentLoaded", async () => {
+  // Check user age for social features
+  try {
+    const res = await fetch(`${API_BASE}/me`, { 
+      method: "GET",
+      credentials: "include" 
+    });
+    
+    if (res.ok) {
+      const me = await res.json();
+      
+      // Disable posting features for users under 16
+      if (me.age && me.age < 16) {
+        // Hide post submission form
+        const askSection = document.querySelector('.ask-section');
+        if (askSection) {
+          askSection.innerHTML = `
+            <div style="padding:1.5rem; background:rgba(255,193,7,0.1); border:2px solid #ffc107; border-radius:12px; text-align:center;">
+              <h3 style="margin:0 0 0.5rem 0;">👋 Hey there!</h3>
+              <p style="margin:0; line-height:1.6;">Community posting is available for users 16 and older. You can still read posts and testimonies! This helps keep our community safe. 🛡️</p>
+            </div>
+          `;
+        }
+        
+        // Disable testimony submission
+        const submitTestimony = document.querySelector('.submit-testimony');
+        if (submitTestimony) {
+          submitTestimony.innerHTML = `
+            <div style="padding:1.5rem; background:rgba(255,193,7,0.1); border:2px solid #ffc107; border-radius:12px; text-align:center;">
+              <p style="margin:0; line-height:1.6;">📖 Testimony sharing is available for users 16 and older. You can still read inspiring stories from others!</p>
+            </div>
+          `;
+        }
+      }
+    }
+  } catch (err) {
+    console.log('Age check skipped - user not logged in');
+  }
+  
   loadFromBackend();
   trySendDrafts();
 });
@@ -1259,27 +1297,70 @@ async function trySendDrafts() {
 }
 
 
-// Export initial render if you loaded local cache before backend
-renderQuestions();
-
 // ============================================
 // HELPER: Get User Milestone Border
 // ============================================
-function getUserBorderStyle(userId) {
-  if (!userId) return '';
-  const borderLevel = localStorage.getItem(`profileBorderLevel:${userId}`);
+// Cache for user borders
+const userBorderCache = {};
+
+async function loadUserBorder(userId) {
+  if (userBorderCache[userId]) return userBorderCache[userId];
   
-  if (borderLevel === "legendary") {
-    return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box;';
-  } else if (borderLevel === "gold") {
-    return 'border:4px solid gold; box-shadow:0 0 15px rgba(255,215,0,0.6);';
-  } else if (borderLevel === "silver") {
-    return 'border:4px solid silver; box-shadow:0 0 10px rgba(192,192,192,0.6);';
-  } else if (borderLevel === "bronze") {
-    return 'border:4px solid #cd7f32; box-shadow:0 0 8px rgba(205,127,50,0.5);';
+  try {
+    const res = await fetch(`${API_BASE}/users/${userId}`, { credentials: 'include' });
+    if (res.ok) {
+      const user = await res.json();
+      const border = applyBorderStyle(user.profile_border || 'none');
+      userBorderCache[userId] = border;
+      return border;
+    }
+  } catch (err) {
+    console.error('Failed to load user border:', err);
   }
   return '';
 }
+
+function applyBorderStyle(borderLevel) {
+  switch(borderLevel) {
+    case 'legendary':
+      return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box;';
+    case 'platinum':
+      return 'border:4px solid transparent; background:linear-gradient(white, white) padding-box, linear-gradient(135deg, #e5e4e2, #bfc1c2, #f5f7fa) border-box; box-shadow:0 0 18px rgba(229,228,226,0.8);';
+    case 'gold':
+      return 'border:4px solid gold; box-shadow:0 0 15px rgba(255,215,0,0.6);';
+    case 'silver':
+      return 'border:4px solid silver; box-shadow:0 0 10px rgba(192,192,192,0.6);';
+    case 'bronze':
+      return 'border:4px solid #cd7f32; box-shadow:0 0 8px rgba(205,127,50,0.5);';
+    default:
+      return '';
+  }
+}
+
+function getUserBorderStyle(userId) {
+  if (!userId) return '';
+  
+  // Return cached database value if available
+  if (userBorderCache[userId]) {
+    return userBorderCache[userId];
+  }
+  
+  // Fallback to localStorage for immediate display (current user)
+  const localBorder = localStorage.getItem(`profileBorderLevel:${userId}`);
+  if (localBorder) {
+    const style = applyBorderStyle(localBorder);
+    // Load from database in background to update cache
+    loadUserBorder(userId);
+    return style;
+  }
+  
+  // Load from database in background for other users
+  loadUserBorder(userId);
+  return '';
+}
+
+// Export initial render if you loaded local cache before backend
+renderQuestions();
 
 // ============================================
 // COMMUNITY TABS SYSTEM
@@ -1500,21 +1581,78 @@ async function loadGroups() {
 // REPORT SYSTEM
 // ============================================
 
+// Custom report modal with proper list display
+function showReportPrompt() {
+  return new Promise((resolve) => {
+    const reasons = [
+      "Sexual content",
+      "Hate / harassment",
+      "Misinformation",
+      "Spam",
+      "Self-harm / crisis",
+      "Other"
+    ];
+    
+    const modal = document.createElement('div');
+    modal.className = 'custom-modal';
+    modal.style.display = 'flex';
+    
+    const reasonsList = reasons.map((r, i) => `<div style="padding:0.4rem 0;">${i+1}. ${r}</div>`).join('');
+    
+    modal.innerHTML = `
+      <div class="modal-content" style="max-width:450px;">
+        <p style="margin:0 0 1rem 0; line-height:1.6;">Why are you reporting this?</p>
+        <div style="background:rgba(0,0,0,0.2); padding:1rem; border-radius:8px; margin-bottom:1rem; border:1px solid var(--accent);">
+          ${reasonsList}
+        </div>
+        <input type="text" class="report-input" placeholder="Enter number (1-6) or describe reason..." 
+          style="width:100%; padding:0.75rem; border-radius:8px; border:1px solid var(--accent); background:rgba(0,0,0,0.2); color:var(--text-color); margin-bottom:1rem;">
+        <div style="display:flex; gap:1rem; justify-content:flex-end;">
+          <button class="innerbtn cancel-btn" style="background:rgba(255,255,255,0.1);">Cancel</button>
+          <button class="innerbtn submit-btn">Submit</button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    
+    const input = modal.querySelector('.report-input');
+    input.focus();
+    
+    const submit = () => {
+      const value = input.value.trim();
+      if (!value) {
+        input.style.borderColor = '#e74c3c';
+        input.placeholder = 'Please enter a reason';
+        return;
+      }
+      const selectedReason = reasons[parseInt(value) - 1] || value;
+      modal.remove();
+      resolve(selectedReason);
+    };
+    
+    modal.querySelector('.submit-btn').onclick = submit;
+    input.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') submit();
+    });
+    
+    modal.querySelector('.cancel-btn').onclick = () => {
+      modal.remove();
+      resolve(null);
+    };
+    
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.remove();
+        resolve(null);
+      }
+    });
+  });
+}
+
 async function reportContent(contentId, contentType) {
-  const reasons = [
-    "Sexual content",
-    "Hate / harassment",
-    "Misinformation",
-    "Spam",
-    "Self-harm / crisis",
-    "Other"
-  ];
-  
-  const reason = prompt("Why are you reporting?\n\n" + reasons.map((r, i) => `${i+1}. ${r}`).join("\n") + "\n\nEnter number or text:");
+  const reason = await showReportPrompt();
   
   if (!reason) return;
-  
-  const selectedReason = reasons[parseInt(reason) - 1] || reason;
   
   try {
     const user = JSON.parse(localStorage.getItem("user") || '{}');
@@ -1525,7 +1663,7 @@ async function reportContent(contentId, contentType) {
       body: JSON.stringify({
         contentId,
         contentType,
-        reason: selectedReason,
+        reason: reason,
         reporterId: user.id || "guest"
       })
     });

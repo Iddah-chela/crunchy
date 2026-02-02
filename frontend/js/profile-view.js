@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (viewBio) viewBio.textContent = user.bio || "No bio yet."; // <-- new
       
       // Apply milestone border
-      applyUserBorder(viewProfilePic, user.id);
+      applyUserBorder(viewProfilePic, user);
 
       // Tree (localStorage-based fallback)
       const treeLevel = parseInt(user.tree_level, 10) || 0;
@@ -129,14 +129,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Apply user's milestone border
-  function applyUserBorder(imgElement, userId) {
-    if (!imgElement || !userId) return;
+  function applyUserBorder(imgElement, user) {
+    if (!imgElement || !user) return;
     
-    const borderLevel = localStorage.getItem(`profileBorderLevel:${userId}`);
+    const borderLevel = user.profile_border || 'none';
     
     if (borderLevel === "legendary") {
       imgElement.style.border = "4px solid transparent";
       imgElement.style.background = "linear-gradient(white, white) padding-box, linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3) border-box";
+    } else if (borderLevel === "platinum") {
+      imgElement.style.border = "4px solid transparent";
+      imgElement.style.background = "linear-gradient(white, white) padding-box, linear-gradient(135deg, #e5e4e2, #bfc1c2, #f5f7fa) border-box";
+      imgElement.style.boxShadow = "0 0 18px rgba(229, 228, 226, 0.8)";
     } else if (borderLevel === "gold") {
       imgElement.style.border = "4px solid gold";
       imgElement.style.boxShadow = "0 0 15px rgba(255, 215, 0, 0.6)";

@@ -147,7 +147,6 @@ if(process.env.NODE_ENV === "development") {
 }
 
 
-app.use('/bible', express.static(path.join(__dirname, '../bible')));
 
 // Web-push config
 if (process.env.VAPID_PUBLIC && process.env.VAPID_PRIVATE) {
@@ -390,9 +389,9 @@ app.get("/users/:id", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("users")
-      .select("id, username, birthday, profilePic, bio, tree_level")
+      .select("id, username, birthday, profilePic, bio, tree_level, profile_border")
       .eq("id", Number(req.params.id))
-      .single();
+      .single(); 
 
     if (error) return res.status(500).json({ error: error.message });
     if (!data) return res.status(404).json({ error: "User not found" });
@@ -500,7 +499,7 @@ app.get("/me", async (req, res) => {
   try {
     const { data, error } = await supabase
       .from("users")
-      .select("id, username, birthday, profilePic")
+      .select("id, username, birthday, profilePic, profile_border")
       .eq("id", uid)
       .single();
 
@@ -598,6 +597,114 @@ server.listen(PORT, () => {
 
 
 // Update user route
+// Check if user has community posts
+app.get("/api/user-has-posts/:userId", async (req, res) => {
+  try {
+    const { userId } = req.params;
+    
+    const { data, error } = await supabase
+      .from("community_questions")
+      .select("id")
+      .eq("user_id", userId)
+      .eq("hidden", 0)
+      .limit(1);
+    
+    if (error) throw error;
+    
+    res.json({ hasPosts: data && data.length > 0 });
+  } catch (err) {
+    console.error("Check user posts error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+// Delete user account
+app.delete("/users/:id", async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const { deletePosts } = req.body;
+    
+    // Verify user is deleting their own account
+    if (req.session.userId !== parseInt(userId)) {
+      return res.status(403).json({ error: "Unauthorized" });
+    }
+
+    // Handle community posts/responses based on user choice
+    if (deletePosts) {
+      // User wants to delete their posts - soft delete by setting hidden = 1
+      await supabase
+        .from("community_questions")
+        .update({ hidden: 1 })
+        .eq("user_id", userId);
+      
+      await supabase
+        .from("community_responses")
+        .update({ hidden: 1 })
+        .eq("user_id", userId);
+    } else {
+      // User wants to keep posts - set user_id to NULL so posts remain but are orphaned
+      await supabase
+        .from("community_questions")
+        .update({ user_id: null })
+        .eq("user_id", userId);
+      
+      await supabase
+        .from("community_responses")
+        .update({ user_id: null })
+        .eq("user_id", userId);
+    }
+
+    // Delete user's other data from various tables
+    // Prayer requests - set user_id to NULL to keep the request but orphan it
+    await supabase.from("prayer_requests").update({ user_id: null }).eq("user_id", userId);
+    
+    // Testimonies - set user_id to NULL
+    await supabase.from("testimonies").update({ user_id: null }).eq("user_id", userId);
+    
+    // User questions (submitted questions) - delete these as they're in review
+    await supabase.from("user_questions").delete().eq("user_id", userId);
+    
+    // User groups - delete memberships
+    await supabase.from("user_groups").delete().eq("user_id", userId);
+    
+    // Messages - delete all messages where user is sender or receiver
+    await supabase.from("messages").delete().eq("senderId", userId);
+    await supabase.from("messages").delete().eq("receiverId", userId);
+    
+    // Group messages - set user_id to NULL
+    await supabase.from("group_messages").update({ user_id: null }).eq("user_id", userId);
+    
+    // Push subscriptions - delete these
+    await supabase.from("push_subs").delete().eq("user_id", userId);
+    
+    // Reports made by user - set reported_by to NULL
+    await supabase.from("reports").update({ reported_by: null }).eq("reported_by", userId);
+    
+    // Favorites - delete user's favorites
+    await supabase.from("favorites").delete().eq("user_id", userId);
+    
+    // Friendships - delete all friendships where user is either sender or receiver
+    await supabase.from("friendships").delete().eq("userId", userId);
+    await supabase.from("friendships").delete().eq("friendId", userId);
+    
+    // Finally, delete the user account
+    const { error } = await supabase
+      .from("users")
+      .delete()
+      .eq("id", userId);
+    
+    if (error) throw error;
+    
+    // Destroy session
+    req.session.destroy();
+    
+    res.json({ success: true, message: "Account deleted successfully" });
+  } catch (err) {
+    console.error("Delete user error:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
 app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
 
   try {
@@ -639,6 +746,10 @@ app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
       params.tree_level = parseInt(treeLevel, 10); // <-- save treeLevel
     }
 
+    // Add profile border if provided
+    if (req.body.profile_border !== undefined) {
+      params.profile_border = req.body.profile_border;
+    }
 
     // Finally, update the user record
     const { data, error } = await supabase

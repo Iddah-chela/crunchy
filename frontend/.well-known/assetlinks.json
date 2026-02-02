@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.web.holyverse",
+      "sha256_cert_fingerprints": ["0E:26:0C:E8:F9:35:09:08:21:65:BB:E4:E8:F5:9E:70:E3:21:34:2E:10:26:5E:91:A9:08:0D:24:A4:A6:70:63"]
+    }
+  }
+]
