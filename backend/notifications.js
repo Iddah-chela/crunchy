@@ -51,9 +51,24 @@ async function sendNotif(userId, payload, excludeUserId = null) {
     }
 
     await Promise.all(
-      subs.map(s => {
-        const sub = JSON.parse(s.sub);
-        return webpush.sendNotification(sub, JSON.stringify(payload));
+      subs.map(async s => {
+        try {
+          const sub = JSON.parse(s.sub);
+          await webpush.sendNotification(sub, JSON.stringify(payload));
+        } catch (err) {
+          // Handle 410 Gone - subscription expired/unsubscribed
+          if (err.statusCode === 410) {
+            console.log(`Removing expired push subscription for user ${s.user_id}`);
+            await supabase
+              .from("push_subs")
+              .delete()
+              .eq("user_id", s.user_id)
+              .then(() => {})
+              .catch(delErr => console.warn("Failed to delete expired subscription:", delErr?.message));
+          } else {
+            console.warn("Push notification failed:", err?.message || err);
+          }
+        }
       })
     );
 

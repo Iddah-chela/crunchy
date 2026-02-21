@@ -487,26 +487,39 @@ app.get("/me", async (req, res) => {
   const uid = req.session && req.session.userId;
   if (!uid) return res.status(401).json({ error: "Not logged in" });
 
-  await supabase
-  .from("users")
-  .update({
-    last_active: new Date().toISOString(),
-    received_welcome_back: false,
-    received_miss_you: false
-  })
-  .eq("id", uid);
-
   try {
+    // Fetch user data first (critical path)
     const { data, error } = await supabase
       .from("users")
       .select("id, username, birthday, profilePic, profile_border")
       .eq("id", uid)
       .single();
 
-    if (error) return res.status(500).json({ error: error.message });
+    if (error) {
+      console.error("[/me] Query error:", error);
+      return res.status(500).json({ error: error.message });
+    }
+    
+    if (!data) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    
     const age = data.birthday ? calculateAge(data.birthday) : 10;
     res.json({ ...data, age });
+    
+    // Update last_active AFTER response (non-blocking, won't cause 500 if it fails)
+    supabase
+      .from("users")
+      .update({ 
+        last_active: new Date().toISOString(),
+        received_welcome_back: false
+      })
+      .eq("id", uid)
+      .then(() => {})
+      .catch(err => console.warn("[/me] Failed to update last_active:", err?.message));
+      
   } catch (err) {
+    console.error("[/me] Unexpected error:", err);
     res.status(500).json({ error: "Server error" });
   }
 });
@@ -709,7 +722,7 @@ app.put("/users/:id", upload.single("profilePic"), async (req, res) => {
 
   try {
     const { username, password, bio, treeLevel } = req.body;
-    const userId = req.params.id;
+    const userId = Number(req.params.id);
 
     if (!username) {
       return res.status(400).json({ error: "Username required." });
@@ -1010,6 +1023,90 @@ app.post("/api/admin/testimonies/:id/review", requireAdmin, async (req, res) => 
   }
 });
 
+// Get admin statistics
+app.get("/api/admin/stats", requireAdmin, async (req, res) => {
+  try {
+    const stats = {};
+    
+    // Count total users
+    const { count: userCount } = await supabase
+      .from("users")
+      .select("*", { count: "exact", head: true });
+    stats.totalUsers = userCount || 0;
+    
+    // Count visitors (not logged in)
+    const { count: visitorCount } = await supabase
+      .from("visitors")
+      .select("*", { count: "exact", head: true });
+    stats.totalVisitors = visitorCount || 0;
+    
+    // Count active groups
+    const { count: groupCount } = await supabase
+      .from("groups")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "active");
+    stats.totalGroups = groupCount || 0;
+    
+    // Count group members
+    const { count: memberCount } = await supabase
+      .from("group_members")
+      .select("*", { count: "exact", head: true });
+    stats.totalGroupMembers = memberCount || 0;
+    
+    // Count published questions
+    const { count: publishedCount } = await supabase
+      .from("questions")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "published");
+    stats.publishedQuestions = publishedCount || 0;
+    
+    // Count pending user questions
+    const { count: pendingQCount } = await supabase
+      .from("user_questions")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "pending");
+    stats.pendingQuestions = pendingQCount || 0;
+    
+    // Count approved testimonies
+    const { count: approvedTestCount } = await supabase
+      .from("testimonies")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "approved");
+    stats.approvedTestimonies = approvedTestCount || 0;
+    
+    // Count pending testimonies
+    const { count: pendingTestCount } = await supabase
+      .from("testimonies")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "pending");
+    stats.pendingTestimonies = pendingTestCount || 0;
+    
+    // Count prayer requests
+    const { count: prayerCount } = await supabase
+      .from("prayer_requests")
+      .select("*", { count: "exact", head: true });
+    stats.totalPrayerRequests = prayerCount || 0;
+    
+    // Count open reports
+    const { count: reportCount } = await supabase
+      .from("reports")
+      .select("*", { count: "exact", head: true })
+      .eq("status", "pending");
+    stats.openReports = reportCount || 0;
+    
+    // Count total verses
+    const { count: verseCount } = await supabase
+      .from("verses")
+      .select("*", { count: "exact", head: true });
+    stats.totalVerses = verseCount || 0;
+    
+    res.json(stats);
+  } catch (error) {
+    console.error("Error fetching admin stats:", error);
+    res.status(500).json({ error: "Failed to load statistics" });
+  }
+});
+
 // ============================================
 // GROUPS API
 // ============================================
@@ -1298,15 +1395,46 @@ app.post("/api/reports", async (req, res) => {
 // Get pending reports (admin only)
 app.get("/api/admin/reports", requireAdmin, async (req, res) => {
   try {
-    const { data, error } = await supabase
+    // First, get all pending reports
+    const { data: reports, error: reportsError } = await supabase
       .from("reports")
       .select("*")
       .eq("status", "pending")
       .order("created_at", { ascending: false });
     
-    if (error) throw error;
+    if (reportsError) throw reportsError;
     
-    res.json(data);
+    // Then, fetch the actual post content for each report
+    const reportsWithContent = await Promise.all(
+      reports.map(async (report) => {
+        if (report.content_type === "post") {
+          const { data: post, error: postError } = await supabase
+            .from("community_questions")
+            .select("id, title, body, image, user_id")
+            .eq("id", report.content_id)
+            .maybeSingle();
+          
+          if (postError) {
+            console.error(`Error fetching post ${report.content_id}:`, postError);
+          } else if (!post) {
+            console.log(`Post ${report.content_id} not found in community_questions`);
+          }
+          
+          // Attach post data to report (even if null)
+          return {
+            ...report,
+            community_questions: post || null
+          };
+        }
+        // For non-post content types, just return the report
+        return {
+          ...report,
+          community_questions: null
+        };
+      })
+    );
+    
+    res.json(reportsWithContent);
   } catch (error) {
     console.error("Error fetching reports:", error);
     res.status(500).json({ error: "Failed to load reports" });
